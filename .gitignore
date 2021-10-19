@@ -1,0 +1,6 @@
+*.db
+*.idea
+*.pb
+IEP Manager/.idea/runConfigurations.xml
+IEP Manager/out/*
+*.class
