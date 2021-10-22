@@ -1,6 +1,8 @@
 package com.mango.app.login;
 
 import com.mango.app.Main;
+import com.mango.app.forgotpassword.*;
+import com.mango.app.mainloginpage.*;
 import com.mango.app.utilities.Encryption;
 
 import java.awt.*;
@@ -16,19 +18,17 @@ public class LoginPageController {
 
     private static Encryption encryption = new Encryption();
 
-    private LoginPageView loginPageView;
+    public LoginPageController(LoginPageView loginPageView) {
+        loginPageView.getLoginButton().addActionListener(new LoginButtonActionListener(loginPageView));
+        loginPageView.getLoginButton().addMouseListener(new LoginButtonMouseListener(loginPageView));
 
-    public LoginPageController(LoginPageView view){
-        this.loginPageView = view;
-        view.getLoginButton().addActionListener(new LoginButtonActionListener(loginPageView));
-        view.getLoginButton().addMouseListener(new LoginButtonMouseListener(loginPageView));
+        loginPageView.getForgotPasswordButton().addActionListener(new ForgotPasswordActionListener());
+        loginPageView.getForgotPasswordButton().addMouseListener(new ForgotPasswordButtonMouseListener(loginPageView));
 
-        view.getForgotPasswordButton().addActionListener(new ForgotPasswordActionListener(loginPageView));
-        view.getForgotPasswordButton().addMouseListener(new ForgotPasswordButtonMouseListener(loginPageView));
-
-        view.getCreateAccountButton().addActionListener(new CreateAccountActionListener(loginPageView));
-        view.getCreateAccountButton().addMouseListener(new CreateAccountButtonMouseListener(loginPageView));
+        loginPageView.getCreateAccountButton().addActionListener(new CreateAccountActionListener(loginPageView));
+        loginPageView.getCreateAccountButton().addMouseListener(new CreateAccountButtonMouseListener(loginPageView));
     }
+
     private static class LoginButtonActionListener implements ActionListener{
         private final LoginPageView view;
         public LoginButtonActionListener(LoginPageView view){
@@ -125,12 +125,12 @@ public class LoginPageController {
     }
 
     private static class ForgotPasswordActionListener implements ActionListener {
-        public ForgotPasswordActionListener(LoginPageView loginPageViewWindows) {
-        }
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("Forgot Password Clicked");
+            SecurityQuestionsPageOneView securityQuestionPageOneView = new SecurityQuestionsPageOneView();
+            new ForgotPasswordController(securityQuestionPageOneView);
+            MainLoginView.setActivePanel(securityQuestionPageOneView.getSecurityQuestionsPanel());
         }
     }
 

@@ -13,8 +13,8 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class SecurityQuestionsOneView {
-    private static final Logger logger = Logger.getLogger(com.mango.app.createaccount.SecurityQuestionOneView.class.getName());
+public class SecurityQuestionsPageTwoView {
+    private static final Logger logger = Logger.getLogger(com.mango.app.createaccount.SecurityQuestionTwoView.class.getName());
 
     private JFrame changePasswordWindow;
 
@@ -25,15 +25,15 @@ public class SecurityQuestionsOneView {
     private JLabel mangoLogo;
     private JLabel titleHeader;
     private JLabel forgotPasswordHeader;
-    private JLabel securityOneHeader;
-    private JLabel securityOneAnsHeader;
+    private JLabel securityTwoHeader;
+    private JLabel securityTwoAnsHeader;
 
     private JButton nextButton;
     private JButton backButton;
     private JButton changePasswordButton;
 
-    private JTextField securityOneText;
-    private JTextField securityOneAnsText;
+    private JTextField securityTwoText;
+    private JTextField securityTwoAnsText;
 
 
     private JSeparator separatorHeader;
@@ -44,7 +44,7 @@ public class SecurityQuestionsOneView {
      * The constructor which sets up the GUI for the create account page.
      */
 
-    public SecurityQuestionsOneView(){
+    public SecurityQuestionsPageTwoView(){
 
         createFrame();
         createPanels();
@@ -121,27 +121,27 @@ public class SecurityQuestionsOneView {
                 1);
         separatorHeader.setBackground(Color.WHITE);
 
-        securityOneHeader = createLabel("Security Question #1", FontType.FONT_12_BOLD);
-        securityOneHeader.setBounds(0,( int) (changePasswordPanel.getHeight() * 0.48), changePasswordPanel.getWidth(),15);
+        securityTwoHeader = createLabel("Security Question #2", FontType.FONT_12_BOLD);
+        securityTwoHeader.setBounds(0,( int) (changePasswordPanel.getHeight() * 0.48), changePasswordPanel.getWidth(),15);
 
-        securityOneText = new JTextField("Security Question #1");
-        securityOneText.setBounds(
+        securityTwoText = new JTextField("Security Question #2");
+        securityTwoText.setBounds(
                 (int) (changePasswordPanel.getWidth() * 0.5) - (int) (changePasswordPanel.getWidth() * 0.25),
                 (int) (changePasswordPanel.getHeight() * 0.54),
                 (int) (changePasswordPanel.getWidth() * 0.5),
                 30);
-        securityOneText.setBackground(Color.WHITE);
+        securityTwoText.setBackground(Color.WHITE);
 
-        securityOneAnsHeader = createLabel("Enter Answer", FontType.FONT_12_BOLD);
-        securityOneAnsHeader.setBounds(0, (int) (changePasswordPanel.getHeight() * 0.62), changePasswordPanel.getWidth(),15);
+        securityTwoAnsHeader = createLabel("Enter Answer", FontType.FONT_12_BOLD);
+        securityTwoAnsHeader.setBounds(0, (int) (changePasswordPanel.getHeight() * 0.62), changePasswordPanel.getWidth(),15);
 
-        securityOneAnsText = new JTextField("Answer #1");
-        securityOneAnsText.setBounds(
+        securityTwoAnsText = new JTextField("Answer #2");
+        securityTwoAnsText.setBounds(
                 (int) (changePasswordPanel.getWidth() * 0.5) - (int) (changePasswordPanel.getWidth() * 0.25),
                 (int) (changePasswordPanel.getHeight() * 0.68),
                 (int) (changePasswordPanel.getWidth() * 0.5),
                 30);
-        securityOneAnsText.setBackground(Color.WHITE);
+        securityTwoAnsText.setBackground(Color.WHITE);
 
         nextButton = new JButton("Next");
         nextButton.setForeground(Color.WHITE);
@@ -185,10 +185,10 @@ public class SecurityQuestionsOneView {
         changePasswordPanel.add(titleHeader);
         changePasswordPanel.add(forgotPasswordHeader);
         changePasswordPanel.add(separatorHeader);
-        changePasswordPanel.add(securityOneHeader);
-        changePasswordPanel.add(securityOneText);
-        changePasswordPanel.add(securityOneAnsHeader);
-        changePasswordPanel.add(securityOneAnsText);
+        changePasswordPanel.add(securityTwoHeader);
+        changePasswordPanel.add(securityTwoText);
+        changePasswordPanel.add(securityTwoAnsHeader);
+        changePasswordPanel.add(securityTwoAnsText);
         changePasswordPanel.add(nextButton);
         changePasswordPanel.add(backButton);
         changePasswordPanel.add(changePasswordButton);
@@ -216,8 +216,8 @@ public class SecurityQuestionsOneView {
     public JButton getNextButton(){ return nextButton; };
     public JButton getChangePasswordButton(){ return changePasswordButton; };
     public JButton getBackButton(){ return backButton; };
-    public JTextField getSecurityOneText(){ return securityOneText; }
-    public JTextField getSecurityOneAnsText(){ return securityOneAnsText; }
+    public JTextField getSecurityTwoText(){ return securityTwoText; }
+    public JTextField getSecurityTwoAnsText(){ return securityTwoAnsText; }
 
 }
 
