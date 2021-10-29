@@ -1,32 +1,24 @@
 package com.mango.app.login;
 
-import com.mango.app.*;
-import com.mango.app.components.*;
-import com.mango.app.utilities.*;
-import java.awt.*;
-import java.io.*;
-import java.util.logging.*;
-import javax.imageio.*;
-import javax.swing.*;
+import com.mango.app.Main;
+import com.mango.app.components.FontType;
+import com.mango.app.components.RoundedPanel;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JSeparator;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 /**
- * Creates the Login page view for the user.
+ * Creates the main log in panel for the user.
  */
 public class LoginPageView {
 
-    private static final Logger logger = Logger.getLogger(LoginPageView.class.getName());
-
-    private JFrame loginWindow;
-
-    private BackgroundPanel backgroundLoginPanel;
-    private RoundedPanel loginPanel;
-
-    private JLabel schoolLogo;
-    private JLabel mangoLogo;
-    private JLabel titleHeader;
-    private JLabel signinHeader;
-    private JLabel enterEmailHeader;
-    private JLabel enterPasswordHeader;
+    private final RoundedPanel loginPanel;
 
     private JButton loginButton;
     private JButton createAccountButton;
@@ -35,42 +27,7 @@ public class LoginPageView {
     private JTextField emailText;
     private JTextField passwordText;
 
-    private JSeparator separatorHeader;
-
-    private final Dimension WINDOW_DIMENSIONS = new Dimension(Main.getScreenWidth(), Main.getScreenHeight());
-
-    /**
-     * The constructor which sets up the GUI for the login page.
-     */
-    public LoginPageView(OSUtils.OS osType) {
-        createFrame();
-        createPanels();
-        createComponents();
-
-        loginWindow.getContentPane().add(backgroundLoginPanel);
-        loginWindow.pack();
-        loginWindow.setLocationRelativeTo(null);
-        loginWindow.setVisible(true);
-    }
-
-    private void createFrame() {
-        loginWindow = new JFrame();
-        loginWindow.setPreferredSize(WINDOW_DIMENSIONS);
-        loginWindow.setExtendedState(Frame.MAXIMIZED_BOTH);
-        loginWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-    }
-
-    private void createPanels() {
-        try {
-            backgroundLoginPanel = new BackgroundPanel();
-            backgroundLoginPanel.setBackground(
-                    ImageIO.read(new File("src/com/mango/app/utilities/images/Ariel-City-of-Lawrenceburg1.png")));
-            backgroundLoginPanel.setLayout(null);
-            backgroundLoginPanel.setBounds(0, 0, 100, 100);
-        } catch (IOException ex) {
-            logger.log(Level.SEVERE, "Could not load background image.");
-        }
-
+    public LoginPageView() {
         loginPanel = new RoundedPanel();
         loginPanel.setLayout(null);
         loginPanel.setBounds(
@@ -79,11 +36,11 @@ public class LoginPageView {
                 (int) (Main.getScreenWidth() * 0.3),
                 (int) (Main.getScreenHeight() * 0.70));
 
-        backgroundLoginPanel.add(loginPanel);
+        createComponents();
     }
 
     private void createComponents() {
-        schoolLogo = new JLabel(new ImageIcon(getScaledImage(
+        JLabel schoolLogo = new JLabel(new ImageIcon(getScaledImage(
                 "src/com/mango/app/utilities/images/PawLogo.png",
                       (229 / 2),
                       110)));
@@ -93,7 +50,7 @@ public class LoginPageView {
                 (229 / 2),
                 110);
 
-       mangoLogo = new JLabel(new ImageIcon(getScaledImage(
+        JLabel mangoLogo = new JLabel(new ImageIcon(getScaledImage(
                "src/com/mango/app/utilities/images/Mango3.png",
                50,
                50)));
@@ -103,13 +60,13 @@ public class LoginPageView {
                 50,
                 50);
 
-        titleHeader = createLabel("IEP Manager", FontType.FONT_35_BOLD);
+        JLabel titleHeader = createLabel("IEP Manager", FontType.FONT_35_BOLD);
         titleHeader.setBounds(0, (int) (loginPanel.getHeight() * 0.28) , loginPanel.getWidth(),45);
 
-        signinHeader = createLabel("Sign in", FontType.FONT_20_BOLD);
-        signinHeader.setBounds(0, (int) (loginPanel.getHeight() * 0.38), loginPanel.getWidth(),30);
+        JLabel signInHeader = createLabel("Sign in", FontType.FONT_20_BOLD);
+        signInHeader.setBounds(0, (int) (loginPanel.getHeight() * 0.38), loginPanel.getWidth(),30);
 
-        separatorHeader = new JSeparator(SwingConstants.CENTER);
+        JSeparator separatorHeader = new JSeparator(SwingConstants.CENTER);
         separatorHeader.setBounds(
                 (int) (loginPanel.getWidth() * 0.5) - (int) (loginPanel.getWidth() * 0.20),
                 (int) (loginPanel.getHeight() * 0.45),
@@ -117,7 +74,7 @@ public class LoginPageView {
                 1);
         separatorHeader.setBackground(Color.WHITE);
 
-        enterEmailHeader = createLabel("Enter Email", FontType.FONT_12_BOLD);
+        JLabel enterEmailHeader = createLabel("Enter Email", FontType.FONT_12_BOLD);
         enterEmailHeader.setBounds(0,( int) (loginPanel.getHeight() * 0.48), loginPanel.getWidth(),15);
 
         emailText = new JTextField("Email");
@@ -128,7 +85,7 @@ public class LoginPageView {
                 30);
         emailText.setBackground(Color.WHITE);
 
-        enterPasswordHeader = createLabel("Enter Password", FontType.FONT_12_BOLD);
+        JLabel enterPasswordHeader = createLabel("Enter Password", FontType.FONT_12_BOLD);
         enterPasswordHeader.setBounds(0, (int) (loginPanel.getHeight() * 0.62), loginPanel.getWidth(),15);
 
         passwordText = new JTextField("Password");
@@ -168,11 +125,11 @@ public class LoginPageView {
         loginPanel.add(schoolLogo);
         loginPanel.add(mangoLogo);
         loginPanel.add(titleHeader);
-        loginPanel.add(signinHeader);
+        loginPanel.add(signInHeader);
         loginPanel.add(separatorHeader);
         loginPanel.add(enterEmailHeader);
-        loginPanel.add(emailText);
         loginPanel.add(enterPasswordHeader);
+        loginPanel.add(emailText);
         loginPanel.add(passwordText);
         loginPanel.add(loginButton);
         loginPanel.add(createAccountButton);
@@ -198,6 +155,8 @@ public class LoginPageView {
     private Image getScaledImage(String path, int width, int height) {
         return new ImageIcon(path).getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
     }
+
+    public RoundedPanel getLoginPanel() { return loginPanel; }
 
     public JButton getLoginButton() { return loginButton; }
 

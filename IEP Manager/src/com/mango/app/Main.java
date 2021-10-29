@@ -1,11 +1,8 @@
 package com.mango.app;
 
-import com.mango.app.createaccount.*;
-import com.mango.app.forgotpassword.ForgotPasswordController;
-import com.mango.app.forgotpassword.SecurityQuestionsOneView;
-import com.mango.app.login.LoginPageController;
-import com.mango.app.login.LoginPageView;
-import com.mango.app.utilities.OSUtils;
+import com.mango.app.components.*;
+import com.mango.app.login.*;
+import com.mango.app.mainloginpage.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -60,11 +57,12 @@ public class Main {
 //            create.registerAccount("Encrypt", "Last","something2@gmail.com","hello");
 
             UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-            if (OSUtils.getOS().equals(OSUtils.OS.WINDOWS)) {
-                new LoginPageController(new LoginPageView(OSUtils.OS.WINDOWS));
-            } else {
-                new LoginPageController(new LoginPageView(OSUtils.OS.MAC));
-            }
+
+            LoginPageView loginPageView = new LoginPageView();
+            new LoginPageController(loginPageView);
+
+            new MainLoginView();
+            MainLoginView.setActivePanel(loginPageView.getLoginPanel());
 
            // System.out.println(login.loginToAccount("something@gmail.com","hello5"));
 //            create.registerAccount("Encrypt", "Last","something@gmail.com","hello");
