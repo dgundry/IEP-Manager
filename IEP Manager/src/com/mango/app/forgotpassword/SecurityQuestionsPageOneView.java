@@ -32,10 +32,10 @@ public class SecurityQuestionsPageOneView {
         securityQuestionsPanel = new RoundedPanel();
         securityQuestionsPanel.setLayout(null);
         securityQuestionsPanel.setBounds(
-                (int) (Main.getScreenWidth() * 0.5) - ((int) (Main.getScreenWidth() * 0.16)),
-                (int) (Main.getScreenHeight() * 0.125),
-                (int) (Main.getScreenWidth() * 0.3),
-                (int) (Main.getScreenHeight() * 0.70));
+                (int) (Main.SCREEN_WIDTH * 0.5) - ((int) (Main.SCREEN_WIDTH * 0.16)),
+                (int) (Main.SCREEN_HEIGHT * 0.125),
+                (int) (Main.SCREEN_WIDTH * 0.3),
+                (int) (Main.SCREEN_HEIGHT * 0.70));
 
         createComponents();
     }

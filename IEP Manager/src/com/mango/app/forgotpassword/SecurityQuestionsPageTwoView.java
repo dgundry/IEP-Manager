@@ -38,7 +38,7 @@ public class SecurityQuestionsPageTwoView {
 
     private JSeparator separatorHeader;
 
-    private final Dimension WINDOW_DIMENSIONS = new Dimension(Main.getScreenWidth(), Main.getScreenHeight());
+    private final Dimension WINDOW_DIMENSIONS = new Dimension(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
 
     /**
      * The constructor which sets up the GUI for the create account page.
@@ -78,10 +78,10 @@ public class SecurityQuestionsPageTwoView {
         changePasswordPanel = new RoundedPanel();
         changePasswordPanel.setLayout(null);
         changePasswordPanel.setBounds(
-                (int) (Main.getScreenWidth() * 0.5) - ((int) (Main.getScreenWidth() * 0.16)),
-                (int) (Main.getScreenHeight() * 0.125),
-                (int) (Main.getScreenWidth() * 0.3),
-                (int) (Main.getScreenHeight() * 0.70));
+                (int) (Main.SCREEN_WIDTH * 0.5) - ((int) (Main.SCREEN_WIDTH * 0.16)),
+                (int) (Main.SCREEN_HEIGHT * 0.125),
+                (int) (Main.SCREEN_WIDTH * 0.3),
+                (int) (Main.SCREEN_HEIGHT * 0.70));
 
         backgroundChangePasswordPanel.add(changePasswordPanel);
     }

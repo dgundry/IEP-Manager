@@ -7,7 +7,6 @@ import java.awt.Dimension;
 import java.awt.Frame;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -20,7 +19,7 @@ public class MainLoginView {
 
     private static BackgroundPanel backgroundLoginPanel;
 
-    private final Dimension WINDOW_DIMENSIONS = new Dimension(Main.getScreenWidth(), Main.getScreenHeight());
+    private final Dimension WINDOW_DIMENSIONS = new Dimension(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
 
     private static final Logger logger = Logger.getLogger(MainLoginView.class.getName());
 
@@ -63,7 +62,6 @@ public class MainLoginView {
         backgroundLoginPanel.add(panel);
         backgroundLoginPanel.updateUI();
     }
-
 
     public JFrame getLoginWindow() { return loginWindow; }
 }

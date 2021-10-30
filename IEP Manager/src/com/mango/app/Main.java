@@ -1,11 +1,12 @@
 package com.mango.app;
 
-import com.mango.app.components.*;
-import com.mango.app.login.*;
-import com.mango.app.mainloginpage.*;
-
-import javax.swing.*;
-import java.awt.*;
+import com.mango.app.login.LoginPageController;
+import com.mango.app.login.LoginPageView;
+import com.mango.app.mainloginpage.MainLoginView;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -28,33 +29,16 @@ public class Main {
     }
 
     static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    private static final int SCREEN_WIDTH = (int) screenSize.getWidth();
-    private static final int SCREEN_HEIGHT = (int) screenSize.getHeight();
-    public static int getScreenWidth(){
-        return SCREEN_WIDTH;
-    }
-    public static int getScreenHeight(){
-        return SCREEN_HEIGHT;
-    }
+    public static final int SCREEN_WIDTH = (int) screenSize.getWidth();
+    public static final int SCREEN_HEIGHT = (int) screenSize.getHeight();
 
     private static final Logger logger = Logger.getLogger(Main.class.getName());
 
     public static void main(String[] args) {
 
         try {
-            System.out.println("Start");
             String url = "jdbc:sqlite:database\\iepCipher.db";
             connection = DriverManager.getConnection(url);
-            System.out.println("Connected");
-//            CreateAccountController create = new CreateAccountController();
-            //LoginPageController login = new LoginPageController();
-//            EditAccountController edit = new EditAccountController();
-//            create.registerTeacher("Devin","Security", "random6@gmail.com","password",1,"password1", 2, "password2");
-//            create.registerAccount("Devin","Gundry","dgundry1@gmail.com","password");
-//            edit.changePassword("dgundry1@gmail.com","password1","password","password" );
-//            edit.changePassword("something@gmail.com","wefef","we","we");
-//            System.out.println(login.loginToAccount("something@gmail.com","hello5"));
-//            create.registerAccount("Encrypt", "Last","something2@gmail.com","hello");
 
             UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
 
@@ -63,12 +47,6 @@ public class Main {
 
             new MainLoginView();
             MainLoginView.setActivePanel(loginPageView.getLoginPanel());
-
-           // System.out.println(login.loginToAccount("something@gmail.com","hello5"));
-//            create.registerAccount("Encrypt", "Last","something@gmail.com","hello");
-//            create.registerAccount("Encrypt", "Last","something@gmail.com","hello2");
-
-
         } catch (SQLException
                 | ClassNotFoundException
                 | InstantiationException
@@ -78,3 +56,20 @@ public class Main {
         }
     }
 }
+
+/**
+ * Tests
+ * System.out.println(login.loginToAccount("something@gmail.com","hello5"));
+ * create.registerAccount("Encrypt", "Last","something@gmail.com","hello");
+ * create.registerAccount("Encrypt", "Last","something@gmail.com","hello2");
+ *
+ * CreateAccountController create = new CreateAccountController();
+ * LoginPageController login = new LoginPageController();
+ * EditAccountController edit = new EditAccountController();
+ * create.registerTeacher("Devin","Security", "random6@gmail.com","password",1,"password1", 2, "password2");
+ * create.registerAccount("Devin","Gundry","dgundry1@gmail.com","password");
+ * edit.changePassword("dgundry1@gmail.com","password1","password","password" );
+ * edit.changePassword("something@gmail.com","wefef","we","we");
+ * System.out.println(login.loginToAccount("something@gmail.com","hello5"));
+ * create.registerAccount("Encrypt", "Last","something2@gmail.com","hello");
+ */
