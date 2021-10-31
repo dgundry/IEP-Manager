@@ -1,10 +1,12 @@
 package com.mango.app.login;
 
 import com.mango.app.Main;
-import com.mango.app.forgotpassword.*;
-import com.mango.app.mainloginpage.*;
+import com.mango.app.createaccount.CreateAccountController;
+import com.mango.app.createaccount.CreateAccountView;
+import com.mango.app.forgotpassword.ForgotPasswordController;
+import com.mango.app.forgotpassword.SecurityQuestionsPageOneView;
+import com.mango.app.mainloginpage.MainLoginView;
 import com.mango.app.utilities.Encryption;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.font.*;
@@ -25,7 +27,7 @@ public class LoginPageController {
         loginPageView.getForgotPasswordButton().addActionListener(new ForgotPasswordActionListener());
         loginPageView.getForgotPasswordButton().addMouseListener(new ForgotPasswordButtonMouseListener(loginPageView));
 
-        loginPageView.getCreateAccountButton().addActionListener(new CreateAccountActionListener(loginPageView));
+        loginPageView.getCreateAccountButton().addActionListener(new CreateAccountButtonActionListener());
         loginPageView.getCreateAccountButton().addMouseListener(new CreateAccountButtonMouseListener(loginPageView));
     }
 
@@ -201,13 +203,13 @@ public class LoginPageController {
         }
     }
 
-    private static class CreateAccountActionListener implements ActionListener {
-        public CreateAccountActionListener(LoginPageView loginPageViewWindows) {
-        }
+    private static class CreateAccountButtonActionListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("Create Account Clicked");
+            CreateAccountView createAccountView = new CreateAccountView();
+            new CreateAccountController(createAccountView);
+            MainLoginView.setActivePanel(createAccountView.getCreateAccountPanel());
         }
     }
 

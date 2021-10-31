@@ -19,7 +19,6 @@ public class SecurityQuestionsPageOneView {
 
     private JButton nextButton;
     private JButton backButton;
-    private JButton changePasswordButton;
 
     private JTextField securityOneText;
     private JTextField securityOneAnsText;
@@ -27,7 +26,6 @@ public class SecurityQuestionsPageOneView {
     /**
      * The constructor which sets up the GUI for the create account page.
      */
-
     public SecurityQuestionsPageOneView(){
         securityQuestionsPanel = new RoundedPanel();
         securityQuestionsPanel.setLayout(null);
@@ -108,6 +106,7 @@ public class SecurityQuestionsPageOneView {
         nextButton.setOpaque(true);
         nextButton.setBorderPainted(false);
         nextButton.setFocusPainted(false);
+        nextButton.setEnabled(false);
 
         backButton = createButton("Back");
         backButton.setForeground(Color.WHITE);
@@ -121,19 +120,6 @@ public class SecurityQuestionsPageOneView {
         backButton.setBorderPainted(false);
         backButton.setFocusPainted(false);
 
-        changePasswordButton = createButton("Change Password");
-        changePasswordButton.setForeground(Color.WHITE);
-        changePasswordButton.setBackground(new Color(245,102,0));
-        changePasswordButton.setBounds(
-                (int) (securityQuestionsPanel.getWidth() * 0.40) - (int) (securityQuestionsPanel.getWidth() * 0.10),
-                (int) (securityQuestionsPanel.getHeight() * 0.83),
-                (int) (securityQuestionsPanel.getWidth() * 0.40),
-                30);
-        changePasswordButton.setOpaque(true);
-        changePasswordButton.setBorderPainted(false);
-        changePasswordButton.setFocusPainted(false);
-        changePasswordButton.setEnabled(false);
-
         securityQuestionsPanel.add(schoolLogo);
         securityQuestionsPanel.add(mangoLogo);
         securityQuestionsPanel.add(titleHeader);
@@ -145,7 +131,6 @@ public class SecurityQuestionsPageOneView {
         securityQuestionsPanel.add(securityOneAnsText);
         securityQuestionsPanel.add(nextButton);
         securityQuestionsPanel.add(backButton);
-        securityQuestionsPanel.add(changePasswordButton);
     }
 
     private JLabel createLabel(String text, Font font) {
@@ -171,8 +156,6 @@ public class SecurityQuestionsPageOneView {
     public RoundedPanel getSecurityQuestionsPanel() { return securityQuestionsPanel; }
 
     public JButton getNextButton(){ return nextButton; }
-
-    public JButton getChangePasswordButton(){ return changePasswordButton; }
 
     public JButton getBackButton(){ return backButton; }
 

@@ -14,7 +14,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class SecurityQuestionsPageTwoView {
-    private static final Logger logger = Logger.getLogger(com.mango.app.createaccount.SecurityQuestionTwoView.class.getName());
 
     private JFrame changePasswordWindow;
 
@@ -72,7 +71,7 @@ public class SecurityQuestionsPageTwoView {
             backgroundChangePasswordPanel.setLayout(null);
             backgroundChangePasswordPanel.setBounds(0, 0, 100, 100);
         } catch (IOException ex) {
-            logger.log(Level.SEVERE, "Could not load background image.");
+            //logger.log(Level.SEVERE, "Could not load background image.");
         }
 
         changePasswordPanel = new RoundedPanel();
