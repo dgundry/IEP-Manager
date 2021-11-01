@@ -42,6 +42,7 @@ public class Main {
 
             UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
 
+            //Comment out these lines and add new code to test out views
             LoginPageView loginPageView = new LoginPageView();
             new LoginPageController(loginPageView);
 

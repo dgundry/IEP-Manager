@@ -120,7 +120,7 @@ public class CreateAccountView {
         nextButton.setOpaque(true);
         nextButton.setBorderPainted(false);
         nextButton.setFocusPainted(false);
-        nextButton.setEnabled(false);
+        nextButton.setEnabled(true);
 
         backButton = createButton("Back");
         backButton.setForeground(Color.WHITE);

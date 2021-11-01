@@ -15,7 +15,10 @@ import java.util.*;
 
 public class CreateAccountController {
 
+    private CreateAccountView createAccountView;
+
     public CreateAccountController(CreateAccountView view) {
+        this.createAccountView = view;
         view.getBackButton().addActionListener(new BackButtonActionListener());
         view.getBackButton().addMouseListener(new BackButtonMouseListener(view));
 
@@ -104,6 +107,7 @@ public class CreateAccountController {
         }
     }
 
+
     private static class NextButtonActionListener implements ActionListener {
 
         /**
@@ -113,6 +117,9 @@ public class CreateAccountController {
          */
         @Override
         public void actionPerformed(ActionEvent e) {
+            PasswordView passwordView = new PasswordView();
+            new PasswordController(passwordView);
+            MainLoginView.setActivePanel(passwordView.getcreatePasswordPanel());
 
         }
     }
