@@ -45,7 +45,7 @@ public class Main {
             UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
 //            Register reg = new Register();
 //            User user = new User();
-//            user.setFirstName("admin");
+//            user.setFirstName("");
 //            user.setLastName("admin");
 //            user.setEmail("admin@admin.com");
 //            user.setPassword1("admin");

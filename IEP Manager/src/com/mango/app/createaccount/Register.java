@@ -11,14 +11,18 @@ public class Register {
     public Register(){
     }
     public void createUser(User user){
-        registerTeacher(user.getFirstName(),
-                        user.getLastName(),
-                        user.getEmail(),
-                        user.getPassword1(),
-                        user.getSecurityQ1(),
-                        user.getSecurityA1(),
-                        user.getSecurityQ2(),
-                        user.getSecurityA2());
+        if(user.validFields()) {
+            registerTeacher(user.getFirstName(),
+                    user.getLastName(),
+                    user.getEmail(),
+                    user.getPassword1(),
+                    user.getSecurityQ1(),
+                    user.getSecurityA1(),
+                    user.getSecurityQ2(),
+                    user.getSecurityA2());
+        }else{
+            System.out.println("Invalid Fields");
+        }
     }
     private void registerSecurityQuestions(int teacher_id, int question_id_one, String answer_one, int question_id_two, String answer_two){
         if(question_id_one != question_id_two){
