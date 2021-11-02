@@ -36,6 +36,16 @@ public class Main {
 
     private static final Logger logger = Logger.getLogger(Main.class.getName());
 
+    public static final String TESTING_DB = "jdbc:sqlite:database\\testing.db";
+
+    public static void setDatabase(String database) {
+        try {
+            connection = DriverManager.getConnection(database);
+         } catch (SQLException e) {
+            logger.log(Level.SEVERE, e.getMessage());
+        }
+    }
+
     public static void main(String[] args) {
 
         try {

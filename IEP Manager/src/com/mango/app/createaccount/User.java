@@ -34,10 +34,10 @@ public class User {
         this.securityA1 = answer;
     }
     public void setSecurityQ2(int question){
-        this.securityQ1 = question;
+        this.securityQ2 = question;
     }
     public void setSecurityA2(String answer){
-        this.securityA1 = answer;
+        this.securityA2 = answer;
     }
     public String getFirstName(){
         return firstName;
@@ -61,10 +61,10 @@ public class User {
         return securityA1;
     }
     public int getSecurityQ2(){
-        return securityQ1;
+        return securityQ2;
     }
     public String getSecurityA2(){
-        return securityA1;
+        return securityA2;
     }
     public boolean validFields(){
         if(firstName.equals(null) || firstName.equals("")){

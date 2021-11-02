@@ -10,8 +10,10 @@ import java.sql.SQLException;
 public class Register {
     public Register(){
     }
-    public void createUser(User user){
-        if(user.validFields()) {
+    public boolean createUser(User user){
+        boolean result = false;
+
+        if(user.validFields() && !isEmailTaken(user.getEmail())) {
             registerTeacher(user.getFirstName(),
                     user.getLastName(),
                     user.getEmail(),
@@ -20,9 +22,9 @@ public class Register {
                     user.getSecurityA1(),
                     user.getSecurityQ2(),
                     user.getSecurityA2());
-        }else{
-            System.out.println("Invalid Fields");
+            result = true;
         }
+        return result;
     }
     private void registerSecurityQuestions(int teacher_id, int question_id_one, String answer_one, int question_id_two, String answer_two){
         if(question_id_one != question_id_two){
@@ -42,21 +44,17 @@ public class Register {
         }
     }
     private void registerTeacher(String firstName, String lastName, String email, String password, int question_id_one, String answer_one, int question_id_two, String answer_two){
-        if(!isEmailTaken(email)) {
-            String sql = "INSERT INTO teacher(first_name,last_name,email,password) VALUES(?,?,?,?);";
-            try (PreparedStatement statement = Main.getConnection().prepareStatement(sql)) {
-                statement.setString(1, firstName);
-                statement.setString(2, lastName);
-                statement.setString(3, email);
-                statement.setString(4, Encryption.encryptPassword(password));
-                statement.executeUpdate();
-                int teacher_id = getTeacher_id(email);
-                registerSecurityQuestions(teacher_id, question_id_one, answer_one, question_id_two, answer_two);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }else{
-            System.out.println("Email has been taken.");
+        String sql = "INSERT INTO teacher(first_name,last_name,email,password) VALUES(?,?,?,?);";
+        try (PreparedStatement statement = Main.getConnection().prepareStatement(sql)) {
+            statement.setString(1, firstName);
+            statement.setString(2, lastName);
+            statement.setString(3, email);
+            statement.setString(4, Encryption.encryptPassword(password));
+            statement.executeUpdate();
+            int teacher_id = getTeacher_id(email);
+            registerSecurityQuestions(teacher_id, question_id_one, answer_one, question_id_two, answer_two);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
     private int getTeacher_id(String email){
