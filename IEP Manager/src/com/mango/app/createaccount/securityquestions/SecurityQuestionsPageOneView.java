@@ -1,4 +1,4 @@
-package com.mango.app.forgotpassword;
+package com.mango.app.createaccount.securityquestions;
 
 import com.mango.app.Main;
 import com.mango.app.components.FontType;
@@ -26,7 +26,7 @@ public class SecurityQuestionsPageOneView {
     /**
      * The constructor which sets up the GUI for the create account page.
      */
-    public SecurityQuestionsPageOneView(){
+    public SecurityQuestionsPageOneView() {
         securityQuestionsPanel = new RoundedPanel();
         securityQuestionsPanel.setLayout(null);
         securityQuestionsPanel.setBounds(
@@ -62,8 +62,8 @@ public class SecurityQuestionsPageOneView {
         JLabel titleHeader = createLabel("IEP Manager", FontType.FONT_35_BOLD);
         titleHeader.setBounds(0, (int) (securityQuestionsPanel.getHeight() * 0.28) , securityQuestionsPanel.getWidth(),45);
 
-        JLabel forgotPasswordHeader = createLabel("Forgot Password", FontType.FONT_20_BOLD);
-        forgotPasswordHeader.setBounds(0, (int) (securityQuestionsPanel.getHeight() * 0.38), securityQuestionsPanel.getWidth(),30);
+        JLabel securityQuestionsHeader = createLabel("Security Questions", FontType.FONT_20_BOLD);
+        securityQuestionsHeader.setBounds(0, (int) (securityQuestionsPanel.getHeight() * 0.38), securityQuestionsPanel.getWidth(),30);
 
         JSeparator separatorHeader = new JSeparator(SwingConstants.CENTER);
         separatorHeader.setBounds(
@@ -95,35 +95,24 @@ public class SecurityQuestionsPageOneView {
                 30);
         securityOneAnsText.setBackground(Color.WHITE);
 
-        nextButton = new JButton("Next");
-        nextButton.setForeground(Color.WHITE);
-        nextButton.setBackground(new Color(245,102,0));
+        nextButton = createButton("Next");
         nextButton.setBounds(
                 (int) (securityQuestionsPanel.getWidth() * 0.65) - (int) (securityQuestionsPanel.getWidth() * 0.10),
                 (int) (securityQuestionsPanel.getHeight() * 0.77),
                 (int) (securityQuestionsPanel.getWidth() * 0.20),
                 30);
-        nextButton.setOpaque(true);
-        nextButton.setBorderPainted(false);
-        nextButton.setFocusPainted(false);
-        nextButton.setEnabled(false);
 
         backButton = createButton("Back");
-        backButton.setForeground(Color.WHITE);
-        backButton.setBackground(new Color(245,102,0));
         backButton.setBounds(
                 (int) (securityQuestionsPanel.getWidth() * 0.35) - (int) (securityQuestionsPanel.getWidth() * 0.10),
                 (int) (securityQuestionsPanel.getHeight() * 0.77),
                 (int) (securityQuestionsPanel.getWidth() * 0.20),
                 30);
-        backButton.setOpaque(true);
-        backButton.setBorderPainted(false);
-        backButton.setFocusPainted(false);
 
         securityQuestionsPanel.add(schoolLogo);
         securityQuestionsPanel.add(mangoLogo);
         securityQuestionsPanel.add(titleHeader);
-        securityQuestionsPanel.add(forgotPasswordHeader);
+        securityQuestionsPanel.add(securityQuestionsHeader);
         securityQuestionsPanel.add(separatorHeader);
         securityQuestionsPanel.add(securityOneHeader);
         securityQuestionsPanel.add(securityOneAnsHeader);
@@ -142,10 +131,11 @@ public class SecurityQuestionsPageOneView {
 
     private JButton createButton(String text) {
         JButton button = new JButton(text);
-        button.setForeground(new Color(3,179,235));
-        button.setOpaque(false);
-        button.setContentAreaFilled(false);
+        button.setBackground(new Color(245,102,0));
+        button.setForeground(Color.WHITE);
+        button.setOpaque(true);
         button.setBorderPainted(false);
+        button.setFocusPainted(false);
         return button;
     }
 
@@ -162,6 +152,4 @@ public class SecurityQuestionsPageOneView {
     public JTextField getSecurityOneText(){ return securityOneText; }
 
     public JTextField getSecurityOneAnsText(){ return securityOneAnsText; }
-
 }
-

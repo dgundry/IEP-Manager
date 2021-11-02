@@ -1,9 +1,10 @@
-package com.mango.app.forgotpassword;
+package com.mango.app.createaccount.securityquestions;
 
-import com.mango.app.createaccount.securityquestions.*;
-import com.mango.app.forgotpassword.securityquestions.*;
-import com.mango.app.login.LoginPageController;
-import com.mango.app.login.LoginPageView;
+import com.mango.app.createaccount.User;
+import com.mango.app.createaccount.CreateAccountController;
+import com.mango.app.createaccount.CreateAccountView;
+import com.mango.app.createaccount.password.PasswordController;
+import com.mango.app.createaccount.password.PasswordView;
 import com.mango.app.mainloginpage.MainLoginView;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -11,23 +12,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.font.TextAttribute;
-import java.util.Map;
-import java.util.HashMap;
+import java.awt.font.*;
+import java.util.*;
 
-public class ForgotPasswordController {
+public class SecurityQuestionsOneController {
 
-    public ForgotPasswordController(SecurityQuestionsPageOneView view) {
-        view.getBackButton().addActionListener(new SQPOBackButtonActionListener());
-        view.getNextButton().addActionListener(new SQPONextButtonActionListener());
+    public SecurityQuestionsOneController(SecurityQuestionsPageOneView view, User user) {
+        view.getBackButton().addActionListener(new BackButtonActionListener());
+        view.getBackButton().addMouseListener(new BackButtonMouseListener(view));
 
-        view.getBackButton().addMouseListener(new SQPOBackButtonMouseListener(view));
-        view.getNextButton().addMouseListener(new SQPONextButtonMouseListener(view));
+        view.getNextButton().addActionListener(new NextButtonActionListener(user));
+        view.getNextButton().addMouseListener(new NextButtonMouseListener(view));
     }
 
-    public ForgotPasswordController(SecurityQuestionsPageTwoView securityQuestionsPageTwoView) {}
-
-    private static class SQPOBackButtonActionListener implements ActionListener {
+    private static class BackButtonActionListener implements ActionListener {
 
         /**
          * Invoked when an action occurs.
@@ -36,30 +34,17 @@ public class ForgotPasswordController {
          */
         @Override
         public void actionPerformed(ActionEvent e) {
-            LoginPageView loginPageView = new LoginPageView();
-            new LoginPageController(loginPageView);
-            MainLoginView.setActivePanel(loginPageView.getLoginPanel());
+            CreateAccountView createAccountView = new CreateAccountView();
+            new CreateAccountController(createAccountView);
+            MainLoginView.setActivePanel(createAccountView.getCreateAccountPanel());
         }
     }
 
-    private static class SQPONextButtonActionListener implements ActionListener {
-
-        /**
-         * Invoked when an action occurs.
-         *
-         * @param e the event to be processed
-         */
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            System.out.println("Next button clicked.");
-        }
-    }
-
-    private static class SQPOBackButtonMouseListener implements MouseListener {
+    private static class BackButtonMouseListener implements MouseListener {
 
         private final SecurityQuestionsPageOneView view;
 
-        public SQPOBackButtonMouseListener(SecurityQuestionsPageOneView view) {
+        public BackButtonMouseListener(SecurityQuestionsPageOneView view) {
             this.view = view;
         }
 
@@ -121,11 +106,30 @@ public class ForgotPasswordController {
         }
     }
 
-    private static class SQPONextButtonMouseListener implements MouseListener {
+    private static class NextButtonActionListener implements ActionListener {
+
+        private final User user;
+
+        public NextButtonActionListener(User user) { this.user = user; }
+
+        /**
+         * Invoked when an action occurs.
+         *
+         * @param e the event to be processed
+         */
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            PasswordView passwordView = new PasswordView();
+            new PasswordController(passwordView, user);
+            MainLoginView.setActivePanel(passwordView.getCreatePasswordPanel());
+        }
+    }
+
+    private static class NextButtonMouseListener implements MouseListener {
 
         private final SecurityQuestionsPageOneView view;
 
-        public SQPONextButtonMouseListener(SecurityQuestionsPageOneView view) {
+        public NextButtonMouseListener(SecurityQuestionsPageOneView view) {
             this.view = view;
         }
 

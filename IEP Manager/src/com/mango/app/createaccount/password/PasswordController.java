@@ -1,5 +1,9 @@
-package com.mango.app.createaccount;
+package com.mango.app.createaccount.password;
 
+import com.mango.app.createaccount.User;
+import com.mango.app.createaccount.CreateAccountController;
+import com.mango.app.createaccount.CreateAccountView;
+import com.mango.app.createaccount.securityquestions.*;
 import com.mango.app.mainloginpage.MainLoginView;
 
 import java.awt.*;
@@ -13,7 +17,6 @@ import java.util.Map;
 
 public class PasswordController {
 
-
     public PasswordController(PasswordView view, User user) {
         System.out.println(user);
         if(!user.getPassword1().equals("")){
@@ -25,9 +28,6 @@ public class PasswordController {
         }
         view.getBackButton().addActionListener(new BackButtonActionListener(view, user));
         view.getBackButton().addMouseListener(new BackButtonMouseListener(view));
-
-        //view.getNextButton().addActionListener(new NextButtonActionListener());
-        //view.getNextButton().addMouseListener(new NextButtonMouseListener(view));
     }
 
     private static class BackButtonActionListener implements ActionListener {
@@ -47,9 +47,11 @@ public class PasswordController {
             newUser.setPassword1(view.getPasswordText().getText());
             newUser.setPassword2(view.getConfirmPasswordText().getText());
             System.out.println(newUser);
-            CreateAccountView createAccountView = new CreateAccountView();
-            new CreateAccountController(createAccountView, newUser);
-            MainLoginView.setActivePanel(createAccountView.getCreateAccountPanel());
+
+            SecurityQuestionsPageOneView securityQuestionsPageOneView = new SecurityQuestionsPageOneView();
+            //populate text fields with the user's security questions in the text fields / dropdown
+            new SecurityQuestionsOneController(securityQuestionsPageOneView, newUser);
+            MainLoginView.setActivePanel(securityQuestionsPageOneView.getSecurityQuestionsPanel());
         }
     }
 
@@ -60,9 +62,7 @@ public class PasswordController {
         private BackButtonMouseListener(PasswordView view) { this.view = view; }
 
 
-        public void mouseClicked(MouseEvent e) {
-            /* Not Needed */
-        }
+        public void mouseClicked(MouseEvent e) {/* Not Needed */}
 
         /**
          * Invoked when a mouse button has been pressed on a component.
@@ -112,5 +112,4 @@ public class PasswordController {
             view.getBackButton().setFont(font.deriveFont(attributes));
         }
     }
-
 }

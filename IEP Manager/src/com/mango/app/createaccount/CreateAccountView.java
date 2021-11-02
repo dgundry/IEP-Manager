@@ -1,17 +1,17 @@
 package com.mango.app.createaccount;
 
 import com.mango.app.Main;
-import com.mango.app.components.BackgroundPanel;
 import com.mango.app.components.FontType;
 import com.mango.app.components.RoundedPanel;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JSeparator;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Image;
 
 public class CreateAccountView {
 
@@ -28,7 +28,6 @@ public class CreateAccountView {
     /**
      * The constructor which sets up the GUI for the create account page.
      */
-
     public CreateAccountView() {
         createAccountPanel = new RoundedPanel();
         createAccountPanel.setLayout(null);
@@ -109,42 +108,26 @@ public class CreateAccountView {
                 30);
         emailText.setBackground(Color.WHITE);
 
-        nextButton = new JButton("Next");
-        nextButton.setForeground(Color.WHITE);
-        nextButton.setBackground(new Color(245,102,0));
+        nextButton = createButton("Next");
         nextButton.setBounds(
                 (int) (createAccountPanel.getWidth() * 0.65) - (int) (createAccountPanel.getWidth() * 0.10),
                 (int) (createAccountPanel.getHeight() * 0.77),
                 (int) (createAccountPanel.getWidth() * 0.20),
                 30);
-        nextButton.setOpaque(true);
-        nextButton.setBorderPainted(false);
-        nextButton.setFocusPainted(false);
-        nextButton.setEnabled(true);
 
         backButton = createButton("Back");
-        backButton.setForeground(Color.WHITE);
-        backButton.setBackground(new Color(245,102,0));
         backButton.setBounds(
                 (int) (createAccountPanel.getWidth() * 0.35) - (int) (createAccountPanel.getWidth() * 0.10),
                 (int) (createAccountPanel.getHeight() * 0.77),
                 (int) (createAccountPanel.getWidth() * 0.20),
                 30);
-        backButton.setOpaque(true);
-        backButton.setBorderPainted(false);
-        backButton.setFocusPainted(false);
 
         createAccountButton = createButton("Create Account");
-        createAccountButton.setForeground(Color.WHITE);
-        createAccountButton.setBackground(new Color(245,102,0));
         createAccountButton.setBounds(
                 (int) (createAccountPanel.getWidth() * 0.40) - (int) (createAccountPanel.getWidth() * 0.10),
                 (int) (createAccountPanel.getHeight() * 0.83),
                 (int) (createAccountPanel.getWidth() * 0.40),
                 30);
-        createAccountButton.setOpaque(true);
-        createAccountButton.setBorderPainted(false);
-        createAccountButton.setFocusPainted(false);
         createAccountButton.setEnabled(false);
 
         createAccountPanel.add(schoolLogo);
@@ -172,10 +155,12 @@ public class CreateAccountView {
 
     private JButton createButton(String text) {
         JButton button = new JButton(text);
-        button.setForeground(new Color(3,179,235));
-        button.setOpaque(false);
-        button.setContentAreaFilled(false);
+        button.setForeground(Color.WHITE);
+        button.setBackground(new Color(245,102,0));
+        button.setOpaque(true);
         button.setBorderPainted(false);
+        button.setFocusPainted(false);
+        button.setEnabled(true);
         return button;
     }
 
@@ -185,9 +170,9 @@ public class CreateAccountView {
 
     public RoundedPanel getCreateAccountPanel() { return createAccountPanel; }
 
-    public JButton getNextButton(){ return nextButton; };
-    public JButton getCreateAccountButton(){ return createAccountButton; };
-    public JButton getBackButton(){ return backButton; };
+    public JButton getNextButton(){ return nextButton; }
+    public JButton getBackButton(){ return backButton; }
+    public JButton getCreateAccountButton(){ return createAccountButton; }
     public JTextField getFirstNameText(){ return firstNameText; }
     public JTextField getLastNameText(){ return lastNameText; }
     public JTextField getEmailText(){ return emailText; }

@@ -1,23 +1,16 @@
 package com.mango.app.createaccount;
 
-import com.mango.app.Main;
+import com.mango.app.createaccount.securityquestions.*;
 import com.mango.app.login.*;
 import com.mango.app.mainloginpage.*;
-import com.mango.app.utilities.Encryption;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.font.*;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.*;
 
 public class CreateAccountController {
-    private CreateAccountView createAccountView;
 
     public CreateAccountController(CreateAccountView view) {
-        this.createAccountView = view;
         view.getBackButton().addActionListener(new BackButtonActionListener());
         view.getBackButton().addMouseListener(new BackButtonMouseListener(view));
 
@@ -27,9 +20,8 @@ public class CreateAccountController {
         view.getNextButton().addActionListener(new NextButtonActionListener(view));
         view.getNextButton().addMouseListener(new NextButtonMouseListener(view));
     }
-    public CreateAccountController(CreateAccountView view, User user) {
-        this.createAccountView = view;
 
+    public CreateAccountController(CreateAccountView view, User user) {
         view.getFirstNameText().setText(user.getFirstName());
         view.getLastNameText().setText(user.getLastName());
         view.getEmailText().setText(user.getEmail());
@@ -148,9 +140,10 @@ public class CreateAccountController {
             newUser.setFirstName(view.getFirstNameText().getText());
             newUser.setLastName(view.getLastNameText().getText());
             newUser.setEmail(view.getEmailText().getText());
-            PasswordView passwordView = new PasswordView();
-            new PasswordController(passwordView, newUser);
-            MainLoginView.setActivePanel(passwordView.getcreatePasswordPanel());
+
+            SecurityQuestionsPageOneView securityQuestionsPageOneView = new SecurityQuestionsPageOneView();
+            new SecurityQuestionsOneController(securityQuestionsPageOneView, newUser);
+            MainLoginView.setActivePanel(securityQuestionsPageOneView.getSecurityQuestionsPanel());
         }
     }
 
@@ -220,8 +213,13 @@ public class CreateAccountController {
         }
     }
 
-    private class CreateAccountButtonActionListener implements ActionListener {
+    private static class CreateAccountButtonActionListener implements ActionListener {
 
+        /**
+         * Invoked when an action occurs.
+         *
+         * @param e the event to be processed
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             LoginPageView loginView = new LoginPageView();
@@ -230,27 +228,42 @@ public class CreateAccountController {
         }
     }
 
-    private class CreateAccountButtonMouseListener implements MouseListener {
+    private static class CreateAccountButtonMouseListener implements MouseListener {
 
         private final CreateAccountView view;
 
         public CreateAccountButtonMouseListener(CreateAccountView view) { this.view = view; }
 
+        /**
+         * Invoked when the mouse button has been clicked (pressed
+         * and released) on a component.
+         *
+         * @param e the event to be processed
+         */
         @Override
-        public void mouseClicked(MouseEvent e) {
+        public void mouseClicked(MouseEvent e) {/* Not needed */}
 
-        }
-
+        /**
+         * Invoked when a mouse button has been pressed on a component.
+         *
+         * @param e the event to be processed
+         */
         @Override
-        public void mousePressed(MouseEvent e) {
+        public void mousePressed(MouseEvent e) {/* Not needed */}
 
-        }
-
+        /**
+         * Invoked when a mouse button has been released on a component.
+         *
+         * @param e the event to be processed
+         */
         @Override
-        public void mouseReleased(MouseEvent e) {
+        public void mouseReleased(MouseEvent e) {/* Not needed */}
 
-        }
-
+        /**
+         * Invoked when the mouse enters a component.
+         *
+         * @param e the event to be processed
+         */
         @Override
         public void mouseEntered(MouseEvent e) {
             view.getCreateAccountButton().setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -262,6 +275,11 @@ public class CreateAccountController {
             view.getCreateAccountButton().setFont(font.deriveFont(attributes));
         }
 
+        /**
+         * Invoked when the mouse exits a component.
+         *
+         * @param e the event to be processed
+         */
         @Override
         public void mouseExited(MouseEvent e) {
             view.getCreateAccountButton().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));

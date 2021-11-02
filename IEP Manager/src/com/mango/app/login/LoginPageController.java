@@ -4,7 +4,8 @@ import com.mango.app.Main;
 import com.mango.app.createaccount.CreateAccountController;
 import com.mango.app.createaccount.CreateAccountView;
 import com.mango.app.forgotpassword.ForgotPasswordController;
-import com.mango.app.forgotpassword.SecurityQuestionsPageOneView;
+import com.mango.app.createaccount.securityquestions.SecurityQuestionsPageOneView;
+import com.mango.app.forgotpassword.securityquestions.*;
 import com.mango.app.mainloginpage.MainLoginView;
 import com.mango.app.utilities.Encryption;
 import java.awt.*;
@@ -130,9 +131,9 @@ public class LoginPageController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            SecurityQuestionsPageOneView securityQuestionPageOneView = new SecurityQuestionsPageOneView();
-            new ForgotPasswordController(securityQuestionPageOneView);
-            MainLoginView.setActivePanel(securityQuestionPageOneView.getSecurityQuestionsPanel());
+            SecurityQuestionsPageTwoView securityQuestionPageTwoView = new SecurityQuestionsPageTwoView();
+            new SecurityQuestionsTwoController(securityQuestionPageTwoView);
+            MainLoginView.setActivePanel(securityQuestionPageTwoView.getSecurityQuestionsPanel());
         }
     }
 
