@@ -14,8 +14,16 @@ import java.util.Map;
 public class PasswordController {
 
 
-    public PasswordController(PasswordView view) {
-        view.getBackButton().addActionListener(new BackButtonActionListener());
+    public PasswordController(PasswordView view, User user) {
+        System.out.println(user);
+        if(!user.getPassword1().equals("")){
+            System.out.println("test");
+            view.getPasswordText().setText(user.getPassword1());
+        }
+        if(!user.getPassword2().equals("")){
+            view.getConfirmPasswordText().setText(user.getPassword2());
+        }
+        view.getBackButton().addActionListener(new BackButtonActionListener(view, user));
         view.getBackButton().addMouseListener(new BackButtonMouseListener(view));
 
         //view.getNextButton().addActionListener(new NextButtonActionListener());
@@ -24,6 +32,10 @@ public class PasswordController {
 
     private static class BackButtonActionListener implements ActionListener {
 
+        private final PasswordView view;
+        private User user;
+
+        private BackButtonActionListener(PasswordView view, User user) { this.view = view; this.user = user;}
         /**
          * Invoked when an action occurs.
          *
@@ -31,8 +43,12 @@ public class PasswordController {
          */
 
         public void actionPerformed(ActionEvent e){
+            User newUser = user.copyUser();
+            newUser.setPassword1(view.getPasswordText().getText());
+            newUser.setPassword2(view.getConfirmPasswordText().getText());
+            System.out.println(newUser);
             CreateAccountView createAccountView = new CreateAccountView();
-            new CreateAccountController(createAccountView);
+            new CreateAccountController(createAccountView, newUser);
             MainLoginView.setActivePanel(createAccountView.getCreateAccountPanel());
         }
     }
