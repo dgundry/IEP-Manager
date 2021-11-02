@@ -6,12 +6,7 @@ import com.mango.app.components.RoundedPanel;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JSeparator;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 
 /**
  * Creates the main log in panel for the user.
@@ -25,7 +20,7 @@ public class LoginPageView {
     private JButton forgotPasswordButton;
 
     private JTextField emailText;
-    private JTextField passwordText;
+    private JPasswordField passwordText;
 
     public LoginPageView() {
         loginPanel = new RoundedPanel();
@@ -88,7 +83,7 @@ public class LoginPageView {
         JLabel enterPasswordHeader = createLabel("Enter Password", FontType.FONT_12_BOLD);
         enterPasswordHeader.setBounds(0, (int) (loginPanel.getHeight() * 0.62), loginPanel.getWidth(),15);
 
-        passwordText = new JTextField("Password");
+        passwordText = new JPasswordField();
         passwordText.setBounds(
                 (int) (loginPanel.getWidth() * 0.5) - (int) (loginPanel.getWidth() * 0.25),
                 (int) (loginPanel.getHeight() * 0.68),
