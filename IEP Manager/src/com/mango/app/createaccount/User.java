@@ -66,6 +66,37 @@ public class User {
     public String getSecurityA2(){
         return securityA2;
     }
+
+    public boolean isValidFields() {
+        return isValidText(firstName) &&
+                isValidText(lastName) &&
+                isValidText(email) &&
+                isValidPassword(password1) &&
+                isValidPassword(password2) &&
+                isUniquePassword(password1, password2) &&
+                isValidSecurityQuestion(securityQ1) &&
+                isValidSecurityQuestion(securityQ2) &&
+                isValidText(securityA1) &&
+                isValidText(securityA2);
+    }
+
+    private boolean isValidText(String text) {
+        return !text.equals("");
+    }
+
+    private boolean isValidPassword(String password) {
+        return password != null;
+    }
+
+    private boolean isUniquePassword(String passwordOne, String passwordTwo) {
+        return !passwordOne.equals(passwordTwo);
+    }
+
+    private boolean isValidSecurityQuestion(int securityQuestion) {
+        return securityQuestion >= 1 && securityQuestion <= 17;
+    }
+
+    /*
     public boolean validFields(){
         if(firstName.equals(null) || firstName.equals("")){
             return false;
@@ -83,10 +114,8 @@ public class User {
         }else{
             return false;
         }
-        if(securityQ1 >= 1 && securityQ1 <= 17){
-            if(securityA1.equals(null)){
-                return false;
-            }
+        if(securityQ1.equals(null) || securityQ1.equals("")){
+            return false;
         }else{
             return false;
         }
@@ -98,7 +127,8 @@ public class User {
             return false;
         }
         return true;
-    }
+    }*/
+
     public User copyUser(){
         User newUser = new User();
         newUser.setFirstName(this.firstName);

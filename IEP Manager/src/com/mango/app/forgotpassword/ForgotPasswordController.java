@@ -17,7 +17,7 @@ import java.util.HashMap;
 
 public class ForgotPasswordController {
 
-    public ForgotPasswordController(SecurityQuestionsPageOneView view) {
+    public ForgotPasswordController(SecurityQuestionsView view) {
         view.getBackButton().addActionListener(new SQPOBackButtonActionListener());
         view.getNextButton().addActionListener(new SQPONextButtonActionListener());
 
@@ -57,9 +57,9 @@ public class ForgotPasswordController {
 
     private static class SQPOBackButtonMouseListener implements MouseListener {
 
-        private final SecurityQuestionsPageOneView view;
+        private final SecurityQuestionsView view;
 
-        public SQPOBackButtonMouseListener(SecurityQuestionsPageOneView view) {
+        public SQPOBackButtonMouseListener(SecurityQuestionsView view) {
             this.view = view;
         }
 
@@ -123,9 +123,9 @@ public class ForgotPasswordController {
 
     private static class SQPONextButtonMouseListener implements MouseListener {
 
-        private final SecurityQuestionsPageOneView view;
+        private final SecurityQuestionsView view;
 
-        public SQPONextButtonMouseListener(SecurityQuestionsPageOneView view) {
+        public SQPONextButtonMouseListener(SecurityQuestionsView view) {
             this.view = view;
         }
 

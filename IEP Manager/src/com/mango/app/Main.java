@@ -52,18 +52,7 @@ public class Main {
             connection = DriverManager.getConnection(url);
 
             UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-//            Register reg = new Register();
-//            User user = new User();
-//            user.setFirstName("");
-//            user.setLastName("admin");
-//            user.setEmail("admin@admin.com");
-//            user.setPassword1("admin");
-//            user.setPassword2("admin");
-//            user.setSecurityQ1(1);
-//            user.setSecurityA1("admin");
-//            user.setSecurityQ2(2);
-//            user.setSecurityA2("admin");
-//            reg.createUser(user);
+
             //Comment out these lines and add new code to test out views
             LoginPageView loginPageView = new LoginPageView();
             new LoginPageController(loginPageView);

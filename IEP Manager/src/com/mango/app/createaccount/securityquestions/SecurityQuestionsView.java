@@ -3,12 +3,17 @@ package com.mango.app.createaccount.securityquestions;
 import com.mango.app.Main;
 import com.mango.app.components.FontType;
 import com.mango.app.components.RoundedPanel;
+import java.sql.*;
+import java.util.*;
+import java.util.logging.*;
 import javax.swing.*;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 
-public class SecurityQuestionsPageOneView {
+public class SecurityQuestionsView {
+
+    private static final Logger logger = Logger.getLogger(SecurityQuestionsView.class.getName());
 
     private final RoundedPanel securityQuestionsPanel;
 
@@ -16,13 +21,15 @@ public class SecurityQuestionsPageOneView {
     private JButton backButton;
 
     private JTextField securityOneAnsText;
+    private JTextField securityTwoAnsText;
 
     private JComboBox<String> securityQuestionOne;
+    private JComboBox<String> securityQuestionTwo;
 
     /**
      * The constructor which sets up the GUI for the create account page.
      */
-    public SecurityQuestionsPageOneView() {
+    public SecurityQuestionsView() {
         securityQuestionsPanel = new RoundedPanel();
         securityQuestionsPanel.setLayout(null);
         securityQuestionsPanel.setBounds(
@@ -32,6 +39,7 @@ public class SecurityQuestionsPageOneView {
                 (int) (Main.SCREEN_HEIGHT * 0.70));
 
         createComponents();
+        createDropDownQuestions();
     }
 
     private void createComponents() {
@@ -72,36 +80,42 @@ public class SecurityQuestionsPageOneView {
         JLabel securityOneHeader = createLabel("Security Question #1", FontType.FONT_12_BOLD);
         securityOneHeader.setBounds(0,( int) (securityQuestionsPanel.getHeight() * 0.48), securityQuestionsPanel.getWidth(),15);
 
-        securityQuestionOne = new JComboBox<>();
-        securityQuestionOne.setBounds(
-                (int) (securityQuestionsPanel.getWidth() * 0.5) - (int) (securityQuestionsPanel.getWidth() * 0.25),
-                (int) (securityQuestionsPanel.getHeight() * 0.54),
-                (int) (securityQuestionsPanel.getWidth() * 0.5),
-                30);
-        securityQuestionOne.setBackground(Color.WHITE);
-
         JLabel securityOneAnsHeader = createLabel("Enter Answer", FontType.FONT_12_BOLD);
-        securityOneAnsHeader.setBounds(0, (int) (securityQuestionsPanel.getHeight() * 0.62), securityQuestionsPanel.getWidth(),15);
+        securityOneAnsHeader.setBounds(0, (int) (securityQuestionsPanel.getHeight() * 0.56), securityQuestionsPanel.getWidth(),15);
 
-        securityOneAnsText = new JTextField("Answer #1");
+        securityOneAnsText = new JTextField();
         securityOneAnsText.setBounds(
                 (int) (securityQuestionsPanel.getWidth() * 0.5) - (int) (securityQuestionsPanel.getWidth() * 0.25),
-                (int) (securityQuestionsPanel.getHeight() * 0.68),
+                (int) (securityQuestionsPanel.getHeight() * 0.59),
                 (int) (securityQuestionsPanel.getWidth() * 0.5),
                 30);
         securityOneAnsText.setBackground(Color.WHITE);
 
+        JLabel securityTwoHeader = createLabel("Security Question #2", FontType.FONT_12_BOLD);
+        securityTwoHeader.setBounds(0,( int) (securityQuestionsPanel.getHeight() * 0.65), securityQuestionsPanel.getWidth(),15);
+
+        JLabel securityTwoAnsHeader = createLabel("Enter Answer", FontType.FONT_12_BOLD);
+        securityTwoAnsHeader.setBounds(0, (int) (securityQuestionsPanel.getHeight() * 0.74), securityQuestionsPanel.getWidth(),15);
+
+        securityTwoAnsText = new JTextField();
+        securityTwoAnsText.setBounds(
+                (int) (securityQuestionsPanel.getWidth() * 0.5) - (int) (securityQuestionsPanel.getWidth() * 0.25),
+                (int) (securityQuestionsPanel.getHeight() * 0.77),
+                (int) (securityQuestionsPanel.getWidth() * 0.5),
+                30);
+        securityTwoAnsText.setBackground(Color.WHITE);
+
         nextButton = createButton("Next");
         nextButton.setBounds(
                 (int) (securityQuestionsPanel.getWidth() * 0.65) - (int) (securityQuestionsPanel.getWidth() * 0.10),
-                (int) (securityQuestionsPanel.getHeight() * 0.77),
+                (int) (securityQuestionsPanel.getHeight() * 0.83),
                 (int) (securityQuestionsPanel.getWidth() * 0.20),
                 30);
 
         backButton = createButton("Back");
         backButton.setBounds(
                 (int) (securityQuestionsPanel.getWidth() * 0.35) - (int) (securityQuestionsPanel.getWidth() * 0.10),
-                (int) (securityQuestionsPanel.getHeight() * 0.77),
+                (int) (securityQuestionsPanel.getHeight() * 0.83),
                 (int) (securityQuestionsPanel.getWidth() * 0.20),
                 30);
 
@@ -112,10 +126,50 @@ public class SecurityQuestionsPageOneView {
         securityQuestionsPanel.add(separatorHeader);
         securityQuestionsPanel.add(securityOneHeader);
         securityQuestionsPanel.add(securityOneAnsHeader);
-        securityQuestionsPanel.add(securityQuestionOne);
+        securityQuestionsPanel.add(securityTwoHeader);
+        securityQuestionsPanel.add(securityTwoAnsHeader);
         securityQuestionsPanel.add(securityOneAnsText);
+        securityQuestionsPanel.add(securityTwoAnsText);
         securityQuestionsPanel.add(nextButton);
         securityQuestionsPanel.add(backButton);
+    }
+
+    private void createDropDownQuestions() {
+        String sql = "SELECT question FROM question;";
+        Vector<String> securityQuestionList = new Vector<>();
+
+        try (PreparedStatement statement = Main.getConnection().prepareStatement(sql)) {
+            ResultSet resultSet = statement.executeQuery();
+
+            do {
+                securityQuestionList.add(resultSet.getString(1));
+            } while (resultSet.next());
+        } catch (SQLException e) {
+            logger.log(Level.WARNING, e.getMessage());
+        }
+
+        securityQuestionList.remove(0);
+
+        securityQuestionOne = new JComboBox<>(securityQuestionList);
+        securityQuestionOne.setSelectedIndex(0);
+        securityQuestionOne.setBounds(
+                (int) (securityQuestionsPanel.getWidth() * 0.5) - (int) (securityQuestionsPanel.getWidth() * 0.25),
+                (int) (securityQuestionsPanel.getHeight() * 0.51),
+                (int) (securityQuestionsPanel.getWidth() * 0.5),
+                30);
+        securityQuestionOne.setBackground(Color.WHITE);
+
+        securityQuestionTwo = new JComboBox<>(securityQuestionList);
+        securityQuestionTwo.setSelectedIndex(0);
+        securityQuestionTwo.setBounds(
+                (int) (securityQuestionsPanel.getWidth() * 0.5) - (int) (securityQuestionsPanel.getWidth() * 0.25),
+                (int) (securityQuestionsPanel.getHeight() * 0.68),
+                (int) (securityQuestionsPanel.getWidth() * 0.5),
+                30);
+        securityQuestionTwo.setBackground(Color.WHITE);
+
+        securityQuestionsPanel.add(securityQuestionOne);
+        securityQuestionsPanel.add(securityQuestionTwo);
     }
 
     private JLabel createLabel(String text, Font font) {
@@ -142,10 +196,11 @@ public class SecurityQuestionsPageOneView {
     public RoundedPanel getSecurityQuestionsPanel() { return securityQuestionsPanel; }
 
     public JButton getNextButton(){ return nextButton; }
-
     public JButton getBackButton(){ return backButton; }
 
     public JComboBox<String> getSecurityQuestionOneDropDown() { return securityQuestionOne; }
+    public JComboBox<String> getSecurityQuestionTwoDropDown() { return securityQuestionTwo; }
 
     public JTextField getSecurityOneAnsText(){ return securityOneAnsText; }
+    public JTextField getSecurityTwoAnsText(){ return securityTwoAnsText; }
 }

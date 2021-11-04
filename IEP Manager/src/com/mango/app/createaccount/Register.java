@@ -13,7 +13,7 @@ public class Register {
     public boolean createUser(User user){
         boolean result = false;
 
-        if(user.validFields() && !isEmailTaken(user.getEmail())) {
+        if(user.isValidFields() && !isEmailTaken(user.getEmail())) {
             registerTeacher(user.getFirstName(),
                     user.getLastName(),
                     user.getEmail(),

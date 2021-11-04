@@ -15,7 +15,7 @@ import javax.swing.WindowConstants;
 
 public class MainLoginView {
 
-    private JFrame loginWindow;
+    private static JFrame loginWindow;
 
     private static BackgroundPanel backgroundLoginPanel;
 
@@ -63,5 +63,5 @@ public class MainLoginView {
         backgroundLoginPanel.updateUI();
     }
 
-    public JFrame getLoginWindow() { return loginWindow; }
+    public static JFrame getLoginWindow() { return loginWindow; }
 }

@@ -1,26 +1,24 @@
 package com.mango.app.createaccount;
 
+import com.mango.app.components.*;
 import com.mango.app.createaccount.securityquestions.*;
 import com.mango.app.login.*;
 import com.mango.app.mainloginpage.*;
-import java.awt.*;
 import java.awt.event.*;
-import java.awt.font.*;
-import java.util.*;
 import javax.swing.*;
 
 public class CreateAccountController {
 
-    private CreateAccountView view;
+    private final CreateAccountView view;
 
     public CreateAccountController(CreateAccountView view) {
         this.view = view;
 
         view.getBackButton().addActionListener(new BackButtonActionListener());
-        view.getBackButton().addMouseListener(new BackButtonMouseListener(view));
+        view.getBackButton().addMouseListener(new ButtonMouseListener(view.getBackButton()));
 
         view.getNextButton().addActionListener(new NextButtonActionListener(view));
-        view.getNextButton().addMouseListener(new NextButtonMouseListener(view));
+        view.getNextButton().addMouseListener(new ButtonMouseListener(view.getNextButton()));
 
         addFocusListeners();
     }
@@ -32,10 +30,10 @@ public class CreateAccountController {
         view.getEmailText().setText(user.getEmail());
 
         view.getBackButton().addActionListener(new BackButtonActionListener());
-        view.getBackButton().addMouseListener(new BackButtonMouseListener(view));
+        view.getBackButton().addMouseListener(new ButtonMouseListener(view.getBackButton()));
 
         view.getNextButton().addActionListener(new NextButtonActionListener(view, user));
-        view.getNextButton().addMouseListener(new NextButtonMouseListener(view));
+        view.getNextButton().addMouseListener(new ButtonMouseListener(view.getNextButton()));
 
         addFocusListeners();
     }
@@ -61,84 +59,19 @@ public class CreateAccountController {
         }
     }
 
-    private static class BackButtonMouseListener implements MouseListener {
-
-        private final CreateAccountView view;
-
-        private BackButtonMouseListener(CreateAccountView view) {
-            this.view = view;
-        }
-
-        /**
-         * Invoked when the mouse button has been clicked (pressed
-         * and released) on a component.
-         *
-         * @param e the event to be processed
-         */
-        @Override
-        public void mouseClicked(MouseEvent e) { /* Not needed */ }
-
-        /**
-         * Invoked when a mouse button has been pressed on a component.
-         *
-         * @param e the event to be processed
-         */
-        @Override
-        public void mousePressed(MouseEvent e) { /* Not needed */ }
-
-        /**
-         * Invoked when a mouse button has been released on a component.
-         *
-         * @param e the event to be processed
-         */
-        @Override
-        public void mouseReleased(MouseEvent e) { /* Not needed */ }
-
-        /**
-         * Invoked when the mouse enters a component.
-         *
-         * @param e the event to be processed
-         */
-        @Override
-        public void mouseEntered(MouseEvent e) {
-            view.getBackButton().setCursor(new Cursor(Cursor.HAND_CURSOR));
-            view.getBackButton().setFont(view.getBackButton().getFont().deriveFont(Font.BOLD));
-
-            Font font = view.getBackButton().getFont();
-            Map<TextAttribute, Object> attributes = new HashMap<>(font.getAttributes());
-            attributes.put(TextAttribute.UNDERLINE, 0);
-            view.getBackButton().setFont(font.deriveFont(attributes));
-        }
-
-        /**
-         * Invoked when the mouse exits a component.
-         *
-         * @param e the event to be processed
-         */
-        @Override
-        public void mouseExited(MouseEvent e) {
-            view.getBackButton().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-            view.getBackButton().setFont(view.getBackButton().getFont().deriveFont(Font.PLAIN));
-
-            Font font = view.getBackButton().getFont();
-            Map<TextAttribute, Object> attributes = new HashMap<>(font.getAttributes());
-            attributes.put(TextAttribute.UNDERLINE, -1);
-            view.getBackButton().setFont(font.deriveFont(attributes));
-        }
-    }
-
     private static class NextButtonActionListener implements ActionListener {
 
         private final CreateAccountView view;
-
         private User user;
 
-        private NextButtonActionListener(CreateAccountView view) {
-            this.user = new User();
+        public NextButtonActionListener(CreateAccountView view) {
             this.view = view;
         }
 
-        private NextButtonActionListener(CreateAccountView view, User user) { this.view = view; this.user = user; }
+        public NextButtonActionListener(CreateAccountView view, User user) {
+            this.view = view;
+            this.user = user;
+        }
 
         /**
          * Invoked when an action occurs.
@@ -147,81 +80,22 @@ public class CreateAccountController {
          */
         @Override
         public void actionPerformed(ActionEvent e) {
-            User newUser = user.copyUser();
-            System.out.println(newUser);
-            newUser.setFirstName(view.getFirstNameText().getText());
-            newUser.setLastName(view.getLastNameText().getText());
-            newUser.setEmail(view.getEmailText().getText());
+            if (user == null) {
+                user = new User();
+            }
 
-            SecurityQuestionsPageOneView securityQuestionsPageOneView = new SecurityQuestionsPageOneView();
-            new SecurityQuestionsOneController(securityQuestionsPageOneView, newUser);
-            MainLoginView.setActivePanel(securityQuestionsPageOneView.getSecurityQuestionsPanel());
-        }
-    }
+            user.setFirstName(view.getFirstNameText().getText());
+            user.setLastName(view.getLastNameText().getText());
+            user.setEmail(view.getEmailText().getText());
 
-    private static class NextButtonMouseListener implements MouseListener {
+            SecurityQuestionsView securityQuestionsView = new SecurityQuestionsView();
+            securityQuestionsView.getSecurityQuestionOneDropDown().setSelectedIndex(user.getSecurityQ1());
+            securityQuestionsView.getSecurityQuestionTwoDropDown().setSelectedIndex(user.getSecurityQ2());
+            securityQuestionsView.getSecurityOneAnsText().setText(user.getSecurityA1());
+            securityQuestionsView.getSecurityTwoAnsText().setText(user.getSecurityA2());
 
-        private final CreateAccountView view;
-
-        public NextButtonMouseListener(CreateAccountView view) {
-            this.view = view;
-        }
-
-        /**
-         * Invoked when the mouse button has been clicked (pressed
-         * and released) on a component.
-         *
-         * @param e the event to be processed
-         */
-        @Override
-        public void mouseClicked(MouseEvent e) { /* Not needed */ }
-
-        /**
-         * Invoked when a mouse button has been pressed on a component.
-         *
-         * @param e the event to be processed
-         */
-        @Override
-        public void mousePressed(MouseEvent e) { /* Not needed */ }
-
-        /**
-         * Invoked when a mouse button has been released on a component.
-         *
-         * @param e the event to be processed
-         */
-        @Override
-        public void mouseReleased(MouseEvent e) { /* Not needed */ }
-
-        /**
-         * Invoked when the mouse enters a component.
-         *
-         * @param e the event to be processed
-         */
-        @Override
-        public void mouseEntered(MouseEvent e) {
-            view.getNextButton().setCursor(new Cursor(Cursor.HAND_CURSOR));
-            view.getNextButton().setFont(view.getNextButton().getFont().deriveFont(Font.BOLD));
-
-            Font font = view.getNextButton().getFont();
-            Map<TextAttribute, Object> attributes = new HashMap<>(font.getAttributes());
-            attributes.put(TextAttribute.UNDERLINE, 0);
-            view.getNextButton().setFont(font.deriveFont(attributes));
-        }
-
-        /**
-         * Invoked when the mouse exits a component.
-         *
-         * @param e the event to be processed
-         */
-        @Override
-        public void mouseExited(MouseEvent e) {
-            view.getNextButton().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-            view.getNextButton().setFont(view.getNextButton().getFont().deriveFont(Font.PLAIN));
-
-            Font font = view.getNextButton().getFont();
-            Map<TextAttribute, Object> attributes = new HashMap<>(font.getAttributes());
-            attributes.put(TextAttribute.UNDERLINE, -1);
-            view.getNextButton().setFont(font.deriveFont(attributes));
+            new SecurityQuestionsController(securityQuestionsView, user);
+            MainLoginView.setActivePanel(securityQuestionsView.getSecurityQuestionsPanel());
         }
     }
 
