@@ -3,12 +3,7 @@ package com.mango.app.createaccount.securityquestions;
 import com.mango.app.Main;
 import com.mango.app.components.FontType;
 import com.mango.app.components.RoundedPanel;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JSeparator;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -20,8 +15,9 @@ public class SecurityQuestionsPageOneView {
     private JButton nextButton;
     private JButton backButton;
 
-    private JTextField securityOneText;
     private JTextField securityOneAnsText;
+
+    private JComboBox<String> securityQuestionOne;
 
     /**
      * The constructor which sets up the GUI for the create account page.
@@ -76,13 +72,13 @@ public class SecurityQuestionsPageOneView {
         JLabel securityOneHeader = createLabel("Security Question #1", FontType.FONT_12_BOLD);
         securityOneHeader.setBounds(0,( int) (securityQuestionsPanel.getHeight() * 0.48), securityQuestionsPanel.getWidth(),15);
 
-        securityOneText = new JTextField("Security Question #1");
-        securityOneText.setBounds(
+        securityQuestionOne = new JComboBox<>();
+        securityQuestionOne.setBounds(
                 (int) (securityQuestionsPanel.getWidth() * 0.5) - (int) (securityQuestionsPanel.getWidth() * 0.25),
                 (int) (securityQuestionsPanel.getHeight() * 0.54),
                 (int) (securityQuestionsPanel.getWidth() * 0.5),
                 30);
-        securityOneText.setBackground(Color.WHITE);
+        securityQuestionOne.setBackground(Color.WHITE);
 
         JLabel securityOneAnsHeader = createLabel("Enter Answer", FontType.FONT_12_BOLD);
         securityOneAnsHeader.setBounds(0, (int) (securityQuestionsPanel.getHeight() * 0.62), securityQuestionsPanel.getWidth(),15);
@@ -116,7 +112,7 @@ public class SecurityQuestionsPageOneView {
         securityQuestionsPanel.add(separatorHeader);
         securityQuestionsPanel.add(securityOneHeader);
         securityQuestionsPanel.add(securityOneAnsHeader);
-        securityQuestionsPanel.add(securityOneText);
+        securityQuestionsPanel.add(securityQuestionOne);
         securityQuestionsPanel.add(securityOneAnsText);
         securityQuestionsPanel.add(nextButton);
         securityQuestionsPanel.add(backButton);
@@ -149,7 +145,7 @@ public class SecurityQuestionsPageOneView {
 
     public JButton getBackButton(){ return backButton; }
 
-    public JTextField getSecurityOneText(){ return securityOneText; }
+    public JComboBox<String> getSecurityQuestionOneDropDown() { return securityQuestionOne; }
 
     public JTextField getSecurityOneAnsText(){ return securityOneAnsText; }
 }

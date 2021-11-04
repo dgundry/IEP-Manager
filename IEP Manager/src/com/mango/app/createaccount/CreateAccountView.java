@@ -19,7 +19,6 @@ public class CreateAccountView {
 
     private JButton nextButton;
     private JButton backButton;
-    private JButton createAccountButton;
 
     private JTextField firstNameText;
     private JTextField lastNameText;
@@ -122,14 +121,6 @@ public class CreateAccountView {
                 (int) (createAccountPanel.getWidth() * 0.20),
                 30);
 
-        createAccountButton = createButton("Create Account");
-        createAccountButton.setBounds(
-                (int) (createAccountPanel.getWidth() * 0.40) - (int) (createAccountPanel.getWidth() * 0.10),
-                (int) (createAccountPanel.getHeight() * 0.83),
-                (int) (createAccountPanel.getWidth() * 0.40),
-                30);
-        createAccountButton.setEnabled(false);
-
         createAccountPanel.add(schoolLogo);
         createAccountPanel.add(mangoLogo);
         createAccountPanel.add(titleHeader);
@@ -143,7 +134,6 @@ public class CreateAccountView {
         createAccountPanel.add(emailText);
         createAccountPanel.add(nextButton);
         createAccountPanel.add(backButton);
-        createAccountPanel.add(createAccountButton);
     }
 
     private JLabel createLabel(String text, Font font) {
@@ -172,7 +162,6 @@ public class CreateAccountView {
 
     public JButton getNextButton(){ return nextButton; }
     public JButton getBackButton(){ return backButton; }
-    public JButton getCreateAccountButton(){ return createAccountButton; }
     public JTextField getFirstNameText(){ return firstNameText; }
     public JTextField getLastNameText(){ return lastNameText; }
     public JTextField getEmailText(){ return emailText; }

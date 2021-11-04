@@ -7,22 +7,27 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.font.*;
 import java.util.*;
+import javax.swing.*;
 
 public class CreateAccountController {
 
+    private CreateAccountView view;
+
     public CreateAccountController(CreateAccountView view) {
+        this.view = view;
+
         view.getBackButton().addActionListener(new BackButtonActionListener());
         view.getBackButton().addMouseListener(new BackButtonMouseListener(view));
 
-        view.getCreateAccountButton().addActionListener(new CreateAccountButtonActionListener());
-        view.getCreateAccountButton().addMouseListener(new CreateAccountButtonMouseListener(view));
-
         view.getNextButton().addActionListener(new NextButtonActionListener(view));
         view.getNextButton().addMouseListener(new NextButtonMouseListener(view));
+
+        addFocusListeners();
     }
 
     public CreateAccountController(CreateAccountView view, User user) {
-        view.getFirstNameText().setText(user.getFirstName());
+        this.view = view;
+
         view.getLastNameText().setText(user.getLastName());
         view.getEmailText().setText(user.getEmail());
 
@@ -31,6 +36,14 @@ public class CreateAccountController {
 
         view.getNextButton().addActionListener(new NextButtonActionListener(view, user));
         view.getNextButton().addMouseListener(new NextButtonMouseListener(view));
+
+        addFocusListeners();
+    }
+
+    private void addFocusListeners() {
+        view.getFirstNameText().addFocusListener(new TextFieldFocusListener(view.getFirstNameText()));
+        view.getLastNameText().addFocusListener(new TextFieldFocusListener(view.getLastNameText()));
+        view.getEmailText().addFocusListener(new TextFieldFocusListener(view.getEmailText()));
     }
 
     private static class BackButtonActionListener implements ActionListener {
@@ -212,82 +225,45 @@ public class CreateAccountController {
         }
     }
 
-    private static class CreateAccountButtonActionListener implements ActionListener {
+    private static class TextFieldFocusListener implements FocusListener {
 
-        /**
-         * Invoked when an action occurs.
-         *
-         * @param e the event to be processed
-         */
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            LoginPageView loginView = new LoginPageView();
-            new LoginPageController(loginView);
-            MainLoginView.setActivePanel(loginView.getLoginPanel());
-        }
-    }
+        private final JTextField textField;
 
-    private static class CreateAccountButtonMouseListener implements MouseListener {
+        private String originalText;
 
-        private final CreateAccountView view;
-
-        public CreateAccountButtonMouseListener(CreateAccountView view) { this.view = view; }
-
-        /**
-         * Invoked when the mouse button has been clicked (pressed
-         * and released) on a component.
-         *
-         * @param e the event to be processed
-         */
-        @Override
-        public void mouseClicked(MouseEvent e) {/* Not needed */}
-
-        /**
-         * Invoked when a mouse button has been pressed on a component.
-         *
-         * @param e the event to be processed
-         */
-        @Override
-        public void mousePressed(MouseEvent e) {/* Not needed */}
-
-        /**
-         * Invoked when a mouse button has been released on a component.
-         *
-         * @param e the event to be processed
-         */
-        @Override
-        public void mouseReleased(MouseEvent e) {/* Not needed */}
-
-        /**
-         * Invoked when the mouse enters a component.
-         *
-         * @param e the event to be processed
-         */
-        @Override
-        public void mouseEntered(MouseEvent e) {
-            view.getCreateAccountButton().setCursor(new Cursor(Cursor.HAND_CURSOR));
-            view.getCreateAccountButton().setFont(view.getCreateAccountButton().getFont().deriveFont(Font.BOLD));
-
-            Font font = view.getCreateAccountButton().getFont();
-            Map<TextAttribute, Object> attributes = new HashMap<>(font.getAttributes());
-            attributes.put(TextAttribute.UNDERLINE, 0);
-            view.getCreateAccountButton().setFont(font.deriveFont(attributes));
+        public TextFieldFocusListener(JTextField textField) {
+            this.textField = textField;
         }
 
         /**
-         * Invoked when the mouse exits a component.
+         * Invoked when a component gains the keyboard focus.
          *
-         * @param e the event to be processed
+         * @param e
          */
         @Override
-        public void mouseExited(MouseEvent e) {
-            view.getCreateAccountButton().setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-            view.getCreateAccountButton().setFont(view.getCreateAccountButton().getFont().deriveFont(Font.PLAIN));
+        public void focusGained(FocusEvent e) {
+            /*originalText = textField.getText();
+            if (originalText.equals("First name") ||
+                    originalText.equals("Last name") ||
+                    originalText.equals("Email")) {
+                textField.setText("");
+            } else {
+                textField.setText(originalText);
+            }*/
+        }
 
-            Font font = view.getCreateAccountButton().getFont();
-            Map<TextAttribute, Object> attributes = new HashMap<>(font.getAttributes());
-            attributes.put(TextAttribute.UNDERLINE, -1);
-            view.getCreateAccountButton().setFont(font.deriveFont(attributes));
+        /**
+         * Invoked when a component loses the keyboard focus.
+         *
+         * @param e
+         */
+        @Override
+        public void focusLost(FocusEvent e) {
+           /* if (originalText.equals("First name") ||
+                    originalText.equals("Last name") ||
+                    originalText.equals("Email")) {
+                textField.setText(originalText);
+            }*/
         }
     }
 
