@@ -88,14 +88,42 @@ public class CreateAccountController {
             user.setLastName(view.getLastNameText().getText());
             user.setEmail(view.getEmailText().getText());
 
-            SecurityQuestionsView securityQuestionsView = new SecurityQuestionsView();
-            securityQuestionsView.getSecurityQuestionOneDropDown().setSelectedIndex(user.getSecurityQ1());
-            securityQuestionsView.getSecurityQuestionTwoDropDown().setSelectedIndex(user.getSecurityQ2());
-            securityQuestionsView.getSecurityOneAnsText().setText(user.getSecurityA1());
-            securityQuestionsView.getSecurityTwoAnsText().setText(user.getSecurityA2());
+            Register register = new Register();
+            System.out.println(user);
+            if(!user.getEmail().contains("@")){
+                JOptionPane.showMessageDialog(
+                        MainLoginView.getLoginWindow(),
+                        "Enter a Valid Email.",
+                        "INVALID",
+                        JOptionPane.ERROR_MESSAGE);
+            }else if (register.isEmailTaken(user.getEmail())){
+                JOptionPane.showMessageDialog(
+                        MainLoginView.getLoginWindow(),
+                        "Email is Already Taken.",
+                        "INVALID",
+                        JOptionPane.ERROR_MESSAGE);
+            }else if(user.getFirstName() != null && !(user.getFirstName().length() >= 1 && user.getFirstName().length() <= 20)){
+                JOptionPane.showMessageDialog(
+                        MainLoginView.getLoginWindow(),
+                        "Enter a Valid First Name.",
+                        "INVALID",
+                        JOptionPane.ERROR_MESSAGE);
+            }else if(user.getLastName() != null && !(user.getLastName().length() >= 1 && user.getLastName().length() <= 20)) {
+                JOptionPane.showMessageDialog(
+                        MainLoginView.getLoginWindow(),
+                        "Enter a Valid Last Name.",
+                        "INVALID",
+                        JOptionPane.ERROR_MESSAGE);
+            }else {
+                SecurityQuestionsView securityQuestionsView = new SecurityQuestionsView();
+                securityQuestionsView.getSecurityQuestionOneDropDown().setSelectedIndex(user.getSecurityQ1());
+                securityQuestionsView.getSecurityQuestionTwoDropDown().setSelectedIndex(user.getSecurityQ2());
+                securityQuestionsView.getSecurityOneAnsText().setText(user.getSecurityA1());
+                securityQuestionsView.getSecurityTwoAnsText().setText(user.getSecurityA2());
 
-            new SecurityQuestionsController(securityQuestionsView, user);
-            MainLoginView.setActivePanel(securityQuestionsView.getSecurityQuestionsPanel());
+                new SecurityQuestionsController(securityQuestionsView, user);
+                MainLoginView.setActivePanel(securityQuestionsView.getSecurityQuestionsPanel());
+            }
         }
     }
 
@@ -140,66 +168,4 @@ public class CreateAccountController {
             }*/
         }
     }
-
-//    public void registerSecurityQuestions(int teacher_id, int question_id_one, String answer_one, int question_id_two, String answer_two){
-//        if(question_id_one != question_id_two){
-//            registerSecurityAnswer(teacher_id, question_id_one, answer_one);
-//            registerSecurityAnswer(teacher_id, question_id_two, answer_two);
-//        }
-//    }
-//    private void registerSecurityAnswer(int teacher_id, int question_id, String answer){
-//        String sql = "INSERT INTO questions(teacher_id, question_id, answer) VALUES(?,?,?);";
-//        try (PreparedStatement statement = Main.getConnection().prepareStatement(sql)) {
-//            statement.setInt(1, teacher_id);
-//            statement.setInt(2, question_id);
-//            statement.setString(3, Encryption.encryptPassword(answer));
-//            statement.executeUpdate();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
-//    public void registerTeacher(String firstName, String lastName, String email, String password, int question_id_one, String answer_one, int question_id_two, String answer_two){
-//        if(!isEmailTaken(email)) {
-//            String sql = "INSERT INTO teacher(first_name,last_name,email,password) VALUES(?,?,?,?);";
-//            try (PreparedStatement statement = Main.getConnection().prepareStatement(sql)) {
-//                statement.setString(1, firstName);
-//                statement.setString(2, lastName);
-//                statement.setString(3, email);
-//                statement.setString(4, Encryption.encryptPassword(password));
-//                statement.executeUpdate();
-//                int teacher_id = getTeacher_id(email);
-//                registerSecurityQuestions(teacher_id, question_id_one, answer_one, question_id_two, answer_two);
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//        }else{
-//            System.out.println("Email has been taken.");
-//        }
-//    }
-//    private int getTeacher_id(String email){
-//        int result = -1;
-//        String sql = "SELECT teacher_id FROM teacher WHERE email = ?;";
-//        try (PreparedStatement statement = Main.getConnection().prepareStatement(sql)) {
-//            statement.setString(1, email);
-//            ResultSet resultSet = statement.executeQuery();
-//            result = resultSet.getInt(1);
-//        } catch (SQLException ex) {
-//            ex.printStackTrace();
-//        }
-//
-//        return result;
-//    }
-//    private boolean isEmailTaken(String email){
-//        boolean result = false;
-//        String sql = "SELECT email FROM teacher WHERE email = ?;";
-//        try (PreparedStatement statement = Main.getConnection().prepareStatement(sql)) {
-//            statement.setString(1, email);
-//            ResultSet resultSet = statement.executeQuery();
-//            result = resultSet.next();
-//        } catch (SQLException ex) {
-//            ex.printStackTrace();
-//        }
-//
-//        return result;
-//    }
 }

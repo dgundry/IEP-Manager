@@ -8,7 +8,7 @@ public class User {
     private String password2 = "";
     private int securityQ1 = 0;
     private String securityA1 = "";
-    private int securityQ2 = 0;
+    private int securityQ2 = 1;
     private String securityA2 = "";
     public User(){
     }
@@ -68,6 +68,7 @@ public class User {
     }
 
     public boolean isValidFields() {
+        System.out.println("Testing Fields");
         return isValidText(firstName) &&
                 isValidText(lastName) &&
                 isValidText(email) &&
@@ -80,54 +81,17 @@ public class User {
                 isValidText(securityA2);
     }
 
-    private boolean isValidText(String text) {
-        return !text.equals("");
+    private boolean isValidText(String text) { return !text.equals("");
     }
 
-    private boolean isValidPassword(String password) {
-        return password != null;
+    private boolean isValidPassword(String password) { return password != null;
     }
 
-    private boolean isUniquePassword(String passwordOne, String passwordTwo) {
-        return !passwordOne.equals(passwordTwo);
+    private boolean isUniquePassword(String passwordOne, String passwordTwo) { return passwordOne.equals(passwordTwo);
     }
 
-    private boolean isValidSecurityQuestion(int securityQuestion) {
-        return securityQuestion >= 1 && securityQuestion <= 17;
+    private boolean isValidSecurityQuestion(int securityQuestion) { return securityQuestion >= 1 && securityQuestion <= 17;
     }
-
-    /*
-    public boolean validFields(){
-        if(firstName.equals(null) || firstName.equals("")){
-            return false;
-        }
-        if(lastName.equals(null) || lastName.equals("")){
-            return false;
-        }
-        if(email.equals(null) || email.equals("")){
-            return false;
-        }
-        if(!password1.equals(null) && !password2.equals(null)) {
-            if (!password1.equals(password2)) {
-                return false;
-            }
-        }else{
-            return false;
-        }
-        if(securityQ1.equals(null) || securityQ1.equals("")){
-            return false;
-        }else{
-            return false;
-        }
-        if(securityQ2 >= 1 && securityQ2 <= 17){
-            if(securityA2.equals(null)){
-                return false;
-            }
-        }else{
-            return false;
-        }
-        return true;
-    }*/
 
     public User copyUser(){
         User newUser = new User();
@@ -143,6 +107,6 @@ public class User {
         return newUser;
     }
     public String toString(){
-        return password1 + ", " + password2;
+        return firstName + ", " + lastName + ", " + email + ", " + password1 + ", " + password2 + ", " + securityQ1 + ": " + securityA1 + ", " + securityQ2 + ": " + securityA2;
     }
 }

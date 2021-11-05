@@ -70,7 +70,7 @@ public class Register {
 
         return result;
     }
-    private boolean isEmailTaken(String email){
+    public boolean isEmailTaken(String email){
         boolean result = false;
         String sql = "SELECT email FROM teacher WHERE email = ?;";
         try (PreparedStatement statement = Main.getConnection().prepareStatement(sql)) {
@@ -80,7 +80,6 @@ public class Register {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
         return result;
     }
 }

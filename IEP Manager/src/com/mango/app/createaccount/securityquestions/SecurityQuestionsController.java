@@ -14,7 +14,7 @@ import javax.swing.*;
 public class SecurityQuestionsController {
 
     public SecurityQuestionsController(SecurityQuestionsView view, User user) {
-        view.getBackButton().addActionListener(new BackButtonActionListener(user));
+        view.getBackButton().addActionListener(new BackButtonActionListener(user, view));
         view.getBackButton().addMouseListener(new ButtonMouseListener(view.getBackButton()));
 
         view.getNextButton().addActionListener(new NextButtonActionListener(user, view));
@@ -24,9 +24,11 @@ public class SecurityQuestionsController {
     private static class BackButtonActionListener implements ActionListener {
 
         private final User user;
+        private final SecurityQuestionsView view;
 
-        public BackButtonActionListener(User user) {
+        public BackButtonActionListener(User user, SecurityQuestionsView view) {
             this.user = user;
+            this.view = view;
         }
 
         /**
@@ -36,6 +38,15 @@ public class SecurityQuestionsController {
          */
         @Override
         public void actionPerformed(ActionEvent e) {
+
+            int questionOneIndex = view.getSecurityQuestionOneDropDown().getSelectedIndex();
+            int questionTwoIndex = view.getSecurityQuestionTwoDropDown().getSelectedIndex();
+
+            user.setSecurityQ1(view.getSecurityQuestionOneDropDown().getSelectedIndex());
+            user.setSecurityA1(view.getSecurityOneAnsText().getText());
+            user.setSecurityQ2(view.getSecurityQuestionTwoDropDown().getSelectedIndex());
+            user.setSecurityA2(view.getSecurityTwoAnsText().getText());
+
             String firstName = user.getFirstName();
             String lastName = user.getLastName();
             String email = user.getEmail();

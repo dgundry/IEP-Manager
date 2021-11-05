@@ -170,6 +170,7 @@ public class SecurityQuestionsView {
 
         securityQuestionsPanel.add(securityQuestionOne);
         securityQuestionsPanel.add(securityQuestionTwo);
+
     }
 
     private JLabel createLabel(String text, Font font) {
