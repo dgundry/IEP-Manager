@@ -92,20 +92,6 @@ public class User {
 
     private boolean isValidSecurityQuestion(int securityQuestion) { return securityQuestion >= 1 && securityQuestion <= 17;
     }
-
-    public User copyUser(){
-        User newUser = new User();
-        newUser.setFirstName(this.firstName);
-        newUser.setLastName(this.lastName);
-        newUser.setEmail(this.email);
-        newUser.setPassword1(this.password1);
-        newUser.setPassword2(this.password2);
-        newUser.setSecurityQ1(this.securityQ1);
-        newUser.setSecurityA1(this.securityA1);
-        newUser.setSecurityQ2(this.securityQ2);
-        newUser.setSecurityA2(this.securityA2);
-        return newUser;
-    }
     public String toString(){
         return firstName + ", " + lastName + ", " + email + ", " + password1 + ", " + password2 + ", " + securityQ1 + ": " + securityA1 + ", " + securityQ2 + ": " + securityA2;
     }

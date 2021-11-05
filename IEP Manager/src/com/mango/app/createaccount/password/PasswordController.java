@@ -15,8 +15,6 @@ import java.awt.event.ActionListener;
 public class PasswordController {
 
     public PasswordController(PasswordView view, User user) {
-
-        System.out.println(user);
         if(!user.getPassword1().equals("")){
             System.out.println("test");
             view.getPasswordText().setText(user.getPassword1());

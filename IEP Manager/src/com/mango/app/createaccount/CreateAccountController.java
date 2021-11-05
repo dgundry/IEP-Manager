@@ -89,7 +89,6 @@ public class CreateAccountController {
             user.setEmail(view.getEmailText().getText());
 
             Register register = new Register();
-            System.out.println(user);
             if(!user.getEmail().contains("@")){
                 JOptionPane.showMessageDialog(
                         MainLoginView.getLoginWindow(),
