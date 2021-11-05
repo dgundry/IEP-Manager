@@ -78,6 +78,8 @@ public class PasswordController {
             //Verify all input
             String password = view.getPasswordText().getText();
             String passwordConfirmed = view.getConfirmPasswordText().getText();
+            user.setPassword1(password);
+            user.setPassword2(passwordConfirmed);
             if (!password.equals(passwordConfirmed)){
                 JOptionPane.showMessageDialog(
                         MainLoginView.getLoginWindow(),

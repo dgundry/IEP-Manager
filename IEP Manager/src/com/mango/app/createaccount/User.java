@@ -90,7 +90,7 @@ public class User {
     private boolean isUniquePassword(String passwordOne, String passwordTwo) { return passwordOne.equals(passwordTwo);
     }
 
-    private boolean isValidSecurityQuestion(int securityQuestion) { return securityQuestion >= 1 && securityQuestion <= 17;
+    private boolean isValidSecurityQuestion(int securityQuestion) { return securityQuestion >= 0 && securityQuestion <= 16;
     }
     public String toString(){
         return firstName + ", " + lastName + ", " + email + ", " + password1 + ", " + password2 + ", " + securityQ1 + ": " + securityA1 + ", " + securityQ2 + ": " + securityA2;
