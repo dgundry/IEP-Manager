@@ -101,6 +101,8 @@ public class PasswordController {
                         JOptionPane.ERROR_MESSAGE);
             }else {
                 Register register = new Register();
+                user.setSecurityQ1(user.getSecurityQ1()+1);
+                user.setSecurityQ2(user.getSecurityQ2()+1);
                 if(register.createUser(user)){
                     JOptionPane.showMessageDialog(
                             MainLoginView.getLoginWindow(),

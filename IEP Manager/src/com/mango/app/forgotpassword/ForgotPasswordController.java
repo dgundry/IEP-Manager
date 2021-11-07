@@ -25,7 +25,6 @@ public class ForgotPasswordController {
         view.getNextButton().addMouseListener(new SQPONextButtonMouseListener(view));
     }
 
-    public ForgotPasswordController(SecurityQuestionsPageTwoView securityQuestionsPageTwoView) {}
 
     private static class SQPOBackButtonActionListener implements ActionListener {
 
