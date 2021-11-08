@@ -85,9 +85,9 @@ public class SecurityQuestionsView {
 
         securityOneAnsText = new JTextField();
         securityOneAnsText.setBounds(
-                (int) (securityQuestionsPanel.getWidth() * 0.5) - (int) (securityQuestionsPanel.getWidth() * 0.25),
+                (int) (securityQuestionsPanel.getWidth() * 0.5) - ((int) (securityQuestionsPanel.getWidth() * 0.65) / 2),
                 (int) (securityQuestionsPanel.getHeight() * 0.59),
-                (int) (securityQuestionsPanel.getWidth() * 0.5),
+                (int) (securityQuestionsPanel.getWidth() * 0.65),
                 30);
         securityOneAnsText.setBackground(Color.WHITE);
 
@@ -99,9 +99,9 @@ public class SecurityQuestionsView {
 
         securityTwoAnsText = new JTextField();
         securityTwoAnsText.setBounds(
-                (int) (securityQuestionsPanel.getWidth() * 0.5) - (int) (securityQuestionsPanel.getWidth() * 0.25),
+                (int) (securityQuestionsPanel.getWidth() * 0.5) - ((int) (securityQuestionsPanel.getWidth() * 0.65) / 2),
                 (int) (securityQuestionsPanel.getHeight() * 0.77),
-                (int) (securityQuestionsPanel.getWidth() * 0.5),
+                (int) (securityQuestionsPanel.getWidth() * 0.65),
                 30);
         securityTwoAnsText.setBackground(Color.WHITE);
 
@@ -153,24 +153,23 @@ public class SecurityQuestionsView {
         securityQuestionOne = new JComboBox<>(securityQuestionList);
         securityQuestionOne.setSelectedIndex(0);
         securityQuestionOne.setBounds(
-                (int) (securityQuestionsPanel.getWidth() * 0.5) - (int) (securityQuestionsPanel.getWidth() * 0.25),
+                (int) (securityQuestionsPanel.getWidth() * 0.5) - ((int) (securityQuestionsPanel.getWidth() * 0.65) / 2),
                 (int) (securityQuestionsPanel.getHeight() * 0.51),
-                (int) (securityQuestionsPanel.getWidth() * 0.5),
+                (int) (securityQuestionsPanel.getWidth() * 0.65),
                 30);
         securityQuestionOne.setBackground(Color.WHITE);
 
         securityQuestionTwo = new JComboBox<>(securityQuestionList);
         securityQuestionTwo.setSelectedIndex(0);
         securityQuestionTwo.setBounds(
-                (int) (securityQuestionsPanel.getWidth() * 0.5) - (int) (securityQuestionsPanel.getWidth() * 0.25),
+                (int) (securityQuestionsPanel.getWidth() * 0.5) - ((int) (securityQuestionsPanel.getWidth() * 0.65) / 2),
                 (int) (securityQuestionsPanel.getHeight() * 0.68),
-                (int) (securityQuestionsPanel.getWidth() * 0.5),
+                (int) (securityQuestionsPanel.getWidth() * 0.65),
                 30);
         securityQuestionTwo.setBackground(Color.WHITE);
 
         securityQuestionsPanel.add(securityQuestionOne);
         securityQuestionsPanel.add(securityQuestionTwo);
-
     }
 
     private JLabel createLabel(String text, Font font) {
