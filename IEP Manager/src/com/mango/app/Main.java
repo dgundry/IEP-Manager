@@ -3,6 +3,9 @@ package com.mango.app;
 import com.mango.app.login.LoginPageController;
 import com.mango.app.login.LoginPageView;
 import com.mango.app.mainloginpage.MainLoginView;
+import com.mango.app.teacher.TeacherController;
+import com.mango.app.teacher.TeacherView;
+
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import java.awt.Dimension;
@@ -57,6 +60,11 @@ public class Main {
 
             new MainLoginView();
             MainLoginView.setActivePanel(loginPageView.getLoginPanel());
+            //TeacherView teacherView = new TeacherView();
+            //new TeacherController(teacherView);
+
+            //MainLoginView.setActivePanel(teacherView.getTeacherPanel());
+
         } catch (SQLException
                 | ClassNotFoundException
                 | InstantiationException

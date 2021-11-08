@@ -8,6 +8,8 @@ import com.mango.app.forgotpassword.email.EmailController;
 import com.mango.app.forgotpassword.email.EmailView;
 import com.mango.app.forgotpassword.securityquestions.*;
 import com.mango.app.mainloginpage.MainLoginView;
+import com.mango.app.teacher.TeacherController;
+import com.mango.app.teacher.TeacherView;
 import com.mango.app.utilities.Encryption;
 import java.awt.event.*;
 import java.sql.PreparedStatement;
@@ -51,6 +53,11 @@ public class LoginPageController {
                 System.out.println(view.getEmailText().getText() + ":" + view.getPasswordText().getText());
                 if (loginToAccount(view.getEmailText().getText(), view.getPasswordText().getText())) {
                     System.out.println("Logged in");
+                    TeacherView teacherView = new TeacherView();
+                    new TeacherController(teacherView);
+
+                    MainLoginView.setActivePanel(teacherView.getTeacherPanel());
+
                 } else {
                     System.out.println("Try Again");
                 }
