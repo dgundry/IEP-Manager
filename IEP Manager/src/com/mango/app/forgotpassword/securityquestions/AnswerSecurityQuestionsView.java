@@ -94,7 +94,7 @@ public class AnswerSecurityQuestionsView {
         JLabel securityOneAnsHeader = createLabel("Enter Answer", FontType.FONT_12_BOLD);
         securityOneAnsHeader.setBounds(0, (int) (securityQuestionsPanel.getHeight() * 0.56), securityQuestionsPanel.getWidth(),15);
 
-        securityOneAnsText = new JTextField();
+        securityOneAnsText = new JTextField("Answer #1");
         securityOneAnsText.setBounds(
                 (int) (securityQuestionsPanel.getWidth() * 0.5) - (int) (securityQuestionsPanel.getWidth() * 0.25),
                 (int) (securityQuestionsPanel.getHeight() * 0.59),
@@ -108,7 +108,7 @@ public class AnswerSecurityQuestionsView {
         JLabel securityTwoAnsHeader = createLabel("Enter Answer", FontType.FONT_12_BOLD);
         securityTwoAnsHeader.setBounds(0, (int) (securityQuestionsPanel.getHeight() * 0.74), securityQuestionsPanel.getWidth(),15);
 
-        securityTwoAnsText = new JTextField();
+        securityTwoAnsText = new JTextField("Answer #2");
         securityTwoAnsText.setBounds(
                 (int) (securityQuestionsPanel.getWidth() * 0.5) - (int) (securityQuestionsPanel.getWidth() * 0.25),
                 (int) (securityQuestionsPanel.getHeight() * 0.77),

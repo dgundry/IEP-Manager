@@ -27,6 +27,10 @@ public class LoginPageController {
 
         loginPageView.getCreateAccountButton().addActionListener(new CreateAccountButtonActionListener());
         loginPageView.getCreateAccountButton().addMouseListener(new ButtonMouseListener(loginPageView.getCreateAccountButton()));
+
+        loginPageView.getEmailText().addMouseListener(new EmailMouseListener(loginPageView));
+        loginPageView.getPasswordText().addMouseListener(new PasswordMouseListener(loginPageView));
+
     }
 
     private static class LoginButtonActionListener implements ActionListener {
@@ -88,6 +92,74 @@ public class LoginPageController {
             CreateAccountView createAccountView = new CreateAccountView();
             new CreateAccountController(createAccountView);
             MainLoginView.setActivePanel(createAccountView.getCreateAccountPanel());
+        }
+    }
+    private static class EmailMouseListener implements MouseListener {
+
+        private final LoginPageView loginPageView;
+
+        public EmailMouseListener(LoginPageView loginPageView) { this.loginPageView = loginPageView; }
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            if(loginPageView.getEmailText().getText().equals("Email")){
+                loginPageView.getEmailText().setText("");
+
+            }
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+
+        }
+    }
+    private static class PasswordMouseListener implements MouseListener {
+
+        private final LoginPageView loginPageView;
+
+        public PasswordMouseListener(LoginPageView loginPageView) { this.loginPageView = loginPageView; }
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            if(loginPageView.getPasswordText().getText().equals("Password")){
+                loginPageView.getPasswordText().setText("");
+
+            }
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+
         }
     }
 }

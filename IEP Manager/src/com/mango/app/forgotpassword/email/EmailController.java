@@ -1,6 +1,7 @@
 package com.mango.app.forgotpassword.email;
 
 import com.mango.app.components.ButtonMouseListener;
+import com.mango.app.createaccount.CreateAccountView;
 import com.mango.app.forgotpassword.PasswordChange;
 import com.mango.app.forgotpassword.securityquestions.AnswerSecurityQuestionsController;
 import com.mango.app.forgotpassword.securityquestions.AnswerSecurityQuestionsView;
@@ -9,10 +10,7 @@ import com.mango.app.login.LoginPageView;
 import com.mango.app.mainloginpage.MainLoginView;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
+import java.awt.event.*;
 
 public class EmailController {
     private final EmailView view;
@@ -25,6 +23,8 @@ public class EmailController {
 
         view.getNextButton().addActionListener(new EmailController.NextButtonActionListener(view));
         view.getNextButton().addMouseListener(new ButtonMouseListener(view.getNextButton()));
+
+        view.getEmailText().addMouseListener(new EmailMouseListener(view));
 
         addFocusListeners();
     }
@@ -114,6 +114,40 @@ public class EmailController {
                     originalText.equals("Email")) {
                 textField.setText(originalText);
             }*/
+        }
+    }
+    private static class EmailMouseListener implements MouseListener {
+
+        private final EmailView emailView;
+
+        public EmailMouseListener(EmailView emailView) { this.emailView = emailView; }
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            if(emailView.getEmailText().getText().equals("Email")){
+                emailView.getEmailText().setText("");
+
+            }
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+
         }
     }
 }

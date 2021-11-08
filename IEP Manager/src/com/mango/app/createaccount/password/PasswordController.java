@@ -11,6 +11,8 @@ import com.mango.app.mainloginpage.MainLoginView;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class PasswordController {
 
@@ -27,6 +29,9 @@ public class PasswordController {
 
         view.getCreateAccountButton().addActionListener(new CreateAccountButtonActionListener(user, view));
         view.getCreateAccountButton().addMouseListener(new ButtonMouseListener(view.getCreateAccountButton()));
+
+        view.getPasswordText().addMouseListener(new PasswordTextFieldMouseListener(view));
+        view.getConfirmPasswordText().addMouseListener(new ConfirmPasswordTextFieldMouseListener(view));
     }
 
     private static class BackButtonActionListener implements ActionListener {
@@ -62,6 +67,7 @@ public class PasswordController {
     private static class CreateAccountButtonActionListener implements ActionListener {
         private final User user;
         private final PasswordView view;
+
         public CreateAccountButtonActionListener(User user, PasswordView view){
             this.view = view;
             this.user = user;
@@ -120,6 +126,74 @@ public class PasswordController {
                             JOptionPane.ERROR_MESSAGE);
                 }
             }
+        }
+    }
+    private static class PasswordTextFieldMouseListener implements MouseListener {
+
+        private final PasswordView passwordView;
+
+        public PasswordTextFieldMouseListener(PasswordView passwordView) { this.passwordView = passwordView; }
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            if(passwordView.getPasswordText().getText().equals("Password")){
+                passwordView.getPasswordText().setText("");
+
+            }
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+
+        }
+    }
+    private static class ConfirmPasswordTextFieldMouseListener implements MouseListener {
+
+        private final PasswordView passwordView;
+
+        public ConfirmPasswordTextFieldMouseListener(PasswordView passwordView) { this.passwordView = passwordView; }
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            if(passwordView.getConfirmPasswordText().getText().equals("Confirm Password")){
+                passwordView.getConfirmPasswordText().setText("");
+
+            }
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+
         }
     }
 }

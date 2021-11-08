@@ -17,6 +17,8 @@ import com.mango.app.utilities.Encryption;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,6 +33,12 @@ public class AnswerSecurityQuestionsController {
 
         view.getNextButton().addActionListener(new AnswerSecurityQuestionsController.NextButtonActionListener(view));
         view.getNextButton().addMouseListener(new ButtonMouseListener(view.getNextButton()));
+
+
+        view.getSecurityOneAnsText().addMouseListener(new SecurityQuestionOneMouseListener(view));
+        view.getSecurityTwoAnsText().addMouseListener(new SecurityQuestionTwoMouseListener(view));
+
+
     }
 
     private static class BackButtonActionListener implements ActionListener {
@@ -94,6 +102,74 @@ public class AnswerSecurityQuestionsController {
                 new ChangePasswordController(changePasswordView);
                 MainLoginView.setActivePanel(changePasswordView.getChangePasswordPanel());
             }
+        }
+    }
+    private static class SecurityQuestionOneMouseListener implements MouseListener {
+
+        private final AnswerSecurityQuestionsView answerSecurityQuestionsView;
+
+        public SecurityQuestionOneMouseListener(AnswerSecurityQuestionsView answerSecurityQuestionsView) { this.answerSecurityQuestionsView = answerSecurityQuestionsView; }
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            if(answerSecurityQuestionsView.getSecurityOneAnsText().getText().equals("Security #1")){
+                answerSecurityQuestionsView.getSecurityOneAnsText().setText("");
+
+            }
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+
+        }
+    }
+    private static class SecurityQuestionTwoMouseListener implements MouseListener {
+
+        private final AnswerSecurityQuestionsView answerSecurityQuestionsView;
+
+        public SecurityQuestionTwoMouseListener(AnswerSecurityQuestionsView answerSecurityQuestionsView) { this.answerSecurityQuestionsView = answerSecurityQuestionsView; }
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            if(answerSecurityQuestionsView.getSecurityTwoAnsText().getText().equals("Security #2")){
+                answerSecurityQuestionsView.getSecurityTwoAnsText().setText("");
+
+            }
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+
         }
     }
 }

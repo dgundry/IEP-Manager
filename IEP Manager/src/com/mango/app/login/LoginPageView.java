@@ -83,7 +83,7 @@ public class LoginPageView {
         JLabel enterPasswordHeader = createLabel("Enter Password", FontType.FONT_12_BOLD);
         enterPasswordHeader.setBounds(0, (int) (loginPanel.getHeight() * 0.62), loginPanel.getWidth(),15);
 
-        passwordText = new JPasswordField();
+        passwordText = new JPasswordField("Password");
         passwordText.setBounds(
                 (int) (loginPanel.getWidth() * 0.5) - (int) (loginPanel.getWidth() * 0.25),
                 (int) (loginPanel.getHeight() * 0.68),

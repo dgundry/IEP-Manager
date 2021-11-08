@@ -20,6 +20,10 @@ public class CreateAccountController {
         view.getNextButton().addActionListener(new NextButtonActionListener(view));
         view.getNextButton().addMouseListener(new ButtonMouseListener(view.getNextButton()));
 
+        view.getFirstNameText().addMouseListener(new FirstNameTextFieldMouseListener(view));
+        view.getLastNameText().addMouseListener(new LastNameTextFieldMouseListener(view));
+        view.getEmailText().addMouseListener(new EmailTextFieldMouseListener(view));
+
         addFocusListeners();
     }
 
@@ -165,6 +169,108 @@ public class CreateAccountController {
                     originalText.equals("Email")) {
                 textField.setText(originalText);
             }*/
+        }
+    }
+    private static class LastNameTextFieldMouseListener implements MouseListener {
+
+        private final CreateAccountView createAccountView;
+
+        public LastNameTextFieldMouseListener(CreateAccountView createAccountView) { this.createAccountView = createAccountView; }
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            if(createAccountView.getLastNameText().getText().equals("Last name")){
+                createAccountView.getLastNameText().setText("");
+
+            }
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+
+        }
+    }
+    private static class FirstNameTextFieldMouseListener implements MouseListener {
+
+        private final CreateAccountView createAccountView;
+
+        public FirstNameTextFieldMouseListener(CreateAccountView createAccountView) { this.createAccountView = createAccountView; }
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            if(createAccountView.getFirstNameText().getText().equals("First name")){
+                createAccountView.getFirstNameText().setText("");
+
+            }
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+
+        }
+    }
+    private static class EmailTextFieldMouseListener implements MouseListener {
+
+        private final CreateAccountView createAccountView;
+
+        public EmailTextFieldMouseListener(CreateAccountView createAccountView) { this.createAccountView = createAccountView; }
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            if(createAccountView.getEmailText().getText().equals("Email")){
+                createAccountView.getEmailText().setText("");
+
+            }
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+
         }
     }
 }
