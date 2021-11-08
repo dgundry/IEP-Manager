@@ -11,7 +11,7 @@ public class EmailView {
     private final RoundedPanel emailPanel;
 
     private JButton nextButton;
-    private JButton backButton;
+    private JButton cancelButton;
 
     private JTextField emailText;
 
@@ -81,8 +81,8 @@ public class EmailView {
                 (int) (emailPanel.getWidth() * 0.20),
                 30);
 
-        backButton = createButton("Back");
-        backButton.setBounds(
+        cancelButton = createButton("Cancel");
+        cancelButton.setBounds(
                 (int) (emailPanel.getWidth() * 0.35) - (int) (emailPanel.getWidth() * 0.10),
                 (int) (emailPanel.getHeight() * 0.77),
                 (int) (emailPanel.getWidth() * 0.20),
@@ -96,7 +96,7 @@ public class EmailView {
         emailPanel.add(enterEmailHeader);
         emailPanel.add(emailText);
         emailPanel.add(nextButton);
-        emailPanel.add(backButton);
+        emailPanel.add(cancelButton);
     }
 
     private JLabel createLabel(String text, Font font) {
@@ -124,6 +124,6 @@ public class EmailView {
     public RoundedPanel getEmailPanel() { return emailPanel; }
 
     public JButton getNextButton(){ return nextButton; }
-    public JButton getBackButton(){ return backButton; }
+    public JButton getCancelButton(){ return cancelButton; }
     public JTextField getEmailText(){ return emailText; }
 }
