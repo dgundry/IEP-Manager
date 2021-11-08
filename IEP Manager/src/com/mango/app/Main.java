@@ -1,7 +1,5 @@
 package com.mango.app;
 
-import com.mango.app.createaccount.Register;
-import com.mango.app.createaccount.User;
 import com.mango.app.login.LoginPageController;
 import com.mango.app.login.LoginPageView;
 import com.mango.app.mainloginpage.MainLoginView;

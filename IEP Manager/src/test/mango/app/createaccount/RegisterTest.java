@@ -3,24 +3,20 @@ package test.mango.app.createaccount;
 import com.mango.app.*;
 import com.mango.app.createaccount.*;
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.*;
 
 import static org.junit.Assert.assertNotEquals;
 
 public class RegisterTest {
 
+    private static final Logger logger = Logger.getLogger(RegisterTest.class.getName());
+
     @Before
     public void setUp() {
         Main.setDatabase(Main.TESTING_DB);
-
-        try {
-            String url = "jdbc:sqlite:database\\testing.db";
-            Connection connection = DriverManager.getConnection(url);
-
-            dropAllRows(connection);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+        dropAllRows(Main.getConnection());
     }
 
     private void dropAllRows(Connection connection) {
@@ -29,7 +25,7 @@ public class RegisterTest {
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.execute();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.log(Level.WARNING, e.getMessage());
         }
     }
 
