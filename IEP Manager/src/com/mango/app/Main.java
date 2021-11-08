@@ -60,6 +60,7 @@ public class Main {
 
             new MainLoginView();
             MainLoginView.setActivePanel(loginPageView.getLoginPanel());
+            
             //TeacherView teacherView = new TeacherView();
             //new TeacherController(teacherView);
 

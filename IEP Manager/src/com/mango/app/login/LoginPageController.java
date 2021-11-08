@@ -11,6 +11,8 @@ import com.mango.app.mainloginpage.MainLoginView;
 import com.mango.app.teacher.TeacherController;
 import com.mango.app.teacher.TeacherView;
 import com.mango.app.utilities.Encryption;
+
+import javax.swing.*;
 import java.awt.event.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -56,13 +58,23 @@ public class LoginPageController {
                     TeacherView teacherView = new TeacherView();
                     new TeacherController(teacherView);
 
-                    MainLoginView.setActivePanel(teacherView.getTeacherPanel());
 
                 } else {
                     System.out.println("Try Again");
+                    JOptionPane.showMessageDialog(
+                            MainLoginView.getLoginWindow(),
+                            "Enter a Valid Password.",
+                            "INVALID",
+                            JOptionPane.ERROR_MESSAGE);
                 }
             } else {
                 System.out.println("Please input a email and password");
+                JOptionPane.showMessageDialog(
+                        MainLoginView.getLoginWindow(),
+                        "Enter a Valid Email and/or Password.",
+                        "INVALID",
+                        JOptionPane.ERROR_MESSAGE);
+
             }
         }
 
