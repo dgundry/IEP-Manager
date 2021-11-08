@@ -18,8 +18,8 @@ public class EmailController {
     public EmailController(EmailView view) {
         this.view = view;
 
-        view.getBackButton().addActionListener(new EmailController.BackButtonActionListener());
-        view.getBackButton().addMouseListener(new ButtonMouseListener(view.getBackButton()));
+        view.getCancelButton().addActionListener(new EmailController.CancelButtonActionListener());
+        view.getCancelButton().addMouseListener(new ButtonMouseListener(view.getCancelButton()));
 
         view.getNextButton().addActionListener(new EmailController.NextButtonActionListener(view));
         view.getNextButton().addMouseListener(new ButtonMouseListener(view.getNextButton()));
@@ -33,7 +33,7 @@ public class EmailController {
         view.getEmailText().addFocusListener(new EmailController.TextFieldFocusListener(view.getEmailText()));
     }
 
-    private static class BackButtonActionListener implements ActionListener {
+    private static class CancelButtonActionListener implements ActionListener {
 
         /**
          * Invoked when an action occurs.

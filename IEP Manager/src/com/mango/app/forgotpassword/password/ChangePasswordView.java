@@ -11,7 +11,7 @@ public class ChangePasswordView {
 
     private final RoundedPanel changePasswordPanel;
 
-    private JButton backButton;
+    private JButton cancelButton;
     private JButton changePasswordButton;
 
     private JPasswordField passwordText;
@@ -92,17 +92,17 @@ public class ChangePasswordView {
                 30);
         confirmPasswordText.setBackground(Color.WHITE);
 
-        backButton = createButton("Back");
-        backButton.setBounds(
-                (int) (changePasswordPanel.getWidth() * 0.35) - (int) (changePasswordPanel.getWidth() * 0.10),
-                (int) (changePasswordPanel.getHeight() * 0.77),
+        cancelButton = createButton("Cancel");
+        cancelButton.setBounds(
+                (int) (changePasswordPanel.getWidth() * 0.5) - ((int) (changePasswordPanel.getWidth() * 0.2)/2),
+                (int) (changePasswordPanel.getHeight() * 0.83),
                 (int) (changePasswordPanel.getWidth() * 0.20),
                 30);
 
         changePasswordButton = createButton("Change Password");
         changePasswordButton.setBounds(
                 (int) (changePasswordPanel.getWidth() * 0.40) - (int) (changePasswordPanel.getWidth() * 0.10),
-                (int) (changePasswordPanel.getHeight() * 0.83),
+                (int) (changePasswordPanel.getHeight() * 0.77),
                 (int) (changePasswordPanel.getWidth() * 0.40),
                 30);
 
@@ -115,7 +115,7 @@ public class ChangePasswordView {
         changePasswordPanel.add(confirmPasswordHeader);
         changePasswordPanel.add(passwordText);
         changePasswordPanel.add(confirmPasswordText);
-        changePasswordPanel.add(backButton);
+        changePasswordPanel.add(cancelButton);
         changePasswordPanel.add(changePasswordButton);
     }
 
@@ -143,7 +143,7 @@ public class ChangePasswordView {
     public RoundedPanel getChangePasswordPanel() { return changePasswordPanel; }
 
     public JButton getChangePasswordButton(){ return changePasswordButton; }
-    public JButton getBackButton(){ return backButton; }
+    public JButton getCancelButton(){ return cancelButton; }
     public JTextField getPasswordText(){ return passwordText; }
     public JTextField getConfirmPasswordText(){ return confirmPasswordText; }
     public int getTeacher_id(){ return teacher_id; }

@@ -11,6 +11,8 @@ import com.mango.app.createaccount.securityquestions.SecurityQuestionsController
 import com.mango.app.createaccount.securityquestions.SecurityQuestionsView;
 import com.mango.app.forgotpassword.password.ChangePasswordController;
 import com.mango.app.forgotpassword.password.ChangePasswordView;
+import com.mango.app.login.LoginPageController;
+import com.mango.app.login.LoginPageView;
 import com.mango.app.mainloginpage.MainLoginView;
 import com.mango.app.utilities.Encryption;
 
@@ -28,8 +30,8 @@ import java.util.logging.Logger;
 public class AnswerSecurityQuestionsController {
     private static final Logger logger = Logger.getLogger(AnswerSecurityQuestionsController.class.getName());
     public AnswerSecurityQuestionsController(AnswerSecurityQuestionsView view, int teacher_id) {
-        view.getBackButton().addActionListener(new AnswerSecurityQuestionsController.BackButtonActionListener(view));
-        view.getBackButton().addMouseListener(new ButtonMouseListener(view.getBackButton()));
+        view.getCancelButton().addActionListener(new AnswerSecurityQuestionsController.CancelButtonActionListener(view));
+        view.getCancelButton().addMouseListener(new ButtonMouseListener(view.getCancelButton()));
 
         view.getNextButton().addActionListener(new AnswerSecurityQuestionsController.NextButtonActionListener(view));
         view.getNextButton().addMouseListener(new ButtonMouseListener(view.getNextButton()));
@@ -41,9 +43,9 @@ public class AnswerSecurityQuestionsController {
 
     }
 
-    private static class BackButtonActionListener implements ActionListener {
+    private static class CancelButtonActionListener implements ActionListener {
 
-        public BackButtonActionListener(AnswerSecurityQuestionsView view) {
+        public CancelButtonActionListener(AnswerSecurityQuestionsView view) {
         }
         /**
          * Invoked when an action occurs.
@@ -52,7 +54,9 @@ public class AnswerSecurityQuestionsController {
          */
         @Override
         public void actionPerformed(ActionEvent e) {
-
+            LoginPageView loginPageView = new LoginPageView();
+            new LoginPageController(loginPageView);
+            MainLoginView.setActivePanel(loginPageView.getLoginPanel());
         }
     }
 

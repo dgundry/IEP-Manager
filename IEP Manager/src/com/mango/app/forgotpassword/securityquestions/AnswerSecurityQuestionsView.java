@@ -22,7 +22,7 @@ public class AnswerSecurityQuestionsView {
     private final RoundedPanel securityQuestionsPanel;
 
     private JButton nextButton;
-    private JButton backButton;
+    private JButton cancelButton;
 
     private JTextField securityOneAnsText;
     private JTextField securityTwoAnsText;
@@ -123,8 +123,8 @@ public class AnswerSecurityQuestionsView {
                 (int) (securityQuestionsPanel.getWidth() * 0.20),
                 30);
 
-        backButton = createButton("Back");
-        backButton.setBounds(
+        cancelButton = createButton("Cancel");
+        cancelButton.setBounds(
                 (int) (securityQuestionsPanel.getWidth() * 0.35) - (int) (securityQuestionsPanel.getWidth() * 0.10),
                 (int) (securityQuestionsPanel.getHeight() * 0.83),
                 (int) (securityQuestionsPanel.getWidth() * 0.20),
@@ -142,7 +142,7 @@ public class AnswerSecurityQuestionsView {
         securityQuestionsPanel.add(securityOneAnsText);
         securityQuestionsPanel.add(securityTwoAnsText);
         securityQuestionsPanel.add(nextButton);
-        securityQuestionsPanel.add(backButton);
+        securityQuestionsPanel.add(cancelButton);
     }
 
     private int[] getQuestionIds(){
@@ -237,7 +237,7 @@ public class AnswerSecurityQuestionsView {
     public RoundedPanel getSecurityQuestionsPanel() { return securityQuestionsPanel; }
 
     public JButton getNextButton(){ return nextButton; }
-    public JButton getBackButton(){ return backButton; }
+    public JButton getCancelButton(){ return cancelButton; }
 
     public JLabel getSecurityQuestionOneDropDown() { return securityQuestionOne; }
     public JLabel getSecurityQuestionTwoDropDown() { return securityQuestionTwo; }

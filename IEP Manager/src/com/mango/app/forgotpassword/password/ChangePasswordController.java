@@ -22,28 +22,30 @@ import java.sql.SQLException;
 
 public class ChangePasswordController {
     public ChangePasswordController(ChangePasswordView view) {
-//        view.getBackButton().addActionListener(new PasswordController.BackButtonActionListener(view, user));
-//        view.getBackButton().addMouseListener(new ButtonMouseListener(view.getBackButton()));
+        view.getCancelButton().addActionListener(new ChangePasswordController.CancelButtonActionListener());
+        view.getCancelButton().addMouseListener(new ButtonMouseListener(view.getCancelButton()));
 
         view.getChangePasswordButton().addActionListener(new ChangePasswordController.ChangePasswordButtonActionListener(view));
         view.getChangePasswordButton().addMouseListener(new ButtonMouseListener(view.getChangePasswordButton()));
     }
 
-//    private static class BackButtonActionListener implements ActionListener {
-//
-//        public BackButtonActionListener() {
-//
-//        }
-//        /**
-//         * Invoked when an action occurs.
-//         *
-//         * @param e the event to be processed
-//         */
-//
-//        public void actionPerformed(ActionEvent e){
-//
-//        }
-//    }
+    private static class CancelButtonActionListener implements ActionListener {
+
+
+        public CancelButtonActionListener() {
+        }
+        /**
+         * Invoked when an action occurs.
+         *
+         * @param e the event to be processed
+         */
+
+        public void actionPerformed(ActionEvent e){
+            LoginPageView loginPageView = new LoginPageView();
+            new LoginPageController(loginPageView);
+            MainLoginView.setActivePanel(loginPageView.getLoginPanel());
+        }
+    }
 
     private static class ChangePasswordButtonActionListener implements ActionListener {
         private final ChangePasswordView view;
