@@ -25,6 +25,7 @@ import java.util.logging.Level;
  * @author Patrick Weaver
  * @author Kellen Campbell
  */
+
 public class Main {
     private static Connection connection = null;
     public static Connection getConnection(){
@@ -55,14 +56,14 @@ public class Main {
             UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
 
             //Comment out these lines and add new code to test out views
-            LoginPageView loginPageView = new LoginPageView();
-            new LoginPageController(loginPageView);
+            //LoginPageView loginPageView = new LoginPageView();
+            //new LoginPageController(loginPageView);
 
-            new MainLoginView();
-            MainLoginView.setActivePanel(loginPageView.getLoginPanel());
-            
-            //TeacherView teacherView = new TeacherView();
-            //new TeacherController(teacherView);
+            //new MainLoginView();
+            //MainLoginView.setActivePanel(loginPageView.getLoginPanel());
+
+            TeacherView teacherView = new TeacherView();
+            new TeacherController(teacherView);
 
             //MainLoginView.setActivePanel(teacherView.getTeacherPanel());
 

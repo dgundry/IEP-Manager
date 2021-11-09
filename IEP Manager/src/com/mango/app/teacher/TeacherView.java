@@ -20,6 +20,7 @@ public class TeacherView {
 
     private static BackgroundPanel backgroundTeacherPanel;
     private static BackgroundPanel gradientPanel;
+    private static BackgroundPanel optionsTeacherPanel;
 
     private final Dimension WINDOW_DIMENSIONS = new Dimension(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
 
@@ -45,7 +46,7 @@ public class TeacherView {
                 110)));
         JLabel grad = new JLabel("Test");
         grad.setBounds(10,10,100,25);
-        gradientPanel.add(new JLabel("TEST2"),BorderLayout.WEST);
+
     }
 
     private JLabel createLabel(String text, Font font){
@@ -92,15 +93,28 @@ public class TeacherView {
                     ImageIO.read(new File("src/com/mango/app/utilities/images/GradientPanel.PNG")));
             gradientPanel.setLayout(null);
             gradientPanel.setBounds(
-                    (int) (Main.SCREEN_WIDTH * 0.5) - ((int) (Main.SCREEN_WIDTH * 0.16)),
-                    (int) (Main.SCREEN_HEIGHT * 0.125),
-                    (int) (Main.SCREEN_WIDTH * 0.3),
-                    (int) (Main.SCREEN_HEIGHT * 0.70));
-
-
+                    (0),
+                    (0),
+                    (int) (Main.SCREEN_WIDTH * 1),
+                    (int) (Main.SCREEN_HEIGHT * 0.25));
         } catch (IOException ex) {
             logger.log(Level.SEVERE, "Could not load gradient image.");
         }
+        try {
+            optionsTeacherPanel = new BackgroundPanel();
+            optionsTeacherPanel.setBackground(
+                    ImageIO.read(new File("src/com/mango/app/utilities/images/OptionsTeacherPanel.PNG")));
+            optionsTeacherPanel.setLayout(null);
+            optionsTeacherPanel.setBounds(
+                    (0),
+                    (0),
+                    (int) (Main.SCREEN_WIDTH * 0.2),
+                    (int) (Main.SCREEN_HEIGHT * 1.0));
+        } catch (IOException ex) {
+            logger.log(Level.SEVERE, "Could not load Options image. ");
+        }
+
+        backgroundTeacherPanel.add(optionsTeacherPanel);
         backgroundTeacherPanel.add(gradientPanel);
     }
 
