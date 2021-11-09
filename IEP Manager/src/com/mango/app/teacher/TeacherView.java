@@ -96,7 +96,7 @@ public class TeacherView {
                     (0),
                     (0),
                     (int) (Main.SCREEN_WIDTH * 1),
-                    (int) (Main.SCREEN_HEIGHT * 0.25));
+                    (int) (Main.SCREEN_HEIGHT * 0.2));
         } catch (IOException ex) {
             logger.log(Level.SEVERE, "Could not load gradient image.");
         }
@@ -108,7 +108,7 @@ public class TeacherView {
             optionsTeacherPanel.setBounds(
                     (0),
                     (0),
-                    (int) (Main.SCREEN_WIDTH * 0.2),
+                    (int) (Main.SCREEN_WIDTH * 0.17),
                     (int) (Main.SCREEN_HEIGHT * 1.0));
         } catch (IOException ex) {
             logger.log(Level.SEVERE, "Could not load Options image. ");
