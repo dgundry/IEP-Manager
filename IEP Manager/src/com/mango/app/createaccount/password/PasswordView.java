@@ -98,15 +98,15 @@ public class PasswordView {
 
         backButton = createButton("Back");
         backButton.setBounds(
-                (int) (createPasswordPanel.getWidth() * 0.35) - (int) (createPasswordPanel.getWidth() * 0.10),
-                (int) (createPasswordPanel.getHeight() * 0.77),
+                (int) (createPasswordPanel.getWidth() * 0.5) - ((int) (createPasswordPanel.getWidth() * .2)/2),
+                (int) (createPasswordPanel.getHeight() * 0.83),
                 (int) (createPasswordPanel.getWidth() * 0.20),
                 30);
 
         createAccountButton = createButton("Create Account");
         createAccountButton.setBounds(
                 (int) (createPasswordPanel.getWidth() * 0.40) - (int) (createPasswordPanel.getWidth() * 0.10),
-                (int) (createPasswordPanel.getHeight() * 0.83),
+                (int) (createPasswordPanel.getHeight() * 0.77),
                 (int) (createPasswordPanel.getWidth() * 0.40),
                 30);
 
