@@ -1,12 +1,11 @@
 package com.mango.app.login;
 
 import com.mango.app.Main;
-import com.mango.app.components.*;
+import com.mango.app.components.listeners.*;
 import com.mango.app.createaccount.CreateAccountController;
 import com.mango.app.createaccount.CreateAccountView;
 import com.mango.app.forgotpassword.email.EmailController;
 import com.mango.app.forgotpassword.email.EmailView;
-import com.mango.app.forgotpassword.securityquestions.*;
 import com.mango.app.mainloginpage.MainLoginView;
 import com.mango.app.teacher.TeacherController;
 import com.mango.app.teacher.TeacherView;

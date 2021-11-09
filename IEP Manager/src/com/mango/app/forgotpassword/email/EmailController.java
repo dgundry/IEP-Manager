@@ -1,7 +1,6 @@
 package com.mango.app.forgotpassword.email;
 
-import com.mango.app.components.ButtonMouseListener;
-import com.mango.app.createaccount.CreateAccountView;
+import com.mango.app.components.listeners.ButtonMouseListener;
 import com.mango.app.forgotpassword.PasswordChange;
 import com.mango.app.forgotpassword.securityquestions.AnswerSecurityQuestionsController;
 import com.mango.app.forgotpassword.securityquestions.AnswerSecurityQuestionsView;

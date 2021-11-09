@@ -1,35 +1,36 @@
 package com.mango.app.createaccount;
 
-import com.mango.app.components.*;
-import com.mango.app.createaccount.securityquestions.*;
-import com.mango.app.login.*;
-import com.mango.app.mainloginpage.*;
-import java.awt.event.*;
-import javax.swing.*;
+import com.mango.app.components.listeners.ButtonMouseListener;
+import com.mango.app.components.listeners.TextFieldFocusListener;
+import com.mango.app.createaccount.securityquestions.SecurityQuestionsController;
+import com.mango.app.createaccount.securityquestions.SecurityQuestionsView;
+import com.mango.app.login.LoginPageController;
+import com.mango.app.login.LoginPageView;
+import com.mango.app.mainloginpage.MainLoginView;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 public class CreateAccountController {
 
-    private final CreateAccountView view;
+    private static final String FIRST_NAME_FIELD_ORIGINAL = "First name";
+    private static final String LAST_NAME_FIELD_ORIGINAL = "Last name";
+    private static final String EMAIL_FIELD_ORIGINAL = "Email";
+    private static final String ERROR_MESSAGE_TITLE = "INVALID";
 
     public CreateAccountController(CreateAccountView view) {
-        this.view = view;
-
         view.getBackButton().addActionListener(new BackButtonActionListener());
         view.getBackButton().addMouseListener(new ButtonMouseListener(view.getBackButton()));
 
         view.getNextButton().addActionListener(new NextButtonActionListener(view));
         view.getNextButton().addMouseListener(new ButtonMouseListener(view.getNextButton()));
 
-        view.getFirstNameText().addMouseListener(new FirstNameTextFieldMouseListener(view));
-        view.getLastNameText().addMouseListener(new LastNameTextFieldMouseListener(view));
-        view.getEmailText().addMouseListener(new EmailTextFieldMouseListener(view));
-
-        addFocusListeners();
+        view.getFirstNameText().addFocusListener(new TextFieldFocusListener(view.getFirstNameText(), FIRST_NAME_FIELD_ORIGINAL));
+        view.getLastNameText().addFocusListener(new TextFieldFocusListener(view.getLastNameText(), LAST_NAME_FIELD_ORIGINAL));
+        view.getEmailText().addFocusListener(new TextFieldFocusListener(view.getEmailText(), EMAIL_FIELD_ORIGINAL));
     }
 
     public CreateAccountController(CreateAccountView view, User user) {
-        this.view = view;
-
         view.getLastNameText().setText(user.getLastName());
         view.getEmailText().setText(user.getEmail());
 
@@ -39,13 +40,9 @@ public class CreateAccountController {
         view.getNextButton().addActionListener(new NextButtonActionListener(view, user));
         view.getNextButton().addMouseListener(new ButtonMouseListener(view.getNextButton()));
 
-        addFocusListeners();
-    }
-
-    private void addFocusListeners() {
-        view.getFirstNameText().addFocusListener(new TextFieldFocusListener(view.getFirstNameText()));
-        view.getLastNameText().addFocusListener(new TextFieldFocusListener(view.getLastNameText()));
-        view.getEmailText().addFocusListener(new TextFieldFocusListener(view.getEmailText()));
+        view.getFirstNameText().addFocusListener(new TextFieldFocusListener(view.getFirstNameText(), FIRST_NAME_FIELD_ORIGINAL));
+        view.getLastNameText().addFocusListener(new TextFieldFocusListener(view.getLastNameText(), LAST_NAME_FIELD_ORIGINAL));
+        view.getEmailText().addFocusListener(new TextFieldFocusListener(view.getEmailText(), EMAIL_FIELD_ORIGINAL));
     }
 
     private static class BackButtonActionListener implements ActionListener {
@@ -97,25 +94,25 @@ public class CreateAccountController {
                 JOptionPane.showMessageDialog(
                         MainLoginView.getLoginWindow(),
                         "Enter a Valid Email.",
-                        "INVALID",
+                        ERROR_MESSAGE_TITLE,
                         JOptionPane.ERROR_MESSAGE);
             }else if (register.isEmailTaken(user.getEmail())){
                 JOptionPane.showMessageDialog(
                         MainLoginView.getLoginWindow(),
                         "Email is Already Taken.",
-                        "INVALID",
+                        ERROR_MESSAGE_TITLE,
                         JOptionPane.ERROR_MESSAGE);
             }else if(user.getFirstName() != null && !(user.getFirstName().length() >= 1 && user.getFirstName().length() <= 20)){
                 JOptionPane.showMessageDialog(
                         MainLoginView.getLoginWindow(),
                         "Enter a Valid First Name.",
-                        "INVALID",
+                        ERROR_MESSAGE_TITLE,
                         JOptionPane.ERROR_MESSAGE);
             }else if(user.getLastName() != null && !(user.getLastName().length() >= 1 && user.getLastName().length() <= 20)) {
                 JOptionPane.showMessageDialog(
                         MainLoginView.getLoginWindow(),
                         "Enter a Valid Last Name.",
-                        "INVALID",
+                        ERROR_MESSAGE_TITLE,
                         JOptionPane.ERROR_MESSAGE);
             }else {
                 SecurityQuestionsView securityQuestionsView = new SecurityQuestionsView();
@@ -127,150 +124,6 @@ public class CreateAccountController {
                 new SecurityQuestionsController(securityQuestionsView, user);
                 MainLoginView.setActivePanel(securityQuestionsView.getSecurityQuestionsPanel());
             }
-        }
-    }
-
-    private static class TextFieldFocusListener implements FocusListener {
-
-        private final JTextField textField;
-
-        private String originalText;
-
-        public TextFieldFocusListener(JTextField textField) {
-            this.textField = textField;
-        }
-
-        /**
-         * Invoked when a component gains the keyboard focus.
-         *
-         * @param e
-         */
-        @Override
-        public void focusGained(FocusEvent e) {
-            /*originalText = textField.getText();
-            if (originalText.equals("First name") ||
-                    originalText.equals("Last name") ||
-                    originalText.equals("Email")) {
-                textField.setText("");
-            } else {
-                textField.setText(originalText);
-            }*/
-        }
-
-        /**
-         * Invoked when a component loses the keyboard focus.
-         *
-         * @param e
-         */
-        @Override
-        public void focusLost(FocusEvent e) {
-           /* if (originalText.equals("First name") ||
-                    originalText.equals("Last name") ||
-                    originalText.equals("Email")) {
-                textField.setText(originalText);
-            }*/
-        }
-    }
-    private static class LastNameTextFieldMouseListener implements MouseListener {
-
-        private final CreateAccountView createAccountView;
-
-        public LastNameTextFieldMouseListener(CreateAccountView createAccountView) { this.createAccountView = createAccountView; }
-
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            if(createAccountView.getLastNameText().getText().equals("Last name")){
-                createAccountView.getLastNameText().setText("");
-
-            }
-        }
-
-        @Override
-        public void mousePressed(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseReleased(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseEntered(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseExited(MouseEvent e) {
-
-        }
-    }
-    private static class FirstNameTextFieldMouseListener implements MouseListener {
-
-        private final CreateAccountView createAccountView;
-
-        public FirstNameTextFieldMouseListener(CreateAccountView createAccountView) { this.createAccountView = createAccountView; }
-
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            if(createAccountView.getFirstNameText().getText().equals("First name")){
-                createAccountView.getFirstNameText().setText("");
-
-            }
-        }
-
-        @Override
-        public void mousePressed(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseReleased(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseEntered(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseExited(MouseEvent e) {
-
-        }
-    }
-    private static class EmailTextFieldMouseListener implements MouseListener {
-
-        private final CreateAccountView createAccountView;
-
-        public EmailTextFieldMouseListener(CreateAccountView createAccountView) { this.createAccountView = createAccountView; }
-
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            if(createAccountView.getEmailText().getText().equals("Email")){
-                createAccountView.getEmailText().setText("");
-
-            }
-        }
-
-        @Override
-        public void mousePressed(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseReleased(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseEntered(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseExited(MouseEvent e) {
-
         }
     }
 }

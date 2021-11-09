@@ -1,4 +1,4 @@
-package com.mango.app.components;
+package com.mango.app.components.listeners;
 
 import java.awt.Cursor;
 import java.awt.Font;

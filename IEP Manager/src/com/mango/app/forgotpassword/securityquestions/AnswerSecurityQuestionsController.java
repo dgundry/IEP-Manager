@@ -1,14 +1,7 @@
 package com.mango.app.forgotpassword.securityquestions;
 
 import com.mango.app.Main;
-import com.mango.app.components.ButtonMouseListener;
-import com.mango.app.createaccount.CreateAccountController;
-import com.mango.app.createaccount.CreateAccountView;
-import com.mango.app.createaccount.User;
-import com.mango.app.createaccount.password.PasswordController;
-import com.mango.app.createaccount.password.PasswordView;
-import com.mango.app.createaccount.securityquestions.SecurityQuestionsController;
-import com.mango.app.createaccount.securityquestions.SecurityQuestionsView;
+import com.mango.app.components.listeners.ButtonMouseListener;
 import com.mango.app.forgotpassword.password.ChangePasswordController;
 import com.mango.app.forgotpassword.password.ChangePasswordView;
 import com.mango.app.login.LoginPageController;
@@ -16,7 +9,6 @@ import com.mango.app.login.LoginPageView;
 import com.mango.app.mainloginpage.MainLoginView;
 import com.mango.app.utilities.Encryption;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
