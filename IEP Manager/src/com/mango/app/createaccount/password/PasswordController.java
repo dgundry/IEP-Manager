@@ -114,7 +114,7 @@ public class PasswordController {
                             MainLoginView.getLoginWindow(),
                             "Account Successfully Created.",
                             "SUCCESS",
-                            JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.PLAIN_MESSAGE);
                     LoginPageView loginPageView = new LoginPageView();
                     new LoginPageController(loginPageView);
                     MainLoginView.setActivePanel(loginPageView.getLoginPanel());

@@ -59,11 +59,11 @@ public class Main {
             LoginPageView loginPageView = new LoginPageView();
             new LoginPageController(loginPageView);
 
-            new MainLoginView();
-            MainLoginView.setActivePanel(loginPageView.getLoginPanel());
+            //new MainLoginView();
+            //MainLoginView.setActivePanel(loginPageView.getLoginPanel());
 
-//            TeacherView teacherView = new TeacherView();
-//            new TeacherController(teacherView);
+           TeacherView teacherView = new TeacherView();
+           new TeacherController(teacherView);
 
             //MainLoginView.setActivePanel(teacherView.getTeacherPanel());
 
