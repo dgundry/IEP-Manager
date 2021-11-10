@@ -1,5 +1,7 @@
 package com.mango.app;
 
+import com.mango.app.editaccount.EditAccountController;
+import com.mango.app.editaccount.EditAccountView;
 import com.mango.app.login.LoginPageController;
 import com.mango.app.login.LoginPageView;
 import com.mango.app.mainloginpage.MainLoginView;
@@ -62,9 +64,10 @@ public class Main {
             //new MainLoginView();
             //MainLoginView.setActivePanel(loginPageView.getLoginPanel());
 
-           TeacherView teacherView = new TeacherView();
-           new TeacherController(teacherView);
-
+           //TeacherView teacherView = new TeacherView();
+           //new TeacherController(teacherView);
+            EditAccountView editAccountView = new EditAccountView();
+            new EditAccountController(editAccountView);
             //MainLoginView.setActivePanel(teacherView.getTeacherPanel());
 
         } catch (SQLException
