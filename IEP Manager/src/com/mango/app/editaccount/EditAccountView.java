@@ -23,6 +23,7 @@ public class EditAccountView {
     private static BackgroundPanel optionsTeacherPanel;
     private static BackgroundPanel changePasswordPanel;
     private static BackgroundPanel changeEmailPanel;
+    private static BackgroundPanel wrapPanel;
 
     private static JButton myAccountButton;
     private static JButton studentsButton;
@@ -392,11 +393,25 @@ public class EditAccountView {
         } catch (IOException ex) {
             logger.log(Level.SEVERE, "Could not load Email image. ");
         }
+        try {
+            wrapPanel = new BackgroundPanel();
+            wrapPanel.setBackground(
+                    ImageIO.read(new File("src/com/mango/app/utilities/images/black.PNG")));
+            wrapPanel.setLayout(null);
+            wrapPanel.setBounds(
+                    (100),
+                    (173),
+                    (int) (Main.SCREEN_WIDTH * 0.935),
+                    (int) (Main.SCREEN_HEIGHT * 0.05));
+        } catch (IOException ex) {
+            logger.log(Level.SEVERE, "Could not load Wrap image. ");
+        }
 
         editAccountPanel.add(optionsTeacherPanel);
         editAccountPanel.add(gradientPanel);
         editAccountPanel.add(changePasswordPanel);
         editAccountPanel.add(changeEmailPanel);
+        editAccountPanel.add(wrapPanel);
     }
 
     /**

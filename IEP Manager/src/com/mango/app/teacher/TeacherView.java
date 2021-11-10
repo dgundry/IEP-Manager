@@ -10,7 +10,6 @@ import com.mango.app.mainloginpage.MainLoginView;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.Line2D;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
