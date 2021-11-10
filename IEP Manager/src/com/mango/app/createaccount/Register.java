@@ -8,8 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Register {
-    public Register(){
-    }
+
     public boolean createUser(User user){
         boolean result = false;
 

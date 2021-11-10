@@ -68,7 +68,6 @@ public class User {
     }
 
     public boolean isValidFields() {
-        System.out.println("Testing Fields");
         return isValidText(firstName) &&
                 isValidText(lastName) &&
                 isValidText(email) &&
