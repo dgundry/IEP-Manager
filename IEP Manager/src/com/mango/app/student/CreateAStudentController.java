@@ -1,22 +1,21 @@
-package com.mango.app.teacher;
+package com.mango.app.student;
 
 import com.mango.app.editaccount.EditAccountController;
 import com.mango.app.editaccount.EditAccountView;
 import com.mango.app.student.CreateAStudentView;
 import com.mango.app.student.StudentController;
+
 import com.mango.app.utilities.Encryption;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class TeacherController {
+public class CreateAStudentController {
 
-    private static Encryption encryption= new Encryption();
+    public CreateAStudentController(CreateAStudentView createAStudentView) {
+        createAStudentView.getCreateStudentButton().addActionListener(new CreateStudentButtonActionListener());
+        createAStudentView.getMyAccountButton().addActionListener(new MyAccountButtonActionListener(createAStudentView));
 
-    public TeacherController(TeacherView teacherView){
-        teacherView.getCreateStudentButton().addActionListener(new CreateStudentButtonActionListener());
-        teacherView.getMyAccountButton().addActionListener(new MyAccountButtonActionListener());
     }
 
     private static class CreateStudentButtonActionListener implements ActionListener {
@@ -25,17 +24,24 @@ public class TeacherController {
         public void actionPerformed(ActionEvent e) {
             CreateAStudentView createAStudent = new CreateAStudentView();
             new StudentController(createAStudent);
+
             System.out.println("Clicked on Create A student");
         }
     }
+
     private static class MyAccountButtonActionListener implements ActionListener {
+        private final CreateAStudentView view;
+
+        public MyAccountButtonActionListener(CreateAStudentView createAStudentView) {
+            this.view = createAStudentView;
+        }
 
         @Override
-        public void actionPerformed(ActionEvent e){
+        public void actionPerformed(ActionEvent e) {
+            view.getCreateAStudentWindow().dispose();
             EditAccountView editAccountView = new EditAccountView();
             new EditAccountController(editAccountView);
             System.out.println("Clicked on EditAccount");
         }
     }
-
 }

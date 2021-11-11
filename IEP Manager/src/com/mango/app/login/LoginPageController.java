@@ -156,6 +156,7 @@ public class LoginPageController {
         public void mouseClicked(MouseEvent e) {
             if(loginPageView.getPasswordText().getText().equals("Password")){
                 loginPageView.getPasswordText().setText("");
+                loginPageView.getPasswordText().setEchoChar('•');
 
             }
         }

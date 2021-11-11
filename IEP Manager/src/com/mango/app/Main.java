@@ -3,6 +3,11 @@ package com.mango.app;
 import com.mango.app.login.LoginPageController;
 import com.mango.app.login.LoginPageView;
 import com.mango.app.mainloginpage.MainLoginView;
+<<<<<<< Updated upstream
+=======
+import com.mango.app.student.CreateAStudentView;
+import com.mango.app.student.StudentController;
+>>>>>>> Stashed changes
 import com.mango.app.teacher.TeacherController;
 import com.mango.app.teacher.TeacherView;
 
@@ -56,8 +61,8 @@ public class Main {
             UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
 
             //Comment out these lines and add new code to test out views
-            LoginPageView loginPageView = new LoginPageView();
-            new LoginPageController(loginPageView);
+            //LoginPageView loginPageView = new LoginPageView();
+           // new LoginPageController(loginPageView);
 
             new MainLoginView();
             MainLoginView.setActivePanel(loginPageView.getLoginPanel());
@@ -65,6 +70,18 @@ public class Main {
             //TeacherView teacherView = new TeacherView();
             //new TeacherController(teacherView);
 
+<<<<<<< Updated upstream
+=======
+           TeacherView teacherView = new TeacherView();
+           new TeacherController(teacherView);
+            // EditAccountView editAccountView = new EditAccountView();
+            //new EditAccountController(editAccountView);
+
+            //Comment for testing CreateAStudentView:
+            //CreateAStudentView createAStudent = new CreateAStudentView();
+            //new StudentController(createAStudent);
+
+>>>>>>> Stashed changes
             //MainLoginView.setActivePanel(teacherView.getTeacherPanel());
 
         } catch (SQLException

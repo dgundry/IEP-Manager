@@ -4,11 +4,17 @@ import com.mango.app.Main;
 import com.mango.app.components.BackgroundPanel;
 import com.mango.app.components.GradientPanel;
 import com.mango.app.components.RoundedPanel;
+import com.mango.app.editaccount.EditAccountController;
+import com.mango.app.editaccount.EditAccountView;
 import com.mango.app.mainloginpage.MainLoginView;
+import com.mango.app.student.CreateAStudentView;
+import com.mango.app.student.StudentController;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -22,6 +28,18 @@ public class TeacherView {
     private static BackgroundPanel gradientPanel;
     private static BackgroundPanel optionsTeacherPanel;
 
+<<<<<<< Updated upstream
+=======
+    private static JButton myAccountButton;
+    private static JButton studentsButton;
+    private static JButton fullReportsButton;
+    private static JButton activitiesButton;
+    private static JButton helpButton;
+    private static JButton createStudentButton;
+    private static JButton logOutButton;
+
+
+>>>>>>> Stashed changes
     private final Dimension WINDOW_DIMENSIONS = new Dimension(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
 
     private static final Logger logger = Logger.getLogger(MainLoginView.class.getName());
@@ -47,6 +65,137 @@ public class TeacherView {
         JLabel grad = new JLabel("Test");
         grad.setBounds(10,10,100,25);
 
+<<<<<<< Updated upstream
+=======
+        //options teacher panel
+
+        JLabel schoolLogo = new JLabel(new ImageIcon(getScaledImage(
+                "src/com/mango/app/utilities/images/PawLogo.png",
+                (229 / 2),
+                110)));
+        schoolLogo.setBounds(
+                (int) (optionsTeacherPanel.getWidth() * 0.5) - 50,
+                (int) (optionsTeacherPanel.getHeight() * 0.005),
+                (229 / 2),
+                110);
+        JLabel titleHeader = createLabel("IEP Manager", FontType.FONT_35_BOLD);
+        titleHeader.setBounds(0, (int) (optionsTeacherPanel.getHeight() * 0.14) , optionsTeacherPanel.getWidth(),45);
+
+        JSeparator separatorHeader = new JSeparator(SwingConstants.CENTER);
+        separatorHeader.setBounds(
+                 (0),
+                (int) (optionsTeacherPanel.getHeight() * 0.20),
+                (optionsTeacherPanel.getWidth()),
+                1);
+        separatorHeader.setBackground(Color.WHITE);
+
+        JSeparator separatorHeader2 = new JSeparator(SwingConstants.CENTER);
+        separatorHeader2.setBounds(
+                (0),
+                (int) (optionsTeacherPanel.getHeight() * 0.25),
+                (optionsTeacherPanel.getWidth()),
+                1);
+        separatorHeader2.setBackground(Color.WHITE);
+
+        myAccountButton = createButton("My Account");
+        myAccountButton.setFont(new Font("Arial", Font.PLAIN, 35));
+        myAccountButton.setBounds(
+                 (0),
+                (int) (optionsTeacherPanel.getHeight() * 0.26),
+                (optionsTeacherPanel.getWidth()),
+                45);
+        myAccountButton.setOpaque(false);
+
+
+        studentsButton = createButton("Students");
+        studentsButton.setFont(new Font("Arial", Font.PLAIN, 35));
+        studentsButton.setBounds(
+                (0),
+                (int) (optionsTeacherPanel.getHeight() * 0.32),
+                (optionsTeacherPanel.getWidth()),
+                45);
+        studentsButton.setOpaque(false);
+
+        fullReportsButton = createButton("Full Reports");
+        fullReportsButton.setFont(new Font("Arial", Font.PLAIN, 35));
+        fullReportsButton.setBounds(
+                (0),
+                (int) (optionsTeacherPanel.getHeight() * 0.38),
+                (optionsTeacherPanel.getWidth()),
+                45);
+        fullReportsButton.setOpaque(false);
+
+        activitiesButton = createButton("Activities");
+        activitiesButton.setFont(new Font("Arial", Font.PLAIN, 35));
+        activitiesButton.setBounds(
+                (0),
+                (int) (optionsTeacherPanel.getHeight() * 0.44),
+                (optionsTeacherPanel.getWidth()),
+                45);
+        activitiesButton.setOpaque(false);
+
+        helpButton = createButton("Help");
+        helpButton.setFont(new Font("Arial", Font.PLAIN, 35));
+        helpButton.setBounds(
+                (0),
+                (int) (optionsTeacherPanel.getHeight() * 0.50),
+                (optionsTeacherPanel.getWidth()),
+                45);
+        helpButton.setOpaque(false);
+
+        JSeparator separatorHeader3 = new JSeparator(SwingConstants.CENTER);
+        separatorHeader3.setBounds(
+                (0),
+                (int) (optionsTeacherPanel.getHeight() * 0.56),
+                (optionsTeacherPanel.getWidth()),
+                1);
+        separatorHeader3.setBackground(Color.WHITE);
+
+        logOutButton = createButton("Log Out");
+        logOutButton.setFont(new Font("Arial", Font.PLAIN, 25));
+        logOutButton.setBounds(
+                (0),
+                (int) (optionsTeacherPanel.getHeight() * 0.87),
+                (optionsTeacherPanel.getWidth()),
+                30);
+        logOutButton.setOpaque(false);
+
+        JLabel mangoLogo = new JLabel(new ImageIcon(getScaledImage(
+                "src/com/mango/app/utilities/images/Mango3.png",
+                50,
+                50)));
+        mangoLogo.setBounds(
+                (int) (optionsTeacherPanel.getWidth() * 0.5) - 25,
+                (optionsTeacherPanel.getHeight() - 75),
+                50,
+                50);
+        createStudentButton = createButton("Create Student");
+        createStudentButton.setFont(new Font("Ariel", Font.PLAIN, 25));
+        createStudentButton.setBounds(
+                (0),
+                (int) (optionsTeacherPanel.getHeight() * 0.70),
+                (optionsTeacherPanel.getWidth()),
+                30);
+        createStudentButton.setOpaque(false);
+
+
+        //options teacher panel
+
+        optionsTeacherPanel.add(schoolLogo);
+        optionsTeacherPanel.add(mangoLogo);
+        optionsTeacherPanel.add(titleHeader);
+        optionsTeacherPanel.add(separatorHeader);
+        optionsTeacherPanel.add(separatorHeader2);
+        optionsTeacherPanel.add(myAccountButton);
+        optionsTeacherPanel.add(studentsButton);
+        optionsTeacherPanel.add(fullReportsButton);
+        optionsTeacherPanel.add(activitiesButton);
+        optionsTeacherPanel.add(helpButton);
+        optionsTeacherPanel.add(createStudentButton);
+        optionsTeacherPanel.add(separatorHeader3);
+        optionsTeacherPanel.add(logOutButton);
+
+>>>>>>> Stashed changes
     }
 
     private JLabel createLabel(String text, Font font){
@@ -135,6 +284,19 @@ public class TeacherView {
         return new ImageIcon(path).getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
     }
 
+
+
     public JFrame getTeacherWindow() { return teacherWindow; }
+<<<<<<< Updated upstream
+=======
+    public JButton getMyAccountButton() { return myAccountButton; }
+    public JButton getStudentsButton() { return studentsButton; }
+    public JButton getFullReportsButton() { return fullReportsButton; }
+    public JButton getActivitiesButton() { return activitiesButton; }
+    public JButton getHelpButton() { return helpButton; }
+    public JButton getLogOutButton() { return helpButton; }
+    public JButton getCreateStudentButton() { return createStudentButton; }
+
+>>>>>>> Stashed changes
 
 }

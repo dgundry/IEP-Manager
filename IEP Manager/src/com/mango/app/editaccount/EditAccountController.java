@@ -1,19 +1,53 @@
 package com.mango.app.editaccount;
 
 import com.mango.app.Main;
+import com.mango.app.createaccount.CreateAccountController;
+import com.mango.app.student.CreateAStudentController;
+import com.mango.app.student.CreateAStudentView;
+import com.mango.app.student.StudentController;
+import com.mango.app.teacher.TeacherController;
 import com.mango.app.utilities.Encryption;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class EditAccountController {
     Encryption encryption = new Encryption();
-    public EditAccountController(EditAccountView view){
-    }
-    public EditAccountController(){
+    public EditAccountController(EditAccountView editAccountView){
+        editAccountView.getCreateStudentButton().addActionListener(new CreateStudentButtonActionListener(editAccountView));
+        editAccountView.getMyAccountButton().addActionListener(new MyAccountButtonActionListener());
 
     }
+
+
+    private static class CreateStudentButtonActionListener implements ActionListener {
+
+        private final EditAccountView view;
+
+        public CreateStudentButtonActionListener(EditAccountView editAccountView){
+            this.view = editAccountView;
+        }
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            view.getTeacherWindow().dispose();
+            CreateAStudentView createAStudent = new CreateAStudentView();
+            new CreateAStudentController(createAStudent);
+            System.out.println("Clicked on Create A student");
+        }
+    }
+    private static class MyAccountButtonActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e){
+
+            EditAccountView editAccountView = new EditAccountView();
+            new EditAccountController(editAccountView);
+            System.out.println("Clicked on EditAccount");
+        }
+    }
+
     public void changePassword(String email, String oldPassword, String newPassword1, String newPassword2){
         if(doPasswordsMatch(newPassword1,newPassword2)){
             if(isValidEmail(email)) {
@@ -62,6 +96,7 @@ public class EditAccountController {
 
         return result;
     }
+
     private boolean doPasswordsMatch(String first, String second){
         return first.equals(second);
     }

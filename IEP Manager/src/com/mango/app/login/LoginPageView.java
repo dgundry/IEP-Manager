@@ -72,7 +72,7 @@ public class LoginPageView {
         JLabel enterEmailHeader = createLabel("Enter Email", FontType.FONT_12_BOLD);
         enterEmailHeader.setBounds(0,( int) (loginPanel.getHeight() * 0.48), loginPanel.getWidth(),15);
 
-        emailText = new JTextField("Email");
+        emailText = new JTextField("");
         emailText.setBounds(
                 (int) (loginPanel.getWidth() * 0.5) - (int) (loginPanel.getWidth() * 0.25),
                 (int) (loginPanel.getHeight() * 0.54),
@@ -83,13 +83,14 @@ public class LoginPageView {
         JLabel enterPasswordHeader = createLabel("Enter Password", FontType.FONT_12_BOLD);
         enterPasswordHeader.setBounds(0, (int) (loginPanel.getHeight() * 0.62), loginPanel.getWidth(),15);
 
-        passwordText = new JPasswordField("Password");
+        passwordText = new JPasswordField("");
         passwordText.setBounds(
                 (int) (loginPanel.getWidth() * 0.5) - (int) (loginPanel.getWidth() * 0.25),
                 (int) (loginPanel.getHeight() * 0.68),
                 (int) (loginPanel.getWidth() * 0.5),
                 30);
         passwordText.setBackground(Color.WHITE);
+        passwordText.setEchoChar((char) 0);
 
         loginButton = new JButton("Login");
         loginButton.setForeground(Color.WHITE);
@@ -162,5 +163,5 @@ public class LoginPageView {
 
     public JTextField getEmailText() { return emailText; }
 
-    public JTextField getPasswordText() { return passwordText; }
+    public JPasswordField getPasswordText() { return passwordText; }
 }
