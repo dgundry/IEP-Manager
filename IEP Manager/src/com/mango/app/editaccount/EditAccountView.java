@@ -1,9 +1,21 @@
 package com.mango.app.editaccount;
 
+import com.mango.app.Main;
+import com.mango.app.components.BackgroundPanel;
+import com.mango.app.components.FontType;
+import com.mango.app.components.RoundedPanel;
+import com.mango.app.mainloginpage.MainLoginView;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class EditAccountView {
-<<<<<<< Updated upstream
-}
-=======
+
 
     private JFrame editAccountWindow;
 
@@ -450,4 +462,4 @@ public class EditAccountView {
 
 
 }
->>>>>>> Stashed changes
+

@@ -6,6 +6,8 @@ import com.mango.app.student.CreateAStudentController;
 import com.mango.app.student.CreateAStudentView;
 import com.mango.app.student.StudentController;
 import com.mango.app.teacher.TeacherController;
+import com.mango.app.teacher.TeacherView;
+
 import com.mango.app.utilities.Encryption;
 
 import java.awt.event.ActionEvent;
@@ -16,6 +18,7 @@ import java.sql.SQLException;
 
 public class EditAccountController {
     Encryption encryption = new Encryption();
+
     public EditAccountController(EditAccountView editAccountView){
         editAccountView.getCreateStudentButton().addActionListener(new CreateStudentButtonActionListener(editAccountView));
         editAccountView.getMyAccountButton().addActionListener(new MyAccountButtonActionListener());

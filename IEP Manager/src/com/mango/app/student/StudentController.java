@@ -1,17 +1,18 @@
 package com.mango.app.student;
 
+import com.mango.app.utilities.Encryption;
+
 public class StudentController {
-<<<<<<< Updated upstream
-=======
 
-    private static Encryption encryption= new Encryption();
 
-    public StudentController(StudentView studentView){
+    private static Encryption encryption = new Encryption();
 
-    }
-    public StudentController(CreateAStudentView createAStudent){
+    public StudentController(StudentView studentView) {
 
     }
 
->>>>>>> Stashed changes
+    public StudentController(CreateAStudentView createAStudent) {
+
+    }
 }
+

@@ -9,6 +9,7 @@ import com.mango.app.login.LoginPageView;
 import com.mango.app.mainloginpage.MainLoginView;
 import com.mango.app.utilities.Encryption;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -92,6 +93,11 @@ public class AnswerSecurityQuestionsController {
             }
             if(hasFailed){
                 System.out.println("Answers are incorrect.");
+                JOptionPane.showMessageDialog(
+                        MainLoginView.getLoginWindow(),
+                        "Security Questions do not match our records.",
+                        "INVALID",
+                        JOptionPane.ERROR_MESSAGE);
             }else{
                 System.out.println("Answers are correct.");
                 ChangePasswordView changePasswordView = new ChangePasswordView(view.getTeacher_id());

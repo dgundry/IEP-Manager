@@ -2,6 +2,7 @@ package com.mango.app.teacher;
 
 import com.mango.app.Main;
 import com.mango.app.components.BackgroundPanel;
+import com.mango.app.components.FontType;
 import com.mango.app.components.GradientPanel;
 import com.mango.app.components.RoundedPanel;
 import com.mango.app.editaccount.EditAccountController;
@@ -28,8 +29,6 @@ public class TeacherView {
     private static BackgroundPanel gradientPanel;
     private static BackgroundPanel optionsTeacherPanel;
 
-<<<<<<< Updated upstream
-=======
     private static JButton myAccountButton;
     private static JButton studentsButton;
     private static JButton fullReportsButton;
@@ -39,7 +38,6 @@ public class TeacherView {
     private static JButton logOutButton;
 
 
->>>>>>> Stashed changes
     private final Dimension WINDOW_DIMENSIONS = new Dimension(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
 
     private static final Logger logger = Logger.getLogger(MainLoginView.class.getName());
@@ -60,13 +58,11 @@ public class TeacherView {
     private void createComponents() {
         JLabel gradientPhoto = new JLabel(new ImageIcon(getScaledImage(
                 "src/com/mango/app/utilities/images/GradientPanel.PNG",
-                (229/2),
+                (229 / 2),
                 110)));
         JLabel grad = new JLabel("Test");
-        grad.setBounds(10,10,100,25);
+        grad.setBounds(10, 10, 100, 25);
 
-<<<<<<< Updated upstream
-=======
         //options teacher panel
 
         JLabel schoolLogo = new JLabel(new ImageIcon(getScaledImage(
@@ -79,11 +75,11 @@ public class TeacherView {
                 (229 / 2),
                 110);
         JLabel titleHeader = createLabel("IEP Manager", FontType.FONT_35_BOLD);
-        titleHeader.setBounds(0, (int) (optionsTeacherPanel.getHeight() * 0.14) , optionsTeacherPanel.getWidth(),45);
+        titleHeader.setBounds(0, (int) (optionsTeacherPanel.getHeight() * 0.14), optionsTeacherPanel.getWidth(), 45);
 
         JSeparator separatorHeader = new JSeparator(SwingConstants.CENTER);
         separatorHeader.setBounds(
-                 (0),
+                (0),
                 (int) (optionsTeacherPanel.getHeight() * 0.20),
                 (optionsTeacherPanel.getWidth()),
                 1);
@@ -100,7 +96,7 @@ public class TeacherView {
         myAccountButton = createButton("My Account");
         myAccountButton.setFont(new Font("Arial", Font.PLAIN, 35));
         myAccountButton.setBounds(
-                 (0),
+                (0),
                 (int) (optionsTeacherPanel.getHeight() * 0.26),
                 (optionsTeacherPanel.getWidth()),
                 45);
@@ -194,8 +190,6 @@ public class TeacherView {
         optionsTeacherPanel.add(createStudentButton);
         optionsTeacherPanel.add(separatorHeader3);
         optionsTeacherPanel.add(logOutButton);
-
->>>>>>> Stashed changes
     }
 
     private JLabel createLabel(String text, Font font){
@@ -287,8 +281,7 @@ public class TeacherView {
 
 
     public JFrame getTeacherWindow() { return teacherWindow; }
-<<<<<<< Updated upstream
-=======
+
     public JButton getMyAccountButton() { return myAccountButton; }
     public JButton getStudentsButton() { return studentsButton; }
     public JButton getFullReportsButton() { return fullReportsButton; }
@@ -297,6 +290,6 @@ public class TeacherView {
     public JButton getLogOutButton() { return helpButton; }
     public JButton getCreateStudentButton() { return createStudentButton; }
 
->>>>>>> Stashed changes
+
 
 }
