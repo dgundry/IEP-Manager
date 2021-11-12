@@ -4,6 +4,7 @@ package com.mango.prjmango.createaccount.securityquestions;
 import com.mango.prjmango.Main;
 import com.mango.prjmango.components.FontType;
 import com.mango.prjmango.components.RoundedPanel;
+import com.mango.prjmango.utilities.ImagePaths;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -20,21 +21,22 @@ import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import lombok.Getter;
 
 public class SecurityQuestionsView {
 
     private static final Logger logger = Logger.getLogger(SecurityQuestionsView.class.getName());
 
-    private final RoundedPanel securityQuestionsPanel;
+    private final @Getter RoundedPanel securityQuestionsPanel;
 
-    private JButton nextButton;
-    private JButton backButton;
+    private @Getter JButton nextButton;
+    private @Getter JButton backButton;
 
-    private JTextField securityOneAnsText;
-    private JTextField securityTwoAnsText;
+    private @Getter JTextField securityOneAnsText;
+    private @Getter JTextField securityTwoAnsText;
 
-    private JComboBox<String> securityQuestionOne;
-    private JComboBox<String> securityQuestionTwo;
+    private @Getter JComboBox<String> securityQuestionOne;
+    private @Getter JComboBox<String> securityQuestionTwo;
 
     /**
      * The constructor which sets up the GUI for the create account page.
@@ -54,7 +56,7 @@ public class SecurityQuestionsView {
 
     private void createComponents() {
         JLabel schoolLogo = new JLabel(new ImageIcon(getScaledImage(
-                "src/main/java/com/mango/prjmango/utilities/images/PawLogo.png",
+                ImagePaths.SCHOOL_LOGO,
                 (229 / 2),
                 110)));
         schoolLogo.setBounds(
@@ -64,7 +66,7 @@ public class SecurityQuestionsView {
                 110);
 
         JLabel mangoLogo = new JLabel(new ImageIcon(getScaledImage(
-                "src/main/java/com/mango/prjmango/utilities/images/Mango3.png",
+                ImagePaths.MANGO_LOGO,
                 50,
                 50)));
         mangoLogo.setBounds(
@@ -202,15 +204,4 @@ public class SecurityQuestionsView {
     private Image getScaledImage(String path, int width, int height) {
         return new ImageIcon(path).getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
     }
-
-    public RoundedPanel getSecurityQuestionsPanel() { return securityQuestionsPanel; }
-
-    public JButton getNextButton(){ return nextButton; }
-    public JButton getBackButton(){ return backButton; }
-
-    public JComboBox<String> getSecurityQuestionOneDropDown() { return securityQuestionOne; }
-    public JComboBox<String> getSecurityQuestionTwoDropDown() { return securityQuestionTwo; }
-
-    public JTextField getSecurityOneAnsText(){ return securityOneAnsText; }
-    public JTextField getSecurityTwoAnsText(){ return securityTwoAnsText; }
 }

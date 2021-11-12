@@ -116,8 +116,8 @@ public class CreateAccountController {
                         JOptionPane.ERROR_MESSAGE);
             }else {
                 SecurityQuestionsView securityQuestionsView = new SecurityQuestionsView();
-                securityQuestionsView.getSecurityQuestionOneDropDown().setSelectedIndex(user.getSecurityQ1());
-                securityQuestionsView.getSecurityQuestionTwoDropDown().setSelectedIndex(user.getSecurityQ2());
+                securityQuestionsView.getSecurityQuestionOne().setSelectedIndex(user.getSecurityQ1());
+                securityQuestionsView.getSecurityQuestionTwo().setSelectedIndex(user.getSecurityQ2());
                 securityQuestionsView.getSecurityOneAnsText().setText(user.getSecurityA1());
                 securityQuestionsView.getSecurityTwoAnsText().setText(user.getSecurityA2());
 

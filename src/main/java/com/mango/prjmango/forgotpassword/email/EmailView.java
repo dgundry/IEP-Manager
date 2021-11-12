@@ -3,6 +3,7 @@ package com.mango.prjmango.forgotpassword.email;
 import com.mango.prjmango.Main;
 import com.mango.prjmango.components.FontType;
 import com.mango.prjmango.components.RoundedPanel;
+import com.mango.prjmango.utilities.ImagePaths;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -12,14 +13,16 @@ import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import lombok.Getter;
 
 public class EmailView {
-    private final RoundedPanel emailPanel;
 
-    private JButton nextButton;
-    private JButton cancelButton;
+    private final @Getter RoundedPanel emailPanel;
 
-    private JTextField emailText;
+    private @Getter JButton nextButton;
+    private @Getter JButton cancelButton;
+
+    private @Getter JTextField emailText;
 
     public EmailView() {
         emailPanel = new RoundedPanel();
@@ -35,7 +38,7 @@ public class EmailView {
 
     private void createComponents() {
         JLabel schoolLogo = new JLabel(new ImageIcon(getScaledImage(
-                "src/main/java/com/mango/prjmango/utilities/images/PawLogo.png",
+                ImagePaths.SCHOOL_LOGO,
                 (229 / 2),
                 110)));
         schoolLogo.setBounds(
@@ -45,7 +48,7 @@ public class EmailView {
                 110);
 
         JLabel mangoLogo = new JLabel(new ImageIcon(getScaledImage(
-                "src/main/java/com/mango/prjmango/utilities/images/Mango3.png",
+                ImagePaths.MANGO_LOGO,
                 50,
                 50)));
         mangoLogo.setBounds(
@@ -125,10 +128,4 @@ public class EmailView {
     private Image getScaledImage(String path, int width, int height) {
         return new ImageIcon(path).getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
     }
-
-    public RoundedPanel getEmailPanel() { return emailPanel; }
-
-    public JButton getNextButton(){ return nextButton; }
-    public JButton getCancelButton(){ return cancelButton; }
-    public JTextField getEmailText(){ return emailText; }
 }

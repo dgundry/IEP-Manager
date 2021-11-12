@@ -39,9 +39,9 @@ public class SecurityQuestionsController {
          */
         @Override
         public void actionPerformed(ActionEvent e) {
-            user.setSecurityQ1(view.getSecurityQuestionOneDropDown().getSelectedIndex());
+            user.setSecurityQ1(view.getSecurityQuestionOne().getSelectedIndex());
             user.setSecurityA1(view.getSecurityOneAnsText().getText());
-            user.setSecurityQ2(view.getSecurityQuestionTwoDropDown().getSelectedIndex());
+            user.setSecurityQ2(view.getSecurityQuestionTwo().getSelectedIndex());
             user.setSecurityA2(view.getSecurityTwoAnsText().getText());
 
             String firstName = user.getFirstName();
@@ -76,8 +76,8 @@ public class SecurityQuestionsController {
         @Override
         public void actionPerformed(ActionEvent e) {
             final String MESSAGE_TITLE = "Invalid!";
-            int questionOneIndex = view.getSecurityQuestionOneDropDown().getSelectedIndex();
-            int questionTwoIndex = view.getSecurityQuestionTwoDropDown().getSelectedIndex();
+            int questionOneIndex = view.getSecurityQuestionOne().getSelectedIndex();
+            int questionTwoIndex = view.getSecurityQuestionTwo().getSelectedIndex();
 
             if (questionOneIndex == questionTwoIndex) {
                 JOptionPane.showMessageDialog(
@@ -101,8 +101,8 @@ public class SecurityQuestionsController {
                         JOptionPane.ERROR_MESSAGE);
             }
             else {
-                user.setSecurityQ1(view.getSecurityQuestionOneDropDown().getSelectedIndex());
-                user.setSecurityQ2(view.getSecurityQuestionTwoDropDown().getSelectedIndex());
+                user.setSecurityQ1(view.getSecurityQuestionOne().getSelectedIndex());
+                user.setSecurityQ2(view.getSecurityQuestionTwo().getSelectedIndex());
 
                 user.setSecurityA1(view.getSecurityOneAnsText().getText());
                 user.setSecurityA2(view.getSecurityTwoAnsText().getText());

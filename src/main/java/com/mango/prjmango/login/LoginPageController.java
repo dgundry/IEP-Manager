@@ -27,12 +27,16 @@ public class LoginPageController {
         loginPageView.getLoginButton().addMouseListener(new ButtonMouseListener(loginPageView.getLoginButton()));
 
         loginPageView.getForgotPasswordButton().addActionListener(new ForgotPasswordActionListener());
-        loginPageView.getForgotPasswordButton().addMouseListener(new ButtonMouseListener(loginPageView.getForgotPasswordButton()));
+        loginPageView.getForgotPasswordButton().addMouseListener(new ButtonMouseListener(
+                loginPageView.getForgotPasswordButton()));
 
         loginPageView.getCreateAccountButton().addActionListener(new CreateAccountButtonActionListener());
-        loginPageView.getCreateAccountButton().addMouseListener(new ButtonMouseListener(loginPageView.getCreateAccountButton()));
+        loginPageView.getCreateAccountButton().addMouseListener(new ButtonMouseListener(
+                loginPageView.getCreateAccountButton()));
 
-        loginPageView.getEmailText().addFocusListener(new TextFieldFocusListener(loginPageView.getEmailText(), loginPageView.getEmailText().getText()));
+        loginPageView.getEmailText().addFocusListener(new TextFieldFocusListener(
+                        loginPageView.getEmailText(),
+                        loginPageView.getEmailText().getText()));
         loginPageView.getPasswordText().addMouseListener(new PasswordMouseListener(loginPageView));
 
     }

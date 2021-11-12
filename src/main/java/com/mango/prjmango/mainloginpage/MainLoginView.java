@@ -12,12 +12,12 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
+import lombok.Getter;
 
 public class MainLoginView {
 
-    private static JFrame loginWindow;
-
-    private static BackgroundPanel backgroundLoginPanel;
+    private static @Getter JFrame loginWindow;
+    private static @Getter BackgroundPanel backgroundLoginPanel;
 
     private final Dimension WINDOW_DIMENSIONS = new Dimension(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
 
@@ -63,6 +63,4 @@ public class MainLoginView {
         backgroundLoginPanel.add(panel);
         backgroundLoginPanel.updateUI();
     }
-
-    public static JFrame getLoginWindow() { return loginWindow; }
 }

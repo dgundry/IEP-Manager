@@ -3,6 +3,7 @@ package com.mango.prjmango.createaccount.password;
 import com.mango.prjmango.Main;
 import com.mango.prjmango.components.FontType;
 import com.mango.prjmango.components.RoundedPanel;
+import com.mango.prjmango.utilities.ImagePaths;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -11,18 +12,18 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JSeparator;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import lombok.Getter;
 
 public class PasswordView {
 
-    private final RoundedPanel createPasswordPanel;
+    private final @Getter RoundedPanel createPasswordPanel;
 
-    private JButton backButton;
-    private JButton createAccountButton;
+    private @Getter JButton backButton;
+    private @Getter JButton createAccountButton;
 
-    private JPasswordField passwordText;
-    private JPasswordField confirmPasswordText;
+    private @Getter JPasswordField passwordText;
+    private @Getter JPasswordField confirmPasswordText;
 
     /**
      * The constructor which sets up the GUI for the create account page.
@@ -41,7 +42,7 @@ public class PasswordView {
 
     private void createComponents() {
         JLabel schoolLogo = new JLabel(new ImageIcon(getScaledImage(
-                "src/main/java/com/mango/prjmango/utilities/images/PawLogo.png",
+                ImagePaths.SCHOOL_LOGO,
                 (229 / 2),
                 110)));
         schoolLogo.setBounds(
@@ -51,7 +52,7 @@ public class PasswordView {
                 110);
 
         JLabel mangoLogo = new JLabel(new ImageIcon(getScaledImage(
-                "src/main/java/com/mango/prjmango/utilities/images/Mango3.png",
+                ImagePaths.MANGO_LOGO,
                 50,
                 50)));
         mangoLogo.setBounds(
@@ -143,11 +144,4 @@ public class PasswordView {
     private Image getScaledImage(String path, int width, int height) {
         return new ImageIcon(path).getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
     }
-
-    public RoundedPanel getCreatePasswordPanel() { return createPasswordPanel; }
-
-    public JButton getCreateAccountButton(){ return createAccountButton; }
-    public JButton getBackButton(){ return backButton; }
-    public JTextField getPasswordText(){ return passwordText; }
-    public JTextField getConfirmPasswordText(){ return confirmPasswordText; }
 }

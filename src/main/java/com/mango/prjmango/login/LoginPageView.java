@@ -3,6 +3,7 @@ package com.mango.prjmango.login;
 import com.mango.prjmango.Main;
 import com.mango.prjmango.components.FontType;
 import com.mango.prjmango.components.RoundedPanel;
+import com.mango.prjmango.utilities.ImagePaths;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -40,7 +41,7 @@ public class LoginPageView extends RoundedPanel {
 
     private void createComponents() {
         JLabel schoolLogo = new JLabel(new ImageIcon(getScaledImage(
-                "src/main/java/com/mango/prjmango/utilities/images/PawLogo.png",
+                ImagePaths.SCHOOL_LOGO,
                 (229 / 2),
                 110)));
         schoolLogo.setBounds(
@@ -50,7 +51,7 @@ public class LoginPageView extends RoundedPanel {
                 110);
 
         JLabel mangoLogo = new JLabel(new ImageIcon(getScaledImage(
-                "src/main/java/com/mango/prjmango/utilities/images/Mango3.png",
+                ImagePaths.MANGO_LOGO,
                 50,
                 50)));
         mangoLogo.setBounds(

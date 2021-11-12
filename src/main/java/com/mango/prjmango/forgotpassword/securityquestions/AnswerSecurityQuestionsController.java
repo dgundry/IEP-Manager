@@ -23,8 +23,8 @@ public class AnswerSecurityQuestionsController {
 
     private static final Logger logger = Logger.getLogger(AnswerSecurityQuestionsController.class.getName());
 
-    public AnswerSecurityQuestionsController(AnswerSecurityQuestionsView view, int teacher_id) {
-        view.getCancelButton().addActionListener(new AnswerSecurityQuestionsController.CancelButtonActionListener(view));
+    public AnswerSecurityQuestionsController(AnswerSecurityQuestionsView view, int teacherID) {
+        view.getCancelButton().addActionListener(new AnswerSecurityQuestionsController.CancelButtonActionListener());
         view.getCancelButton().addMouseListener(new ButtonMouseListener(view.getCancelButton()));
 
         view.getNextButton().addActionListener(new AnswerSecurityQuestionsController.NextButtonActionListener(view));
@@ -33,14 +33,10 @@ public class AnswerSecurityQuestionsController {
 
         view.getSecurityOneAnsText().addMouseListener(new SecurityQuestionOneMouseListener(view));
         view.getSecurityTwoAnsText().addMouseListener(new SecurityQuestionTwoMouseListener(view));
-
-
     }
 
     private static class CancelButtonActionListener implements ActionListener {
 
-        public CancelButtonActionListener(AnswerSecurityQuestionsView view) {
-        }
         /**
          * Invoked when an action occurs.
          *
@@ -57,6 +53,7 @@ public class AnswerSecurityQuestionsController {
     private static class NextButtonActionListener implements ActionListener {
 
         private final AnswerSecurityQuestionsView view;
+
         public NextButtonActionListener(AnswerSecurityQuestionsView view) {
             this.view = view;
         }
@@ -71,17 +68,17 @@ public class AnswerSecurityQuestionsController {
             boolean hasFailed = false;
             String sql = "SELECT teacher_id, question_id, answer FROM questions WHERE (teacher_id = ? AND (question_id = ? OR question_id = ?));";
             try (PreparedStatement statement = Main.getConnection().prepareStatement(sql)) {
-                statement.setString(1, String.valueOf(view.getTeacher_id()));
-                statement.setString(2, String.valueOf(view.getQuestionIndexOne()));
-                statement.setString(3, String.valueOf(view.getQuestionIndexTwo()));
+                statement.setString(1, String.valueOf(view.getTeacherID()));
+                statement.setString(2, String.valueOf(view.getQuestionIndexes()[0]));
+                statement.setString(3, String.valueOf(view.getQuestionIndexes()[1]));
                 ResultSet resultSet = statement.executeQuery();
                 do {
-                    if(resultSet.getInt(2) == view.getQuestionIndexOne()){
+                    if(resultSet.getInt(2) == view.getQuestionIndexes()[0]){
                         if (!Encryption.encryptPassword(view.getSecurityOneAnsText().getText()).equals(resultSet.getString(3))){
                             System.out.println("Failed First");
                             hasFailed = true;
                         }
-                    }else if(resultSet.getInt(2) == view.getQuestionIndexTwo()){
+                    }else if(resultSet.getInt(2) == view.getQuestionIndexes()[1]){
                         if (!Encryption.encryptPassword(view.getSecurityTwoAnsText().getText()).equals(resultSet.getString(3))){
                             System.out.println("Failed Second");
                             hasFailed = true;
@@ -100,7 +97,7 @@ public class AnswerSecurityQuestionsController {
                         JOptionPane.ERROR_MESSAGE);
             }else{
                 System.out.println("Answers are correct.");
-                ChangePasswordView changePasswordView = new ChangePasswordView(view.getTeacher_id());
+                ChangePasswordView changePasswordView = new ChangePasswordView(view.getTeacherID());
                 new ChangePasswordController(changePasswordView);
                 MainLoginView.setActivePanel(changePasswordView.getChangePasswordPanel());
             }

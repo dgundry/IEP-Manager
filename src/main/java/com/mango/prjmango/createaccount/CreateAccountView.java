@@ -3,6 +3,7 @@ package com.mango.prjmango.createaccount;
 import com.mango.prjmango.Main;
 import com.mango.prjmango.components.FontType;
 import com.mango.prjmango.components.RoundedPanel;
+import com.mango.prjmango.utilities.ImagePaths;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -12,17 +13,18 @@ import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import lombok.Getter;
 
 public class CreateAccountView {
 
-    private final RoundedPanel createAccountPanel;
+    private final @Getter RoundedPanel createAccountPanel;
 
-    private JButton nextButton;
-    private JButton backButton;
+    private @Getter JButton nextButton;
+    private @Getter JButton backButton;
 
-    private JTextField firstNameText;
-    private JTextField lastNameText;
-    private JTextField emailText;
+    private @Getter JTextField firstNameText;
+    private @Getter JTextField lastNameText;
+    private @Getter JTextField emailText;
 
     /**
      * The constructor which sets up the GUI for the create account page.
@@ -41,7 +43,7 @@ public class CreateAccountView {
 
     private void createComponents() {
         JLabel schoolLogo = new JLabel(new ImageIcon(getScaledImage(
-                "src/main/java/com/mango/prjmango/utilities/images/PawLogo.png",
+                ImagePaths.SCHOOL_LOGO,
                 (229 / 2),
                 110)));
         schoolLogo.setBounds(
@@ -51,7 +53,7 @@ public class CreateAccountView {
                 110);
 
         JLabel mangoLogo = new JLabel(new ImageIcon(getScaledImage(
-                "src/main/java/com/mango/prjmango/utilities/images/Mango3.png",
+                ImagePaths.MANGO_LOGO,
                 50,
                 50)));
         mangoLogo.setBounds(
@@ -157,12 +159,4 @@ public class CreateAccountView {
     private Image getScaledImage(String path, int width, int height) {
         return new ImageIcon(path).getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
     }
-
-    public RoundedPanel getCreateAccountPanel() { return createAccountPanel; }
-
-    public JButton getNextButton(){ return nextButton; }
-    public JButton getBackButton(){ return backButton; }
-    public JTextField getFirstNameText(){ return firstNameText; }
-    public JTextField getLastNameText(){ return lastNameText; }
-    public JTextField getEmailText(){ return emailText; }
 }

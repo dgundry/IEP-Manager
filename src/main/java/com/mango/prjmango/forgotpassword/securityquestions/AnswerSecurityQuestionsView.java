@@ -3,6 +3,7 @@ package com.mango.prjmango.forgotpassword.securityquestions;
 import com.mango.prjmango.Main;
 import com.mango.prjmango.components.FontType;
 import com.mango.prjmango.components.RoundedPanel;
+import com.mango.prjmango.utilities.ImagePaths;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -17,31 +18,32 @@ import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import lombok.Getter;
 
 public class AnswerSecurityQuestionsView {
 
     private static final Logger logger = Logger.getLogger(AnswerSecurityQuestionsView.class.getName());
 
-    private final RoundedPanel securityQuestionsPanel;
+    private final @Getter RoundedPanel securityQuestionsPanel;
+    private final @Getter int teacherID;
 
-    private JButton nextButton;
-    private JButton cancelButton;
+    private @Getter JButton nextButton;
+    private @Getter JButton cancelButton;
 
-    private JTextField securityOneAnsText;
-    private JTextField securityTwoAnsText;
+    private @Getter JTextField securityOneAnsText;
+    private @Getter JTextField securityTwoAnsText;
 
-    private JLabel securityQuestionOne;
-    private JLabel securityQuestionTwo;
+    private @Getter JLabel securityQuestionOne;
+    private @Getter JLabel securityQuestionTwo;
 
-    private final int teacher_id;
-    private int[] question_ids = new int[2];
-    private String[] question_texts = new String[2];
+    private final @Getter int[] questionIndexes;
+    private final String[] question_texts;
 
     /**
      * The constructor which sets up the GUI for the create account page.
      */
-    public AnswerSecurityQuestionsView(int teacher_id) {
-        this.teacher_id = teacher_id;
+    public AnswerSecurityQuestionsView(int teacherID) {
+        this.teacherID = teacherID;
         securityQuestionsPanel = new RoundedPanel();
         securityQuestionsPanel.setLayout(null);
         securityQuestionsPanel.setBounds(
@@ -51,14 +53,14 @@ public class AnswerSecurityQuestionsView {
                 (int) (Main.SCREEN_HEIGHT * 0.70));
 
         createComponents();
-        question_ids = getQuestionIds();
+        questionIndexes = getQuestionIds();
         question_texts = getQuestionTexts();
         setQuestions();
     }
 
     private void createComponents() {
         JLabel schoolLogo = new JLabel(new ImageIcon(getScaledImage(
-                "src/main/java/com/mango/prjmango/utilities/images/PawLogo.png",
+                ImagePaths.SCHOOL_LOGO,
                 (229 / 2),
                 110)));
         schoolLogo.setBounds(
@@ -68,7 +70,7 @@ public class AnswerSecurityQuestionsView {
                 110);
 
         JLabel mangoLogo = new JLabel(new ImageIcon(getScaledImage(
-                "src/main/java/com/mango/prjmango/utilities/images/Mango3.png",
+                ImagePaths.MANGO_LOGO,
                 50,
                 50)));
         mangoLogo.setBounds(
@@ -153,7 +155,7 @@ public class AnswerSecurityQuestionsView {
         int index = 0;
         String sql = "SELECT question_id FROM questions WHERE teacher_id = ?;";
         try (PreparedStatement statement = Main.getConnection().prepareStatement(sql)) {
-            statement.setString(1, String.valueOf(teacher_id));
+            statement.setString(1, String.valueOf(teacherID));
             ResultSet resultSet = statement.executeQuery();
             do {
                 if(index != 0){
@@ -177,8 +179,8 @@ public class AnswerSecurityQuestionsView {
         int index = 0;
         String sql = "SELECT question FROM question WHERE (question_id = ? OR question_id = ?);";
         try (PreparedStatement statement = Main.getConnection().prepareStatement(sql)) {
-            statement.setString(1, String.valueOf(question_ids[0]));
-            statement.setString(2, String.valueOf(question_ids[1]));
+            statement.setString(1, String.valueOf(questionIndexes[0]));
+            statement.setString(2, String.valueOf(questionIndexes[1]));
             ResultSet resultSet2 = statement.executeQuery();
             do {
                 if(index != 0){
@@ -236,19 +238,4 @@ public class AnswerSecurityQuestionsView {
     private Image getScaledImage(String path, int width, int height) {
         return new ImageIcon(path).getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
     }
-
-    public RoundedPanel getSecurityQuestionsPanel() { return securityQuestionsPanel; }
-
-    public JButton getNextButton(){ return nextButton; }
-    public JButton getCancelButton(){ return cancelButton; }
-
-    public JLabel getSecurityQuestionOneDropDown() { return securityQuestionOne; }
-    public JLabel getSecurityQuestionTwoDropDown() { return securityQuestionTwo; }
-
-    public int getQuestionIndexOne(){ return question_ids[0]; }
-    public int getQuestionIndexTwo(){ return question_ids[1]; }
-    public int getTeacher_id(){ return teacher_id; }
-
-    public JTextField getSecurityOneAnsText(){ return securityOneAnsText; }
-    public JTextField getSecurityTwoAnsText(){ return securityTwoAnsText; }
 }
