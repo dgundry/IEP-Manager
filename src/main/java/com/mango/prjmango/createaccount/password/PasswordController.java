@@ -117,7 +117,7 @@ public class PasswordController {
                             JOptionPane.ERROR_MESSAGE);
                     LoginPageView loginPageView = new LoginPageView();
                     new LoginPageController(loginPageView);
-                    MainLoginView.setActivePanel(loginPageView.getLoginPanel());
+                    MainLoginView.setActivePanel(loginPageView);
                 }else{
                     JOptionPane.showMessageDialog(
                             MainLoginView.getLoginWindow(),

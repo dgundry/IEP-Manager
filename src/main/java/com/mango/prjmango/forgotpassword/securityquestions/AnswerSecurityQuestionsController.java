@@ -50,7 +50,7 @@ public class AnswerSecurityQuestionsController {
         public void actionPerformed(ActionEvent e) {
             LoginPageView loginPageView = new LoginPageView();
             new LoginPageController(loginPageView);
-            MainLoginView.setActivePanel(loginPageView.getLoginPanel());
+            MainLoginView.setActivePanel(loginPageView);
         }
     }
 
@@ -68,7 +68,6 @@ public class AnswerSecurityQuestionsController {
          */
         @Override
         public void actionPerformed(ActionEvent e) {
-            Encryption encryption = new Encryption();
             boolean hasFailed = false;
             String sql = "SELECT teacher_id, question_id, answer FROM questions WHERE (teacher_id = ? AND (question_id = ? OR question_id = ?));";
             try (PreparedStatement statement = Main.getConnection().prepareStatement(sql)) {

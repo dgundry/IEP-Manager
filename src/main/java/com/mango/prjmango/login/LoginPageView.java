@@ -13,25 +13,23 @@ import javax.swing.JPasswordField;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import lombok.Getter;
 
 /**
  * Creates the main log in panel for the user.
  */
-public class LoginPageView {
+public class LoginPageView extends RoundedPanel {
 
-    private final RoundedPanel loginPanel;
+    private @Getter JButton loginButton;
+    private @Getter JButton createAccountButton;
+    private @Getter JButton forgotPasswordButton;
 
-    private JButton loginButton;
-    private JButton createAccountButton;
-    private JButton forgotPasswordButton;
-
-    private JTextField emailText;
-    private JPasswordField passwordText;
+    private @Getter JTextField emailText;
+    private @Getter JPasswordField passwordText;
 
     public LoginPageView() {
-        loginPanel = new RoundedPanel();
-        loginPanel.setLayout(null);
-        loginPanel.setBounds(
+        this.setLayout(null);
+        this.setBounds(
                 (int) (Main.SCREEN_WIDTH * 0.5) - ((int) (Main.SCREEN_WIDTH * 0.16)),
                 (int) (Main.SCREEN_HEIGHT * 0.125),
                 (int) (Main.SCREEN_WIDTH * 0.3),
@@ -46,8 +44,8 @@ public class LoginPageView {
                 (229 / 2),
                 110)));
         schoolLogo.setBounds(
-                (int) (loginPanel.getWidth() * 0.5) - 50,
-                (int) (loginPanel.getHeight() * 0.05),
+                (int) (this.getWidth() * 0.5) - 50,
+                (int) (this.getHeight() * 0.05),
                 (229 / 2),
                 110);
 
@@ -56,55 +54,57 @@ public class LoginPageView {
                 50,
                 50)));
         mangoLogo.setBounds(
-                (int) (loginPanel.getWidth() * 0.5) - 25,
-                (loginPanel.getHeight() - 75),
+                (int) (this.getWidth() * 0.5) - 25,
+                (this.getHeight() - 75),
                 50,
                 50);
 
         JLabel titleHeader = createLabel("IEP Manager", FontType.FONT_35_BOLD);
-        titleHeader.setBounds(0, (int) (loginPanel.getHeight() * 0.28) , loginPanel.getWidth(),45);
+        titleHeader.setBounds(0, (int) (this.getHeight() * 0.28) , this.getWidth(),45);
 
         JLabel signInHeader = createLabel("Sign in", FontType.FONT_20_BOLD);
-        signInHeader.setBounds(0, (int) (loginPanel.getHeight() * 0.38), loginPanel.getWidth(),30);
+        signInHeader.setBounds(0, (int) (this.getHeight() * 0.38), this.getWidth(),30);
 
         JSeparator separatorHeader = new JSeparator(SwingConstants.CENTER);
         separatorHeader.setBounds(
-                (int) (loginPanel.getWidth() * 0.5) - (int) (loginPanel.getWidth() * 0.20),
-                (int) (loginPanel.getHeight() * 0.45),
-                (int) (loginPanel.getWidth() * 0.40),
+                (int) (this.getWidth() * 0.5) - (int) (this.getWidth() * 0.20),
+                (int) (this.getHeight() * 0.45),
+                (int) (this.getWidth() * 0.40),
                 1);
         separatorHeader.setBackground(Color.WHITE);
 
         JLabel enterEmailHeader = createLabel("Enter Email", FontType.FONT_12_BOLD);
-        enterEmailHeader.setBounds(0,( int) (loginPanel.getHeight() * 0.48), loginPanel.getWidth(),15);
+        enterEmailHeader.setBounds(0,( int) (this.getHeight() * 0.48), this.getWidth(),15);
 
-        emailText = new JTextField("");
+        emailText = new JTextField("Email");
         emailText.setBounds(
-                (int) (loginPanel.getWidth() * 0.5) - (int) (loginPanel.getWidth() * 0.25),
-                (int) (loginPanel.getHeight() * 0.54),
-                (int) (loginPanel.getWidth() * 0.5),
+                (int) (this.getWidth() * 0.5) - (int) (this.getWidth() * 0.25),
+                (int) (this.getHeight() * 0.54),
+                (int) (this.getWidth() * 0.5),
                 30);
         emailText.setBackground(Color.WHITE);
+        emailText.setName("emailText");
 
         JLabel enterPasswordHeader = createLabel("Enter Password", FontType.FONT_12_BOLD);
-        enterPasswordHeader.setBounds(0, (int) (loginPanel.getHeight() * 0.62), loginPanel.getWidth(),15);
+        enterPasswordHeader.setBounds(0, (int) (this.getHeight() * 0.62), this.getWidth(),15);
 
         passwordText = new JPasswordField("");
         passwordText.setBounds(
-                (int) (loginPanel.getWidth() * 0.5) - (int) (loginPanel.getWidth() * 0.25),
-                (int) (loginPanel.getHeight() * 0.68),
-                (int) (loginPanel.getWidth() * 0.5),
+                (int) (this.getWidth() * 0.5) - (int) (this.getWidth() * 0.25),
+                (int) (this.getHeight() * 0.68),
+                (int) (this.getWidth() * 0.5),
                 30);
         passwordText.setBackground(Color.WHITE);
         passwordText.setEchoChar((char) 0);
+        passwordText.setName("passwordText");
 
         loginButton = new JButton("Login");
         loginButton.setForeground(Color.WHITE);
         loginButton.setBackground(new Color(245,102,0));
         loginButton.setBounds(
-                (int) (loginPanel.getWidth() * 0.5) - (int) (loginPanel.getWidth() * 0.10),
-                (int) (loginPanel.getHeight() * 0.78),
-                (int) (loginPanel.getWidth() * 0.20),
+                (int) (this.getWidth() * 0.5) - (int) (this.getWidth() * 0.10),
+                (int) (this.getHeight() * 0.78),
+                (int) (this.getWidth() * 0.20),
                 30);
         loginButton.setOpaque(true);
         loginButton.setBorderPainted(false);
@@ -112,30 +112,30 @@ public class LoginPageView {
 
         createAccountButton = createButton("Create Account");
         createAccountButton.setBounds(
-                (int) (loginPanel.getWidth() * 0.5) - (int) (loginPanel.getWidth() * 0.4),
-                (int) (loginPanel.getHeight() * 0.88),
-                (int) (loginPanel.getWidth() * 0.35),
+                (int) (this.getWidth() * 0.5) - (int) (this.getWidth() * 0.4),
+                (int) (this.getHeight() * 0.88),
+                (int) (this.getWidth() * 0.35),
                 15);
 
         forgotPasswordButton = createButton("Forgot Password");
         forgotPasswordButton.setBounds(
-                (int) (loginPanel.getWidth() * 0.5) + (int) (loginPanel.getWidth() * 0.05),
-                (int) (loginPanel.getHeight() * 0.88),
-                (int) (loginPanel.getWidth() * 0.35),
+                (int) (this.getWidth() * 0.5) + (int) (this.getWidth() * 0.05),
+                (int) (this.getHeight() * 0.88),
+                (int) (this.getWidth() * 0.35),
                 15);
 
-        loginPanel.add(schoolLogo);
-        loginPanel.add(mangoLogo);
-        loginPanel.add(titleHeader);
-        loginPanel.add(signInHeader);
-        loginPanel.add(separatorHeader);
-        loginPanel.add(enterEmailHeader);
-        loginPanel.add(enterPasswordHeader);
-        loginPanel.add(emailText);
-        loginPanel.add(passwordText);
-        loginPanel.add(loginButton);
-        loginPanel.add(createAccountButton);
-        loginPanel.add(forgotPasswordButton);
+        this.add(schoolLogo);
+        this.add(mangoLogo);
+        this.add(titleHeader);
+        this.add(signInHeader);
+        this.add(separatorHeader);
+        this.add(enterEmailHeader);
+        this.add(enterPasswordHeader);
+        this.add(emailText);
+        this.add(passwordText);
+        this.add(loginButton);
+        this.add(createAccountButton);
+        this.add(forgotPasswordButton);
     }
 
     private JLabel createLabel(String text, Font font) {
@@ -158,16 +158,4 @@ public class LoginPageView {
     private Image getScaledImage(String path, int width, int height) {
         return new ImageIcon(path).getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
     }
-
-    public RoundedPanel getLoginPanel() { return loginPanel; }
-
-    public JButton getLoginButton() { return loginButton; }
-
-    public JButton getForgotPasswordButton() { return forgotPasswordButton; }
-
-    public JButton getCreateAccountButton() { return createAccountButton; }
-
-    public JTextField getEmailText() { return emailText; }
-
-    public JPasswordField getPasswordText() { return passwordText; }
 }

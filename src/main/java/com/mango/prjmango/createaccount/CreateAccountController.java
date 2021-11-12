@@ -56,7 +56,7 @@ public class CreateAccountController {
         public void actionPerformed(ActionEvent e) {
             LoginPageView loginPageView = new LoginPageView();
             new LoginPageController(loginPageView);
-            MainLoginView.setActivePanel(loginPageView.getLoginPanel());
+            MainLoginView.setActivePanel(loginPageView);
         }
     }
 

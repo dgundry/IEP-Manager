@@ -2,6 +2,7 @@ package com.mango.prjmango.login;
 
 import com.mango.prjmango.Main;
 import com.mango.prjmango.components.listeners.ButtonMouseListener;
+import com.mango.prjmango.components.listeners.TextFieldFocusListener;
 import com.mango.prjmango.createaccount.CreateAccountController;
 import com.mango.prjmango.createaccount.CreateAccountView;
 import com.mango.prjmango.forgotpassword.email.EmailController;
@@ -31,7 +32,7 @@ public class LoginPageController {
         loginPageView.getCreateAccountButton().addActionListener(new CreateAccountButtonActionListener());
         loginPageView.getCreateAccountButton().addMouseListener(new ButtonMouseListener(loginPageView.getCreateAccountButton()));
 
-        loginPageView.getEmailText().addMouseListener(new EmailMouseListener(loginPageView));
+        loginPageView.getEmailText().addFocusListener(new TextFieldFocusListener(loginPageView.getEmailText(), loginPageView.getEmailText().getText()));
         loginPageView.getPasswordText().addMouseListener(new PasswordMouseListener(loginPageView));
 
     }

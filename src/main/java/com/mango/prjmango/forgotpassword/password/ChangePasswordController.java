@@ -23,9 +23,6 @@ public class ChangePasswordController {
 
     private static class CancelButtonActionListener implements ActionListener {
 
-
-        public CancelButtonActionListener() {
-        }
         /**
          * Invoked when an action occurs.
          *
@@ -35,7 +32,7 @@ public class ChangePasswordController {
         public void actionPerformed(ActionEvent e){
             LoginPageView loginPageView = new LoginPageView();
             new LoginPageController(loginPageView);
-            MainLoginView.setActivePanel(loginPageView.getLoginPanel());
+            MainLoginView.setActivePanel(loginPageView);
         }
     }
 
@@ -76,10 +73,9 @@ public class ChangePasswordController {
                         MESSAGE_TITLE,
                         JOptionPane.ERROR_MESSAGE);
             }else {
-                Encryption encryption = new Encryption();
                 String sql = "UPDATE teacher SET password = ? WHERE teacher_id = ?;";
                 try (PreparedStatement statement = Main.getConnection().prepareStatement(sql)) {
-                    statement.setString(1, encryption.encryptPassword(view.getConfirmPasswordText().getText()));
+                    statement.setString(1, Encryption.encryptPassword(view.getConfirmPasswordText().getText()));
                     statement.setString(2, String.valueOf(view.getTeacher_id()));
                     int result = statement.executeUpdate();
                     if(result == 1) {
@@ -90,7 +86,7 @@ public class ChangePasswordController {
                                 JOptionPane.ERROR_MESSAGE);
                         LoginPageView loginPageView = new LoginPageView();
                         new LoginPageController(loginPageView);
-                        MainLoginView.setActivePanel(loginPageView.getLoginPanel());
+                        MainLoginView.setActivePanel(loginPageView);
                     }
                 } catch (SQLException ex) {
                     ex.printStackTrace();
