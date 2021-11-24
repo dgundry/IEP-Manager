@@ -75,7 +75,7 @@ public class EmailController {
             }else {
                 AnswerSecurityQuestionsView securityQuestions = new AnswerSecurityQuestionsView(passwordChange.getTeacher_id(view.getEmailText().getText()));
                 new AnswerSecurityQuestionsController(securityQuestions, passwordChange.getTeacher_id(view.getEmailText().getText()));
-                MainLoginView.setActivePanel(securityQuestions.getSecurityQuestionsPanel());
+                MainLoginView.setActivePanel(securityQuestions);
             }
         }
     }

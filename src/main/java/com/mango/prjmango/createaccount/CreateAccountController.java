@@ -122,7 +122,7 @@ public class CreateAccountController {
                 securityQuestionsView.getSecurityTwoAnsText().setText(user.getSecurityA2());
 
                 new SecurityQuestionsController(securityQuestionsView, user);
-                MainLoginView.setActivePanel(securityQuestionsView.getSecurityQuestionsPanel());
+                MainLoginView.setActivePanel(securityQuestionsView);
             }
         }
     }

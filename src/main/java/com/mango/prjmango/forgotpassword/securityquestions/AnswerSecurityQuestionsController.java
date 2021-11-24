@@ -99,7 +99,7 @@ public class AnswerSecurityQuestionsController {
                 System.out.println("Answers are correct.");
                 ChangePasswordView changePasswordView = new ChangePasswordView(view.getTeacherID());
                 new ChangePasswordController(changePasswordView);
-                MainLoginView.setActivePanel(changePasswordView.getChangePasswordPanel());
+                MainLoginView.setActivePanel(changePasswordView);
             }
         }
     }

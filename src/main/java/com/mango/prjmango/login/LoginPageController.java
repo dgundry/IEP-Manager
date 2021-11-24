@@ -104,7 +104,7 @@ public class LoginPageController {
         public void actionPerformed(ActionEvent e) {
             EmailView emailView = new EmailView();
             new EmailController(emailView);
-            MainLoginView.setActivePanel(emailView.getEmailPanel());
+            MainLoginView.setActivePanel(emailView);
         }
     }
 
@@ -114,7 +114,7 @@ public class LoginPageController {
         public void actionPerformed(ActionEvent e) {
             CreateAccountView createAccountView = new CreateAccountView();
             new CreateAccountController(createAccountView);
-            MainLoginView.setActivePanel(createAccountView.getCreateAccountPanel());
+            MainLoginView.setActivePanel(createAccountView);
         }
     }
     private static class EmailMouseListener implements MouseListener {

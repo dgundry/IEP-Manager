@@ -3,21 +3,16 @@ package com.mango.prjmango.forgotpassword.email;
 import com.mango.prjmango.Main;
 import com.mango.prjmango.components.FontType;
 import com.mango.prjmango.components.RoundedPanel;
-import com.mango.prjmango.utilities.ImagePaths;
+import com.mango.prjmango.components.common.login.LoginPageComponents;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Image;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import lombok.Getter;
 
-public class EmailView {
-
-    private final @Getter RoundedPanel emailPanel;
+public class EmailView extends RoundedPanel {
 
     private @Getter JButton nextButton;
     private @Getter JButton cancelButton;
@@ -25,9 +20,8 @@ public class EmailView {
     private @Getter JTextField emailText;
 
     public EmailView() {
-        emailPanel = new RoundedPanel();
-        emailPanel.setLayout(null);
-        emailPanel.setBounds(
+        this.setLayout(null);
+        this.setBounds(
                 (int) (Main.SCREEN_WIDTH * 0.5) - ((int) (Main.SCREEN_WIDTH * 0.16)),
                 (int) (Main.SCREEN_HEIGHT * 0.125),
                 (int) (Main.SCREEN_WIDTH * 0.3),
@@ -37,74 +31,41 @@ public class EmailView {
     }
 
     private void createComponents() {
-        JLabel schoolLogo = new JLabel(new ImageIcon(getScaledImage(
-                ImagePaths.SCHOOL_LOGO,
-                (229 / 2),
-                110)));
-        schoolLogo.setBounds(
-                (int) (emailPanel.getWidth() * 0.5) - 50,
-                (int) (emailPanel.getHeight() * 0.05),
-                (229 / 2),
-                110);
-
-        JLabel mangoLogo = new JLabel(new ImageIcon(getScaledImage(
-                ImagePaths.MANGO_LOGO,
-                50,
-                50)));
-        mangoLogo.setBounds(
-                (int) (emailPanel.getWidth() * 0.5) - 25,
-                (emailPanel.getHeight() - 75),
-                50,
-                50);
-
-        JLabel titleHeader = createLabel("IEP Manager", FontType.FONT_35_BOLD);
-        titleHeader.setBounds(0, (int) (emailPanel.getHeight() * 0.28) , emailPanel.getWidth(),45);
+        LoginPageComponents.setCommonComponents(this);
 
         JLabel createAccountHeader = createLabel("Reset Password", FontType.FONT_20_BOLD);
-        createAccountHeader.setBounds(0, (int) (emailPanel.getHeight() * 0.38), emailPanel.getWidth(),30);
-
-        JSeparator separatorHeader = new JSeparator(SwingConstants.CENTER);
-        separatorHeader.setBounds(
-                (int) (emailPanel.getWidth() * 0.5) - (int) (emailPanel.getWidth() * 0.20),
-                (int) (emailPanel.getHeight() * 0.45),
-                (int) (emailPanel.getWidth() * 0.40),
-                1);
-        separatorHeader.setBackground(Color.WHITE);
+        createAccountHeader.setBounds(0, (int) (this.getHeight() * 0.38), this.getWidth(),30);
 
         JLabel enterEmailHeader = createLabel("Enter Email", FontType.FONT_12_BOLD);
-        enterEmailHeader.setBounds(0,( int) (emailPanel.getHeight() * 0.48), emailPanel.getWidth(),15);
+        enterEmailHeader.setBounds(0,( int) (this.getHeight() * 0.48), this.getWidth(),15);
 
         emailText = new JTextField("Email");
         emailText.setBounds(
-                (int) (emailPanel.getWidth() * 0.5) - (int) (emailPanel.getWidth() * 0.25),
-                (int) (emailPanel.getHeight() * 0.51),
-                (int) (emailPanel.getWidth() * 0.5),
+                (int) (this.getWidth() * 0.5) - (int) (this.getWidth() * 0.25),
+                (int) (this.getHeight() * 0.51),
+                (int) (this.getWidth() * 0.5),
                 30);
         emailText.setBackground(Color.WHITE);
 
         nextButton = createButton("Next");
         nextButton.setBounds(
-                (int) (emailPanel.getWidth() * 0.65) - (int) (emailPanel.getWidth() * 0.10),
-                (int) (emailPanel.getHeight() * 0.77),
-                (int) (emailPanel.getWidth() * 0.20),
+                (int) (this.getWidth() * 0.65) - (int) (this.getWidth() * 0.10),
+                (int) (this.getHeight() * 0.77),
+                (int) (this.getWidth() * 0.20),
                 30);
 
         cancelButton = createButton("Cancel");
         cancelButton.setBounds(
-                (int) (emailPanel.getWidth() * 0.35) - (int) (emailPanel.getWidth() * 0.10),
-                (int) (emailPanel.getHeight() * 0.77),
-                (int) (emailPanel.getWidth() * 0.20),
+                (int) (this.getWidth() * 0.35) - (int) (this.getWidth() * 0.10),
+                (int) (this.getHeight() * 0.77),
+                (int) (this.getWidth() * 0.20),
                 30);
 
-        emailPanel.add(schoolLogo);
-        emailPanel.add(mangoLogo);
-        emailPanel.add(titleHeader);
-        emailPanel.add(createAccountHeader);
-        emailPanel.add(separatorHeader);
-        emailPanel.add(enterEmailHeader);
-        emailPanel.add(emailText);
-        emailPanel.add(nextButton);
-        emailPanel.add(cancelButton);
+        this.add(createAccountHeader);
+        this.add(enterEmailHeader);
+        this.add(emailText);
+        this.add(nextButton);
+        this.add(cancelButton);
     }
 
     private JLabel createLabel(String text, Font font) {
@@ -123,9 +84,5 @@ public class EmailView {
         button.setFocusPainted(false);
         button.setEnabled(true);
         return button;
-    }
-
-    private Image getScaledImage(String path, int width, int height) {
-        return new ImageIcon(path).getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
     }
 }

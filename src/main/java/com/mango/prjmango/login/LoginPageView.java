@@ -3,15 +3,12 @@ package com.mango.prjmango.login;
 import com.mango.prjmango.Main;
 import com.mango.prjmango.components.FontType;
 import com.mango.prjmango.components.RoundedPanel;
-import com.mango.prjmango.utilities.ImagePaths;
+import com.mango.prjmango.components.common.login.LoginPageComponents;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Image;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
-import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import lombok.Getter;
@@ -40,39 +37,10 @@ public class LoginPageView extends RoundedPanel {
     }
 
     private void createComponents() {
-        JLabel schoolLogo = new JLabel(new ImageIcon(getScaledImage(
-                ImagePaths.SCHOOL_LOGO,
-                (229 / 2),
-                110)));
-        schoolLogo.setBounds(
-                (int) (this.getWidth() * 0.5) - 50,
-                (int) (this.getHeight() * 0.05),
-                (229 / 2),
-                110);
-
-        JLabel mangoLogo = new JLabel(new ImageIcon(getScaledImage(
-                ImagePaths.MANGO_LOGO,
-                50,
-                50)));
-        mangoLogo.setBounds(
-                (int) (this.getWidth() * 0.5) - 25,
-                (this.getHeight() - 75),
-                50,
-                50);
-
-        JLabel titleHeader = createLabel("IEP Manager", FontType.FONT_35_BOLD);
-        titleHeader.setBounds(0, (int) (this.getHeight() * 0.28) , this.getWidth(),45);
+        LoginPageComponents.setCommonComponents(this);
 
         JLabel signInHeader = createLabel("Sign in", FontType.FONT_20_BOLD);
         signInHeader.setBounds(0, (int) (this.getHeight() * 0.38), this.getWidth(),30);
-
-        JSeparator separatorHeader = new JSeparator(SwingConstants.CENTER);
-        separatorHeader.setBounds(
-                (int) (this.getWidth() * 0.5) - (int) (this.getWidth() * 0.20),
-                (int) (this.getHeight() * 0.45),
-                (int) (this.getWidth() * 0.40),
-                1);
-        separatorHeader.setBackground(Color.WHITE);
 
         JLabel enterEmailHeader = createLabel("Enter Email", FontType.FONT_12_BOLD);
         enterEmailHeader.setBounds(0,( int) (this.getHeight() * 0.48), this.getWidth(),15);
@@ -125,11 +93,7 @@ public class LoginPageView extends RoundedPanel {
                 (int) (this.getWidth() * 0.35),
                 15);
 
-        this.add(schoolLogo);
-        this.add(mangoLogo);
-        this.add(titleHeader);
         this.add(signInHeader);
-        this.add(separatorHeader);
         this.add(enterEmailHeader);
         this.add(enterPasswordHeader);
         this.add(emailText);
@@ -154,9 +118,5 @@ public class LoginPageView extends RoundedPanel {
         button.setBorderPainted(false);
         button.setFocusPainted(false);
         return button;
-    }
-
-    private Image getScaledImage(String path, int width, int height) {
-        return new ImageIcon(path).getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
     }
 }

@@ -3,28 +3,24 @@ package com.mango.prjmango.forgotpassword.securityquestions;
 import com.mango.prjmango.Main;
 import com.mango.prjmango.components.FontType;
 import com.mango.prjmango.components.RoundedPanel;
-import com.mango.prjmango.utilities.ImagePaths;
+import com.mango.prjmango.components.common.login.LoginPageComponents;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Image;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import lombok.Getter;
 
-public class AnswerSecurityQuestionsView {
+public class AnswerSecurityQuestionsView extends RoundedPanel {
 
     private static final Logger logger = Logger.getLogger(AnswerSecurityQuestionsView.class.getName());
 
-    private final @Getter RoundedPanel securityQuestionsPanel;
     private final @Getter int teacherID;
 
     private @Getter JButton nextButton;
@@ -44,9 +40,9 @@ public class AnswerSecurityQuestionsView {
      */
     public AnswerSecurityQuestionsView(int teacherID) {
         this.teacherID = teacherID;
-        securityQuestionsPanel = new RoundedPanel();
-        securityQuestionsPanel.setLayout(null);
-        securityQuestionsPanel.setBounds(
+
+        this.setLayout(null);
+        this.setBounds(
                 (int) (Main.SCREEN_WIDTH * 0.5) - ((int) (Main.SCREEN_WIDTH * 0.16)),
                 (int) (Main.SCREEN_HEIGHT * 0.125),
                 (int) (Main.SCREEN_WIDTH * 0.3),
@@ -59,95 +55,62 @@ public class AnswerSecurityQuestionsView {
     }
 
     private void createComponents() {
-        JLabel schoolLogo = new JLabel(new ImageIcon(getScaledImage(
-                ImagePaths.SCHOOL_LOGO,
-                (229 / 2),
-                110)));
-        schoolLogo.setBounds(
-                (int) (securityQuestionsPanel.getWidth() * 0.5) - 50,
-                (int) (securityQuestionsPanel.getHeight() * 0.05),
-                (229 / 2),
-                110);
-
-        JLabel mangoLogo = new JLabel(new ImageIcon(getScaledImage(
-                ImagePaths.MANGO_LOGO,
-                50,
-                50)));
-        mangoLogo.setBounds(
-                (int) (securityQuestionsPanel.getWidth() * 0.5) - 25,
-                (securityQuestionsPanel.getHeight() - 75),
-                50,
-                50);
-
-        JLabel titleHeader = createLabel("IEP Manager", FontType.FONT_35_BOLD);
-        titleHeader.setBounds(0, (int) (securityQuestionsPanel.getHeight() * 0.28) , securityQuestionsPanel.getWidth(),45);
+        LoginPageComponents.setCommonComponents(this);
 
         JLabel securityQuestionsHeader = createLabel("Security Questions", FontType.FONT_20_BOLD);
-        securityQuestionsHeader.setBounds(0, (int) (securityQuestionsPanel.getHeight() * 0.38), securityQuestionsPanel.getWidth(),30);
-
-        JSeparator separatorHeader = new JSeparator(SwingConstants.CENTER);
-        separatorHeader.setBounds(
-                (int) (securityQuestionsPanel.getWidth() * 0.5) - (int) (securityQuestionsPanel.getWidth() * 0.20),
-                (int) (securityQuestionsPanel.getHeight() * 0.45),
-                (int) (securityQuestionsPanel.getWidth() * 0.40),
-                1);
-        separatorHeader.setBackground(Color.WHITE);
+        securityQuestionsHeader.setBounds(0, (int) (this.getHeight() * 0.38), this.getWidth(),30);
 
         JLabel securityOneHeader = createLabel("Security Question #1", FontType.FONT_12_BOLD);
-        securityOneHeader.setBounds(0,( int) (securityQuestionsPanel.getHeight() * 0.48), securityQuestionsPanel.getWidth(),15);
+        securityOneHeader.setBounds(0,( int) (this.getHeight() * 0.48), this.getWidth(),15);
 
         JLabel securityOneAnsHeader = createLabel("Enter Answer", FontType.FONT_12_BOLD);
-        securityOneAnsHeader.setBounds(0, (int) (securityQuestionsPanel.getHeight() * 0.56), securityQuestionsPanel.getWidth(),15);
+        securityOneAnsHeader.setBounds(0, (int) (this.getHeight() * 0.56), this.getWidth(),15);
 
         securityOneAnsText = new JTextField("Answer #1");
         securityOneAnsText.setBounds(
-                (int) (securityQuestionsPanel.getWidth() * 0.5) - (int) (securityQuestionsPanel.getWidth() * 0.25),
-                (int) (securityQuestionsPanel.getHeight() * 0.59),
-                (int) (securityQuestionsPanel.getWidth() * 0.5),
+                (int) (this.getWidth() * 0.5) - (int) (this.getWidth() * 0.25),
+                (int) (this.getHeight() * 0.59),
+                (int) (this.getWidth() * 0.5),
                 30);
         securityOneAnsText.setBackground(Color.WHITE);
 
         JLabel securityTwoHeader = createLabel("Security Question #2", FontType.FONT_12_BOLD);
-        securityTwoHeader.setBounds(0,( int) (securityQuestionsPanel.getHeight() * 0.65), securityQuestionsPanel.getWidth(),15);
+        securityTwoHeader.setBounds(0,( int) (this.getHeight() * 0.65), this.getWidth(),15);
 
         JLabel securityTwoAnsHeader = createLabel("Enter Answer", FontType.FONT_12_BOLD);
-        securityTwoAnsHeader.setBounds(0, (int) (securityQuestionsPanel.getHeight() * 0.74), securityQuestionsPanel.getWidth(),15);
+        securityTwoAnsHeader.setBounds(0, (int) (this.getHeight() * 0.74), this.getWidth(),15);
 
         securityTwoAnsText = new JTextField("Answer #2");
         securityTwoAnsText.setBounds(
-                (int) (securityQuestionsPanel.getWidth() * 0.5) - (int) (securityQuestionsPanel.getWidth() * 0.25),
-                (int) (securityQuestionsPanel.getHeight() * 0.77),
-                (int) (securityQuestionsPanel.getWidth() * 0.5),
+                (int) (this.getWidth() * 0.5) - (int) (this.getWidth() * 0.25),
+                (int) (this.getHeight() * 0.77),
+                (int) (this.getWidth() * 0.5),
                 30);
         securityTwoAnsText.setBackground(Color.WHITE);
 
         nextButton = createButton("Next");
         nextButton.setBounds(
-                (int) (securityQuestionsPanel.getWidth() * 0.65) - (int) (securityQuestionsPanel.getWidth() * 0.10),
-                (int) (securityQuestionsPanel.getHeight() * 0.83),
-                (int) (securityQuestionsPanel.getWidth() * 0.20),
+                (int) (this.getWidth() * 0.65) - (int) (this.getWidth() * 0.10),
+                (int) (this.getHeight() * 0.83),
+                (int) (this.getWidth() * 0.20),
                 30);
 
         cancelButton = createButton("Cancel");
         cancelButton.setBounds(
-                (int) (securityQuestionsPanel.getWidth() * 0.35) - (int) (securityQuestionsPanel.getWidth() * 0.10),
-                (int) (securityQuestionsPanel.getHeight() * 0.83),
-                (int) (securityQuestionsPanel.getWidth() * 0.20),
+                (int) (this.getWidth() * 0.35) - (int) (this.getWidth() * 0.10),
+                (int) (this.getHeight() * 0.83),
+                (int) (this.getWidth() * 0.20),
                 30);
 
-        securityQuestionsPanel.add(schoolLogo);
-        securityQuestionsPanel.add(mangoLogo);
-        securityQuestionsPanel.add(titleHeader);
-        securityQuestionsPanel.add(securityQuestionsHeader);
-        securityQuestionsPanel.add(separatorHeader);
-        securityQuestionsPanel.add(securityOneHeader);
-        securityQuestionsPanel.add(securityOneAnsHeader);
-        securityQuestionsPanel.add(securityTwoHeader);
-        securityQuestionsPanel.add(securityTwoAnsHeader);
-        securityQuestionsPanel.add(securityOneAnsText);
-        securityQuestionsPanel.add(securityTwoAnsText);
-        securityQuestionsPanel.add(nextButton);
-        securityQuestionsPanel.add(cancelButton);
+        this.add(securityQuestionsHeader);
+        this.add(securityOneHeader);
+        this.add(securityOneAnsHeader);
+        this.add(securityTwoHeader);
+        this.add(securityTwoAnsHeader);
+        this.add(securityOneAnsText);
+        this.add(securityTwoAnsText);
+        this.add(nextButton);
+        this.add(cancelButton);
     }
 
     private int[] getQuestionIds(){
@@ -200,21 +163,21 @@ public class AnswerSecurityQuestionsView {
     private void setQuestions() {
         securityQuestionOne = new JLabel(question_texts[0]);
         securityQuestionOne.setBounds(
-                (int) (securityQuestionsPanel.getWidth() * 0.5) - (int) (securityQuestionsPanel.getWidth() * 0.25),
-                (int) (securityQuestionsPanel.getHeight() * 0.51),
-                (int) (securityQuestionsPanel.getWidth() * 0.5),
+                (int) (this.getWidth() * 0.5) - (int) (this.getWidth() * 0.25),
+                (int) (this.getHeight() * 0.51),
+                (int) (this.getWidth() * 0.5),
                 30);
         securityQuestionOne.setBackground(Color.WHITE);
 
         securityQuestionTwo = new JLabel(question_texts[1]);
         securityQuestionTwo.setBounds(
-                (int) (securityQuestionsPanel.getWidth() * 0.5) - (int) (securityQuestionsPanel.getWidth() * 0.25),
-                (int) (securityQuestionsPanel.getHeight() * 0.68),
-                (int) (securityQuestionsPanel.getWidth() * 0.5),
+                (int) (this.getWidth() * 0.5) - (int) (this.getWidth() * 0.25),
+                (int) (this.getHeight() * 0.68),
+                (int) (this.getWidth() * 0.5),
                 30);
         securityQuestionTwo.setBackground(Color.WHITE);
-        securityQuestionsPanel.add(securityQuestionOne);
-        securityQuestionsPanel.add(securityQuestionTwo);
+        this.add(securityQuestionOne);
+        this.add(securityQuestionTwo);
 
     }
 
@@ -233,9 +196,5 @@ public class AnswerSecurityQuestionsView {
         button.setBorderPainted(false);
         button.setFocusPainted(false);
         return button;
-    }
-
-    private Image getScaledImage(String path, int width, int height) {
-        return new ImageIcon(path).getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
     }
 }

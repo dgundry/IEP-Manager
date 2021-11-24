@@ -54,7 +54,7 @@ public class SecurityQuestionsController {
             createAccountView.getEmailText().setText(email.equals("") ? "Email" : user.getEmail());
 
             new CreateAccountController(createAccountView, user);
-            MainLoginView.setActivePanel(createAccountView.getCreateAccountPanel());
+            MainLoginView.setActivePanel(createAccountView);
         }
     }
 
@@ -109,7 +109,7 @@ public class SecurityQuestionsController {
 
                 PasswordView passwordView = new PasswordView();
                 new PasswordController(passwordView, user);
-                MainLoginView.setActivePanel(passwordView.getCreatePasswordPanel());
+                MainLoginView.setActivePanel(passwordView);
             }
         }
     }
