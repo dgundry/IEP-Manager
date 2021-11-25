@@ -9,10 +9,8 @@ import com.mango.prjmango.forgotpassword.email.EmailView;
 import com.mango.prjmango.forgotpassword.password.ChangePasswordView;
 import com.mango.prjmango.forgotpassword.securityquestions.AnswerSecurityQuestionsView;
 import com.mango.prjmango.login.LoginPageView;
-import com.mango.prjmango.utilities.ImagePaths;
+import com.mango.prjmango.utilities.ImageIcons;
 import java.awt.Color;
-import java.awt.Image;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
@@ -43,20 +41,14 @@ public class LoginPageComponents {
      * @param parent the parent container that will hold these components
      */
     public static void setCommonComponents(RoundedPanel parent) {
-        JLabel schoolLogo = new JLabel(new ImageIcon(getScaledImage(
-                ImagePaths.SCHOOL_LOGO,
-                (229 / 2),
-                110)));
+        JLabel schoolLogo = new JLabel(ImageIcons.SCHOOL_LOGO_ICON);
         schoolLogo.setBounds(
                 (int) (parent.getWidth() * 0.5) - 50,
                 (int) (parent.getHeight() * 0.05),
                 (229 / 2),
                 110);
 
-        JLabel mangoLogo = new JLabel(new ImageIcon(getScaledImage(
-                ImagePaths.MANGO_LOGO,
-                50,
-                50)));
+        JLabel mangoLogo = new JLabel(ImageIcons.MANGO_LOGO_ICON);
         mangoLogo.setBounds(
                 (int) (parent.getWidth() * 0.5) - 25,
                 (parent.getHeight() - 75),
@@ -80,9 +72,5 @@ public class LoginPageComponents {
         parent.add(mangoLogo);
         parent.add(titleHeader);
         parent.add(separatorHeader);
-    }
-
-    private static Image getScaledImage(String path, int width, int height) {
-        return new ImageIcon(path).getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
     }
 }

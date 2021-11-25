@@ -117,40 +117,7 @@ public class LoginPageController {
             MainLoginView.setActivePanel(createAccountView);
         }
     }
-    private static class EmailMouseListener implements MouseListener {
 
-        private final LoginPageView loginPageView;
-
-        public EmailMouseListener(LoginPageView loginPageView) { this.loginPageView = loginPageView; }
-
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            if(loginPageView.getEmailText().getText().equals("Email")){
-                loginPageView.getEmailText().setText("");
-
-            }
-        }
-
-        @Override
-        public void mousePressed(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseReleased(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseEntered(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseExited(MouseEvent e) {
-
-        }
-    }
     private static class PasswordMouseListener implements MouseListener {
 
         private final LoginPageView loginPageView;

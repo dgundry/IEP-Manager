@@ -1,5 +1,6 @@
 package com.mango.prjmango.createaccount.password;
 
+import com.mango.prjmango.components.dialogs.Dialog;
 import com.mango.prjmango.components.listeners.ButtonMouseListener;
 import com.mango.prjmango.createaccount.Register;
 import com.mango.prjmango.createaccount.User;
@@ -18,7 +19,6 @@ public class PasswordController {
 
     public PasswordController(PasswordView view, User user) {
         if(!user.getPassword1().equals("")){
-            System.out.println("test");
             view.getPasswordText().setText(user.getPassword1());
         }
         if(!user.getPassword2().equals("")){
@@ -105,20 +105,18 @@ public class PasswordController {
                         "Please confirm your Password.",
                         MESSAGE_TITLE,
                         JOptionPane.ERROR_MESSAGE);
-            }else {
+            } else {
                 Register register = new Register();
                 user.setSecurityQ1(user.getSecurityQ1()+1);
                 user.setSecurityQ2(user.getSecurityQ2()+1);
-                if(register.createUser(user)){
-                    JOptionPane.showMessageDialog(
-                            MainLoginView.getLoginWindow(),
-                            "Account Successfully Created.",
-                            "SUCCESS",
-                            JOptionPane.ERROR_MESSAGE);
+
+                if (register.createUser(user)) {
+                    Dialog.openDialog(Dialog.ACCOUNT_CREATED);
+
                     LoginPageView loginPageView = new LoginPageView();
                     new LoginPageController(loginPageView);
                     MainLoginView.setActivePanel(loginPageView);
-                }else{
+                } else {
                     JOptionPane.showMessageDialog(
                             MainLoginView.getLoginWindow(),
                             "Something went wrong with registering.",
