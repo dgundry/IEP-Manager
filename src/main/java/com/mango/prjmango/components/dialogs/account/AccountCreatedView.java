@@ -64,6 +64,7 @@ public class AccountCreatedView extends JFrame {
         this.pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+        this.setResizable(false);
     }
 
     private void createPanel() {
