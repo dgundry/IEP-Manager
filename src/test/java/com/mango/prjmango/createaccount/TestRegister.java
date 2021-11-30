@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import com.mango.prjmango.createaccount.mothers.UserMother;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -38,30 +40,8 @@ class TestRegister {
         //Arrange
         Register reg = new Register();
 
-        final String ADMIN = "admin";
-        final String ADMIN_EMAIL = "admin@admin.com";
-
-        User user1 = new User();
-        user1.setFirstName(ADMIN);
-        user1.setLastName(ADMIN);
-        user1.setEmail(ADMIN_EMAIL);
-        user1.setPassword1(ADMIN);
-        user1.setPassword2(ADMIN);
-        user1.setSecurityQ1(1);
-        user1.setSecurityA1(ADMIN);
-        user1.setSecurityQ2(2);
-        user1.setSecurityA2(ADMIN);
-
-        User user2 = new User();
-        user2.setFirstName(ADMIN);
-        user2.setLastName(ADMIN);
-        user2.setEmail(ADMIN_EMAIL);
-        user2.setPassword1(ADMIN);
-        user2.setPassword2(ADMIN);
-        user2.setSecurityQ1(1);
-        user2.setSecurityA1(ADMIN);
-        user2.setSecurityQ2(2);
-        user2.setSecurityA2(ADMIN);
+        User user1 = UserMother.getUser().build();
+        User user2 = UserMother.getUser().build();
 
         //Act
         boolean user1Flag = reg.createUser(user1);
