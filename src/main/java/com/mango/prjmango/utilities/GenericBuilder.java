@@ -6,6 +6,13 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
+/**
+ * This class helps reduce the duplicated objects being created in unit tests.
+ *
+ * @author  Kellen Campbell
+ * @version 1.0
+ * @since   2021-11-30
+ */
 public class GenericBuilder<T> {
 
     private final Supplier<T> instantiator;
@@ -16,22 +23,18 @@ public class GenericBuilder<T> {
     }
 
     public static <T> GenericBuilder<T> of(Supplier<T> instantiator) {
-        return new GenericBuilder<T>(instantiator);
+        return new GenericBuilder<>(instantiator);
     }
 
     public <U> GenericBuilder<T> with(BiConsumer<T, U> consumer, U value) {
-        Consumer<T> c = (instance) -> {
-            consumer.accept(instance, value);
-        };
+        Consumer<T> c = instance -> consumer.accept(instance, value);
         this.instanceModifiers.add(c);
         return this;
     }
 
     public T build() {
         T value = this.instantiator.get();
-        this.instanceModifiers.forEach((modifier) -> {
-            modifier.accept(value);
-        });
+        this.instanceModifiers.forEach(modifier -> modifier.accept(value));
         return value;
     }
 }
