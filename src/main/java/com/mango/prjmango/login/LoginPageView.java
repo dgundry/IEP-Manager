@@ -64,7 +64,7 @@ public class LoginPageView extends RoundedPanel {
                 (int) (this.getWidth() * 0.5),
                 30);
         passwordText.setBackground(Color.WHITE);
-        passwordText.setEchoChar((char) 0);
+        //passwordText.setEchoChar((char) 0);
         passwordText.setName("passwordText");
 
         loginButton = new JButton("Login");
