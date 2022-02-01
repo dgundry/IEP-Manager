@@ -6,6 +6,7 @@ import com.mango.prjmango.components.RoundedPanel;
 import com.mango.prjmango.components.common.login.LoginPageComponents;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Insets;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
@@ -52,19 +53,21 @@ public class LoginPageView extends RoundedPanel {
                 (int) (this.getWidth() * 0.5),
                 30);
         emailText.setBackground(Color.WHITE);
+        emailText.setMargin(new Insets(0, 5, 0, 5));
         emailText.setName("emailText");
 
         JLabel enterPasswordHeader = createLabel("Enter Password", FontType.FONT_12_BOLD);
         enterPasswordHeader.setBounds(0, (int) (this.getHeight() * 0.62), this.getWidth(),15);
 
-        passwordText = new JPasswordField("");
+        passwordText = new JPasswordField("Password");
         passwordText.setBounds(
                 (int) (this.getWidth() * 0.5) - (int) (this.getWidth() * 0.25),
                 (int) (this.getHeight() * 0.68),
                 (int) (this.getWidth() * 0.5),
                 30);
         passwordText.setBackground(Color.WHITE);
-        //passwordText.setEchoChar((char) 0);
+        passwordText.setEchoChar((char) 0);
+        passwordText.setMargin(new Insets(0, 5, 0, 5));
         passwordText.setName("passwordText");
 
         loginButton = new JButton("Login");
@@ -77,7 +80,7 @@ public class LoginPageView extends RoundedPanel {
                 30);
         loginButton.setOpaque(true);
         loginButton.setBorderPainted(false);
-        loginButton.setFocusPainted(false);
+        loginButton.setFocusable(false);
 
         createAccountButton = createButton("Create Account");
         createAccountButton.setBounds(
@@ -112,11 +115,11 @@ public class LoginPageView extends RoundedPanel {
 
     private JButton createButton(String text) {
         JButton button = new JButton(text);
-        button.setForeground(new Color(3,179,235));
+        button.setForeground(new Color(3, 179, 235));
         button.setOpaque(false);
         button.setContentAreaFilled(false);
         button.setBorderPainted(false);
-        button.setFocusPainted(false);
+        button.setFocusable(false);
         return button;
     }
 }

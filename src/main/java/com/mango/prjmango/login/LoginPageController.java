@@ -2,27 +2,34 @@ package com.mango.prjmango.login;
 
 import com.mango.prjmango.Main;
 import com.mango.prjmango.components.listeners.ButtonMouseListener;
-import com.mango.prjmango.components.listeners.TextFieldFocusListener;
 import com.mango.prjmango.createaccount.CreateAccountController;
 import com.mango.prjmango.createaccount.CreateAccountView;
 import com.mango.prjmango.forgotpassword.email.EmailController;
 import com.mango.prjmango.forgotpassword.email.EmailView;
+import com.mango.prjmango.login.listeners.EmailTextFieldListener;
+import com.mango.prjmango.login.listeners.PasswordTextFieldListener;
 import com.mango.prjmango.mainloginpage.MainLoginView;
 import com.mango.prjmango.teacher.TeacherController;
 import com.mango.prjmango.teacher.TeacherView;
 import com.mango.prjmango.utilities.Encryption;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 public class LoginPageController {
 
     public LoginPageController(LoginPageView loginPageView) {
+        JTextField emailTextField = loginPageView.getEmailText();
+        JPasswordField passwordField = loginPageView.getPasswordText();
+
+        emailTextField.addFocusListener(new EmailTextFieldListener(emailTextField, "Email"));
+        passwordField.addFocusListener(new PasswordTextFieldListener(passwordField, "Password"));
+
         loginPageView.getLoginButton().addActionListener(new LoginButtonActionListener(loginPageView));
         loginPageView.getLoginButton().addMouseListener(new ButtonMouseListener(loginPageView.getLoginButton()));
 
@@ -33,11 +40,6 @@ public class LoginPageController {
         loginPageView.getCreateAccountButton().addActionListener(new CreateAccountButtonActionListener());
         loginPageView.getCreateAccountButton().addMouseListener(new ButtonMouseListener(
                 loginPageView.getCreateAccountButton()));
-
-        loginPageView.getEmailText().addFocusListener(new TextFieldFocusListener(
-                        loginPageView.getEmailText(),
-                        loginPageView.getEmailText().getText()));
-        loginPageView.getPasswordText().addMouseListener(new PasswordMouseListener(loginPageView));
 
     }
 
@@ -115,42 +117,6 @@ public class LoginPageController {
             CreateAccountView createAccountView = new CreateAccountView();
             new CreateAccountController(createAccountView);
             MainLoginView.setActivePanel(createAccountView);
-        }
-    }
-
-    private static class PasswordMouseListener implements MouseListener {
-
-        private final LoginPageView loginPageView;
-
-        public PasswordMouseListener(LoginPageView loginPageView) { this.loginPageView = loginPageView; }
-
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            if(loginPageView.getPasswordText().getText().equals("Password")){
-                loginPageView.getPasswordText().setText("");
-                //loginPageView.getPasswordText().setEchoChar('•');
-
-            }
-        }
-
-        @Override
-        public void mousePressed(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseReleased(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseEntered(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseExited(MouseEvent e) {
-
         }
     }
 }
