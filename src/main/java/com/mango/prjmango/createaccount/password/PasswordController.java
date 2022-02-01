@@ -1,5 +1,6 @@
 package com.mango.prjmango.createaccount.password;
 
+import com.mango.prjmango.MainFrame;
 import com.mango.prjmango.components.dialogs.Dialog;
 import com.mango.prjmango.components.listeners.ButtonMouseListener;
 import com.mango.prjmango.createaccount.Register;
@@ -8,7 +9,6 @@ import com.mango.prjmango.createaccount.securityquestions.SecurityQuestionsContr
 import com.mango.prjmango.createaccount.securityquestions.SecurityQuestionsView;
 import com.mango.prjmango.login.LoginPageController;
 import com.mango.prjmango.login.LoginPageView;
-import com.mango.prjmango.mainloginpage.MainLoginView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -60,7 +60,7 @@ public class PasswordController {
             securityQuestionsView.getSecurityTwoAnsText().setText(user.getSecurityA2());
 
             new SecurityQuestionsController(securityQuestionsView, user);
-            MainLoginView.setActivePanel(securityQuestionsView);
+            MainFrame.setActivePanel(securityQuestionsView);
         }
     }
 
@@ -88,20 +88,20 @@ public class PasswordController {
             user.setPassword2(passwordConfirmed);
             if (!password.equals(passwordConfirmed)){
                 JOptionPane.showMessageDialog(
-                        MainLoginView.getLoginWindow(),
+                        MainFrame.getFrame(),
                         "Passwords are not matching.",
                         MESSAGE_TITLE,
                         JOptionPane.ERROR_MESSAGE);
             }else if (view.getPasswordText().getText().isEmpty()) {
                 JOptionPane.showMessageDialog(
-                        MainLoginView.getLoginWindow(),
+                        MainFrame.getFrame(),
                         "Please enter a valid Password.",
                         MESSAGE_TITLE,
                         JOptionPane.ERROR_MESSAGE);
             }
             else if (view.getConfirmPasswordText().getText().isEmpty()) {
                 JOptionPane.showMessageDialog(
-                        MainLoginView.getLoginWindow(),
+                        MainFrame.getFrame(),
                         "Please confirm your Password.",
                         MESSAGE_TITLE,
                         JOptionPane.ERROR_MESSAGE);
@@ -115,10 +115,10 @@ public class PasswordController {
 
                     LoginPageView loginPageView = new LoginPageView();
                     new LoginPageController(loginPageView);
-                    MainLoginView.setActivePanel(loginPageView);
+                    MainFrame.setActivePanel(loginPageView);
                 } else {
                     JOptionPane.showMessageDialog(
-                            MainLoginView.getLoginWindow(),
+                            MainFrame.getFrame(),
                             "Something went wrong with registering.",
                             "FAILURE",
                             JOptionPane.ERROR_MESSAGE);

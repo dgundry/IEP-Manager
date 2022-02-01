@@ -1,6 +1,7 @@
 package com.mango.prjmango.login;
 
 import com.mango.prjmango.Main;
+import com.mango.prjmango.MainFrame;
 import com.mango.prjmango.components.listeners.ButtonMouseListener;
 import com.mango.prjmango.createaccount.CreateAccountController;
 import com.mango.prjmango.createaccount.CreateAccountView;
@@ -61,8 +62,9 @@ public class LoginPageController {
                 System.out.println(view.getEmailText().getText() + ":" + view.getPasswordText().getText());
                 if (loginToAccount(view.getEmailText().getText(), view.getPasswordText().getText())) {
                     System.out.println("Logged in");
-                    TeacherView teacherView = new TeacherView();
-                    new TeacherController(teacherView);
+                    MainFrame.setTeacherView();
+//                    TeacherView teacherView = new TeacherView();
+//                    new TeacherController(teacherView);
 
 
                 } else {
@@ -116,7 +118,7 @@ public class LoginPageController {
         public void actionPerformed(ActionEvent e) {
             CreateAccountView createAccountView = new CreateAccountView();
             new CreateAccountController(createAccountView);
-            MainLoginView.setActivePanel(createAccountView);
+            MainFrame.setActivePanel(createAccountView);
         }
     }
 }

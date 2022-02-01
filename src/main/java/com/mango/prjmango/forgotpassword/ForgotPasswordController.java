@@ -1,9 +1,9 @@
 package com.mango.prjmango.forgotpassword;
 
+import com.mango.prjmango.MainFrame;
 import com.mango.prjmango.createaccount.securityquestions.SecurityQuestionsView;
 import com.mango.prjmango.login.LoginPageController;
 import com.mango.prjmango.login.LoginPageView;
-import com.mango.prjmango.mainloginpage.MainLoginView;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -36,7 +36,7 @@ public class ForgotPasswordController {
         public void actionPerformed(ActionEvent e) {
             LoginPageView loginPageView = new LoginPageView();
             new LoginPageController(loginPageView);
-            MainLoginView.setActivePanel(loginPageView);
+            MainFrame.setActivePanel(loginPageView);
         }
     }
 

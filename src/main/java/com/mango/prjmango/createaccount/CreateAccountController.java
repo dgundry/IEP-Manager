@@ -1,5 +1,6 @@
 package com.mango.prjmango.createaccount;
 
+import com.mango.prjmango.MainFrame;
 import com.mango.prjmango.components.listeners.ButtonMouseListener;
 import com.mango.prjmango.components.listeners.TextFieldFocusListener;
 import com.mango.prjmango.createaccount.securityquestions.SecurityQuestionsController;
@@ -56,7 +57,7 @@ public class CreateAccountController {
         public void actionPerformed(ActionEvent e) {
             LoginPageView loginPageView = new LoginPageView();
             new LoginPageController(loginPageView);
-            MainLoginView.setActivePanel(loginPageView);
+            MainFrame.setActivePanel(loginPageView);
         }
     }
 
@@ -92,25 +93,25 @@ public class CreateAccountController {
             Register register = new Register();
             if(!user.getEmail().contains("@")){
                 JOptionPane.showMessageDialog(
-                        MainLoginView.getLoginWindow(),
+                        MainFrame.getFrame(),
                         "Enter a Valid Email.",
                         ERROR_MESSAGE_TITLE,
                         JOptionPane.ERROR_MESSAGE);
             }else if (register.isEmailTaken(user.getEmail())){
                 JOptionPane.showMessageDialog(
-                        MainLoginView.getLoginWindow(),
+                        MainFrame.getFrame(),
                         "Email is Already Taken.",
                         ERROR_MESSAGE_TITLE,
                         JOptionPane.ERROR_MESSAGE);
             }else if(user.getFirstName() != null && !(user.getFirstName().length() >= 1 && user.getFirstName().length() <= 20)){
                 JOptionPane.showMessageDialog(
-                        MainLoginView.getLoginWindow(),
+                        MainFrame.getFrame(),
                         "Enter a Valid First Name.",
                         ERROR_MESSAGE_TITLE,
                         JOptionPane.ERROR_MESSAGE);
             }else if(user.getLastName() != null && !(user.getLastName().length() >= 1 && user.getLastName().length() <= 20)) {
                 JOptionPane.showMessageDialog(
-                        MainLoginView.getLoginWindow(),
+                        MainFrame.getFrame(),
                         "Enter a Valid Last Name.",
                         ERROR_MESSAGE_TITLE,
                         JOptionPane.ERROR_MESSAGE);
@@ -122,7 +123,7 @@ public class CreateAccountController {
                 securityQuestionsView.getSecurityTwoAnsText().setText(user.getSecurityA2());
 
                 new SecurityQuestionsController(securityQuestionsView, user);
-                MainLoginView.setActivePanel(securityQuestionsView);
+                MainFrame.setActivePanel(securityQuestionsView);
             }
         }
     }

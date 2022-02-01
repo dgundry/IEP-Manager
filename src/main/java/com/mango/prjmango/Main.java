@@ -57,12 +57,15 @@ public class Main {
 
 			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
 
-			//Comment out these lines and add new code to test out views
-			LoginPageView loginPageView = new LoginPageView();
-			new LoginPageController(loginPageView);
 
-			new MainLoginView();
-			MainLoginView.setActivePanel(loginPageView);
+			MainFrame frame = new MainFrame();
+			frame.setLoginPage();
+			//Comment out these lines and add new code to test out views
+//			LoginPageView loginPageView = new LoginPageView();
+//			new LoginPageController(loginPageView);
+//
+//			new MainLoginView();
+//			MainLoginView.setActivePanel(loginPageView);
 
 			//Comment for testing TeacherView
 			//TeacherView teacherView = new TeacherView();

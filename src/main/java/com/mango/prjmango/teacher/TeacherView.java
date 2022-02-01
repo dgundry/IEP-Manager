@@ -5,6 +5,8 @@ import com.mango.prjmango.components.BackgroundPanel;
 import com.mango.prjmango.components.FontType;
 import com.mango.prjmango.components.RoundedPanel;
 import com.mango.prjmango.mainloginpage.MainLoginView;
+import lombok.Getter;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -25,36 +27,23 @@ import javax.swing.WindowConstants;
 
 public class TeacherView {
 
-    private JFrame teacherWindow;
+    private static @Getter BackgroundPanel backgroundTeacherPanel;
+    private static @Getter BackgroundPanel gradientPanel;
+    private static @Getter  BackgroundPanel optionsTeacherPanel;
 
-    private static BackgroundPanel backgroundTeacherPanel;
-    private static BackgroundPanel gradientPanel;
-    private static BackgroundPanel optionsTeacherPanel;
-
-    private static JButton myAccountButton;
-    private static JButton studentsButton;
-    private static JButton fullReportsButton;
-    private static JButton activitiesButton;
-    private static JButton helpButton;
-    private static JButton createStudentButton;
-    private static JButton logOutButton;
-
-
-    private final Dimension WINDOW_DIMENSIONS = new Dimension(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
+    private static @Getter  JButton myAccountButton;
+    private static @Getter  JButton studentsButton;
+    private static @Getter  JButton fullReportsButton;
+    private static @Getter  JButton activitiesButton;
+    private static @Getter  JButton helpButton;
+    private static @Getter  JButton createStudentButton;
+    private static @Getter  JButton logOutButton;
 
     private static final Logger logger = Logger.getLogger(MainLoginView.class.getName());
 
     public TeacherView() {
-
-        createFrame();
         createPanel();
         createComponents();
-
-
-        teacherWindow.getContentPane().add(backgroundTeacherPanel);
-        teacherWindow.pack();
-        teacherWindow.setLocationRelativeTo(null);
-        teacherWindow.setVisible(true);
     }
 
     private void createComponents() {
@@ -211,13 +200,6 @@ public class TeacherView {
         return button;
     }
 
-    private void createFrame() {
-        teacherWindow = new JFrame();
-        teacherWindow.setPreferredSize(WINDOW_DIMENSIONS);
-        teacherWindow.setExtendedState(Frame.MAXIMIZED_BOTH);
-        teacherWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-    }
-
     private static void createPanel() {
         try {
             backgroundTeacherPanel = new BackgroundPanel();
@@ -279,14 +261,4 @@ public class TeacherView {
     private Image getScaledImage(String path, int width, int height) {
         return new ImageIcon(path).getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
     }
-
-    public JFrame getTeacherWindow() { return teacherWindow; }
-
-    public JButton getMyAccountButton() { return myAccountButton; }
-    public JButton getStudentsButton() { return studentsButton; }
-    public JButton getFullReportsButton() { return fullReportsButton; }
-    public JButton getActivitiesButton() { return activitiesButton; }
-    public JButton getHelpButton() { return helpButton; }
-    public JButton getLogOutButton() { return helpButton; }
-    public JButton getCreateStudentButton() { return createStudentButton; }
 }
