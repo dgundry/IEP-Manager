@@ -1,10 +1,11 @@
 package com.mango.prjmango.createaccount;
 
-import com.mango.prjmango.utilities.Encryption;
 import com.mango.prjmango.Main;
+import com.mango.prjmango.utilities.Encryption;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 
 public class Register {
 
@@ -37,21 +38,21 @@ public class Register {
             statement.setInt(2, question_id);
             statement.setString(3, Encryption.encryptPassword(answer));
             statement.executeUpdate();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    private void registerTeacher(String firstName, String lastName, String email, String password, int question_id_one, String answer_one, int question_id_two, String answer_two){
+    private void registerTeacher(String firstName, String lastName, String email, char[] password, int question_id_one, String answer_one, int question_id_two, String answer_two){
         String sql = "INSERT INTO teacher(first_name,last_name,email,password) VALUES(?,?,?,?);";
         try (PreparedStatement statement = Main.getConnection().prepareStatement(sql)) {
             statement.setString(1, firstName);
             statement.setString(2, lastName);
             statement.setString(3, email);
-            statement.setString(4, Encryption.encryptPassword(password));
+            statement.setString(4, Encryption.encryptPassword(Arrays.toString(password)));
             statement.executeUpdate();
             int teacher_id = getTeacher_id(email);
             registerSecurityQuestions(teacher_id, question_id_one, answer_one, question_id_two, answer_two);
-        } catch (SQLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

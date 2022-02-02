@@ -1,6 +1,5 @@
 package com.mango.prjmango.login;
 
-import com.mango.prjmango.Main;
 import com.mango.prjmango.components.listeners.ButtonMouseListener;
 import com.mango.prjmango.createaccount.CreateAccountController;
 import com.mango.prjmango.createaccount.CreateAccountView;
@@ -11,12 +10,9 @@ import com.mango.prjmango.login.listeners.PasswordTextFieldListener;
 import com.mango.prjmango.mainloginpage.MainLoginView;
 import com.mango.prjmango.teacher.TeacherController;
 import com.mango.prjmango.teacher.TeacherView;
-import com.mango.prjmango.utilities.Encryption;
+import com.mango.prjmango.utilities.DatabaseCommands;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -57,15 +53,18 @@ public class LoginPageController {
          */
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (!view.getEmailText().getText().equals("") && !view.getPasswordText().getText().equals("")) {
-                System.out.println(view.getEmailText().getText() + ":" + view.getPasswordText().getText());
-                if (loginToAccount(view.getEmailText().getText(), view.getPasswordText().getText())) {
+            String enteredEmail = view.getEmailText().getText();
+            char[] enteredPassword = view.getPasswordText().getPassword();
+
+            if (!enteredEmail.equals("") && enteredPassword.length != 0) {
+
+                if (DatabaseCommands.isValidUser(enteredEmail, enteredPassword) == 1) {
                     System.out.println("Logged in");
                     TeacherView teacherView = new TeacherView();
                     new TeacherController(teacherView);
-
-
                 } else {
+                    // create custom error messages
+
                     System.out.println("Try Again");
                     JOptionPane.showMessageDialog(
                             MainLoginView.getLoginWindow(),
@@ -74,6 +73,8 @@ public class LoginPageController {
                             JOptionPane.ERROR_MESSAGE);
                 }
             } else {
+                // create custom error messages
+
                 System.out.println("Please input a email and password");
                 JOptionPane.showMessageDialog(
                         MainLoginView.getLoginWindow(),
@@ -82,21 +83,6 @@ public class LoginPageController {
                         JOptionPane.ERROR_MESSAGE);
 
             }
-        }
-
-        public boolean loginToAccount(String email, String password) {
-            boolean result = false;
-            String sql = "SELECT email, password FROM teacher WHERE email = ? AND password = ?;";
-            try (PreparedStatement statement = Main.getConnection().prepareStatement(sql)) {
-                statement.setString(1, email);
-                statement.setString(2, Encryption.encryptPassword(password));
-                ResultSet resultSet = statement.executeQuery();
-                result = resultSet.next();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-
-            return result;
         }
     }
 

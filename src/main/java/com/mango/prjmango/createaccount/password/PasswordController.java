@@ -11,27 +11,23 @@ import com.mango.prjmango.login.LoginPageView;
 import com.mango.prjmango.mainloginpage.MainLoginView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.util.Arrays;
 import javax.swing.JOptionPane;
 
 public class PasswordController {
 
     public PasswordController(PasswordView view, User user) {
-        if(!user.getPassword1().equals("")){
-            view.getPasswordText().setText(user.getPassword1());
-        }
-        if(!user.getPassword2().equals("")){
-            view.getConfirmPasswordText().setText(user.getPassword2());
-        }
+//        if(!user.getPassword1().equals("")){
+//            view.getPasswordText().setText(Arrays.toString(user.getPassword1()));
+//        }
+//        if(!user.getPassword2().equals("")){
+//            view.getConfirmPasswordText().setText(Arrays.toString(user.getPassword2()));
+//        }
         view.getBackButton().addActionListener(new BackButtonActionListener(view, user));
         view.getBackButton().addMouseListener(new ButtonMouseListener(view.getBackButton()));
 
         view.getCreateAccountButton().addActionListener(new CreateAccountButtonActionListener(user, view));
         view.getCreateAccountButton().addMouseListener(new ButtonMouseListener(view.getCreateAccountButton()));
-
-        view.getPasswordText().addMouseListener(new PasswordTextFieldMouseListener(view));
-        view.getConfirmPasswordText().addMouseListener(new ConfirmPasswordTextFieldMouseListener(view));
     }
 
     private static class BackButtonActionListener implements ActionListener {
@@ -50,8 +46,8 @@ public class PasswordController {
          */
 
         public void actionPerformed(ActionEvent e){
-            user.setPassword1(view.getPasswordText().getText());
-            user.setPassword2(view.getConfirmPasswordText().getText());
+            user.setPassword1(view.getPasswordText().getPassword());
+            user.setPassword2(view.getConfirmPasswordText().getPassword());
 
             SecurityQuestionsView securityQuestionsView = new SecurityQuestionsView();
             securityQuestionsView.getSecurityQuestionOne().setSelectedIndex(user.getSecurityQ1());
@@ -82,24 +78,24 @@ public class PasswordController {
             final String MESSAGE_TITLE = "Invalid!";
             //Add user to database
             //Verify all input
-            String password = view.getPasswordText().getText();
-            String passwordConfirmed = view.getConfirmPasswordText().getText();
+            char[] password = view.getPasswordText().getPassword();
+            char[] passwordConfirmed = view.getConfirmPasswordText().getPassword();
             user.setPassword1(password);
             user.setPassword2(passwordConfirmed);
-            if (!password.equals(passwordConfirmed)){
+            if (!Arrays.equals(password, passwordConfirmed)){
                 JOptionPane.showMessageDialog(
                         MainLoginView.getLoginWindow(),
                         "Passwords are not matching.",
                         MESSAGE_TITLE,
                         JOptionPane.ERROR_MESSAGE);
-            }else if (view.getPasswordText().getText().isEmpty()) {
+            }else if (view.getPasswordText().getPassword().length == 0) {
                 JOptionPane.showMessageDialog(
                         MainLoginView.getLoginWindow(),
                         "Please enter a valid Password.",
                         MESSAGE_TITLE,
                         JOptionPane.ERROR_MESSAGE);
             }
-            else if (view.getConfirmPasswordText().getText().isEmpty()) {
+            else if (view.getConfirmPasswordText().getPassword().length == 0) {
                 JOptionPane.showMessageDialog(
                         MainLoginView.getLoginWindow(),
                         "Please confirm your Password.",
@@ -124,74 +120,6 @@ public class PasswordController {
                             JOptionPane.ERROR_MESSAGE);
                 }
             }
-        }
-    }
-    private static class PasswordTextFieldMouseListener implements MouseListener {
-
-        private final PasswordView passwordView;
-
-        public PasswordTextFieldMouseListener(PasswordView passwordView) { this.passwordView = passwordView; }
-
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            if(passwordView.getPasswordText().getText().equals("Password")){
-                passwordView.getPasswordText().setText("");
-
-            }
-        }
-
-        @Override
-        public void mousePressed(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseReleased(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseEntered(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseExited(MouseEvent e) {
-
-        }
-    }
-    private static class ConfirmPasswordTextFieldMouseListener implements MouseListener {
-
-        private final PasswordView passwordView;
-
-        public ConfirmPasswordTextFieldMouseListener(PasswordView passwordView) { this.passwordView = passwordView; }
-
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            if(passwordView.getConfirmPasswordText().getText().equals("Confirm Password")){
-                passwordView.getConfirmPasswordText().setText("");
-
-            }
-        }
-
-        @Override
-        public void mousePressed(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseReleased(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseEntered(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseExited(MouseEvent e) {
-
         }
     }
 }

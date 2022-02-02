@@ -1,12 +1,14 @@
 package com.mango.prjmango.createaccount;
 
+import java.util.Arrays;
+
 public class User {
 
     private String firstName = "";
     private String lastName = "";
     private String email = "";
-    private String password1 = "";
-    private String password2 = "";
+    private char[] password1;
+    private char[] password2;
     private int securityQ1 = 0;
     private String securityA1 = "";
     private int securityQ2 = 1;
@@ -21,11 +23,11 @@ public class User {
     public void setEmail(String email){
         this.email = email;
     }
-    public void setPassword1(String pass){
-        this.password1 = pass;
+    public void setPassword1(char[] password){
+        this.password1 = password;
     }
-    public void setPassword2(String pass){
-        this.password2 = pass;
+    public void setPassword2(char[] password){
+        this.password2 = password;
     }
     public void setSecurityQ1(int question){
         this.securityQ1 = question;
@@ -48,10 +50,10 @@ public class User {
     public String getEmail(){
         return email;
     }
-    public String getPassword1(){
+    public char[] getPassword1(){
         return password1;
     }
-    public String getPassword2(){
+    public char[] getPassword2(){
         return password2;
     }
     public int getSecurityQ1(){
@@ -84,10 +86,10 @@ public class User {
     private boolean isValidText(String text) { return !text.equals("");
     }
 
-    private boolean isValidPassword(String password) { return password != null;
+    private boolean isValidPassword(char[] password) { return password.length != 0;
     }
 
-    private boolean isUniquePassword(String passwordOne, String passwordTwo) { return passwordOne.equals(passwordTwo);
+    private boolean isUniquePassword(char[] passwordOne, char[] passwordTwo) { return Arrays.equals(passwordOne, passwordTwo);
     }
 
     private boolean isValidSecurityQuestion(int securityQuestion) { return securityQuestion >= 0 && securityQuestion <= 16;

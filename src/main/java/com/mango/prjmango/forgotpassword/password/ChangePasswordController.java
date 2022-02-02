@@ -9,7 +9,6 @@ import com.mango.prjmango.utilities.Encryption;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class ChangePasswordController {
@@ -88,7 +87,7 @@ public class ChangePasswordController {
                         new LoginPageController(loginPageView);
                         MainLoginView.setActivePanel(loginPageView);
                     }
-                } catch (SQLException ex) {
+                } catch (Exception ex) {
                     ex.printStackTrace();
                 }
             }

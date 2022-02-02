@@ -1,5 +1,6 @@
 package com.mango.prjmango.utilities;
 
+import java.security.NoSuchAlgorithmException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -11,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class EncryptionTest {
 
     @Test
-    void eightCharacterPasswordTest() {
+    void eightCharacterPasswordTest() throws NoSuchAlgorithmException {
         //Arrange
         String password = "password";
 
@@ -24,7 +25,7 @@ class EncryptionTest {
     }
 
     @Test
-    void tenCharacterPasswordTest() {
+    void tenCharacterPasswordTest() throws NoSuchAlgorithmException {
         //Arrange
         String password = "kalsADF,af";
 
@@ -37,7 +38,7 @@ class EncryptionTest {
     }
 
     @Test
-    void twelveCharacterPasswordTest() {
+    void twelveCharacterPasswordTest() throws NoSuchAlgorithmException {
         //Arrange
         String password = "wAf{Q537*CPx";
 
@@ -50,7 +51,7 @@ class EncryptionTest {
     }
 
     @Test
-    void sixteenCharacterPasswordTest() {
+    void sixteenCharacterPasswordTest() throws NoSuchAlgorithmException {
         //Arrange
         String password = "#W_HAxv&#-mB22(A";
 

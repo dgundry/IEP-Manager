@@ -55,7 +55,7 @@ public class EditAccountController {
                         statement.setString(1, Encryption.encryptPassword(newPassword1));
                         statement.executeUpdate();
                         System.out.println("Password Changed.");
-                    } catch (SQLException e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 } else {
@@ -105,7 +105,7 @@ public class EditAccountController {
             statement.setString(2, Encryption.encryptPassword(password));
             ResultSet resultSet = statement.executeQuery();
             result = resultSet.next();
-        } catch (SQLException ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
         return result;

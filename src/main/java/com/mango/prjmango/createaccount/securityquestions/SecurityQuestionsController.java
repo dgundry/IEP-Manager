@@ -85,22 +85,19 @@ public class SecurityQuestionsController {
                         "Please select two different security questions.",
                         MESSAGE_TITLE,
                         JOptionPane.ERROR_MESSAGE);
-            }
-            else if (view.getSecurityOneAnsText().getText().isEmpty()) {
+            } else if (view.getSecurityOneAnsText().getText().isEmpty()) {
                 JOptionPane.showMessageDialog(
                         MainLoginView.getLoginWindow(),
                         "Please enter an answer for your first security question.",
                         MESSAGE_TITLE,
                         JOptionPane.ERROR_MESSAGE);
-            }
-            else if (view.getSecurityTwoAnsText().getText().isEmpty()) {
+            } else if (view.getSecurityTwoAnsText().getText().isEmpty()) {
                 JOptionPane.showMessageDialog(
                         MainLoginView.getLoginWindow(),
                         "Please enter an answer for your second security question.",
                         MESSAGE_TITLE,
                         JOptionPane.ERROR_MESSAGE);
-            }
-            else {
+            } else {
                 user.setSecurityQ1(view.getSecurityQuestionOne().getSelectedIndex());
                 user.setSecurityQ2(view.getSecurityQuestionTwo().getSelectedIndex());
 

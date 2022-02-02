@@ -107,7 +107,8 @@ class TestRegister {
     void areNotValidPasswordsTest() {
         //Arrange
         User user = UserMother.getUser().build();
-        user.setPassword2("password2");
+        String password = "password2";
+        user.setPassword2(password.toCharArray());
 
         //Act
         boolean userFlag = reg.createUser(user);
