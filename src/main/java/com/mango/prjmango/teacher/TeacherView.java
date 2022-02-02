@@ -44,11 +44,10 @@ public class TeacherView extends BackgroundPanel{
             this.setBackground(
                     ImageIO.read(new File("src/main/java/com/mango/prjmango/utilities/images/BackgroundTeacherImage.PNG")));
             this.setLayout(new GridBagLayout());
-            this.setBounds(
-                    (int) (Main.SCREEN_WIDTH * 0.5) - ((int) (Main.SCREEN_WIDTH * 0.16)),
-                    (int) (Main.SCREEN_HEIGHT * 0.125),
-                    (int) (Main.SCREEN_WIDTH * 0.3),
-                    (int) (Main.SCREEN_HEIGHT * 0.70));
+            this.setBounds(0,
+                    0,
+                    Main.SCREEN_WIDTH,
+                    Main.SCREEN_HEIGHT);
             createPanel();
             createComponents();
         } catch (IOException ex) {
@@ -212,6 +211,27 @@ public class TeacherView extends BackgroundPanel{
 
     private void createPanel() {
         try {
+            optionsTeacherPanel = new BackgroundPanel();
+            optionsTeacherPanel.setBackground(
+                    ImageIO.read(new File("src/main/java/com/mango/prjmango/utilities/images/OptionsTeacherPanel.PNG")));
+            optionsTeacherPanel.setLayout(null);
+            optionsTeacherPanel.setBounds(
+                    (0),
+                    (0),
+                    (int) (Main.SCREEN_WIDTH * 0.2),
+                    (int) (Main.SCREEN_HEIGHT * 1.0));
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+            gbc.gridwidth = 1;
+            gbc.gridheight = 2;
+            gbc.fill = GridBagConstraints.BOTH;
+            gbc.weightx = 2;
+            gbc.weighty = 1;
+            this.add(optionsTeacherPanel,gbc);
+        } catch (IOException ex) {
+            logger.log(Level.SEVERE, "Could not load Options image. ");
+        }
+        try {
             gradientPanel = new BackgroundPanel();
             gradientPanel.setBackground(
                     ImageIO.read(new File("src/main/java/com/mango/prjmango/utilities/images/GradientPanel.PNG")));
@@ -228,30 +248,9 @@ public class TeacherView extends BackgroundPanel{
             gbc.fill = GridBagConstraints.BOTH;
             gbc.weightx = 5;
             gbc.weighty = 5;
-            this.add(gradientPanel);
+            this.add(gradientPanel,gbc);
         } catch (IOException ex) {
             logger.log(Level.SEVERE, "Could not load gradient image.");
-        }
-        try {
-            optionsTeacherPanel = new BackgroundPanel();
-            optionsTeacherPanel.setBackground(
-                    ImageIO.read(new File("src/main/java/com/mango/prjmango/utilities/images/OptionsTeacherPanel.PNG")));
-            optionsTeacherPanel.setLayout(null);
-            optionsTeacherPanel.setBounds(
-                    (0),
-                    (0),
-                    (int) (Main.SCREEN_WIDTH * 0.2),
-                    (int) (Main.SCREEN_HEIGHT * 1.0));
-            gbc.gridx = 0;
-            gbc.gridy = 0;
-            gbc.gridwidth = 1;
-            gbc.gridheight = 2;
-            gbc.fill = GridBagConstraints.BOTH;
-            gbc.weightx = .5;
-            gbc.weighty = 1;
-            this.add(optionsTeacherPanel,gbc);
-        } catch (IOException ex) {
-            logger.log(Level.SEVERE, "Could not load Options image. ");
         }
     }
     private Image getScaledImage(String path, int width, int height) {
