@@ -20,9 +20,13 @@ import java.util.logging.Logger;
 public class MainFrame{
     private final Dimension WINDOW_DIMENSIONS = new Dimension(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
     private static final Logger logger = Logger.getLogger(MainFrame.class.getName());
-    private static @Getter BackgroundPanel backgroundLoginPanel;
-    private static @Getter TeacherView teacherView;
     private static @Getter JFrame frame;
+
+    private static @Getter BackgroundPanel backgroundLoginPanel;
+
+    private static @Getter BackgroundPanel backgroundTeacherPanel;
+    private static @Getter BackgroundPanel gradientPanel;
+    private static @Getter  BackgroundPanel optionsTeacherPanel;
 
     public MainFrame(){
         frame = new JFrame("IEP Manager");
@@ -38,11 +42,20 @@ public class MainFrame{
         frame.setVisible(true);
     }
     public static void setTeacherView(){
-        frame.removeAll();
         createTeacherView();
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+    }
+    private static LoginPageView createLoginViewController(){
+        LoginPageView loginPageView = new LoginPageView();
+        new LoginPageController(loginPageView);
+        return loginPageView;
+    }
+    private static TeacherView createTeacherViewController(){
+        TeacherView teacherView = new TeacherView();
+        new TeacherController(teacherView);
+        return teacherView;
     }
     private void createLoginView(){
         try {
@@ -57,18 +70,22 @@ public class MainFrame{
             logger.log(Level.SEVERE, "Could not load background image.");
         }
     }
-    private static LoginPageView createLoginViewController(){
-        LoginPageView loginPageView = new LoginPageView();
-        new LoginPageController(loginPageView);
-        return loginPageView;
-    }
     private static void createTeacherView(){
-        frame.add(createLoginViewController());
-    }
-    private TeacherView createTeacherViewController(){
-        teacherView = new TeacherView();
-        new TeacherController(teacherView);
-        return teacherView;
+        try {
+            backgroundTeacherPanel = new BackgroundPanel();
+            backgroundTeacherPanel.setBackground(
+                    ImageIO.read(new File("src/main/java/com/mango/prjmango/utilities/images/BackgroundTeacherImage.PNG")));
+            backgroundTeacherPanel.setLayout(null);
+            backgroundTeacherPanel.setBounds(
+                    (int) (Main.SCREEN_WIDTH * 0.5) - ((int) (Main.SCREEN_WIDTH * 0.16)),
+                    (int) (Main.SCREEN_HEIGHT * 0.125),
+                    (int) (Main.SCREEN_WIDTH * 0.3),
+                    (int) (Main.SCREEN_HEIGHT * 0.70));
+            frame.add(backgroundTeacherPanel);
+            backgroundTeacherPanel.add(createTeacherViewController());
+        } catch (IOException ex) {
+            logger.log(Level.SEVERE, "Could not load background image.");
+        }
     }
     public static void setActivePanel(RoundedPanel panel){
         backgroundLoginPanel.removeAll();
