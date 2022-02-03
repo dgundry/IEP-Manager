@@ -1,5 +1,6 @@
 package com.mango.prjmango;
 
+import com.mango.prjmango.editaccount.EditAccountView;
 import com.mango.prjmango.login.LoginPageController;
 import com.mango.prjmango.login.LoginPageView;
 import com.mango.prjmango.mainloginpage.MainLoginView;
@@ -40,6 +41,8 @@ public class Main {
 
 	public static final String TESTING_DB = "jdbc:sqlite:database\\testing.db";
 
+	public static MainFrame frame;
+
 	public static void setDatabase(String database) {
 		try {
 			connection = DriverManager.getConnection(database);
@@ -58,8 +61,9 @@ public class Main {
 			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
 
 
-			MainFrame frame = new MainFrame();
-			frame.setTeacherView();
+			frame = new MainFrame();
+			frame.setLoginPage();
+//			frame.setTeacherView(new EditAccountView());
 			//Comment out these lines and add new code to test out views
 //			LoginPageView loginPageView = new LoginPageView();
 //			new LoginPageController(loginPageView);

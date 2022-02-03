@@ -14,19 +14,14 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JSeparator;
-import javax.swing.SwingConstants;
-import javax.swing.WindowConstants;
+import javax.swing.*;
 
 public class TeacherView extends BackgroundPanel{
 
     private GridBagConstraints gbc;
     private static @Getter BackgroundPanel gradientPanel;
     private static @Getter  BackgroundPanel optionsTeacherPanel;
+    private static @Getter JPanel mainPanel;
 
     private static @Getter  JButton myAccountButton;
     private static @Getter  JButton studentsButton;
@@ -50,6 +45,30 @@ public class TeacherView extends BackgroundPanel{
                     Main.SCREEN_HEIGHT);
             createPanel();
             createComponents();
+        } catch (IOException ex) {
+            logger.log(Level.SEVERE, "Could not load background image.");
+        }
+    }public TeacherView(JPanel mainPanel) {
+        gbc = new GridBagConstraints();
+        try {
+            this.setBackground(
+                    ImageIO.read(new File("src/main/java/com/mango/prjmango/utilities/images/BackgroundTeacherImage.PNG")));
+            this.setLayout(new GridBagLayout());
+            this.setBounds(0,
+                    0,
+                    Main.SCREEN_WIDTH,
+                    Main.SCREEN_HEIGHT);
+            createPanel();
+            createComponents();
+            gbc.gridx = 2;
+            gbc.gridy = 2;
+            gbc.gridwidth = 1;
+            gbc.gridheight = 2;
+            gbc.fill = GridBagConstraints.BOTH;
+            gbc.weightx = 5;
+            gbc.weighty = 5;
+            this.add(gradientPanel,gbc);
+            add(mainPanel);
         } catch (IOException ex) {
             logger.log(Level.SEVERE, "Could not load background image.");
         }
