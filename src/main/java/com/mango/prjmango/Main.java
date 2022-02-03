@@ -64,6 +64,7 @@ public class Main {
 			frame = new MainFrame();
 			frame.setLoginPage();
 //			frame.setTeacherView(new EditAccountView());
+//			frame.setTeacherView(new EditAccountView());
 			//Comment out these lines and add new code to test out views
 //			LoginPageView loginPageView = new LoginPageView();
 //			new LoginPageController(loginPageView);

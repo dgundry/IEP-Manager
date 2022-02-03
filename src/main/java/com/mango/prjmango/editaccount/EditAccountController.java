@@ -14,18 +14,17 @@ import java.sql.SQLException;
 public class EditAccountController {
 
     public EditAccountController(EditAccountView editAccountView){
-        editAccountView.getCreateStudentButton().addActionListener(new CreateStudentButtonActionListener(editAccountView));
-        editAccountView.getMyAccountButton().addActionListener(new MyAccountButtonActionListener());
+//        editAccountView.getCreateStudentButton().addActionListener(new CreateStudentButtonActionListener());
+//        editAccountView.getMyAccountButton().addActionListener(new MyAccountButtonActionListener());
 
     }
 
 
     private static class CreateStudentButtonActionListener implements ActionListener {
 
-        private final EditAccountView view;
 
-        public CreateStudentButtonActionListener(EditAccountView editAccountView){
-            this.view = editAccountView;
+        public CreateStudentButtonActionListener(){
+
         }
         @Override
         public void actionPerformed(ActionEvent e) {

@@ -54,10 +54,12 @@ public class MainFrame{
         mainPanel.updateUI();
     }
     public static void setTeacherView(JPanel panel){
+        mainPanel.removeAll();
         createTeacherView(panel);
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+        mainPanel.updateUI();
     }
     private static LoginPageView createLoginViewController(){
         LoginPageView loginPageView = new LoginPageView();
@@ -88,21 +90,7 @@ public class MainFrame{
         }
     }
     private static void createTeacherView(JPanel panel){
-        try {
-            backgroundTeacherPanel = new BackgroundPanel();
-            backgroundTeacherPanel.setBackground(
-                    ImageIO.read(new File("src/main/java/com/mango/prjmango/utilities/images/BackgroundTeacherImage.PNG")));
-            backgroundTeacherPanel.setLayout(null);
-            backgroundTeacherPanel.setBounds(
-                    (int) (Main.SCREEN_WIDTH * 0.5) - ((int) (Main.SCREEN_WIDTH * 0.16)),
-                    (int) (Main.SCREEN_HEIGHT * 0.125),
-                    (int) (Main.SCREEN_WIDTH * 0.3),
-                    (int) (Main.SCREEN_HEIGHT * 0.70));
-            mainPanel.add(backgroundTeacherPanel);
-            backgroundTeacherPanel.add(createTeacherViewController(panel));
-        } catch (IOException ex) {
-            logger.log(Level.SEVERE, "Could not load background image.");
-        }
+        mainPanel.add(createTeacherViewController(panel));
     }
     private static void createTeacherView(){
         try {

@@ -5,6 +5,8 @@ import com.mango.prjmango.MainFrame;
 import com.mango.prjmango.components.listeners.ButtonMouseListener;
 import com.mango.prjmango.createaccount.CreateAccountController;
 import com.mango.prjmango.createaccount.CreateAccountView;
+import com.mango.prjmango.editaccount.EditAccountController;
+import com.mango.prjmango.editaccount.EditAccountView;
 import com.mango.prjmango.forgotpassword.email.EmailController;
 import com.mango.prjmango.forgotpassword.email.EmailView;
 import com.mango.prjmango.login.listeners.EmailTextFieldListener;
@@ -62,7 +64,9 @@ public class LoginPageController {
                 System.out.println(view.getEmailText().getText() + ":" + view.getPasswordText().getText());
                 if (loginToAccount(view.getEmailText().getText(), view.getPasswordText().getText())) {
                     System.out.println("Logged in");
-                    MainFrame.setTeacherView();
+                    EditAccountView edit = new EditAccountView();
+                    new EditAccountController(edit);
+                    MainFrame.setTeacherView(edit);
 //                    TeacherView teacherView = new TeacherView();
 //                    new TeacherController(teacherView);
 
