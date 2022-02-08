@@ -14,22 +14,20 @@ import java.sql.SQLException;
 public class EditAccountController {
 
     public EditAccountController(EditAccountView editAccountView){
-        editAccountView.getCreateStudentButton().addActionListener(new CreateStudentButtonActionListener(editAccountView));
-        editAccountView.getMyAccountButton().addActionListener(new MyAccountButtonActionListener());
+//        editAccountView.getCreateStudentButton().addActionListener(new CreateStudentButtonActionListener());
+//        editAccountView.getMyAccountButton().addActionListener(new MyAccountButtonActionListener());
 
     }
 
 
     private static class CreateStudentButtonActionListener implements ActionListener {
 
-        private final EditAccountView view;
 
-        public CreateStudentButtonActionListener(EditAccountView editAccountView){
-            this.view = editAccountView;
+        public CreateStudentButtonActionListener(){
+
         }
         @Override
         public void actionPerformed(ActionEvent e) {
-            view.getTeacherWindow().dispose();
             CreateAStudentView createAStudent = new CreateAStudentView();
             new CreateAStudentController(createAStudent);
             System.out.println("Clicked on Create A student");
@@ -38,7 +36,6 @@ public class EditAccountController {
     private static class MyAccountButtonActionListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e){
-
             EditAccountView editAccountView = new EditAccountView();
             new EditAccountController(editAccountView);
             System.out.println("Clicked on EditAccount");

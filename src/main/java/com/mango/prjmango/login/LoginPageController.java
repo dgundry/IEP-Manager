@@ -1,8 +1,15 @@
 package com.mango.prjmango.login;
 
+
+
+import com.mango.prjmango.Main;
+import com.mango.prjmango.MainFrame;
+//>>>>>>> 5ba28a0e774f8b7a49afcd1f131c56ca6b1707bc
 import com.mango.prjmango.components.listeners.ButtonMouseListener;
 import com.mango.prjmango.createaccount.CreateAccountController;
 import com.mango.prjmango.createaccount.CreateAccountView;
+import com.mango.prjmango.editaccount.EditAccountController;
+import com.mango.prjmango.editaccount.EditAccountView;
 import com.mango.prjmango.forgotpassword.email.EmailController;
 import com.mango.prjmango.forgotpassword.email.EmailView;
 import com.mango.prjmango.login.listeners.EmailTextFieldListener;
@@ -60,8 +67,18 @@ public class LoginPageController {
 
                 if (DatabaseCommands.isValidUser(enteredEmail, enteredPassword) == 1) {
                     System.out.println("Logged in");
+
                     TeacherView teacherView = new TeacherView();
                     new TeacherController(teacherView);
+
+                    EditAccountView edit = new EditAccountView();
+                    new EditAccountController(edit);
+                    MainFrame.setTeacherView(edit);
+//                    TeacherView teacherView = new TeacherView();
+//                    new TeacherController(teacherView);
+
+
+//>>>>>>> 5ba28a0e774f8b7a49afcd1f131c56ca6b1707bc
                 } else {
                     // create custom error messages
 
@@ -102,7 +119,7 @@ public class LoginPageController {
         public void actionPerformed(ActionEvent e) {
             CreateAccountView createAccountView = new CreateAccountView();
             new CreateAccountController(createAccountView);
-            MainLoginView.setActivePanel(createAccountView);
+            MainFrame.setActivePanel(createAccountView);
         }
     }
 }

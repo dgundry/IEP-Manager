@@ -1,6 +1,7 @@
 package com.mango.prjmango.createaccount.securityquestions;
 
 
+import com.mango.prjmango.MainFrame;
 import com.mango.prjmango.components.listeners.ButtonMouseListener;
 import com.mango.prjmango.createaccount.CreateAccountController;
 import com.mango.prjmango.createaccount.CreateAccountView;
@@ -54,7 +55,7 @@ public class SecurityQuestionsController {
             createAccountView.getEmailText().setText(email.equals("") ? "Email" : user.getEmail());
 
             new CreateAccountController(createAccountView, user);
-            MainLoginView.setActivePanel(createAccountView);
+            MainFrame.setActivePanel(createAccountView);
         }
     }
 
@@ -81,19 +82,19 @@ public class SecurityQuestionsController {
 
             if (questionOneIndex == questionTwoIndex) {
                 JOptionPane.showMessageDialog(
-                        MainLoginView.getLoginWindow(),
+                        MainFrame.getFrame(),
                         "Please select two different security questions.",
                         MESSAGE_TITLE,
                         JOptionPane.ERROR_MESSAGE);
             } else if (view.getSecurityOneAnsText().getText().isEmpty()) {
                 JOptionPane.showMessageDialog(
-                        MainLoginView.getLoginWindow(),
+                        MainFrame.getFrame(),
                         "Please enter an answer for your first security question.",
                         MESSAGE_TITLE,
                         JOptionPane.ERROR_MESSAGE);
             } else if (view.getSecurityTwoAnsText().getText().isEmpty()) {
                 JOptionPane.showMessageDialog(
-                        MainLoginView.getLoginWindow(),
+                        MainFrame.getFrame(),
                         "Please enter an answer for your second security question.",
                         MESSAGE_TITLE,
                         JOptionPane.ERROR_MESSAGE);
@@ -106,7 +107,7 @@ public class SecurityQuestionsController {
 
                 PasswordView passwordView = new PasswordView();
                 new PasswordController(passwordView, user);
-                MainLoginView.setActivePanel(passwordView);
+                MainFrame.setActivePanel(passwordView);
             }
         }
     }

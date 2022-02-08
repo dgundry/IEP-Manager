@@ -1,13 +1,13 @@
 package com.mango.prjmango.forgotpassword.email;
 
 
+import com.mango.prjmango.MainFrame;
 import com.mango.prjmango.components.listeners.ButtonMouseListener;
 import com.mango.prjmango.forgotpassword.PasswordChange;
 import com.mango.prjmango.forgotpassword.securityquestions.AnswerSecurityQuestionsController;
 import com.mango.prjmango.forgotpassword.securityquestions.AnswerSecurityQuestionsView;
 import com.mango.prjmango.login.LoginPageController;
 import com.mango.prjmango.login.LoginPageView;
-import com.mango.prjmango.mainloginpage.MainLoginView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
@@ -49,7 +49,7 @@ public class EmailController {
         public void actionPerformed(ActionEvent e) {
             LoginPageView loginPageView = new LoginPageView();
             new LoginPageController(loginPageView);
-            MainLoginView.setActivePanel(loginPageView);
+            MainFrame.setActivePanel(loginPageView);
         }
     }
 
@@ -68,14 +68,14 @@ public class EmailController {
             PasswordChange passwordChange = new PasswordChange();
             if (!passwordChange.isEmailTaken(view.getEmailText().getText())) {
                 JOptionPane.showMessageDialog(
-                        MainLoginView.getLoginWindow(),
+                        MainFrame.getFrame(),
                         "No accounts found with this email.",
                         "Error",
                         JOptionPane.ERROR_MESSAGE);
             }else {
                 AnswerSecurityQuestionsView securityQuestions = new AnswerSecurityQuestionsView(passwordChange.getTeacher_id(view.getEmailText().getText()));
                 new AnswerSecurityQuestionsController(securityQuestions, passwordChange.getTeacher_id(view.getEmailText().getText()));
-                MainLoginView.setActivePanel(securityQuestions);
+                MainFrame.setActivePanel(securityQuestions);
             }
         }
     }

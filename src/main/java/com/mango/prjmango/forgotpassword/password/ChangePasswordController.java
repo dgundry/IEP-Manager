@@ -1,10 +1,10 @@
 package com.mango.prjmango.forgotpassword.password;
 
 import com.mango.prjmango.Main;
+import com.mango.prjmango.MainFrame;
 import com.mango.prjmango.components.listeners.ButtonMouseListener;
 import com.mango.prjmango.login.LoginPageController;
 import com.mango.prjmango.login.LoginPageView;
-import com.mango.prjmango.mainloginpage.MainLoginView;
 import com.mango.prjmango.utilities.Encryption;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,7 +31,7 @@ public class ChangePasswordController {
         public void actionPerformed(ActionEvent e){
             LoginPageView loginPageView = new LoginPageView();
             new LoginPageController(loginPageView);
-            MainLoginView.setActivePanel(loginPageView);
+            MainFrame.setActivePanel(loginPageView);
         }
     }
 
@@ -54,20 +54,20 @@ public class ChangePasswordController {
             String passwordConfirmed = view.getConfirmPasswordText().getText();
             if (!password.equals(passwordConfirmed)){
                 JOptionPane.showMessageDialog(
-                        MainLoginView.getLoginWindow(),
+                        MainFrame.getFrame(),
                         "Passwords are not matching.",
                         MESSAGE_TITLE,
                         JOptionPane.ERROR_MESSAGE);
             }else if (view.getPasswordText().getText().isEmpty()) {
                 JOptionPane.showMessageDialog(
-                        MainLoginView.getLoginWindow(),
+                        MainFrame.getFrame(),
                         "Please enter a valid Password.",
                         MESSAGE_TITLE,
                         JOptionPane.ERROR_MESSAGE);
             }
             else if (view.getConfirmPasswordText().getText().isEmpty()) {
                 JOptionPane.showMessageDialog(
-                        MainLoginView.getLoginWindow(),
+                        MainFrame.getFrame(),
                         "Please confirm your Password.",
                         MESSAGE_TITLE,
                         JOptionPane.ERROR_MESSAGE);
@@ -79,13 +79,13 @@ public class ChangePasswordController {
                     int result = statement.executeUpdate();
                     if(result == 1) {
                         JOptionPane.showMessageDialog(
-                                MainLoginView.getLoginWindow(),
+                                MainFrame.getFrame(),
                                 "Password Successfully Changed.",
                                 "SUCCESS",
                                 JOptionPane.ERROR_MESSAGE);
                         LoginPageView loginPageView = new LoginPageView();
                         new LoginPageController(loginPageView);
-                        MainLoginView.setActivePanel(loginPageView);
+                        MainFrame.setActivePanel(loginPageView);
                     }
                 } catch (Exception ex) {
                     ex.printStackTrace();
