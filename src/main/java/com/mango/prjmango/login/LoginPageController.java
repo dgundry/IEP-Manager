@@ -109,7 +109,7 @@ public class LoginPageController {
         public void actionPerformed(ActionEvent e) {
             EmailView emailView = new EmailView();
             new EmailController(emailView);
-            MainLoginView.setActivePanel(emailView);
+            MainFrame.setActivePanel(emailView);
         }
     }
 

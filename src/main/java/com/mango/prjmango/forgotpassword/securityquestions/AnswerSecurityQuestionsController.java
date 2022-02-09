@@ -18,6 +18,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
+import static com.mango.prjmango.Main.frame;
+
 public class AnswerSecurityQuestionsController {
 
     private static final Logger logger = Logger.getLogger(AnswerSecurityQuestionsController.class.getName());
@@ -43,9 +45,7 @@ public class AnswerSecurityQuestionsController {
          */
         @Override
         public void actionPerformed(ActionEvent e) {
-            LoginPageView loginPageView = new LoginPageView();
-            new LoginPageController(loginPageView);
-            MainLoginView.setActivePanel(loginPageView);
+            frame.setLoginPage();
         }
     }
 

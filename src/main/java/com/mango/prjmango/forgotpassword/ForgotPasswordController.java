@@ -14,6 +14,8 @@ import java.awt.font.TextAttribute;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.mango.prjmango.Main.frame;
+
 public class ForgotPasswordController {
 
     public ForgotPasswordController(SecurityQuestionsView view) {
@@ -34,9 +36,7 @@ public class ForgotPasswordController {
          */
         @Override
         public void actionPerformed(ActionEvent e) {
-            LoginPageView loginPageView = new LoginPageView();
-            new LoginPageController(loginPageView);
-            MainFrame.setActivePanel(loginPageView);
+            frame.setLoginPage();
         }
     }
 

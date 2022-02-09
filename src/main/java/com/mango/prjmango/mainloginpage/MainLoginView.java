@@ -24,6 +24,7 @@ public class MainLoginView {
     private static final Logger logger = Logger.getLogger(MainLoginView.class.getName());
 
     public MainLoginView() {
+        backgroundLoginPanel = new BackgroundPanel();
         createFrame();
         createPanel();
 
@@ -42,7 +43,6 @@ public class MainLoginView {
 
     private static void createPanel() {
         try {
-            backgroundLoginPanel = new BackgroundPanel();
             backgroundLoginPanel.setBackground(
                     ImageIO.read(new File("src/main/java/com/mango/prjmango/utilities/images/Ariel-City-of-Lawrenceburg1.png")));
 

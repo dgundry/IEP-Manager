@@ -39,7 +39,7 @@ public class MainFrame{
         frame.setLayout(new GridLayout(1,1));
         frame.add(mainPanel);
     }
-    public void setLoginPage(){
+    public static void setLoginPage(){
         mainPanel.removeAll();
         createLoginView();
         frame.setLocationRelativeTo(null);
@@ -76,7 +76,7 @@ public class MainFrame{
         new TeacherController(teacherView);
         return teacherView;
     }
-    private void createLoginView(){
+    private static void createLoginView(){
         try {
             backgroundLoginPanel = new BackgroundPanel();
             backgroundLoginPanel.setBackground(
