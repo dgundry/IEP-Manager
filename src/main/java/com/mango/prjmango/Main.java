@@ -13,6 +13,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+
+import com.mango.prjmango.student.CreateAStudentController;
+import com.mango.prjmango.student.CreateAStudentView;
+import com.mango.prjmango.student.RegisterStudent;
+import com.mango.prjmango.student.Student;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -54,6 +59,7 @@ public class Main {
 	public static void main(String[] args) {
 		SpringApplication.run(Main.class, args);
 
+
 		try {
 			String url = "jdbc:sqlite:database\\iepCipher.db";
 			connection = DriverManager.getConnection(url);
@@ -66,11 +72,17 @@ public class Main {
 //			frame.setTeacherView(new EditAccountView());
 //			frame.setTeacherView(new EditAccountView());
 			//Comment out these lines and add new code to test out views
-//			LoginPageView loginPageView = new LoginPageView();
-//			new LoginPageController(loginPageView);
-//
-//			new MainLoginView();
-//			MainLoginView.setActivePanel(loginPageView);
+			//LoginPageView loginPageView = new LoginPageView();
+			//new LoginPageController(loginPageView);
+
+			//new MainLoginView();
+			//MainLoginView.setActivePanel(loginPageView);
+//			Student student = new Student();
+//			student.setFirstName("Kellen");
+//			student.setLastName("Campbell");
+//			student.setGrade("Senior");
+//			student.setBio("Software");
+//			RegisterStudent.createStudent(student);
 
 			//Comment for testing TeacherView
 			//TeacherView teacherView = new TeacherView();
@@ -82,7 +94,7 @@ public class Main {
 
 			//Comment for testing CreateAStudentView:
 			//CreateAStudentView createAStudent = new CreateAStudentView();
-			//new StudentController(createAStudent);
+			//new CreateAStudentController(createAStudent);
 
 			//MainLoginView.setActivePanel(teacherView.getTeacherPanel());
 

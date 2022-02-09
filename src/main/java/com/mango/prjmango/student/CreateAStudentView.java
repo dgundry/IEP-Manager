@@ -5,6 +5,8 @@ import com.mango.prjmango.components.BackgroundPanel;
 import com.mango.prjmango.components.FontType;
 import com.mango.prjmango.components.RoundedPanel;
 import com.mango.prjmango.mainloginpage.MainLoginView;
+import lombok.Getter;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -59,14 +61,13 @@ public class CreateAStudentView {
     private static JButton helpButton;
     private static JButton createStudentButton;
     private static JButton logOutButton;
+    private @Getter JButton saveButton;
 
-
-    private JTextField firstNameText;
-    private JTextField lastNameText;
-    private JTextField gradeText;
-    private JTextArea goalListText;
-    private JTextArea goalDesText;
-    private static JButton saveButton;
+    private @Getter JTextField firstNameText;
+    private @Getter JTextField lastNameText;
+    private @Getter JTextField gradeText;
+    private @Getter JTextArea goalListText;
+    private @Getter JTextField bioText;
 
     private final Dimension WINDOW_DIMENSIONS = new Dimension(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
 
@@ -277,12 +278,12 @@ public class CreateAStudentView {
         JLabel goalDes = createLabel("Goal descriptions:", FontType.FONT_35_BOLD);
         goalDes.setBounds(0, (int) (goalDesPanel.getHeight() * 0.05) , goalDesPanel.getWidth(),45);
 
-        goalDesText = new JTextArea("Goal descriptions");
-        goalDesText.setBounds(0, 0, goalDesTextPanel.getWidth(), goalDesTextPanel.getHeight());
+        bioText = new JTextField("Goal descriptions");
+        bioText.setBounds(0, 0, goalDesTextPanel.getWidth(), goalDesTextPanel.getHeight());
 
         //goal description panel
         goalDesPanel.add(goalDes);
-        goalDesTextPanel.add(goalDesText);
+        goalDesTextPanel.add(bioText);
 
         //save button panel
         saveButton = createButton("Save");
@@ -579,6 +580,6 @@ public class CreateAStudentView {
     public JTextField getLastNameText() { return lastNameText; }
     public JTextArea getGoalListText() { return goalListText; }
     public JTextField getGradeText() { return gradeText; }
-    public JTextArea getGoalDesText() { return goalDesText; }
+    public JTextField getBioText() { return bioText; }
     public JButton getSaveButton() { return saveButton; }
 }
