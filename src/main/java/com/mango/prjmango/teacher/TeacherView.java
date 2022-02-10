@@ -105,24 +105,25 @@ public class TeacherView extends BackgroundPanel{
                 1);
         separatorHeader2.setBackground(Color.WHITE);
 
-        myAccountButton = createButton("My Account");
-        myAccountButton.setFont(new Font("Arial", Font.PLAIN, 35));
-        myAccountButton.setBounds(
-                (0),
-                (int) (optionsTeacherPanel.getHeight() * 0.26),
-                (optionsTeacherPanel.getWidth()),
-                45);
-        myAccountButton.setOpaque(false);
-
 
         studentsButton = createButton("Students");
         studentsButton.setFont(new Font("Arial", Font.PLAIN, 35));
         studentsButton.setBounds(
                 (0),
-                (int) (optionsTeacherPanel.getHeight() * 0.32),
+                (int) (optionsTeacherPanel.getHeight() * 0.26),
                 (optionsTeacherPanel.getWidth()),
                 45);
         studentsButton.setOpaque(false);
+
+        myAccountButton = createButton("My Account");
+        myAccountButton.setFont(new Font("Arial", Font.PLAIN, 35));
+        myAccountButton.setBounds(
+                (0),
+                (int) (optionsTeacherPanel.getHeight() * 0.32),
+                (optionsTeacherPanel.getWidth()),
+                45);
+        myAccountButton.setOpaque(false);
+
 
         fullReportsButton = createButton("Full Reports");
         fullReportsButton.setFont(new Font("Arial", Font.PLAIN, 35));
