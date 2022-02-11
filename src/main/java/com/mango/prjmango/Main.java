@@ -36,6 +36,12 @@ public class Main {
 
 	public static MainFrame frame;
 
+	/**
+	 * Connects to the desired database url that's passed in.
+	 * Note: Mainly used for testing purposes.
+	 *
+	 * @param database the database url
+	 */
 	public static void setDatabase(String database) {
 		try {
 			connection = DriverManager.getConnection(database);
@@ -44,6 +50,12 @@ public class Main {
 		}
 	}
 
+	/**
+	 * Initialize start of the application. Connects to the database and instantiates
+	 * classes that create the GUI.
+	 *
+	 * @param args the command line arguments passed in when running the application.
+	 */
 	public static void main(String[] args) {
 		SpringApplication.run(Main.class, args);
 

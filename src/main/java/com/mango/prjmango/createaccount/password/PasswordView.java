@@ -4,8 +4,8 @@ import com.mango.prjmango.Main;
 import com.mango.prjmango.components.FontType;
 import com.mango.prjmango.components.RoundedPanel;
 import com.mango.prjmango.components.common.login.LoginPageComponents;
-import java.awt.Color;
-import java.awt.Font;
+
+import java.awt.*;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
@@ -14,11 +14,13 @@ import lombok.Getter;
 
 public class PasswordView extends RoundedPanel {
 
-    private @Getter JButton backButton;
-    private @Getter JButton createAccountButton;
+    @Getter private JButton backButton;
+    @Getter private JButton createAccountButton;
 
-    private @Getter JPasswordField passwordText;
-    private @Getter JPasswordField confirmPasswordText;
+    @Getter private JPasswordField passwordText;
+    @Getter private JPasswordField confirmPasswordText;
+
+    private final Insets MARGINS = new Insets(0, 5, 0, 5);
 
     /**
      * The constructor which sets up the GUI for the create account page.
@@ -50,6 +52,7 @@ public class PasswordView extends RoundedPanel {
                 (int) (this.getWidth() * 0.5),
                 30);
         passwordText.setBackground(Color.WHITE);
+        passwordText.setMargin(MARGINS);
 
         JLabel confirmPasswordHeader = createLabel("Confirm Password", FontType.FONT_12_BOLD);
         confirmPasswordHeader.setBounds(0, (int) (this.getHeight() * 0.62), this.getWidth(),15);
@@ -61,6 +64,7 @@ public class PasswordView extends RoundedPanel {
                 (int) (this.getWidth() * 0.5),
                 30);
         confirmPasswordText.setBackground(Color.WHITE);
+        confirmPasswordText.setMargin(MARGINS);
 
         backButton = createButton("Back");
         backButton.setBounds(

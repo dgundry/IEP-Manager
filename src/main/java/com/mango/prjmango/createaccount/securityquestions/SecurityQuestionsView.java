@@ -1,37 +1,38 @@
 package com.mango.prjmango.createaccount.securityquestions;
 
-
 import com.mango.prjmango.Main;
 import com.mango.prjmango.components.FontType;
 import com.mango.prjmango.components.RoundedPanel;
 import com.mango.prjmango.components.common.login.LoginPageComponents;
-import java.awt.Color;
-import java.awt.Font;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.awt.*;
 import java.util.Vector;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import com.mango.prjmango.utilities.DatabaseCommands;
 import lombok.Getter;
 
+/**
+ * This class creates the Security Questions page when the user clicks Create Account.
+ */
 public class SecurityQuestionsView extends RoundedPanel {
 
     private static final Logger logger = Logger.getLogger(SecurityQuestionsView.class.getName());
 
-    private @Getter JButton nextButton;
-    private @Getter JButton backButton;
+    @Getter private JButton nextButton;
+    @Getter private JButton backButton;
 
-    private @Getter JTextField securityOneAnsText;
-    private @Getter JTextField securityTwoAnsText;
+    @Getter private JTextField securityOneAnsText;
+    @Getter private JTextField securityTwoAnsText;
 
-    private @Getter JComboBox<String> securityQuestionOne;
-    private @Getter JComboBox<String> securityQuestionTwo;
+    @Getter private JComboBox<String> securityQuestionOne;
+    @Getter private JComboBox<String> securityQuestionTwo;
+
+    private final Insets MARGINS = new Insets(0, 5, 0, 5);
 
     /**
      * The constructor which sets up the GUI for the create account page.
@@ -67,6 +68,7 @@ public class SecurityQuestionsView extends RoundedPanel {
                 (int) (this.getWidth() * 0.65),
                 30);
         securityOneAnsText.setBackground(Color.WHITE);
+        securityOneAnsText.setMargin(MARGINS);
 
         JLabel securityTwoHeader = createLabel("Security Question #2", FontType.FONT_12_BOLD);
         securityTwoHeader.setBounds(0,( int) (this.getHeight() * 0.65), this.getWidth(),15);
@@ -81,6 +83,7 @@ public class SecurityQuestionsView extends RoundedPanel {
                 (int) (this.getWidth() * 0.65),
                 30);
         securityTwoAnsText.setBackground(Color.WHITE);
+        securityTwoAnsText.setMargin(MARGINS);
 
         nextButton = createButton("Next");
         nextButton.setBounds(
@@ -108,18 +111,7 @@ public class SecurityQuestionsView extends RoundedPanel {
     }
 
     private void createDropDownQuestions() {
-        String sql = "SELECT question FROM question;";
-        Vector<String> securityQuestionList = new Vector<>();
-
-        try (PreparedStatement statement = Main.getConnection().prepareStatement(sql)) {
-            ResultSet resultSet = statement.executeQuery();
-
-            do {
-                securityQuestionList.add(resultSet.getString(1));
-            } while (resultSet.next());
-        } catch (SQLException e) {
-            logger.log(Level.WARNING, e.getMessage());
-        }
+        Vector<String> securityQuestionList = DatabaseCommands.getDropDownQuestions();
 
         securityQuestionList.remove(0);
 

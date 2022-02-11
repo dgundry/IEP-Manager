@@ -1,25 +1,30 @@
-package com.mango.prjmango.createaccount;
+package com.mango.prjmango.createaccount.basicinfo;
 
 import com.mango.prjmango.Main;
 import com.mango.prjmango.components.FontType;
 import com.mango.prjmango.components.RoundedPanel;
 import com.mango.prjmango.components.common.login.LoginPageComponents;
-import java.awt.Color;
-import java.awt.Font;
+
+import java.awt.*;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import lombok.Getter;
 
+/**
+ * This class creates the Basic Info page when the user clicks Create Account.
+ */
 public class CreateAccountView extends RoundedPanel {
 
-    private @Getter JButton nextButton;
-    private @Getter JButton backButton;
+    @Getter private JButton nextButton;
+    @Getter private JButton backButton;
 
-    private @Getter JTextField firstNameText;
-    private @Getter JTextField lastNameText;
-    private @Getter JTextField emailText;
+    @Getter private JTextField firstNameText;
+    @Getter private JTextField lastNameText;
+    @Getter private JTextField emailText;
+
+    private final Insets MARGINS = new Insets(0, 5, 0, 5);
 
     /**
      * The constructor which sets up the GUI for the create account page.
@@ -51,6 +56,7 @@ public class CreateAccountView extends RoundedPanel {
                 (int) (this.getWidth() * 0.5),
                 30);
         firstNameText.setBackground(Color.WHITE);
+        firstNameText.setMargin(MARGINS);
 
         JLabel enterLastNameHeader = createLabel("Enter Last Name", FontType.FONT_12_BOLD);
         enterLastNameHeader.setBounds(0, (int) (this.getHeight() * 0.58), this.getWidth(),15);
@@ -62,6 +68,7 @@ public class CreateAccountView extends RoundedPanel {
                 (int) (this.getWidth() * 0.5),
                 30);
         lastNameText.setBackground(Color.WHITE);
+        lastNameText.setMargin(MARGINS);
 
         JLabel emailHeader = createLabel("Enter Email", FontType.FONT_12_BOLD);
         emailHeader.setBounds(0, (int) (this.getHeight() * 0.68), this.getWidth(),15);
@@ -73,6 +80,7 @@ public class CreateAccountView extends RoundedPanel {
                 (int) (this.getWidth() * 0.5),
                 30);
         emailText.setBackground(Color.WHITE);
+        emailText.setMargin(MARGINS);
 
         nextButton = createButton("Next");
         nextButton.setBounds(

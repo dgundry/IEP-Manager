@@ -2,12 +2,11 @@ package com.mango.prjmango.login;
 
 
 
-import com.mango.prjmango.Main;
 import com.mango.prjmango.MainFrame;
 //>>>>>>> 5ba28a0e774f8b7a49afcd1f131c56ca6b1707bc
 import com.mango.prjmango.components.listeners.ButtonMouseListener;
-import com.mango.prjmango.createaccount.CreateAccountController;
-import com.mango.prjmango.createaccount.CreateAccountView;
+import com.mango.prjmango.createaccount.basicinfo.CreateAccountController;
+import com.mango.prjmango.createaccount.basicinfo.CreateAccountView;
 import com.mango.prjmango.editaccount.EditAccountController;
 import com.mango.prjmango.editaccount.EditAccountView;
 import com.mango.prjmango.forgotpassword.email.EmailController;

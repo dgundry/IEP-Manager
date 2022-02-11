@@ -3,12 +3,12 @@ package com.mango.prjmango.createaccount.securityquestions;
 
 import com.mango.prjmango.MainFrame;
 import com.mango.prjmango.components.listeners.ButtonMouseListener;
-import com.mango.prjmango.createaccount.CreateAccountController;
-import com.mango.prjmango.createaccount.CreateAccountView;
+import com.mango.prjmango.createaccount.basicinfo.CreateAccountController;
+import com.mango.prjmango.createaccount.basicinfo.CreateAccountView;
 import com.mango.prjmango.createaccount.User;
 import com.mango.prjmango.createaccount.password.PasswordController;
 import com.mango.prjmango.createaccount.password.PasswordView;
-import com.mango.prjmango.mainloginpage.MainLoginView;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;

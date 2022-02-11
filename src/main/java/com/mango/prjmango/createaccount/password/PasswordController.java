@@ -12,17 +12,12 @@ import com.mango.prjmango.login.LoginPageView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Arrays;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
 public class PasswordController {
 
     public PasswordController(PasswordView view, User user) {
-//        if(!user.getPassword1().equals("")){
-//            view.getPasswordText().setText(Arrays.toString(user.getPassword1()));
-//        }
-//        if(!user.getPassword2().equals("")){
-//            view.getConfirmPasswordText().setText(Arrays.toString(user.getPassword2()));
-//        }
         view.getBackButton().addActionListener(new BackButtonActionListener(view, user));
         view.getBackButton().addMouseListener(new ButtonMouseListener(view.getBackButton()));
 
@@ -35,16 +30,23 @@ public class PasswordController {
         private final PasswordView view;
         private final User user;
 
+        /**
+         * Constructor. Initializes instance variables that will be used in the {@link ActionListener}
+         * methods.
+         *
+         * @param view the {@link PasswordView} to access {@link JComponent}'s
+         * @param user the {@link User} object to access fields
+         */
         public BackButtonActionListener(PasswordView view, User user) {
             this.view = view;
             this.user = user;
         }
+
         /**
          * Invoked when an action occurs.
          *
-         * @param e the event to be processed
+         * @param e the {@link ActionEvent}
          */
-
         public void actionPerformed(ActionEvent e){
             user.setPassword1(view.getPasswordText().getPassword());
             user.setPassword2(view.getConfirmPasswordText().getPassword());
@@ -68,6 +70,7 @@ public class PasswordController {
             this.view = view;
             this.user = user;
         }
+
         /**
          * Invoked when an action occurs.
          *
@@ -80,15 +83,17 @@ public class PasswordController {
             //Verify all input
             char[] password = view.getPasswordText().getPassword();
             char[] passwordConfirmed = view.getConfirmPasswordText().getPassword();
+
             user.setPassword1(password);
             user.setPassword2(passwordConfirmed);
+
             if (!Arrays.equals(password, passwordConfirmed)){
                 JOptionPane.showMessageDialog(
                         MainFrame.getFrame(),
                         "Passwords are not matching.",
                         MESSAGE_TITLE,
                         JOptionPane.ERROR_MESSAGE);
-            }else if (view.getPasswordText().getPassword().length == 0) {
+            } else if (view.getPasswordText().getPassword().length == 0) {
                 JOptionPane.showMessageDialog(
                         MainFrame.getFrame(),
                         "Please enter a valid Password.",

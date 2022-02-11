@@ -1,13 +1,14 @@
-package com.mango.prjmango.createaccount;
+package com.mango.prjmango.createaccount.basicinfo;
 
 import com.mango.prjmango.MainFrame;
 import com.mango.prjmango.components.listeners.ButtonMouseListener;
 import com.mango.prjmango.components.listeners.TextFieldFocusListener;
+import com.mango.prjmango.createaccount.Register;
+import com.mango.prjmango.createaccount.User;
 import com.mango.prjmango.createaccount.securityquestions.SecurityQuestionsController;
 import com.mango.prjmango.createaccount.securityquestions.SecurityQuestionsView;
 import com.mango.prjmango.login.LoginPageController;
 import com.mango.prjmango.login.LoginPageView;
-import com.mango.prjmango.mainloginpage.MainLoginView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -51,7 +52,7 @@ public class CreateAccountController {
         /**
          * Invoked when an action occurs.
          *
-         * @param e the event to be processed
+         * @param e the {@link ActionEvent}
          */
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -91,31 +92,31 @@ public class CreateAccountController {
             user.setEmail(view.getEmailText().getText());
 
             Register register = new Register();
-            if(!user.getEmail().contains("@")){
+            if (!user.getEmail().contains("@")) {
                 JOptionPane.showMessageDialog(
                         MainFrame.getFrame(),
                         "Enter a Valid Email.",
                         ERROR_MESSAGE_TITLE,
                         JOptionPane.ERROR_MESSAGE);
-            }else if (register.isEmailTaken(user.getEmail())){
+            } else if (register.isEmailTaken(user.getEmail())) {
                 JOptionPane.showMessageDialog(
                         MainFrame.getFrame(),
                         "Email is Already Taken.",
                         ERROR_MESSAGE_TITLE,
                         JOptionPane.ERROR_MESSAGE);
-            }else if(user.getFirstName() != null && !(user.getFirstName().length() >= 1 && user.getFirstName().length() <= 20)){
+            } else if (user.getFirstName() != null && !(user.getFirstName().length() >= 1 && user.getFirstName().length() <= 20)) {
                 JOptionPane.showMessageDialog(
                         MainFrame.getFrame(),
                         "Enter a Valid First Name.",
                         ERROR_MESSAGE_TITLE,
                         JOptionPane.ERROR_MESSAGE);
-            }else if(user.getLastName() != null && !(user.getLastName().length() >= 1 && user.getLastName().length() <= 20)) {
+            } else if (user.getLastName() != null && !(user.getLastName().length() >= 1 && user.getLastName().length() <= 20)) {
                 JOptionPane.showMessageDialog(
                         MainFrame.getFrame(),
                         "Enter a Valid Last Name.",
                         ERROR_MESSAGE_TITLE,
                         JOptionPane.ERROR_MESSAGE);
-            }else {
+            } else {
                 SecurityQuestionsView securityQuestionsView = new SecurityQuestionsView();
                 securityQuestionsView.getSecurityQuestionOne().setSelectedIndex(user.getSecurityQ1());
                 securityQuestionsView.getSecurityQuestionTwo().setSelectedIndex(user.getSecurityQ2());

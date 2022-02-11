@@ -2,7 +2,7 @@ package com.mango.prjmango.components.common.login;
 
 import com.mango.prjmango.components.FontType;
 import com.mango.prjmango.components.RoundedPanel;
-import com.mango.prjmango.createaccount.CreateAccountView;
+import com.mango.prjmango.createaccount.basicinfo.CreateAccountView;
 import com.mango.prjmango.createaccount.password.PasswordView;
 import com.mango.prjmango.createaccount.securityquestions.SecurityQuestionsView;
 import com.mango.prjmango.forgotpassword.email.EmailView;
