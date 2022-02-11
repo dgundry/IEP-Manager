@@ -1,9 +1,6 @@
 package com.mango.prjmango.login;
 
-
-
 import com.mango.prjmango.MainFrame;
-//>>>>>>> 5ba28a0e774f8b7a49afcd1f131c56ca6b1707bc
 import com.mango.prjmango.components.listeners.ButtonMouseListener;
 import com.mango.prjmango.createaccount.basicinfo.CreateAccountController;
 import com.mango.prjmango.createaccount.basicinfo.CreateAccountView;
@@ -19,12 +16,21 @@ import com.mango.prjmango.teacher.TeacherView;
 import com.mango.prjmango.utilities.DatabaseCommands;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+/**
+ * This class handles all user interactions with the login page.
+ */
 public class LoginPageController {
 
+    /**
+     * Constructor. Initializes the listeners for specific {@link JComponent}'s that need them.
+     *
+     * @param loginPageView the {@link LoginPageView} to access {@link JComponent}'s
+     */
     public LoginPageController(LoginPageView loginPageView) {
         JTextField emailTextField = loginPageView.getEmailText();
         JPasswordField passwordField = loginPageView.getPasswordText();
@@ -46,8 +52,15 @@ public class LoginPageController {
     }
 
     private static class LoginButtonActionListener implements ActionListener {
+
         private final LoginPageView view;
 
+        /**
+         * Constructor. Initializes instance variables that will be used in the {@link ActionListener}
+         * methods.
+         *
+         * @param view the {@link LoginPageView} to access {@link JComponent}'s
+         */
         public LoginButtonActionListener(LoginPageView view) {
             this.view = view;
         }
@@ -55,7 +68,7 @@ public class LoginPageController {
         /**
          * Invoked when an action occurs.
          *
-         * @param e the event to be processed
+         * @param e the {@link ActionEvent}
          */
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -77,7 +90,6 @@ public class LoginPageController {
 //                    new TeacherController(teacherView);
 
 
-//>>>>>>> 5ba28a0e774f8b7a49afcd1f131c56ca6b1707bc
                 } else {
                     // create custom error messages
 
@@ -104,6 +116,11 @@ public class LoginPageController {
 
     private static class ForgotPasswordActionListener implements ActionListener {
 
+        /**
+         * Invoked when an action occurs.
+         *
+         * @param e the {@link ActionEvent}
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             EmailView emailView = new EmailView();
@@ -114,6 +131,11 @@ public class LoginPageController {
 
     private static class CreateAccountButtonActionListener implements ActionListener {
 
+        /**
+         * Invoked when an action occurs.
+         *
+         * @param e the {@link ActionEvent}
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             CreateAccountView createAccountView = new CreateAccountView();

@@ -4,6 +4,10 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.JTextField;
 
+/**
+ * This class handles user interaction with the Email text field on
+ * the login page.
+ */
 public class EmailTextFieldListener implements FocusListener {
 
     private final JTextField TEXT_FIELD;
@@ -12,6 +16,13 @@ public class EmailTextFieldListener implements FocusListener {
 
     private String originalText;
 
+    /**
+     * Constructor. Initializes instance variables that will be used within the {@link FocusListener}
+     * methods.
+     *
+     * @param textField    the specified {@link JTextField}
+     * @param originalText the original text of the {@link JTextField}
+     */
     public EmailTextFieldListener(JTextField textField, String originalText) {
         this.TEXT_FIELD = textField;
         this.originalText = originalText;
@@ -20,7 +31,7 @@ public class EmailTextFieldListener implements FocusListener {
     /**
      * Invoked when a component gains the keyboard focus.
      *
-     * @param e the focus event
+     * @param e the {@link FocusEvent}
      */
     @Override
     public void focusGained(FocusEvent e) {
@@ -34,7 +45,7 @@ public class EmailTextFieldListener implements FocusListener {
     /**
      * Invoked when a component loses the keyboard focus.
      *
-     * @param e the focus event
+     * @param e the {@link FocusEvent}
      */
     @Override
     public void focusLost(FocusEvent e) {

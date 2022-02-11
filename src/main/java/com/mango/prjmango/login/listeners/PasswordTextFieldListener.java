@@ -5,6 +5,10 @@ import java.awt.event.FocusListener;
 import java.util.Arrays;
 import javax.swing.JPasswordField;
 
+/**
+ * This class handles user interaction with the Password text field on
+ * the login page.
+ */
 public class PasswordTextFieldListener implements FocusListener {
 
     private final JPasswordField passwordField;
@@ -14,6 +18,13 @@ public class PasswordTextFieldListener implements FocusListener {
 
     private char[] originalPassword;
 
+    /**
+     * Constructor. Initializes instance variables that will be used within the {@link FocusListener}
+     * methods.
+     *
+     * @param passwordField the specified {@link JPasswordField}
+     * @param originalText  the original text of the {@link JPasswordField}
+     */
     public PasswordTextFieldListener(JPasswordField passwordField, String originalText) {
         this.passwordField = passwordField;
         this.originalText = originalText;
@@ -22,7 +33,7 @@ public class PasswordTextFieldListener implements FocusListener {
     /**
      * Invoked when a component gains the keyboard focus.
      *
-     * @param e the focus event
+     * @param e the {@link FocusEvent}
      */
     @Override
     public void focusGained(FocusEvent e) {
@@ -38,7 +49,7 @@ public class PasswordTextFieldListener implements FocusListener {
     /**
      * Invoked when a component loses the keyboard focus.
      *
-     * @param e the focus event
+     * @param e the {@link FocusEvent}
      */
     @Override
     public void focusLost(FocusEvent e) {
