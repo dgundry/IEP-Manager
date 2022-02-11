@@ -6,6 +6,10 @@ import com.mango.prjmango.components.FontType;
 import com.mango.prjmango.components.RoundedPanel;
 import com.mango.prjmango.components.common.login.LoginPageComponents;
 import java.awt.Color;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import javax.swing.*;
 import lombok.Getter;
 
@@ -59,7 +63,7 @@ public class LoginPageView extends RoundedPanel {
                 30);
         emailText.setName("emailText");
 
-        passwordText = Components.JPasswordField("Password");
+        passwordText = Components.JPasswordField("Password", true);
         passwordText.setBounds(
                 (int) (getWidth() * 0.5) - (int) (getWidth() * 0.25),
                 (int) (getHeight() * 0.68),

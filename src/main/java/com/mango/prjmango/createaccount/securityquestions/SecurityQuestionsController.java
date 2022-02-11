@@ -3,8 +3,8 @@ package com.mango.prjmango.createaccount.securityquestions;
 
 import com.mango.prjmango.MainFrame;
 import com.mango.prjmango.components.listeners.ButtonMouseListener;
-import com.mango.prjmango.createaccount.basicinfo.CreateAccountController;
-import com.mango.prjmango.createaccount.basicinfo.CreateAccountView;
+import com.mango.prjmango.createaccount.basicinfo.BasicInfoController;
+import com.mango.prjmango.createaccount.basicinfo.BasicInfoView;
 import com.mango.prjmango.createaccount.User;
 import com.mango.prjmango.createaccount.password.PasswordController;
 import com.mango.prjmango.createaccount.password.PasswordView;
@@ -49,12 +49,12 @@ public class SecurityQuestionsController {
             String lastName = user.getLastName();
             String email = user.getEmail();
 
-            CreateAccountView createAccountView = new CreateAccountView();
+            BasicInfoView createAccountView = new BasicInfoView();
             createAccountView.getFirstNameText().setText(firstName.equals("") ? "First name" : user.getFirstName());
             createAccountView.getLastNameText().setText(lastName.equals("") ? "Last name" : user.getLastName());
             createAccountView.getEmailText().setText(email.equals("") ? "Email" : user.getEmail());
 
-            new CreateAccountController(createAccountView, user);
+            new BasicInfoController(createAccountView, user);
             MainFrame.setActivePanel(createAccountView);
         }
     }

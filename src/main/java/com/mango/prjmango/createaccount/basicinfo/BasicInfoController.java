@@ -11,16 +11,25 @@ import com.mango.prjmango.login.LoginPageController;
 import com.mango.prjmango.login.LoginPageView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 
-public class CreateAccountController {
+/**
+ * Handles user interaction within the Basic Info page on the Create Account section.
+ */
+public class BasicInfoController {
 
     private static final String FIRST_NAME_FIELD_ORIGINAL = "First name";
     private static final String LAST_NAME_FIELD_ORIGINAL = "Last name";
     private static final String EMAIL_FIELD_ORIGINAL = "Email";
     private static final String ERROR_MESSAGE_TITLE = "INVALID";
 
-    public CreateAccountController(CreateAccountView view) {
+    /**
+     * Constructor. Initializes listeners for {@link JComponent}'s within the {@link BasicInfoView}.
+     *
+     * @param view the {@link BasicInfoView} to access {@link JComponent}'s
+     */
+    public BasicInfoController(BasicInfoView view) {
         view.getBackButton().addActionListener(new BackButtonActionListener());
         view.getBackButton().addMouseListener(new ButtonMouseListener(view.getBackButton()));
 
@@ -32,7 +41,13 @@ public class CreateAccountController {
         view.getEmailText().addFocusListener(new TextFieldFocusListener(view.getEmailText(), EMAIL_FIELD_ORIGINAL));
     }
 
-    public CreateAccountController(CreateAccountView view, User user) {
+    /**
+     * Constructor. Initializes listeners for {@link JComponent}'s within the {@link BasicInfoView}.
+     *
+     * @param view the {@link BasicInfoView} to access {@link JComponent}'s
+     * @param user the {@link User} object to access data within
+     */
+    public BasicInfoController(BasicInfoView view, User user) {
         view.getLastNameText().setText(user.getLastName());
         view.getEmailText().setText(user.getEmail());
 
@@ -64,14 +79,26 @@ public class CreateAccountController {
 
     private static class NextButtonActionListener implements ActionListener {
 
-        private final CreateAccountView view;
+        private final BasicInfoView view;
         private User user;
 
-        public NextButtonActionListener(CreateAccountView view) {
+        /**
+         * Constructor. Initializes an instance variable, {@link BasicInfoView}, which will be used within
+         * the {@link ActionListener} methods.
+         *
+         * @param view the {@link BasicInfoView}
+         */
+        public NextButtonActionListener(BasicInfoView view) {
             this.view = view;
         }
 
-        public NextButtonActionListener(CreateAccountView view, User user) {
+        /**
+         * Constructor. Initializes instance variables which will be used within the {@link ActionListener} methods.
+         *
+         * @param view the {@link BasicInfoView} that will allow access to {@link JComponent}'s
+         * @param user the {@link User} object that we will retrieve data from
+         */
+        public NextButtonActionListener(BasicInfoView view, User user) {
             this.view = view;
             this.user = user;
         }
@@ -79,7 +106,7 @@ public class CreateAccountController {
         /**
          * Invoked when an action occurs.
          *
-         * @param e the event to be processed
+         * @param e the {@link ActionEvent}
          */
         @Override
         public void actionPerformed(ActionEvent e) {

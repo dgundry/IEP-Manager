@@ -2,11 +2,23 @@ package com.mango.prjmango.components;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Vector;
 
+/**
+ * This class acts as utility class which a developer can access methods
+ * that create different kinds of {@link JComponent}'s.
+ */
 public class Components {
 
     private final static Insets MARGIN = new Insets(0, 5, 0, 5);
 
+    /**
+     * Creates a new {@link JLabel}
+     *
+     * @param text the display text
+     * @param font the font
+     * @return a new {@link JLabel}
+     */
     public static JLabel JLabel(String text, Font font) {
         JLabel label = new JLabel(text, SwingConstants.CENTER);
         label.setFont(font);
@@ -14,6 +26,12 @@ public class Components {
         return label;
     }
 
+    /**
+     * Creates a new {@link JTextField}
+     *
+     * @param text the display text
+     * @return a new {@link JTextField}
+     */
     public static JTextField JTextField(String text) {
         JTextField textField = new JTextField(text);
         textField.setBackground(Color.WHITE);
@@ -21,14 +39,46 @@ public class Components {
         return textField;
     }
 
-    public static JPasswordField JPasswordField(String text) {
+    /**
+     * Creates a new {@link JPasswordField}
+     *
+     * @param text            the display text
+     * @param makeVisibleText if {@code true}, will display the visible to the user. If {@code false}, will display
+     *                        '•' for each character typed.
+     * @return a new {@link JPasswordField}
+     */
+    public static JPasswordField JPasswordField(String text, boolean makeVisibleText) {
         JPasswordField passwordField = new JPasswordField(text);
         passwordField.setBackground(Color.WHITE);
-        passwordField.setEchoChar((char) 0);
+        passwordField.setEchoChar(makeVisibleText ? (char) 0 : '•');
         passwordField.setMargin(MARGIN);
         return passwordField;
     }
 
+    /**
+     * Creates a new {@link JButton}
+     *
+     * @param text the display text
+     * @return a new {@link JButton}
+     */
+    public static JButton JButton(String text) {
+        JButton button = new JButton(text);
+        button.setForeground(Color.WHITE);
+        button.setBackground(new Color(245,102,0));
+        button.setOpaque(true);
+        button.setBorderPainted(false);
+        button.setFocusPainted(false);
+        button.setEnabled(true);
+        return button;
+    }
+
+    /**
+     * Creates a new {@link JButton}
+     *
+     * @param text      the display text
+     * @param fontColor the specified font {@link Color}
+     * @return a new {@link JButton}
+     */
     public static JButton JButton(String text, Color fontColor) {
         JButton button = new JButton(text);
         button.setForeground(fontColor);
@@ -39,6 +89,14 @@ public class Components {
         return button;
     }
 
+    /**
+     * Creates a new {@link JButton}
+     *
+     * @param text            the display text
+     * @param fontColor       the specified font {@link Color}
+     * @param backgroundColor the specified background {@link Color}
+     * @return a new {@link JButton}
+     */
     public static JButton JButton(String text, Color fontColor, Color backgroundColor) {
         JButton button = new JButton(text);
         button.setForeground(fontColor);
@@ -47,5 +105,18 @@ public class Components {
         button.setBorderPainted(false);
         button.setFocusable(false);
         return button;
+    }
+
+    /**
+     * Creates a new {@link JComboBox} for the security questions
+     *
+     * @param securityQuestionList the {@link Vector} of {@link String}'s which contain the security questions
+     * @return a new {@link JComboBox} for the security questions
+     */
+    public static JComboBox<String> JComboBox(Vector<String> securityQuestionList) {
+        JComboBox<String> comboBox = new JComboBox<>(securityQuestionList);
+        comboBox.setSelectedIndex(0);
+        comboBox.setBackground(Color.WHITE);
+        return comboBox;
     }
 }

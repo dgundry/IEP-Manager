@@ -1,17 +1,18 @@
 package com.mango.prjmango.createaccount.password;
 
 import com.mango.prjmango.Main;
+import com.mango.prjmango.components.Components;
 import com.mango.prjmango.components.FontType;
 import com.mango.prjmango.components.RoundedPanel;
 import com.mango.prjmango.components.common.login.LoginPageComponents;
-
-import java.awt.*;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
-import javax.swing.SwingConstants;
 import lombok.Getter;
 
+/**
+ * This class creates the Create Password page for the Create Account section.
+ */
 public class PasswordView extends RoundedPanel {
 
     @Getter private JButton backButton;
@@ -20,14 +21,12 @@ public class PasswordView extends RoundedPanel {
     @Getter private JPasswordField passwordText;
     @Getter private JPasswordField confirmPasswordText;
 
-    private final Insets MARGINS = new Insets(0, 5, 0, 5);
-
     /**
      * The constructor which sets up the GUI for the create account page.
      */
     public PasswordView() {
-        this.setLayout(null);
-        this.setBounds(
+        setLayout(null);
+        setBounds(
                 (int) (Main.SCREEN_WIDTH * 0.5) - ((int) (Main.SCREEN_WIDTH * 0.16)),
                 (int) (Main.SCREEN_HEIGHT * 0.125),
                 (int) (Main.SCREEN_WIDTH * 0.3),
@@ -39,70 +38,49 @@ public class PasswordView extends RoundedPanel {
     private void createComponents() {
         LoginPageComponents.setCommonComponents(this);
 
-        JLabel createAccountHeader = createLabel("Create Account", FontType.FONT_20_BOLD);
-        createAccountHeader.setBounds(0, (int) (this.getHeight() * 0.38), this.getWidth(),30);
+        JLabel createAccountHeader = Components.JLabel("Create Account", FontType.FONT_20_BOLD);
+        createAccountHeader.setBounds(0, (int) (getHeight() * 0.38), getWidth(),30);
 
-        JLabel passwordHeader = createLabel("Create Password", FontType.FONT_12_BOLD);
-        passwordHeader.setBounds(0,( int) (this.getHeight() * 0.48), this.getWidth(),15);
+        JLabel passwordHeader = Components.JLabel("Create Password", FontType.FONT_12_BOLD);
+        passwordHeader.setBounds(0,( int) (getHeight() * 0.48), getWidth(),15);
 
-        passwordText = new JPasswordField("");
+        JLabel confirmPasswordHeader = Components.JLabel("Confirm Password", FontType.FONT_12_BOLD);
+        confirmPasswordHeader.setBounds(0, (int) (getHeight() * 0.62), getWidth(),15);
+
+        passwordText = Components.JPasswordField("", false);
         passwordText.setBounds(
-                (int) (this.getWidth() * 0.5) - (int) (this.getWidth() * 0.25),
-                (int) (this.getHeight() * 0.54),
-                (int) (this.getWidth() * 0.5),
+                (int) (getWidth() * 0.5) - (int) (getWidth() * 0.25),
+                (int) (getHeight() * 0.54),
+                (int) (getWidth() * 0.5),
                 30);
-        passwordText.setBackground(Color.WHITE);
-        passwordText.setMargin(MARGINS);
 
-        JLabel confirmPasswordHeader = createLabel("Confirm Password", FontType.FONT_12_BOLD);
-        confirmPasswordHeader.setBounds(0, (int) (this.getHeight() * 0.62), this.getWidth(),15);
-
-        confirmPasswordText = new JPasswordField("");
+        confirmPasswordText = Components.JPasswordField("", false);
         confirmPasswordText.setBounds(
-                (int) (this.getWidth() * 0.5) - (int) (this.getWidth() * 0.25),
-                (int) (this.getHeight() * 0.68),
-                (int) (this.getWidth() * 0.5),
+                (int) (getWidth() * 0.5) - (int) (getWidth() * 0.25),
+                (int) (getHeight() * 0.68),
+                (int) (getWidth() * 0.5),
                 30);
-        confirmPasswordText.setBackground(Color.WHITE);
-        confirmPasswordText.setMargin(MARGINS);
 
-        backButton = createButton("Back");
+        backButton = Components.JButton("Back");
         backButton.setBounds(
-                (int) (this.getWidth() * 0.35) - (int) (this.getWidth() * 0.10),
-                (int) (this.getHeight() * 0.77),
-                (int) (this.getWidth() * 0.20),
+                (int) (getWidth() * 0.35) - (int) (getWidth() * 0.10),
+                (int) (getHeight() * 0.77),
+                (int) (getWidth() * 0.20),
                 30);
 
-        createAccountButton = createButton("Create Account");
+        createAccountButton = Components.JButton("Create Account");
         createAccountButton.setBounds(
-                (int) (this.getWidth() * 0.40) - (int) (this.getWidth() * 0.10),
-                (int) (this.getHeight() * 0.83),
-                (int) (this.getWidth() * 0.40),
+                (int) (getWidth() * 0.40) - (int) (getWidth() * 0.10),
+                (int) (getHeight() * 0.83),
+                (int) (getWidth() * 0.40),
                 30);
 
-        this.add(createAccountHeader);
-        this.add(passwordHeader);
-        this.add(confirmPasswordHeader);
-        this.add(passwordText);
-        this.add(confirmPasswordText);
-        this.add(backButton);
-        this.add(createAccountButton);
-    }
-
-    private JLabel createLabel(String text, Font font) {
-        JLabel label = new JLabel(text, SwingConstants.CENTER);
-        label.setFont(font);
-        label.setForeground(Color.WHITE);
-        return label;
-    }
-
-    private JButton createButton(String text) {
-        JButton button = new JButton(text);
-        button.setBackground(new Color(245,102,0));
-        button.setForeground(Color.WHITE);
-        button.setOpaque(true);
-        button.setBorderPainted(false);
-        button.setFocusPainted(false);
-        return button;
+        add(createAccountHeader);
+        add(passwordHeader);
+        add(confirmPasswordHeader);
+        add(passwordText);
+        add(confirmPasswordText);
+        add(backButton);
+        add(createAccountButton);
     }
 }

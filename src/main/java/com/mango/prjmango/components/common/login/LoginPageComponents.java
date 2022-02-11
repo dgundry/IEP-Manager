@@ -2,7 +2,7 @@ package com.mango.prjmango.components.common.login;
 
 import com.mango.prjmango.components.FontType;
 import com.mango.prjmango.components.RoundedPanel;
-import com.mango.prjmango.createaccount.basicinfo.CreateAccountView;
+import com.mango.prjmango.createaccount.basicinfo.BasicInfoView;
 import com.mango.prjmango.createaccount.password.PasswordView;
 import com.mango.prjmango.createaccount.securityquestions.SecurityQuestionsView;
 import com.mango.prjmango.forgotpassword.email.EmailView;
@@ -22,7 +22,7 @@ import javax.swing.SwingConstants;
  *     <li>{@link LoginPageView}</li>
  *     <li>{@link PasswordView}</li>
  *     <li>{@link SecurityQuestionsView}</li>
- *     <li>{@link CreateAccountView}</li>
+ *     <li>{@link BasicInfoView}</li>
  *     <li>{@link EmailView}</li>
  *     <li>{@link ChangePasswordView}</li>
  *     <li>{@link AnswerSecurityQuestionsView}</li>
