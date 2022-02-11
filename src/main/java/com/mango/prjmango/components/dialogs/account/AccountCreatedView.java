@@ -29,7 +29,7 @@ public class AccountCreatedView extends JFrame {
     private JLabel successLabel;
     private JLabel infoLabel;
 
-    private @Getter JLabel okLabel;
+    @Getter private JLabel okLabel;
 
     private static final int PANEL_WIDTH = 316;
     private static final int CHECK_LABEL_WIDTH = 100;

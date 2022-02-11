@@ -9,43 +9,27 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JButton;
 
+/**
+ * This class handles the user interaction for a {@link JButton}.
+ */
 public class ButtonMouseListener implements MouseListener {
 
     private final JButton button;
 
+    /**
+     * Constructor. Initializes instance variable(s) that will be used within the {@link MouseListener}'s
+     * methods.
+     *
+     * @param button the specified {@link JButton}
+     */
     public ButtonMouseListener(JButton button) {
         this.button = button;
     }
 
     /**
-     * Invoked when the mouse button has been clicked (pressed
-     * and released) on a component.
-     *
-     * @param e the mouse event
-     */
-    @Override
-    public void mouseClicked(MouseEvent e) { /* Not needed */ }
-
-    /**
-     * Invoked when a mouse button has been pressed on a component.
-     *
-     * @param e the mouse event
-     */
-    @Override
-    public void mousePressed(MouseEvent e) { /* Not needed */ }
-
-    /**
-     * Invoked when a mouse button has been released on a component.
-     *
-     * @param e the mouse event
-     */
-    @Override
-    public void mouseReleased(MouseEvent e) { /* Not needed */ }
-
-    /**
      * Invoked when the mouse enters a component.
      *
-     * @param e the mouse event
+     * @param e the {@link MouseEvent}
      */
     @Override
     public void mouseEntered(MouseEvent e) {
@@ -61,7 +45,7 @@ public class ButtonMouseListener implements MouseListener {
     /**
      * Invoked when the mouse exits a component.
      *
-     * @param e the mouse event
+     * @param e the {@link MouseEvent}
      */
     @Override
     public void mouseExited(MouseEvent e) {
@@ -73,4 +57,29 @@ public class ButtonMouseListener implements MouseListener {
         attributes.put(TextAttribute.UNDERLINE, -1);
         button.setFont(font.deriveFont(attributes));
     }
+
+    /**
+     * Invoked when the mouse button has been clicked (pressed
+     * and released) on a component.
+     *
+     * @param e the {@link MouseEvent}
+     */
+    @Override
+    public void mouseClicked(MouseEvent e) { /* Not needed */ }
+
+    /**
+     * Invoked when a mouse button has been pressed on a component.
+     *
+     * @param e the {@link MouseEvent}
+     */
+    @Override
+    public void mousePressed(MouseEvent e) { /* Not needed */ }
+
+    /**
+     * Invoked when a mouse button has been released on a component.
+     *
+     * @param e the {@link MouseEvent}
+     */
+    @Override
+    public void mouseReleased(MouseEvent e) { /* Not needed */ }
 }

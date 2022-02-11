@@ -4,6 +4,7 @@ import com.mango.prjmango.utilities.ImageIcons;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 
 /**
@@ -16,6 +17,10 @@ import javax.swing.JLabel;
  */
 public class AccountCreatedController {
 
+    /**
+     * Constructor. Sets up the listeners for specific {@link JComponent}'s.
+     * @param view the {@link AccountCreatedView} to access the specific {@link JComponent}'s
+     */
     public AccountCreatedController(AccountCreatedView view) {
         view.getOkLabel().addMouseListener(new OkLabelMouseListener(view.getOkLabel(), view));
     }
@@ -26,6 +31,12 @@ public class AccountCreatedController {
 
         private final AccountCreatedView view;
 
+        /**
+         * Constructor. Initializes instance variables that will be used within the classes.
+         *
+         * @param okLabel the "Ok" button which is a {@link JLabel}
+         * @param view    the {@link AccountCreatedView} to access {@link JComponent}'s within the class
+         */
         public OkLabelMouseListener(JLabel okLabel, AccountCreatedView view) {
             this.okLabel = okLabel;
             this.view = view;
@@ -35,7 +46,7 @@ public class AccountCreatedController {
          * Invoked when the mouse button has been clicked (pressed
          * and released) on a component.
          *
-         * @param e the mouse event
+         * @param e the {@link MouseEvent}
          */
         @Override
         public void mouseClicked(MouseEvent e) {
@@ -43,25 +54,9 @@ public class AccountCreatedController {
         }
 
         /**
-         * Invoked when a mouse button has been pressed on a component.
-         *
-         * @param e the mouse event
-         */
-        @Override
-        public void mousePressed(MouseEvent e) { /* Not needed */ }
-
-        /**
-         * Invoked when a mouse button has been released on a component.
-         *
-         * @param e the mouse event
-         */
-        @Override
-        public void mouseReleased(MouseEvent e) { /* Not needed */ }
-
-        /**
          * Invoked when the mouse enters a component.
          *
-         * @param e the mouse event
+         * @param e the {@link MouseEvent}
          */
         @Override
         public void mouseEntered(MouseEvent e) {
@@ -72,12 +67,28 @@ public class AccountCreatedController {
         /**
          * Invoked when the mouse exits a component.
          *
-         * @param e the mouse event
+         * @param e the {@link MouseEvent}
          */
         @Override
         public void mouseExited(MouseEvent e) {
             okLabel.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
             okLabel.setIcon(ImageIcons.OK_NO_HOVER_ICON);
         }
+
+        /**
+         * Invoked when a mouse button has been pressed on a component.
+         *
+         * @param e the {@link MouseEvent}
+         */
+        @Override
+        public void mousePressed(MouseEvent e) { /* Not needed */ }
+
+        /**
+         * Invoked when a mouse button has been released on a component.
+         *
+         * @param e the {@link MouseEvent}
+         */
+        @Override
+        public void mouseReleased(MouseEvent e) { /* Not needed */ }
     }
 }

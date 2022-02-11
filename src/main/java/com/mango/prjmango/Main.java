@@ -1,9 +1,5 @@
 package com.mango.prjmango;
 
-import com.mango.prjmango.editaccount.EditAccountView;
-import com.mango.prjmango.login.LoginPageController;
-import com.mango.prjmango.login.LoginPageView;
-import com.mango.prjmango.mainloginpage.MainLoginView;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.Connection;
@@ -12,12 +8,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-
-import com.mango.prjmango.student.CreateAStudentController;
-import com.mango.prjmango.student.CreateAStudentView;
-import com.mango.prjmango.student.RegisterStudent;
-import com.mango.prjmango.student.Student;
+import lombok.Getter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -33,18 +24,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class Main {
 
-	private static Connection connection = null;
-	public static Connection getConnection(){
-		return connection;
-	}
+	@Getter private static Connection connection = null;
 
-	static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	public static final int SCREEN_WIDTH = (int) screenSize.getWidth();
 	public static final int SCREEN_HEIGHT = (int) screenSize.getHeight();
 
 	private static final Logger logger = Logger.getLogger(Main.class.getName());
 
-	public static final String TESTING_DB = "jdbc:sqlite:database\\testing.db";
+	public static final String TESTING_DB = "jdbc:sqlite:database/testing.db";
 
 	public static MainFrame frame;
 
@@ -59,50 +47,16 @@ public class Main {
 	public static void main(String[] args) {
 		SpringApplication.run(Main.class, args);
 
-
 		try {
-			String url = "jdbc:sqlite:database\\iepCipher.db";
+			String url = "jdbc:sqlite:database/iepCipher.db";
 			connection = DriverManager.getConnection(url);
 
 			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
 
-
 			frame = new MainFrame();
 			frame.setLoginPage();
 //			frame.setTeacherView(new EditAccountView());
-//			frame.setTeacherView(new EditAccountView());
-			//Comment out these lines and add new code to test out views
-			//LoginPageView loginPageView = new LoginPageView();
-			//new LoginPageController(loginPageView);
-
-			//new MainLoginView();
-			//MainLoginView.setActivePanel(loginPageView);
-//			Student student = new Student();
-//			student.setFirstName("Kellen");
-//			student.setLastName("Campbell");
-//			student.setGrade("Senior");
-//			student.setBio("Software");
-//			RegisterStudent.createStudent(student);
-
-			//Comment for testing TeacherView
-			//TeacherView teacherView = new TeacherView();
-			//new TeacherController(teacherView);
-
-			//Comment for testing EditAccountView
-			// EditAccountView editAccountView = new EditAccountView();
-			//new EditAccountController(editAccountView);
-
-			//Comment for testing CreateAStudentView:
-			//CreateAStudentView createAStudent = new CreateAStudentView();
-			//new CreateAStudentController(createAStudent);
-
-			//MainLoginView.setActivePanel(teacherView.getTeacherPanel());
-
-		} catch (SQLException
-				| ClassNotFoundException
-				| InstantiationException
-				| IllegalAccessException
-				| UnsupportedLookAndFeelException e) {
+		} catch (Exception e) {
 			logger.log(Level.SEVERE, e.getMessage());
 		}
 	}
