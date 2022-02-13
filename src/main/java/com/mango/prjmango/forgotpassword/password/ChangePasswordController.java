@@ -11,7 +11,11 @@ import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 
+/**
+ *
+ */
 public class ChangePasswordController {
+
     public ChangePasswordController(ChangePasswordView view) {
         view.getCancelButton().addActionListener(new ChangePasswordController.CancelButtonActionListener());
         view.getCancelButton().addMouseListener(new ButtonMouseListener(view.getCancelButton()));
@@ -25,7 +29,7 @@ public class ChangePasswordController {
         /**
          * Invoked when an action occurs.
          *
-         * @param e the event to be processed
+         * @param e the {@link ActionEvent}
          */
 
         public void actionPerformed(ActionEvent e){
@@ -36,22 +40,28 @@ public class ChangePasswordController {
     }
 
     private static class ChangePasswordButtonActionListener implements ActionListener {
+
         private final ChangePasswordView view;
-        public ChangePasswordButtonActionListener(ChangePasswordView view){
+
+        public ChangePasswordButtonActionListener(ChangePasswordView view) {
             this.view = view;
         }
+
         /**
          * Invoked when an action occurs.
          *
-         * @param e the action event
+         * @param e the {@link ActionEvent}
          */
         @Override
         public void actionPerformed(ActionEvent e) {
             final String MESSAGE_TITLE = "Invalid!";
+
             //Add user to database
             //Verify all input
+
             String password = view.getPasswordText().getText();
             String passwordConfirmed = view.getConfirmPasswordText().getText();
+
             if (!password.equals(passwordConfirmed)){
                 JOptionPane.showMessageDialog(
                         MainFrame.getFrame(),
@@ -71,7 +81,7 @@ public class ChangePasswordController {
                         "Please confirm your Password.",
                         MESSAGE_TITLE,
                         JOptionPane.ERROR_MESSAGE);
-            }else {
+            } else {
                 String sql = "UPDATE teacher SET password = ? WHERE teacher_id = ?;";
                 try (PreparedStatement statement = Main.getConnection().prepareStatement(sql)) {
                     statement.setString(1, Encryption.encryptPassword(view.getConfirmPasswordText().getText()));

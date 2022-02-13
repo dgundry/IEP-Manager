@@ -1,8 +1,17 @@
 package com.mango.prjmango.components;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Insets;
+import java.util.List;
 import java.util.Vector;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 /**
  * This class acts as utility class which a developer can access methods
@@ -10,7 +19,7 @@ import java.util.Vector;
  */
 public class Components {
 
-    private final static Insets MARGIN = new Insets(0, 5, 0, 5);
+    private static final Insets MARGIN = new Insets(0, 5, 0, 5);
 
     /**
      * Creates a new {@link JLabel}
@@ -113,8 +122,8 @@ public class Components {
      * @param securityQuestionList the {@link Vector} of {@link String}'s which contain the security questions
      * @return a new {@link JComboBox} for the security questions
      */
-    public static JComboBox<String> JComboBox(Vector<String> securityQuestionList) {
-        JComboBox<String> comboBox = new JComboBox<>(securityQuestionList);
+    public static JComboBox<String> JComboBox(List<String> securityQuestionList) {
+        JComboBox<String> comboBox = new JComboBox<>(new Vector<>(securityQuestionList));
         comboBox.setSelectedIndex(0);
         comboBox.setBackground(Color.WHITE);
         return comboBox;

@@ -4,7 +4,6 @@ import com.mango.prjmango.components.BackgroundPanel;
 import com.mango.prjmango.components.RoundedPanel;
 import com.mango.prjmango.login.LoginPageController;
 import com.mango.prjmango.login.LoginPageView;
-import com.mango.prjmango.mainloginpage.MainLoginView;
 import com.mango.prjmango.teacher.TeacherController;
 import com.mango.prjmango.teacher.TeacherView;
 import lombok.Getter;

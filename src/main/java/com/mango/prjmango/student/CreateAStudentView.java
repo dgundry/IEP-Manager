@@ -4,9 +4,6 @@ import com.mango.prjmango.Main;
 import com.mango.prjmango.components.BackgroundPanel;
 import com.mango.prjmango.components.FontType;
 import com.mango.prjmango.components.RoundedPanel;
-import com.mango.prjmango.mainloginpage.MainLoginView;
-import lombok.Getter;
-
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -26,6 +23,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
+import lombok.Getter;
 
 public class CreateAStudentView {
 
@@ -71,7 +69,7 @@ public class CreateAStudentView {
 
     private final Dimension WINDOW_DIMENSIONS = new Dimension(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
 
-    private static final Logger logger = Logger.getLogger(MainLoginView.class.getName());
+    private static final Logger logger = Logger.getLogger(CreateAStudentView.class.getName());
 
     public CreateAStudentView() {
 

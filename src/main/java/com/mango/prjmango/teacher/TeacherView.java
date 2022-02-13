@@ -4,8 +4,6 @@ import com.mango.prjmango.Main;
 import com.mango.prjmango.MainFrame;
 import com.mango.prjmango.components.BackgroundPanel;
 import com.mango.prjmango.components.FontType;
-import com.mango.prjmango.components.RoundedPanel;
-import com.mango.prjmango.mainloginpage.MainLoginView;
 import lombok.Getter;
 
 import java.awt.*;

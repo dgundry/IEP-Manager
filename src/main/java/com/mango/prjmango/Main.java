@@ -13,7 +13,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * Individual Education Plan Management Tool
+ * Individualized Educational Plans Management Tool
  *
  * @author Emily Robey
  * @author Wes Noffsinger
@@ -26,7 +26,7 @@ public class Main {
 
 	@Getter private static Connection connection = null;
 
-	public static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	public static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	public static final int SCREEN_WIDTH = (int) screenSize.getWidth();
 	public static final int SCREEN_HEIGHT = (int) screenSize.getHeight();
 

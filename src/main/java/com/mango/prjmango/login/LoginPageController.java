@@ -10,7 +10,6 @@ import com.mango.prjmango.forgotpassword.email.EmailController;
 import com.mango.prjmango.forgotpassword.email.EmailView;
 import com.mango.prjmango.login.listeners.EmailTextFieldListener;
 import com.mango.prjmango.login.listeners.PasswordTextFieldListener;
-import com.mango.prjmango.mainloginpage.MainLoginView;
 import com.mango.prjmango.teacher.TeacherController;
 import com.mango.prjmango.teacher.TeacherView;
 import com.mango.prjmango.utilities.DatabaseCommands;
@@ -93,9 +92,8 @@ public class LoginPageController {
                 } else {
                     // create custom error messages
 
-                    System.out.println("Try Again");
                     JOptionPane.showMessageDialog(
-                            MainLoginView.getLoginWindow(),
+                            MainFrame.getFrame(),
                             "Enter a Valid Password.",
                             "INVALID",
                             JOptionPane.ERROR_MESSAGE);
@@ -103,9 +101,8 @@ public class LoginPageController {
             } else {
                 // create custom error messages
 
-                System.out.println("Please input a email and password");
                 JOptionPane.showMessageDialog(
-                        MainLoginView.getLoginWindow(),
+                        MainFrame.getFrame(),
                         "Enter a Valid Email and/or Password.",
                         "INVALID",
                         JOptionPane.ERROR_MESSAGE);

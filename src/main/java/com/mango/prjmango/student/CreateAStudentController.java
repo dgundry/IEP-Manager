@@ -1,18 +1,15 @@
 package com.mango.prjmango.student;
 
+import com.mango.prjmango.MainFrame;
 import com.mango.prjmango.components.dialogs.Dialog;
-import com.mango.prjmango.components.listeners.ButtonMouseListener;
 import com.mango.prjmango.components.listeners.TextFieldFocusListener;
 import com.mango.prjmango.editaccount.EditAccountController;
 import com.mango.prjmango.editaccount.EditAccountView;
-import com.mango.prjmango.mainloginpage.MainLoginView;
-import com.mango.prjmango.teacher.TeacherView;
-
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.JOptionPane;
 
 
 public class CreateAStudentController {
@@ -64,19 +61,19 @@ public class CreateAStudentController {
             //RegisterStudent register = new RegisterStudent();
             if(!(student.getFirstName().length() >= 1 && student.getFirstName().length() <= 20)){
                 JOptionPane.showMessageDialog(
-                        MainLoginView.getLoginWindow(),
+                        MainFrame.getFrame(),
                         "Enter a Valid First Name.",
                         ERROR_MESSAGE_TITLE,
                         JOptionPane.ERROR_MESSAGE);
             }else if(!(student.getLastName().length() >= 1 && student.getLastName().length() <= 20)) {
                 JOptionPane.showMessageDialog(
-                        MainLoginView.getLoginWindow(),
+                        MainFrame.getFrame(),
                         "Enter a Valid Last Name.",
                         ERROR_MESSAGE_TITLE,
                         JOptionPane.ERROR_MESSAGE);
             }else if(!(student.getGrade().length() >= 1 && student.getGrade().length() <= 20)) {
                 JOptionPane.showMessageDialog(
-                   MainLoginView.getLoginWindow(),
+                        MainFrame.getFrame(),
                    "Enter a valid grade.",
                    ERROR_MESSAGE_TITLE,
                    JOptionPane.ERROR_MESSAGE);

@@ -5,12 +5,12 @@ import com.mango.prjmango.components.Components;
 import com.mango.prjmango.components.FontType;
 import com.mango.prjmango.components.RoundedPanel;
 import com.mango.prjmango.components.common.login.LoginPageComponents;
-import java.util.Vector;
+import com.mango.prjmango.utilities.DatabaseCommands;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
-import com.mango.prjmango.utilities.DatabaseCommands;
 import lombok.Getter;
 
 /**
@@ -100,7 +100,7 @@ public class SecurityQuestionsView extends RoundedPanel {
     }
 
     private void createDropDownQuestions() {
-        Vector<String> securityQuestionList = DatabaseCommands.getDropDownQuestions();
+        List<String> securityQuestionList = DatabaseCommands.getDropDownQuestions();
 
         securityQuestionList.remove(0);
 

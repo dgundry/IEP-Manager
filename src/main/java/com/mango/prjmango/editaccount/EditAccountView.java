@@ -4,12 +4,9 @@ package com.mango.prjmango.editaccount;
 import com.mango.prjmango.Main;
 import com.mango.prjmango.components.BackgroundPanel;
 import com.mango.prjmango.components.FontType;
-import com.mango.prjmango.components.RoundedPanel;
-import com.mango.prjmango.mainloginpage.MainLoginView;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Frame;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -46,7 +43,7 @@ public class EditAccountView extends BackgroundPanel{
 
     private final Dimension WINDOW_DIMENSIONS = new Dimension(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
 
-    private static final Logger logger = Logger.getLogger(MainLoginView.class.getName());
+    private static final Logger logger = Logger.getLogger(EditAccountView.class.getName());
 
     public EditAccountView() {
         try {
