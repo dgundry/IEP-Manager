@@ -1,5 +1,7 @@
 package com.mango.prjmango.login;
 
+import com.mango.prjmango.LoggedInUser;
+import com.mango.prjmango.Main;
 import com.mango.prjmango.MainFrame;
 import com.mango.prjmango.components.listeners.ButtonMouseListener;
 import com.mango.prjmango.createaccount.basicinfo.BasicInfoController;
@@ -78,6 +80,9 @@ public class LoginPageController {
 
                 if (DatabaseCommands.isValidUser(enteredEmail, enteredPassword) == 1) {
                     System.out.println("Logged in");
+
+                    LoggedInUser user = new LoggedInUser(DatabaseCommands.getTeacherId(enteredEmail));
+                    Main.activeUser = user;
 
                     TeacherView teacherView = new TeacherView();
                     new TeacherController(teacherView);

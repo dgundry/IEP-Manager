@@ -1,5 +1,6 @@
 package com.mango.prjmango;
 
+import com.mango.prjmango.utilities.DatabaseCommands;
 import com.mango.prjmango.utilities.DatabaseConnection;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -30,6 +31,8 @@ public class Main {
 
 	public static MainFrame frame;
 
+	public static LoggedInUser activeUser;
+
 	/**
 	 * Initialize start of the application. Connects to the database and instantiates
 	 * classes that create the GUI.
@@ -37,6 +40,7 @@ public class Main {
 	 * @param args the command line arguments passed in when running the application.
 	 */
 	public static void main(String[] args) {
+
 		SpringApplication.run(Main.class, args);
 
 		DatabaseConnection connection = new DatabaseConnection();
@@ -46,9 +50,9 @@ public class Main {
 
 		try {
 			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-
 			frame = new MainFrame();
 			frame.setLoginPage();
+
 		} catch (Exception e) {
 			logger.log(Level.SEVERE, e.getMessage());
 		}

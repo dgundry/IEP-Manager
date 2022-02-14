@@ -183,4 +183,19 @@ public class DatabaseCommands {
 
         return hasFailed;
     }
+    public static List<String> getUserDetails(int teacher_id) {
+        int result = -1;
+        String sql = "SELECT first_name, last_name, email FROM teacher WHERE teacher_id = ?;";
+        List<String> userDetails = new ArrayList<>();
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
+            statement.setInt(1, teacher_id);
+            ResultSet resultSet = statement.executeQuery();
+            userDetails.add(resultSet.getString(1));
+            userDetails.add(resultSet.getString(2));
+            userDetails.add(resultSet.getString(3));
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return userDetails;
+    }
 }

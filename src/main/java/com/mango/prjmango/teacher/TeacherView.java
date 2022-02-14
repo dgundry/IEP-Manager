@@ -14,6 +14,8 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import static com.mango.prjmango.Main.activeUser;
+
 public class TeacherView extends BackgroundPanel{
 
     private GridBagConstraints gbc;
@@ -66,12 +68,8 @@ public class TeacherView extends BackgroundPanel{
     }
 
     private void createComponents() {
-        JLabel gradientPhoto = new JLabel(new ImageIcon(getScaledImage(
-                "src/main/java/com/mango/prjmango/utilities/images/GradientPanel.PNG",
-                (229 / 2),
-                110)));
-        JLabel grad = new JLabel("Test");
-        grad.setBounds(10, 10, 100, 25);
+        JLabel welcomeText = createLabel("Welcome, " + activeUser.getFirstName(), FontType.FONT_35_BOLD);
+        welcomeText.setBounds(0, (int) (gradientPanel.getHeight() * 0.14), gradientPanel.getWidth(), 45);
 
         //options teacher panel
 
@@ -201,6 +199,8 @@ public class TeacherView extends BackgroundPanel{
         optionsTeacherPanel.add(createStudentButton);
         optionsTeacherPanel.add(separatorHeader3);
         optionsTeacherPanel.add(logOutButton);
+
+        gradientPanel.add(welcomeText);
     }
 
     private JLabel createLabel(String text, Font font){

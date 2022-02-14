@@ -1,6 +1,7 @@
 package com.mango.prjmango.teacher;
 
 
+import com.mango.prjmango.Main;
 import com.mango.prjmango.MainFrame;
 import com.mango.prjmango.editaccount.EditAccountController;
 import com.mango.prjmango.editaccount.EditAccountView;

@@ -53,6 +53,7 @@ public class MainFrame {
     }
 
     public static void setLoginPage() {
+        Main.activeUser = null;
         mainPanel.removeAll();
         createLoginView();
         frame.setLocationRelativeTo(null);
