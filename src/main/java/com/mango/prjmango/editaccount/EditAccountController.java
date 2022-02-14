@@ -1,9 +1,9 @@
 package com.mango.prjmango.editaccount;
 
 
-import com.mango.prjmango.Main;
 import com.mango.prjmango.student.CreateAStudentController;
 import com.mango.prjmango.student.CreateAStudentView;
+import com.mango.prjmango.utilities.DatabaseConnection;
 import com.mango.prjmango.utilities.Encryption;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -48,7 +48,7 @@ public class EditAccountController {
                 int teacher_id = getTeacher_id(email);
                 if (correctOriginalPassword(teacher_id, oldPassword)) {
                     String sql = "UPDATE teacher SET password = ? WHERE teacher_id = " + teacher_id + ";";
-                    try (PreparedStatement statement = Main.getConnection().prepareStatement(sql)) {
+                    try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
                         statement.setString(1, Encryption.encryptPassword(newPassword1));
                         statement.executeUpdate();
                         System.out.println("Password Changed.");
@@ -68,7 +68,7 @@ public class EditAccountController {
     private boolean isValidEmail(String email){
         boolean result = false;
         String sqlQuery = "SELECT email FROM teacher WHERE email = ?;";
-        try (PreparedStatement statement = Main.getConnection().prepareStatement(sqlQuery)) {
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sqlQuery)) {
             statement.setString(1, email);
             ResultSet resultSet = statement.executeQuery();
             result = resultSet.next();
@@ -80,7 +80,7 @@ public class EditAccountController {
     private int getTeacher_id(String email){
         int result = -1;
         String sql = "SELECT teacher_id FROM teacher WHERE email = ?;";
-        try (PreparedStatement statement = Main.getConnection().prepareStatement(sql)) {
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
             statement.setString(1, email);
             ResultSet resultSet = statement.executeQuery();
             result = Integer.parseInt(resultSet.getString(1));
@@ -97,7 +97,7 @@ public class EditAccountController {
     private boolean correctOriginalPassword(int teacher_id, String password){
         boolean result = false;
         String sql = "SELECT password FROM teacher WHERE teacher_id = ? AND password = ?;";
-        try (PreparedStatement statement = Main.getConnection().prepareStatement(sql)) {
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
             statement.setString(1, String.valueOf(teacher_id));
             statement.setString(2, Encryption.encryptPassword(password));
             ResultSet resultSet = statement.executeQuery();

@@ -1,6 +1,5 @@
 package com.mango.prjmango.utilities;
 
-import com.mango.prjmango.Main;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,7 +24,7 @@ public class DatabaseCommands {
     public static int isValidUser(String enteredEmail, char[] enteredPassword) {
         int count = 0;
         String sql = "SELECT COUNT(*) FROM teacher WHERE email = ? AND password = ?;";
-        try (PreparedStatement statement = Main.getConnection().prepareStatement(sql)) {
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
             statement.setString(1, enteredEmail);
             statement.setString(2, Encryption.encryptPassword(Arrays.toString(enteredPassword)));
             ResultSet resultSet = statement.executeQuery();
@@ -46,7 +45,7 @@ public class DatabaseCommands {
         String sql = "SELECT question FROM question;";
         List<String> securityQuestionList = new ArrayList<>();
 
-        try (PreparedStatement statement = Main.getConnection().prepareStatement(sql)) {
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
             ResultSet resultSet = statement.executeQuery();
 
             do {
@@ -69,7 +68,7 @@ public class DatabaseCommands {
         int index = 0;
         String sql = "SELECT question_id FROM questions WHERE teacher_id = ?;";
 
-        try (PreparedStatement statement = Main.getConnection().prepareStatement(sql)) {
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
             statement.setString(1, String.valueOf(teacherID));
             ResultSet resultSet = statement.executeQuery();
             do {
@@ -94,7 +93,7 @@ public class DatabaseCommands {
         int index = 0;
         String sql = "SELECT question FROM question WHERE (question_id = ? OR question_id = ?);";
 
-        try (PreparedStatement statement = Main.getConnection().prepareStatement(sql)) {
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
             statement.setString(1, String.valueOf(questionIndexes[0]));
             statement.setString(2, String.valueOf(questionIndexes[1]));
             ResultSet resultSet2 = statement.executeQuery();
@@ -125,7 +124,7 @@ public class DatabaseCommands {
         boolean result = false;
         String sql = "SELECT email FROM teacher WHERE email = ?;";
 
-        try (PreparedStatement statement = Main.getConnection().prepareStatement(sql)) {
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
             statement.setString(1, email);
             ResultSet resultSet = statement.executeQuery();
             result = resultSet.next();
@@ -145,7 +144,7 @@ public class DatabaseCommands {
         int result = -1;
         String sql = "SELECT teacher_id FROM teacher WHERE email = ?;";
 
-        try (PreparedStatement statement = Main.getConnection().prepareStatement(sql)) {
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
             statement.setString(1, email);
             ResultSet resultSet = statement.executeQuery();
             result = resultSet.getInt(1);
@@ -162,7 +161,7 @@ public class DatabaseCommands {
             String answer2) {
         boolean hasFailed = false;
         String sql = "SELECT teacher_id, question_id, answer FROM questions WHERE (teacher_id = ? AND (question_id = ? OR question_id = ?));";
-        try (PreparedStatement statement = Main.getConnection().prepareStatement(sql)) {
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
             statement.setString(1, String.valueOf(teacherId));
             statement.setString(2, String.valueOf(questionIndexes[0]));
             statement.setString(3, String.valueOf(questionIndexes[1]));

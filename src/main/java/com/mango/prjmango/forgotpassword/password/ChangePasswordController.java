@@ -1,10 +1,10 @@
 package com.mango.prjmango.forgotpassword.password;
 
-import com.mango.prjmango.Main;
 import com.mango.prjmango.MainFrame;
 import com.mango.prjmango.components.listeners.ButtonMouseListener;
 import com.mango.prjmango.login.LoginPageController;
 import com.mango.prjmango.login.LoginPageView;
+import com.mango.prjmango.utilities.DatabaseConnection;
 import com.mango.prjmango.utilities.Encryption;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -83,7 +83,7 @@ public class ChangePasswordController {
                         JOptionPane.ERROR_MESSAGE);
             } else {
                 String sql = "UPDATE teacher SET password = ? WHERE teacher_id = ?;";
-                try (PreparedStatement statement = Main.getConnection().prepareStatement(sql)) {
+                try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
                     statement.setString(1, Encryption.encryptPassword(view.getConfirmPasswordText().getText()));
                     statement.setString(2, String.valueOf(view.getTeacherID()));
                     int result = statement.executeUpdate();

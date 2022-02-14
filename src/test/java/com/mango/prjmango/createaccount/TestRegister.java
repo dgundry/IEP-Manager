@@ -1,7 +1,7 @@
 package com.mango.prjmango.createaccount;
 
-import com.mango.prjmango.Main;
 import com.mango.prjmango.createaccount.mothers.UserMother;
+import com.mango.prjmango.utilities.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -19,10 +19,12 @@ class TestRegister {
 
     private Register reg;
 
+    private DatabaseConnection connection = new DatabaseConnection();
+
     @BeforeEach
     public void setUp() {
-        Main.setDatabase(Main.TESTING_DB);
-        dropAllRows(Main.getConnection());
+        connection.setDatabase(connection.getTESTING_DB());
+        dropAllRows(connection.getConnection());
 
         reg = new Register();
     }

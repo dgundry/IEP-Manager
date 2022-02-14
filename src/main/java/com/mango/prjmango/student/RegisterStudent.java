@@ -1,7 +1,6 @@
 package com.mango.prjmango.student;
 
-import com.mango.prjmango.Main;
-
+import com.mango.prjmango.utilities.DatabaseConnection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -22,7 +21,7 @@ public class RegisterStudent {
 
     private static void registerStudent(String firstName, String lastName, String grade, String bio){
         String sql = "INSERT INTO student(first_name, last_name, class, bio) VALUES(?,?,?,?);";
-        try(PreparedStatement statement = Main.getConnection().prepareStatement(sql)) {
+        try(PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
             statement.setString(1,firstName);
             statement.setString(2, lastName);
             statement.setString(3, grade);

@@ -6,17 +6,24 @@ import com.mango.prjmango.login.LoginPageController;
 import com.mango.prjmango.login.LoginPageView;
 import com.mango.prjmango.teacher.TeacherController;
 import com.mango.prjmango.teacher.TeacherView;
-import lombok.Getter;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
+import com.mango.prjmango.utilities.DatabaseConnection;
+import java.awt.Dimension;
+import java.awt.Frame;
+import java.awt.GridLayout;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.WindowConstants;
+import lombok.Getter;
 
-public class MainFrame{
+public class MainFrame {
+
     private final Dimension WINDOW_DIMENSIONS = new Dimension(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
     private static final Logger logger = Logger.getLogger(MainFrame.class.getName());
     private static @Getter JFrame frame;
@@ -26,9 +33,9 @@ public class MainFrame{
 
     private static @Getter BackgroundPanel backgroundTeacherPanel;
     private static @Getter BackgroundPanel gradientPanel;
-    private static @Getter  BackgroundPanel optionsTeacherPanel;
+    private static @Getter BackgroundPanel optionsTeacherPanel;
 
-    public MainFrame(){
+   public MainFrame() {
         frame = new JFrame("IEP Manager");
         mainPanel = new JPanel();
         mainPanel.setLayout(null);
@@ -37,8 +44,15 @@ public class MainFrame{
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLayout(new GridLayout(1,1));
         frame.add(mainPanel);
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent windowEvent) {
+                DatabaseConnection.closeConnection();
+            }
+        });
     }
-    public static void setLoginPage(){
+
+    public static void setLoginPage() {
         mainPanel.removeAll();
         createLoginView();
         frame.setLocationRelativeTo(null);
