@@ -25,8 +25,8 @@ public class TeacherController {
         @Override
         public void actionPerformed(ActionEvent e) {
             CreateAStudentView createAStudent = new CreateAStudentView();
-            new CreateAStudentController(createAStudent);
-//            MainFrame.setTeacherView(createAStudent);
+            //new CreateAStudentController(createAStudent);
+            MainFrame.setTeacherView(createAStudent);
             System.out.println("Clicked on Create A student");
         }
     }
@@ -35,7 +35,8 @@ public class TeacherController {
         @Override
         public void actionPerformed(ActionEvent e){
             EditAccountView editAccountView = new EditAccountView();
-            new EditAccountController(editAccountView);
+            //new EditAccountController(editAccountView);
+            MainFrame.setTeacherView(editAccountView);
             System.out.println("Clicked on EditAccount");
         }
     }

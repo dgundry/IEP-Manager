@@ -109,9 +109,9 @@ public class CreateAStudentController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            view.getCreateAStudentWindow().dispose();
             EditAccountView editAccountView = new EditAccountView();
-            new EditAccountController(editAccountView);
+            //new EditAccountController(editAccountView);
+            MainFrame.setTeacherView(editAccountView);
             System.out.println("Clicked on EditAccount");
         }
     }

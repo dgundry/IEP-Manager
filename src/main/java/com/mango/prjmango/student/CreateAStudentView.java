@@ -25,13 +25,11 @@ import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import lombok.Getter;
 
-public class CreateAStudentView {
+public class CreateAStudentView extends BackgroundPanel{
 
-    private JFrame createAStudentWindow;
+
 
     private static BackgroundPanel backgroundCASPanel;
-    private static BackgroundPanel gradientPanel;
-    private static BackgroundPanel optionsTeacherPanel;
     private static BackgroundPanel wrapPanel;
     private static BackgroundPanel headerPanel;
 
@@ -73,153 +71,24 @@ public class CreateAStudentView {
 
     public CreateAStudentView() {
 
-        createFrame();
-        createPanel();
-        createComponents();
-
-
-        createAStudentWindow.getContentPane().add(backgroundCASPanel);
-        createAStudentWindow.pack();
-        createAStudentWindow.setLocationRelativeTo(null);
-        createAStudentWindow.setVisible(true);
-
+        try {
+            this.setBackground(
+                    ImageIO.read(new File("src/main/java/com/mango/prjmango/utilities/images/BackgroundTeacherImage.PNG")));
+            this.setLayout(null);
+            this.setBounds(
+                    0,
+                    0,
+                    Main.SCREEN_WIDTH,
+                    Main.SCREEN_HEIGHT);
+            createPanel();
+            createComponents();
+        } catch (IOException ex) {
+            logger.log(Level.SEVERE, "Could not load background image.");
+        }
 
     }
 
     private void createComponents() {
-        JLabel gradientPhoto = new JLabel(new ImageIcon(getScaledImage(
-                "src/main/java/com/mango/prjmango/utilities/images/GradientPanel.PNG",
-                (229/2),
-                110)));
-        JLabel grad = new JLabel("Test");
-        grad.setBounds(10,10,100,25);
-
-        //options teacher panel
-
-        JLabel schoolLogo = new JLabel(new ImageIcon(getScaledImage(
-                "src/main/java/com/mango/prjmango/utilities/images/PawLogo.png",
-                (229 / 2),
-                110)));
-        schoolLogo.setBounds(
-                (int) (optionsTeacherPanel.getWidth() * 0.5) - 50,
-                (int) (optionsTeacherPanel.getHeight() * 0.005),
-                (229 / 2),
-                110);
-        JLabel titleHeader = createLabel("IEP Manager", FontType.FONT_35_BOLD);
-        titleHeader.setBounds(0, (int) (optionsTeacherPanel.getHeight() * 0.14) , optionsTeacherPanel.getWidth(),45);
-
-        JSeparator separatorHeader = new JSeparator(SwingConstants.CENTER);
-        separatorHeader.setBounds(
-                (0),
-                (int) (optionsTeacherPanel.getHeight() * 0.20),
-                (optionsTeacherPanel.getWidth()),
-                1);
-        separatorHeader.setBackground(Color.WHITE);
-
-        JSeparator separatorHeader2 = new JSeparator(SwingConstants.CENTER);
-        separatorHeader2.setBounds(
-                (0),
-                (int) (optionsTeacherPanel.getHeight() * 0.25),
-                (optionsTeacherPanel.getWidth()),
-                1);
-        separatorHeader2.setBackground(Color.WHITE);
-
-        studentsButton = createButton("Students");
-        studentsButton.setFont(new Font("Arial", Font.PLAIN, 35));
-        studentsButton.setBounds(
-                (0),
-                (int) (optionsTeacherPanel.getHeight() * 0.26),
-                (optionsTeacherPanel.getWidth()),
-                45);
-        studentsButton.setOpaque(false);
-
-        myAccountButton = createButton("My Account");
-        myAccountButton.setFont(new Font("Arial", Font.PLAIN, 35));
-        myAccountButton.setBounds(
-                (0),
-                (int) (optionsTeacherPanel.getHeight() * 0.32),
-                (optionsTeacherPanel.getWidth()),
-                45);
-        myAccountButton.setOpaque(false);
-
-        fullReportsButton = createButton("Full Reports");
-        fullReportsButton.setFont(new Font("Arial", Font.PLAIN, 35));
-        fullReportsButton.setBounds(
-                (0),
-                (int) (optionsTeacherPanel.getHeight() * 0.38),
-                (optionsTeacherPanel.getWidth()),
-                45);
-        fullReportsButton.setOpaque(false);
-
-        activitiesButton = createButton("Activities");
-        activitiesButton.setFont(new Font("Arial", Font.PLAIN, 35));
-        activitiesButton.setBounds(
-                (0),
-                (int) (optionsTeacherPanel.getHeight() * 0.44),
-                (optionsTeacherPanel.getWidth()),
-                45);
-        activitiesButton.setOpaque(false);
-
-        helpButton = createButton("Help");
-        helpButton.setFont(new Font("Arial", Font.PLAIN, 35));
-        helpButton.setBounds(
-                (0),
-                (int) (optionsTeacherPanel.getHeight() * 0.50),
-                (optionsTeacherPanel.getWidth()),
-                45);
-        helpButton.setOpaque(false);
-
-        JSeparator separatorHeader3 = new JSeparator(SwingConstants.CENTER);
-        separatorHeader3.setBounds(
-                (0),
-                (int) (optionsTeacherPanel.getHeight() * 0.56),
-                (optionsTeacherPanel.getWidth()),
-                1);
-        separatorHeader3.setBackground(Color.WHITE);
-
-        logOutButton = createButton("Log Out");
-        logOutButton.setFont(new Font("Arial", Font.PLAIN, 25));
-        logOutButton.setBounds(
-                (0),
-                (int) (optionsTeacherPanel.getHeight() * 0.87),
-                (optionsTeacherPanel.getWidth()),
-                30);
-        logOutButton.setOpaque(false);
-
-        JLabel mangoLogo = new JLabel(new ImageIcon(getScaledImage(
-                "src/main/java/com/mango/prjmango/utilities/images/Mango3.png",
-                50,
-                50)));
-        mangoLogo.setBounds(
-                (int) (optionsTeacherPanel.getWidth() * 0.5) - 25,
-                (optionsTeacherPanel.getHeight() - 75),
-                50,
-                50);
-        createStudentButton = createButton("Create Student");
-        createStudentButton.setFont(new Font("Ariel", Font.PLAIN, 25));
-        createStudentButton.setBounds(
-                (0),
-                (int) (optionsTeacherPanel.getHeight() * 0.70),
-                (optionsTeacherPanel.getWidth()),
-                30);
-        createStudentButton.setOpaque(true);
-
-
-        //options teacher panel
-
-        optionsTeacherPanel.add(schoolLogo);
-        optionsTeacherPanel.add(mangoLogo);
-        optionsTeacherPanel.add(titleHeader);
-        optionsTeacherPanel.add(separatorHeader);
-        optionsTeacherPanel.add(separatorHeader2);
-        optionsTeacherPanel.add(myAccountButton);
-        optionsTeacherPanel.add(studentsButton);
-        optionsTeacherPanel.add(fullReportsButton);
-        optionsTeacherPanel.add(activitiesButton);
-        optionsTeacherPanel.add(helpButton);
-        optionsTeacherPanel.add(createStudentButton);
-        optionsTeacherPanel.add(separatorHeader3);
-        optionsTeacherPanel.add(logOutButton);
 
         //header panel
         JLabel header = createLabel("Create A Student", FontType.FONT_35_BOLD);
@@ -309,14 +178,8 @@ public class CreateAStudentView {
         return button;
     }
 
-    private void createFrame() {
-        createAStudentWindow = new JFrame();
-        createAStudentWindow.setPreferredSize(WINDOW_DIMENSIONS);
-        createAStudentWindow.setExtendedState(Frame.MAXIMIZED_BOTH);
-        createAStudentWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-    }
 
-    private static void createPanel() {
+    private void createPanel() {
         try {
             backgroundCASPanel = new BackgroundPanel();
             backgroundCASPanel.setBackground(
@@ -329,32 +192,6 @@ public class CreateAStudentView {
                     (int) (Main.SCREEN_HEIGHT * 0.70));
         } catch (IOException ex) {
             logger.log(Level.SEVERE, "Could not load background image.");
-        }
-        try {
-            gradientPanel = new BackgroundPanel();
-            gradientPanel.setBackground(
-                    ImageIO.read(new File("src/main/java/com/mango/prjmango/utilities/images/GradientPanel.PNG")));
-            gradientPanel.setLayout(null);
-            gradientPanel.setBounds(
-                    (0),
-                    (0),
-                    (int) (Main.SCREEN_WIDTH * 1),
-                    (int) (Main.SCREEN_HEIGHT * 0.2));
-        } catch (IOException ex) {
-            logger.log(Level.SEVERE, "Could not load gradient image.");
-        }
-        try {
-            optionsTeacherPanel = new BackgroundPanel();
-            optionsTeacherPanel.setBackground(
-                    ImageIO.read(new File("src/main/java/com/mango/prjmango/utilities/images/OptionsTeacherPanel.PNG")));
-            optionsTeacherPanel.setLayout(null);
-            optionsTeacherPanel.setBounds(
-                    (0),
-                    (0),
-                    (int) (Main.SCREEN_WIDTH * 0.17),
-                    (int) (Main.SCREEN_HEIGHT * 1.0));
-        } catch (IOException ex) {
-            logger.log(Level.SEVERE, "Could not load Options image. ");
         }
         try {
             wrapPanel = new BackgroundPanel();
@@ -526,47 +363,32 @@ public class CreateAStudentView {
             logger.log(Level.SEVERE, "Could not load Save Button image. ");
         }
 
-        backgroundCASPanel.add(optionsTeacherPanel);
-        backgroundCASPanel.add(gradientPanel);
-        backgroundCASPanel.add(wrapPanel);
-        backgroundCASPanel.add(headerPanel);
+        add(wrapPanel);
+        add(headerPanel);
 
-        backgroundCASPanel.add(firstNamePanel);
-        backgroundCASPanel.add(firstNameTextPanel);
+        add(firstNamePanel);
+        add(firstNameTextPanel);
 
-        backgroundCASPanel.add(lastNamePanel);
-        backgroundCASPanel.add(lastNameTextPanel);
+        add(lastNamePanel);
+        add(lastNameTextPanel);
 
-        backgroundCASPanel.add(goalListPanel);
-        backgroundCASPanel.add(goalListTextPanel);
+        add(goalListPanel);
+        add(goalListTextPanel);
 
-        backgroundCASPanel.add(gradePanel);
-        backgroundCASPanel.add(gradeTextPanel);
+        add(gradePanel);
+        add(gradeTextPanel);
 
-        backgroundCASPanel.add(goalDesPanel);
-        backgroundCASPanel.add(goalDesTextPanel);
+        add(goalDesPanel);
+        add(goalDesTextPanel);
 
-        backgroundCASPanel.add(saveButtonPanel);
+        add(saveButtonPanel);
     }
 
-    /**
-     * Swaps out the panels.
-     *
-     * @param panel the panel to display
-     */
-    public static void setActivePanel(RoundedPanel panel) {
-        backgroundCASPanel.removeAll();
-        backgroundCASPanel.add(panel);
-        backgroundCASPanel.updateUI();
-        backgroundCASPanel.add(gradientPanel);
-
-    }
 
     private Image getScaledImage(String path, int width, int height) {
         return new ImageIcon(path).getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
     }
 
-    public JFrame getCreateAStudentWindow() { return createAStudentWindow; }
     public JButton getMyAccountButton() { return myAccountButton; }
     public JButton getStudentsButton() { return studentsButton; }
     public JButton getFullReportsButton() { return fullReportsButton; }
