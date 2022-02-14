@@ -1,10 +1,13 @@
 package com.mango.prjmango.editaccount;
 
 
+import com.mango.prjmango.components.listeners.TextFieldFocusListener;
 import com.mango.prjmango.student.CreateAStudentController;
 import com.mango.prjmango.student.CreateAStudentView;
 import com.mango.prjmango.utilities.DatabaseConnection;
 import com.mango.prjmango.utilities.Encryption;
+
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
@@ -16,6 +19,22 @@ public class EditAccountController {
     public EditAccountController(EditAccountView editAccountView){
 //        editAccountView.getCreateStudentButton().addActionListener(new CreateStudentButtonActionListener());
 //        editAccountView.getMyAccountButton().addActionListener(new MyAccountButtonActionListener());
+        JTextField currentPasswordTextField = editAccountView.getCurrentPassText();
+        JTextField newPasswordTextField = editAccountView.getNewPassText();
+        JTextField confirmNewPasswordTextField = editAccountView.getConfirmNewPassText();
+
+        currentPasswordTextField.addFocusListener(new TextFieldFocusListener(currentPasswordTextField, "Password"));
+        newPasswordTextField.addFocusListener(new TextFieldFocusListener(newPasswordTextField,"Password"));
+        confirmNewPasswordTextField.addFocusListener(new TextFieldFocusListener(confirmNewPasswordTextField, "Password"));
+
+        JTextField currentEmailTextField = editAccountView.getCurrentEmailText();
+        JTextField newEmailTextField = editAccountView.getNewEmailText();
+        JTextField confirmPasswordTextField = editAccountView.getConfirmPassText();
+
+        currentEmailTextField.addFocusListener(new TextFieldFocusListener(currentEmailTextField, "Email"));
+        newEmailTextField.addFocusListener(new TextFieldFocusListener(newEmailTextField, "Email"));
+        confirmPasswordTextField.addFocusListener(new TextFieldFocusListener(confirmPasswordTextField, "Password"));
+
 
     }
 
