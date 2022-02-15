@@ -7,7 +7,7 @@ import com.mango.prjmango.editaccount.EditAccountController;
 import com.mango.prjmango.editaccount.EditAccountView;
 import com.mango.prjmango.student.CreateAStudentController;
 import com.mango.prjmango.student.CreateAStudentView;
-import com.mango.prjmango.student.StudentController;
+import com.mango.prjmango.teacher.StudentsController;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -25,7 +25,7 @@ public class TeacherController {
         @Override
         public void actionPerformed(ActionEvent e) {
             CreateAStudentView createAStudent = new CreateAStudentView();
-            //new CreateAStudentController(createAStudent);
+            new CreateAStudentController(createAStudent);
             MainFrame.setTeacherView(createAStudent);
             System.out.println("Clicked on Create A student");
         }

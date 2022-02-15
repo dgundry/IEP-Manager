@@ -23,8 +23,6 @@ public class CreateAStudentController {
 
     public CreateAStudentController(CreateAStudentView createAStudentView) {
         createAStudentView.getSaveButton().addActionListener(new saveButtonActionListener(createAStudentView));
-        createAStudentView.getMyAccountButton().addActionListener(new MyAccountButtonActionListener(createAStudentView));
-
         createAStudentView.getFirstNameText().addFocusListener(new TextFieldFocusListener(createAStudentView.getFirstNameText(), FIRST_NAME_FIELD_ORIGINAL));
         createAStudentView.getLastNameText().addFocusListener(new TextFieldFocusListener(createAStudentView.getLastNameText(), LAST_NAME_FIELD_ORIGINAL));
         createAStudentView.getGradeText().addFocusListener(new TextFieldFocusListener(createAStudentView.getGradeText(), GRADE_FIELD_ORIGINAL));
@@ -98,23 +96,22 @@ public class CreateAStudentController {
         }
     }
 
-
-
-    private static class MyAccountButtonActionListener implements ActionListener {
+    private static class CreateAStudentActionListener implements ActionListener {
         private final CreateAStudentView view;
 
-        public MyAccountButtonActionListener(CreateAStudentView createAStudentView) {
+        public CreateAStudentActionListener(CreateAStudentView createAStudentView) {
             this.view = createAStudentView;
         }
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            EditAccountView editAccountView = new EditAccountView();
+            CreateAStudentView createAStudentView = new CreateAStudentView();
             //new EditAccountController(editAccountView);
-            MainFrame.setTeacherView(editAccountView);
-            System.out.println("Clicked on EditAccount");
+            MainFrame.setTeacherView(createAStudentView);
+            System.out.println("Clicked on Create A Student - CreateAStudentController");
         }
     }
+
     private static class FirstNameMouseListener implements MouseListener {
 
         private final CreateAStudentView createAStudentView;

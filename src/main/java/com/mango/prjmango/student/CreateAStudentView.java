@@ -50,13 +50,6 @@ public class CreateAStudentView extends BackgroundPanel{
 
     private static BackgroundPanel saveButtonPanel;
 
-    private static JButton myAccountButton;
-    private static JButton studentsButton;
-    private static JButton fullReportsButton;
-    private static JButton activitiesButton;
-    private static JButton helpButton;
-    private static JButton createStudentButton;
-    private static JButton logOutButton;
     private @Getter JButton saveButton;
 
     private @Getter JTextField firstNameText;
@@ -389,13 +382,6 @@ public class CreateAStudentView extends BackgroundPanel{
         return new ImageIcon(path).getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
     }
 
-    public JButton getMyAccountButton() { return myAccountButton; }
-    public JButton getStudentsButton() { return studentsButton; }
-    public JButton getFullReportsButton() { return fullReportsButton; }
-    public JButton getActivitiesButton() { return activitiesButton; }
-    public JButton getHelpButton() { return helpButton; }
-    public JButton getLogOutButton() { return helpButton; }
-    public JButton getCreateStudentButton() { return createStudentButton; }
     public JTextField getFirstNameText() { return firstNameText; }
     public JTextField getLastNameText() { return lastNameText; }
     public JTextArea getGoalListText() { return goalListText; }
