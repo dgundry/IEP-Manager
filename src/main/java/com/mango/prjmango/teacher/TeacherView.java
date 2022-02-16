@@ -4,15 +4,19 @@ import com.mango.prjmango.Main;
 import com.mango.prjmango.MainFrame;
 import com.mango.prjmango.components.BackgroundPanel;
 import com.mango.prjmango.components.FontType;
-import lombok.Getter;
-
-import java.awt.*;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
+import com.mango.prjmango.utilities.Images;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.Image;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
+import lombok.Getter;
 
 import static com.mango.prjmango.Main.activeUser;
 
@@ -35,36 +39,28 @@ public class TeacherView extends BackgroundPanel{
 
     public TeacherView() {
         gbc = new GridBagConstraints();
-        try {
-            this.setBackground(
-                    ImageIO.read(new File("src/main/java/com/mango/prjmango/utilities/images/BackgroundTeacherImage.PNG")));
-            this.setLayout(null);
-            this.setBounds(0,
-                    0,
-                    Main.SCREEN_WIDTH,
-                    Main.SCREEN_HEIGHT);
-            createPanel();
-            createComponents();
-        } catch (IOException ex) {
-            logger.log(Level.SEVERE, "Could not load background image.");
-        }
-    }public TeacherView(JPanel mainPanel) {
+        this.setBackground(Images.getBackgroundImage());
+        this.setLayout(null);
+        this.setBounds(0,
+                0,
+                Main.SCREEN_WIDTH,
+                Main.SCREEN_HEIGHT);
+        createPanel();
+        createComponents();
+    }
+
+    public TeacherView(JPanel mainPanel) {
         gbc = new GridBagConstraints();
-        try {
-            this.setBackground(
-                    ImageIO.read(new File("src/main/java/com/mango/prjmango/utilities/images/BackgroundTeacherImage.PNG")));
-            this.setLayout(null);
-            this.setBounds(0,
-                   0,
-                    Main.SCREEN_WIDTH,
-                    Main.SCREEN_HEIGHT);
-            createPanel();
-            createComponents();
-            this.add(mainPanel);
-            add(mainPanel);
-        } catch (IOException ex) {
-            logger.log(Level.SEVERE, "Could not load background image.");
-        }
+        this.setBackground(Images.getBackgroundImage());
+        this.setLayout(null);
+        this.setBounds(0,
+               0,
+                Main.SCREEN_WIDTH,
+                Main.SCREEN_HEIGHT);
+        createPanel();
+        createComponents();
+        this.add(mainPanel);
+        add(mainPanel);
     }
 
     private void createComponents() {
@@ -221,35 +217,27 @@ public class TeacherView extends BackgroundPanel{
     }
 
     private void createPanel() {
-        try {
-            optionsTeacherPanel = new BackgroundPanel();
-            optionsTeacherPanel.setBackground(
-                    ImageIO.read(new File("src/main/java/com/mango/prjmango/utilities/images/OptionsTeacherPanel.PNG")));
-            optionsTeacherPanel.setLayout(null);
-            optionsTeacherPanel.setBounds(
-                    (0),
-                    (0),
-                    (int) (Main.SCREEN_WIDTH * 0.2),
-                    Main.SCREEN_HEIGHT);
-            this.add(optionsTeacherPanel);
-        } catch (IOException ex) {
-            logger.log(Level.SEVERE, "Could not load Options image. ");
-        }
-        try {
-            gradientPanel = new BackgroundPanel();
-            gradientPanel.setBackground(
-                    ImageIO.read(new File("src/main/java/com/mango/prjmango/utilities/images/GradientPanel.PNG")));
-            gradientPanel.setLayout(null);
-            gradientPanel.setBounds(
-                    (0),
-                    (0),
-                    (int) (Main.SCREEN_WIDTH * 1),
-                    (int) (Main.SCREEN_HEIGHT * 0.25));
-            this.add(gradientPanel);
-        } catch (IOException ex) {
-            logger.log(Level.SEVERE, "Could not load gradient image.");
-        }
+        optionsTeacherPanel = new BackgroundPanel();
+        optionsTeacherPanel.setBackground(Images.getOptionsTeacherPanelImage());
+        optionsTeacherPanel.setLayout(null);
+        optionsTeacherPanel.setBounds(
+                (0),
+                (0),
+                (int) (Main.SCREEN_WIDTH * 0.2),
+                Main.SCREEN_HEIGHT);
+        this.add(optionsTeacherPanel);
+
+        gradientPanel = new BackgroundPanel();
+        gradientPanel.setBackground(Images.getGradientPanelImage());
+        gradientPanel.setLayout(null);
+        gradientPanel.setBounds(
+                (0),
+                (0),
+                (int) (Main.SCREEN_WIDTH * 1),
+                (int) (Main.SCREEN_HEIGHT * 0.25));
+        this.add(gradientPanel);
     }
+
     private Image getScaledImage(String path, int width, int height) {
         return new ImageIcon(path).getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
     }

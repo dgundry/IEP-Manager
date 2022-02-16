@@ -37,11 +37,12 @@ public class DatabaseConnection implements Runnable {
      */
     @Override
     public void run() {
-        String url = "jdbc:sqlite:database/iepCipher.db";
-
         try {
-            connection = DriverManager.getConnection(url);
-        } catch (SQLException e) {
+            String url = "jdbc:mysql://iepcipher-do-user-9861785-0.b.db.ondigitalocean.com:25060/";
+            String username = "doadmin";
+            String password = "X0Y5SvMlvvOun0NI";
+            connection = DriverManager.getConnection(url, username, password);
+        } catch (Exception e) {
             logger.log(Level.SEVERE, e.getMessage());
         }
     }

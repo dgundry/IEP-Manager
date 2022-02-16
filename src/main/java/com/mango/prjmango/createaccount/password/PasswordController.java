@@ -1,7 +1,6 @@
 package com.mango.prjmango.createaccount.password;
 
 import com.mango.prjmango.MainFrame;
-import com.mango.prjmango.components.dialogs.Dialog;
 import com.mango.prjmango.components.listeners.ButtonMouseListener;
 import com.mango.prjmango.createaccount.Register;
 import com.mango.prjmango.createaccount.User;
@@ -112,7 +111,13 @@ public class PasswordController {
                 user.setSecurityQ2(user.getSecurityQ2()+1);
 
                 if (register.createUser(user)) {
-                    Dialog.openDialog(Dialog.ACCOUNT_CREATED);
+                    //Dialog.openDialog(Dialog.ACCOUNT_CREATED); <----Temporary Change
+
+                    JOptionPane.showMessageDialog(
+                            MainFrame.getFrame(),
+                            "Account created!",
+                            "Success!",
+                            JOptionPane.PLAIN_MESSAGE);
 
                     LoginPageView loginPageView = new LoginPageView();
                     new LoginPageController(loginPageView);

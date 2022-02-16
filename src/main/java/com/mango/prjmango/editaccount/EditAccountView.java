@@ -4,16 +4,16 @@ package com.mango.prjmango.editaccount;
 import com.mango.prjmango.Main;
 import com.mango.prjmango.components.BackgroundPanel;
 import com.mango.prjmango.components.FontType;
+import com.mango.prjmango.utilities.Images;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JSeparator;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class EditAccountView extends BackgroundPanel{
 
@@ -46,20 +46,15 @@ public class EditAccountView extends BackgroundPanel{
     private static final Logger logger = Logger.getLogger(EditAccountView.class.getName());
 
     public EditAccountView() {
-        try {
-            this.setBackground(
-                    ImageIO.read(new File("src/main/java/com/mango/prjmango/utilities/images/BackgroundTeacherImage.PNG")));
-            this.setLayout(null);
-            this.setBounds(
-                    0,
-                    0,
-                    Main.SCREEN_WIDTH,
-                    Main.SCREEN_HEIGHT);
-            createPanel();
-            createComponents();
-        } catch (IOException ex) {
-            logger.log(Level.SEVERE, "Could not load background image.");
-        }
+        this.setBackground(Images.getBackgroundTeacherImage());
+        this.setLayout(null);
+        this.setBounds(
+                0,
+                0,
+                Main.SCREEN_WIDTH,
+                Main.SCREEN_HEIGHT);
+        createPanel();
+        createComponents();
     }
 
     private void createComponents() {
@@ -185,6 +180,7 @@ public class EditAccountView extends BackgroundPanel{
         label.setForeground(Color.WHITE);
         return label;
     }
+
     private JButton createButton(String text) {
         JButton button = new JButton(text);
         button.setForeground(Color.WHITE);
@@ -195,56 +191,41 @@ public class EditAccountView extends BackgroundPanel{
         button.setEnabled(true);
         return button;
     }
+
     private void createPanel() {
-       try {
-            changePasswordPanel = new BackgroundPanel();
-            changePasswordPanel.setBackground(
-                    ImageIO.read(new File("src/main/java/com/mango/prjmango/utilities/images/grey.png")));
-            changePasswordPanel.setLayout(null);
-            changePasswordPanel.setBounds(
-                    (400),
-                    (300),
-                    (int) (Main.SCREEN_WIDTH * 0.25),
-                    (int) (Main.SCREEN_HEIGHT * 0.4));
-            this.add(changePasswordPanel);
-        } catch (IOException ex) {
-            logger.log(Level.SEVERE, "Could not load Password image. ");
-        }try {
-            changeEmailPanel = new BackgroundPanel();
-            changeEmailPanel.setBackground(
-                    ImageIO.read(new File("src/main/java/com/mango/prjmango/utilities/images/grey.png")));
-            changeEmailPanel.setLayout(null);
-            changeEmailPanel.setBounds(
-                    (1000),
-                    (300),
-                    (int) (Main.SCREEN_WIDTH * 0.25),
-                    (int) (Main.SCREEN_HEIGHT * 0.4));
-            this.add(changeEmailPanel);
-        } catch (IOException ex) {
-            logger.log(Level.SEVERE, "Could not load Email image. ");
-        }
-        try {
-            wrapPanel = new BackgroundPanel();
-            wrapPanel.setBackground(
-                    ImageIO.read(new File("src/main/java/com/mango/prjmango/utilities/images/black.PNG")));
-            wrapPanel.setLayout(null);
-            wrapPanel.setBounds(
-                    (100),
-                    (173),
-                    (int) (Main.SCREEN_WIDTH * 0.935),
-                    (int) (Main.SCREEN_HEIGHT * 0.05));
-            this.add(wrapPanel);
-        } catch (IOException ex) {
-            logger.log(Level.SEVERE, "Could not load Wrap image. ");
-        }
+        changePasswordPanel = new BackgroundPanel();
+        changePasswordPanel.setBackground(Images.getGreyImage());
+        changePasswordPanel.setLayout(null);
+        changePasswordPanel.setBounds(
+                (400),
+                (300),
+                (int) (Main.SCREEN_WIDTH * 0.25),
+                (int) (Main.SCREEN_HEIGHT * 0.4));
+        this.add(changePasswordPanel);
+
+        changeEmailPanel = new BackgroundPanel();
+        changeEmailPanel.setBackground(Images.getGreyImage());
+        changeEmailPanel.setLayout(null);
+        changeEmailPanel.setBounds(
+                (1000),
+                (300),
+                (int) (Main.SCREEN_WIDTH * 0.25),
+                (int) (Main.SCREEN_HEIGHT * 0.4));
+        this.add(changeEmailPanel);
+
+        wrapPanel = new BackgroundPanel();
+        wrapPanel.setBackground(Images.getBlackImage());
+        wrapPanel.setLayout(null);
+        wrapPanel.setBounds(
+                (100),
+                (173),
+                (int) (Main.SCREEN_WIDTH * 0.935),
+                (int) (Main.SCREEN_HEIGHT * 0.05));
+        this.add(wrapPanel);
 
         add(changePasswordPanel);
         add(changeEmailPanel);
         add(wrapPanel);
-    }
-
-    private Image getScaledImage(String path, int width, int height) {
-        return new ImageIcon(path).getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
     }
 
     public JButton getMyAccountButton() { return myAccountButton; }
@@ -262,6 +243,4 @@ public class EditAccountView extends BackgroundPanel{
     public JTextField getNewEmailText() { return newEmailText; }
     public JTextField getConfirmPassText() { return confirmPassText; }
     public JButton getSaveEmail() { return saveEmail; }
-
-
 }

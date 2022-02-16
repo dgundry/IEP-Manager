@@ -3,31 +3,17 @@ package com.mango.prjmango.student;
 import com.mango.prjmango.Main;
 import com.mango.prjmango.components.BackgroundPanel;
 import com.mango.prjmango.components.FontType;
-import com.mango.prjmango.components.RoundedPanel;
+import com.mango.prjmango.utilities.Images;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Frame;
-import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.WindowConstants;
 import lombok.Getter;
 
 public class CreateAStudentView extends BackgroundPanel{
-
-
 
     private static BackgroundPanel backgroundCASPanel;
     private static BackgroundPanel wrapPanel;
@@ -58,27 +44,16 @@ public class CreateAStudentView extends BackgroundPanel{
     private @Getter JTextArea goalListText;
     private @Getter JTextField bioText;
 
-    private final Dimension WINDOW_DIMENSIONS = new Dimension(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
-
-    private static final Logger logger = Logger.getLogger(CreateAStudentView.class.getName());
-
     public CreateAStudentView() {
-
-        try {
-            this.setBackground(
-                    ImageIO.read(new File("src/main/java/com/mango/prjmango/utilities/images/BackgroundTeacherImage.PNG")));
-            this.setLayout(null);
-            this.setBounds(
-                    0,
-                    0,
-                    Main.SCREEN_WIDTH,
-                    Main.SCREEN_HEIGHT);
-            createPanel();
-            createComponents();
-        } catch (IOException ex) {
-            logger.log(Level.SEVERE, "Could not load background image.");
-        }
-
+        this.setBackground(Images.getBackgroundTeacherImage());
+        this.setLayout(null);
+        this.setBounds(
+                0,
+                0,
+                Main.SCREEN_WIDTH,
+                Main.SCREEN_HEIGHT);
+        createPanel();
+        createComponents();
     }
 
     private void createComponents() {
@@ -173,188 +148,131 @@ public class CreateAStudentView extends BackgroundPanel{
 
 
     private void createPanel() {
-        try {
-            backgroundCASPanel = new BackgroundPanel();
-            backgroundCASPanel.setBackground(
-                    ImageIO.read(new File("src/main/java/com/mango/prjmango/utilities/images/BackgroundTeacherImage.PNG")));
-            backgroundCASPanel.setLayout(null);
-            backgroundCASPanel.setBounds(
-                    (int) (Main.SCREEN_WIDTH * 0.5) - ((int) (Main.SCREEN_WIDTH * 0.16)),
-                    (int) (Main.SCREEN_HEIGHT * 0.125),
-                    (int) (Main.SCREEN_WIDTH * 0.3),
-                    (int) (Main.SCREEN_HEIGHT * 0.70));
-        } catch (IOException ex) {
-            logger.log(Level.SEVERE, "Could not load background image.");
-        }
-        try {
-            wrapPanel = new BackgroundPanel();
-            wrapPanel.setBackground(
-                    ImageIO.read(new File("src/main/java/com/mango/prjmango/utilities/images/black.PNG")));
-            wrapPanel.setLayout(null);
-            wrapPanel.setBounds(
-                    (100),
-                    (173),
-                    (int) (Main.SCREEN_WIDTH * 0.935),
-                    (int) (Main.SCREEN_HEIGHT * 0.05));
-        } catch (IOException ex) {
-            logger.log(Level.SEVERE, "Could not load Wrap image. ");
-        }
-        try {
-            headerPanel = new BackgroundPanel();
-            headerPanel.setBackground(
-                    ImageIO.read(new File("src/main/java/com/mango/prjmango/utilities/images/orange.PNG")));
-            headerPanel.setLayout(null);
-            headerPanel.setBounds(
-                    (300),
-                    (250),
-                    (int) (Main.SCREEN_WIDTH * 0.765),
-                    (int) (Main.SCREEN_HEIGHT * 0.05));
-        } catch (IOException ex) {
-            logger.log(Level.SEVERE, "Could not load Header image. ");
-        }
-        try {
-            firstNamePanel = new BackgroundPanel();
-            firstNamePanel.setBackground(
-                    ImageIO.read(new File("src/main/java/com/mango/prjmango/utilities/images/orange.PNG")));
-            firstNamePanel.setLayout(null);
-            firstNamePanel.setBounds(
-                    (325),
-                    (325),
-                    (int) (Main.SCREEN_WIDTH * 0.15),
-                    (int) (Main.SCREEN_HEIGHT * 0.05));
-        } catch (IOException ex) {
-            logger.log(Level.SEVERE, "Could not load First Name image. ");
-        }
-        try {
-            firstNameTextPanel = new BackgroundPanel();
-            firstNameTextPanel.setBackground(
-                    ImageIO.read(new File("src/main/java/com/mango/prjmango/utilities/images/orange.PNG")));
-            firstNameTextPanel.setLayout(null);
-            firstNameTextPanel.setBounds(
-                    (325),
-                    (380),
-                    (int) (Main.SCREEN_WIDTH * 0.15),
-                    (int) (Main.SCREEN_HEIGHT * 0.05));
-        } catch (IOException ex) {
-            logger.log(Level.SEVERE, "Could not load First Name Textbox image. ");
-        }
-        try {
-            lastNamePanel = new BackgroundPanel();
-            lastNamePanel.setBackground(
-                    ImageIO.read(new File("src/main/java/com/mango/prjmango/utilities/images/orange.PNG")));
-            lastNamePanel.setLayout(null);
-            lastNamePanel.setBounds(
-                    (600),
-                    (325),
-                    (int) (Main.SCREEN_WIDTH * 0.15),
-                    (int) (Main.SCREEN_HEIGHT * 0.05));
-        } catch (IOException ex) {
-            logger.log(Level.SEVERE, "Could not load Last Name image. ");
-        }
-        try {
-            lastNameTextPanel = new BackgroundPanel();
-            lastNameTextPanel.setBackground(
-                    ImageIO.read(new File("src/main/java/com/mango/prjmango/utilities/images/orange.PNG")));
-            lastNameTextPanel.setLayout(null);
-            lastNameTextPanel.setBounds(
-                    (600),
-                    (380),
-                    (int) (Main.SCREEN_WIDTH * 0.15),
-                    (int) (Main.SCREEN_HEIGHT * 0.05));
-        } catch (IOException ex) {
-            logger.log(Level.SEVERE, "Could not load Last Name Textbox image. ");
-        }
-        try {
-            goalListPanel = new BackgroundPanel();
-            goalListPanel.setBackground(
-                    ImageIO.read(new File("src/main/java/com/mango/prjmango/utilities/images/orange.PNG")));
-            goalListPanel.setLayout(null);
-            goalListPanel.setBounds(
-                    (1000),
-                    (325),
-                    (int) (Main.SCREEN_WIDTH * 0.2),
-                    (int) (Main.SCREEN_HEIGHT * 0.05));
-        } catch (IOException ex) {
-            logger.log(Level.SEVERE, "Could not load Goal List image. ");
-        }
-        try {
-            goalListTextPanel = new BackgroundPanel();
-            goalListTextPanel.setBackground(
-                    ImageIO.read(new File("src/main/java/com/mango/prjmango/utilities/images/orange.PNG")));
-            goalListTextPanel.setLayout(null);
-            goalListTextPanel.setBounds(
-                    (1000),
-                    (380),
-                    (int) (Main.SCREEN_WIDTH * 0.2),
-                    (int) (Main.SCREEN_HEIGHT * 0.3));
-        } catch (IOException ex) {
-            logger.log(Level.SEVERE, "Could not load Goal List Textbox image. ");
-        }
-        try {
-            gradePanel = new BackgroundPanel();
-            gradePanel.setBackground(
-                    ImageIO.read(new File("src/main/java/com/mango/prjmango/utilities/images/orange.PNG")));
-            gradePanel.setLayout(null);
-            gradePanel.setBounds(
-                    (325),
-                    (500),
-                    (int) (Main.SCREEN_WIDTH * 0.15),
-                    (int) (Main.SCREEN_HEIGHT * 0.05));
-        } catch (IOException ex) {
-            logger.log(Level.SEVERE, "Could not load Grade image. ");
-        }
-        try {
-            gradeTextPanel = new BackgroundPanel();
-            gradeTextPanel.setBackground(
-                    ImageIO.read(new File("src/main/java/com/mango/prjmango/utilities/images/orange.PNG")));
-            gradeTextPanel.setLayout(null);
-            gradeTextPanel.setBounds(
-                    (325),
-                    (555),
-                    (int) (Main.SCREEN_WIDTH * 0.15),
-                    (int) (Main.SCREEN_HEIGHT * 0.05));
-        } catch (IOException ex) {
-            logger.log(Level.SEVERE, "Could not load Grade Textbox image. ");
-        }
-        try {
-            goalDesPanel = new BackgroundPanel();
-            goalDesPanel.setBackground(
-                    ImageIO.read(new File("src/main/java/com/mango/prjmango/utilities/images/orange.PNG")));
-            goalDesPanel.setLayout(null);
-            goalDesPanel.setBounds(
-                    (325),
-                    (650),
-                    (int) (Main.SCREEN_WIDTH * 0.2),
-                    (int) (Main.SCREEN_HEIGHT * 0.05));
-        } catch (IOException ex) {
-            logger.log(Level.SEVERE, "Could not load Goal Description image. ");
-        }
-        try {
-            goalDesTextPanel = new BackgroundPanel();
-            goalDesTextPanel.setBackground(
-                    ImageIO.read(new File("src/main/java/com/mango/prjmango/utilities/images/orange.PNG")));
-            goalDesTextPanel.setLayout(null);
-            goalDesTextPanel.setBounds(
-                    (325),
-                    (705),
-                    (int) (Main.SCREEN_WIDTH * 0.4),
-                    (int) (Main.SCREEN_HEIGHT * 0.15));
-        } catch (IOException ex) {
-            logger.log(Level.SEVERE, "Could not load Goal Description Textbox image. ");
-        }
-        try {
-            saveButtonPanel = new BackgroundPanel();
-            saveButtonPanel.setBackground(
-                    ImageIO.read(new File("src/main/java/com/mango/prjmango/utilities/images/black.PNG")));
-            saveButtonPanel.setLayout(null);
-            saveButtonPanel.setBounds(
-                    (1100),
-                    (780),
-                    (int) (Main.SCREEN_WIDTH * 0.09),
-                    (int) (Main.SCREEN_HEIGHT * 0.05));
-        } catch (IOException ex) {
-            logger.log(Level.SEVERE, "Could not load Save Button image. ");
-        }
+        backgroundCASPanel = new BackgroundPanel();
+        backgroundCASPanel.setBackground(Images.getBackgroundTeacherImage());
+        backgroundCASPanel.setLayout(null);
+        backgroundCASPanel.setBounds(
+                (int) (Main.SCREEN_WIDTH * 0.5) - ((int) (Main.SCREEN_WIDTH * 0.16)),
+                (int) (Main.SCREEN_HEIGHT * 0.125),
+                (int) (Main.SCREEN_WIDTH * 0.3),
+                (int) (Main.SCREEN_HEIGHT * 0.70));
+
+        wrapPanel = new BackgroundPanel();
+        wrapPanel.setBackground(Images.getBlackImage());
+        wrapPanel.setLayout(null);
+        wrapPanel.setBounds(
+                (100),
+                (173),
+                (int) (Main.SCREEN_WIDTH * 0.935),
+                (int) (Main.SCREEN_HEIGHT * 0.05));
+
+        headerPanel = new BackgroundPanel();
+        headerPanel.setBackground(Images.getOrangeImage());
+        headerPanel.setLayout(null);
+        headerPanel.setBounds(
+                (300),
+                (250),
+                (int) (Main.SCREEN_WIDTH * 0.765),
+                (int) (Main.SCREEN_HEIGHT * 0.05));
+
+        firstNamePanel = new BackgroundPanel();
+        firstNamePanel.setBackground(Images.getOrangeImage());
+        firstNamePanel.setLayout(null);
+        firstNamePanel.setBounds(
+                (325),
+                (325),
+                (int) (Main.SCREEN_WIDTH * 0.15),
+                (int) (Main.SCREEN_HEIGHT * 0.05));
+
+        firstNameTextPanel = new BackgroundPanel();
+        firstNameTextPanel.setBackground(Images.getOrangeImage());
+        firstNameTextPanel.setLayout(null);
+        firstNameTextPanel.setBounds(
+                (325),
+                (380),
+                (int) (Main.SCREEN_WIDTH * 0.15),
+                (int) (Main.SCREEN_HEIGHT * 0.05));
+
+        lastNamePanel = new BackgroundPanel();
+        lastNamePanel.setBackground(Images.getOrangeImage());
+        lastNamePanel.setLayout(null);
+        lastNamePanel.setBounds(
+                (600),
+                (325),
+                (int) (Main.SCREEN_WIDTH * 0.15),
+                (int) (Main.SCREEN_HEIGHT * 0.05));
+
+        lastNameTextPanel = new BackgroundPanel();
+        lastNameTextPanel.setBackground(Images.getOrangeImage());
+        lastNameTextPanel.setLayout(null);
+        lastNameTextPanel.setBounds(
+                (600),
+                (380),
+                (int) (Main.SCREEN_WIDTH * 0.15),
+                (int) (Main.SCREEN_HEIGHT * 0.05));
+
+        goalListPanel = new BackgroundPanel();
+        goalListPanel.setBackground(Images.getOrangeImage());
+        goalListPanel.setLayout(null);
+        goalListPanel.setBounds(
+                (1000),
+                (325),
+                (int) (Main.SCREEN_WIDTH * 0.2),
+                (int) (Main.SCREEN_HEIGHT * 0.05));
+
+        goalListTextPanel = new BackgroundPanel();
+        goalListTextPanel.setBackground(Images.getOrangeImage());
+        goalListTextPanel.setLayout(null);
+        goalListTextPanel.setBounds(
+                (1000),
+                (380),
+                (int) (Main.SCREEN_WIDTH * 0.2),
+                (int) (Main.SCREEN_HEIGHT * 0.3));
+
+        gradePanel = new BackgroundPanel();
+        gradePanel.setBackground(Images.getOrangeImage());
+        gradePanel.setLayout(null);
+        gradePanel.setBounds(
+                (325),
+                (500),
+                (int) (Main.SCREEN_WIDTH * 0.15),
+                (int) (Main.SCREEN_HEIGHT * 0.05));
+
+        gradeTextPanel = new BackgroundPanel();
+        gradeTextPanel.setBackground(Images.getOrangeImage());
+        gradeTextPanel.setLayout(null);
+        gradeTextPanel.setBounds(
+                (325),
+                (555),
+                (int) (Main.SCREEN_WIDTH * 0.15),
+                (int) (Main.SCREEN_HEIGHT * 0.05));
+
+        goalDesPanel = new BackgroundPanel();
+        goalDesPanel.setBackground(Images.getOrangeImage());
+        goalDesPanel.setLayout(null);
+        goalDesPanel.setBounds(
+                (325),
+                (650),
+                (int) (Main.SCREEN_WIDTH * 0.2),
+                (int) (Main.SCREEN_HEIGHT * 0.05));
+
+        goalDesTextPanel = new BackgroundPanel();
+        goalDesTextPanel.setBackground(Images.getOrangeImage());
+        goalDesTextPanel.setLayout(null);
+        goalDesTextPanel.setBounds(
+                (325),
+                (705),
+                (int) (Main.SCREEN_WIDTH * 0.4),
+                (int) (Main.SCREEN_HEIGHT * 0.15));
+
+        saveButtonPanel = new BackgroundPanel();
+        saveButtonPanel.setBackground(Images.getBlackImage());
+        saveButtonPanel.setLayout(null);
+        saveButtonPanel.setBounds(
+                (1100),
+                (780),
+                (int) (Main.SCREEN_WIDTH * 0.09),
+                (int) (Main.SCREEN_HEIGHT * 0.05));
 
         add(wrapPanel);
         add(headerPanel);
@@ -375,11 +293,6 @@ public class CreateAStudentView extends BackgroundPanel{
         add(goalDesTextPanel);
 
         add(saveButtonPanel);
-    }
-
-
-    private Image getScaledImage(String path, int width, int height) {
-        return new ImageIcon(path).getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH);
     }
 
     public JTextField getFirstNameText() { return firstNameText; }

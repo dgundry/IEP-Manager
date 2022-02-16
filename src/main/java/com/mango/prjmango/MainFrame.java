@@ -7,16 +7,13 @@ import com.mango.prjmango.login.LoginPageView;
 import com.mango.prjmango.teacher.TeacherController;
 import com.mango.prjmango.teacher.TeacherView;
 import com.mango.prjmango.utilities.DatabaseConnection;
+import com.mango.prjmango.utilities.Images;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
@@ -25,7 +22,7 @@ import lombok.Getter;
 public class MainFrame {
 
     private final Dimension WINDOW_DIMENSIONS = new Dimension(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
-    private static final Logger logger = Logger.getLogger(MainFrame.class.getName());
+
     private static @Getter JFrame frame;
 
     private static @Getter JPanel mainPanel;
@@ -35,7 +32,9 @@ public class MainFrame {
     private static @Getter BackgroundPanel gradientPanel;
     private static @Getter BackgroundPanel optionsTeacherPanel;
 
-   public MainFrame() {
+    private static final BufferedImage BACKGROUND_IMAGE = Images.getBackgroundImage();
+
+    public MainFrame() {
         frame = new JFrame("IEP Manager");
         mainPanel = new JPanel();
         mainPanel.setLayout(null);
@@ -60,13 +59,15 @@ public class MainFrame {
         frame.setVisible(true);
         mainPanel.updateUI();
     }
-    public static void setTeacherView(){
+
+    public static void setTeacherView() {
         mainPanel.removeAll();
         createTeacherView();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         mainPanel.updateUI();
     }
+
     public static void setTeacherView(JPanel panel){
         mainPanel.removeAll();
         createTeacherView(panel);
@@ -75,59 +76,57 @@ public class MainFrame {
         frame.setVisible(true);
         mainPanel.updateUI();
     }
+
     private static LoginPageView createLoginViewController(){
         LoginPageView loginPageView = new LoginPageView();
         new LoginPageController(loginPageView);
         return loginPageView;
     }
+
     private static TeacherView createTeacherViewController(JPanel panel){
         TeacherView teacherView = new TeacherView(panel);
         new TeacherController(teacherView);
         return teacherView;
     }
+
     private static TeacherView createTeacherViewController(){
         TeacherView teacherView = new TeacherView();
         new TeacherController(teacherView);
         return teacherView;
     }
+
     private static void createLoginView(){
-        try {
-            backgroundLoginPanel = new BackgroundPanel();
-            backgroundLoginPanel.setBackground(
-                    ImageIO.read(new File("src/main/java/com/mango/prjmango/utilities/images/Ariel-City-of-Lawrenceburg1.png")));
-            backgroundLoginPanel.setLayout(null);
-            backgroundLoginPanel.setBounds(0, 0,(Main.SCREEN_WIDTH),(Main.SCREEN_HEIGHT));
-            mainPanel.add(backgroundLoginPanel);
-            backgroundLoginPanel.add(createLoginViewController());
-        } catch (IOException ex) {
-            logger.log(Level.SEVERE, "Could not load background image.");
-        }
+        backgroundLoginPanel = new BackgroundPanel();
+        backgroundLoginPanel.setBackground(BACKGROUND_IMAGE);
+        backgroundLoginPanel.setLayout(null);
+        backgroundLoginPanel.setBounds(0, 0,(Main.SCREEN_WIDTH),(Main.SCREEN_HEIGHT));
+        mainPanel.add(backgroundLoginPanel);
+        backgroundLoginPanel.add(createLoginViewController());
     }
+
     private static void createTeacherView(JPanel panel){
         mainPanel.add(createTeacherViewController(panel));
     }
+
     private static void createTeacherView(){
-        try {
-            backgroundTeacherPanel = new BackgroundPanel();
-            backgroundTeacherPanel.setBackground(
-                    ImageIO.read(new File("src/main/java/com/mango/prjmango/utilities/images/BackgroundTeacherImage.PNG")));
-            backgroundTeacherPanel.setLayout(null);
-            backgroundTeacherPanel.setBounds(
-                    0,
-                    0,
-                    Main.SCREEN_WIDTH,
-                    Main.SCREEN_HEIGHT);
-            mainPanel.add(backgroundTeacherPanel);
-            backgroundTeacherPanel.add(createTeacherViewController());
-        } catch (IOException ex) {
-            logger.log(Level.SEVERE, "Could not load background image.");
-        }
+        backgroundTeacherPanel = new BackgroundPanel();
+        backgroundTeacherPanel.setBackground(BACKGROUND_IMAGE);
+        backgroundTeacherPanel.setLayout(null);
+        backgroundTeacherPanel.setBounds(
+                0,
+                0,
+                Main.SCREEN_WIDTH,
+                Main.SCREEN_HEIGHT);
+        mainPanel.add(backgroundTeacherPanel);
+        backgroundTeacherPanel.add(createTeacherViewController());
     }
+
     public static void setActivePanel(RoundedPanel panel){
         backgroundLoginPanel.removeAll();
         backgroundLoginPanel.add(panel);
         backgroundLoginPanel.updateUI();
     }
+
     public static void setTeacherPanel(RoundedPanel panel){
 
     }

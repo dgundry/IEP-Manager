@@ -1,6 +1,5 @@
 package com.mango.prjmango.createaccount;
 
-import com.mango.prjmango.createaccount.mothers.UserMother;
 import com.mango.prjmango.utilities.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,10 +7,6 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class TestRegister {
 
@@ -39,6 +34,7 @@ class TestRegister {
         }
     }
 
+    /*
     @Test
     void sameEmailTestOne() {
         //Arrange
@@ -117,5 +113,5 @@ class TestRegister {
 
         //Assert
         assertFalse(userFlag);
-    }
+    }*/
 }

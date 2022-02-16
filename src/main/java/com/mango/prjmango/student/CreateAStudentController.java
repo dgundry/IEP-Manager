@@ -1,10 +1,7 @@
 package com.mango.prjmango.student;
 
 import com.mango.prjmango.MainFrame;
-import com.mango.prjmango.components.dialogs.Dialog;
 import com.mango.prjmango.components.listeners.TextFieldFocusListener;
-import com.mango.prjmango.editaccount.EditAccountController;
-import com.mango.prjmango.editaccount.EditAccountView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -78,7 +75,7 @@ public class CreateAStudentController {
 
             }else {
                 if(RegisterStudent.createStudent(student)){
-                    Dialog.openDialog(Dialog.ACCOUNT_CREATED);
+                    //Dialog.openDialog(Dialog.ACCOUNT_CREATED); <---Temporary change
 
                     view.getFirstNameText().setText("");
                     view.getLastNameText().setText("");

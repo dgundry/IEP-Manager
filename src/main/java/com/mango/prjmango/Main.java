@@ -1,10 +1,8 @@
 package com.mango.prjmango;
 
-import com.mango.prjmango.utilities.DatabaseCommands;
 import com.mango.prjmango.utilities.DatabaseConnection;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
 import org.springframework.boot.SpringApplication;
@@ -54,7 +52,8 @@ public class Main {
 			frame.setLoginPage();
 
 		} catch (Exception e) {
-			logger.log(Level.SEVERE, e.getMessage());
+			//
+			e.printStackTrace();
 		}
 	}
 }
