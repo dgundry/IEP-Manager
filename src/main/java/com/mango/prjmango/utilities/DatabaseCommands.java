@@ -23,12 +23,11 @@ public class DatabaseCommands {
      */
     public static int isValidUser(String enteredEmail, char[] enteredPassword) {
         int count = 0;
-        String sql = "SELECT COUNT(*) FROM defaultdb.teacher WHERE email = ? AND password = ?;";
+        String sql = "SELECT COUNT(*) FROM teacher WHERE email = ? AND password = ?;";
         try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
             statement.setString(1, enteredEmail);
             statement.setString(2, Encryption.encryptPassword(Arrays.toString(enteredPassword)));
             ResultSet resultSet = statement.executeQuery();
-            resultSet.next();
             count = resultSet.getInt(1);
         } catch (Exception e) {
             e.printStackTrace();
@@ -43,16 +42,15 @@ public class DatabaseCommands {
      * @return a {@link Vector} of {@link String}'s that contain the dropdown security questions
      */
     public static List<String> getDropDownQuestions() {
-        String sql = "SELECT question FROM defaultdb.question;";
+        String sql = "SELECT question FROM question;";
         List<String> securityQuestionList = new ArrayList<>();
 
-        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY)) {
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
             ResultSet resultSet = statement.executeQuery();
-            resultSet.first();
+
             do {
-                securityQuestionList.add(resultSet.getString("question"));
+                securityQuestionList.add(resultSet.getString(1));
             } while (resultSet.next());
-            resultSet.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -68,7 +66,7 @@ public class DatabaseCommands {
     public static int[] getQuestionIds(int teacherID) {
         int[] questionIds = new int[2];
         int index = 0;
-        String sql = "SELECT question_id FROM defaultdb.questions WHERE teacher_id = ?;";
+        String sql = "SELECT question_id FROM questions WHERE teacher_id = ?;";
 
         try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
             statement.setString(1, String.valueOf(teacherID));
@@ -93,7 +91,7 @@ public class DatabaseCommands {
     public static String[] getQuestionTexts(int[] questionIndexes) {
         String[] questionTexts = new String[2];
         int index = 0;
-        String sql = "SELECT question FROM defaultdb.question WHERE (question_id = ? OR question_id = ?);";
+        String sql = "SELECT question FROM question WHERE (question_id = ? OR question_id = ?);";
 
         try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
             statement.setString(1, String.valueOf(questionIndexes[0]));
@@ -124,7 +122,7 @@ public class DatabaseCommands {
      */
     public static boolean isEmailTaken(String email) {
         boolean result = false;
-        String sql = "SELECT email FROM defaultdb.teacher WHERE email = ?;";
+        String sql = "SELECT email FROM teacher WHERE email = ?;";
 
         try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
             statement.setString(1, email);
@@ -144,15 +142,11 @@ public class DatabaseCommands {
      */
     public static int getTeacherId(String email) {
         int result = -1;
-        String sql = "SELECT teacher_id FROM defaultdb.teacher WHERE email = ?;";
+        String sql = "SELECT teacher_id FROM teacher WHERE email = ?;";
 
-        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(
-                sql,
-                ResultSet.TYPE_SCROLL_SENSITIVE,
-                ResultSet.CONCUR_UPDATABLE)) {
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
             statement.setString(1, email);
             ResultSet resultSet = statement.executeQuery();
-            resultSet.first();
             result = resultSet.getInt(1);
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -166,16 +160,12 @@ public class DatabaseCommands {
             String answer1,
             String answer2) {
         boolean hasFailed = false;
-        String sql = "SELECT teacher_id, question_id, answer FROM defaultdb.questions WHERE (teacher_id = ? AND (question_id = ? OR question_id = ?));";
-        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(
-                sql,
-                ResultSet.TYPE_SCROLL_SENSITIVE,
-                ResultSet.CONCUR_UPDATABLE)) {
+        String sql = "SELECT teacher_id, question_id, answer FROM questions WHERE (teacher_id = ? AND (question_id = ? OR question_id = ?));";
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
             statement.setString(1, String.valueOf(teacherId));
             statement.setString(2, String.valueOf(questionIndexes[0]));
             statement.setString(3, String.valueOf(questionIndexes[1]));
             ResultSet resultSet = statement.executeQuery();
-            resultSet.first();
             do {
                 if(resultSet.getInt(2) == questionIndexes[0]){
                     if (!Encryption.encryptPassword(answer1).equals(resultSet.getString(3))){
@@ -195,15 +185,11 @@ public class DatabaseCommands {
     }
     public static List<String> getUserDetails(int teacher_id) {
         int result = -1;
-        String sql = "SELECT first_name, last_name, email FROM defaultdb.teacher WHERE teacher_id = ?;";
+        String sql = "SELECT first_name, last_name, email FROM teacher WHERE teacher_id = ?;";
         List<String> userDetails = new ArrayList<>();
-        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(
-                sql,
-                ResultSet.TYPE_SCROLL_SENSITIVE,
-                ResultSet.CONCUR_UPDATABLE)) {
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
             statement.setInt(1, teacher_id);
             ResultSet resultSet = statement.executeQuery();
-            resultSet.first();
             userDetails.add(resultSet.getString(1));
             userDetails.add(resultSet.getString(2));
             userDetails.add(resultSet.getString(3));

@@ -32,7 +32,7 @@ public class Register {
         }
     }
     private void registerSecurityAnswer(int teacher_id, int question_id, String answer){
-        String sql = "INSERT INTO defaultdb.questions(teacher_id, question_id, answer) VALUES(?,?,?);";
+        String sql = "INSERT INTO questions(teacher_id, question_id, answer) VALUES(?,?,?);";
         try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
             statement.setInt(1, teacher_id);
             statement.setInt(2, question_id);
@@ -43,7 +43,7 @@ public class Register {
         }
     }
     private void registerTeacher(String firstName, String lastName, String email, char[] password, int question_id_one, String answer_one, int question_id_two, String answer_two){
-        String sql = "INSERT INTO defaultdb.teacher(first_name,last_name,email,password) VALUES(?,?,?,?);";
+        String sql = "INSERT INTO teacher(first_name,last_name,email,password) VALUES(?,?,?,?);";
         try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
             statement.setString(1, firstName);
             statement.setString(2, lastName);
@@ -58,14 +58,10 @@ public class Register {
     }
     private int getTeacher_id(String email){
         int result = -1;
-        String sql = "SELECT teacher_id FROM defaultdb.teacher WHERE email = ?;";
-        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(
-                sql,
-                ResultSet.TYPE_SCROLL_SENSITIVE,
-                ResultSet.CONCUR_UPDATABLE)) {
+        String sql = "SELECT teacher_id FROM teacher WHERE email = ?;";
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
             statement.setString(1, email);
             ResultSet resultSet = statement.executeQuery();
-            resultSet.first();
             result = resultSet.getInt(1);
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -75,14 +71,10 @@ public class Register {
     }
     public boolean isEmailTaken(String email){
         boolean result = false;
-        String sql = "SELECT email FROM defaultdb.teacher WHERE email = ?;";
-        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(
-                sql,
-                ResultSet.TYPE_SCROLL_SENSITIVE,
-                ResultSet.CONCUR_UPDATABLE)) {
+        String sql = "SELECT email FROM teacher WHERE email = ?;";
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
             statement.setString(1, email);
             ResultSet resultSet = statement.executeQuery();
-            resultSet.first();
             result = resultSet.next();
         } catch (SQLException ex) {
             ex.printStackTrace();

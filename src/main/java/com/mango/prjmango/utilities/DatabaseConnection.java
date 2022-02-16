@@ -1,11 +1,13 @@
 package com.mango.prjmango.utilities;
 
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import lombok.Getter;
+import org.sqlite.SQLiteConfig;
 
 /**
  * Establishes the connection to the database.
@@ -38,10 +40,13 @@ public class DatabaseConnection implements Runnable {
     @Override
     public void run() {
         try {
-            String url = "jdbc:mysql://iepcipher-do-user-9861785-0.b.db.ondigitalocean.com:25060/";
+            SQLiteConfig config = new SQLiteConfig();
+            config.setReadOnly(false);
+//            String url = "jdbc:sqlite:\\database\\\\iepCipher.db";
+//            URL url = DatabaseConnection.class.getResource("/database/iepCipher.db");
             String username = "doadmin";
             String password = "X0Y5SvMlvvOun0NI";
-            connection = DriverManager.getConnection(url, username, password);
+            connection = DriverManager.getConnection("jdbc:sqlite::resource:database/iepCipher.db",config.toProperties());
         } catch (Exception e) {
             logger.log(Level.SEVERE, e.getMessage());
         }
