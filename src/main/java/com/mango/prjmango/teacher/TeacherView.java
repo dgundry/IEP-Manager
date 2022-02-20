@@ -39,7 +39,7 @@ public class TeacherView extends BackgroundPanel{
 
     public TeacherView() {
         gbc = new GridBagConstraints();
-        this.setBackground(Images.getBackgroundImage());
+        //this.setBackground(Images.getBackgroundImage());
         this.setLayout(null);
         this.setBounds(0,
                 0,
@@ -51,7 +51,7 @@ public class TeacherView extends BackgroundPanel{
 
     public TeacherView(JPanel mainPanel) {
         gbc = new GridBagConstraints();
-        this.setBackground(Images.getBackgroundImage());
+        //this.setBackground(Images.getBackgroundImage());
         this.setLayout(null);
         this.setBounds(0,
                0,
@@ -218,7 +218,7 @@ public class TeacherView extends BackgroundPanel{
 
     private void createPanel() {
         optionsTeacherPanel = new BackgroundPanel();
-        optionsTeacherPanel.setBackground(Images.getOptionsTeacherPanelImage());
+        //optionsTeacherPanel.setBackground(Images.getOptionsTeacherPanelImage());
         optionsTeacherPanel.setLayout(null);
         optionsTeacherPanel.setBounds(
                 (0),
@@ -228,7 +228,7 @@ public class TeacherView extends BackgroundPanel{
         this.add(optionsTeacherPanel);
 
         gradientPanel = new BackgroundPanel();
-        gradientPanel.setBackground(Images.getGradientPanelImage());
+        //gradientPanel.setBackground(Images.getGradientPanelImage());
         gradientPanel.setLayout(null);
         gradientPanel.setBounds(
                 (0),

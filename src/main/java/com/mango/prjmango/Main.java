@@ -1,10 +1,15 @@
 package com.mango.prjmango;
 
 import com.mango.prjmango.utilities.DatabaseConnection;
+import com.mango.prjmango.windows.mainwindow.MainWindowController;
+import com.mango.prjmango.windows.mainwindow.MainWindowView;
+import com.mango.prjmango.windows.sideoptions.SideOptionsController;
+import com.mango.prjmango.windows.sideoptions.SideOptionsView;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
+import org.apache.commons.lang.SystemUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -48,11 +53,20 @@ public class Main {
 
 		try {
 			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-			frame = new MainFrame();
-			frame.setLoginPage();
+			//frame = new MainFrame();
+			//frame.setLoginPage();
 
+			String os = SystemUtils.OS_NAME;
+			if (os.contains("Windows")) {
+				SideOptionsView sideOptionsView = new SideOptionsView();
+				new SideOptionsController(sideOptionsView);
+
+				MainWindowView view = new MainWindowView(sideOptionsView);
+				new MainWindowController(view);
+			} else {
+				System.out.println("On a Mac");
+			}
 		} catch (Exception e) {
-			//
 			e.printStackTrace();
 		}
 	}

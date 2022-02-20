@@ -3,7 +3,6 @@ package com.mango.prjmango.student;
 import com.mango.prjmango.Main;
 import com.mango.prjmango.components.BackgroundPanel;
 import com.mango.prjmango.components.FontType;
-import com.mango.prjmango.utilities.Images;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -45,7 +44,7 @@ public class CreateAStudentView extends BackgroundPanel{
     private @Getter JTextField bioText;
 
     public CreateAStudentView() {
-        this.setBackground(Images.getBackgroundTeacherImage());
+        //this.setBackground(Images.getBackgroundTeacherImage());
         this.setLayout(null);
         this.setBounds(
                 0,
@@ -149,7 +148,7 @@ public class CreateAStudentView extends BackgroundPanel{
 
     private void createPanel() {
         backgroundCASPanel = new BackgroundPanel();
-        backgroundCASPanel.setBackground(Images.getBackgroundTeacherImage());
+        //backgroundCASPanel.setBackground(Images.getBackgroundTeacherImage());
         backgroundCASPanel.setLayout(null);
         backgroundCASPanel.setBounds(
                 (int) (Main.SCREEN_WIDTH * 0.5) - ((int) (Main.SCREEN_WIDTH * 0.16)),
@@ -158,7 +157,7 @@ public class CreateAStudentView extends BackgroundPanel{
                 (int) (Main.SCREEN_HEIGHT * 0.70));
 
         wrapPanel = new BackgroundPanel();
-        wrapPanel.setBackground(Images.getBlackImage());
+        //wrapPanel.setBackground(Images.getBlackImage());
         wrapPanel.setLayout(null);
         wrapPanel.setBounds(
                 (100),
@@ -167,7 +166,7 @@ public class CreateAStudentView extends BackgroundPanel{
                 (int) (Main.SCREEN_HEIGHT * 0.05));
 
         headerPanel = new BackgroundPanel();
-        headerPanel.setBackground(Images.getOrangeImage());
+        //headerPanel.setBackground(Images.getOrangeImage());
         headerPanel.setLayout(null);
         headerPanel.setBounds(
                 (300),
@@ -176,7 +175,7 @@ public class CreateAStudentView extends BackgroundPanel{
                 (int) (Main.SCREEN_HEIGHT * 0.05));
 
         firstNamePanel = new BackgroundPanel();
-        firstNamePanel.setBackground(Images.getOrangeImage());
+        //firstNamePanel.setBackground(Images.getOrangeImage());
         firstNamePanel.setLayout(null);
         firstNamePanel.setBounds(
                 (325),
@@ -185,7 +184,7 @@ public class CreateAStudentView extends BackgroundPanel{
                 (int) (Main.SCREEN_HEIGHT * 0.05));
 
         firstNameTextPanel = new BackgroundPanel();
-        firstNameTextPanel.setBackground(Images.getOrangeImage());
+        //firstNameTextPanel.setBackground(Images.getOrangeImage());
         firstNameTextPanel.setLayout(null);
         firstNameTextPanel.setBounds(
                 (325),
@@ -194,7 +193,7 @@ public class CreateAStudentView extends BackgroundPanel{
                 (int) (Main.SCREEN_HEIGHT * 0.05));
 
         lastNamePanel = new BackgroundPanel();
-        lastNamePanel.setBackground(Images.getOrangeImage());
+        //lastNamePanel.setBackground(Images.getOrangeImage());
         lastNamePanel.setLayout(null);
         lastNamePanel.setBounds(
                 (600),
@@ -203,7 +202,7 @@ public class CreateAStudentView extends BackgroundPanel{
                 (int) (Main.SCREEN_HEIGHT * 0.05));
 
         lastNameTextPanel = new BackgroundPanel();
-        lastNameTextPanel.setBackground(Images.getOrangeImage());
+        //lastNameTextPanel.setBackground(Images.getOrangeImage());
         lastNameTextPanel.setLayout(null);
         lastNameTextPanel.setBounds(
                 (600),
@@ -212,7 +211,7 @@ public class CreateAStudentView extends BackgroundPanel{
                 (int) (Main.SCREEN_HEIGHT * 0.05));
 
         goalListPanel = new BackgroundPanel();
-        goalListPanel.setBackground(Images.getOrangeImage());
+        //goalListPanel.setBackground(Images.getOrangeImage());
         goalListPanel.setLayout(null);
         goalListPanel.setBounds(
                 (1000),
@@ -221,7 +220,7 @@ public class CreateAStudentView extends BackgroundPanel{
                 (int) (Main.SCREEN_HEIGHT * 0.05));
 
         goalListTextPanel = new BackgroundPanel();
-        goalListTextPanel.setBackground(Images.getOrangeImage());
+        //goalListTextPanel.setBackground(Images.getOrangeImage());
         goalListTextPanel.setLayout(null);
         goalListTextPanel.setBounds(
                 (1000),
@@ -230,7 +229,7 @@ public class CreateAStudentView extends BackgroundPanel{
                 (int) (Main.SCREEN_HEIGHT * 0.3));
 
         gradePanel = new BackgroundPanel();
-        gradePanel.setBackground(Images.getOrangeImage());
+        //gradePanel.setBackground(Images.getOrangeImage());
         gradePanel.setLayout(null);
         gradePanel.setBounds(
                 (325),
@@ -239,7 +238,7 @@ public class CreateAStudentView extends BackgroundPanel{
                 (int) (Main.SCREEN_HEIGHT * 0.05));
 
         gradeTextPanel = new BackgroundPanel();
-        gradeTextPanel.setBackground(Images.getOrangeImage());
+        //gradeTextPanel.setBackground(Images.getOrangeImage());
         gradeTextPanel.setLayout(null);
         gradeTextPanel.setBounds(
                 (325),
@@ -248,7 +247,7 @@ public class CreateAStudentView extends BackgroundPanel{
                 (int) (Main.SCREEN_HEIGHT * 0.05));
 
         goalDesPanel = new BackgroundPanel();
-        goalDesPanel.setBackground(Images.getOrangeImage());
+        //goalDesPanel.setBackground(Images.getOrangeImage());
         goalDesPanel.setLayout(null);
         goalDesPanel.setBounds(
                 (325),
@@ -257,7 +256,7 @@ public class CreateAStudentView extends BackgroundPanel{
                 (int) (Main.SCREEN_HEIGHT * 0.05));
 
         goalDesTextPanel = new BackgroundPanel();
-        goalDesTextPanel.setBackground(Images.getOrangeImage());
+        //goalDesTextPanel.setBackground(Images.getOrangeImage());
         goalDesTextPanel.setLayout(null);
         goalDesTextPanel.setBounds(
                 (325),
@@ -266,7 +265,7 @@ public class CreateAStudentView extends BackgroundPanel{
                 (int) (Main.SCREEN_HEIGHT * 0.15));
 
         saveButtonPanel = new BackgroundPanel();
-        saveButtonPanel.setBackground(Images.getBlackImage());
+        //saveButtonPanel.setBackground(Images.getBlackImage());
         saveButtonPanel.setLayout(null);
         saveButtonPanel.setBounds(
                 (1100),

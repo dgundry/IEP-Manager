@@ -4,7 +4,6 @@ package com.mango.prjmango.editaccount;
 import com.mango.prjmango.Main;
 import com.mango.prjmango.components.BackgroundPanel;
 import com.mango.prjmango.components.FontType;
-import com.mango.prjmango.utilities.Images;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -46,7 +45,7 @@ public class EditAccountView extends BackgroundPanel{
     private static final Logger logger = Logger.getLogger(EditAccountView.class.getName());
 
     public EditAccountView() {
-        this.setBackground(Images.getBackgroundTeacherImage());
+        //this.setBackground(Images.getBackgroundTeacherImage());
         this.setLayout(null);
         this.setBounds(
                 0,
@@ -194,7 +193,7 @@ public class EditAccountView extends BackgroundPanel{
 
     private void createPanel() {
         changePasswordPanel = new BackgroundPanel();
-        changePasswordPanel.setBackground(Images.getGreyImage());
+        //changePasswordPanel.setBackground(Images.getGreyImage());
         changePasswordPanel.setLayout(null);
         changePasswordPanel.setBounds(
                 (400),
@@ -204,7 +203,7 @@ public class EditAccountView extends BackgroundPanel{
         this.add(changePasswordPanel);
 
         changeEmailPanel = new BackgroundPanel();
-        changeEmailPanel.setBackground(Images.getGreyImage());
+        //changeEmailPanel.setBackground(Images.getGreyImage());
         changeEmailPanel.setLayout(null);
         changeEmailPanel.setBounds(
                 (1000),
@@ -214,7 +213,7 @@ public class EditAccountView extends BackgroundPanel{
         this.add(changeEmailPanel);
 
         wrapPanel = new BackgroundPanel();
-        wrapPanel.setBackground(Images.getBlackImage());
+        //wrapPanel.setBackground(Images.getBlackImage());
         wrapPanel.setLayout(null);
         wrapPanel.setBounds(
                 (100),

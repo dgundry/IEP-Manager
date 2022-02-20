@@ -4,7 +4,6 @@ import com.mango.prjmango.Main;
 import com.mango.prjmango.components.BackgroundPanel;
 import com.mango.prjmango.components.FontType;
 import com.mango.prjmango.student.CreateAStudentView;
-import com.mango.prjmango.utilities.Images;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -40,7 +39,7 @@ public class StudentsView extends BackgroundPanel {
     private static final Logger logger = Logger.getLogger(CreateAStudentView.class.getName());
 
     public StudentsView() {
-        this.setBackground(Images.getBackgroundTeacherImage());
+        //this.setBackground(Images.getBackgroundTeacherImage());
         this.setLayout(null);
         this.setBounds(
                 0,
@@ -67,7 +66,7 @@ public class StudentsView extends BackgroundPanel {
 
     public void createPanel() {
         backgroundPanel = new BackgroundPanel();
-        backgroundPanel.setBackground(Images.getBackgroundTeacherImage());
+        //backgroundPanel.setBackground(Images.getBackgroundTeacherImage());
         backgroundPanel.setLayout(null);
         backgroundPanel.setBounds(
                 (int) (Main.SCREEN_WIDTH * 0.5) - ((int) (Main.SCREEN_WIDTH * 0.16)),
@@ -76,7 +75,7 @@ public class StudentsView extends BackgroundPanel {
                 (int) (Main.SCREEN_HEIGHT * 0.70));
 
         wrapPanel = new BackgroundPanel();
-        wrapPanel.setBackground(Images.getBlackImage());
+        //wrapPanel.setBackground(Images.getBlackImage());
         wrapPanel.setLayout(null);
         wrapPanel.setBounds(
                 (100),
@@ -85,7 +84,7 @@ public class StudentsView extends BackgroundPanel {
                 (int) (Main.SCREEN_HEIGHT * 0.05));
 
             headerPanel = new BackgroundPanel();
-            headerPanel.setBackground(Images.getOrangeImage());
+            //headerPanel.setBackground(Images.getOrangeImage());
             headerPanel.setLayout(null);
             headerPanel.setBounds(
                     (300),

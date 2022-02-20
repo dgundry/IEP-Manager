@@ -7,13 +7,11 @@ import com.mango.prjmango.login.LoginPageView;
 import com.mango.prjmango.teacher.TeacherController;
 import com.mango.prjmango.teacher.TeacherView;
 import com.mango.prjmango.utilities.DatabaseConnection;
-import com.mango.prjmango.utilities.Images;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
@@ -32,7 +30,7 @@ public class MainFrame {
     private static @Getter BackgroundPanel gradientPanel;
     private static @Getter BackgroundPanel optionsTeacherPanel;
 
-    private static final BufferedImage BACKGROUND_IMAGE = Images.getBackgroundImage();
+    //private static final BufferedImage BACKGROUND_IMAGE = Images.getBackgroundImage();
 
     public MainFrame() {
         frame = new JFrame("IEP Manager");
@@ -97,7 +95,7 @@ public class MainFrame {
 
     private static void createLoginView(){
         backgroundLoginPanel = new BackgroundPanel();
-        backgroundLoginPanel.setBackground(BACKGROUND_IMAGE);
+        //backgroundLoginPanel.setBackground(BACKGROUND_IMAGE);
         backgroundLoginPanel.setLayout(null);
         backgroundLoginPanel.setBounds(0, 0,(Main.SCREEN_WIDTH),(Main.SCREEN_HEIGHT));
         mainPanel.add(backgroundLoginPanel);
@@ -110,7 +108,7 @@ public class MainFrame {
 
     private static void createTeacherView(){
         backgroundTeacherPanel = new BackgroundPanel();
-        backgroundTeacherPanel.setBackground(BACKGROUND_IMAGE);
+        //backgroundTeacherPanel.setBackground(BACKGROUND_IMAGE);
         backgroundTeacherPanel.setLayout(null);
         backgroundTeacherPanel.setBounds(
                 0,
