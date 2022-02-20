@@ -16,7 +16,6 @@ public class MainWindowView {
     private final Dimension INITIAL_DIMENSIONS = new Dimension(1440, 1024);
 
     private final Color DARK_GREY = new Color(19, 18, 18);
-    private final Color LIGHT_GREY = new Color(216, 216, 216);
 
     @Getter private JFrame frame;
 

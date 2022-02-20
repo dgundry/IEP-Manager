@@ -1,9 +1,14 @@
 package com.mango.prjmango.windows.account;
 
 import com.mango.prjmango.utilities.Images;
+import com.mango.prjmango.windows.account.editprofile.EditProfileController;
+import com.mango.prjmango.windows.account.editprofile.EditProfileView;
+import com.mango.prjmango.windows.account.passwordsecurity.PasswordSecurityController;
+import com.mango.prjmango.windows.account.passwordsecurity.PasswordSecurityView;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 
 public class AccountController {
@@ -23,6 +28,12 @@ public class AccountController {
         private final AccountView view;
         private final JLabel label;
 
+        /**
+         * Constructor. Instantiates instance variables that will be used in the {@link MouseListener} methods.
+         *
+         * @param view  the {@link AccountView} to access methods within or other {@link JComponent}'s
+         * @param label the {@link JLabel} that the user is interacting with
+         */
         public EditProfileMouseListener(AccountView view, JLabel label) {
             this.view = view;
             this.label = label;
@@ -39,6 +50,11 @@ public class AccountController {
             tabIsSelected = true;
             label.setIcon(Images.EDIT_PROFILE_SELECTED.getImageIcon());
             label.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+
+            EditProfileView editProfileView = new EditProfileView();
+            new EditProfileController(editProfileView);
+
+            view.setLayout(editProfileView); //<---sets the panel to display
             //display edit profile components
         }
 
@@ -94,6 +110,12 @@ public class AccountController {
         private final AccountView view;
         private final JLabel label;
 
+        /**
+         * Constructor. Instantiates instance variables that will be used in the {@link MouseListener} methods.
+         *
+         * @param view  the {@link AccountView} to access methods within or other {@link JComponent}'s
+         * @param label the {@link JLabel} that the user is interacting with
+         */
         public PasswordSecurityMouseListener(AccountView view, JLabel label) {
             this.view = view;
             this.label = label;
@@ -109,7 +131,11 @@ public class AccountController {
         public void mouseClicked(MouseEvent e) {
             label.setIcon(Images.PASSWORD_SECURITY_SELECTED.getImageIcon());
             label.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-            //Password security components
+
+            PasswordSecurityView passwordSecurityView = new PasswordSecurityView();
+            new PasswordSecurityController(passwordSecurityView);
+
+            view.setLayout(passwordSecurityView);
         }
 
         /**

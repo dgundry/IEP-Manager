@@ -1,6 +1,8 @@
 package com.mango.prjmango.windows.account;
 
 import com.mango.prjmango.utilities.Images;
+import com.mango.prjmango.windows.account.editprofile.EditProfileController;
+import com.mango.prjmango.windows.account.editprofile.EditProfileView;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.GroupLayout;
@@ -22,18 +24,30 @@ public class AccountView extends JPanel {
 
     private final Color LIGHT_GREY = new Color(216, 216, 216);
 
+    /**
+     * Constructor. Calls methods to create the {@link JPanel} for the Account tab.
+     * On the initial load and the initial click of the Account tab, the {@link EditProfileView}
+     * will be visible.
+     */
     public AccountView() {
         setBackground(new Color(19, 18, 18));
 
         createComponents();
-        createLayout();
+
+        EditProfileView editProfileView = new EditProfileView();
+        new EditProfileController(editProfileView);
+
+        setLayout(editProfileView);
     }
 
     private void createComponents() {
-        editProfileLabel      = new JLabel(Images.EDIT_PROFILE_NO_HOVER.getImageIcon());
+        editProfileLabel      = new JLabel(Images.EDIT_PROFILE_SELECTED.getImageIcon());
         passwordSecurityLabel = new JLabel(Images.PASSWORD_SECURITY_NO_HOVER.getImageIcon());
 
-        accountHeaderLabel    = createLabel("Account", 24);
+        accountHeaderLabel = new JLabel("Account");
+        accountHeaderLabel.setFont(new Font("Segoe UI", Font.PLAIN, 24));
+        accountHeaderLabel.setForeground(LIGHT_GREY);
+        accountHeaderLabel.setHorizontalAlignment(SwingConstants.LEFT);
 
         horizSeparator = new JSeparator();
         horizSeparator.setForeground(LIGHT_GREY);
@@ -43,7 +57,9 @@ public class AccountView extends JPanel {
         vertSeparator.setOrientation(SwingConstants.VERTICAL);
     }
 
-    private void createLayout() {
+    public void setLayout(JPanel displayPanel) {
+        removeAll();
+
         GroupLayout accountPanelLayout = new GroupLayout(this);
         setLayout(accountPanelLayout);
         accountPanelLayout.setHorizontalGroup(
@@ -53,15 +69,17 @@ public class AccountView extends JPanel {
                                 .addContainerGap()
                                 .addGroup(accountPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addGroup(accountPanelLayout.createSequentialGroup()
+                                                .addComponent(accountHeaderLabel)
+                                                .addGap(0, 0, Short.MAX_VALUE))
+                                        .addGroup(accountPanelLayout.createSequentialGroup()
                                                 .addGroup(accountPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                                        .addGroup(accountPanelLayout.createSequentialGroup()
-                                                                .addGap(0, 0, 0)
-                                                                .addComponent(passwordSecurityLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                                        .addComponent(passwordSecurityLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(editProfileLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(vertSeparator, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(accountHeaderLabel))
-                                .addContainerGap(849, Short.MAX_VALUE))
+                                                .addComponent(vertSeparator, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(displayPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addContainerGap())
         );
         accountPanelLayout.setVerticalGroup(
                 accountPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -73,18 +91,17 @@ public class AccountView extends JPanel {
                                         .addComponent(vertSeparator)
                                         .addGroup(accountPanelLayout.createSequentialGroup()
                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(editProfileLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(passwordSecurityLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                .addContainerGap())))
+                                                .addGroup(accountPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                        .addGroup(accountPanelLayout.createSequentialGroup()
+                                                                .addComponent(editProfileLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                .addComponent(passwordSecurityLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                                .addContainerGap())
+                                                        .addGroup(GroupLayout.Alignment.TRAILING, accountPanelLayout.createSequentialGroup()
+                                                                .addGap(0, 1, Short.MAX_VALUE)
+                                                                .addComponent(displayPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))))
         );
-    }
 
-    private JLabel createLabel(String text, int fontSize) {
-        JLabel label = new JLabel(text);
-        label.setFont(new Font("Segoe UI", 0, fontSize));
-        label.setForeground(LIGHT_GREY);
-        label.setHorizontalAlignment(SwingConstants.LEFT);
-        return label;
+        updateUI();
     }
 }

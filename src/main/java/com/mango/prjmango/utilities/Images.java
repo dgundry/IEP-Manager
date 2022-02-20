@@ -35,7 +35,10 @@ public enum Images {
 
     PASSWORD_SECURITY_NO_HOVER("/images/password-security-no-hover.png", 281, 30, true),
     PASSWORD_SECURITY_HOVERED("/images/password-security-hovered.png", 281, 30, true),
-    PASSWORD_SECURITY_SELECTED("/images/password-security-selected.png", 281, 30, true);
+    PASSWORD_SECURITY_SELECTED("/images/password-security-selected.png", 281, 30, true),
+
+    EDIT_PROFILE_SAVE_NO_HOVER("/images/account-save-no-hover.png", 117, 47, true),
+    EDIT_PROFILE_SAVE_HOVERED("/images/account-save-hovered.png", 117, 47, true);
 
     @Getter private ImageIcon imageIcon;
     @Getter private BufferedImage bufferedImage;
