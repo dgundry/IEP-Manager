@@ -26,18 +26,17 @@ public class AccountView extends JPanel {
 
     /**
      * Constructor. Calls methods to create the {@link JPanel} for the Account tab.
-     * On the initial load and the initial click of the Account tab, the {@link EditProfileView}
-     * will be visible.
+     * On the initial load, the {@link EditProfileView} will be visible.
      */
     public AccountView() {
         setBackground(new Color(19, 18, 18));
 
         createComponents();
 
-        EditProfileView editProfileView = new EditProfileView();
+        EditProfileView editProfileView = new EditProfileView(); //Home page instead?
         new EditProfileController(editProfileView);
 
-        setLayout(editProfileView);
+        setMainPageLayout(editProfileView);
     }
 
     private void createComponents() {
@@ -57,7 +56,7 @@ public class AccountView extends JPanel {
         vertSeparator.setOrientation(SwingConstants.VERTICAL);
     }
 
-    public void setLayout(JPanel displayPanel) {
+    public void setMainPageLayout(JPanel displayPanel) {
         removeAll();
 
         GroupLayout accountPanelLayout = new GroupLayout(this);

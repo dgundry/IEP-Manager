@@ -38,7 +38,13 @@ public enum Images {
     PASSWORD_SECURITY_SELECTED("/images/password-security-selected.png", 281, 30, true),
 
     EDIT_PROFILE_SAVE_NO_HOVER("/images/account-save-no-hover.png", 117, 47, true),
-    EDIT_PROFILE_SAVE_HOVERED("/images/account-save-hovered.png", 117, 47, true);
+    EDIT_PROFILE_SAVE_HOVERED("/images/account-save-hovered.png", 117, 47, true),
+
+    LOGIN_NO_HOVER("/images/login-no-hover.png", 116, 31, true),
+    LOGIN_HOVERED("/images/login-hovered.png", 116, 31, true),
+
+    LOGIN_PANEL_BACKGROUND("/images/login-panel-background.png", 482, 646, true),
+    CITY_OF_LAWRENCEBURG("/images/City-of-Lawrenceburg.png", 1440, 1024, false);
 
     @Getter private ImageIcon imageIcon;
     @Getter private BufferedImage bufferedImage;

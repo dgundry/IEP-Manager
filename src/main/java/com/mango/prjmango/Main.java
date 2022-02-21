@@ -1,8 +1,7 @@
 package com.mango.prjmango;
 
 import com.mango.prjmango.utilities.DatabaseConnection;
-import com.mango.prjmango.windows.mainwindow.MainWindowController;
-import com.mango.prjmango.windows.mainwindow.MainWindowView;
+import com.mango.prjmango.windows.MainWindowView;
 import com.mango.prjmango.windows.sideoptions.SideOptionsController;
 import com.mango.prjmango.windows.sideoptions.SideOptionsView;
 import java.awt.Dimension;
@@ -61,8 +60,8 @@ public class Main {
 				SideOptionsView sideOptionsView = new SideOptionsView();
 				new SideOptionsController(sideOptionsView);
 
-				MainWindowView view = new MainWindowView(sideOptionsView);
-				new MainWindowController(view);
+				MainWindowView view = new MainWindowView();
+				view.setLoginPage();
 			} else {
 				System.out.println("On a Mac");
 			}

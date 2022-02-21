@@ -54,7 +54,7 @@ public class AccountController {
             EditProfileView editProfileView = new EditProfileView();
             new EditProfileController(editProfileView);
 
-            view.setLayout(editProfileView); //<---sets the panel to display
+            view.setMainPageLayout(editProfileView); //<---sets the panel to display
             //display edit profile components
         }
 
@@ -135,7 +135,7 @@ public class AccountController {
             PasswordSecurityView passwordSecurityView = new PasswordSecurityView();
             new PasswordSecurityController(passwordSecurityView);
 
-            view.setLayout(passwordSecurityView);
+            view.setMainPageLayout(passwordSecurityView);
         }
 
         /**
