@@ -1,28 +1,44 @@
 package com.mango.prjmango.login;
 
+import com.mango.prjmango.LoggedInUser;
 import com.mango.prjmango.Main;
+import com.mango.prjmango.MainFrame;
 import com.mango.prjmango.components.listeners.ButtonMouseListener;
-import com.mango.prjmango.components.listeners.TextFieldFocusListener;
-import com.mango.prjmango.createaccount.CreateAccountController;
-import com.mango.prjmango.createaccount.CreateAccountView;
+import com.mango.prjmango.createaccount.basicinfo.BasicInfoController;
+import com.mango.prjmango.createaccount.basicinfo.BasicInfoView;
+import com.mango.prjmango.editaccount.EditAccountController;
+import com.mango.prjmango.editaccount.EditAccountView;
 import com.mango.prjmango.forgotpassword.email.EmailController;
 import com.mango.prjmango.forgotpassword.email.EmailView;
-import com.mango.prjmango.mainloginpage.MainLoginView;
+import com.mango.prjmango.login.listeners.EmailTextFieldListener;
+import com.mango.prjmango.login.listeners.PasswordTextFieldListener;
 import com.mango.prjmango.teacher.TeacherController;
 import com.mango.prjmango.teacher.TeacherView;
-import com.mango.prjmango.utilities.Encryption;
+import com.mango.prjmango.utilities.DatabaseCommands;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
+/**
+ * This class handles all user interactions with the login page.
+ */
 public class LoginPageController {
 
+    /**
+     * Constructor. Initializes the listeners for specific {@link JComponent}'s that need them.
+     *
+     * @param loginPageView the {@link LoginPageView} to access {@link JComponent}'s
+     */
     public LoginPageController(LoginPageView loginPageView) {
+        JTextField emailTextField = loginPageView.getEmailText();
+        JPasswordField passwordField = loginPageView.getPasswordText();
+
+        emailTextField.addFocusListener(new EmailTextFieldListener(emailTextField, "Email"));
+        passwordField.addFocusListener(new PasswordTextFieldListener(passwordField, "Password"));
+
         loginPageView.getLoginButton().addActionListener(new LoginButtonActionListener(loginPageView));
         loginPageView.getLoginButton().addMouseListener(new ButtonMouseListener(loginPageView.getLoginButton()));
 
@@ -34,16 +50,18 @@ public class LoginPageController {
         loginPageView.getCreateAccountButton().addMouseListener(new ButtonMouseListener(
                 loginPageView.getCreateAccountButton()));
 
-        loginPageView.getEmailText().addFocusListener(new TextFieldFocusListener(
-                        loginPageView.getEmailText(),
-                        loginPageView.getEmailText().getText()));
-        loginPageView.getPasswordText().addMouseListener(new PasswordMouseListener(loginPageView));
-
     }
 
     private static class LoginButtonActionListener implements ActionListener {
+
         private final LoginPageView view;
 
+        /**
+         * Constructor. Initializes instance variables that will be used in the {@link ActionListener}
+         * methods.
+         *
+         * @param view the {@link LoginPageView} to access {@link JComponent}'s
+         */
         public LoginButtonActionListener(LoginPageView view) {
             this.view = view;
         }
@@ -51,106 +69,80 @@ public class LoginPageController {
         /**
          * Invoked when an action occurs.
          *
-         * @param e the event to be processed
+         * @param e the {@link ActionEvent}
          */
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (!view.getEmailText().getText().equals("") && !view.getPasswordText().getText().equals("")) {
-                System.out.println(view.getEmailText().getText() + ":" + view.getPasswordText().getText());
-                if (loginToAccount(view.getEmailText().getText(), view.getPasswordText().getText())) {
+            String enteredEmail = view.getEmailText().getText();
+            char[] enteredPassword = view.getPasswordText().getPassword();
+
+            if (!enteredEmail.equals("") && enteredPassword.length != 0) {
+
+                if (DatabaseCommands.isValidUser(enteredEmail, enteredPassword) == 1) {
                     System.out.println("Logged in");
+
+                    LoggedInUser user = new LoggedInUser(DatabaseCommands.getTeacherId(enteredEmail));
+                    Main.activeUser = user;
+
                     TeacherView teacherView = new TeacherView();
                     new TeacherController(teacherView);
 
+                    EditAccountView edit = new EditAccountView();
+                    new EditAccountController(edit);
+                    MainFrame.setTeacherView(edit);
+//                    TeacherView teacherView = new TeacherView();
+//                    new TeacherController(teacherView);
+
 
                 } else {
-                    System.out.println("Try Again");
+                    // create custom error messages
+
                     JOptionPane.showMessageDialog(
-                            MainLoginView.getLoginWindow(),
+                            MainFrame.getFrame(),
                             "Enter a Valid Password.",
                             "INVALID",
                             JOptionPane.ERROR_MESSAGE);
                 }
             } else {
-                System.out.println("Please input a email and password");
+                // create custom error messages
+
                 JOptionPane.showMessageDialog(
-                        MainLoginView.getLoginWindow(),
+                        MainFrame.getFrame(),
                         "Enter a Valid Email and/or Password.",
                         "INVALID",
                         JOptionPane.ERROR_MESSAGE);
 
             }
         }
-
-        public boolean loginToAccount(String email, String password) {
-            boolean result = false;
-            String sql = "SELECT email, password FROM teacher WHERE email = ? AND password = ?;";
-            try (PreparedStatement statement = Main.getConnection().prepareStatement(sql)) {
-                statement.setString(1, email);
-                statement.setString(2, Encryption.encryptPassword(password));
-                ResultSet resultSet = statement.executeQuery();
-                result = resultSet.next();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
-
-            return result;
-        }
     }
 
     private static class ForgotPasswordActionListener implements ActionListener {
 
+        /**
+         * Invoked when an action occurs.
+         *
+         * @param e the {@link ActionEvent}
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             EmailView emailView = new EmailView();
             new EmailController(emailView);
-            MainLoginView.setActivePanel(emailView);
+            MainFrame.setActivePanel(emailView);
         }
     }
 
     private static class CreateAccountButtonActionListener implements ActionListener {
 
+        /**
+         * Invoked when an action occurs.
+         *
+         * @param e the {@link ActionEvent}
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
-            CreateAccountView createAccountView = new CreateAccountView();
-            new CreateAccountController(createAccountView);
-            MainLoginView.setActivePanel(createAccountView);
-        }
-    }
-
-    private static class PasswordMouseListener implements MouseListener {
-
-        private final LoginPageView loginPageView;
-
-        public PasswordMouseListener(LoginPageView loginPageView) { this.loginPageView = loginPageView; }
-
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            if(loginPageView.getPasswordText().getText().equals("Password")){
-                loginPageView.getPasswordText().setText("");
-                //loginPageView.getPasswordText().setEchoChar('•');
-
-            }
-        }
-
-        @Override
-        public void mousePressed(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseReleased(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseEntered(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseExited(MouseEvent e) {
-
+            BasicInfoView createAccountView = new BasicInfoView();
+            new BasicInfoController(createAccountView);
+            MainFrame.setActivePanel(createAccountView);
         }
     }
 }

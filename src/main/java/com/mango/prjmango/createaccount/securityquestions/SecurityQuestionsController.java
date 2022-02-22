@@ -1,13 +1,14 @@
 package com.mango.prjmango.createaccount.securityquestions;
 
 
+import com.mango.prjmango.MainFrame;
 import com.mango.prjmango.components.listeners.ButtonMouseListener;
-import com.mango.prjmango.createaccount.CreateAccountController;
-import com.mango.prjmango.createaccount.CreateAccountView;
+import com.mango.prjmango.createaccount.basicinfo.BasicInfoController;
+import com.mango.prjmango.createaccount.basicinfo.BasicInfoView;
 import com.mango.prjmango.createaccount.User;
 import com.mango.prjmango.createaccount.password.PasswordController;
 import com.mango.prjmango.createaccount.password.PasswordView;
-import com.mango.prjmango.mainloginpage.MainLoginView;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -48,13 +49,13 @@ public class SecurityQuestionsController {
             String lastName = user.getLastName();
             String email = user.getEmail();
 
-            CreateAccountView createAccountView = new CreateAccountView();
+            BasicInfoView createAccountView = new BasicInfoView();
             createAccountView.getFirstNameText().setText(firstName.equals("") ? "First name" : user.getFirstName());
             createAccountView.getLastNameText().setText(lastName.equals("") ? "Last name" : user.getLastName());
             createAccountView.getEmailText().setText(email.equals("") ? "Email" : user.getEmail());
 
-            new CreateAccountController(createAccountView, user);
-            MainLoginView.setActivePanel(createAccountView);
+            new BasicInfoController(createAccountView, user);
+            MainFrame.setActivePanel(createAccountView);
         }
     }
 
@@ -81,26 +82,23 @@ public class SecurityQuestionsController {
 
             if (questionOneIndex == questionTwoIndex) {
                 JOptionPane.showMessageDialog(
-                        MainLoginView.getLoginWindow(),
+                        MainFrame.getFrame(),
                         "Please select two different security questions.",
                         MESSAGE_TITLE,
                         JOptionPane.ERROR_MESSAGE);
-            }
-            else if (view.getSecurityOneAnsText().getText().isEmpty()) {
+            } else if (view.getSecurityOneAnsText().getText().isEmpty()) {
                 JOptionPane.showMessageDialog(
-                        MainLoginView.getLoginWindow(),
+                        MainFrame.getFrame(),
                         "Please enter an answer for your first security question.",
                         MESSAGE_TITLE,
                         JOptionPane.ERROR_MESSAGE);
-            }
-            else if (view.getSecurityTwoAnsText().getText().isEmpty()) {
+            } else if (view.getSecurityTwoAnsText().getText().isEmpty()) {
                 JOptionPane.showMessageDialog(
-                        MainLoginView.getLoginWindow(),
+                        MainFrame.getFrame(),
                         "Please enter an answer for your second security question.",
                         MESSAGE_TITLE,
                         JOptionPane.ERROR_MESSAGE);
-            }
-            else {
+            } else {
                 user.setSecurityQ1(view.getSecurityQuestionOne().getSelectedIndex());
                 user.setSecurityQ2(view.getSecurityQuestionTwo().getSelectedIndex());
 
@@ -109,7 +107,7 @@ public class SecurityQuestionsController {
 
                 PasswordView passwordView = new PasswordView();
                 new PasswordController(passwordView, user);
-                MainLoginView.setActivePanel(passwordView);
+                MainFrame.setActivePanel(passwordView);
             }
         }
     }
