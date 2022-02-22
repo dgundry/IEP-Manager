@@ -43,8 +43,20 @@ public enum Images {
     LOGIN_NO_HOVER("/images/login-no-hover.png", 116, 31, true),
     LOGIN_HOVERED("/images/login-hovered.png", 116, 31, true),
 
+    BASIC_INFO_NEXT_NO_HOVER("/images/basic-info/next-no-hover.png", 116, 31, true),
+    BASIC_INFO_NEXT_HOVERED("/images/basic-info/next-hovered.png", 116, 31, true),
+
+    BASIC_INFO_BACK_NO_HOVER("/images/basic-info/back-no-hover.png", 116, 31, true),
+    BASIC_INFO_BACK_HOVERED("/images/basic-info/back-hovered.png", 116, 31, true),
+
     LOGIN_PANEL_BACKGROUND("/images/login-panel-background.png", 482, 646, true),
-    CITY_OF_LAWRENCEBURG("/images/City-of-Lawrenceburg.png", 1440, 1024, false);
+    CITY_OF_LAWRENCEBURG("/images/City-of-Lawrenceburg.png", 1440, 1024, false),
+
+    APP_EXIT_NO_HOVER("/images/application-exit/exit-no-hover.png", 95, 31, true),
+    APP_EXIT_HOVERED("/images/application-exit/exit-hovered.png", 95, 31, true),
+
+    APP_CANCEL_NO_HOVER("/images/application-exit/cancel-no-hover.png", 95, 31, true),
+    APP_CANCEL_HOVERED("/images/application-exit/cancel-hovered.png", 95, 31, true);
 
     @Getter private ImageIcon imageIcon;
     @Getter private BufferedImage bufferedImage;

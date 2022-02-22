@@ -1,6 +1,5 @@
 package com.mango.prjmango.windows.login;
 
-import com.mango.prjmango.components.BackgroundPanel;
 import com.mango.prjmango.utilities.Images;
 import java.awt.Color;
 import java.awt.Font;
@@ -15,12 +14,11 @@ import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 import lombok.Getter;
 
-public class LoginView extends BackgroundPanel {
+public class LoginView extends JLabel {
 
     private final Color DARK_GREY = new Color(19, 18, 18);
     private final Color LIGHT_GREY = new Color(216, 216, 216);
 
-    @Getter private JLabel loginPanelLabel;
     @Getter private JLabel signInLabel;
     @Getter private JLabel loginLabel;
     @Getter private JLabel createAccountLabel;
@@ -33,15 +31,13 @@ public class LoginView extends BackgroundPanel {
     @Getter private JPasswordField passwordField;
 
     public LoginView() {
-        setBackground(Images.CITY_OF_LAWRENCEBURG.getBufferedImage());
+        setIcon(Images.LOGIN_PANEL_BACKGROUND.getImageIcon());
 
         createComponents();
-        createBackgroundPanelLayout();
-        createLoginPanelLayout();
+        createLayout();
     }
 
     private void createComponents() {
-        loginPanelLabel = new JLabel(Images.LOGIN_PANEL_BACKGROUND.getImageIcon());
         pawLogoLabel = new JLabel(Images.PAW_LOGO.getImageIcon());
         loginLabel = new JLabel(Images.LOGIN_NO_HOVER.getImageIcon());
 
@@ -60,7 +56,7 @@ public class LoginView extends BackgroundPanel {
                 "Email",
                 TitledBorder.DEFAULT_JUSTIFICATION,
                 TitledBorder.DEFAULT_POSITION,
-                new Font("Segoe UI", Font.PLAIN, 12),
+                new Font("Segoe UI", Font.PLAIN, 14),
                 LIGHT_GREY));
         emailField.setCaretColor(LIGHT_GREY);
 
@@ -74,33 +70,14 @@ public class LoginView extends BackgroundPanel {
                 "Password",
                 TitledBorder.DEFAULT_JUSTIFICATION,
                 TitledBorder.DEFAULT_POSITION,
-                new Font("Segoe UI", Font.PLAIN, 12),
+                new Font("Segoe UI", Font.PLAIN, 14),
                 LIGHT_GREY));
         passwordField.setCaretColor(LIGHT_GREY);
     }
 
-    private void createBackgroundPanelLayout() {
-        GroupLayout loginBackgroundPanelLayout = new GroupLayout(this);
-        setLayout(loginBackgroundPanelLayout);
-        loginBackgroundPanelLayout.setHorizontalGroup(
-                loginBackgroundPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGroup(GroupLayout.Alignment.TRAILING, loginBackgroundPanelLayout.createSequentialGroup()
-                                .addContainerGap(479, Short.MAX_VALUE)
-                                .addComponent(loginPanelLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(479, Short.MAX_VALUE))
-        );
-        loginBackgroundPanelLayout.setVerticalGroup(
-                loginBackgroundPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGroup(loginBackgroundPanelLayout.createSequentialGroup()
-                                .addContainerGap(189, Short.MAX_VALUE)
-                                .addComponent(loginPanelLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(189, Short.MAX_VALUE))
-        );
-    }
-
-    private void createLoginPanelLayout() {
-        GroupLayout loginPanelLayout = new GroupLayout(loginPanelLabel);
-        loginPanelLabel.setLayout(loginPanelLayout);
+    private void createLayout() {
+        GroupLayout loginPanelLayout = new GroupLayout(this);
+        setLayout(loginPanelLayout);
         loginPanelLayout.setHorizontalGroup(
                 loginPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addComponent(signInLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

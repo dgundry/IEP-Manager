@@ -4,14 +4,18 @@ import com.mango.prjmango.LoggedInUser;
 import com.mango.prjmango.Main;
 import com.mango.prjmango.windows.account.AccountController;
 import com.mango.prjmango.windows.account.AccountView;
-import com.mango.prjmango.windows.login.LoginController;
-import com.mango.prjmango.windows.login.LoginView;
+import com.mango.prjmango.windows.dialogs.applicationexit.ApplicationExitController;
+import com.mango.prjmango.windows.dialogs.applicationexit.ApplicationExitView;
 import com.mango.prjmango.windows.sideoptions.SideOptionsController;
 import com.mango.prjmango.windows.sideoptions.SideOptionsView;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.GroupLayout;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 import lombok.Getter;
@@ -24,11 +28,16 @@ public class MainWindowView {
 
     @Getter private static JFrame frame;
 
-    @Getter private static JPanel mainPanel;
+    @Getter private static JPanel mainPanel = new JPanel();
 
+    private static LoginViewLayout loginViewLayout = new LoginViewLayout();
+
+    /**
+     * Constructor. Instantiates the {@link JFrame} and calls methods to create the layout.
+     */
     public MainWindowView() {
         frame = new JFrame();
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); //change
+        frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         frame.setBackground(DARK_GREY);
 
         createPanel();
@@ -38,10 +47,16 @@ public class MainWindowView {
         frame.setPreferredSize(INITIAL_DIMENSIONS);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+        frame.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                ApplicationExitView applicationExitView = new ApplicationExitView();
+                new ApplicationExitController(applicationExitView);
+            }
+        });
     }
 
     private static void createPanel() {
-        mainPanel = new JPanel();
         mainPanel.setBackground(DARK_GREY);
         mainPanel.setMinimumSize(INITIAL_DIMENSIONS);
         mainPanel.setPreferredSize(INITIAL_DIMENSIONS);
@@ -62,21 +77,25 @@ public class MainWindowView {
         );
     }
 
-    public static void setLoginPage() {
+    /**
+     * This method will switch out the rounded "panel" (which is actually a {@link JLabel}) on the Login screen.
+     *
+     * @param label the {@link JLabel} that acts as a {@link JPanel} which holds {@link JComponent}'s.
+     */
+    public static void setActiveDisplay(JLabel label) {
         mainPanel.removeAll();
 
-        LoginView loginView = new LoginView();
-        new LoginController(loginView);
+        loginViewLayout.setLayout(label);
 
         GroupLayout mainPanelLayout = new GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
                 mainPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addComponent(loginView, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(loginViewLayout, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         mainPanelLayout.setVerticalGroup(
                 mainPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addComponent(loginView, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(loginViewLayout, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         mainPanel.updateUI();

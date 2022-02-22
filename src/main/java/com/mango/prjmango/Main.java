@@ -2,10 +2,12 @@ package com.mango.prjmango;
 
 import com.mango.prjmango.utilities.DatabaseConnection;
 import com.mango.prjmango.windows.MainWindowView;
-import com.mango.prjmango.windows.sideoptions.SideOptionsController;
-import com.mango.prjmango.windows.sideoptions.SideOptionsView;
-
-import java.awt.*;
+import com.mango.prjmango.windows.login.LoginController;
+import com.mango.prjmango.windows.login.LoginView;
+import java.awt.Dimension;
+import java.awt.GraphicsEnvironment;
+import java.awt.Rectangle;
+import java.awt.Toolkit;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
 import org.apache.commons.lang.SystemUtils;
@@ -60,10 +62,13 @@ public class Main {
 			String os = SystemUtils.OS_NAME;
 			if (os.contains("Windows")) {
 				MainWindowView view = new MainWindowView();
-				view.setLoginPage();
+
+				LoginView loginView = new LoginView();
+				new LoginController(loginView);
+				view.setActiveDisplay(loginView);
 			} else {
-				MainWindowView view = new MainWindowView();
-				view.setLoginPage();
+				//MainWindowView view = new MainWindowView();
+				//view.setLoginPage();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

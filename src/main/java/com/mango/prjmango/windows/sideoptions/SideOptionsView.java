@@ -134,7 +134,7 @@ public class SideOptionsView extends JPanel {
                                 .addComponent(bottomSeparator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(logOutLabel)
-                                .addContainerGap())
+                                .addGap(63, 63, 63))
         );
     }
 }

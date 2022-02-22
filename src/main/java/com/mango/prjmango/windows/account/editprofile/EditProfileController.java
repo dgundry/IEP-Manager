@@ -1,7 +1,6 @@
 package com.mango.prjmango.windows.account.editprofile;
 
 import com.mango.prjmango.utilities.DatabaseCommands;
-import com.mango.prjmango.utilities.DatabaseConnection;
 import com.mango.prjmango.utilities.EmailValidation;
 import com.mango.prjmango.utilities.Images;
 import java.awt.event.MouseEvent;
@@ -38,10 +37,7 @@ public class EditProfileController {
             String lastName = view.getLastNameTextField().getText().trim();
             String email = view.getEmailTextField().getText().trim();
 
-            String regexPattern = "^(?=.{1,64}@)[\\p{L}0-9_-]+(\\.[\\p{L}0-9_-]+)*@"
-                    + "[^-][\\p{L}0-9-]+(\\.[\\p{L}0-9-]+)*(\\.[\\p{L}]{2,})$";
-
-            if (EmailValidation.patternMatches(email, regexPattern)) {
+            if (EmailValidation.patternMatches(email)) {
                 if (DatabaseCommands.isEmailTaken(email)) {
                     System.out.println("Email taken.");
                     //display error jlabel on panel

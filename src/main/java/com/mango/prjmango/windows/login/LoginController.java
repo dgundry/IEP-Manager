@@ -3,14 +3,11 @@ package com.mango.prjmango.windows.login;
 import com.mango.prjmango.LoggedInUser;
 import com.mango.prjmango.Main;
 import com.mango.prjmango.MainFrame;
-import com.mango.prjmango.components.dialogs.account.AccountCreatedView;
-import com.mango.prjmango.editaccount.EditAccountController;
-import com.mango.prjmango.editaccount.EditAccountView;
-import com.mango.prjmango.teacher.TeacherController;
-import com.mango.prjmango.teacher.TeacherView;
 import com.mango.prjmango.utilities.DatabaseCommands;
 import com.mango.prjmango.utilities.Images;
 import com.mango.prjmango.windows.MainWindowView;
+import com.mango.prjmango.windows.createaccount.basicinfo.BasicInfoController;
+import com.mango.prjmango.windows.createaccount.basicinfo.BasicInfoView;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
@@ -18,7 +15,9 @@ import java.awt.event.MouseListener;
 import java.awt.font.TextAttribute;
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.*;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class LoginController {
 
@@ -149,7 +148,9 @@ public class LoginController {
          */
         @Override
         public void mouseClicked(MouseEvent e) {
-
+            BasicInfoView basicInfoView = new BasicInfoView();
+            new BasicInfoController(basicInfoView);
+            MainWindowView.setActiveDisplay(basicInfoView);
         }
 
         /**

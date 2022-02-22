@@ -1,5 +1,6 @@
 package com.mango.prjmango.windows.sideoptions.listeners;
 
+import com.mango.prjmango.utilities.Tab;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -15,11 +16,37 @@ public class TabListeners implements MouseListener {
 
     private final boolean changeCursor;
 
+    private Tab tab = null;
+
+    public TabListeners(JLabel label, ImageIcon noHoveredImage, ImageIcon hoveredImage, boolean changeCursor, Tab tab) {
+        this.label = label;
+        this.noHoveredImage = noHoveredImage;
+        this.hoveredImage = hoveredImage;
+        this.changeCursor = changeCursor;
+        this.tab = tab;
+    }
+
     public TabListeners(JLabel label, ImageIcon noHoveredImage, ImageIcon hoveredImage, boolean changeCursor) {
         this.label = label;
         this.noHoveredImage = noHoveredImage;
         this.hoveredImage = hoveredImage;
         this.changeCursor = changeCursor;
+    }
+
+    /**
+     * Invoked when the mouse button has been clicked (pressed
+     * and released) on a component.
+     *
+     * @param e the {@link MouseEvent}
+     */
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if (tab != null) {
+            tab.setActiveStatus(true);
+            Tab.configureActiveTab(tab);
+            label.setIcon(Tab.getCorrespondingImageIcon(tab));
+        }
+        //switch tabs
     }
 
     /**
@@ -46,17 +73,6 @@ public class TabListeners implements MouseListener {
             label.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         }
         label.setIcon(noHoveredImage);
-    }
-
-    /**
-     * Invoked when the mouse button has been clicked (pressed
-     * and released) on a component.
-     *
-     * @param e the {@link MouseEvent}
-     */
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        System.out.println("Clicked");
     }
 
     /**
