@@ -15,6 +15,9 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import lombok.Getter;
 
+/**
+ * The user interface design of the side options on the left side.
+ */
 public class SideOptionsView extends JPanel {
 
     private JLabel pawLogoLabel;
@@ -37,6 +40,9 @@ public class SideOptionsView extends JPanel {
 
     private final LoggedInUser user;
 
+    /**
+     * Constructor. Calls methods that create the GUI.
+     */
     public SideOptionsView(LoggedInUser user) {
         this.user = user;
 

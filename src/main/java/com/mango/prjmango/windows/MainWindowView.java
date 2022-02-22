@@ -72,7 +72,11 @@ public class MainWindowView {
         layout.setVerticalGroup(
                 layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                                .addComponent(mainPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(
+                                        mainPanel,
+                                        GroupLayout.PREFERRED_SIZE,
+                                        GroupLayout.DEFAULT_SIZE,
+                                        GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
         );
     }

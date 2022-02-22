@@ -6,6 +6,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JLabel;
 
+/**
+ * Handles all user interaction
+ */
 public class ApplicationExitController {
 
     /**

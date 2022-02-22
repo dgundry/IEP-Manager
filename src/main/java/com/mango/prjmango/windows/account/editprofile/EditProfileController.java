@@ -5,10 +5,20 @@ import com.mango.prjmango.utilities.EmailValidation;
 import com.mango.prjmango.utilities.Images;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 
+/**
+ * Handles all user interaction with the Edit Profile page.
+ */
 public class EditProfileController {
 
+    /**
+     * Constructor. Instantiates the {@link EditProfileView} and assigns {@link MouseListener}'s to specific
+     * {@link JLabel}'s.
+     *
+     * @param view the {@link EditProfileView} to be able to access the {@link JLabel}'s
+     */
     public EditProfileController(EditProfileView view) {
         JLabel saveLabel = view.getSaveLabel();
 
@@ -20,6 +30,13 @@ public class EditProfileController {
         private final EditProfileView view;
         private final JLabel label;
 
+        /**
+         * Constructor. Initializes instance variables that will be used throughout the {@link MouseListener}
+         * methods.
+         *
+         * @param view  the {@link EditProfileView} to access other {@link JComponent}'s
+         * @param label the specific {@link JLabel}
+         */
         public SaveProfileMouseListener(EditProfileView view, JLabel label) {
             this.view = view;
             this.label = label;

@@ -12,6 +12,9 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import lombok.Getter;
 
+/**
+ * The user interface design of the Edit Profile page.
+ */
 public class EditProfileView extends JPanel {
 
     private final Color DARK_GREY = new Color(19, 18, 18);
@@ -27,6 +30,9 @@ public class EditProfileView extends JPanel {
     @Getter private JTextField lastNameTextField;
     @Getter private JTextField emailTextField;
 
+    /**
+     * Constructor. Calls methods that create the GUI.
+     */
     public EditProfileView() {
         setBackground(DARK_GREY);
 
@@ -54,15 +60,25 @@ public class EditProfileView extends JPanel {
                         .addGroup(GroupLayout.Alignment.TRAILING, editProfilePanelLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(editProfilePanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addGroup(editProfilePanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(editProfilePanelLayout.createParallelGroup(
+                                                GroupLayout.Alignment.LEADING,
+                                                        false)
                                                 .addGroup(editProfilePanelLayout.createSequentialGroup()
                                                         .addGroup(editProfilePanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                                 .addComponent(firstNameLabel)
-                                                                .addComponent(firstNameTextField, GroupLayout.PREFERRED_SIZE, 209, GroupLayout.PREFERRED_SIZE))
+                                                                .addComponent(
+                                                                        firstNameTextField,
+                                                                        GroupLayout.PREFERRED_SIZE,
+                                                                        209,
+                                                                        GroupLayout.PREFERRED_SIZE))
                                                         .addGap(96, 96, 96)
                                                         .addGroup(editProfilePanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                                 .addComponent(lastNameLabel)
-                                                                .addComponent(lastNameTextField, GroupLayout.PREFERRED_SIZE, 209, GroupLayout.PREFERRED_SIZE)))
+                                                                .addComponent(
+                                                                        lastNameTextField,
+                                                                        GroupLayout.PREFERRED_SIZE,
+                                                                        209,
+                                                                        GroupLayout.PREFERRED_SIZE)))
                                                 .addComponent(emailLabel)
                                                 .addComponent(emailTextField))
                                         .addComponent(saveLabel)
@@ -80,8 +96,16 @@ public class EditProfileView extends JPanel {
                                         .addComponent(firstNameLabel))
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(editProfilePanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(firstNameTextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lastNameTextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(
+                                                firstNameTextField,
+                                                GroupLayout.PREFERRED_SIZE,
+                                                32,
+                                                GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(
+                                                lastNameTextField,
+                                                GroupLayout.PREFERRED_SIZE,
+                                                32,
+                                                GroupLayout.PREFERRED_SIZE))
                                 .addGap(9, 9, 9)
                                 .addComponent(emailLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)

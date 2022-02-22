@@ -3,8 +3,14 @@ package com.mango.prjmango.windows.account.passwordsecurity;
 import javax.swing.GroupLayout;
 import javax.swing.JPanel;
 
+/**
+ * The user interface design of the Password & Security page.
+ */
 public class PasswordSecurityView extends JPanel {
 
+    /**
+     * Constructor. Calls methods that create the GUI.
+     */
     public PasswordSecurityView() {
         createLayout();
     }

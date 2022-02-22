@@ -67,8 +67,11 @@ public class Main {
 				new LoginController(loginView);
 				view.setActiveDisplay(loginView);
 			} else {
-				//MainWindowView view = new MainWindowView();
-				//view.setLoginPage();
+				MainWindowView view = new MainWindowView();
+
+				LoginView loginView = new LoginView();
+				new LoginController(loginView);
+				view.setActiveDisplay(loginView);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

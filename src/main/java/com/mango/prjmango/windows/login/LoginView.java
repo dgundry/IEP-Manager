@@ -14,22 +14,28 @@ import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 import lombok.Getter;
 
+/**
+ * The user interface design of the Login page.
+ */
 public class LoginView extends JLabel {
 
     private final Color DARK_GREY = new Color(19, 18, 18);
     private final Color LIGHT_GREY = new Color(216, 216, 216);
+
+    private JLabel pawLogoLabel;
+    private JLabel iepManagerLabel;
 
     @Getter private JLabel signInLabel;
     @Getter private JLabel loginLabel;
     @Getter private JLabel createAccountLabel;
     @Getter private JLabel forgotPasswordLabel;
 
-    private JLabel pawLogoLabel;
-    private JLabel iepManagerLabel;
-
     @Getter private JTextField emailField;
     @Getter private JPasswordField passwordField;
 
+    /**
+     * The user interface design of the Login page.
+     */
     public LoginView() {
         setIcon(Images.LOGIN_PANEL_BACKGROUND.getImageIcon());
 
@@ -39,11 +45,11 @@ public class LoginView extends JLabel {
 
     private void createComponents() {
         pawLogoLabel = new JLabel(Images.PAW_LOGO.getImageIcon());
-        loginLabel = new JLabel(Images.LOGIN_NO_HOVER.getImageIcon());
+        loginLabel   = new JLabel(Images.LOGIN_NO_HOVER.getImageIcon());
 
-        iepManagerLabel = createLabel("IEP Manager", 26, SwingConstants.CENTER);
-        signInLabel = createLabel("Sign in", 22, SwingConstants.CENTER);
-        createAccountLabel = createLabel("Create Account", 16, SwingConstants.LEFT);
+        iepManagerLabel     = createLabel("IEP Manager", 26, SwingConstants.CENTER);
+        signInLabel         = createLabel("Sign in", 22, SwingConstants.CENTER);
+        createAccountLabel  = createLabel("Create Account", 16, SwingConstants.LEFT);
         forgotPasswordLabel = createLabel("Forgot Password?", 16, SwingConstants.LEFT);
 
         emailField = new JTextField();

@@ -13,6 +13,9 @@ import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 import lombok.Getter;
 
+/**
+ * The user interface design of the Basic Info page.
+ */
 public class BasicInfoView extends JLabel {
 
     private final Color DARK_GREY = new Color(19, 18, 18);
@@ -29,6 +32,9 @@ public class BasicInfoView extends JLabel {
     @Getter private JTextField lastNameTextField;
     @Getter private JTextField emailTextField;
 
+    /**
+     * Constructor. Calls methods that create the GUI.
+     */
     public BasicInfoView() {
         setIcon(Images.LOGIN_PANEL_BACKGROUND.getImageIcon());
 
