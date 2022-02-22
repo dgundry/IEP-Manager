@@ -1,5 +1,7 @@
 package com.mango.prjmango.windows;
 
+import com.mango.prjmango.LoggedInUser;
+import com.mango.prjmango.Main;
 import com.mango.prjmango.windows.account.AccountController;
 import com.mango.prjmango.windows.account.AccountView;
 import com.mango.prjmango.windows.login.LoginController;
@@ -16,7 +18,7 @@ import lombok.Getter;
 
 public class MainWindowView {
 
-    private static final Dimension INITIAL_DIMENSIONS = new Dimension(1440, 1024);
+    private static final Dimension INITIAL_DIMENSIONS = new Dimension(Main.rect.width, Main.rect.height);
 
     private static final Color DARK_GREY = new Color(19, 18, 18);
 
@@ -80,14 +82,14 @@ public class MainWindowView {
         mainPanel.updateUI();
     }
 
-    public static void setAccountView() {
+    public static void setAccountView(LoggedInUser user) {
         mainPanel.removeAll();
         mainPanel.updateUI();
 
         AccountView accountView = new AccountView();
         new AccountController(accountView);
 
-        SideOptionsView sideOptionsView = new SideOptionsView();
+        SideOptionsView sideOptionsView = new SideOptionsView(user);
         new SideOptionsController(sideOptionsView);
 
         GroupLayout mainPanelLayout = new GroupLayout(mainPanel);

@@ -4,8 +4,8 @@ import com.mango.prjmango.utilities.DatabaseConnection;
 import com.mango.prjmango.windows.MainWindowView;
 import com.mango.prjmango.windows.sideoptions.SideOptionsController;
 import com.mango.prjmango.windows.sideoptions.SideOptionsView;
-import java.awt.Dimension;
-import java.awt.Toolkit;
+
+import java.awt.*;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
 import org.apache.commons.lang.SystemUtils;
@@ -28,6 +28,8 @@ public class Main {
 
 	public static final int SCREEN_WIDTH = (int) screenSize.getWidth();
 	public static final int SCREEN_HEIGHT = (int) screenSize.getHeight();
+
+	public static final Rectangle rect = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
 
 	private static final Logger logger = Logger.getLogger(Main.class.getName());
 
@@ -57,13 +59,11 @@ public class Main {
 
 			String os = SystemUtils.OS_NAME;
 			if (os.contains("Windows")) {
-				SideOptionsView sideOptionsView = new SideOptionsView();
-				new SideOptionsController(sideOptionsView);
-
 				MainWindowView view = new MainWindowView();
 				view.setLoginPage();
 			} else {
-				System.out.println("On a Mac");
+				MainWindowView view = new MainWindowView();
+				view.setLoginPage();
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

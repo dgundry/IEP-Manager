@@ -1,5 +1,6 @@
 package com.mango.prjmango.windows.account.editprofile;
 
+import com.mango.prjmango.LoggedInUser;
 import com.mango.prjmango.utilities.Images;
 import java.awt.Color;
 import java.awt.Font;
@@ -31,8 +32,6 @@ public class EditProfileView extends JPanel {
 
         createComponents();
         createLayout();
-
-        //load in the logged in users details and populate the fields
     }
 
     private void createComponents() {
@@ -42,9 +41,9 @@ public class EditProfileView extends JPanel {
         emailLabel = createLabel("Email", 18);
         saveLabel = new JLabel(Images.EDIT_PROFILE_SAVE_NO_HOVER.getImageIcon());
 
-        firstNameTextField = createTextField();
-        lastNameTextField = createTextField();
-        emailTextField = createTextField();
+        firstNameTextField = createTextField(LoggedInUser.getFirstName());
+        lastNameTextField = createTextField(LoggedInUser.getLastName());
+        emailTextField = createTextField(LoggedInUser.getEmail());
     }
 
     private void createLayout() {
@@ -93,8 +92,8 @@ public class EditProfileView extends JPanel {
         );
     }
 
-    private JTextField createTextField() {
-        JTextField textField = new JTextField();
+    private JTextField createTextField(String text) {
+        JTextField textField = new JTextField(text);
         textField.setMargin(new Insets(0, 5, 0, 5));
         textField.setBackground(DARK_GREY);
         textField.setForeground(LIGHT_GREY);

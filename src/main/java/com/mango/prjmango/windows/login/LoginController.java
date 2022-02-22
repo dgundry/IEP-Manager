@@ -1,5 +1,14 @@
 package com.mango.prjmango.windows.login;
 
+import com.mango.prjmango.LoggedInUser;
+import com.mango.prjmango.Main;
+import com.mango.prjmango.MainFrame;
+import com.mango.prjmango.components.dialogs.account.AccountCreatedView;
+import com.mango.prjmango.editaccount.EditAccountController;
+import com.mango.prjmango.editaccount.EditAccountView;
+import com.mango.prjmango.teacher.TeacherController;
+import com.mango.prjmango.teacher.TeacherView;
+import com.mango.prjmango.utilities.DatabaseCommands;
 import com.mango.prjmango.utilities.Images;
 import com.mango.prjmango.windows.MainWindowView;
 import java.awt.Cursor;
@@ -9,7 +18,7 @@ import java.awt.event.MouseListener;
 import java.awt.font.TextAttribute;
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.JLabel;
+import javax.swing.*;
 
 public class LoginController {
 
@@ -28,6 +37,13 @@ public class LoginController {
         private final LoginView view;
         private final JLabel label;
 
+        /**
+         * Constructor. Instantiate instance variables that will be used within the {@link MouseListener}
+         * methods.
+         *
+         * @param view  the {@link LoginView} to access the specific {@link JComponent}'s
+         * @param label the specific {@link JLabel}
+         */
         public LoginLabelMouseListener(LoginView view, JLabel label) {
             this.view = view;
             this.label = label;
@@ -41,7 +57,34 @@ public class LoginController {
          */
         @Override
         public void mouseClicked(MouseEvent e) {
-            MainWindowView.setAccountView();
+            String enteredEmail = view.getEmailField().getText();
+            char[] enteredPassword = view.getPasswordField().getPassword();
+
+            if (!enteredEmail.equals("") && enteredPassword.length != 0) {
+                if (DatabaseCommands.isValidUser(enteredEmail, enteredPassword) == 1) {
+                    LoggedInUser user = new LoggedInUser(DatabaseCommands.getTeacherId(enteredEmail));
+                    Main.activeUser = user;
+
+                    MainWindowView.setAccountView(user);
+                } else {
+                    //display error JLabel under the passwordField
+
+                    JOptionPane.showMessageDialog(
+                            MainFrame.getFrame(),
+                            "Enter a Valid Password.",
+                            "INVALID",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                //display error JLabel under the passwordField
+
+                JOptionPane.showMessageDialog(
+                        MainFrame.getFrame(),
+                        "Enter a Valid Email and/or Password.",
+                        "INVALID",
+                        JOptionPane.ERROR_MESSAGE);
+
+            }
         }
 
         /**
@@ -86,6 +129,13 @@ public class LoginController {
         private final LoginView view;
         private final JLabel label;
 
+        /**
+         * Constructor. Instantiate instance variables that will be used within the {@link MouseListener}
+         * methods.
+         *
+         * @param view  the {@link LoginView} to access the specific {@link JComponent}'s
+         * @param label the specific {@link JLabel}
+         */
         public CreateAccountLabelMouseListener(LoginView view, JLabel label) {
             this.view = view;
             this.label = label;
@@ -156,6 +206,13 @@ public class LoginController {
         private final LoginView view;
         private final JLabel label;
 
+        /**
+         * Constructor. Instantiate instance variables that will be used within the {@link MouseListener}
+         * methods.
+         *
+         * @param view  the {@link LoginView} to access the specific {@link JComponent}'s
+         * @param label the specific {@link JLabel}
+         */
         public ForgotPasswordLabelMouseListener(LoginView view, JLabel label) {
             this.view = view;
             this.label = label;

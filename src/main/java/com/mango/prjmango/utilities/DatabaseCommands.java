@@ -1,5 +1,8 @@
 package com.mango.prjmango.utilities;
 
+import com.mango.prjmango.LoggedInUser;
+import lombok.extern.java.Log;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -183,6 +186,7 @@ public class DatabaseCommands {
 
         return hasFailed;
     }
+
     public static List<String> getUserDetails(int teacher_id) {
         int result = -1;
         String sql = "SELECT first_name, last_name, email FROM teacher WHERE teacher_id = ?;";
@@ -197,5 +201,21 @@ public class DatabaseCommands {
             ex.printStackTrace();
         }
         return userDetails;
+    }
+
+    public static void updateUserDetails(String firstName, String lastName, String email) {
+        String sql = "UPDATE teacher\n" +
+                     "SET first_name = ?, last_name = ?, email = ?\n" +
+                     "WHERE email = ?;";//change to WHERE teacher_id = ?;
+
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
+            statement.setString(1, firstName);
+            statement.setString(2, lastName);
+            statement.setString(3, email);
+            statement.setInt(4, LoggedInUser.getTeacher_id());
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
     }
 }

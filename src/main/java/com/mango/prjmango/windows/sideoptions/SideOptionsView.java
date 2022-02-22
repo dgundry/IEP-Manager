@@ -1,5 +1,7 @@
 package com.mango.prjmango.windows.sideoptions;
 
+import com.mango.prjmango.LoggedInUser;
+import com.mango.prjmango.Main;
 import com.mango.prjmango.utilities.Images;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -31,9 +33,13 @@ public class SideOptionsView extends JPanel {
     private final Color DARK_GREY  = new Color(19, 18, 18);
     private final Color LIGHT_GREY = new Color(216, 216, 216);
 
-    private final Dimension DIMENSIONS = new Dimension(340, 1026);
+    private final Dimension DIMENSIONS = new Dimension(340, Main.rect.height);
 
-    public SideOptionsView() {
+    private final LoggedInUser user;
+
+    public SideOptionsView(LoggedInUser user) {
+        this.user = user;
+
         setBackground(DARK_GREY);
         setBorder(new LineBorder(LIGHT_GREY, 1, true));
         setMaximumSize(DIMENSIONS);
@@ -50,7 +56,7 @@ public class SideOptionsView extends JPanel {
         welcomeLabel.setFont(new Font("Segoe UI", Font.PLAIN, 28));
         welcomeLabel.setForeground(LIGHT_GREY);
         welcomeLabel.setHorizontalAlignment(SwingConstants.LEFT);
-        welcomeLabel.setText("Welcome, Kennedy!"); //<---Doesn't need to be hard coded
+        welcomeLabel.setText("Welcome, " + user.getFirstName() + "!");
 
         homeTabLabel       = new JLabel(Images.HOME_TAB_NO_HOVER.getImageIcon());
         accountTabLabel    = new JLabel(Images.ACCOUNT_TAB_NO_HOVER.getImageIcon());
