@@ -2,6 +2,7 @@ package com.mango.prjmango.windows;
 
 import com.mango.prjmango.LoggedInUser;
 import com.mango.prjmango.Main;
+import com.mango.prjmango.utilities.Tabs;
 import com.mango.prjmango.windows.account.AccountController;
 import com.mango.prjmango.windows.account.AccountView;
 import com.mango.prjmango.windows.dialogs.applicationexit.ApplicationExitController;
@@ -18,6 +19,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
+
+import javafx.scene.control.Tab;
 import lombok.Getter;
 
 public class MainWindowView {
@@ -31,6 +34,9 @@ public class MainWindowView {
     @Getter private static JPanel mainPanel = new JPanel();
 
     private static LoginViewLayout loginViewLayout = new LoginViewLayout();
+
+    public static Tabs currentlyActiveTab = Tabs.ACCOUNT; //change to home
+    public static Tabs previouslyActiveTab = null;
 
     /**
      * Constructor. Instantiates the {@link JFrame} and calls methods to create the layout.

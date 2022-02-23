@@ -9,20 +9,20 @@ import lombok.Getter;
 
 public enum Images {
 
-    HOME_TAB_NO_HOVER("/images/home-tab-no-hover.png", 243, 44, true),
-    HOME_TAB_HOVERED("/images/home-tab-hovered.png", 243, 44, true),
+    HOME_TAB_NO_HOVER("/images/tabs/home-tab-no-hover.png", 243, 44, true),
+    HOME_TAB_HOVERED("/images/tabs/home-tab-hovered.png", 243, 44, true),
 
-    ACCOUNT_TAB_NO_HOVER("/images/account-tab-no-hover.png", 243, 44, true),
-    ACCOUNT_TAB_HOVERED("/images/account-tab-hovered.png", 243, 44, true),
+    ACCOUNT_TAB_NO_HOVER("/images/tabs/account-tab-no-hover.png", 243, 44, true),
+    ACCOUNT_TAB_HOVERED("/images/tabs/account-tab-hovered.png", 243, 44, true),
 
-    STUDENT_TAB_NO_HOVER("/images/students-tab-no-hover.png", 243, 44, true),
-    STUDENT_TAB_HOVERED("/images/students-tab-hovered.png", 243, 44, true),
+    STUDENT_TAB_NO_HOVER("/images/tabs/students-tab-no-hover.png", 243, 44, true),
+    STUDENT_TAB_HOVERED("/images/tabs/students-tab-hovered.png", 243, 44, true),
 
-    ACTIVITIES_TAB_NO_HOVER("/images/activities-tab-no-hover.png", 243, 44, true),
-    ACTIVITIES_TAB_HOVERED("/images/activities-tab-hovered.png", 243, 44, true),
+    ACTIVITIES_TAB_NO_HOVER("/images/tabs/activities-tab-no-hover.png", 243, 44, true),
+    ACTIVITIES_TAB_HOVERED("/images/tabs/activities-tab-hovered.png", 243, 44, true),
 
-    REPORTS_TAB_NO_HOVER("/images/reports-tab-no-hover.png", 243, 44, true),
-    REPORTS_TAB_HOVERED("/images/reports-tab-hovered.png", 243, 44, true),
+    REPORTS_TAB_NO_HOVER("/images/tabs/reports-tab-no-hover.png", 243, 44, true),
+    REPORTS_TAB_HOVERED("/images/tabs/reports-tab-hovered.png", 243, 44, true),
 
     LOG_OUT_NO_HOVER("/images/log-out-no-hover.png", 124, 28, true),
     LOG_OUT_HOVERED("/images/log-out-hovered.png", 124, 28, true),
@@ -50,7 +50,7 @@ public enum Images {
     BASIC_INFO_BACK_HOVERED("/images/basic-info/back-hovered.png", 116, 31, true),
 
     LOGIN_PANEL_BACKGROUND("/images/login-panel-background.png", 482, 646, true),
-    CITY_OF_LAWRENCEBURG("/images/City-of-Lawrenceburg.png", 1440, 1024, false),
+    CLASSROOM_BACKGROUND("/images/classroom-background.png", 1440, 1024, false),
 
     APP_EXIT_NO_HOVER("/images/application-exit/exit-no-hover.png", 95, 31, true),
     APP_EXIT_HOVERED("/images/application-exit/exit-hovered.png", 95, 31, true),

@@ -14,7 +14,7 @@ public class LoginViewLayout extends BackgroundPanel {
      * Constructor. Sets the background image to the {@link BackgroundPanel}.
      */
     public LoginViewLayout() {
-        setBackground(Images.CITY_OF_LAWRENCEBURG.getBufferedImage());
+        setBackground(Images.CLASSROOM_BACKGROUND.getBufferedImage());
     }
 
     /**

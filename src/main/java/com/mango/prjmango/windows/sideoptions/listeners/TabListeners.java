@@ -1,6 +1,11 @@
 package com.mango.prjmango.windows.sideoptions.listeners;
 
-import com.mango.prjmango.utilities.Tab;
+import com.mango.prjmango.Main;
+import com.mango.prjmango.utilities.Images;
+import com.mango.prjmango.utilities.Tabs;
+import com.mango.prjmango.windows.MainWindowView;
+import com.mango.prjmango.windows.sideoptions.SideOptionsView;
+
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -16,14 +21,23 @@ public class TabListeners implements MouseListener {
 
     private final boolean changeCursor;
 
-    private Tab tab = null;
+    private SideOptionsView view;
 
-    public TabListeners(JLabel label, ImageIcon noHoveredImage, ImageIcon hoveredImage, boolean changeCursor, Tab tab) {
+    private Tabs tab = null;
+
+    public TabListeners(
+            JLabel label,
+            ImageIcon noHoveredImage,
+            ImageIcon hoveredImage,
+            boolean changeCursor,
+            Tabs tab,
+            SideOptionsView view) {
         this.label = label;
         this.noHoveredImage = noHoveredImage;
         this.hoveredImage = hoveredImage;
         this.changeCursor = changeCursor;
         this.tab = tab;
+        this.view = view;
     }
 
     public TabListeners(JLabel label, ImageIcon noHoveredImage, ImageIcon hoveredImage, boolean changeCursor) {
@@ -41,12 +55,11 @@ public class TabListeners implements MouseListener {
      */
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (tab != null) {
-            tab.setActiveStatus(true);
-            Tab.configureActiveTab(tab);
-            label.setIcon(Tab.getCorrespondingImageIcon(tab));
-        }
-        //switch tabs
+        MainWindowView.previouslyActiveTab = MainWindowView.currentlyActiveTab;
+        MainWindowView.currentlyActiveTab = tab;
+        label.setIcon(hoveredImage);
+        resetLabelImages();
+        System.out.println(MainWindowView.currentlyActiveTab);
     }
 
     /**
@@ -59,7 +72,10 @@ public class TabListeners implements MouseListener {
         if (changeCursor) {
             label.setCursor(new Cursor(Cursor.HAND_CURSOR));
         }
-        label.setIcon(hoveredImage);
+
+        if (MainWindowView.currentlyActiveTab != tab) {
+            label.setIcon(hoveredImage);
+        }
     }
 
     /**
@@ -72,7 +88,10 @@ public class TabListeners implements MouseListener {
         if (changeCursor) {
             label.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         }
-        label.setIcon(noHoveredImage);
+
+        if (MainWindowView.currentlyActiveTab != tab) {
+            label.setIcon(noHoveredImage);
+        }
     }
 
     /**
@@ -90,4 +109,26 @@ public class TabListeners implements MouseListener {
      */
     @Override
     public void mouseReleased(MouseEvent e) { /* Not needed */ }
+
+    private void resetLabelImages() {
+        Tabs previouslyActiveTab = MainWindowView.previouslyActiveTab;
+        switch (previouslyActiveTab.ordinal()) {
+            case 0:
+                view.getHomeTabLabel().setIcon(Images.HOME_TAB_NO_HOVER.getImageIcon());
+                break;
+            case 1:
+                view.getAccountTabLabel().setIcon(Images.ACCOUNT_TAB_NO_HOVER.getImageIcon());
+                break;
+            case 2:
+                view.getStudentsTabLabel().setIcon(Images.STUDENT_TAB_NO_HOVER.getImageIcon());
+                break;
+            case 3:
+                view.getActivitiesTabLabel().setIcon(Images.ACTIVITIES_TAB_NO_HOVER.getImageIcon());
+                break;
+            case 4:
+                view.getReportsTabLabel().setIcon(Images.REPORTS_TAB_NO_HOVER.getImageIcon());
+            default:
+                break;
+        }
+    }
 }
