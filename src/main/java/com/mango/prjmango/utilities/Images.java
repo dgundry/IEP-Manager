@@ -23,13 +23,7 @@ public enum Images {
     LOGIN_NO_HOVER("/images/login-no-hover.png", 116, 31, true),
     LOGIN_HOVERED("/images/login-hovered.png", 116, 31, true),
 
-    CLASSROOM_BACKGROUND("/images/classroom-background.png", 1440, 1024, false),
-
-    APP_EXIT_NO_HOVER("/images/application-exit/exit-no-hover.png", 95, 31, true),
-    APP_EXIT_HOVERED("/images/application-exit/exit-hovered.png", 95, 31, true),
-
-    APP_CANCEL_NO_HOVER("/images/application-exit/cancel-no-hover.png", 95, 31, true),
-    APP_CANCEL_HOVERED("/images/application-exit/cancel-hovered.png", 95, 31, true);
+    CLASSROOM_BACKGROUND("/images/classroom-background.png", 1440, 1024, false);
 
     @Getter private ImageIcon imageIcon;
     @Getter private BufferedImage bufferedImage;

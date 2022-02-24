@@ -1,6 +1,7 @@
 package com.mango.prjmango.windows.account.editprofile;
 
 import com.mango.prjmango.LoggedInUser;
+import com.mango.prjmango.utilities.Fonts;
 import com.mango.prjmango.utilities.Images;
 import java.awt.Color;
 import java.awt.Font;
@@ -42,14 +43,15 @@ public class EditProfileView extends JPanel {
 
     private void createComponents() {
         editProfileHeaderLabel = createLabel("Edit Profile", 24);
-        firstNameLabel = createLabel("First Name", 18);
-        lastNameLabel = createLabel("Last Name", 18);
-        emailLabel = createLabel("Email", 18);
+        firstNameLabel         = createLabel("First Name", 18);
+        lastNameLabel          = createLabel("Last Name", 18);
+        emailLabel             = createLabel("Email", 18);
+
         saveLabel = new JLabel(Images.EDIT_PROFILE_SAVE_NO_HOVER.getImageIcon());
 
         firstNameTextField = createTextField(LoggedInUser.getFirstName());
-        lastNameTextField = createTextField(LoggedInUser.getLastName());
-        emailTextField = createTextField(LoggedInUser.getEmail());
+        lastNameTextField  = createTextField(LoggedInUser.getLastName());
+        emailTextField     = createTextField(LoggedInUser.getEmail());
     }
 
     private void createLayout() {
@@ -109,7 +111,11 @@ public class EditProfileView extends JPanel {
                                 .addGap(9, 9, 9)
                                 .addComponent(emailLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(emailTextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(
+                                        emailTextField,
+                                        GroupLayout.PREFERRED_SIZE,
+                                        32,
+                                        GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(saveLabel)
                                 .addContainerGap(653, Short.MAX_VALUE))
@@ -122,7 +128,7 @@ public class EditProfileView extends JPanel {
         textField.setBackground(DARK_GREY);
         textField.setForeground(LIGHT_GREY);
         textField.setCaretColor(LIGHT_GREY);
-        textField.setFont(new Font("Segoe UI", Font.PLAIN, 16));
+        textField.setFont(Fonts.SEGOE_UI_16.getFont());
         return textField;
     }
 

@@ -1,5 +1,6 @@
 package com.mango.prjmango.windows.account;
 
+import com.mango.prjmango.utilities.Fonts;
 import com.mango.prjmango.utilities.ImageIcons;
 import com.mango.prjmango.utilities.Images;
 import com.mango.prjmango.windows.account.editprofile.EditProfileController;
@@ -45,7 +46,7 @@ public class AccountView extends JLabel {
         passwordSecurityLabel = new JLabel(Images.PASSWORD_SECURITY_NO_HOVER.getImageIcon());
 
         accountHeaderLabel = new JLabel("Account");
-        accountHeaderLabel.setFont(new Font("Segoe UI", Font.PLAIN, 24));
+        accountHeaderLabel.setFont(Fonts.SEGOE_UI_24.getFont());
         accountHeaderLabel.setForeground(LIGHT_GREY);
         accountHeaderLabel.setHorizontalAlignment(SwingConstants.LEFT);
 

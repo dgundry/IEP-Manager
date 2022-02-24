@@ -4,6 +4,9 @@ import com.mango.prjmango.Main;
 import com.mango.prjmango.utilities.ImageIcons;
 import com.mango.prjmango.utilities.Tabs;
 import com.mango.prjmango.windows.MainWindowView;
+import com.mango.prjmango.windows.dialogs.confirmation.ConfirmationController;
+import com.mango.prjmango.windows.dialogs.confirmation.ConfirmationView;
+import com.mango.prjmango.windows.dialogs.confirmation.Dialogs;
 import com.mango.prjmango.windows.login.LoginController;
 import com.mango.prjmango.windows.login.LoginView;
 import com.mango.prjmango.windows.sideoptions.listeners.TabListeners;
@@ -73,12 +76,9 @@ public class SideOptionsController {
          */
         @Override
         public void mouseClicked(MouseEvent e) {
-            //confirmation message dialog
-            LoginView loginView = new LoginView();
-            new LoginController(loginView);
-
-            MainWindowView.setActiveDisplay(loginView);
-            Main.activeUser = null;
+            ConfirmationView confirmationView =
+                    new ConfirmationView("Are you sure want to log out?", Dialogs.LOG_OUT);
+            new ConfirmationController(confirmationView);
         }
 
         /**

@@ -7,8 +7,12 @@ import com.mango.prjmango.windows.sideoptions.SideOptionsView;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 
+/**
+ * Handles the user interaction with the side tabs.
+ */
 public class TabListeners implements MouseListener {
 
     private final JLabel label;
@@ -20,6 +24,15 @@ public class TabListeners implements MouseListener {
 
     private Tabs tab;
 
+    /**
+     * Constructor. Initializes instance variables that will be used in the {@link MouseListener} methods.
+     *
+     * @param label          the specific {@link JLabel} that is associated with the {@link Tabs}
+     * @param noHoveredImage the {@link ImageIcon} when the user is {@code not} hovering over the tab
+     * @param hoveredImage   the {@link ImageIcon} when the user is hovering over the tab
+     * @param tab            the {@link Tabs} that is associated with the specified {@link JLabel}
+     * @param view           the {@link SideOptionsView} to access other {@link JComponent}'s
+     */
     public TabListeners(
             JLabel label,
             ImageIcon noHoveredImage,

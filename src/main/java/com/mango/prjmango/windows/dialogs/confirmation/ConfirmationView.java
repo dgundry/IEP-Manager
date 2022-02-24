@@ -1,9 +1,10 @@
-package com.mango.prjmango.windows.dialogs.applicationexit;
+package com.mango.prjmango.windows.dialogs.confirmation;
 
+import com.mango.prjmango.utilities.Fonts;
+import com.mango.prjmango.utilities.ImageIcons;
 import com.mango.prjmango.utilities.Images;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import javax.swing.GroupLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,11 +15,11 @@ import javax.swing.WindowConstants;
 import javax.swing.border.LineBorder;
 import lombok.Getter;
 
-public class ApplicationExitView extends JFrame {
+public class ConfirmationView extends JFrame {
 
     private final Dimension DIMENSIONS = new Dimension(305, 138);
 
-    private final Color DARK_GREY = new Color(19, 18, 18);
+    private final Color DARK_GREY  = new Color(19, 18, 18);
     private final Color LIGHT_GREY = new Color(216, 216, 216);
 
     private JPanel panel;
@@ -27,7 +28,14 @@ public class ApplicationExitView extends JFrame {
     @Getter private JLabel exitLabel;
     @Getter private JLabel cancelLabel;
 
-    public ApplicationExitView() {
+    @Getter private Dialogs selectedDialog;
+
+    private String displayText;
+
+    public ConfirmationView(String displayText, Dialogs selectedDialog) {
+        this.displayText = displayText;
+        this.selectedDialog = selectedDialog;
+
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(DIMENSIONS);
         setMinimumSize(DIMENSIONS);
@@ -51,13 +59,18 @@ public class ApplicationExitView extends JFrame {
     }
 
     private void createComponents() {
-        confirmLabel = new JLabel("Are you sure you want to exit?");
-        confirmLabel.setFont(new Font("Segoe UI", Font.PLAIN, 16));
+        confirmLabel = new JLabel(displayText);
+        confirmLabel.setFont(Fonts.SEGOE_UI_16.getFont());
         confirmLabel.setForeground(LIGHT_GREY);
         confirmLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        exitLabel = new JLabel(Images.APP_EXIT_NO_HOVER.getImageIcon());
-        cancelLabel = new JLabel(Images.APP_CANCEL_NO_HOVER.getImageIcon());
+        if (selectedDialog == Dialogs.CLOSE_APPLICATION) {
+            exitLabel = new JLabel(ImageIcons.APP_EXIT_NO_HOVER.getImageIcon());
+        } else {
+            exitLabel = new JLabel(ImageIcons.APP_LOG_OUT_NO_HOVER.getImageIcon());
+        }
+
+        cancelLabel = new JLabel(ImageIcons.APP_CANCEL_NO_HOVER.getImageIcon());
     }
 
     private void createLayout() {
@@ -66,7 +79,11 @@ public class ApplicationExitView extends JFrame {
         panelLayout.setHorizontalGroup(
                 panelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(panelLayout.createSequentialGroup()
-                                .addComponent(confirmLabel, GroupLayout.PREFERRED_SIZE, 304, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(
+                                        confirmLabel,
+                                        GroupLayout.PREFERRED_SIZE,
+                                        304,
+                                        GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                         .addGroup(panelLayout.createSequentialGroup()
                                 .addGap(46, 46, 46)

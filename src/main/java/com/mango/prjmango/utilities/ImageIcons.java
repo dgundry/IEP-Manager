@@ -38,7 +38,16 @@ public enum ImageIcons {
     NEXT_HOVERED("/images/common/next-hovered.png", 116, 31),
 
     BACK_NO_HOVER("/images/common/back-no-hover.png", 116, 31),
-    BACK_HOVERED("/images/common/back-hovered.png", 116, 31);
+    BACK_HOVERED("/images/common/back-hovered.png", 116, 31),
+
+    APP_EXIT_NO_HOVER("/images/common/exit-no-hover.png", 95, 31),
+    APP_EXIT_HOVERED("/images/common/exit-hovered.png", 95, 31),
+
+    APP_CANCEL_NO_HOVER("/images/common/cancel-no-hover.png", 95, 31),
+    APP_CANCEL_HOVERED("/images/common/cancel-hovered.png", 95, 31),
+
+    APP_LOG_OUT_NO_HOVER("/images/common/log-out-no-hover.png", 95, 31),
+    APP_LOG_OUT_HOVERED("/images/common/log-out-hovered.png", 95, 31);
 
     @Getter
     private ImageIcon imageIcon;

@@ -5,8 +5,9 @@ import com.mango.prjmango.Main;
 import com.mango.prjmango.utilities.Tabs;
 import com.mango.prjmango.windows.account.AccountController;
 import com.mango.prjmango.windows.account.AccountView;
-import com.mango.prjmango.windows.dialogs.applicationexit.ApplicationExitController;
-import com.mango.prjmango.windows.dialogs.applicationexit.ApplicationExitView;
+import com.mango.prjmango.windows.dialogs.confirmation.ConfirmationController;
+import com.mango.prjmango.windows.dialogs.confirmation.ConfirmationView;
+import com.mango.prjmango.windows.dialogs.confirmation.Dialogs;
 import com.mango.prjmango.windows.sideoptions.SideOptionsController;
 import com.mango.prjmango.windows.sideoptions.SideOptionsView;
 import java.awt.Color;
@@ -55,8 +56,9 @@ public class MainWindowView {
         frame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                ApplicationExitView applicationExitView = new ApplicationExitView();
-                new ApplicationExitController(applicationExitView);
+                ConfirmationView applicationExitView =
+                        new ConfirmationView("Are you sure you want to exit?", Dialogs.CLOSE_APPLICATION);
+                new ConfirmationController(applicationExitView);
             }
         });
     }
@@ -100,11 +102,19 @@ public class MainWindowView {
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
                 mainPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addComponent(loginViewLayout, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(
+                                loginViewLayout,
+                                GroupLayout.DEFAULT_SIZE,
+                                GroupLayout.DEFAULT_SIZE,
+                                Short.MAX_VALUE)
         );
         mainPanelLayout.setVerticalGroup(
                 mainPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addComponent(loginViewLayout, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(
+                                loginViewLayout,
+                                GroupLayout.DEFAULT_SIZE,
+                                GroupLayout.DEFAULT_SIZE,
+                                Short.MAX_VALUE)
         );
 
         mainPanel.updateUI();
@@ -125,9 +135,17 @@ public class MainWindowView {
         mainPanelLayout.setHorizontalGroup(
                 mainPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(mainPanelLayout.createSequentialGroup()
-                                .addComponent(sideOptionsView, GroupLayout.PREFERRED_SIZE, 268, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(
+                                        sideOptionsView,
+                                        GroupLayout.PREFERRED_SIZE,
+                                        268,
+                                        GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, 0)
-                                .addComponent(accountView, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(
+                                        accountView,
+                                        GroupLayout.DEFAULT_SIZE,
+                                        GroupLayout.DEFAULT_SIZE,
+                                        Short.MAX_VALUE)
                                 .addContainerGap())
         );
         mainPanelLayout.setVerticalGroup(
@@ -135,7 +153,11 @@ public class MainWindowView {
                         .addComponent(sideOptionsView, GroupLayout.DEFAULT_SIZE, 1072, Short.MAX_VALUE)
                         .addGroup(mainPanelLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(accountView, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(
+                                        accountView,
+                                        GroupLayout.DEFAULT_SIZE,
+                                        GroupLayout.DEFAULT_SIZE,
+                                        Short.MAX_VALUE)
                                 .addContainerGap())
         );
 
