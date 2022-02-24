@@ -1,5 +1,7 @@
 package com.mango.prjmango.windows.login;
 
+import com.mango.prjmango.utilities.Fonts;
+import com.mango.prjmango.utilities.ImageIcons;
 import com.mango.prjmango.utilities.Images;
 import java.awt.Color;
 import java.awt.Font;
@@ -29,6 +31,7 @@ public class LoginView extends JLabel {
     @Getter private JLabel loginLabel;
     @Getter private JLabel createAccountLabel;
     @Getter private JLabel forgotPasswordLabel;
+    @Getter private JLabel invalidLabel;
 
     @Getter private JTextField emailField;
     @Getter private JPasswordField passwordField;
@@ -37,23 +40,35 @@ public class LoginView extends JLabel {
      * The user interface design of the Login page.
      */
     public LoginView() {
-        setIcon(Images.LOGIN_PANEL_BACKGROUND.getImageIcon());
+        setIcon(ImageIcons.LOGIN_PANEL_BACKGROUND.getImageIcon());
 
         createComponents();
         createLayout();
     }
 
     private void createComponents() {
-        pawLogoLabel = new JLabel(Images.PAW_LOGO.getImageIcon());
+        pawLogoLabel = new JLabel(ImageIcons.PAW_LOGO.getImageIcon());
         loginLabel   = new JLabel(Images.LOGIN_NO_HOVER.getImageIcon());
 
-        iepManagerLabel     = createLabel("IEP Manager", 26, SwingConstants.CENTER);
-        signInLabel         = createLabel("Sign in", 22, SwingConstants.CENTER);
-        createAccountLabel  = createLabel("Create Account", 16, SwingConstants.LEFT);
-        forgotPasswordLabel = createLabel("Forgot Password?", 16, SwingConstants.LEFT);
+        iepManagerLabel = createLabel("IEP Manager", SwingConstants.CENTER);
+        iepManagerLabel.setFont(Fonts.SEGOE_UI_26.getFont());
+
+        signInLabel = createLabel("Sign In", SwingConstants.CENTER);
+        signInLabel.setFont(Fonts.SEGOE_UI_22.getFont());
+
+        createAccountLabel = createLabel("Create Account", SwingConstants.LEFT);
+        createAccountLabel.setFont(Fonts.SEGOE_UI_16.getFont());
+
+        forgotPasswordLabel = createLabel("Forgot Password?", SwingConstants.LEFT);
+        forgotPasswordLabel.setFont(Fonts.SEGOE_UI_16.getFont());
+
+        invalidLabel = new JLabel(" ");
+        invalidLabel.setFont(Fonts.SEGOE_UI_12.getFont());
+        invalidLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        invalidLabel.setForeground(new Color(252, 42, 42));
 
         emailField = new JTextField();
-        emailField.setBackground(DARK_GREY);
+        emailField.setOpaque(false);
         emailField.setFont(new Font("Segoe UI", Font.PLAIN, 16));
         emailField.setForeground(LIGHT_GREY);
         emailField.setMargin(new Insets(0, 5, 0, 5));
@@ -67,7 +82,7 @@ public class LoginView extends JLabel {
         emailField.setCaretColor(LIGHT_GREY);
 
         passwordField = new JPasswordField();
-        passwordField.setBackground(DARK_GREY);
+        passwordField.setOpaque(false);
         passwordField.setFont(new Font("Segoe UI", Font.PLAIN, 16));
         passwordField.setForeground(LIGHT_GREY);
         passwordField.setMargin(new Insets(0, 5, 0, 5));
@@ -87,16 +102,6 @@ public class LoginView extends JLabel {
         loginPanelLayout.setHorizontalGroup(
                 loginPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addComponent(signInLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(loginPanelLayout.createSequentialGroup()
-                                .addGap(97, 97, 97)
-                                .addGroup(loginPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(passwordField)
-                                        .addGroup(loginPanelLayout.createSequentialGroup()
-                                                .addComponent(createAccountLabel)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                                                .addComponent(forgotPasswordLabel))
-                                        .addComponent(emailField))
-                                .addGap(0, 97, Short.MAX_VALUE))
                         .addGroup(GroupLayout.Alignment.TRAILING, loginPanelLayout.createSequentialGroup()
                                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(loginPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -105,7 +110,18 @@ public class LoginView extends JLabel {
                                                 .addGap(185, 185, 185))
                                         .addGroup(GroupLayout.Alignment.TRAILING, loginPanelLayout.createSequentialGroup()
                                                 .addComponent(loginLabel, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
-                                                .addGap(180, 180, 180))))
+                                                .addGap(182, 182, 182))))
+                        .addGroup(loginPanelLayout.createSequentialGroup()
+                                .addGap(97, 97, 97)
+                                .addGroup(loginPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(passwordField)
+                                        .addGroup(loginPanelLayout.createSequentialGroup()
+                                                .addComponent(createAccountLabel)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                                                .addComponent(forgotPasswordLabel))
+                                        .addComponent(emailField)
+                                        .addComponent(invalidLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(0, 97, Short.MAX_VALUE))
                         .addGroup(loginPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                 .addComponent(iepManagerLabel, GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE))
         );
@@ -120,13 +136,15 @@ public class LoginView extends JLabel {
                                 .addComponent(emailField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(passwordField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(invalidLabel)
                                 .addGap(18, 18, 18)
-                                .addComponent(loginLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(loginLabel)
+                                .addGap(18, 18, 18)
                                 .addGroup(loginPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                         .addComponent(createAccountLabel)
                                         .addComponent(forgotPasswordLabel))
-                                .addContainerGap(139, Short.MAX_VALUE))
+                                .addContainerGap(110, Short.MAX_VALUE))
                         .addGroup(loginPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                 .addGroup(loginPanelLayout.createSequentialGroup()
                                         .addGap(195, 195, 195)
@@ -135,10 +153,9 @@ public class LoginView extends JLabel {
         );
     }
 
-    private JLabel createLabel(String text, int fontSize, int alignment) {
+    private JLabel createLabel(String text, int alignment) {
         JLabel label = new JLabel(text);
         label.setForeground(LIGHT_GREY);
-        label.setFont(new Font("Segoe UI", Font.PLAIN, fontSize));
         label.setHorizontalAlignment(alignment);
         return label;
     }

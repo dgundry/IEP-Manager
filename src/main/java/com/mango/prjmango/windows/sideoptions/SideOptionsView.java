@@ -2,7 +2,7 @@ package com.mango.prjmango.windows.sideoptions;
 
 import com.mango.prjmango.LoggedInUser;
 import com.mango.prjmango.Main;
-import com.mango.prjmango.utilities.Images;
+import com.mango.prjmango.utilities.ImageIcons;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -56,7 +56,7 @@ public class SideOptionsView extends JPanel {
     }
 
     private void createComponents() {
-        pawLogoLabel = new JLabel(Images.PAW_LOGO.getImageIcon());
+        pawLogoLabel = new JLabel(ImageIcons.PAW_LOGO.getImageIcon());
 
         welcomeLabel = new JLabel();
         welcomeLabel.setFont(new Font("Segoe UI", Font.PLAIN, 28));
@@ -64,13 +64,13 @@ public class SideOptionsView extends JPanel {
         welcomeLabel.setHorizontalAlignment(SwingConstants.LEFT);
         welcomeLabel.setText("Welcome, " + user.getFirstName() + "!");
 
-        homeTabLabel       = new JLabel(Images.HOME_TAB_NO_HOVER.getImageIcon());
-        accountTabLabel    = new JLabel(Images.ACCOUNT_TAB_NO_HOVER.getImageIcon());
-        studentsTabLabel   = new JLabel(Images.STUDENT_TAB_NO_HOVER.getImageIcon());
-        activitiesTabLabel = new JLabel(Images.ACTIVITIES_TAB_NO_HOVER.getImageIcon());
-        reportsTabLabel    = new JLabel(Images.REPORTS_TAB_NO_HOVER.getImageIcon());
+        homeTabLabel       = new JLabel(ImageIcons.HOME_TAB_NO_HOVER.getImageIcon());
+        accountTabLabel    = new JLabel(ImageIcons.ACCOUNT_TAB_HOVERED.getImageIcon()); //since Account is have tab from login
+        studentsTabLabel   = new JLabel(ImageIcons.STUDENT_TAB_NO_HOVER.getImageIcon());
+        activitiesTabLabel = new JLabel(ImageIcons.ACTIVITIES_TAB_NO_HOVER.getImageIcon());
+        reportsTabLabel    = new JLabel(ImageIcons.REPORTS_TAB_NO_HOVER.getImageIcon());
 
-        logOutLabel = new JLabel(Images.LOG_OUT_NO_HOVER.getImageIcon());
+        logOutLabel = new JLabel(ImageIcons.LOG_OUT_NO_HOVER.getImageIcon());
 
         topSeparator = new JSeparator();
         topSeparator.setForeground(LIGHT_GREY);

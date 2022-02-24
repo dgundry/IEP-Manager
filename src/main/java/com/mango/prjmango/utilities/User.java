@@ -1,4 +1,4 @@
-package com.mango.prjmango.createaccount;
+package com.mango.prjmango.utilities;
 
 import java.util.Arrays;
 

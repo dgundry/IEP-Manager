@@ -2,7 +2,6 @@ package com.mango.prjmango.windows.login;
 
 import com.mango.prjmango.LoggedInUser;
 import com.mango.prjmango.Main;
-import com.mango.prjmango.MainFrame;
 import com.mango.prjmango.utilities.DatabaseCommands;
 import com.mango.prjmango.utilities.Images;
 import com.mango.prjmango.windows.MainWindowView;
@@ -17,7 +16,6 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 public class LoginController {
 
@@ -66,23 +64,10 @@ public class LoginController {
 
                     MainWindowView.setAccountView(user);
                 } else {
-                    //display error JLabel under the passwordField
-
-                    JOptionPane.showMessageDialog(
-                            MainFrame.getFrame(),
-                            "Enter a Valid Password.",
-                            "INVALID",
-                            JOptionPane.ERROR_MESSAGE);
+                    view.getInvalidLabel().setText("Invalid email or password. Please try again.");
                 }
             } else {
-                //display error JLabel under the passwordField
-
-                JOptionPane.showMessageDialog(
-                        MainFrame.getFrame(),
-                        "Enter a Valid Email and/or Password.",
-                        "INVALID",
-                        JOptionPane.ERROR_MESSAGE);
-
+                view.getInvalidLabel().setText("Invalid email or password. Please try again.");
             }
         }
 

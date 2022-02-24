@@ -7,6 +7,7 @@ import com.mango.prjmango.login.LoginPageView;
 import com.mango.prjmango.teacher.TeacherController;
 import com.mango.prjmango.teacher.TeacherView;
 import com.mango.prjmango.utilities.DatabaseConnection;
+import com.mango.prjmango.utilities.Images;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.GridLayout;
@@ -95,7 +96,7 @@ public class MainFrame {
 
     private static void createLoginView(){
         backgroundLoginPanel = new BackgroundPanel();
-        //backgroundLoginPanel.setBackground(BACKGROUND_IMAGE);
+        backgroundLoginPanel.setBackground(Images.CLASSROOM_BACKGROUND.getBufferedImage());
         backgroundLoginPanel.setLayout(null);
         backgroundLoginPanel.setBounds(0, 0,(Main.SCREEN_WIDTH),(Main.SCREEN_HEIGHT));
         mainPanel.add(backgroundLoginPanel);

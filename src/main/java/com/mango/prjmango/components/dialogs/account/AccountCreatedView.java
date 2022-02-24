@@ -1,7 +1,6 @@
 package com.mango.prjmango.components.dialogs.account;
 
 import com.mango.prjmango.components.dialogs.Dialog;
-import com.mango.prjmango.utilities.ImageIcons;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -74,7 +73,7 @@ public class AccountCreatedView extends JFrame {
     }
 
     private void createComponents() {
-        checkLabel = new JLabel(ImageIcons.CHECK_MARK_ICON);
+        checkLabel = new JLabel();
 
         successLabel = new JLabel("Success");
         successLabel.setFont(new Font("SansSerif", Font.PLAIN, 24));
@@ -86,7 +85,7 @@ public class AccountCreatedView extends JFrame {
         infoLabel.setFont(new Font("SansSerif", Font.PLAIN, 14));
         infoLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        okLabel = new JLabel(ImageIcons.OK_NO_HOVER_ICON);
+        okLabel = new JLabel();
     }
 
     private void createLayout() {

@@ -34,7 +34,7 @@ public class EditProfileView extends JPanel {
      * Constructor. Calls methods that create the GUI.
      */
     public EditProfileView() {
-        setBackground(DARK_GREY);
+        setOpaque(false);
 
         createComponents();
         createLayout();

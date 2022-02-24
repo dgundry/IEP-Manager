@@ -20,7 +20,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
-import javafx.scene.control.Tab;
 import lombok.Getter;
 
 public class MainWindowView {

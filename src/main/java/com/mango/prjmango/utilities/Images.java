@@ -9,26 +9,6 @@ import lombok.Getter;
 
 public enum Images {
 
-    HOME_TAB_NO_HOVER("/images/tabs/home-tab-no-hover.png", 243, 44, true),
-    HOME_TAB_HOVERED("/images/tabs/home-tab-hovered.png", 243, 44, true),
-
-    ACCOUNT_TAB_NO_HOVER("/images/tabs/account-tab-no-hover.png", 243, 44, true),
-    ACCOUNT_TAB_HOVERED("/images/tabs/account-tab-hovered.png", 243, 44, true),
-
-    STUDENT_TAB_NO_HOVER("/images/tabs/students-tab-no-hover.png", 243, 44, true),
-    STUDENT_TAB_HOVERED("/images/tabs/students-tab-hovered.png", 243, 44, true),
-
-    ACTIVITIES_TAB_NO_HOVER("/images/tabs/activities-tab-no-hover.png", 243, 44, true),
-    ACTIVITIES_TAB_HOVERED("/images/tabs/activities-tab-hovered.png", 243, 44, true),
-
-    REPORTS_TAB_NO_HOVER("/images/tabs/reports-tab-no-hover.png", 243, 44, true),
-    REPORTS_TAB_HOVERED("/images/tabs/reports-tab-hovered.png", 243, 44, true),
-
-    LOG_OUT_NO_HOVER("/images/log-out-no-hover.png", 124, 28, true),
-    LOG_OUT_HOVERED("/images/log-out-hovered.png", 124, 28, true),
-
-    PAW_LOGO("/images/paw_logo.png", 112, 106, true),
-
     EDIT_PROFILE_NO_HOVER("/images/edit-profile-no-hover.png", 281, 30, true),
     EDIT_PROFILE_HOVERED("/images/edit-profile-hovered.png", 281, 30, true),
     EDIT_PROFILE_SELECTED("/images/edit-profile-selected.png", 281, 30, true),
@@ -43,13 +23,6 @@ public enum Images {
     LOGIN_NO_HOVER("/images/login-no-hover.png", 116, 31, true),
     LOGIN_HOVERED("/images/login-hovered.png", 116, 31, true),
 
-    BASIC_INFO_NEXT_NO_HOVER("/images/basic-info/next-no-hover.png", 116, 31, true),
-    BASIC_INFO_NEXT_HOVERED("/images/basic-info/next-hovered.png", 116, 31, true),
-
-    BASIC_INFO_BACK_NO_HOVER("/images/basic-info/back-no-hover.png", 116, 31, true),
-    BASIC_INFO_BACK_HOVERED("/images/basic-info/back-hovered.png", 116, 31, true),
-
-    LOGIN_PANEL_BACKGROUND("/images/login-panel-background.png", 482, 646, true),
     CLASSROOM_BACKGROUND("/images/classroom-background.png", 1440, 1024, false),
 
     APP_EXIT_NO_HOVER("/images/application-exit/exit-no-hover.png", 95, 31, true),

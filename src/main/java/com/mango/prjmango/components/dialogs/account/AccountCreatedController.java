@@ -1,6 +1,5 @@
 package com.mango.prjmango.components.dialogs.account;
 
-import com.mango.prjmango.utilities.ImageIcons;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -61,7 +60,7 @@ public class AccountCreatedController {
         @Override
         public void mouseEntered(MouseEvent e) {
             okLabel.setCursor(new Cursor(Cursor.HAND_CURSOR));
-            okLabel.setIcon(ImageIcons.OK_HOVER_ICON);
+            //okLabel.setIcon(ImageIcons.OK_HOVER_ICON);
         }
 
         /**
@@ -72,7 +71,7 @@ public class AccountCreatedController {
         @Override
         public void mouseExited(MouseEvent e) {
             okLabel.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-            okLabel.setIcon(ImageIcons.OK_NO_HOVER_ICON);
+            //okLabel.setIcon(ImageIcons.OK_NO_HOVER_ICON);
         }
 
         /**

@@ -3,7 +3,7 @@ package com.mango.prjmango.createaccount.password;
 import com.mango.prjmango.MainFrame;
 import com.mango.prjmango.components.listeners.ButtonMouseListener;
 import com.mango.prjmango.createaccount.Register;
-import com.mango.prjmango.createaccount.User;
+import com.mango.prjmango.utilities.User;
 import com.mango.prjmango.createaccount.securityquestions.SecurityQuestionsController;
 import com.mango.prjmango.createaccount.securityquestions.SecurityQuestionsView;
 import com.mango.prjmango.login.LoginPageController;

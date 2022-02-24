@@ -1,6 +1,7 @@
 package com.mango.prjmango.windows.createaccount.basicinfo;
 
-import com.mango.prjmango.utilities.Images;
+import com.mango.prjmango.utilities.Fonts;
+import com.mango.prjmango.utilities.ImageIcons;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Insets;
@@ -36,23 +37,23 @@ public class BasicInfoView extends JLabel {
      * Constructor. Calls methods that create the GUI.
      */
     public BasicInfoView() {
-        setIcon(Images.LOGIN_PANEL_BACKGROUND.getImageIcon());
+        setIcon(ImageIcons.LOGIN_PANEL_BACKGROUND.getImageIcon());
 
         createComponents();
         createLayout();
     }
 
     private void createComponents() {
-        pawLogoLabel = new JLabel(Images.PAW_LOGO.getImageIcon());
-        backLabel = new JLabel(Images.BASIC_INFO_BACK_NO_HOVER.getImageIcon());
-        nextLabel = new JLabel(Images.BASIC_INFO_NEXT_NO_HOVER.getImageIcon());
+        pawLogoLabel = new JLabel(ImageIcons.PAW_LOGO.getImageIcon());
+        backLabel    = new JLabel(ImageIcons.BACK_NO_HOVER.getImageIcon());
+        nextLabel    = new JLabel(ImageIcons.NEXT_NO_HOVER.getImageIcon());
 
         iepManagerLabel = createLabel("IEP Manager", 26, SwingConstants.CENTER);
-        basicInfoLabel = createLabel("Basic Info", 22, SwingConstants.CENTER);
+        basicInfoLabel  = createLabel("Basic Info", 22, SwingConstants.CENTER);
 
         firstNameTextField = createTextField("First Name");
-        lastNameTextField = createTextField("Last Name");
-        emailTextField = createTextField("Email");
+        lastNameTextField  = createTextField("Last Name");
+        emailTextField     = createTextField("Email");
     }
 
     private void createLayout() {
@@ -88,7 +89,7 @@ public class BasicInfoView extends JLabel {
                                 .addComponent(pawLogoLabel)
                                 .addGap(83, 83, 83)
                                 .addComponent(basicInfoLabel)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                                .addGap(29, 29, 29)
                                 .addComponent(firstNameTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(lastNameTextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -117,8 +118,8 @@ public class BasicInfoView extends JLabel {
 
     private JTextField createTextField(String text) {
         JTextField textField = new JTextField();
-        textField.setBackground(DARK_GREY);
-        textField.setFont(new Font("Segoe UI", Font.PLAIN, 16));
+        textField.setOpaque(false);
+        textField.setFont(Fonts.SEGOE_UI_16.getFont());
         textField.setForeground(LIGHT_GREY);
         textField.setMargin(new Insets(0, 5, 0, 5));
         textField.setBorder(BorderFactory.createTitledBorder(

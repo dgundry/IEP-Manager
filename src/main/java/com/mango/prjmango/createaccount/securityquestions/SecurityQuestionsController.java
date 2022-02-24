@@ -5,7 +5,7 @@ import com.mango.prjmango.MainFrame;
 import com.mango.prjmango.components.listeners.ButtonMouseListener;
 import com.mango.prjmango.createaccount.basicinfo.BasicInfoController;
 import com.mango.prjmango.createaccount.basicinfo.BasicInfoView;
-import com.mango.prjmango.createaccount.User;
+import com.mango.prjmango.utilities.User;
 import com.mango.prjmango.createaccount.password.PasswordController;
 import com.mango.prjmango.createaccount.password.PasswordView;
 

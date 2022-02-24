@@ -1,18 +1,16 @@
-package com.mango.prjmango.windows.createaccount.basicinfo;
+package com.mango.prjmango.windows.createaccount.securityquestions;
 
 import com.mango.prjmango.utilities.ImageIcons;
 import com.mango.prjmango.windows.MainWindowView;
-import com.mango.prjmango.windows.createaccount.securityquestions.SecurityQuestionsController;
-import com.mango.prjmango.windows.createaccount.securityquestions.SecurityQuestionsView;
-import com.mango.prjmango.windows.login.LoginController;
-import com.mango.prjmango.windows.login.LoginView;
+import com.mango.prjmango.windows.createaccount.basicinfo.BasicInfoController;
+import com.mango.prjmango.windows.createaccount.basicinfo.BasicInfoView;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JLabel;
 
-public class BasicInfoController {
+public class SecurityQuestionsController {
 
-    public BasicInfoController(BasicInfoView view) {
+    public SecurityQuestionsController(SecurityQuestionsView view) {
         JLabel nextLabel = view.getNextLabel();
         JLabel backLabel = view.getBackLabel();
 
@@ -22,10 +20,10 @@ public class BasicInfoController {
 
     private static class NextLabelMouseListener implements MouseListener {
 
-        private final BasicInfoView view;
+        private final SecurityQuestionsView view;
         private final JLabel label;
 
-        public NextLabelMouseListener(BasicInfoView view, JLabel label) {
+        public NextLabelMouseListener(SecurityQuestionsView view, JLabel label) {
             this.view = view;
             this.label = label;
         }
@@ -38,11 +36,7 @@ public class BasicInfoController {
          */
         @Override
         public void mouseClicked(MouseEvent e) {
-            //Verify user input
-            //Go to Security Questions page
-            SecurityQuestionsView securityQuestionsView = new SecurityQuestionsView();
-            new SecurityQuestionsController(securityQuestionsView);
-            MainWindowView.setActiveDisplay(securityQuestionsView);
+            //password page
         }
 
         /**
@@ -68,7 +62,7 @@ public class BasicInfoController {
         /**
          * Invoked when a mouse button has been pressed on a component.
          *
-         * @param e the e{@link MouseEvent}
+         * @param e the {@link MouseEvent}
          */
         @Override
         public void mousePressed(MouseEvent e) { /* Not needed */ }
@@ -84,10 +78,10 @@ public class BasicInfoController {
 
     private static class BackLabelMouseListener implements MouseListener {
 
-        private final BasicInfoView view;
+        private final SecurityQuestionsView view;
         private final JLabel label;
 
-        public BackLabelMouseListener(BasicInfoView view, JLabel label) {
+        public BackLabelMouseListener(SecurityQuestionsView view, JLabel label) {
             this.view = view;
             this.label = label;
         }
@@ -100,9 +94,10 @@ public class BasicInfoController {
          */
         @Override
         public void mouseClicked(MouseEvent e) {
-            LoginView loginView = new LoginView();
-            new LoginController(loginView);
-            MainWindowView.setActiveDisplay(loginView);
+            //password page
+            BasicInfoView basicInfoView = new BasicInfoView();
+            new BasicInfoController(basicInfoView);
+            MainWindowView.setActiveDisplay(basicInfoView);
         }
 
         /**
@@ -128,7 +123,7 @@ public class BasicInfoController {
         /**
          * Invoked when a mouse button has been pressed on a component.
          *
-         * @param e the e{@link MouseEvent}
+         * @param e the {@link MouseEvent}
          */
         @Override
         public void mousePressed(MouseEvent e) { /* Not needed */ }

@@ -1,5 +1,6 @@
 package com.mango.prjmango.windows.account;
 
+import com.mango.prjmango.utilities.ImageIcons;
 import com.mango.prjmango.utilities.Images;
 import com.mango.prjmango.windows.account.editprofile.EditProfileController;
 import com.mango.prjmango.windows.account.editprofile.EditProfileView;
@@ -13,7 +14,7 @@ import javax.swing.LayoutStyle;
 import javax.swing.SwingConstants;
 import lombok.Getter;
 
-public class AccountView extends JPanel {
+public class AccountView extends JLabel {
 
     @Getter private JLabel editProfileLabel;
     @Getter private JLabel passwordSecurityLabel;
@@ -29,7 +30,7 @@ public class AccountView extends JPanel {
      * On the initial load, the {@link EditProfileView} will be visible.
      */
     public AccountView() {
-        setBackground(new Color(19, 18, 18));
+        setIcon(ImageIcons.ACTIVE_TAB_BACKGROUND.getImageIcon());
 
         createComponents();
 
