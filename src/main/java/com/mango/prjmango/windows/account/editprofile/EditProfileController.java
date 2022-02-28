@@ -5,6 +5,8 @@ import com.mango.prjmango.utilities.DatabaseCommands;
 import com.mango.prjmango.utilities.EmailValidation;
 import com.mango.prjmango.utilities.ImageIcons;
 import com.mango.prjmango.utilities.Images;
+import com.mango.prjmango.windows.sideoptions.SideOptionsView;
+
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
@@ -26,7 +28,7 @@ public class EditProfileController {
      *
      * @param view the {@link EditProfileView} to be able to access the {@link JLabel}'s
      */
-    public EditProfileController(EditProfileView view) {
+    public EditProfileController(EditProfileView view, SideOptionsView sideOptionsView) {
         JLabel saveLabel = view.getSaveLabel();
         JLabel firstNameEditLabel = view.getFirstNameEditLabel();
         JLabel lastNameEditLabel  = view.getLastNameEditLabel();
@@ -36,7 +38,7 @@ public class EditProfileController {
         JTextField lastNameTextField  = view.getLastNameTextField();
         JTextField emailTextField     = view.getEmailTextField();
 
-        saveLabel.addMouseListener(new SaveProfileMouseListener(view, saveLabel));
+        saveLabel.addMouseListener(new SaveProfileMouseListener(view, saveLabel, sideOptionsView));
         firstNameEditLabel.addMouseListener(new EditLabelMouseListener(view, firstNameEditLabel, firstNameTextField));
         lastNameEditLabel.addMouseListener(new EditLabelMouseListener(view, lastNameEditLabel, lastNameTextField));
         emailEditLabel.addMouseListener(new EditLabelMouseListener(view, emailEditLabel, emailTextField));
@@ -46,6 +48,7 @@ public class EditProfileController {
 
         private final EditProfileView view;
         private final JLabel label;
+        private final SideOptionsView sideOptionsView;
 
         private final Color RED = new Color(252, 45, 45);
         private final Color GREEN = new Color(14, 249, 9);
@@ -57,9 +60,10 @@ public class EditProfileController {
          * @param view  the {@link EditProfileView} to access other {@link JComponent}'s
          * @param label the specific {@link JLabel}
          */
-        public SaveProfileMouseListener(EditProfileView view, JLabel label) {
+        public SaveProfileMouseListener(EditProfileView view, JLabel label, SideOptionsView sideOptionsView) {
             this.view = view;
             this.label = label;
+            this.sideOptionsView = sideOptionsView;
         }
 
         /**
@@ -92,6 +96,10 @@ public class EditProfileController {
                 } else {
                     DatabaseCommands.updateUserDetails(firstName, lastName, email);
                     displayInformationText("Information successfully changed!", GREEN);
+                    LoggedInUser.setFirstName(firstName);
+                    LoggedInUser.setLastName(lastName);
+                    LoggedInUser.setEmail(email);
+                    sideOptionsView.getWelcomeLabel().setText("Welcome, " + LoggedInUser.getFirstName() + "!");
                 }
             }
         }

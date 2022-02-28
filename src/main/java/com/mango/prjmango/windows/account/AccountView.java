@@ -13,6 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.LayoutStyle;
 import javax.swing.SwingConstants;
+
+import com.mango.prjmango.windows.sideoptions.SideOptionsView;
 import lombok.Getter;
 
 public class AccountView extends JLabel {
@@ -30,13 +32,13 @@ public class AccountView extends JLabel {
      * Constructor. Calls methods to create the {@link JPanel} for the Account tab.
      * On the initial load, the {@link EditProfileView} will be visible.
      */
-    public AccountView() {
+    public AccountView(SideOptionsView sideOptionsView) {
         setIcon(ImageIcons.ACTIVE_TAB_BACKGROUND.getImageIcon());
 
         createComponents();
 
         EditProfileView editProfileView = new EditProfileView(); //Home page instead?
-        new EditProfileController(editProfileView);
+        new EditProfileController(editProfileView, sideOptionsView);
 
         setMainPageLayout(editProfileView);
     }

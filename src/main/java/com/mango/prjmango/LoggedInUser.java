@@ -2,6 +2,8 @@ package com.mango.prjmango;
 
 import com.mango.prjmango.utilities.DatabaseCommands;
 import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 
 /**
@@ -10,9 +12,9 @@ import java.util.List;
 public class LoggedInUser {
 
     @Getter private static int teacher_id;
-    @Getter private static String firstName;
-    @Getter private static String lastName;
-    @Getter private static String email;
+    @Getter @Setter private static String firstName;
+    @Getter @Setter private static String lastName;
+    @Getter @Setter private static String email;
 
     /**
      * Constructor. Calls {@link LoggedInUser#setFields(List)} to set values to fields that will be accessed

@@ -124,11 +124,11 @@ public class MainWindowView {
         mainPanel.removeAll();
         mainPanel.updateUI();
 
-        AccountView accountView = new AccountView();
-        new AccountController(accountView);
-
         SideOptionsView sideOptionsView = new SideOptionsView(user);
         new SideOptionsController(sideOptionsView);
+
+        AccountView accountView = new AccountView(sideOptionsView);
+        new AccountController(accountView,sideOptionsView);
 
         GroupLayout mainPanelLayout = new GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);

@@ -69,18 +69,18 @@ public class LoginView extends JLabel {
 
         emailField = new JTextField();
         emailField.setOpaque(false);
-        emailField.setFont(new Font("Segoe UI", Font.PLAIN, 16));
+        emailField.setFont(Fonts.SEGOE_UI_16.getFont());
         emailField.setForeground(LIGHT_GREY);
-        emailField.setMargin(new Insets(0, 5, 0, 5));
+        emailField.setMargin(new Insets(10, 10, 10, 10));
         emailField.setBorder(BorderFactory.createTitledBorder(
                 null,
                 "Email",
                 TitledBorder.DEFAULT_JUSTIFICATION,
                 TitledBorder.DEFAULT_POSITION,
-                new Font("Segoe UI", Font.PLAIN, 14),
+                Fonts.SEGOE_UI_14.getFont(),
                 LIGHT_GREY));
         emailField.setCaretColor(LIGHT_GREY);
-
+        System.out.println(emailField.getSize());
         passwordField = new JPasswordField();
         passwordField.setOpaque(false);
         passwordField.setFont(new Font("Segoe UI", Font.PLAIN, 16));

@@ -5,6 +5,8 @@ import com.mango.prjmango.windows.account.editprofile.EditProfileController;
 import com.mango.prjmango.windows.account.editprofile.EditProfileView;
 import com.mango.prjmango.windows.account.passwordsecurity.PasswordSecurityController;
 import com.mango.prjmango.windows.account.passwordsecurity.PasswordSecurityView;
+import com.mango.prjmango.windows.sideoptions.SideOptionsView;
+
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -15,11 +17,11 @@ public class AccountController {
 
     private static boolean tabIsSelected = false;
 
-    public AccountController(AccountView view) {
+    public AccountController(AccountView view, SideOptionsView sideOptionsView) {
         JLabel editProfileLabel = view.getEditProfileLabel();
         JLabel passwordSecurityLabel = view.getPasswordSecurityLabel();
 
-        editProfileLabel.addMouseListener(new EditProfileMouseListener(view, editProfileLabel));
+        editProfileLabel.addMouseListener(new EditProfileMouseListener(view, editProfileLabel, sideOptionsView));
         passwordSecurityLabel.addMouseListener(new PasswordSecurityMouseListener(view, passwordSecurityLabel));
     }
 
@@ -27,6 +29,7 @@ public class AccountController {
 
         private final AccountView view;
         private final JLabel label;
+        private final SideOptionsView sideOptionsView;
 
         /**
          * Constructor. Instantiates instance variables that will be used in the {@link MouseListener} methods.
@@ -34,9 +37,10 @@ public class AccountController {
          * @param view  the {@link AccountView} to access methods within or other {@link JComponent}'s
          * @param label the {@link JLabel} that the user is interacting with
          */
-        public EditProfileMouseListener(AccountView view, JLabel label) {
+        public EditProfileMouseListener(AccountView view, JLabel label, SideOptionsView sideOptionsView) {
             this.view = view;
             this.label = label;
+            this.sideOptionsView = sideOptionsView;
         }
 
         /**
@@ -52,7 +56,7 @@ public class AccountController {
             label.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 
             EditProfileView editProfileView = new EditProfileView();
-            new EditProfileController(editProfileView);
+            new EditProfileController(editProfileView, sideOptionsView);
 
             view.setMainPageLayout(editProfileView); //<---sets the panel to display
             //display edit profile components
