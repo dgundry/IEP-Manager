@@ -1,8 +1,6 @@
 package com.mango.prjmango.utilities;
 
 import com.mango.prjmango.LoggedInUser;
-import lombok.extern.java.Log;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -124,17 +122,20 @@ public class DatabaseCommands {
      * @return true if there is an email within the teachers table, false if there is not
      */
     public static boolean isEmailTaken(String email) {
-        boolean result = false;
-        String sql = "SELECT email FROM teacher WHERE email = ?;";
+        boolean result;
+        int count = 0;
+
+        String sql = "SELECT COUNT(*) FROM teacher WHERE email = ?;";
 
         try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
             statement.setString(1, email);
             ResultSet resultSet = statement.executeQuery();
-            result = resultSet.next();
+            count = resultSet.getInt(1);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return result;
+
+        return (count >= 1);
     }
 
     /**
@@ -204,9 +205,7 @@ public class DatabaseCommands {
     }
 
     public static void updateUserDetails(String firstName, String lastName, String email) {
-        String sql = "UPDATE teacher\n" +
-                     "SET first_name = ?, last_name = ?, email = ?\n" +
-                     "WHERE email = ?;";//change to WHERE teacher_id = ?;
+        String sql = "UPDATE teacher SET first_name = ?, last_name = ?, email = ? WHERE teacher_id = ?;";
 
         try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
             statement.setString(1, firstName);
