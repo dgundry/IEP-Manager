@@ -47,7 +47,10 @@ public enum ImageIcons {
     APP_CANCEL_HOVERED("/images/common/cancel-hovered.png", 95, 31),
 
     APP_LOG_OUT_NO_HOVER("/images/common/log-out-no-hover.png", 95, 31),
-    APP_LOG_OUT_HOVERED("/images/common/log-out-hovered.png", 95, 31);
+    APP_LOG_OUT_HOVERED("/images/common/log-out-hovered.png", 95, 31),
+
+    EDIT_PROFILE_EDIT_ICON_NO_HOVER("/images/edit-profile/edit-icon-no-hover.png", 28, 28),
+    EDIT_PROFILE_EDIT_ICON_HOVERED("/images/edit-profile/edit-icon-hovered.png", 28, 28);
 
     @Getter
     private ImageIcon imageIcon;

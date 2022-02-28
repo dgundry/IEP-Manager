@@ -2,6 +2,7 @@ package com.mango.prjmango.windows.account.editprofile;
 
 import com.mango.prjmango.LoggedInUser;
 import com.mango.prjmango.utilities.Fonts;
+import com.mango.prjmango.utilities.ImageIcons;
 import com.mango.prjmango.utilities.Images;
 import java.awt.Color;
 import java.awt.Font;
@@ -21,11 +22,16 @@ public class EditProfileView extends JPanel {
     private final Color DARK_GREY = new Color(19, 18, 18);
     private final Color LIGHT_GREY = new Color(216, 216, 216);
 
-    @Getter private JLabel editProfileHeaderLabel;
-    @Getter private JLabel firstNameLabel;
-    @Getter private JLabel lastNameLabel;
-    @Getter private JLabel emailLabel;
+    private JLabel editProfileHeaderLabel;
+    private JLabel firstNameLabel;
+    private JLabel lastNameLabel;
+    private JLabel emailLabel;
+
     @Getter private JLabel saveLabel;
+    @Getter private JLabel firstNameEditLabel;
+    @Getter private JLabel lastNameEditLabel;
+    @Getter private JLabel emailEditLabel;
+    @Getter private JLabel informationLabel;
 
     @Getter private JTextField firstNameTextField;
     @Getter private JTextField lastNameTextField;
@@ -46,12 +52,21 @@ public class EditProfileView extends JPanel {
         firstNameLabel         = createLabel("First Name", 18);
         lastNameLabel          = createLabel("Last Name", 18);
         emailLabel             = createLabel("Email", 18);
+        informationLabel       = createLabel("", 14);
 
         saveLabel = new JLabel(Images.EDIT_PROFILE_SAVE_NO_HOVER.getImageIcon());
+        firstNameEditLabel = new JLabel(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
+        lastNameEditLabel = new JLabel(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
+        emailEditLabel = new JLabel(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
 
         firstNameTextField = createTextField(LoggedInUser.getFirstName());
-        lastNameTextField  = createTextField(LoggedInUser.getLastName());
-        emailTextField     = createTextField(LoggedInUser.getEmail());
+        firstNameTextField.setEnabled(false);
+
+        lastNameTextField = createTextField(LoggedInUser.getLastName());
+        lastNameTextField.setEnabled(false);
+
+        emailTextField = createTextField(LoggedInUser.getEmail());
+        emailTextField.setEnabled(false);
     }
 
     private void createLayout() {
@@ -62,30 +77,31 @@ public class EditProfileView extends JPanel {
                         .addGroup(GroupLayout.Alignment.TRAILING, editProfilePanelLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(editProfilePanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addGroup(editProfilePanelLayout.createParallelGroup(
-                                                GroupLayout.Alignment.LEADING,
-                                                        false)
-                                                .addGroup(editProfilePanelLayout.createSequentialGroup()
-                                                        .addGroup(editProfilePanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                                .addComponent(firstNameLabel)
-                                                                .addComponent(
-                                                                        firstNameTextField,
-                                                                        GroupLayout.PREFERRED_SIZE,
-                                                                        209,
-                                                                        GroupLayout.PREFERRED_SIZE))
-                                                        .addGap(96, 96, 96)
-                                                        .addGroup(editProfilePanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                                .addComponent(lastNameLabel)
-                                                                .addComponent(
-                                                                        lastNameTextField,
-                                                                        GroupLayout.PREFERRED_SIZE,
-                                                                        209,
-                                                                        GroupLayout.PREFERRED_SIZE)))
-                                                .addComponent(emailLabel)
-                                                .addComponent(emailTextField))
-                                        .addComponent(saveLabel)
-                                        .addComponent(editProfileHeaderLabel))
-                                .addContainerGap(309, Short.MAX_VALUE))
+                                        .addComponent(editProfileHeaderLabel)
+                                        .addGroup(editProfilePanelLayout.createSequentialGroup()
+                                                .addGroup(editProfilePanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+                                                        .addGroup(editProfilePanelLayout.createSequentialGroup()
+                                                                .addComponent(saveLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                .addComponent(informationLabel))
+                                                        .addGroup(GroupLayout.Alignment.LEADING, editProfilePanelLayout.createSequentialGroup()
+                                                                .addGroup(editProfilePanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(firstNameLabel)
+                                                                        .addGroup(editProfilePanelLayout.createSequentialGroup()
+                                                                                .addComponent(firstNameTextField, GroupLayout.PREFERRED_SIZE, 209, GroupLayout.PREFERRED_SIZE)
+                                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                                .addComponent(firstNameEditLabel)))
+                                                                .addGap(52, 52, 52)
+                                                                .addGroup(editProfilePanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(lastNameLabel)
+                                                                        .addComponent(lastNameTextField, GroupLayout.PREFERRED_SIZE, 209, GroupLayout.PREFERRED_SIZE)))
+                                                        .addComponent(emailLabel, GroupLayout.Alignment.LEADING)
+                                                        .addComponent(emailTextField, GroupLayout.Alignment.LEADING))
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addGroup(editProfilePanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                        .addComponent(lastNameEditLabel)
+                                                        .addComponent(emailEditLabel))))
+                                .addContainerGap(26, Short.MAX_VALUE))
         );
         editProfilePanelLayout.setVerticalGroup(
                 editProfilePanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -97,27 +113,22 @@ public class EditProfileView extends JPanel {
                                         .addComponent(lastNameLabel)
                                         .addComponent(firstNameLabel))
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(editProfilePanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(
-                                                firstNameTextField,
-                                                GroupLayout.PREFERRED_SIZE,
-                                                32,
-                                                GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(
-                                                lastNameTextField,
-                                                GroupLayout.PREFERRED_SIZE,
-                                                32,
-                                                GroupLayout.PREFERRED_SIZE))
+                                .addGroup(editProfilePanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                        .addGroup(editProfilePanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                                .addComponent(firstNameTextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(lastNameTextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(firstNameEditLabel))
+                                        .addComponent(lastNameEditLabel))
                                 .addGap(9, 9, 9)
                                 .addComponent(emailLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(
-                                        emailTextField,
-                                        GroupLayout.PREFERRED_SIZE,
-                                        32,
-                                        GroupLayout.PREFERRED_SIZE)
+                                .addGroup(editProfilePanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                        .addComponent(emailTextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(emailEditLabel))
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(saveLabel)
+                                .addGroup(editProfilePanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                        .addComponent(saveLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(informationLabel))
                                 .addContainerGap(653, Short.MAX_VALUE))
         );
     }
