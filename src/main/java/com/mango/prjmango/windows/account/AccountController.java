@@ -1,8 +1,12 @@
 package com.mango.prjmango.windows.account;
 
+import com.mango.prjmango.utilities.AccountSubTabs;
+import com.mango.prjmango.utilities.ImageIcons;
 import com.mango.prjmango.utilities.Images;
+import com.mango.prjmango.utilities.Tabs;
 import com.mango.prjmango.windows.account.editprofile.EditProfileController;
 import com.mango.prjmango.windows.account.editprofile.EditProfileView;
+import com.mango.prjmango.windows.account.listeners.AccountSubTabListeners;
 import com.mango.prjmango.windows.account.passwordsecurity.PasswordSecurityController;
 import com.mango.prjmango.windows.account.passwordsecurity.PasswordSecurityView;
 import com.mango.prjmango.windows.sideoptions.SideOptionsView;
@@ -21,8 +25,18 @@ public class AccountController {
         JLabel editProfileLabel = view.getEditProfileLabel();
         JLabel passwordSecurityLabel = view.getPasswordSecurityLabel();
 
-        editProfileLabel.addMouseListener(new EditProfileMouseListener(view, editProfileLabel, sideOptionsView));
-        passwordSecurityLabel.addMouseListener(new PasswordSecurityMouseListener(view, passwordSecurityLabel));
+        editProfileLabel.addMouseListener(new AccountSubTabListeners(editProfileLabel,
+                ImageIcons.EDIT_PROFILE_NO_HOVER.getImageIcon(),
+                ImageIcons.EDIT_PROFILE_HOVERED.getImageIcon(),
+                ImageIcons.EDIT_PROFILE_SELECTED.getImageIcon(),
+                AccountSubTabs.EDIT_PROFILE,
+                view));
+        passwordSecurityLabel.addMouseListener(new AccountSubTabListeners(passwordSecurityLabel,
+                ImageIcons.PASSWORD_SECURITY_NO_HOVER.getImageIcon(),
+                ImageIcons.PASSWORD_SECURITY_HOVERED.getImageIcon(),
+                ImageIcons.PASSWORD_SECURITY_SELECTED.getImageIcon(),
+                AccountSubTabs.PASSWORD_AND_SECURITY,
+                view));
     }
 
     private static class EditProfileMouseListener implements MouseListener {
@@ -52,7 +66,7 @@ public class AccountController {
         @Override
         public void mouseClicked(MouseEvent e) {
             tabIsSelected = true;
-            label.setIcon(Images.EDIT_PROFILE_SELECTED.getImageIcon());
+            label.setIcon(ImageIcons.EDIT_PROFILE_SELECTED.getImageIcon());
             label.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 
             EditProfileView editProfileView = new EditProfileView();
@@ -70,9 +84,9 @@ public class AccountController {
         @Override
         public void mouseEntered(MouseEvent e) {
             if (tabIsSelected) {
-                label.setIcon(Images.EDIT_PROFILE_SELECTED.getImageIcon());
+                label.setIcon(ImageIcons.EDIT_PROFILE_SELECTED.getImageIcon());
             } else {
-                label.setIcon(Images.EDIT_PROFILE_HOVERED.getImageIcon());
+                label.setIcon(ImageIcons.EDIT_PROFILE_HOVERED.getImageIcon());
             }
             label.setCursor(new Cursor(Cursor.HAND_CURSOR));
         }
@@ -85,9 +99,9 @@ public class AccountController {
         @Override
         public void mouseExited(MouseEvent e) {
             if (tabIsSelected) {
-                label.setIcon(Images.EDIT_PROFILE_SELECTED.getImageIcon());
+                label.setIcon(ImageIcons.EDIT_PROFILE_SELECTED.getImageIcon());
             } else {
-                label.setIcon(Images.EDIT_PROFILE_NO_HOVER.getImageIcon());
+                label.setIcon(ImageIcons.EDIT_PROFILE_NO_HOVER.getImageIcon());
             }
             label.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         }
@@ -133,7 +147,7 @@ public class AccountController {
          */
         @Override
         public void mouseClicked(MouseEvent e) {
-            label.setIcon(Images.PASSWORD_SECURITY_SELECTED.getImageIcon());
+            label.setIcon(ImageIcons.PASSWORD_SECURITY_SELECTED.getImageIcon());
             label.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 
             PasswordSecurityView passwordSecurityView = new PasswordSecurityView();
@@ -149,7 +163,7 @@ public class AccountController {
          */
         @Override
         public void mouseEntered(MouseEvent e) {
-            label.setIcon(Images.PASSWORD_SECURITY_HOVERED.getImageIcon());
+            label.setIcon(ImageIcons.PASSWORD_SECURITY_HOVERED.getImageIcon());
             label.setCursor(new Cursor(Cursor.HAND_CURSOR));
         }
 
@@ -160,7 +174,7 @@ public class AccountController {
          */
         @Override
         public void mouseExited(MouseEvent e) {
-            label.setIcon(Images.PASSWORD_SECURITY_NO_HOVER.getImageIcon());
+            label.setIcon(ImageIcons.PASSWORD_SECURITY_NO_HOVER.getImageIcon());
             label.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         }
 

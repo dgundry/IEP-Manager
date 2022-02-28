@@ -1,8 +1,6 @@
 package com.mango.prjmango.windows.account;
 
-import com.mango.prjmango.utilities.Fonts;
-import com.mango.prjmango.utilities.ImageIcons;
-import com.mango.prjmango.utilities.Images;
+import com.mango.prjmango.utilities.*;
 import com.mango.prjmango.windows.account.editprofile.EditProfileController;
 import com.mango.prjmango.windows.account.editprofile.EditProfileView;
 import java.awt.Color;
@@ -28,6 +26,9 @@ public class AccountView extends JLabel {
 
     private final Color LIGHT_GREY = new Color(216, 216, 216);
 
+    public static AccountSubTabs currentlyActiveTab = AccountSubTabs.EDIT_PROFILE; //change to home
+    public static AccountSubTabs previouslyActiveTab = null;
+
     /**
      * Constructor. Calls methods to create the {@link JPanel} for the Account tab.
      * On the initial load, the {@link EditProfileView} will be visible.
@@ -44,8 +45,8 @@ public class AccountView extends JLabel {
     }
 
     private void createComponents() {
-        editProfileLabel      = new JLabel(Images.EDIT_PROFILE_SELECTED.getImageIcon());
-        passwordSecurityLabel = new JLabel(Images.PASSWORD_SECURITY_NO_HOVER.getImageIcon());
+        editProfileLabel      = new JLabel(ImageIcons.EDIT_PROFILE_SELECTED.getImageIcon());
+        passwordSecurityLabel = new JLabel(ImageIcons.PASSWORD_SECURITY_NO_HOVER.getImageIcon());
 
         accountHeaderLabel = new JLabel("Account");
         accountHeaderLabel.setFont(Fonts.SEGOE_UI_24.getFont());
@@ -107,4 +108,5 @@ public class AccountView extends JLabel {
 
         updateUI();
     }
+
 }
