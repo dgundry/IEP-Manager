@@ -55,11 +55,11 @@ public class AccountSubTabListeners implements MouseListener {
             new PasswordSecurityController(passwordSecurityView);
             accountView.setMainPageLayout(passwordSecurityView);
         }
-//        else{
-//            EditProfileView editProfileView = new EditProfileView();
-//            new EditProfileController(editProfileView);
-//            accountView.setMainPageLayout(editProfileView);
-//        }
+        else{
+            EditProfileView editProfileView = new EditProfileView();
+            new EditProfileController(editProfileView);
+            accountView.setMainPageLayout(editProfileView);
+        }
     }
 
 

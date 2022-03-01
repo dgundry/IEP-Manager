@@ -2,6 +2,7 @@ package com.mango.prjmango.windows.sideoptions;
 
 import com.mango.prjmango.LoggedInUser;
 import com.mango.prjmango.Main;
+import com.mango.prjmango.utilities.Fonts;
 import com.mango.prjmango.utilities.ImageIcons;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -18,54 +19,52 @@ import lombok.Getter;
 /**
  * The user interface design of the side options on the left side.
  */
-public class SideOptionsView extends JPanel {
+public class SideOptionsView {
 
-    private JLabel pawLogoLabel;
+    private static JLabel pawLogoLabel;
 
-    @Getter private JLabel welcomeLabel;
-    @Getter private JLabel homeTabLabel;
-    @Getter private JLabel accountTabLabel;
-    @Getter private JLabel studentsTabLabel;
-    @Getter private JLabel activitiesTabLabel;
-    @Getter private JLabel reportsTabLabel;
-    @Getter private JLabel logOutLabel;
+    @Getter private static JLabel backgroundLabel;
+    @Getter private static JLabel welcomeLabel;
+    @Getter private static JLabel homeTabLabel;
+    @Getter private static JLabel accountTabLabel;
+    @Getter private static JLabel studentsTabLabel;
+    @Getter private static JLabel activitiesTabLabel;
+    @Getter private static JLabel reportsTabLabel;
+    @Getter private static JLabel logOutLabel;
 
-    private JSeparator topSeparator;
-    private JSeparator bottomSeparator;
+    private static JSeparator topSeparator;
+    private static JSeparator bottomSeparator;
 
-    private final Color DARK_GREY  = new Color(19, 18, 18);
-    private final Color LIGHT_GREY = new Color(216, 216, 216);
+    private static final Color DARK_GREY  = new Color(19, 18, 18);
+    private static final Color LIGHT_GREY = new Color(216, 216, 216);
 
-    private final Dimension DIMENSIONS = new Dimension(340, Main.rect.height);
-
-    private final LoggedInUser user;
+    private static final Dimension DIMENSIONS = new Dimension(340, Main.rect.height);
 
     /**
      * Constructor. Calls methods that create the GUI.
      */
-    public SideOptionsView(LoggedInUser user) {
-        this.user = user;
-
-        setBackground(DARK_GREY);
-        setBorder(new LineBorder(LIGHT_GREY, 1, true));
-        setMaximumSize(DIMENSIONS);
-        setMinimumSize(DIMENSIONS);
-
+    public SideOptionsView() {
         createComponents();
         createLayout();
     }
 
-    private void createComponents() {
+    private static void createComponents() {
+        backgroundLabel = new JLabel();
+        backgroundLabel.setBackground(DARK_GREY);
+        backgroundLabel.setBorder(new LineBorder(LIGHT_GREY, 1, true));
+        backgroundLabel.setMaximumSize(DIMENSIONS);
+        backgroundLabel.setMinimumSize(DIMENSIONS);
+
         pawLogoLabel = new JLabel(ImageIcons.PAW_LOGO.getImageIcon());
 
         welcomeLabel = new JLabel();
-        welcomeLabel.setFont(new Font("Segoe UI", Font.PLAIN, 28));
+        welcomeLabel.setFont(Fonts.SEGOE_UI_28.getFont());
         welcomeLabel.setForeground(LIGHT_GREY);
         welcomeLabel.setHorizontalAlignment(SwingConstants.LEFT);
-        welcomeLabel.setText("Welcome, " + user.getFirstName() + "!");
+        welcomeLabel.setText("Welcome, " + LoggedInUser.getFirstName() + "!");
 
         homeTabLabel       = new JLabel(ImageIcons.HOME_TAB_NO_HOVER.getImageIcon());
-        accountTabLabel    = new JLabel(ImageIcons.ACCOUNT_TAB_HOVERED.getImageIcon()); //since Account is have tab from login
+        accountTabLabel    = new JLabel(ImageIcons.ACCOUNT_TAB_HOVERED.getImageIcon()); //since Account is active tab from login
         studentsTabLabel   = new JLabel(ImageIcons.STUDENT_TAB_NO_HOVER.getImageIcon());
         activitiesTabLabel = new JLabel(ImageIcons.ACTIVITIES_TAB_NO_HOVER.getImageIcon());
         reportsTabLabel    = new JLabel(ImageIcons.REPORTS_TAB_NO_HOVER.getImageIcon());
@@ -81,9 +80,9 @@ public class SideOptionsView extends JPanel {
         bottomSeparator.setPreferredSize(new Dimension(246, 1));
     }
 
-    private void createLayout() {
-        GroupLayout optionsPanelLayout = new GroupLayout(this);
-        setLayout(optionsPanelLayout);
+    private static void createLayout() {
+        GroupLayout optionsPanelLayout = new GroupLayout(backgroundLabel);
+        backgroundLabel.setLayout(optionsPanelLayout);
         optionsPanelLayout.setHorizontalGroup(
                 optionsPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(optionsPanelLayout.createSequentialGroup()

@@ -39,7 +39,7 @@ public class AccountView extends JLabel {
         createComponents();
 
         EditProfileView editProfileView = new EditProfileView(); //Home page instead?
-        new EditProfileController(editProfileView, sideOptionsView);
+        new EditProfileController(editProfileView);
 
         setMainPageLayout(editProfileView);
     }

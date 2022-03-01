@@ -62,7 +62,7 @@ public class LoginController {
                     LoggedInUser user = new LoggedInUser(DatabaseCommands.getTeacherId(enteredEmail));
                     Main.activeUser = user;
 
-                    MainWindowView.setAccountView(user);
+                    MainWindowView.setAccountView();
                 } else {
                     view.getInvalidLabel().setText("Invalid email or password. Please try again.");
                 }

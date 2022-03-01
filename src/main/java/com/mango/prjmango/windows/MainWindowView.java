@@ -1,6 +1,5 @@
 package com.mango.prjmango.windows;
 
-import com.mango.prjmango.LoggedInUser;
 import com.mango.prjmango.Main;
 import com.mango.prjmango.utilities.Tabs;
 import com.mango.prjmango.windows.account.AccountController;
@@ -120,15 +119,15 @@ public class MainWindowView {
         mainPanel.updateUI();
     }
 
-    public static void setAccountView(LoggedInUser user) {
+    public static void setAccountView() {
         mainPanel.removeAll();
         mainPanel.updateUI();
 
-        SideOptionsView sideOptionsView = new SideOptionsView(user);
+        SideOptionsView sideOptionsView = new SideOptionsView();
         new SideOptionsController(sideOptionsView);
 
         AccountView accountView = new AccountView(sideOptionsView);
-        new AccountController(accountView,sideOptionsView);
+        new AccountController(accountView);
 
         GroupLayout mainPanelLayout = new GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -136,7 +135,7 @@ public class MainWindowView {
                 mainPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(mainPanelLayout.createSequentialGroup()
                                 .addComponent(
-                                        sideOptionsView,
+                                        SideOptionsView.getBackgroundLabel(),
                                         GroupLayout.PREFERRED_SIZE,
                                         268,
                                         GroupLayout.PREFERRED_SIZE)
@@ -150,7 +149,7 @@ public class MainWindowView {
         );
         mainPanelLayout.setVerticalGroup(
                 mainPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addComponent(sideOptionsView, GroupLayout.DEFAULT_SIZE, 1072, Short.MAX_VALUE)
+                        .addComponent(SideOptionsView.getBackgroundLabel(), GroupLayout.DEFAULT_SIZE, 1072, Short.MAX_VALUE)
                         .addGroup(mainPanelLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(

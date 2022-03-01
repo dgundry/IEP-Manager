@@ -28,7 +28,7 @@ public class EditProfileController {
      *
      * @param view the {@link EditProfileView} to be able to access the {@link JLabel}'s
      */
-    public EditProfileController(EditProfileView view, SideOptionsView sideOptionsView) {
+    public EditProfileController(EditProfileView view) {
         JLabel saveLabel = view.getSaveLabel();
         JLabel firstNameEditLabel = view.getFirstNameEditLabel();
         JLabel lastNameEditLabel  = view.getLastNameEditLabel();
@@ -38,7 +38,7 @@ public class EditProfileController {
         JTextField lastNameTextField  = view.getLastNameTextField();
         JTextField emailTextField     = view.getEmailTextField();
 
-        saveLabel.addMouseListener(new SaveProfileMouseListener(view, saveLabel, sideOptionsView));
+        saveLabel.addMouseListener(new SaveProfileMouseListener(view, saveLabel));
         firstNameEditLabel.addMouseListener(new EditLabelMouseListener(view, firstNameEditLabel, firstNameTextField));
         lastNameEditLabel.addMouseListener(new EditLabelMouseListener(view, lastNameEditLabel, lastNameTextField));
         emailEditLabel.addMouseListener(new EditLabelMouseListener(view, emailEditLabel, emailTextField));
@@ -48,7 +48,6 @@ public class EditProfileController {
 
         private final EditProfileView view;
         private final JLabel label;
-        private final SideOptionsView sideOptionsView;
 
         private final Color RED = new Color(252, 45, 45);
         private final Color GREEN = new Color(14, 249, 9);
@@ -60,10 +59,9 @@ public class EditProfileController {
          * @param view  the {@link EditProfileView} to access other {@link JComponent}'s
          * @param label the specific {@link JLabel}
          */
-        public SaveProfileMouseListener(EditProfileView view, JLabel label, SideOptionsView sideOptionsView) {
+        public SaveProfileMouseListener(EditProfileView view, JLabel label) {
             this.view = view;
             this.label = label;
-            this.sideOptionsView = sideOptionsView;
         }
 
         /**
@@ -99,7 +97,7 @@ public class EditProfileController {
                     LoggedInUser.setFirstName(firstName);
                     LoggedInUser.setLastName(lastName);
                     LoggedInUser.setEmail(email);
-                    sideOptionsView.getWelcomeLabel().setText("Welcome, " + LoggedInUser.getFirstName() + "!");
+                    SideOptionsView.getWelcomeLabel().setText("Welcome, " + LoggedInUser.getFirstName() + "!");
                 }
             }
         }
