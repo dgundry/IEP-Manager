@@ -81,9 +81,6 @@ public class PasswordSecurityView extends JPanel {
 
         currentPasswordTextBox = createPasswordField(String.valueOf(LoggedInUser.getPassword()));
 
-        System.out.println("Arrays.toString: " + Arrays.toString(LoggedInUser.getPassword()));
-        System.out.println("toString: " + String.valueOf(LoggedInUser.getPassword()));
-
         confirmNewPassTextBox  = createPasswordField("");
         newPasswordTextBox     = createPasswordField("");
 
