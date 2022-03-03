@@ -3,7 +3,6 @@ package com.mango.prjmango.windows.account.editprofile;
 import com.mango.prjmango.LoggedInUser;
 import com.mango.prjmango.utilities.Fonts;
 import com.mango.prjmango.utilities.ImageIcons;
-import com.mango.prjmango.utilities.Images;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Insets;
@@ -54,10 +53,10 @@ public class EditProfileView extends JPanel {
         emailLabel             = createLabel("Email", 18);
         informationLabel       = createLabel("", 14);
 
-        saveLabel = new JLabel(Images.EDIT_PROFILE_SAVE_NO_HOVER.getImageIcon());
+        saveLabel          = new JLabel(ImageIcons.EDIT_PROFILE_SAVE_NO_HOVER.getImageIcon());
         firstNameEditLabel = new JLabel(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
-        lastNameEditLabel = new JLabel(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
-        emailEditLabel = new JLabel(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
+        lastNameEditLabel  = new JLabel(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
+        emailEditLabel     = new JLabel(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
 
         firstNameTextField = createTextField(LoggedInUser.getFirstName());
         firstNameTextField.setEnabled(false);

@@ -9,9 +9,6 @@ import lombok.Getter;
 
 public enum Images {
 
-    EDIT_PROFILE_SAVE_NO_HOVER("/images/account-save-no-hover.png", 117, 47, true),
-    EDIT_PROFILE_SAVE_HOVERED("/images/account-save-hovered.png", 117, 47, true),
-
     LOGIN_NO_HOVER("/images/login-no-hover.png", 116, 31, true),
     LOGIN_HOVERED("/images/login-hovered.png", 116, 31, true),
 

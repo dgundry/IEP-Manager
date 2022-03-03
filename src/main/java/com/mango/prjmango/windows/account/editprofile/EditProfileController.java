@@ -4,9 +4,7 @@ import com.mango.prjmango.LoggedInUser;
 import com.mango.prjmango.utilities.DatabaseCommands;
 import com.mango.prjmango.utilities.EmailValidation;
 import com.mango.prjmango.utilities.ImageIcons;
-import com.mango.prjmango.utilities.Images;
 import com.mango.prjmango.windows.sideoptions.SideOptionsView;
-
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
@@ -143,7 +141,7 @@ public class EditProfileController {
          */
         @Override
         public void mouseEntered(MouseEvent e) {
-            label.setIcon(Images.EDIT_PROFILE_SAVE_HOVERED.getImageIcon());
+            label.setIcon(ImageIcons.EDIT_PROFILE_SAVE_HOVERED.getImageIcon());
         }
 
         /**
@@ -153,7 +151,7 @@ public class EditProfileController {
          */
         @Override
         public void mouseExited(MouseEvent e) {
-            label.setIcon(Images.EDIT_PROFILE_SAVE_NO_HOVER.getImageIcon());
+            label.setIcon(ImageIcons.EDIT_PROFILE_SAVE_NO_HOVER.getImageIcon());
         }
 
         /**

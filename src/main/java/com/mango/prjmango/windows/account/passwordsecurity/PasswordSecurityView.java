@@ -1,35 +1,57 @@
 package com.mango.prjmango.windows.account.passwordsecurity;
 
-import javax.swing.*;
+import com.mango.prjmango.LoggedInUser;
+import com.mango.prjmango.utilities.DatabaseCommands;
+import com.mango.prjmango.utilities.Fonts;
+import com.mango.prjmango.utilities.ImageIcons;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Insets;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Vector;
+import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.GroupLayout;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle;
+import lombok.Getter;
 
 /**
  * The user interface design of the Password & Security page.
  */
 public class PasswordSecurityView extends JPanel {
 
-    JPanel passwordChangePanel;
-    JPanel securityQuestionsChangePanel;
+    private JPanel passwordChangePanel;
+    private JPanel securityQuestionsChangePanel;
 
-    JLabel passwordSecurityHeaderLabel;
-    JLabel saveLabel;
-    JLabel ConfirmNewPassLabel;
-    JLabel CurrentPasswordLabel;
-    JLabel NewPasswordLabel;
-    JLabel SecurityQuestionTwoLabel;
-    JLabel AnswerOneLabel;
-    JLabel SecurityQuestionOneLabel;
-    JLabel AnswerTwoLabel;
+    @Getter private JLabel saveLabel;
 
+    private JLabel passwordSecurityHeaderLabel;
+    private JLabel confirmNewPassLabel;
+    private JLabel currentPasswordLabel;
+    private JLabel newPasswordLabel;
+    private JLabel securityQuestionTwoLabel;
+    private JLabel answerOneLabel;
+    private JLabel securityQuestionOneLabel;
+    private JLabel answerTwoLabel;
 
-    JTextField ConfirmNewPassTextBox;
-    JTextField CurrentPasswordTextBox;
-    JTextField NewPasswordTextBox;
-    JTextField AnswerTwoTextBox;
-    JTextField AnswerOneTextBox;
+    private JPasswordField confirmNewPassTextBox;
+    private JPasswordField currentPasswordTextBox;
+    private JPasswordField newPasswordTextBox;
 
-    JComboBox SecurityQuestionTwoDropDown;
-    JComboBox SecurityQuestionOneDropDown;
+    @Getter private JTextField answerOneTextBox;
+    @Getter private JTextField answerTwoTextBox;
 
+    @Getter private JComboBox<String> securityQuestionOneDropDown;
+    @Getter private JComboBox<String> securityQuestionTwoDropDown;
+
+    private final Color DARK_GREY = new Color(19, 18, 18);
+    private final Color LIGHT_GREY = new Color(216, 216, 216);
 
     /**
      * Constructor. Calls methods that create the GUI.
@@ -40,103 +62,40 @@ public class PasswordSecurityView extends JPanel {
         createPasswordPanelLayout();
         createSecurityQuestionsChangePanel();
         createLayout();
-
     }
-    private void createComponents(){
 
-        passwordChangePanel = new JPanel();
-        passwordChangePanel.setBackground(new java.awt.Color(19, 18, 18));
-        passwordChangePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Password", 1, 2, new java.awt.Font("Segoe UI", 0, 18), new java.awt.Color(216, 216, 216))); // NOI18N
-        passwordChangePanel.setForeground(new java.awt.Color(216, 216, 216));
+    private void createComponents() {
+        passwordChangePanel          = createPanel("Password");
+        securityQuestionsChangePanel = createPanel("Security Questions");
 
-        securityQuestionsChangePanel = new JPanel();
-        securityQuestionsChangePanel.setBackground(new java.awt.Color(19, 18, 18));
-        securityQuestionsChangePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Security Questions", 1, 2, new java.awt.Font("Segoe UI", 0, 18), new java.awt.Color(216, 216, 216))); // NOI18N
-        securityQuestionsChangePanel.setForeground(new java.awt.Color(216, 216, 216));
+        saveLabel = new JLabel(ImageIcons.PASSWORD_SECURITY_SAVE_NO_HOVER.getImageIcon());
 
-        passwordSecurityHeaderLabel = new JLabel();
-        passwordSecurityHeaderLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        passwordSecurityHeaderLabel.setForeground(new java.awt.Color(216, 216, 216));
-        passwordSecurityHeaderLabel.setText("Password & Security");
+        passwordSecurityHeaderLabel = createLabel("Password & Security",  Fonts.SEGOE_UI_24.getFont());
+        confirmNewPassLabel         = createLabel("Confirm New Password", Fonts.SEGOE_UI_18.getFont());
+        currentPasswordLabel        = createLabel("Current Password",     Fonts.SEGOE_UI_18.getFont());
+        newPasswordLabel            = createLabel("New Password",         Fonts.SEGOE_UI_18.getFont());
+        securityQuestionTwoLabel    = createLabel("Security Question #2", Fonts.SEGOE_UI_18.getFont());
+        securityQuestionOneLabel    = createLabel("Security Question #1", Fonts.SEGOE_UI_18.getFont());
+        answerOneLabel              = createLabel("Answer",               Fonts.SEGOE_UI_18.getFont());
+        answerTwoLabel              = createLabel("Answer",               Fonts.SEGOE_UI_18.getFont());
 
-        saveLabel = new JLabel();
-        saveLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        saveLabel.setForeground(new java.awt.Color(216, 216, 216));
-        //saveLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("src/main/resources/images/account-save-no-hover.png"))); // NOI18N
-        saveLabel.setMaximumSize(new java.awt.Dimension(117, 43));
-        saveLabel.setMinimumSize(new java.awt.Dimension(117, 43));
-        saveLabel.setPreferredSize(new java.awt.Dimension(117, 43));
+        currentPasswordTextBox = createPasswordField(String.valueOf(LoggedInUser.getPassword()));
 
-        ConfirmNewPassLabel = new JLabel();
-        ConfirmNewPassLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        ConfirmNewPassLabel.setForeground(new java.awt.Color(216, 216, 216));
-        ConfirmNewPassLabel.setText("Confirm New Password");
+        System.out.println("Arrays.toString: " + Arrays.toString(LoggedInUser.getPassword()));
+        System.out.println("toString: " + String.valueOf(LoggedInUser.getPassword()));
 
-        ConfirmNewPassTextBox = new JTextField();
-        ConfirmNewPassTextBox.setBackground(new java.awt.Color(19, 18, 18));
-        ConfirmNewPassTextBox.setForeground(new java.awt.Color(216, 216, 216));
+        confirmNewPassTextBox  = createPasswordField("");
+        newPasswordTextBox     = createPasswordField("");
 
-        CurrentPasswordTextBox = new JTextField();
-        CurrentPasswordTextBox.setBackground(new java.awt.Color(19, 18, 18));
-        CurrentPasswordTextBox.setForeground(new java.awt.Color(216, 216, 216));
+        answerTwoTextBox       = createTextField();
+        answerOneTextBox       = createTextField();
 
-        CurrentPasswordLabel = new JLabel();
-        CurrentPasswordLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        CurrentPasswordLabel.setForeground(new java.awt.Color(216, 216, 216));
-        CurrentPasswordLabel.setText("Current Password");
+        securityQuestionOneDropDown = createComboBox();
+        securityQuestionTwoDropDown = createComboBox();
 
-        NewPasswordLabel = new JLabel();
-        NewPasswordLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        NewPasswordLabel.setForeground(new java.awt.Color(216, 216, 216));
-        NewPasswordLabel.setText("New Password");
-
-        NewPasswordTextBox = new JTextField();
-        NewPasswordTextBox.setBackground(new java.awt.Color(19, 18, 18));
-        NewPasswordTextBox.setForeground(new java.awt.Color(216, 216, 216));
-
-        SecurityQuestionTwoDropDown = new JComboBox();
-        SecurityQuestionTwoDropDown.setBackground(new java.awt.Color(19, 18, 18));
-        SecurityQuestionTwoDropDown.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        SecurityQuestionTwoDropDown.setForeground(new java.awt.Color(216, 216, 216));
-        SecurityQuestionTwoDropDown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        AnswerTwoTextBox = new JTextField();
-        AnswerTwoTextBox.setBackground(new java.awt.Color(19, 18, 18));
-        AnswerTwoTextBox.setForeground(new java.awt.Color(216, 216, 216));
-
-        SecurityQuestionTwoLabel = new JLabel();
-        SecurityQuestionTwoLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        SecurityQuestionTwoLabel.setForeground(new java.awt.Color(216, 216, 216));
-        SecurityQuestionTwoLabel.setText("Security Question #2");
-
-        AnswerOneLabel = new JLabel();
-        AnswerOneLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        AnswerOneLabel.setForeground(new java.awt.Color(216, 216, 216));
-        AnswerOneLabel.setText("Answer ");
-
-        AnswerOneTextBox = new JTextField();
-        AnswerOneTextBox.setBackground(new java.awt.Color(19, 18, 18));
-        AnswerOneTextBox.setForeground(new java.awt.Color(216, 216, 216));
-
-        SecurityQuestionOneDropDown = new JComboBox();
-        SecurityQuestionOneDropDown.setBackground(new java.awt.Color(19, 18, 18));
-        SecurityQuestionOneDropDown.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        SecurityQuestionOneDropDown.setForeground(new java.awt.Color(216, 216, 216));
-        SecurityQuestionOneDropDown.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        SecurityQuestionOneLabel = new JLabel();
-        SecurityQuestionOneLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        SecurityQuestionOneLabel.setForeground(new java.awt.Color(216, 216, 216));
-        SecurityQuestionOneLabel.setText("Security Question #1");
-
-        AnswerTwoLabel = new JLabel();
-        AnswerTwoLabel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        AnswerTwoLabel.setForeground(new java.awt.Color(216, 216, 216));
-        AnswerTwoLabel.setText("Answer");
-
-
-
+        populateSecurityQuestions();
     }
+
     private void createLayout() {
         GroupLayout passwordSecurityPanelLayout = new GroupLayout(this);
         setLayout(passwordSecurityPanelLayout);
@@ -164,8 +123,8 @@ public class PasswordSecurityView extends JPanel {
                                 .addGap(0, 202, Short.MAX_VALUE))
         );
     }
-    private void createPasswordPanelLayout() {
 
+    private void createPasswordPanelLayout() {
         GroupLayout passwordChangePanelLayout = new GroupLayout(passwordChangePanel);
         passwordChangePanel.setLayout(passwordChangePanelLayout);
         passwordChangePanelLayout.setHorizontalGroup(
@@ -173,36 +132,34 @@ public class PasswordSecurityView extends JPanel {
                         .addGroup(passwordChangePanelLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(passwordChangePanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addComponent(ConfirmNewPassLabel)
-                                        .addComponent(ConfirmNewPassTextBox, GroupLayout.PREFERRED_SIZE, 472, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(CurrentPasswordTextBox, GroupLayout.PREFERRED_SIZE, 472, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(CurrentPasswordLabel)
-                                        .addComponent(NewPasswordLabel)
-                                        .addComponent(NewPasswordTextBox, GroupLayout.PREFERRED_SIZE, 472, GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(confirmNewPassLabel)
+                                        .addComponent(confirmNewPassTextBox, GroupLayout.PREFERRED_SIZE, 472, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(currentPasswordTextBox, GroupLayout.PREFERRED_SIZE, 472, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(currentPasswordLabel)
+                                        .addComponent(newPasswordLabel)
+                                        .addComponent(newPasswordTextBox, GroupLayout.PREFERRED_SIZE, 472, GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         passwordChangePanelLayout.setVerticalGroup(
                 passwordChangePanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(passwordChangePanelLayout.createSequentialGroup()
                                 .addGap(21, 21, 21)
-                                .addComponent(CurrentPasswordLabel)
+                                .addComponent(currentPasswordLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CurrentPasswordTextBox, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(currentPasswordTextBox, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(NewPasswordLabel)
+                                .addComponent(newPasswordLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(NewPasswordTextBox, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(newPasswordTextBox, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
                                 .addGap(11, 11, 11)
-                                .addComponent(ConfirmNewPassLabel)
+                                .addComponent(confirmNewPassLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ConfirmNewPassTextBox, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(confirmNewPassTextBox, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-
     }
-    private void createSecurityQuestionsChangePanel(){
 
+    private void createSecurityQuestionsChangePanel() {
         GroupLayout securityQuestionsChangePanelLayout = new GroupLayout(securityQuestionsChangePanel);
         securityQuestionsChangePanel.setLayout(securityQuestionsChangePanelLayout);
         securityQuestionsChangePanelLayout.setHorizontalGroup(
@@ -210,40 +167,101 @@ public class PasswordSecurityView extends JPanel {
                         .addGroup(securityQuestionsChangePanelLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(securityQuestionsChangePanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(SecurityQuestionTwoDropDown, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(securityQuestionTwoDropDown, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(securityQuestionsChangePanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                 .addGroup(securityQuestionsChangePanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                                        .addComponent(AnswerTwoTextBox)
-                                                        .addComponent(SecurityQuestionTwoLabel)
-                                                        .addComponent(AnswerOneLabel)
-                                                        .addComponent(AnswerOneTextBox)
-                                                        .addComponent(SecurityQuestionOneDropDown, 0, 472, Short.MAX_VALUE))
-                                                .addComponent(SecurityQuestionOneLabel)
-                                                .addComponent(AnswerTwoLabel)))
+                                                        .addComponent(answerTwoTextBox)
+                                                        .addComponent(securityQuestionTwoLabel)
+                                                        .addComponent(answerOneLabel)
+                                                        .addComponent(answerOneTextBox)
+                                                        .addComponent(securityQuestionOneDropDown, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addComponent(securityQuestionOneLabel)
+                                                .addComponent(answerTwoLabel)))
                                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         securityQuestionsChangePanelLayout.setVerticalGroup(
                 securityQuestionsChangePanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(securityQuestionsChangePanelLayout.createSequentialGroup()
                                 .addGap(26, 26, 26)
-                                .addComponent(SecurityQuestionOneLabel)
+                                .addComponent(securityQuestionOneLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(SecurityQuestionOneDropDown, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(securityQuestionOneDropDown, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(AnswerOneLabel)
+                                .addComponent(answerOneLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(AnswerOneTextBox, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(answerOneTextBox, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(SecurityQuestionTwoLabel)
+                                .addComponent(securityQuestionTwoLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(SecurityQuestionTwoDropDown, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(securityQuestionTwoDropDown, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(AnswerTwoLabel)
+                                .addComponent(answerTwoLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(AnswerTwoTextBox, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(answerTwoTextBox, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
     }
 
+    private JLabel createLabel(String text, Font font) {
+        JLabel label = new JLabel(text);
+        label.setFont(font);
+        label.setForeground(LIGHT_GREY);
+        return label;
+    }
+
+    private JPanel createPanel(String text) {
+        JPanel panel = new JPanel();
+        panel.setOpaque(false);
+        panel.setBorder(BorderFactory.createTitledBorder(null, text, 1, 2, Fonts.SEGOE_UI_18.getFont(), LIGHT_GREY));
+        panel.setForeground(LIGHT_GREY);
+        return panel;
+    }
+
+    private JTextField createTextField() {
+        JTextField textField = new JTextField();
+        textField.setFont(Fonts.SEGOE_UI_16.getFont());
+        textField.setBackground(DARK_GREY);
+        textField.setForeground(LIGHT_GREY);
+        textField.setCaretColor(LIGHT_GREY);
+        textField.setMargin(new Insets(0, 5, 0, 5));
+        return textField;
+    }
+
+    private JPasswordField createPasswordField(String text) {
+        JPasswordField passwordField = new JPasswordField(text);
+        passwordField.setBackground(DARK_GREY);
+        passwordField.setForeground(LIGHT_GREY);
+        passwordField.setCaretColor(LIGHT_GREY);
+        passwordField.setFont(Fonts.SEGOE_UI_16.getFont());
+        passwordField.setMargin(new Insets(0, 5, 0, 5));
+        return passwordField;
+    }
+
+    private JComboBox<String> createComboBox() {
+        JComboBox<String> comboBox = new JComboBox<>();
+        comboBox.setBackground(DARK_GREY);
+        comboBox.setFont(Fonts.SEGOE_UI_18.getFont());
+        comboBox.setForeground(LIGHT_GREY);
+        return comboBox;
+    }
+
+    private void populateSecurityQuestions() {
+        List<String> securityQuestionList1 = DatabaseCommands.getDropDownQuestions();
+        List<String> securityQuestionList2 = DatabaseCommands.getDropDownQuestions();
+
+        List<Integer> securityQuestionIndexes = DatabaseCommands.getUserSecurityQuestionIndexes(LoggedInUser.getTeacherId());
+        LoggedInUser.setSecurityQuestion1Index(securityQuestionIndexes.get(0));
+        LoggedInUser.setSecurityQuestion2Index(securityQuestionIndexes.get(1));
+
+        DefaultComboBoxModel<String> model1 = new DefaultComboBoxModel<>(new Vector<>(securityQuestionList1));
+        DefaultComboBoxModel<String> model2 = new DefaultComboBoxModel<>(new Vector<>(securityQuestionList2));
+
+        String question1 = DatabaseCommands.getUserSecurityQuestion(LoggedInUser.getSecurityQuestion1Index());
+        String question2 = DatabaseCommands.getUserSecurityQuestion(LoggedInUser.getSecurityQuestion2Index());
+        model1.setSelectedItem(question1);
+        model2.setSelectedItem(question2);
+
+        securityQuestionOneDropDown.setModel(model1);
+        securityQuestionTwoDropDown.setModel(model2);
+    }
 }

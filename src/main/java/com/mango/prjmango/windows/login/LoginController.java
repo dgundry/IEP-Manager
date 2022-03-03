@@ -60,6 +60,7 @@ public class LoginController {
             if (!enteredEmail.equals("") && enteredPassword.length != 0) {
                 if (DatabaseCommands.isValidUser(enteredEmail, enteredPassword) == 1) {
                     LoggedInUser user = new LoggedInUser(DatabaseCommands.getTeacherId(enteredEmail));
+                    user.setPassword(enteredPassword);
                     Main.activeUser = user;
 
                     MainWindowView.setAccountView();

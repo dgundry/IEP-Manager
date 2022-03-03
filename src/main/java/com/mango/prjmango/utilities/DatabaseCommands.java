@@ -30,6 +30,7 @@ public class DatabaseCommands {
             statement.setString(2, Encryption.encryptPassword(Arrays.toString(enteredPassword)));
             ResultSet resultSet = statement.executeQuery();
             count = resultSet.getInt(1);
+            resultSet.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -52,10 +53,12 @@ public class DatabaseCommands {
             do {
                 securityQuestionList.add(resultSet.getString(1));
             } while (resultSet.next());
+            resultSet.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        securityQuestionList.remove(0);
         return securityQuestionList;
     }
 
@@ -82,6 +85,7 @@ public class DatabaseCommands {
                     index++;
                 }
             } while (resultSet.next() && index <= 1);
+            resultSet.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -108,6 +112,7 @@ public class DatabaseCommands {
                     index++;
                 }
             } while (resultSet2.next() && index <= 1);
+            resultSet2.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -122,7 +127,6 @@ public class DatabaseCommands {
      * @return true if there is an email within the teachers table, false if there is not
      */
     public static boolean isEmailTaken(String email) {
-        boolean result;
         int count = 0;
 
         String sql = "SELECT COUNT(*) FROM teacher WHERE email = ?;";
@@ -131,6 +135,7 @@ public class DatabaseCommands {
             statement.setString(1, email);
             ResultSet resultSet = statement.executeQuery();
             count = resultSet.getInt(1);
+            resultSet.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -152,6 +157,7 @@ public class DatabaseCommands {
             statement.setString(1, email);
             ResultSet resultSet = statement.executeQuery();
             result = resultSet.getInt(1);
+            resultSet.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -181,6 +187,7 @@ public class DatabaseCommands {
                     }
                 }
             } while (resultSet.next() && !hasFailed);
+            resultSet.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -188,20 +195,60 @@ public class DatabaseCommands {
         return hasFailed;
     }
 
-    public static List<String> getUserDetails(int teacher_id) {
-        int result = -1;
+    public static List<String> getUserDetails(int teacherId) {
         String sql = "SELECT first_name, last_name, email FROM teacher WHERE teacher_id = ?;";
         List<String> userDetails = new ArrayList<>();
         try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
-            statement.setInt(1, teacher_id);
+            statement.setInt(1, teacherId);
             ResultSet resultSet = statement.executeQuery();
             userDetails.add(resultSet.getString(1));
             userDetails.add(resultSet.getString(2));
             userDetails.add(resultSet.getString(3));
+            resultSet.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return userDetails;
+    }
+
+    /**
+     *
+     * @param teacherId the {@code teacher_id} value in the database
+     * @return a {@link List} of {@link Integer}'s which contain the indexes in the questions
+     */
+    public static List<Integer> getUserSecurityQuestionIndexes(int teacherId) {
+        String sql = "SELECT question_id FROM questions WHERE teacher_id = ?;";
+        List<Integer> userDetails = new ArrayList<>();
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
+            statement.setInt(1, teacherId);
+
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+            do {
+                userDetails.add(resultSet.getInt("question_id"));
+            } while (resultSet.next());
+
+            resultSet.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return userDetails;
+    }
+
+    public static String getUserSecurityQuestion(int questionId) {
+        String sql = "SELECT question FROM question WHERE question_id = ?;";
+        String question = "";
+
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
+            statement.setInt(1, questionId);
+
+            ResultSet resultSet = statement.executeQuery();
+            question = resultSet.getString(1);
+            resultSet.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return question;
     }
 
     public static void updateUserDetails(String firstName, String lastName, String email) {
@@ -211,7 +258,7 @@ public class DatabaseCommands {
             statement.setString(1, firstName);
             statement.setString(2, lastName);
             statement.setString(3, email);
-            statement.setInt(4, LoggedInUser.getTeacher_id());
+            statement.setInt(4, LoggedInUser.getTeacherId());
             statement.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace();

@@ -49,6 +49,9 @@ public enum ImageIcons {
     APP_LOG_OUT_NO_HOVER("/images/common/log-out-no-hover.png", 95, 31),
     APP_LOG_OUT_HOVERED("/images/common/log-out-hovered.png", 95, 31),
 
+    EDIT_PROFILE_SAVE_NO_HOVER("/images/edit-profile/account-save-no-hover.png", 117, 47),
+    EDIT_PROFILE_SAVE_HOVERED("/images/edit-profile/account-save-hovered.png", 117, 47),
+
     EDIT_PROFILE_EDIT_ICON_NO_HOVER("/images/edit-profile/edit-icon-no-hover.png", 28, 28),
     EDIT_PROFILE_EDIT_ICON_HOVERED("/images/edit-profile/edit-icon-hovered.png", 28, 28),
 
@@ -58,7 +61,10 @@ public enum ImageIcons {
 
     PASSWORD_SECURITY_NO_HOVER("/images/password-security-no-hover.png", 281, 30),
     PASSWORD_SECURITY_HOVERED("/images/password-security-hovered.png", 281, 30),
-    PASSWORD_SECURITY_SELECTED("/images/password-security-selected.png", 281, 30);
+    PASSWORD_SECURITY_SELECTED("/images/password-security-selected.png", 281, 30),
+
+    PASSWORD_SECURITY_SAVE_NO_HOVER("/images/password-security/password-security-no-hover.png", 117, 47),
+    PASSWORD_SECURITY_SAVE_HOVERED("/images/password-security/password-security-hovered.png", 117, 47);
 
     @Getter
     private ImageIcon imageIcon;

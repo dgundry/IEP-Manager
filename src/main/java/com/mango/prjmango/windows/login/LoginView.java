@@ -4,7 +4,6 @@ import com.mango.prjmango.utilities.Fonts;
 import com.mango.prjmango.utilities.ImageIcons;
 import com.mango.prjmango.utilities.Images;
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Insets;
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
@@ -80,10 +79,10 @@ public class LoginView extends JLabel {
                 Fonts.SEGOE_UI_14.getFont(),
                 LIGHT_GREY));
         emailField.setCaretColor(LIGHT_GREY);
-        System.out.println(emailField.getSize());
+
         passwordField = new JPasswordField();
         passwordField.setOpaque(false);
-        passwordField.setFont(new Font("Segoe UI", Font.PLAIN, 16));
+        passwordField.setFont(Fonts.SEGOE_UI_16.getFont());
         passwordField.setForeground(LIGHT_GREY);
         passwordField.setMargin(new Insets(0, 5, 0, 5));
         passwordField.setBorder(BorderFactory.createTitledBorder(
@@ -91,7 +90,7 @@ public class LoginView extends JLabel {
                 "Password",
                 TitledBorder.DEFAULT_JUSTIFICATION,
                 TitledBorder.DEFAULT_POSITION,
-                new Font("Segoe UI", Font.PLAIN, 14),
+                Fonts.SEGOE_UI_14.getFont(),
                 LIGHT_GREY));
         passwordField.setCaretColor(LIGHT_GREY);
     }

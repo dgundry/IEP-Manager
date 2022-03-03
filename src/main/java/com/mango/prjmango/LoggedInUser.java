@@ -3,28 +3,30 @@ package com.mango.prjmango;
 import com.mango.prjmango.utilities.DatabaseCommands;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.util.List;
 
 /**
- * Keeps track of the currently logged in user throughout the application.
+ * Keeps track of the currently logged-in user throughout the application.
  */
 public class LoggedInUser {
 
-    @Getter private static int teacher_id;
+    @Getter private static int teacherId;
     @Getter @Setter private static String firstName;
     @Getter @Setter private static String lastName;
     @Getter @Setter private static String email;
+    @Getter @Setter private static char[] password;
+    @Getter @Setter private static int securityQuestion1Index;
+    @Getter @Setter private static int securityQuestion2Index;
 
     /**
-     * Constructor. Calls {@link LoggedInUser#setFields(List)} to set values to fields that will be accessed
+     * Constructor. Calls {@link LoggedInUser#setFields(List)} to set values to variables that will be accessed
      * throughout the application.
      * 
-     * @param teacher_id the specific {@code teacher_id} within the iepCipher database.
+     * @param teacherId the specific {@code teacher_id} within the iepCipher database.
      */
-    public LoggedInUser(int teacher_id) {
-        this.teacher_id = teacher_id;
-        setFields(DatabaseCommands.getUserDetails(teacher_id));
+    public LoggedInUser(int teacherId) {
+        this.teacherId = teacherId;
+        setFields(DatabaseCommands.getUserDetails(teacherId));
     }
 
     private static void setFields(List<String> rawData) {
