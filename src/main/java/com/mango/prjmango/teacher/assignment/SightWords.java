@@ -1,4 +1,4 @@
-package com.mango.prjmango.teacher;
+package com.mango.prjmango.teacher.assignment;
 
 import lombok.Getter;
 
