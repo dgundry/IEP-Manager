@@ -13,9 +13,6 @@ public enum ImageIcons {
     PAW_LOGO("/images/common/paw_logo.png", 112, 106),
     MANGO_LOGO("/images/common/mango_logo.png", 46, 37),
 
-    HOME_TAB_NO_HOVER("/images/tabs/home-tab-no-hover.png", 243, 44),
-    HOME_TAB_HOVERED("/images/tabs/home-tab-hovered.png", 243, 44),
-
     ACCOUNT_TAB_NO_HOVER("/images/tabs/account-tab-no-hover.png", 243, 44),
     ACCOUNT_TAB_HOVERED("/images/tabs/account-tab-hovered.png", 243, 44),
 

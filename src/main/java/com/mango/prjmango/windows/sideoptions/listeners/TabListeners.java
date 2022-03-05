@@ -104,18 +104,15 @@ public class TabListeners implements MouseListener {
         Tabs previouslyActiveTab = MainWindowView.previouslyActiveTab;
         switch (previouslyActiveTab.ordinal()) {
             case 0:
-                view.getHomeTabLabel().setIcon(ImageIcons.HOME_TAB_NO_HOVER.getImageIcon());
-                break;
-            case 1:
                 view.getAccountTabLabel().setIcon(ImageIcons.ACCOUNT_TAB_NO_HOVER.getImageIcon());
                 break;
-            case 2:
+            case 1:
                 view.getStudentsTabLabel().setIcon(ImageIcons.STUDENT_TAB_NO_HOVER.getImageIcon());
                 break;
-            case 3:
+            case 2:
                 view.getActivitiesTabLabel().setIcon(ImageIcons.ACTIVITIES_TAB_NO_HOVER.getImageIcon());
                 break;
-            case 4:
+            case 3:
                 view.getReportsTabLabel().setIcon(ImageIcons.REPORTS_TAB_NO_HOVER.getImageIcon());
             default:
                 break;

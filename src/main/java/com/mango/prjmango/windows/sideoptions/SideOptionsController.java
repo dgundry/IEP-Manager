@@ -1,14 +1,10 @@
 package com.mango.prjmango.windows.sideoptions;
 
-import com.mango.prjmango.Main;
 import com.mango.prjmango.utilities.ImageIcons;
 import com.mango.prjmango.utilities.Tabs;
-import com.mango.prjmango.windows.MainWindowView;
 import com.mango.prjmango.windows.dialogs.confirmation.ConfirmationController;
 import com.mango.prjmango.windows.dialogs.confirmation.ConfirmationView;
 import com.mango.prjmango.windows.dialogs.confirmation.Dialogs;
-import com.mango.prjmango.windows.login.LoginController;
-import com.mango.prjmango.windows.login.LoginView;
 import com.mango.prjmango.windows.sideoptions.listeners.TabListeners;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
@@ -18,19 +14,12 @@ import javax.swing.JLabel;
 public class SideOptionsController {
 
     public SideOptionsController(SideOptionsView view) {
-        JLabel homeTabLabel       = view.getHomeTabLabel();
         JLabel accountTabLabel    = view.getAccountTabLabel();
         JLabel studentsTabLabel   = view.getStudentsTabLabel();
         JLabel activitiesTabLabel = view.getActivitiesTabLabel();
         JLabel reportsTabLabel    = view.getReportsTabLabel();
         JLabel logOutLabel        = view.getLogOutLabel();
 
-        homeTabLabel.addMouseListener(new TabListeners(
-                homeTabLabel,
-                ImageIcons.HOME_TAB_NO_HOVER.getImageIcon(),
-                ImageIcons.HOME_TAB_HOVERED.getImageIcon(),
-                Tabs.HOME,
-                view));
         accountTabLabel.addMouseListener(new TabListeners(
                 accountTabLabel,
                 ImageIcons.ACCOUNT_TAB_NO_HOVER.getImageIcon(),
