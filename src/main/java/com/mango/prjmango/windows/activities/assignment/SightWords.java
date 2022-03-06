@@ -1,9 +1,9 @@
-package com.mango.prjmango.teacher.assignment;
+package com.mango.prjmango.windows.activities.assignment;
 
 import lombok.Getter;
 
 public class SightWords {
-    public @Getter String[] fryFirstHundred = {"the" ,
+    public @Getter String[] fryOneHundred = {"the" ,
             "of" ,
             "and" ,
             "a " ,
@@ -1319,7 +1319,46 @@ public class SightWords {
             "window" ,
             "wood"};
     public SightWords(){
+    }
 
+    /**
+     * Returns Questions list of Fry words based on a requested index. Indexing
+     * is in the same order of the JComboBox
+     * @param index of JComboBox
+     * @return requested list of String array based on index
+     */
+    public String[] getFryQuestions(int index){
+        switch (index){
+            case 0: return fryOneHundred;
+            case 1: return fryTwoHundred;
+            case 2: return fryThreeHundred;
+            case 3: return fryFourHundred;
+            case 4: return fryFiveHundred;
+            case 5: return frySixHundred;
+            case 6: return frySevenHundred;
+            case 7: return fryEightHundred;
+            case 8: return fryNineHundred;
+            case 9: return fryTenHundred;
+            default: return fryOneHundred;
+        }
+    }
+
+    /**
+     * Returns Questions list of Dolch words based on a requested index. Indexing
+     * is in the same order of the JComboBox
+     * @param index of JComboBox
+     * @return requested list of String array based on index
+     */
+    public String[] getDolchQuestions(int index){
+        switch (index){
+            case 0: return preKDolch;
+            case 1: return kinderDolch;
+            case 2: return firstDolch;
+            case 3: return secondDolch;
+            case 4: return thirdDolch;
+            case 5: return nounDolch;
+            default: return preKDolch;
+        }
     }
 
 }
