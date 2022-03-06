@@ -2,9 +2,11 @@ package com.mango.prjmango.windows.sideoptions;
 
 import com.mango.prjmango.LoggedInUser;
 import com.mango.prjmango.Main;
-import com.mango.prjmango.utilities.Fonts;
-import com.mango.prjmango.utilities.ImageIcons;
-import java.awt.Color;
+import com.mango.prjmango.windows.MainWindowView;
+import com.mango.prjmango.windows.common.Colors;
+import com.mango.prjmango.windows.common.Components;
+import com.mango.prjmango.windows.common.Fonts;
+import com.mango.prjmango.windows.common.ImageIcons;
 import java.awt.Dimension;
 import javax.swing.GroupLayout;
 import javax.swing.JLabel;
@@ -32,9 +34,6 @@ public class SideOptionsView {
     private static JSeparator topSeparator;
     private static JSeparator bottomSeparator;
 
-    private static final Color DARK_GREY  = new Color(19, 18, 18);
-    private static final Color LIGHT_GREY = new Color(216, 216, 216);
-
     private static final Dimension DIMENSIONS = new Dimension(340, Main.rect.height);
 
     /**
@@ -47,8 +46,8 @@ public class SideOptionsView {
 
     private static void createComponents() {
         backgroundLabel = new JLabel();
-        backgroundLabel.setBackground(DARK_GREY);
-        backgroundLabel.setBorder(new LineBorder(LIGHT_GREY, 1, true));
+        backgroundLabel.setBackground(Colors.DARK_GREY);
+        backgroundLabel.setBorder(new LineBorder(Colors.LIGHT_GREY, 1, true));
         backgroundLabel.setMaximumSize(DIMENSIONS);
         backgroundLabel.setMinimumSize(DIMENSIONS);
 
@@ -56,24 +55,42 @@ public class SideOptionsView {
 
         welcomeLabel = new JLabel();
         welcomeLabel.setFont(Fonts.SEGOE_UI_28.getFont());
-        welcomeLabel.setForeground(LIGHT_GREY);
+        welcomeLabel.setForeground(Colors.LIGHT_GREY);
         welcomeLabel.setHorizontalAlignment(SwingConstants.LEFT);
         welcomeLabel.setText("Welcome, " + LoggedInUser.getFirstName() + "!");
 
-        accountTabLabel    = new JLabel(ImageIcons.ACCOUNT_TAB_HOVERED.getImageIcon());
+        accountTabLabel    = new JLabel(ImageIcons.ACCOUNT_TAB_NO_HOVER.getImageIcon());
         studentsTabLabel   = new JLabel(ImageIcons.STUDENT_TAB_NO_HOVER.getImageIcon());
         activitiesTabLabel = new JLabel(ImageIcons.ACTIVITIES_TAB_NO_HOVER.getImageIcon());
         reportsTabLabel    = new JLabel(ImageIcons.REPORTS_TAB_NO_HOVER.getImageIcon());
+        setActiveTabIcon();
 
         logOutLabel = new JLabel(ImageIcons.LOG_OUT_NO_HOVER.getImageIcon());
 
-        topSeparator = new JSeparator();
-        topSeparator.setForeground(LIGHT_GREY);
+        topSeparator = Components.JSeparator(SwingConstants.HORIZONTAL);
         topSeparator.setPreferredSize(new Dimension(246, 1));
 
-        bottomSeparator = new JSeparator();
-        bottomSeparator.setForeground(LIGHT_GREY);
+        bottomSeparator = Components.JSeparator(SwingConstants.HORIZONTAL);
         bottomSeparator.setPreferredSize(new Dimension(246, 1));
+    }
+
+    private static void setActiveTabIcon() {
+        switch (MainWindowView.currentlyActiveTab.ordinal()) {
+            case 0:
+                accountTabLabel.setIcon(ImageIcons.ACCOUNT_TAB_HOVERED.getImageIcon());
+                break;
+            case 1:
+                studentsTabLabel.setIcon(ImageIcons.STUDENT_TAB_HOVERED.getImageIcon());
+                break;
+            case 2:
+                activitiesTabLabel.setIcon(ImageIcons.ACTIVITIES_TAB_HOVERED.getImageIcon());
+                break;
+            case 3:
+                reportsTabLabel.setIcon(ImageIcons.REPORTS_TAB_HOVERED.getImageIcon());
+                break;
+            default:
+                break;
+        }
     }
 
     private static void createLayout() {
@@ -85,32 +102,77 @@ public class SideOptionsView {
                                 .addGroup(optionsPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addGroup(optionsPanelLayout.createSequentialGroup()
                                                 .addGap(74, 74, 74)
-                                                .addComponent(pawLogoLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(
+                                                        pawLogoLabel,
+                                                        GroupLayout.PREFERRED_SIZE,
+                                                        GroupLayout.DEFAULT_SIZE,
+                                                        GroupLayout.PREFERRED_SIZE))
                                         .addGroup(optionsPanelLayout.createSequentialGroup()
                                                 .addContainerGap()
-                                                .addComponent(accountTabLabel, GroupLayout.PREFERRED_SIZE, 246, GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(
+                                                        accountTabLabel,
+                                                        GroupLayout.PREFERRED_SIZE,
+                                                        246,
+                                                        GroupLayout.PREFERRED_SIZE))
                                         .addGroup(optionsPanelLayout.createSequentialGroup()
                                                 .addContainerGap()
-                                                .addGroup(optionsPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                        .addGroup(optionsPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                                                                .addComponent(topSeparator, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                .addComponent(welcomeLabel, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                                        .addComponent(bottomSeparator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(studentsTabLabel, GroupLayout.PREFERRED_SIZE, 246, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(activitiesTabLabel, GroupLayout.PREFERRED_SIZE, 246, GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(optionsPanelLayout.createParallelGroup(
+                                                        GroupLayout.Alignment.LEADING)
+                                                        .addGroup(optionsPanelLayout.createParallelGroup(
+                                                                GroupLayout.Alignment.TRAILING,
+                                                                        false)
+                                                                .addComponent(
+                                                                        topSeparator,
+                                                                        GroupLayout.Alignment.LEADING,
+                                                                        GroupLayout.DEFAULT_SIZE,
+                                                                        GroupLayout.DEFAULT_SIZE,
+                                                                        Short.MAX_VALUE)
+                                                                .addComponent(
+                                                                        welcomeLabel,
+                                                                        GroupLayout.Alignment.LEADING,
+                                                                        GroupLayout.DEFAULT_SIZE,
+                                                                        GroupLayout.DEFAULT_SIZE,
+                                                                        Short.MAX_VALUE))
+                                                        .addComponent(
+                                                                bottomSeparator,
+                                                                GroupLayout.PREFERRED_SIZE,
+                                                                GroupLayout.DEFAULT_SIZE,
+                                                                GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(
+                                                                studentsTabLabel,
+                                                                GroupLayout.PREFERRED_SIZE,
+                                                                246,
+                                                                GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(
+                                                                activitiesTabLabel,
+                                                                GroupLayout.PREFERRED_SIZE,
+                                                                246,
+                                                                GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(logOutLabel)
-                                                        .addComponent(reportsTabLabel, GroupLayout.PREFERRED_SIZE, 246, GroupLayout.PREFERRED_SIZE))))
+                                                        .addComponent(
+                                                                reportsTabLabel,
+                                                                GroupLayout.PREFERRED_SIZE,
+                                                                246,
+                                                                GroupLayout.PREFERRED_SIZE))))
                                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         optionsPanelLayout.setVerticalGroup(
                 optionsPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(optionsPanelLayout.createSequentialGroup()
                                 .addGap(25, 25, 25)
-                                .addComponent(pawLogoLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(
+                                        pawLogoLabel,
+                                        GroupLayout.PREFERRED_SIZE,
+                                        GroupLayout.DEFAULT_SIZE,
+                                        GroupLayout.PREFERRED_SIZE)
                                 .addGap(32, 32, 32)
                                 .addComponent(welcomeLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(topSeparator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(
+                                        topSeparator,
+                                        GroupLayout.PREFERRED_SIZE,
+                                        GroupLayout.DEFAULT_SIZE,
+                                        GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(accountTabLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
@@ -120,8 +182,15 @@ public class SideOptionsView {
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(reportsTabLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(bottomSeparator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(
+                                        bottomSeparator,
+                                        GroupLayout.PREFERRED_SIZE,
+                                        GroupLayout.DEFAULT_SIZE,
+                                        GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(
+                                        LayoutStyle.ComponentPlacement.RELATED,
+                                        GroupLayout.DEFAULT_SIZE,
+                                        Short.MAX_VALUE)
                                 .addComponent(logOutLabel)
                                 .addGap(63, 63, 63))
         );

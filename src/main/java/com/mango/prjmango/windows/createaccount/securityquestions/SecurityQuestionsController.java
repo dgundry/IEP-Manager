@@ -1,6 +1,6 @@
 package com.mango.prjmango.windows.createaccount.securityquestions;
 
-import com.mango.prjmango.utilities.ImageIcons;
+import com.mango.prjmango.windows.common.ImageIcons;
 import com.mango.prjmango.windows.MainWindowView;
 import com.mango.prjmango.windows.createaccount.basicinfo.BasicInfoController;
 import com.mango.prjmango.windows.createaccount.basicinfo.BasicInfoView;

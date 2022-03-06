@@ -1,4 +1,4 @@
-package com.mango.prjmango.utilities;
+package com.mango.prjmango.windows.common;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;

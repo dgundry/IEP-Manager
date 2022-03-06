@@ -2,12 +2,11 @@ package com.mango.prjmango.windows.account.passwordsecurity;
 
 import com.mango.prjmango.LoggedInUser;
 import com.mango.prjmango.utilities.DatabaseCommands;
-import com.mango.prjmango.utilities.Fonts;
-import com.mango.prjmango.utilities.ImageIcons;
+import com.mango.prjmango.windows.common.Fonts;
+import com.mango.prjmango.windows.common.ImageIcons;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Insets;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.BorderFactory;

@@ -1,6 +1,6 @@
 package com.mango.prjmango.windows.sideoptions;
 
-import com.mango.prjmango.utilities.ImageIcons;
+import com.mango.prjmango.windows.common.ImageIcons;
 import com.mango.prjmango.utilities.Tabs;
 import com.mango.prjmango.windows.dialogs.confirmation.ConfirmationController;
 import com.mango.prjmango.windows.dialogs.confirmation.ConfirmationView;
@@ -13,47 +13,41 @@ import javax.swing.JLabel;
 
 public class SideOptionsController {
 
-    public SideOptionsController(SideOptionsView view) {
-        JLabel accountTabLabel    = view.getAccountTabLabel();
-        JLabel studentsTabLabel   = view.getStudentsTabLabel();
-        JLabel activitiesTabLabel = view.getActivitiesTabLabel();
-        JLabel reportsTabLabel    = view.getReportsTabLabel();
-        JLabel logOutLabel        = view.getLogOutLabel();
+    public SideOptionsController() {
+        JLabel accountTabLabel    = SideOptionsView.getAccountTabLabel();
+        JLabel studentsTabLabel   = SideOptionsView.getStudentsTabLabel();
+        JLabel activitiesTabLabel = SideOptionsView.getActivitiesTabLabel();
+        JLabel reportsTabLabel    = SideOptionsView.getReportsTabLabel();
+        JLabel logOutLabel        = SideOptionsView.getLogOutLabel();
 
         accountTabLabel.addMouseListener(new TabListeners(
                 accountTabLabel,
                 ImageIcons.ACCOUNT_TAB_NO_HOVER.getImageIcon(),
                 ImageIcons.ACCOUNT_TAB_HOVERED.getImageIcon(),
-                Tabs.ACCOUNT,
-                view));
+                Tabs.ACCOUNT));
         studentsTabLabel.addMouseListener(new TabListeners(
                 studentsTabLabel,
                 ImageIcons.STUDENT_TAB_NO_HOVER.getImageIcon(),
                 ImageIcons.STUDENT_TAB_HOVERED.getImageIcon(),
-                Tabs.STUDENTS,
-                view));
+                Tabs.STUDENTS));
         activitiesTabLabel.addMouseListener(new TabListeners(
                 activitiesTabLabel,
                 ImageIcons.ACTIVITIES_TAB_NO_HOVER.getImageIcon(),
                 ImageIcons.ACTIVITIES_TAB_HOVERED.getImageIcon(),
-                Tabs.ACTIVITIES,
-                view));
+                Tabs.ACTIVITIES));
         reportsTabLabel.addMouseListener(new TabListeners(
                 reportsTabLabel,
                 ImageIcons.REPORTS_TAB_NO_HOVER.getImageIcon(),
                 ImageIcons.REPORTS_TAB_HOVERED.getImageIcon(),
-                Tabs.REPORTS,
-                view));
-        logOutLabel.addMouseListener(new LogOutLabelMouseListener(view, logOutLabel));
+                Tabs.REPORTS));
+        logOutLabel.addMouseListener(new LogOutLabelMouseListener(logOutLabel));
     }
 
     private static class LogOutLabelMouseListener implements MouseListener {
 
-        private final SideOptionsView view;
         private final JLabel label;
 
-        public LogOutLabelMouseListener(SideOptionsView view, JLabel label) {
-            this.view = view;
+        public LogOutLabelMouseListener(JLabel label) {
             this.label = label;
         }
 

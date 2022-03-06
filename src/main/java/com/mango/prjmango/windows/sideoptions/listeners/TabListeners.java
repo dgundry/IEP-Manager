@@ -1,13 +1,16 @@
 package com.mango.prjmango.windows.sideoptions.listeners;
 
-import com.mango.prjmango.utilities.ImageIcons;
 import com.mango.prjmango.utilities.Tabs;
 import com.mango.prjmango.windows.MainWindowView;
+import com.mango.prjmango.windows.account.AccountController;
+import com.mango.prjmango.windows.account.AccountView;
+import com.mango.prjmango.windows.activities.ActivitiesController;
+import com.mango.prjmango.windows.activities.ActivitiesView;
+import com.mango.prjmango.windows.common.ImageIcons;
 import com.mango.prjmango.windows.sideoptions.SideOptionsView;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 
 /**
@@ -20,9 +23,7 @@ public class TabListeners implements MouseListener {
     private final ImageIcon hoveredImage;
     private final ImageIcon noHoveredImage;
 
-    private SideOptionsView view;
-
-    private Tabs tab;
+    private final Tabs tab;
 
     /**
      * Constructor. Initializes instance variables that will be used in the {@link MouseListener} methods.
@@ -31,19 +32,12 @@ public class TabListeners implements MouseListener {
      * @param noHoveredImage the {@link ImageIcon} when the user is {@code not} hovering over the tab
      * @param hoveredImage   the {@link ImageIcon} when the user is hovering over the tab
      * @param tab            the {@link Tabs} that is associated with the specified {@link JLabel}
-     * @param view           the {@link SideOptionsView} to access other {@link JComponent}'s
      */
-    public TabListeners(
-            JLabel label,
-            ImageIcon noHoveredImage,
-            ImageIcon hoveredImage,
-            Tabs tab,
-            SideOptionsView view) {
+    public TabListeners(JLabel label, ImageIcon noHoveredImage, ImageIcon hoveredImage, Tabs tab) {
         this.label = label;
         this.noHoveredImage = noHoveredImage;
         this.hoveredImage = hoveredImage;
         this.tab = tab;
-        this.view = view;
     }
 
     /**
@@ -58,6 +52,22 @@ public class TabListeners implements MouseListener {
         MainWindowView.currentlyActiveTab = tab;
         label.setIcon(hoveredImage);
         resetLabelImages();
+
+        if (tab == Tabs.ACCOUNT) {
+            AccountView accountView = new AccountView();
+            new AccountController(accountView);
+
+            MainWindowView.displayActiveTab(accountView);
+        } else if (tab == Tabs.ACTIVITIES) {
+            ActivitiesView activitiesView = new ActivitiesView();
+            new ActivitiesController(activitiesView);
+
+            MainWindowView.displayActiveTab(activitiesView);
+        } else if (tab == Tabs.STUDENTS) {
+            //students
+        } else {
+            //report
+        }
     }
 
     /**
@@ -104,16 +114,16 @@ public class TabListeners implements MouseListener {
         Tabs previouslyActiveTab = MainWindowView.previouslyActiveTab;
         switch (previouslyActiveTab.ordinal()) {
             case 0:
-                view.getAccountTabLabel().setIcon(ImageIcons.ACCOUNT_TAB_NO_HOVER.getImageIcon());
+                SideOptionsView.getAccountTabLabel().setIcon(ImageIcons.ACCOUNT_TAB_NO_HOVER.getImageIcon());
                 break;
             case 1:
-                view.getStudentsTabLabel().setIcon(ImageIcons.STUDENT_TAB_NO_HOVER.getImageIcon());
+                SideOptionsView.getStudentsTabLabel().setIcon(ImageIcons.STUDENT_TAB_NO_HOVER.getImageIcon());
                 break;
             case 2:
-                view.getActivitiesTabLabel().setIcon(ImageIcons.ACTIVITIES_TAB_NO_HOVER.getImageIcon());
+                SideOptionsView.getActivitiesTabLabel().setIcon(ImageIcons.ACTIVITIES_TAB_NO_HOVER.getImageIcon());
                 break;
             case 3:
-                view.getReportsTabLabel().setIcon(ImageIcons.REPORTS_TAB_NO_HOVER.getImageIcon());
+                SideOptionsView.getReportsTabLabel().setIcon(ImageIcons.REPORTS_TAB_NO_HOVER.getImageIcon());
             default:
                 break;
         }

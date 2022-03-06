@@ -1,7 +1,7 @@
 package com.mango.prjmango.windows.account.listeners;
 
-import com.mango.prjmango.utilities.AccountSubTabs;
-import com.mango.prjmango.utilities.ImageIcons;
+import com.mango.prjmango.utilities.subtabs.AccountSubTabs;
+import com.mango.prjmango.windows.common.ImageIcons;
 import com.mango.prjmango.windows.account.AccountView;
 import com.mango.prjmango.windows.account.editprofile.EditProfileController;
 import com.mango.prjmango.windows.account.editprofile.EditProfileView;
@@ -18,7 +18,7 @@ import java.awt.event.MouseListener;
  * Handles the user interaction with the {@link AccountSubTabs} that are displayed on the
  * {@link AccountView}.
  */
-public class AccountSubTabListeners implements MouseListener {
+public class AccountSubTabListener implements MouseListener {
 
     private final JLabel label;
 
@@ -40,7 +40,7 @@ public class AccountSubTabListeners implements MouseListener {
      * @param accountSubTabs the specific {@link AccountSubTabs}
      * @param accountView    the {@link AccountView} so we can access other {@link JComponent}'s
      */
-    public AccountSubTabListeners(
+    public AccountSubTabListener(
             JLabel label,
             ImageIcon noHoveredImage,
             ImageIcon hoveredImage,
@@ -70,11 +70,11 @@ public class AccountSubTabListeners implements MouseListener {
         if (AccountView.currentlyActiveTab == AccountSubTabs.PASSWORD_AND_SECURITY) {
             PasswordSecurityView passwordSecurityView = new PasswordSecurityView();
             new PasswordSecurityController(passwordSecurityView);
-            accountView.setMainPageLayout(passwordSecurityView);
+            accountView.setActiveDisplay(passwordSecurityView);
         } else {
             EditProfileView editProfileView = new EditProfileView();
             new EditProfileController(editProfileView);
-            accountView.setMainPageLayout(editProfileView);
+            accountView.setActiveDisplay(editProfileView);
         }
     }
 

@@ -1,67 +1,64 @@
 package com.mango.prjmango.windows.account;
 
-import com.mango.prjmango.utilities.*;
+import com.mango.prjmango.utilities.subtabs.AccountSubTabs;
 import com.mango.prjmango.windows.account.editprofile.EditProfileController;
 import com.mango.prjmango.windows.account.editprofile.EditProfileView;
-import java.awt.Color;
-import java.awt.Font;
+import com.mango.prjmango.windows.common.Colors;
+import com.mango.prjmango.windows.common.Components;
+import com.mango.prjmango.windows.common.Fonts;
+import com.mango.prjmango.windows.common.ImageIcons;
 import javax.swing.GroupLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.LayoutStyle;
 import javax.swing.SwingConstants;
-
-import com.mango.prjmango.windows.sideoptions.SideOptionsView;
 import lombok.Getter;
 
 public class AccountView extends JLabel {
 
     @Getter private JLabel editProfileLabel;
     @Getter private JLabel passwordSecurityLabel;
-    @Getter private JLabel accountHeaderLabel;
+
+    private JLabel accountHeaderLabel;
 
     private JSeparator horizSeparator;
     private JSeparator vertSeparator;
 
-    private final Color LIGHT_GREY = new Color(216, 216, 216);
-
-    public static AccountSubTabs currentlyActiveTab = AccountSubTabs.EDIT_PROFILE; //change to home
+    public static AccountSubTabs currentlyActiveTab = AccountSubTabs.EDIT_PROFILE;
     public static AccountSubTabs previouslyActiveTab = null;
 
     /**
-     * Constructor. Calls methods to create the {@link JPanel} for the Account tab.
+     * Constructor. Calls methods to create the {@link JLabel} for the Account tab.
      * On the initial load, the {@link EditProfileView} will be visible.
      */
-    public AccountView(SideOptionsView sideOptionsView) {
+    public AccountView() {
         setIcon(ImageIcons.ACTIVE_TAB_BACKGROUND.getImageIcon());
 
         createComponents();
 
-        EditProfileView editProfileView = new EditProfileView(); //Home page instead?
+        EditProfileView editProfileView = new EditProfileView();
         new EditProfileController(editProfileView);
 
-        setMainPageLayout(editProfileView);
+        setActiveDisplay(editProfileView);
     }
 
     private void createComponents() {
         editProfileLabel      = new JLabel(ImageIcons.EDIT_PROFILE_SELECTED.getImageIcon());
         passwordSecurityLabel = new JLabel(ImageIcons.PASSWORD_SECURITY_NO_HOVER.getImageIcon());
 
-        accountHeaderLabel = new JLabel("Account");
-        accountHeaderLabel.setFont(Fonts.SEGOE_UI_24.getFont());
-        accountHeaderLabel.setForeground(LIGHT_GREY);
-        accountHeaderLabel.setHorizontalAlignment(SwingConstants.LEFT);
+        accountHeaderLabel = Components.JLabel("Account", Fonts.SEGOE_UI_24.getFont(), Colors.LIGHT_GREY, SwingConstants.LEFT);
 
-        horizSeparator = new JSeparator();
-        horizSeparator.setForeground(LIGHT_GREY);
-
-        vertSeparator = new JSeparator();
-        vertSeparator.setForeground(LIGHT_GREY);
-        vertSeparator.setOrientation(SwingConstants.VERTICAL);
+        horizSeparator = Components.JSeparator(SwingConstants.HORIZONTAL);
+        vertSeparator  = Components.JSeparator(SwingConstants.VERTICAL);
     }
 
-    public void setMainPageLayout(JPanel displayPanel) {
+    /**
+     * Removes the currently displayed {@link JPanel} and displays the new one.
+     *
+     * @param displayPanel the {@link JPanel} within the {@code account} package to display
+     */
+    public void setActiveDisplay(JPanel displayPanel) {
         removeAll();
 
         GroupLayout accountPanelLayout = new GroupLayout(this);
@@ -72,41 +69,79 @@ public class AccountView extends JLabel {
                         .addGroup(accountPanelLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(accountPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                        .addComponent(accountHeaderLabel)
                                         .addGroup(accountPanelLayout.createSequentialGroup()
-                                                .addComponent(accountHeaderLabel)
-                                                .addGap(0, 0, Short.MAX_VALUE))
-                                        .addGroup(accountPanelLayout.createSequentialGroup()
-                                                .addGroup(accountPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                                        .addComponent(passwordSecurityLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(editProfileLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addGroup(accountPanelLayout.createParallelGroup(
+                                                        GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(
+                                                                passwordSecurityLabel,
+                                                                GroupLayout.PREFERRED_SIZE,
+                                                                GroupLayout.DEFAULT_SIZE,
+                                                                GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(
+                                                                editProfileLabel,
+                                                                GroupLayout.DEFAULT_SIZE,
+                                                                GroupLayout.DEFAULT_SIZE,
+                                                                Short.MAX_VALUE))
                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(vertSeparator, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(displayPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addContainerGap())
+                                                .addComponent(
+                                                        vertSeparator,
+                                                        GroupLayout.PREFERRED_SIZE,
+                                                        18,
+                                                        GroupLayout.PREFERRED_SIZE)
+                                                .addGap(0, 0, 0)
+                                                .addComponent(
+                                                        displayPanel,
+                                                        GroupLayout.PREFERRED_SIZE,
+                                                        GroupLayout.DEFAULT_SIZE,
+                                                        GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         accountPanelLayout.setVerticalGroup(
                 accountPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(accountPanelLayout.createSequentialGroup()
-                                .addComponent(accountHeaderLabel, GroupLayout.PREFERRED_SIZE, 59, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(horizSeparator, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(
+                                        accountHeaderLabel,
+                                        GroupLayout.PREFERRED_SIZE,
+                                        59,
+                                        GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(
+                                        horizSeparator,
+                                        GroupLayout.PREFERRED_SIZE,
+                                        GroupLayout.DEFAULT_SIZE,
+                                        GroupLayout.PREFERRED_SIZE)
                                 .addGroup(accountPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addComponent(vertSeparator)
                                         .addGroup(accountPanelLayout.createSequentialGroup()
                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addGroup(accountPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                .addGroup(accountPanelLayout.createParallelGroup(
+                                                        GroupLayout.Alignment.LEADING)
                                                         .addGroup(accountPanelLayout.createSequentialGroup()
-                                                                .addComponent(editProfileLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(passwordSecurityLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                                .addComponent(
+                                                                        editProfileLabel,
+                                                                        GroupLayout.PREFERRED_SIZE,
+                                                                        GroupLayout.DEFAULT_SIZE,
+                                                                        GroupLayout.PREFERRED_SIZE)
+                                                                .addPreferredGap(
+                                                                        LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                .addComponent(
+                                                                        passwordSecurityLabel,
+                                                                        GroupLayout.PREFERRED_SIZE,
+                                                                        GroupLayout.DEFAULT_SIZE,
+                                                                        GroupLayout.PREFERRED_SIZE)
                                                                 .addContainerGap())
-                                                        .addGroup(GroupLayout.Alignment.TRAILING, accountPanelLayout.createSequentialGroup()
-                                                                .addGap(0, 1, Short.MAX_VALUE)
-                                                                .addComponent(displayPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))))
+                                                        .addGroup(
+                                                                GroupLayout.Alignment.TRAILING,
+                                                                accountPanelLayout.createSequentialGroup()
+                                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                                .addComponent(
+                                                                        displayPanel,
+                                                                        GroupLayout.PREFERRED_SIZE,
+                                                                        GroupLayout.DEFAULT_SIZE,
+                                                                        GroupLayout.PREFERRED_SIZE))))))
         );
 
         updateUI();
     }
-
 }

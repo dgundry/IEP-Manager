@@ -3,7 +3,9 @@ package com.mango.prjmango.windows.login;
 import com.mango.prjmango.LoggedInUser;
 import com.mango.prjmango.Main;
 import com.mango.prjmango.utilities.DatabaseCommands;
-import com.mango.prjmango.utilities.Images;
+import com.mango.prjmango.windows.account.AccountController;
+import com.mango.prjmango.windows.account.AccountView;
+import com.mango.prjmango.windows.common.Images;
 import com.mango.prjmango.windows.MainWindowView;
 import com.mango.prjmango.windows.createaccount.basicinfo.BasicInfoController;
 import com.mango.prjmango.windows.createaccount.basicinfo.BasicInfoView;
@@ -63,7 +65,10 @@ public class LoginController {
                     user.setPassword(enteredPassword);
                     Main.activeUser = user;
 
-                    MainWindowView.setAccountView();
+                    AccountView accountView = new AccountView();
+                    new AccountController(accountView);
+
+                    MainWindowView.displayActiveTab(accountView);
                 } else {
                     view.getInvalidLabel().setText("Invalid email or password. Please try again.");
                 }

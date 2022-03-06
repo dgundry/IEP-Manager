@@ -1,8 +1,7 @@
 package com.mango.prjmango.windows.dialogs.confirmation;
 
-import com.mango.prjmango.utilities.Fonts;
-import com.mango.prjmango.utilities.ImageIcons;
-import com.mango.prjmango.utilities.Images;
+import com.mango.prjmango.windows.common.Fonts;
+import com.mango.prjmango.windows.common.ImageIcons;
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.GroupLayout;

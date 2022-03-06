@@ -2,14 +2,12 @@ package com.mango.prjmango.windows;
 
 import com.mango.prjmango.Main;
 import com.mango.prjmango.utilities.Tabs;
-import com.mango.prjmango.windows.account.AccountController;
-import com.mango.prjmango.windows.account.AccountView;
+import com.mango.prjmango.windows.common.Colors;
 import com.mango.prjmango.windows.dialogs.confirmation.ConfirmationController;
 import com.mango.prjmango.windows.dialogs.confirmation.ConfirmationView;
 import com.mango.prjmango.windows.dialogs.confirmation.Dialogs;
 import com.mango.prjmango.windows.sideoptions.SideOptionsController;
 import com.mango.prjmango.windows.sideoptions.SideOptionsView;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -19,14 +17,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
-
 import lombok.Getter;
 
 public class MainWindowView {
 
     private static final Dimension INITIAL_DIMENSIONS = new Dimension(Main.rect.width, Main.rect.height);
-
-    private static final Color DARK_GREY = new Color(19, 18, 18);
 
     @Getter private static JFrame frame;
 
@@ -34,8 +29,10 @@ public class MainWindowView {
 
     private static LoginViewLayout loginViewLayout = new LoginViewLayout();
 
-    public static Tabs currentlyActiveTab = Tabs.ACCOUNT; //change to home
+    public static Tabs currentlyActiveTab = Tabs.ACCOUNT;
     public static Tabs previouslyActiveTab = null;
+
+    private static SideOptionsView sideOptionsView;
 
     /**
      * Constructor. Instantiates the {@link JFrame} and calls methods to create the layout.
@@ -43,7 +40,7 @@ public class MainWindowView {
     public MainWindowView() {
         frame = new JFrame();
         frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-        frame.setBackground(DARK_GREY);
+        frame.setBackground(Colors.DARK_GREY);
 
         createPanel();
         createLayout();
@@ -63,7 +60,7 @@ public class MainWindowView {
     }
 
     private static void createPanel() {
-        mainPanel.setBackground(DARK_GREY);
+        mainPanel.setBackground(Colors.DARK_GREY);
         mainPanel.setMinimumSize(INITIAL_DIMENSIONS);
         mainPanel.setPreferredSize(INITIAL_DIMENSIONS);
     }
@@ -119,15 +116,14 @@ public class MainWindowView {
         mainPanel.updateUI();
     }
 
-    public static void setAccountView() {
+    public static void displayActiveTab(JLabel activeLabel) {
+        if (sideOptionsView == null) {
+            sideOptionsView = new SideOptionsView();
+            new SideOptionsController();
+        }
+
         mainPanel.removeAll();
         mainPanel.updateUI();
-
-        SideOptionsView sideOptionsView = new SideOptionsView();
-        new SideOptionsController(sideOptionsView);
-
-        AccountView accountView = new AccountView(sideOptionsView);
-        new AccountController(accountView);
 
         GroupLayout mainPanelLayout = new GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -141,7 +137,7 @@ public class MainWindowView {
                                         GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, 0)
                                 .addComponent(
-                                        accountView,
+                                        activeLabel,
                                         GroupLayout.DEFAULT_SIZE,
                                         GroupLayout.DEFAULT_SIZE,
                                         Short.MAX_VALUE)
@@ -149,11 +145,12 @@ public class MainWindowView {
         );
         mainPanelLayout.setVerticalGroup(
                 mainPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addComponent(SideOptionsView.getBackgroundLabel(), GroupLayout.DEFAULT_SIZE, 1072, Short.MAX_VALUE)
+                        .addComponent(
+                                SideOptionsView.getBackgroundLabel(), GroupLayout.DEFAULT_SIZE, 1072, Short.MAX_VALUE)
                         .addGroup(mainPanelLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(
-                                        accountView,
+                                        activeLabel,
                                         GroupLayout.DEFAULT_SIZE,
                                         GroupLayout.DEFAULT_SIZE,
                                         Short.MAX_VALUE)

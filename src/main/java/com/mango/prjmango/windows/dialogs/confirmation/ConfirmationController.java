@@ -2,8 +2,7 @@ package com.mango.prjmango.windows.dialogs.confirmation;
 
 import com.mango.prjmango.Main;
 import com.mango.prjmango.utilities.DatabaseConnection;
-import com.mango.prjmango.utilities.ImageIcons;
-import com.mango.prjmango.utilities.Images;
+import com.mango.prjmango.windows.common.ImageIcons;
 import com.mango.prjmango.windows.MainWindowView;
 import com.mango.prjmango.windows.login.LoginController;
 import com.mango.prjmango.windows.login.LoginView;

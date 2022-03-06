@@ -1,4 +1,4 @@
-package com.mango.prjmango.utilities;
+package com.mango.prjmango.windows.common;
 
 import com.mango.prjmango.Main;
 import java.awt.Image;
@@ -46,22 +46,38 @@ public enum ImageIcons {
     APP_LOG_OUT_NO_HOVER("/images/common/log-out-no-hover.png", 95, 31),
     APP_LOG_OUT_HOVERED("/images/common/log-out-hovered.png", 95, 31),
 
-    EDIT_PROFILE_SAVE_NO_HOVER("/images/edit-profile/account-save-no-hover.png", 117, 47),
-    EDIT_PROFILE_SAVE_HOVERED("/images/edit-profile/account-save-hovered.png", 117, 47),
+    EDIT_PROFILE_SAVE_NO_HOVER("/images/account/edit-profile/account-save-no-hover.png", 117, 47),
+    EDIT_PROFILE_SAVE_HOVERED("/images/account/edit-profile/account-save-hovered.png", 117, 47),
 
-    EDIT_PROFILE_EDIT_ICON_NO_HOVER("/images/edit-profile/edit-icon-no-hover.png", 28, 28),
-    EDIT_PROFILE_EDIT_ICON_HOVERED("/images/edit-profile/edit-icon-hovered.png", 28, 28),
+    EDIT_PROFILE_EDIT_ICON_NO_HOVER("/images/account/edit-profile/edit-icon-no-hover.png", 28, 28),
+    EDIT_PROFILE_EDIT_ICON_HOVERED("/images/account/edit-profile/edit-icon-hovered.png", 28, 28),
 
-    EDIT_PROFILE_NO_HOVER("/images/edit-profile-no-hover.png", 281, 30),
-    EDIT_PROFILE_HOVERED("/images/edit-profile-hovered.png", 281, 30),
-    EDIT_PROFILE_SELECTED("/images/edit-profile-selected.png", 281, 30),
+    EDIT_PROFILE_NO_HOVER("/images/account/edit-profile/edit-profile-no-hover.png", 281, 30),
+    EDIT_PROFILE_HOVERED("/images/account/edit-profile/edit-profile-hovered.png", 281, 30),
+    EDIT_PROFILE_SELECTED("/images/account/edit-profile/edit-profile-selected.png", 281, 30),
 
-    PASSWORD_SECURITY_NO_HOVER("/images/password-security-no-hover.png", 281, 30),
-    PASSWORD_SECURITY_HOVERED("/images/password-security-hovered.png", 281, 30),
-    PASSWORD_SECURITY_SELECTED("/images/password-security-selected.png", 281, 30),
+    PASSWORD_SECURITY_NO_HOVER("/images/account/password-security/password-security-no-hover.png", 281, 30),
+    PASSWORD_SECURITY_HOVERED("/images/account/password-security/password-security-hovered.png", 281, 30),
+    PASSWORD_SECURITY_SELECTED("/images/account/password-security/password-security-selected.png", 281, 30),
 
-    PASSWORD_SECURITY_SAVE_NO_HOVER("/images/password-security/password-security-no-hover.png", 117, 47),
-    PASSWORD_SECURITY_SAVE_HOVERED("/images/password-security/password-security-hovered.png", 117, 47);
+    PASSWORD_SECURITY_SAVE_NO_HOVER("/images/account/password-security/password-security-save-no-hover.png", 117, 47),
+    PASSWORD_SECURITY_SAVE_HOVERED("/images/account/password-security/password-security-save-hovered.png", 117, 47),
+
+    ACTIVITIES_MATH_NO_HOVER("/images/activities/math/math-no-hover.png", 281, 30),
+    ACTIVITIES_MATH_HOVERED("/images/activities/math/math-hovered.png", 281, 30),
+    ACTIVITIES_MATH_SELECTED("/images/activities/math/math-hovered.png", 281, 30),
+
+    ACTIVITIES_FRY_NO_HOVER("/images/activities/fry/fry-sight-words-no-hover.png", 281, 30),
+    ACTIVITIES_FRY_HOVERED("/images/activities/fry/fry-sight-words-hovered.png", 281, 30),
+    ACTIVITIES_FRY_SELECTED("/images/activities/fry/fry-sight-words-hovered.png", 281, 30),
+
+    ACTIVITIES_DOLCH_NO_HOVER("/images/activities/dolch/dolch-sight-words-no-hover.png", 281, 30),
+    ACTIVITIES_DOLCH_HOVERED("/images/activities/dolch/dolch-sight-words-hovered.png", 281, 30),
+    ACTIVITIES_DOLCH_SELECTED("/images/activities/dolch/dolch-sight-words-hovered.png", 281, 30),
+
+    ACTIVITIES_UPLOAD_NO_HOVER("/images/activities/upload/upload-no-hover.png", 281, 30),
+    ACTIVITIES_UPLOAD_HOVERED("/images/activities/upload/upload-hovered.png", 281, 30),
+    ACTIVITIES_UPLOAD_SELECTED("/images/activities/upload/upload-hovered.png", 281, 30);
 
     @Getter
     private ImageIcon imageIcon;

@@ -1,8 +1,8 @@
 package com.mango.prjmango.windows;
 
 import com.mango.prjmango.components.BackgroundPanel;
-import com.mango.prjmango.utilities.ImageIcons;
-import com.mango.prjmango.utilities.Images;
+import com.mango.prjmango.windows.common.ImageIcons;
+import com.mango.prjmango.windows.common.Images;
 import com.mango.prjmango.utilities.Taskbar;
 import javax.swing.GroupLayout;
 import javax.swing.JLabel;

@@ -1,7 +1,7 @@
 package com.mango.prjmango.windows.createaccount.basicinfo;
 
-import com.mango.prjmango.utilities.Fonts;
-import com.mango.prjmango.utilities.ImageIcons;
+import com.mango.prjmango.windows.common.Fonts;
+import com.mango.prjmango.windows.common.ImageIcons;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Insets;

@@ -1,8 +1,8 @@
 package com.mango.prjmango.windows.login;
 
-import com.mango.prjmango.utilities.Fonts;
-import com.mango.prjmango.utilities.ImageIcons;
-import com.mango.prjmango.utilities.Images;
+import com.mango.prjmango.windows.common.Fonts;
+import com.mango.prjmango.windows.common.ImageIcons;
+import com.mango.prjmango.windows.common.Images;
 import java.awt.Color;
 import java.awt.Insets;
 import javax.swing.BorderFactory;

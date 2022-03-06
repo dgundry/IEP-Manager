@@ -4,7 +4,6 @@ import com.mango.prjmango.Main;
 import com.mango.prjmango.MainFrame;
 import com.mango.prjmango.components.BackgroundPanel;
 import com.mango.prjmango.components.FontType;
-import com.mango.prjmango.utilities.Images;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;

@@ -1,6 +1,6 @@
 package com.mango.prjmango.windows.account.passwordsecurity;
 
-import com.mango.prjmango.utilities.ImageIcons;
+import com.mango.prjmango.windows.common.ImageIcons;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JLabel;

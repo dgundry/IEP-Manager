@@ -7,7 +7,7 @@ import com.mango.prjmango.login.LoginPageView;
 import com.mango.prjmango.teacher.TeacherController;
 import com.mango.prjmango.teacher.TeacherView;
 import com.mango.prjmango.utilities.DatabaseConnection;
-import com.mango.prjmango.utilities.Images;
+import com.mango.prjmango.windows.common.Images;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.GridLayout;

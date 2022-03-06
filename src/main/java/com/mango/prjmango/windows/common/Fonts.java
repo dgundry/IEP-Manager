@@ -1,4 +1,4 @@
-package com.mango.prjmango.utilities;
+package com.mango.prjmango.windows.common;
 
 import java.awt.Font;
 import lombok.Getter;

@@ -3,7 +3,7 @@ package com.mango.prjmango.windows.account.editprofile;
 import com.mango.prjmango.LoggedInUser;
 import com.mango.prjmango.utilities.DatabaseCommands;
 import com.mango.prjmango.utilities.EmailValidation;
-import com.mango.prjmango.utilities.ImageIcons;
+import com.mango.prjmango.windows.common.ImageIcons;
 import com.mango.prjmango.windows.sideoptions.SideOptionsView;
 import java.awt.Color;
 import java.awt.Cursor;
