@@ -18,28 +18,24 @@ public class ActivitiesController {
                 ImageIcons.ACTIVITIES_MATH_NO_HOVER.getImageIcon(),
                 ImageIcons.ACTIVITIES_MATH_HOVERED.getImageIcon(),
                 ImageIcons.ACTIVITIES_MATH_SELECTED.getImageIcon(),
-                ActivitiesSubTab.MATH,
-                view));
+                ActivitiesSubTab.MATH));
         fryLabel.addMouseListener(new ActivitiesSubTabListener(
                 fryLabel,
                 ImageIcons.ACTIVITIES_FRY_NO_HOVER.getImageIcon(),
                 ImageIcons.ACTIVITIES_FRY_HOVERED.getImageIcon(),
                 ImageIcons.ACTIVITIES_FRY_SELECTED.getImageIcon(),
-                ActivitiesSubTab.FRY,
-                view));
+                ActivitiesSubTab.FRY));
         dolchLabel.addMouseListener(new ActivitiesSubTabListener(
                 dolchLabel,
                 ImageIcons.ACTIVITIES_DOLCH_NO_HOVER.getImageIcon(),
                 ImageIcons.ACTIVITIES_DOLCH_HOVERED.getImageIcon(),
                 ImageIcons.ACTIVITIES_DOLCH_SELECTED.getImageIcon(),
-                ActivitiesSubTab.DOLCH,
-                view));
+                ActivitiesSubTab.DOLCH));
         uploadAssignmentLabel.addMouseListener(new ActivitiesSubTabListener(
                 uploadAssignmentLabel,
                 ImageIcons.ACTIVITIES_UPLOAD_NO_HOVER.getImageIcon(),
                 ImageIcons.ACTIVITIES_UPLOAD_HOVERED.getImageIcon(),
                 ImageIcons.ACTIVITIES_UPLOAD_SELECTED.getImageIcon(),
-                ActivitiesSubTab.UPLOAD_AN_ASSIGNMENT,
-                view));
+                ActivitiesSubTab.UPLOAD_AN_ASSIGNMENT));
     }
 }

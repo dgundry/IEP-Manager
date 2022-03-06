@@ -1,33 +1,28 @@
-package com.mango.prjmango.windows.createaccount.securityquestions;
+package com.mango.prjmango.windows.activities.fry.assignment;
 
 import com.mango.prjmango.windows.common.ImageIcons;
-import com.mango.prjmango.windows.MainWindowView;
-import com.mango.prjmango.windows.createaccount.basicinfo.BasicInfoController;
-import com.mango.prjmango.windows.createaccount.basicinfo.BasicInfoView;
-import com.mango.prjmango.windows.createaccount.password.PasswordController;
-import com.mango.prjmango.windows.createaccount.password.PasswordView;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JLabel;
 
-public class SecurityQuestionsController {
+public class FryAssignmentController {
 
-    public SecurityQuestionsController(SecurityQuestionsView view) {
-        JLabel nextLabel = view.getNextLabel();
-        JLabel backLabel = view.getBackLabel();
+    public FryAssignmentController(FryAssignmentView view) {
+        JLabel correctLabel = view.getCorrectLabel();
+        JLabel incorrectLabel = view.getIncorrectLabel();
 
-        nextLabel.addMouseListener(new NextLabelMouseListener(view, nextLabel));
-        backLabel.addMouseListener(new BackLabelMouseListener(view, backLabel));
+        correctLabel.addMouseListener(new CorrectLabelMouseListener(view, correctLabel));
+        incorrectLabel.addMouseListener(new IncorrectLabelMouseListener(view, incorrectLabel));
     }
 
-    private static class NextLabelMouseListener implements MouseListener {
+    private static class CorrectLabelMouseListener implements MouseListener {
 
-        private final SecurityQuestionsView view;
+        private final FryAssignmentView view;
         private final JLabel label;
 
-        public NextLabelMouseListener(SecurityQuestionsView view, JLabel label) {
-            this.view = view;
+        public CorrectLabelMouseListener(FryAssignmentView view, JLabel label) {
             this.label = label;
+            this.view  = view;
         }
 
         /**
@@ -38,10 +33,9 @@ public class SecurityQuestionsController {
          */
         @Override
         public void mouseClicked(MouseEvent e) {
-            //password page
-            PasswordView passwordView = new PasswordView();
-            new PasswordController(passwordView);
-            MainWindowView.setActiveDisplay(passwordView);
+            //track how many are incorrect
+            //change to the next word
+            //increase the #/100
         }
 
         /**
@@ -51,7 +45,7 @@ public class SecurityQuestionsController {
          */
         @Override
         public void mouseEntered(MouseEvent e) {
-            label.setIcon(ImageIcons.NEXT_HOVERED.getImageIcon());
+            label.setIcon(ImageIcons.FRY_ASSIGNMENT_CORRECT_HOVERED.getImageIcon());
         }
 
         /**
@@ -61,7 +55,7 @@ public class SecurityQuestionsController {
          */
         @Override
         public void mouseExited(MouseEvent e) {
-            label.setIcon(ImageIcons.NEXT_NO_HOVER.getImageIcon());
+            label.setIcon(ImageIcons.FRY_ASSIGNMENT_CORRECT_NO_HOVER.getImageIcon());
         }
 
         /**
@@ -81,14 +75,14 @@ public class SecurityQuestionsController {
         public void mouseReleased(MouseEvent e) { /* Not needed */ }
     }
 
-    private static class BackLabelMouseListener implements MouseListener {
+    private static class IncorrectLabelMouseListener implements MouseListener {
 
-        private final SecurityQuestionsView view;
+        private final FryAssignmentView view;
         private final JLabel label;
 
-        public BackLabelMouseListener(SecurityQuestionsView view, JLabel label) {
-            this.view = view;
+        public IncorrectLabelMouseListener(FryAssignmentView view, JLabel label) {
             this.label = label;
+            this.view  = view;
         }
 
         /**
@@ -99,10 +93,9 @@ public class SecurityQuestionsController {
          */
         @Override
         public void mouseClicked(MouseEvent e) {
-            //password page
-            BasicInfoView basicInfoView = new BasicInfoView();
-            new BasicInfoController(basicInfoView);
-            MainWindowView.setActiveDisplay(basicInfoView);
+            //track how many are incorrect
+            //change to the next word
+            //increase the #/100
         }
 
         /**
@@ -112,7 +105,7 @@ public class SecurityQuestionsController {
          */
         @Override
         public void mouseEntered(MouseEvent e) {
-            label.setIcon(ImageIcons.BACK_HOVERED.getImageIcon());
+            label.setIcon(ImageIcons.FRY_ASSIGNMENT_INCORRECT_HOVERED.getImageIcon());
         }
 
         /**
@@ -122,7 +115,7 @@ public class SecurityQuestionsController {
          */
         @Override
         public void mouseExited(MouseEvent e) {
-            label.setIcon(ImageIcons.BACK_NO_HOVER.getImageIcon());
+            label.setIcon(ImageIcons.FRY_ASSIGNMENT_INCORRECT_NO_HOVER.getImageIcon());
         }
 
         /**

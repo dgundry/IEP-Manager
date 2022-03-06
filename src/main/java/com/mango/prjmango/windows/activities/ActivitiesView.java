@@ -15,24 +15,24 @@ import javax.swing.LayoutStyle;
 import javax.swing.SwingConstants;
 import lombok.Getter;
 
-public class ActivitiesView extends JLabel {
+public class ActivitiesView {
 
-    private JLabel pickAssignmentHeaderLabel;
+    private static JLabel pickAssignmentHeaderLabel;
 
-    @Getter private JLabel mathLabel;
-    @Getter private JLabel fryLabel;
-    @Getter private JLabel dolchLabel;
-    @Getter private JLabel uploadAssignmentLabel;
+    @Getter private static JLabel activitiesBackgroundLabel;
 
-    private JSeparator horizSeparator;
-    private JSeparator vertSeparator;
+    @Getter private static JLabel mathLabel;
+    @Getter private static JLabel fryLabel;
+    @Getter private static JLabel dolchLabel;
+    @Getter private static JLabel uploadAssignmentLabel;
+
+    private static JSeparator horizSeparator;
+    private static JSeparator vertSeparator;
 
     public static ActivitiesSubTab currentlyActiveTab = ActivitiesSubTab.MATH;
     public static ActivitiesSubTab previouslyActiveTab = null;
 
     public ActivitiesView() {
-        setIcon(ImageIcons.ACTIVE_TAB_BACKGROUND.getImageIcon());
-
         createComponents();
 
         MathView mathView = new MathView();
@@ -42,6 +42,9 @@ public class ActivitiesView extends JLabel {
     }
 
     private void createComponents() {
+        activitiesBackgroundLabel = new JLabel();
+        activitiesBackgroundLabel.setIcon(ImageIcons.ACTIVE_TAB_BACKGROUND.getImageIcon());
+
         pickAssignmentHeaderLabel = Components.JLabel(
                 "Pick an Assignment",
                 Fonts.SEGOE_UI_24.getFont(),
@@ -57,11 +60,11 @@ public class ActivitiesView extends JLabel {
         vertSeparator  = Components.JSeparator(SwingConstants.VERTICAL);
     }
 
-    public void setActiveDisplay(JPanel displayPanel) {
-        removeAll();
+    public static void setActiveDisplay(JPanel displayPanel) {
+        activitiesBackgroundLabel.removeAll();
 
-        GroupLayout pickAnAssignmentPanelLayout = new GroupLayout(this);
-        setLayout(pickAnAssignmentPanelLayout);
+        GroupLayout pickAnAssignmentPanelLayout = new GroupLayout(activitiesBackgroundLabel);
+        activitiesBackgroundLabel.setLayout(pickAnAssignmentPanelLayout);
         pickAnAssignmentPanelLayout.setHorizontalGroup(
                 pickAnAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addComponent(horizSeparator)
@@ -167,6 +170,6 @@ public class ActivitiesView extends JLabel {
                                                                         GroupLayout.PREFERRED_SIZE))))))
         );
 
-        updateUI();
+        activitiesBackgroundLabel.updateUI();
     }
 }

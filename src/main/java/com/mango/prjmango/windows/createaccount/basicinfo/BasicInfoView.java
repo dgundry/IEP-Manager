@@ -19,7 +19,6 @@ import lombok.Getter;
  */
 public class BasicInfoView extends JLabel {
 
-    private final Color DARK_GREY = new Color(19, 18, 18);
     private final Color LIGHT_GREY = new Color(216, 216, 216);
 
     private JLabel pawLogoLabel;

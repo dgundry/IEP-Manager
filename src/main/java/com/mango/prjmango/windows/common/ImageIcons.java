@@ -77,7 +77,16 @@ public enum ImageIcons {
 
     ACTIVITIES_UPLOAD_NO_HOVER("/images/activities/upload/upload-no-hover.png", 281, 30),
     ACTIVITIES_UPLOAD_HOVERED("/images/activities/upload/upload-hovered.png", 281, 30),
-    ACTIVITIES_UPLOAD_SELECTED("/images/activities/upload/upload-hovered.png", 281, 30);
+    ACTIVITIES_UPLOAD_SELECTED("/images/activities/upload/upload-hovered.png", 281, 30),
+
+    FRY_BEGIN_NO_HOVER("/images/activities/fry/begin-no-hover.png", 164, 39),
+    FRY_BEGIN_HOVERED("/images/activities/fry/begin-hovered.png", 164, 39),
+
+    FRY_ASSIGNMENT_CORRECT_NO_HOVER("/images/activities/fry/correct-no-hover.png", 106, 59),
+    FRY_ASSIGNMENT_CORRECT_HOVERED("/images/activities/fry/correct-hovered.png", 106, 59),
+
+    FRY_ASSIGNMENT_INCORRECT_NO_HOVER("/images/activities/fry/incorrect-no-hover.png", 106, 59),
+    FRY_ASSIGNMENT_INCORRECT_HOVERED("/images/activities/fry/incorrect-hovered.png", 106, 59);
 
     @Getter
     private ImageIcon imageIcon;

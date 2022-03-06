@@ -59,10 +59,9 @@ public class TabListeners implements MouseListener {
 
             MainWindowView.displayActiveTab(accountView);
         } else if (tab == Tabs.ACTIVITIES) {
-            ActivitiesView activitiesView = new ActivitiesView();
-            new ActivitiesController(activitiesView);
+            new ActivitiesController(new ActivitiesView());
 
-            MainWindowView.displayActiveTab(activitiesView);
+            MainWindowView.displayActiveTab(ActivitiesView.getActivitiesBackgroundLabel());
         } else if (tab == Tabs.STUDENTS) {
             //students
         } else {

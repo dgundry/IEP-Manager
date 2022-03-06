@@ -56,8 +56,8 @@ public class Main {
 
 		try {
 			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-			//frame = new MainFrame();
-			//frame.setLoginPage();
+//			frame = new MainFrame();
+//			frame.setLoginPage();
 
 			String os = SystemUtils.OS_NAME;
 			if (os.contains("Windows")) {

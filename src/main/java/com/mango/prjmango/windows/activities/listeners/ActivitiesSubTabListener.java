@@ -15,7 +15,6 @@ import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 
 public class ActivitiesSubTabListener implements MouseListener {
@@ -25,8 +24,6 @@ public class ActivitiesSubTabListener implements MouseListener {
     private final ImageIcon hoveredImage;
     private final ImageIcon noHoveredImage;
     private final ImageIcon selectedImage;
-
-    private ActivitiesView activitiesView;
 
     private ActivitiesSubTab activitiesSubTab;
 
@@ -38,21 +35,18 @@ public class ActivitiesSubTabListener implements MouseListener {
      * @param hoveredImage     the {@link ImageIcons} reference when the image is in a hovered state
      * @param selectedImage    the {@link ImageIcons} reference when the image is in a selected state
      * @param activitiesSubTab the specific {@link ActivitiesSubTab}
-     * @param activitiesView   the {@link ActivitiesView} so we can access other {@link JComponent}'s
      */
     public ActivitiesSubTabListener(
             JLabel label,
             ImageIcon noHoveredImage,
             ImageIcon hoveredImage,
             ImageIcon selectedImage,
-            ActivitiesSubTab activitiesSubTab,
-            ActivitiesView activitiesView) {
+            ActivitiesSubTab activitiesSubTab) {
         this.label = label;
         this.noHoveredImage = noHoveredImage;
         this.hoveredImage = hoveredImage;
         this.selectedImage = selectedImage;
         this.activitiesSubTab = activitiesSubTab;
-        this.activitiesView = activitiesView;
     }
 
     /**
@@ -72,22 +66,22 @@ public class ActivitiesSubTabListener implements MouseListener {
             case 0:
                 MathView mathView = new MathView();
                 new MathController(mathView);
-                activitiesView.setActiveDisplay(mathView);
+                ActivitiesView.setActiveDisplay(mathView);
                 break;
             case 1:
                 FryView fryView = new FryView();
                 new FryController(fryView);
-                activitiesView.setActiveDisplay(fryView);
+                ActivitiesView.setActiveDisplay(fryView);
                 break;
             case 2:
                 DolchView dolchView = new DolchView();
                 new DolchController(dolchView);
-                activitiesView.setActiveDisplay(dolchView);
+                ActivitiesView.setActiveDisplay(dolchView);
                 break;
             case 3:
                 UploadView uploadView = new UploadView();
                 new UploadController(uploadView);
-                activitiesView.setActiveDisplay(uploadView);
+                ActivitiesView.setActiveDisplay(uploadView);
                 break;
             default:
                 break;
@@ -142,16 +136,16 @@ public class ActivitiesSubTabListener implements MouseListener {
         ActivitiesSubTab previouslyActiveTab = ActivitiesView.previouslyActiveTab;
         switch (previouslyActiveTab.ordinal()) {
             case 0:
-                activitiesView.getMathLabel().setIcon(ImageIcons.ACTIVITIES_MATH_NO_HOVER.getImageIcon());
+                ActivitiesView.getMathLabel().setIcon(ImageIcons.ACTIVITIES_MATH_NO_HOVER.getImageIcon());
                 break;
             case 1:
-                activitiesView.getFryLabel().setIcon(ImageIcons.ACTIVITIES_FRY_NO_HOVER.getImageIcon());
+                ActivitiesView.getFryLabel().setIcon(ImageIcons.ACTIVITIES_FRY_NO_HOVER.getImageIcon());
                 break;
             case 2:
-                activitiesView.getDolchLabel().setIcon(ImageIcons.ACTIVITIES_DOLCH_NO_HOVER.getImageIcon());
+                ActivitiesView.getDolchLabel().setIcon(ImageIcons.ACTIVITIES_DOLCH_NO_HOVER.getImageIcon());
                 break;
             case 3:
-                activitiesView.getUploadAssignmentLabel().setIcon(ImageIcons.ACTIVITIES_UPLOAD_NO_HOVER.getImageIcon());
+                ActivitiesView.getUploadAssignmentLabel().setIcon(ImageIcons.ACTIVITIES_UPLOAD_NO_HOVER.getImageIcon());
                 break;
         }
     }
