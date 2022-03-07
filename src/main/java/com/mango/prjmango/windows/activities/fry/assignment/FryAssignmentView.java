@@ -15,8 +15,8 @@ import lombok.Getter;
 public class FryAssignmentView extends JPanel {
 
     private JLabel sightWordHeaderLabel;
-    private JLabel wordLabel;
-    private JLabel numberWordLabel;
+    @Getter private JLabel wordLabel;
+    @Getter private JLabel numberWordLabel;
 
     @Getter private JLabel incorrectLabel;
     @Getter private JLabel correctLabel;

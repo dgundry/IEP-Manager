@@ -41,13 +41,24 @@ public class CreateAssignment {
      * @return If on the final Question, returns "Completed", or else returns the next String in the array of questions.
      */
     public String getNextQuestion(){
-        if(currentQuestionIndex < getTotalQuestions()-1){
+        if(hasNextQuestion()){
             return getQuestionIndex(++currentQuestionIndex);
         }else{
             return "Completed";
         }
     }
 
+    /**
+     * Returns true if there is a next question, false if not
+     * @return boolean
+     */
+    public boolean hasNextQuestion(){
+        if(currentQuestionIndex < getTotalQuestions()-1){
+            return true;
+        }else{
+            return false;
+        }
+    }
     /**
      * Gets the current questions in the assignment.
      * @return current String in array of questions.

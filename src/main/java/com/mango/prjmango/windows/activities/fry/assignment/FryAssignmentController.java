@@ -33,9 +33,13 @@ public class FryAssignmentController {
          */
         @Override
         public void mouseClicked(MouseEvent e) {
-            //track how many are incorrect
-            //change to the next word
-            //increase the #/100
+            view.getAssignment().setStudentAnswer(true);
+            if(view.getAssignment().hasNextQuestion()){
+                view.getWordLabel().setText(view.getAssignment().getNextQuestion());
+                view.getNumberWordLabel().setText(view.getAssignment().getCurrentQuestionIndex()+1 + "/" + view.getAssignment().getTotalQuestions());
+            }else{
+                //assignment is done, go to final score screen
+            }
         }
 
         /**
@@ -93,9 +97,13 @@ public class FryAssignmentController {
          */
         @Override
         public void mouseClicked(MouseEvent e) {
-            //track how many are incorrect
-            //change to the next word
-            //increase the #/100
+            view.getAssignment().setStudentAnswer(false);
+            if(view.getAssignment().hasNextQuestion()){
+                view.getWordLabel().setText(view.getAssignment().getNextQuestion());
+                view.getNumberWordLabel().setText(view.getAssignment().getCurrentQuestionIndex()+1 + "/" + view.getAssignment().getTotalQuestions());
+            }else{
+                //assignment is done, go to final score screen
+            }
         }
 
         /**
