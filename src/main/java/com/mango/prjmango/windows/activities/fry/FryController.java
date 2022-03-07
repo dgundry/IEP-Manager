@@ -89,7 +89,7 @@ public class FryController {
 //            SightWords questions = new SightWords();
 //            CreateAssignment assignment = new CreateAssignment(view.getStudentNameField(),view.getAssignmentNameField(),questions.getFryQuestions(view.getQuestionsComboBox()));
 //            AssignmentView assignmentView = new AssignmentView(assignment);
-//            MainFrame.setTeacherView(assignmentView);
+//            view.setActiveDisplay(assignmentView);
 //        }
 //    }
 }

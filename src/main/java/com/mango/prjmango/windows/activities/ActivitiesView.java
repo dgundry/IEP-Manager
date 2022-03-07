@@ -172,4 +172,8 @@ public class ActivitiesView {
 
         activitiesBackgroundLabel.updateUI();
     }
+    public static void clearLayout(){
+        activitiesBackgroundLabel.removeAll();
+        activitiesBackgroundLabel.updateUI();
+    }
 }

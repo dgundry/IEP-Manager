@@ -4,6 +4,8 @@ import com.mango.prjmango.Main;
 import com.mango.prjmango.utilities.DatabaseConnection;
 import com.mango.prjmango.utilities.Encryption;
 import com.mango.prjmango.windows.activities.fry.assignment.FryAssignmentView;
+import com.mango.prjmango.windows.activities.math.MathController;
+import com.mango.prjmango.windows.activities.math.MathView;
 import com.mango.prjmango.windows.common.ImageIcons;
 
 import javax.swing.*;
@@ -48,6 +50,9 @@ public class FinishAssignmentController {
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
+            MathView mathView = new MathView();
+            new MathController(mathView);
+            ActivitiesView.setActiveDisplay(mathView);
         }
 
         /**
