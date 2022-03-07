@@ -36,15 +36,18 @@ public class FinishAssignmentController {
          */
         @Override
         public void mouseClicked(MouseEvent e) {
-//            String sql = "INSERT INTO assignment(teacher_id, student_id,title,earned_points,total_points,date,comment) VALUES(?,?,?,?,?,datetime('now','localtime'),?);";
-//            try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
-//                statement.setInt(1, Main.activeUser.getTeacherId());
-//                statement.setInt(2, i founquestion_id);
-//                statement.setString(3, Encryption.encryptPassword(answer));
-//                statement.executeUpdate();
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
+            String sql = "INSERT INTO assignment(teacher_id, student_id,title,earned_points,total_points,date,comment) VALUES(?,?,?,?,?,datetime('now','localtime'),?);";
+            try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
+                statement.setInt(1, Main.activeUser.getTeacherId());
+                statement.setInt(2, view.getAssignment().getStudent().getStudentID());
+                statement.setString(3, view.getAssignment().getAssignmentName());
+                statement.setInt(4, view.getAssignment().getCorrectAnswers());
+                statement.setInt(5, view.getAssignment().getTotalQuestions());
+                statement.setString(6, view.getCommentsTextArea().getText());
+                statement.executeUpdate();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
 
         /**

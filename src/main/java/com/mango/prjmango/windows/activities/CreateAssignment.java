@@ -1,11 +1,11 @@
 package com.mango.prjmango.windows.activities;
 
+import com.mango.prjmango.student.Student;
 import lombok.Getter;
 import lombok.Setter;
 
 public class CreateAssignment {
-    public @Getter @Setter String studentName;
-    public @Getter int studentID;
+    public @Getter Student student;
     public @Getter @Setter String assignmentName;
     public @Getter String date;
     public @Getter int currentQuestionIndex;
@@ -14,9 +14,8 @@ public class CreateAssignment {
     public @Getter int correctAnswers = 0;
     public @Getter int incorrectAnswers = 0;
 
-    public CreateAssignment(String studentName,int studentID, String assignmentName,String[] questions){
-        this.studentName = studentName;
-        this.studentID = studentID;
+    public CreateAssignment(Student student, String assignmentName, String[] questions){
+        this.student = student;
         this.assignmentName = assignmentName;
         this.date = java.time.LocalDate.now().toString();
         this.currentQuestionIndex = 0;

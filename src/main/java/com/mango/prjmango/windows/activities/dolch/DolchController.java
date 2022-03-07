@@ -1,6 +1,7 @@
 package com.mango.prjmango.windows.activities.dolch;
 
 import com.mango.prjmango.Main;
+import com.mango.prjmango.student.Student;
 import com.mango.prjmango.windows.activities.ActivitiesView;
 import com.mango.prjmango.windows.activities.CreateAssignment;
 import com.mango.prjmango.windows.activities.FinishAssignmentView;
@@ -43,10 +44,9 @@ public class DolchController {
         @Override
         public void mouseClicked(MouseEvent e) {
             int selectedIndex = view.getDolchSightWordComboBox().getSelectedIndex();
-            CreateAssignment assignment = new CreateAssignment(view.getStudentsNameComboBox().getSelectedItem().toString(),
-                    1,
-                    view.getDolchSightWordComboBox().getSelectedItem().toString(),
-                    Main.SIGTHT_WORDS.getDolchQuestions(selectedIndex));
+            CreateAssignment assignment = new CreateAssignment((Student) view.getStudentsNameComboBox().getSelectedItem(),
+                                                                view.getDolchSightWordComboBox().getSelectedItem().toString(),
+                                                                Main.SIGTHT_WORDS.getDolchQuestions(selectedIndex));
             DolchAssignmentView view = new DolchAssignmentView(DolchWords.values()[selectedIndex].toString(), assignment);
             new DolchAssignmentController(view);
             ActivitiesView.setActiveDisplay(view);

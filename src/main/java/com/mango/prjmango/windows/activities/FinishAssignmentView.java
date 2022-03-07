@@ -26,10 +26,10 @@ public class FinishAssignmentView extends JPanel {
     @Getter private JLabel changePercentageLabel;
 
     @Getter private JLabel submitLabel;
-    private JTextArea commentsTextArea;
+    @Getter private JTextArea commentsTextArea;
     private JScrollPane jScrollPane1;
 
-    private CreateAssignment assignment;
+    @Getter private CreateAssignment assignment;
     public FinishAssignmentView(CreateAssignment assignment){
         this.assignment = assignment;
 
@@ -42,7 +42,7 @@ public class FinishAssignmentView extends JPanel {
     private void createComponents(){
         finishAssignmentHeaderLabel = createLabel("Finish Assignment", 24);
         studentLabel = createLabel("Student:", 18);
-        changeStudentLabel = createLabel(assignment.getStudentName(),18);
+        changeStudentLabel = createLabel(assignment.getStudent().toString(),18);
         assignmentLabel = createLabel("Assignment:", 18);
         changeAssignmentLabel = createLabel(assignment.getAssignmentName(),18);
         dateLabel = createLabel("Date:", 18);

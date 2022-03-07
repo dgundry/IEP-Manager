@@ -1,6 +1,7 @@
 package com.mango.prjmango.windows.activities.fry;
 
 import com.mango.prjmango.Main;
+import com.mango.prjmango.student.Student;
 import com.mango.prjmango.windows.activities.ActivitiesView;
 import com.mango.prjmango.windows.activities.CreateAssignment;
 import com.mango.prjmango.windows.activities.fry.assignment.FryAssignmentController;
@@ -37,8 +38,7 @@ public class FryController {
         @Override
         public void mouseClicked(MouseEvent e) {
             int selectedIndex = view.getFrySightWordComboBox().getSelectedIndex();
-            CreateAssignment assignment = new CreateAssignment(view.getStudentsNameComboBox().getSelectedItem().toString(),
-                                                                1,
+            CreateAssignment assignment = new CreateAssignment((Student) view.getStudentsNameComboBox().getSelectedItem(),
                                                                 view.getFrySightWordComboBox().getSelectedItem().toString(),
                                                                 Main.SIGTHT_WORDS.getFryQuestions(selectedIndex));
             FryAssignmentView view = new FryAssignmentView(FryWords.values()[selectedIndex].toString(), assignment);
