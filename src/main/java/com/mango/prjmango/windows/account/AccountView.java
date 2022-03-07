@@ -47,7 +47,11 @@ public class AccountView extends JLabel {
         editProfileLabel      = new JLabel(ImageIcons.EDIT_PROFILE_SELECTED.getImageIcon());
         passwordSecurityLabel = new JLabel(ImageIcons.PASSWORD_SECURITY_NO_HOVER.getImageIcon());
 
-        accountHeaderLabel = Components.JLabel("Account", Fonts.SEGOE_UI_24.getFont(), Colors.LIGHT_GREY, SwingConstants.LEFT);
+        accountHeaderLabel = Components.JLabel(
+                "Account",
+                Fonts.SEGOE_UI_24.getFont(),
+                Colors.LIGHT_GREY,
+                SwingConstants.LEFT);
 
         horizSeparator = Components.JSeparator(SwingConstants.HORIZONTAL);
         vertSeparator  = Components.JSeparator(SwingConstants.VERTICAL);

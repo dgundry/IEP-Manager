@@ -4,8 +4,6 @@ import com.mango.prjmango.components.BackgroundPanel;
 import com.mango.prjmango.components.RoundedPanel;
 import com.mango.prjmango.login.LoginPageController;
 import com.mango.prjmango.login.LoginPageView;
-import com.mango.prjmango.teacher.TeacherController;
-import com.mango.prjmango.teacher.TeacherView;
 import com.mango.prjmango.utilities.DatabaseConnection;
 import com.mango.prjmango.windows.common.Images;
 import java.awt.Dimension;
@@ -59,39 +57,10 @@ public class MainFrame {
         mainPanel.updateUI();
     }
 
-    public static void setTeacherView() {
-        mainPanel.removeAll();
-        createTeacherView();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-        mainPanel.updateUI();
-    }
-
-    public static void setTeacherView(JPanel panel){
-        mainPanel.removeAll();
-        createTeacherView(panel);
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-        mainPanel.updateUI();
-    }
-
     private static LoginPageView createLoginViewController(){
         LoginPageView loginPageView = new LoginPageView();
         new LoginPageController(loginPageView);
         return loginPageView;
-    }
-
-    private static TeacherView createTeacherViewController(JPanel panel){
-        TeacherView teacherView = new TeacherView(panel);
-        new TeacherController(teacherView);
-        return teacherView;
-    }
-
-    private static TeacherView createTeacherViewController(){
-        TeacherView teacherView = new TeacherView();
-        new TeacherController(teacherView);
-        return teacherView;
     }
 
     private static void createLoginView(){
@@ -101,23 +70,6 @@ public class MainFrame {
         backgroundLoginPanel.setBounds(0, 0,(Main.SCREEN_WIDTH),(Main.SCREEN_HEIGHT));
         mainPanel.add(backgroundLoginPanel);
         backgroundLoginPanel.add(createLoginViewController());
-    }
-
-    private static void createTeacherView(JPanel panel){
-        mainPanel.add(createTeacherViewController(panel));
-    }
-
-    private static void createTeacherView(){
-        backgroundTeacherPanel = new BackgroundPanel();
-        //backgroundTeacherPanel.setBackground(BACKGROUND_IMAGE);
-        backgroundTeacherPanel.setLayout(null);
-        backgroundTeacherPanel.setBounds(
-                0,
-                0,
-                Main.SCREEN_WIDTH,
-                Main.SCREEN_HEIGHT);
-        mainPanel.add(backgroundTeacherPanel);
-        backgroundTeacherPanel.add(createTeacherViewController());
     }
 
     public static void setActivePanel(RoundedPanel panel){

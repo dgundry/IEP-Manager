@@ -6,15 +6,11 @@ import com.mango.prjmango.MainFrame;
 import com.mango.prjmango.components.listeners.ButtonMouseListener;
 import com.mango.prjmango.createaccount.basicinfo.BasicInfoController;
 import com.mango.prjmango.createaccount.basicinfo.BasicInfoView;
-import com.mango.prjmango.editaccount.EditAccountController;
-import com.mango.prjmango.editaccount.EditAccountView;
 import com.mango.prjmango.forgotpassword.email.EmailController;
 import com.mango.prjmango.forgotpassword.email.EmailView;
 import com.mango.prjmango.login.listeners.EmailTextFieldListener;
 import com.mango.prjmango.login.listeners.PasswordTextFieldListener;
 import com.mango.prjmango.student.Students;
-import com.mango.prjmango.teacher.TeacherController;
-import com.mango.prjmango.teacher.TeacherView;
 import com.mango.prjmango.utilities.DatabaseCommands;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -87,12 +83,9 @@ public class LoginPageController {
                     Main.activeUser = user;
                     Main.students = new Students(teacherID);
 
-                    TeacherView teacherView = new TeacherView();
-                    new TeacherController(teacherView);
-
-                    EditAccountView edit = new EditAccountView();
-                    new EditAccountController(edit);
-                    MainFrame.setTeacherView(edit);
+//                    EditAccountView edit = new EditAccountView();
+//                    new EditAccountController(edit);
+//                    MainFrame.setTeacherView(edit);
 //                    TeacherView teacherView = new TeacherView();
 //                    new TeacherController(teacherView);
 

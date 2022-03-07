@@ -1,13 +1,11 @@
 package com.mango.prjmango.student;
 
 import com.mango.prjmango.utilities.DatabaseConnection;
-import lombok.Getter;
-
-import java.sql.Array;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import lombok.Getter;
 
 public class Students {
     @Getter ArrayList<Student> students = new ArrayList<Student>();

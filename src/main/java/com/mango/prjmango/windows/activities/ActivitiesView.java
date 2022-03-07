@@ -41,7 +41,7 @@ public class ActivitiesView {
         setActiveDisplay(mathView);
     }
 
-    private void createComponents() {
+    private static void createComponents() {
         activitiesBackgroundLabel = new JLabel();
         activitiesBackgroundLabel.setIcon(ImageIcons.ACTIVE_TAB_BACKGROUND.getImageIcon());
 
