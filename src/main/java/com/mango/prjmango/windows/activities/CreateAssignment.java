@@ -10,6 +10,8 @@ public class CreateAssignment {
     public @Getter int currentQuestionIndex;
     public @Getter String[] questions;
     public @Getter boolean[] studentAnswers;
+    public @Getter int correctAnswers = 0;
+    public @Getter int incorrectAnswers = 0;
 
     public CreateAssignment(String studentName, String assignmentName,String[] questions){
         this.studentName = studentName;
@@ -17,7 +19,6 @@ public class CreateAssignment {
         this.date = java.time.LocalDate.now().toString();
         this.currentQuestionIndex = 0;
         this.questions= questions;
-        this.studentAnswers = new boolean[questions.length];
     }
 
 
@@ -71,10 +72,14 @@ public class CreateAssignment {
     }
 
     /**
-     * Sets Student's answer to the same index of the question in the questions array
+     * Adds an increment to either Students correctAnswers or incorrectAnswers
      * @param answer given answer from Sight Word Assignment Controller
      */
     public void setStudentAnswer(boolean answer){
-        studentAnswers[currentQuestionIndex] = answer;
+        if(answer){
+            correctAnswers++;
+        }else{
+            incorrectAnswers++;
+        }
     }
 }

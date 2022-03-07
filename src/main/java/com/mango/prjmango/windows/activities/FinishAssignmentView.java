@@ -42,15 +42,15 @@ public class FinishAssignmentView extends JPanel {
     private void createComponents(){
         finishAssignmentHeaderLabel = createLabel("Finish Assignment", 24);
         studentLabel = createLabel("Student:", 18);
-        changeStudentLabel = createLabel("change this label",18);
+        changeStudentLabel = createLabel(assignment.getStudentName(),18);
         assignmentLabel = createLabel("Assignment:", 18);
-        changeAssignmentLabel = createLabel("change this label",18);
+        changeAssignmentLabel = createLabel(assignment.getAssignmentName(),18);
         dateLabel = createLabel("Date:", 18);
-        changeDateLabel = createLabel("change this label",18);
+        changeDateLabel = createLabel(java.time.LocalDate.now()+"",18);
         scoreLabel = createLabel("Score:", 18);
-        changeScoreLabel = createLabel("##/##",18);
+        changeScoreLabel = createLabel(assignment.getCorrectAnswers()+"/"+assignment.getTotalQuestions(),18);
         percentageLabel = createLabel("Percentage:", 18);
-        changePercentageLabel = createLabel("##%",18);
+        changePercentageLabel = createLabel(((double)assignment.getCorrectAnswers() / (double)assignment.getTotalQuestions())*100 + "%",18);
         commentsLabel = createLabel("Comments:", 18);
 //        submitLabel = createLabel("Submit", 18);
         submitLabel = new JLabel(ImageIcons.EDIT_PROFILE_SAVE_NO_HOVER.getImageIcon());
