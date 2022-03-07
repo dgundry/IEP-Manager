@@ -52,13 +52,13 @@ public enum ImageIcons {
     EDIT_PROFILE_EDIT_ICON_NO_HOVER("/images/account/edit-profile/edit-icon-no-hover.png", 28, 28),
     EDIT_PROFILE_EDIT_ICON_HOVERED("/images/account/edit-profile/edit-icon-hovered.png", 28, 28),
 
-    EDIT_PROFILE_NO_HOVER("/images/account/edit-profile/edit-profile-no-hover.png", 281, 30),
-    EDIT_PROFILE_HOVERED("/images/account/edit-profile/edit-profile-hovered.png", 281, 30),
-    EDIT_PROFILE_SELECTED("/images/account/edit-profile/edit-profile-selected.png", 281, 30),
+    EDIT_PROFILE_NO_HOVER("/images/account/edit-profile/edit-profile-no-hover.png", 290, 30),
+    EDIT_PROFILE_HOVERED("/images/account/edit-profile/edit-profile-hovered.png", 290, 30),
+    EDIT_PROFILE_SELECTED("/images/account/edit-profile/edit-profile-selected.png", 290, 30),
 
-    PASSWORD_SECURITY_NO_HOVER("/images/account/password-security/password-security-no-hover.png", 281, 30),
-    PASSWORD_SECURITY_HOVERED("/images/account/password-security/password-security-hovered.png", 281, 30),
-    PASSWORD_SECURITY_SELECTED("/images/account/password-security/password-security-selected.png", 281, 30),
+    PASSWORD_SECURITY_NO_HOVER("/images/account/password-security/password-security-no-hover.png", 290, 30),
+    PASSWORD_SECURITY_HOVERED("/images/account/password-security/password-security-hovered.png", 290, 30),
+    PASSWORD_SECURITY_SELECTED("/images/account/password-security/password-security-selected.png", 290, 30),
 
     PASSWORD_SECURITY_SAVE_NO_HOVER("/images/account/password-security/password-security-save-no-hover.png", 117, 47),
     PASSWORD_SECURITY_SAVE_HOVERED("/images/account/password-security/password-security-save-hovered.png", 117, 47),
