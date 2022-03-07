@@ -8,10 +8,10 @@ import javax.swing.JLabel;
 public class ActivitiesController {
 
     public ActivitiesController(ActivitiesView view) {
-        JLabel mathLabel             = view.getMathLabel();
-        JLabel fryLabel              = view.getFryLabel();
-        JLabel dolchLabel            = view.getDolchLabel();
-        JLabel uploadAssignmentLabel = view.getUploadAssignmentLabel();
+        JLabel mathLabel             = ActivitiesView.getMathLabel();
+        JLabel fryLabel              = ActivitiesView.getFryLabel();
+        JLabel dolchLabel            = ActivitiesView.getDolchLabel();
+        JLabel uploadAssignmentLabel = ActivitiesView.getUploadAssignmentLabel();
 
         mathLabel.addMouseListener(new ActivitiesSubTabListener(
                 mathLabel,

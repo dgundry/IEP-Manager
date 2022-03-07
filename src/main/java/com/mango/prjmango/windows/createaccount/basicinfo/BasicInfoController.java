@@ -79,31 +79,19 @@ public class BasicInfoController {
             user.setLastName(view.getLastNameTextField().getText().trim());
             user.setEmail(view.getEmailTextField().getText().trim());
 
+            view.getFirstNameInvalidLabel().setText(" ");
+            view.getLastNameInvalidLabel().setText(" ");
+            view.getEmailInvalidLabel().setText(" ");
+
             Register register = new Register();
-            if (!user.getEmail().contains("@")) {
-//                JOptionPane.showMessageDialog(
-//                        MainFrame.getFrame(),
-//                        "Enter a Valid Email.",
-//                        ERROR_MESSAGE_TITLE,
-//                        JOptionPane.ERROR_MESSAGE);
-            } else if (register.isEmailTaken(user.getEmail())) {
-//                JOptionPane.showMessageDialog(
-//                        MainFrame.getFrame(),
-//                        "Email is Already Taken.",
-//                        ERROR_MESSAGE_TITLE,
-//                        JOptionPane.ERROR_MESSAGE);
-            } else if (user.getFirstName() != null && !(user.getFirstName().length() >= 1 && user.getFirstName().length() <= 20)) {
-//                JOptionPane.showMessageDialog(
-//                        MainFrame.getFrame(),
-//                        "Enter a Valid First Name.",
-//                        ERROR_MESSAGE_TITLE,
-//                        JOptionPane.ERROR_MESSAGE);
+            if (user.getFirstName() != null && !(user.getFirstName().length() >= 1 && user.getFirstName().length() <= 20)) {
+                view.getFirstNameInvalidLabel().setText("Invalid first name! Please try again.");
             } else if (user.getLastName() != null && !(user.getLastName().length() >= 1 && user.getLastName().length() <= 20)) {
-//                JOptionPane.showMessageDialog(
-//                        MainFrame.getFrame(),
-//                        "Enter a Valid Last Name.",
-//                        ERROR_MESSAGE_TITLE,
-//                        JOptionPane.ERROR_MESSAGE);
+                view.getLastNameInvalidLabel().setText("Invalid last name! Please try again.");
+            } else if (!user.getEmail().contains("@")) {
+                view.getEmailInvalidLabel().setText("Invalid email! Please try again.");
+            } else if (register.isEmailTaken(user.getEmail())) {
+                view.getEmailInvalidLabel().setText("Email is already taken! Please try again.");
             } else {
                 SecurityQuestionsView securityQuestionsView = new SecurityQuestionsView();
 //                securityQuestionsView.getSecurityQuestionOne().setSelectedIndex(user.getSecurityQ1());

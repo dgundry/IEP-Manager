@@ -7,6 +7,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JSeparator;
+import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 public class Components {
@@ -17,6 +18,23 @@ public class Components {
         label.setForeground(foregroundColor);
         label.setHorizontalAlignment(alignment);
         return label;
+    }
+
+    public static JTextField JTextField(String text, Font font, Color foregroundColor) {
+        JTextField textField = new JTextField();
+        textField.setOpaque(false);
+        textField.setFont(font);
+        textField.setForeground(foregroundColor);
+        textField.setMargin(new Insets(0, 5, 0, 5));
+        textField.setBorder(BorderFactory.createTitledBorder(
+                null,
+                text,
+                TitledBorder.DEFAULT_JUSTIFICATION,
+                TitledBorder.DEFAULT_POSITION,
+                Fonts.SEGOE_UI_14.getFont(),
+                Colors.LIGHT_GREY));
+        textField.setCaretColor(Colors.LIGHT_GREY);
+        return textField;
     }
 
     public static JPasswordField JPasswordField(String headerText) {
