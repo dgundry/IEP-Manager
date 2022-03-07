@@ -1,6 +1,7 @@
 package com.mango.prjmango.windows.activities;
 
 import com.mango.prjmango.windows.common.Fonts;
+import com.mango.prjmango.windows.common.ImageIcons;
 import lombok.Getter;
 
 import javax.swing.*;
@@ -24,12 +25,8 @@ public class FinishAssignmentView extends JPanel {
     @Getter private JLabel changeScoreLabel;
     @Getter private JLabel changePercentageLabel;
 
-    @Getter private JLabel editDataLabel;
     private JLabel submitLabel;
-    @Getter private JLabel saveLabel;
-
     private JTextArea commentsTextArea;
-
     private JScrollPane jScrollPane1;
 
     private CreateAssignment assignment;
@@ -55,18 +52,15 @@ public class FinishAssignmentView extends JPanel {
         percentageLabel = createLabel("Percentage:", 18);
         changePercentageLabel = createLabel("##%",18);
         commentsLabel = createLabel("Comments:", 18);
+//        submitLabel = createLabel("Submit", 18);
+        submitLabel = new JLabel(ImageIcons.EDIT_PROFILE_SAVE_NO_HOVER.getImageIcon());
 
-        commentsTextArea = createTextArea("Comment");
+        commentsTextArea = createTextArea();
         commentsTextArea.setColumns(20);
         commentsTextArea.setRows(5);
+        jScrollPane1 = new JScrollPane();
         jScrollPane1.setViewportView(commentsTextArea);
 
-        editDataLabel = createLabel("Edit",18);
-        editDataLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        editDataLabel.setForeground(new java.awt.Color(216, 216, 216));
-        editDataLabel.setMaximumSize(new java.awt.Dimension(117, 43));
-        editDataLabel.setMinimumSize(new java.awt.Dimension(117, 43));
-        editDataLabel.setPreferredSize(new java.awt.Dimension(117, 43));
 
 
     }
@@ -80,8 +74,6 @@ public class FinishAssignmentView extends JPanel {
                                 .addGap(38, 38, 38)
                                 .addGroup(sightWordAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                                         .addGroup(sightWordAssignmentPanelLayout.createSequentialGroup()
-                                                .addComponent(editDataLabel, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
-                                                .addGap(389, 389, 389)
                                                 .addComponent(submitLabel, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE))
                                         .addGroup(sightWordAssignmentPanelLayout.createSequentialGroup()
                                                 .addGroup(sightWordAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -109,9 +101,7 @@ public class FinishAssignmentView extends JPanel {
                                         .addComponent(jScrollPane1, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 607, GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 47, Short.MAX_VALUE))
                         .addGroup(GroupLayout.Alignment.TRAILING, sightWordAssignmentPanelLayout.createSequentialGroup()
-                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(saveLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addGap(286, 286, 286))
+                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(sightWordAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                 .addGroup(sightWordAssignmentPanelLayout.createSequentialGroup()
                                         .addGap(20, 20, 20)
@@ -146,10 +136,7 @@ public class FinishAssignmentView extends JPanel {
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 238, GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(saveLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addGap(9, 9, 9)
                                 .addGroup(sightWordAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addComponent(editDataLabel, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)
                                         .addComponent(submitLabel, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap(1745, Short.MAX_VALUE))
                         .addGroup(sightWordAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -160,8 +147,8 @@ public class FinishAssignmentView extends JPanel {
         );
     }
 
-    private JTextArea createTextArea(String text) {
-        JTextArea textArea = new JTextArea(text);
+    private JTextArea createTextArea() {
+        JTextArea textArea = new JTextArea();
         textArea.setMargin(new Insets(0, 5, 0, 5));
         textArea.setBackground(DARK_GREY);
         textArea.setForeground(LIGHT_GREY);
