@@ -3,6 +3,7 @@ package com.mango.prjmango.windows.activities.dolch;
 import com.mango.prjmango.Main;
 import com.mango.prjmango.windows.activities.ActivitiesView;
 import com.mango.prjmango.windows.activities.CreateAssignment;
+import com.mango.prjmango.windows.activities.FinishAssignmentView;
 import com.mango.prjmango.windows.activities.dolch.assignment.DolchAssignmentController;
 import com.mango.prjmango.windows.activities.dolch.assignment.DolchAssignmentView;
 import com.mango.prjmango.windows.activities.fry.FryController;
@@ -22,7 +23,6 @@ public class DolchController {
         JLabel beginLabel = view.getBeginLabel();
 
         beginLabel.addMouseListener(new DolchController.BeginLabelMouseListener(view, beginLabel));
-
     }
     private static class BeginLabelMouseListener implements MouseListener {
 

@@ -10,6 +10,7 @@ public class CreateAssignment {
     public @Getter int currentQuestionIndex;
     public @Getter String[] questions;
     public @Getter boolean[] studentAnswers;
+
     public CreateAssignment(String studentName, String assignmentName,String[] questions){
         this.studentName = studentName;
         this.assignmentName = assignmentName;
@@ -18,6 +19,7 @@ public class CreateAssignment {
         this.questions= questions;
         this.studentAnswers = new boolean[questions.length];
     }
+
 
     /**
      * Gets the total # of questions in the assignment
@@ -57,6 +59,7 @@ public class CreateAssignment {
             return true;
         }else{
             return false;
+
         }
     }
     /**

@@ -31,9 +31,6 @@ public class UploadView extends JPanel {
     @Getter private JComboBox<String> studentNameDropdown;
 
 
-
-
-
     public UploadView() {
         setOpaque(false);
 
