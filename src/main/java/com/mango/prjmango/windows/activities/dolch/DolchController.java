@@ -44,6 +44,7 @@ public class DolchController {
         public void mouseClicked(MouseEvent e) {
             int selectedIndex = view.getDolchSightWordComboBox().getSelectedIndex();
             CreateAssignment assignment = new CreateAssignment(view.getStudentsNameComboBox().getSelectedItem().toString(),
+                    1,
                     view.getDolchSightWordComboBox().getSelectedItem().toString(),
                     Main.SIGTHT_WORDS.getDolchQuestions(selectedIndex));
             DolchAssignmentView view = new DolchAssignmentView(DolchWords.values()[selectedIndex].toString(), assignment);

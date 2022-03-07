@@ -38,6 +38,7 @@ public class FryController {
         public void mouseClicked(MouseEvent e) {
             int selectedIndex = view.getFrySightWordComboBox().getSelectedIndex();
             CreateAssignment assignment = new CreateAssignment(view.getStudentsNameComboBox().getSelectedItem().toString(),
+                                                                1,
                                                                 view.getFrySightWordComboBox().getSelectedItem().toString(),
                                                                 Main.SIGTHT_WORDS.getFryQuestions(selectedIndex));
             FryAssignmentView view = new FryAssignmentView(FryWords.values()[selectedIndex].toString(), assignment);

@@ -5,6 +5,7 @@ import lombok.Setter;
 
 public class CreateAssignment {
     public @Getter @Setter String studentName;
+    public @Getter int studentID;
     public @Getter @Setter String assignmentName;
     public @Getter String date;
     public @Getter int currentQuestionIndex;
@@ -13,8 +14,9 @@ public class CreateAssignment {
     public @Getter int correctAnswers = 0;
     public @Getter int incorrectAnswers = 0;
 
-    public CreateAssignment(String studentName, String assignmentName,String[] questions){
+    public CreateAssignment(String studentName,int studentID, String assignmentName,String[] questions){
         this.studentName = studentName;
+        this.studentID = studentID;
         this.assignmentName = assignmentName;
         this.date = java.time.LocalDate.now().toString();
         this.currentQuestionIndex = 0;

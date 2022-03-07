@@ -1,33 +1,34 @@
 package com.mango.prjmango.student;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class Student {
 
-    private String firstName = "";
-    private String lastName = "";
-    private String grade = "";
-    private String bio = "";
+    @Getter @Setter private int studentID;
+    @Getter @Setter private String firstName = "";
+    @Getter @Setter private String lastName = "";
+    @Getter @Setter private String bio = "";
 
-    public void setFirstName(String name) {this.firstName = name; }
-    public void setLastName(String name){ this.lastName = name; }
-    public void setGrade(String grade) { this.grade = grade; }
-    public void setBio(String bio) { this.bio = bio; }
+    public Student(){
+    }
 
-    public String getFirstName() { return firstName; }
-    public String getLastName() { return lastName; }
-    public String getGrade() { return grade; }
-    public String getBio() { return bio; }
-
+    public Student(int studentID, String firstName, String lastName, String bio) {
+        this.studentID = studentID;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.bio = bio;
+    }
     public boolean isValidField() {
         System.out.println("Testing Fields");
         return isValidText(firstName) &&
                 isValidText(lastName) &&
-                isValidText(grade) &&
                 isValidText(bio);
     }
 
     private boolean isValidText(String text) { return !text.equals(""); }
 
     public String toString(){
-        return firstName + ", " + lastName + ", " + grade + ", " + bio;
+        return lastName + ", " + firstName;
     }
 }

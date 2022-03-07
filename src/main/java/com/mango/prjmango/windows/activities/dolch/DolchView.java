@@ -1,5 +1,8 @@
 package com.mango.prjmango.windows.activities.dolch;
 
+import com.mango.prjmango.Main;
+import com.mango.prjmango.student.Student;
+import com.mango.prjmango.student.Students;
 import com.mango.prjmango.windows.activities.dolch.DolchWords;
 import com.mango.prjmango.windows.common.Colors;
 import com.mango.prjmango.windows.common.Components;
@@ -7,8 +10,8 @@ import com.mango.prjmango.windows.common.Fonts;
 import com.mango.prjmango.windows.common.ImageIcons;
 import lombok.Getter;
 
-import java.awt.Color;
-import java.awt.Dimension;
+import java.awt.*;
+import java.util.Vector;
 import javax.swing.*;
 
 public class DolchView extends JPanel {
@@ -21,7 +24,7 @@ public class DolchView extends JPanel {
     private JLabel beginLabel;
 
     @Getter private JComboBox<DolchWords> dolchSightWordComboBox;
-    @Getter private JComboBox<String> studentsNameComboBox;
+    @Getter private JComboBox<Student> studentsNameComboBox;
     private String[] testStudents = {"Bob","jerry"};
 
     public DolchView() {
@@ -51,7 +54,26 @@ public class DolchView extends JPanel {
         dolchSightWordComboBox = new JComboBox<>();
         dolchSightWordComboBox.setModel(new DefaultComboBoxModel<>(DolchWords.values()));
 
-        studentsNameComboBox = new JComboBox<>(testStudents); //load students from database
+
+        studentsNameComboBox = new JComboBox<>(new Vector<>(Main.students.getStudents()));
+        studentsNameComboBox.setSelectedIndex(0);
+        studentsNameComboBox.setBackground(Color.WHITE);
+//        studentsNameComboBox = new JComboBox(new DefaultComboBoxModel(Main.students.createStudentArray()));
+//        studentsNameComboBox.setRenderer(new DefaultListCellRenderer() {
+//            @Override
+//            public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+//                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+//                if(value instanceof Student){
+//                    Student student = (Student) value;
+//                    setText(student.toString());
+//                }
+//                return this;
+//            }
+//        } );
+
+//        studentsNameComboBox = new JComboBox<>();
+//        studentsNameComboBox.setModel(new DefaultComboBoxModel<Student>(Main.students.getStudents()));
+//        studentsNameComboBox = new JComboBox<Student>(Main.students.getTestStudents()); //load students from database
         beginLabel = new JLabel(ImageIcons.FRY_BEGIN_NO_HOVER.getImageIcon());
     }
 

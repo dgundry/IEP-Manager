@@ -1,5 +1,6 @@
 package com.mango.prjmango;
 
+import com.mango.prjmango.student.Students;
 import com.mango.prjmango.utilities.DatabaseConnection;
 import com.mango.prjmango.windows.MainWindowView;
 import com.mango.prjmango.windows.activities.SightWords;
@@ -11,6 +12,9 @@ import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
+
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.commons.lang.SystemUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -39,6 +43,8 @@ public class Main {
 	public static MainFrame frame;
 
 	public static LoggedInUser activeUser;
+
+	public static Students students;
 
 	public static final SightWords SIGTHT_WORDS = new SightWords();
 	/**

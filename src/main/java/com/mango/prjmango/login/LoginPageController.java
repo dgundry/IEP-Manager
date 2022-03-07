@@ -12,6 +12,7 @@ import com.mango.prjmango.forgotpassword.email.EmailController;
 import com.mango.prjmango.forgotpassword.email.EmailView;
 import com.mango.prjmango.login.listeners.EmailTextFieldListener;
 import com.mango.prjmango.login.listeners.PasswordTextFieldListener;
+import com.mango.prjmango.student.Students;
 import com.mango.prjmango.teacher.TeacherController;
 import com.mango.prjmango.teacher.TeacherView;
 import com.mango.prjmango.utilities.DatabaseCommands;
@@ -81,8 +82,10 @@ public class LoginPageController {
                 if (DatabaseCommands.isValidUser(enteredEmail, enteredPassword) == 1) {
                     System.out.println("Logged in");
 
-                    LoggedInUser user = new LoggedInUser(DatabaseCommands.getTeacherId(enteredEmail));
+                    int teacherID = DatabaseCommands.getTeacherId(enteredEmail);
+                    LoggedInUser user = new LoggedInUser(teacherID);
                     Main.activeUser = user;
+                    Main.students = new Students(teacherID);
 
                     TeacherView teacherView = new TeacherView();
                     new TeacherController(teacherView);

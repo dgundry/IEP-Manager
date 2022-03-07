@@ -25,7 +25,7 @@ public class FinishAssignmentView extends JPanel {
     @Getter private JLabel changeScoreLabel;
     @Getter private JLabel changePercentageLabel;
 
-    private JLabel submitLabel;
+    @Getter private JLabel submitLabel;
     private JTextArea commentsTextArea;
     private JScrollPane jScrollPane1;
 

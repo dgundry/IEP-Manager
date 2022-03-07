@@ -50,7 +50,6 @@ public class CreateAStudentController {
             Student student = new Student();
             student.setFirstName(view.getFirstNameText().getText());
             student.setLastName(view.getLastNameText().getText());
-            student.setGrade(view.getGradeText().getText());
             student.setBio(view.getBioText().getText());
 
             //RegisterStudent register = new RegisterStudent();
@@ -66,20 +65,12 @@ public class CreateAStudentController {
                         "Enter a Valid Last Name.",
                         ERROR_MESSAGE_TITLE,
                         JOptionPane.ERROR_MESSAGE);
-            }else if(!(student.getGrade().length() >= 1 && student.getGrade().length() <= 20)) {
-                JOptionPane.showMessageDialog(
-                        MainFrame.getFrame(),
-                   "Enter a valid grade.",
-                   ERROR_MESSAGE_TITLE,
-                   JOptionPane.ERROR_MESSAGE);
-
             }else {
                 if(RegisterStudent.createStudent(student)){
                     //Dialog.openDialog(Dialog.ACCOUNT_CREATED); <---Temporary change
 
                     view.getFirstNameText().setText("");
                     view.getLastNameText().setText("");
-                    view.getGradeText().setText("");
                     view.getBioText().setText("");
 
                     System.out.println("Clicked on Create A student");

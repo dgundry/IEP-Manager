@@ -2,6 +2,7 @@ package com.mango.prjmango.windows.login;
 
 import com.mango.prjmango.LoggedInUser;
 import com.mango.prjmango.Main;
+import com.mango.prjmango.student.Students;
 import com.mango.prjmango.utilities.DatabaseCommands;
 import com.mango.prjmango.windows.account.AccountController;
 import com.mango.prjmango.windows.account.AccountView;
@@ -61,9 +62,12 @@ public class LoginController {
 
             if (!enteredEmail.equals("") && enteredPassword.length != 0) {
                 if (DatabaseCommands.isValidUser(enteredEmail, enteredPassword) == 1) {
-                    LoggedInUser user = new LoggedInUser(DatabaseCommands.getTeacherId(enteredEmail));
+                    int teacherID = DatabaseCommands.getTeacherId(enteredEmail);
+
+                    LoggedInUser user = new LoggedInUser(teacherID);
                     user.setPassword(enteredPassword);
                     Main.activeUser = user;
+                    Main.students = new Students(teacherID);
 
                     AccountView accountView = new AccountView();
                     new AccountController(accountView);

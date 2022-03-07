@@ -12,19 +12,17 @@ public class RegisterStudent {
         if(student.isValidField()){
             registerStudent(student.getFirstName(),
                     student.getLastName(),
-                    student.getGrade(),
                     student.getBio());
             result = true;
         }
         return result;
     }
 
-    private static void registerStudent(String firstName, String lastName, String grade, String bio){
-        String sql = "INSERT INTO student(first_name, last_name, class, bio) VALUES(?,?,?,?);";
+    private static void registerStudent(String firstName, String lastName, String bio){
+        String sql = "INSERT INTO student(first_name, last_name, bio) VALUES(?,?,?);";
         try(PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
             statement.setString(1,firstName);
             statement.setString(2, lastName);
-            statement.setString(3, grade);
             statement.setString(4, bio);
             statement.executeUpdate();
         }
