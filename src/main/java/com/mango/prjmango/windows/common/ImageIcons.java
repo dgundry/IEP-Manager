@@ -63,21 +63,21 @@ public enum ImageIcons {
     PASSWORD_SECURITY_SAVE_NO_HOVER("/images/account/password-security/password-security-save-no-hover.png", 117, 47),
     PASSWORD_SECURITY_SAVE_HOVERED("/images/account/password-security/password-security-save-hovered.png", 117, 47),
 
-    ACTIVITIES_MATH_NO_HOVER("/images/activities/math/math-no-hover.png", 281, 30),
-    ACTIVITIES_MATH_HOVERED("/images/activities/math/math-hovered.png", 281, 30),
-    ACTIVITIES_MATH_SELECTED("/images/activities/math/math-hovered.png", 281, 30),
+    ACTIVITIES_MATH_NO_HOVER("/images/activities/math/math-no-hover.png", 290, 30),
+    ACTIVITIES_MATH_HOVERED("/images/activities/math/math-hovered.png", 290, 30),
+    ACTIVITIES_MATH_SELECTED("/images/activities/math/math-selected.png", 290, 30),
 
-    ACTIVITIES_FRY_NO_HOVER("/images/activities/fry/fry-sight-words-no-hover.png", 281, 30),
-    ACTIVITIES_FRY_HOVERED("/images/activities/fry/fry-sight-words-hovered.png", 281, 30),
-    ACTIVITIES_FRY_SELECTED("/images/activities/fry/fry-sight-words-hovered.png", 281, 30),
+    ACTIVITIES_FRY_NO_HOVER("/images/activities/fry/fry-sight-words-no-hover.png", 290, 30),
+    ACTIVITIES_FRY_HOVERED("/images/activities/fry/fry-sight-words-hovered.png", 290, 30),
+    ACTIVITIES_FRY_SELECTED("/images/activities/fry/fry-sight-words-selected.png", 290, 30),
 
-    ACTIVITIES_DOLCH_NO_HOVER("/images/activities/dolch/dolch-sight-words-no-hover.png", 281, 30),
-    ACTIVITIES_DOLCH_HOVERED("/images/activities/dolch/dolch-sight-words-hovered.png", 281, 30),
-    ACTIVITIES_DOLCH_SELECTED("/images/activities/dolch/dolch-sight-words-hovered.png", 281, 30),
+    ACTIVITIES_DOLCH_NO_HOVER("/images/activities/dolch/dolch-sight-words-no-hover.png", 290, 30),
+    ACTIVITIES_DOLCH_HOVERED("/images/activities/dolch/dolch-sight-words-hovered.png", 290, 30),
+    ACTIVITIES_DOLCH_SELECTED("/images/activities/dolch/dolch-sight-words-selected.png", 290, 30),
 
-    ACTIVITIES_UPLOAD_NO_HOVER("/images/activities/upload/upload-no-hover.png", 281, 30),
-    ACTIVITIES_UPLOAD_HOVERED("/images/activities/upload/upload-hovered.png", 281, 30),
-    ACTIVITIES_UPLOAD_SELECTED("/images/activities/upload/upload-hovered.png", 281, 30),
+    ACTIVITIES_UPLOAD_NO_HOVER("/images/activities/upload/upload-no-hover.png", 290, 30),
+    ACTIVITIES_UPLOAD_HOVERED("/images/activities/upload/upload-hovered.png", 290, 30),
+    ACTIVITIES_UPLOAD_SELECTED("/images/activities/upload/upload-selected.png", 290, 30),
 
     FRY_BEGIN_NO_HOVER("/images/activities/fry/begin-no-hover.png", 164, 39),
     FRY_BEGIN_HOVERED("/images/activities/fry/begin-hovered.png", 164, 39),

@@ -50,8 +50,8 @@ public class TabListeners implements MouseListener {
     public void mouseClicked(MouseEvent e) {
         MainWindowView.previouslyActiveTab = MainWindowView.currentlyActiveTab;
         MainWindowView.currentlyActiveTab = tab;
-        label.setIcon(hoveredImage);
         resetLabelImages();
+        label.setIcon(hoveredImage);
 
         if (tab == Tabs.ACCOUNT) {
             AccountView accountView = new AccountView();
@@ -123,6 +123,7 @@ public class TabListeners implements MouseListener {
                 break;
             case 3:
                 SideOptionsView.getReportsTabLabel().setIcon(ImageIcons.REPORTS_TAB_NO_HOVER.getImageIcon());
+                break;
             default:
                 break;
         }
