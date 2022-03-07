@@ -1,5 +1,8 @@
 package com.mango.prjmango.windows.activities.dolch.assignment;
 
+import com.mango.prjmango.windows.activities.ActivitiesView;
+import com.mango.prjmango.windows.activities.FinishAssignmentController;
+import com.mango.prjmango.windows.activities.FinishAssignmentView;
 import com.mango.prjmango.windows.activities.fry.assignment.FryAssignmentController;
 import com.mango.prjmango.windows.activities.fry.assignment.FryAssignmentView;
 import com.mango.prjmango.windows.common.ImageIcons;
@@ -41,6 +44,9 @@ public class DolchAssignmentController {
                 view.getNumberWordLabel().setText(view.getAssignment().getCurrentQuestionIndex()+1 + "/" + view.getAssignment().getTotalQuestions());
             }else{
                 //assignment is done, go to final score screen
+                FinishAssignmentView finish = new FinishAssignmentView(view.getAssignment());
+                new FinishAssignmentController(finish);
+                ActivitiesView.setActiveDisplay(finish);
             }
         }
 
@@ -105,6 +111,9 @@ public class DolchAssignmentController {
                 view.getNumberWordLabel().setText(view.getAssignment().getCurrentQuestionIndex()+1 + "/" + view.getAssignment().getTotalQuestions());
             }else{
                 //assignment is done, go to final score screen
+                FinishAssignmentView finish = new FinishAssignmentView(view.getAssignment());
+                new FinishAssignmentController(finish);
+                ActivitiesView.setActiveDisplay(finish);
             }
         }
 

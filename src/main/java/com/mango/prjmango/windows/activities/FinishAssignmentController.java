@@ -2,7 +2,6 @@ package com.mango.prjmango.windows.activities;
 
 public class FinishAssignmentController {
 
-    public FinishAssignmentController(){
-        FinishAssignmentView view = new FinishAssignmentView();
+    public FinishAssignmentController(FinishAssignmentView view){
     }
 }

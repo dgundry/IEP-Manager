@@ -32,8 +32,10 @@ public class FinishAssignmentView extends JPanel {
 
     private JScrollPane jScrollPane1;
 
+    private CreateAssignment assignment;
+    public FinishAssignmentView(CreateAssignment assignment){
+        this.assignment = assignment;
 
-    public FinishAssignmentView(){
         setOpaque(false);
 
         createComponents();
@@ -54,10 +56,12 @@ public class FinishAssignmentView extends JPanel {
         changePercentageLabel = createLabel("##%",18);
         commentsLabel = createLabel("Comments:", 18);
 
+        commentsTextArea = createTextArea("Comment");
         commentsTextArea.setColumns(20);
         commentsTextArea.setRows(5);
         jScrollPane1.setViewportView(commentsTextArea);
 
+        editDataLabel = createLabel("Edit",18);
         editDataLabel.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         editDataLabel.setForeground(new java.awt.Color(216, 216, 216));
         editDataLabel.setMaximumSize(new java.awt.Dimension(117, 43));
@@ -156,14 +160,14 @@ public class FinishAssignmentView extends JPanel {
         );
     }
 
-    private JTextField createTextField(String text) {
-        JTextField textField = new JTextField(text);
-        textField.setMargin(new Insets(0, 5, 0, 5));
-        textField.setBackground(DARK_GREY);
-        textField.setForeground(LIGHT_GREY);
-        textField.setCaretColor(LIGHT_GREY);
-        textField.setFont(Fonts.SEGOE_UI_16.getFont());
-        return textField;
+    private JTextArea createTextArea(String text) {
+        JTextArea textArea = new JTextArea(text);
+        textArea.setMargin(new Insets(0, 5, 0, 5));
+        textArea.setBackground(DARK_GREY);
+        textArea.setForeground(LIGHT_GREY);
+        textArea.setCaretColor(LIGHT_GREY);
+        textArea.setFont(Fonts.SEGOE_UI_16.getFont());
+        return textArea;
     }
 
     private JLabel createLabel(String text, int fontSize) {

@@ -1,5 +1,8 @@
 package com.mango.prjmango.windows.activities.fry.assignment;
 
+import com.mango.prjmango.windows.activities.ActivitiesView;
+import com.mango.prjmango.windows.activities.FinishAssignmentController;
+import com.mango.prjmango.windows.activities.FinishAssignmentView;
 import com.mango.prjmango.windows.common.ImageIcons;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -39,6 +42,9 @@ public class FryAssignmentController {
                 view.getNumberWordLabel().setText(view.getAssignment().getCurrentQuestionIndex()+1 + "/" + view.getAssignment().getTotalQuestions());
             }else{
                 //assignment is done, go to final score screen
+                FinishAssignmentView finish = new FinishAssignmentView(view.getAssignment());
+                new FinishAssignmentController(finish);
+                ActivitiesView.setActiveDisplay(finish);
             }
         }
 
@@ -103,6 +109,9 @@ public class FryAssignmentController {
                 view.getNumberWordLabel().setText(view.getAssignment().getCurrentQuestionIndex()+1 + "/" + view.getAssignment().getTotalQuestions());
             }else{
                 //assignment is done, go to final score screen
+                FinishAssignmentView finish = new FinishAssignmentView(view.getAssignment());
+                new FinishAssignmentController(finish);
+                ActivitiesView.setActiveDisplay(finish);
             }
         }
 
