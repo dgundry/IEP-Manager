@@ -40,7 +40,7 @@ public class FryController {
             CreateAssignment assignment = new CreateAssignment(view.getStudentsNameComboBox().getSelectedItem().toString(),
                                                                 view.getFrySightWordComboBox().getSelectedItem().toString(),
                                                                 Main.SIGTHT_WORDS.getFryQuestions(selectedIndex));
-            FryAssignmentView view = new FryAssignmentView(SightWords.values()[selectedIndex].toString(), assignment);
+            FryAssignmentView view = new FryAssignmentView(FryWords.values()[selectedIndex].toString(), assignment);
             new FryAssignmentController(view);
             ActivitiesView.setActiveDisplay(view);
         }

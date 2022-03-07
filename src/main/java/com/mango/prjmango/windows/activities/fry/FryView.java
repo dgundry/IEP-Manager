@@ -21,7 +21,7 @@ public class FryView extends JPanel {
 
     @Getter private JLabel beginLabel;
 
-    @Getter private JComboBox<SightWords> frySightWordComboBox;
+    @Getter private JComboBox<FryWords> frySightWordComboBox;
     @Getter private JComboBox<String> studentsNameComboBox;
     private String[] testStudents = {"Bob","jerry"};
     public FryView() {
@@ -49,7 +49,7 @@ public class FryView extends JPanel {
                 SwingConstants.LEADING);
 
         frySightWordComboBox = new JComboBox<>();
-        frySightWordComboBox.setModel(new DefaultComboBoxModel<>(SightWords.values()));
+        frySightWordComboBox.setModel(new DefaultComboBoxModel<>(FryWords.values()));
 
         studentsNameComboBox = new JComboBox<>(testStudents); //load students from database
         beginLabel = new JLabel(ImageIcons.FRY_BEGIN_NO_HOVER.getImageIcon());
