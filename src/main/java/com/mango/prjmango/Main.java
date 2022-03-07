@@ -2,6 +2,7 @@ package com.mango.prjmango;
 
 import com.mango.prjmango.utilities.DatabaseConnection;
 import com.mango.prjmango.windows.MainWindowView;
+import com.mango.prjmango.windows.activities.SightWords;
 import com.mango.prjmango.windows.login.LoginController;
 import com.mango.prjmango.windows.login.LoginView;
 import java.awt.Dimension;
@@ -39,6 +40,7 @@ public class Main {
 
 	public static LoggedInUser activeUser;
 
+	public static final SightWords SIGTHT_WORDS = new SightWords();
 	/**
 	 * Initialize start of the application. Connects to the database and instantiates
 	 * classes that create the GUI.

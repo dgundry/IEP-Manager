@@ -1,5 +1,6 @@
 package com.mango.prjmango.windows.activities.fry.assignment;
 
+import com.mango.prjmango.windows.activities.CreateAssignment;
 import com.mango.prjmango.windows.common.Colors;
 import com.mango.prjmango.windows.common.Components;
 import com.mango.prjmango.windows.common.Fonts;
@@ -22,13 +23,20 @@ public class FryAssignmentView extends JPanel {
 
     private final String SIGHT_WORD_SELECTION;
 
-    public FryAssignmentView(String sightWordSelection) {
+    @Getter public CreateAssignment assignment;
+
+    public FryAssignmentView(String sightWordSelection, CreateAssignment assignment) {
         this.SIGHT_WORD_SELECTION = sightWordSelection;
+
+        this.assignment = assignment;
 
         setOpaque(false);
 
         createComponents();
         createLayout();
+
+        wordLabel.setText(assignment.getCurrentQuestion());
+        numberWordLabel.setText(assignment.getCurrentQuestionIndex()+1 + "/" + assignment.getTotalQuestions());
     }
 
     private void createComponents() {

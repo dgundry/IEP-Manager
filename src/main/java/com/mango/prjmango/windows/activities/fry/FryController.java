@@ -1,6 +1,8 @@
 package com.mango.prjmango.windows.activities.fry;
 
+import com.mango.prjmango.Main;
 import com.mango.prjmango.windows.activities.ActivitiesView;
+import com.mango.prjmango.windows.activities.CreateAssignment;
 import com.mango.prjmango.windows.activities.fry.assignment.FryAssignmentController;
 import com.mango.prjmango.windows.activities.fry.assignment.FryAssignmentView;
 import com.mango.prjmango.windows.common.ImageIcons;
@@ -11,7 +13,6 @@ import javax.swing.JLabel;
 public class FryController {
 
     public FryController(FryView view) {
-        //view.startFryButton().addActionListener(new StartFryActionListener());
         JLabel beginLabel = view.getBeginLabel();
 
         beginLabel.addMouseListener(new BeginLabelMouseListener(view, beginLabel));
@@ -36,7 +37,10 @@ public class FryController {
         @Override
         public void mouseClicked(MouseEvent e) {
             int selectedIndex = view.getFrySightWordComboBox().getSelectedIndex();
-            FryAssignmentView view = new FryAssignmentView(SightWords.values()[selectedIndex].toString());
+            CreateAssignment assignment = new CreateAssignment(view.getStudentsNameComboBox().getSelectedItem().toString(),
+                                                                view.getFrySightWordComboBox().getSelectedItem().toString(),
+                                                                Main.SIGTHT_WORDS.getFryQuestions(selectedIndex));
+            FryAssignmentView view = new FryAssignmentView(SightWords.values()[selectedIndex].toString(), assignment);
             new FryAssignmentController(view);
             ActivitiesView.setActiveDisplay(view);
         }

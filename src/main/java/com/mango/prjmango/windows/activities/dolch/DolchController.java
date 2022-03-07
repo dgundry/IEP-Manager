@@ -1,14 +1,5 @@
 package com.mango.prjmango.windows.activities.dolch;
 
-import com.mango.prjmango.MainFrame;
-import com.mango.prjmango.student.CreateAStudentController;
-import com.mango.prjmango.student.CreateAStudentView;
-import com.mango.prjmango.windows.activities.assignment.CreateAssignment;
-import com.mango.prjmango.windows.activities.assignment.SightWords;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 public class DolchController {
 
     public DolchController(DolchView view) {

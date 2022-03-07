@@ -1,4 +1,4 @@
-package com.mango.prjmango.windows.activities.assignment;
+package com.mango.prjmango.windows.activities;
 
 import lombok.Getter;
 
