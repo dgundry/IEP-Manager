@@ -264,4 +264,16 @@ public class DatabaseCommands {
             ex.printStackTrace();
         }
     }
+
+    public static void updateUserPassword(char[] newPassword) {
+        String sql = "UPDATE teacher SET password = ? WHERE teacher_id = ?;";
+
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
+            statement.setString(1, Encryption.encryptPassword(newPassword.toString()));
+            statement.setInt(2, LoggedInUser.getTeacherId());
+            statement.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
 }

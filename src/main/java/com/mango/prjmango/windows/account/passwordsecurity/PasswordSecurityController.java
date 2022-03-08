@@ -1,9 +1,12 @@
 package com.mango.prjmango.windows.account.passwordsecurity;
 
+import com.mango.prjmango.LoggedInUser;
+import com.mango.prjmango.utilities.DatabaseCommands;
 import com.mango.prjmango.windows.common.ImageIcons;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import javax.swing.JLabel;
+import java.util.Arrays;
+import javax.swing.*;
 
 /**
  * Handles all user interaction with the Password & Security page.
@@ -47,7 +50,22 @@ public class PasswordSecurityController {
          */
         @Override
         public void mouseClicked(MouseEvent e) {
+            JPasswordField newPassField = view.getNewPasswordTextBox();
+            JPasswordField confirmPassField = view.getConfirmNewPassTextBox();
 
+            char[] newPass = view.getNewPasswordTextBox().getPassword();
+            char[] confirmPass = view.getConfirmNewPassTextBox().getPassword();
+
+            if (Arrays.equals(newPass, confirmPass)){
+                if (newPass.length == 0){
+                    // Label with Error Message
+                }
+                else{
+                    // Label with password change confirmation
+                    LoggedInUser.setPassword(newPass);
+                    DatabaseCommands.updateUserPassword(newPass);
+                }
+            }
         }
 
         /**

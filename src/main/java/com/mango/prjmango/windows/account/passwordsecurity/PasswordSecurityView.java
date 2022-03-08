@@ -39,9 +39,9 @@ public class PasswordSecurityView extends JPanel {
     private JLabel securityQuestionOneLabel;
     private JLabel answerTwoLabel;
 
-    private JPasswordField confirmNewPassTextBox;
     private JPasswordField currentPasswordTextBox;
-    private JPasswordField newPasswordTextBox;
+    @Getter private JPasswordField newPasswordTextBox;
+    @Getter private JPasswordField confirmNewPassTextBox;
 
     @Getter private JTextField answerOneTextBox;
     @Getter private JTextField answerTwoTextBox;
@@ -79,6 +79,7 @@ public class PasswordSecurityView extends JPanel {
         answerTwoLabel              = createLabel("Answer",               Fonts.SEGOE_UI_18.getFont());
 
         currentPasswordTextBox = createPasswordField(String.valueOf(LoggedInUser.getPassword()));
+        currentPasswordTextBox.setEnabled(false);
 
         confirmNewPassTextBox  = createPasswordField("");
         newPasswordTextBox     = createPasswordField("");
