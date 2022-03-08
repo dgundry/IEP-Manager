@@ -54,6 +54,15 @@ public class Components {
         return passwordField;
     }
 
+    public static JPasswordField JPasswordField() {
+        JPasswordField passwordField = new JPasswordField();
+        passwordField.setBackground(Colors.DARK_GREY);
+        passwordField.setForeground(Colors.LIGHT_GREY);
+        passwordField.setCaretColor(Colors.LIGHT_GREY);
+        passwordField.setFont(Fonts.SEGOE_UI_16.getFont());
+        passwordField.setMargin(new Insets(0, 5, 0, 5));
+        return passwordField;
+    }
     public static JSeparator JSeparator(int orientation) {
         JSeparator separator = new JSeparator();
         separator.setOrientation(orientation);

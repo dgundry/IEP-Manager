@@ -5,8 +5,8 @@ import com.mango.prjmango.windows.common.ImageIcons;
 import com.mango.prjmango.windows.account.AccountView;
 import com.mango.prjmango.windows.account.editprofile.EditProfileController;
 import com.mango.prjmango.windows.account.editprofile.EditProfileView;
-import com.mango.prjmango.windows.account.passwordsecurity.PasswordSecurityController;
-import com.mango.prjmango.windows.account.passwordsecurity.PasswordSecurityView;
+import com.mango.prjmango.windows.account.password.PasswordController;
+import com.mango.prjmango.windows.account.password.PasswordView;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -68,8 +68,8 @@ public class AccountSubTabListener implements MouseListener {
         label.setIcon(selectedImage);
 
         if (AccountView.currentlyActiveTab == AccountSubTabs.PASSWORD_AND_SECURITY) {
-            PasswordSecurityView passwordSecurityView = new PasswordSecurityView();
-            new PasswordSecurityController(passwordSecurityView);
+            PasswordView passwordSecurityView = new PasswordView();
+            new PasswordController(passwordSecurityView);
             accountView.setActiveDisplay(passwordSecurityView);
         } else {
             EditProfileView editProfileView = new EditProfileView();

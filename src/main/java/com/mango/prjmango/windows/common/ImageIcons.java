@@ -25,10 +25,10 @@ public enum ImageIcons {
     REPORTS_TAB_NO_HOVER("/images/tabs/reports-tab-no-hover.png", 243, 44),
     REPORTS_TAB_HOVERED("/images/tabs/reports-tab-hovered.png", 243, 44),
 
-    LOG_OUT_NO_HOVER("/images/log-out-no-hover.png", 124, 28),
-    LOG_OUT_HOVERED("/images/log-out-hovered.png", 124, 28),
+    LOG_OUT_NO_HOVER("/images/login/log-out-no-hover.png", 124, 28),
+    LOG_OUT_HOVERED("/images/login/log-out-hovered.png", 124, 28),
 
-    LOGIN_PANEL_BACKGROUND("/images/login-panel-background.png", 482, 646),
+    LOGIN_PANEL_BACKGROUND("/images/common/login-panel-background.png", 482, 646),
     ACTIVE_TAB_BACKGROUND("/images/common/active-tab-background.png", Main.rect.width, Main.rect.height),
 
     NEXT_NO_HOVER("/images/common/next-no-hover.png", 116, 31),
@@ -56,12 +56,18 @@ public enum ImageIcons {
     EDIT_PROFILE_HOVERED("/images/account/edit-profile/edit-profile-hovered.png", 290, 30),
     EDIT_PROFILE_SELECTED("/images/account/edit-profile/edit-profile-selected.png", 290, 30),
 
-    PASSWORD_SECURITY_NO_HOVER("/images/account/password-security/password-security-no-hover.png", 290, 30),
-    PASSWORD_SECURITY_HOVERED("/images/account/password-security/password-security-hovered.png", 290, 30),
-    PASSWORD_SECURITY_SELECTED("/images/account/password-security/password-security-selected.png", 290, 30),
+    PASSWORD_SECURITY_NO_HOVER("/images/account/password/password-security-no-hover.png", 290, 30),
+    PASSWORD_SECURITY_HOVERED("/images/account/password/password-security-hovered.png", 290, 30),
+    PASSWORD_SECURITY_SELECTED("/images/account/password/password-security-selected.png", 290, 30),
 
-    PASSWORD_SECURITY_SAVE_NO_HOVER("/images/account/password-security/password-security-save-no-hover.png", 117, 47),
-    PASSWORD_SECURITY_SAVE_HOVERED("/images/account/password-security/password-security-save-hovered.png", 117, 47),
+    PASSWORD_SECURITY_SAVE_NO_HOVER("/images/account/password/password-security-save-no-hover.png", 117, 47),
+    PASSWORD_SECURITY_SAVE_HOVERED("/images/account/password/password-security-save-hovered.png", 117, 47),
+
+    PASSWORD_OPEN_EYE_NO_HOVER("/images/account/password/open-eye-no-hover.png", 28, 28),
+    PASSWORD_OPEN_EYE_HOVERED("/images/account/password/open-eye-hovered.png", 28, 28),
+
+    PASSWORD_CLOSED_EYE_NO_HOVER("/images/account/password/closed-eye-no-hover.png", 28, 28),
+    PASSWORD_CLOSED_EYE_HOVERED("/images/account/password/closed-eye-hovered.png", 28, 28),
 
     ACTIVITIES_MATH_NO_HOVER("/images/activities/math/math-no-hover.png", 290, 30),
     ACTIVITIES_MATH_HOVERED("/images/activities/math/math-hovered.png", 290, 30),

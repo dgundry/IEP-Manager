@@ -9,10 +9,10 @@ import lombok.Getter;
 
 public enum Images {
 
-    LOGIN_NO_HOVER("/images/login-no-hover.png", 116, 31, true),
-    LOGIN_HOVERED("/images/login-hovered.png", 116, 31, true),
+    LOGIN_NO_HOVER("/images/login/login-no-hover.png", 116, 31, true),
+    LOGIN_HOVERED("/images/login/login-hovered.png", 116, 31, true),
 
-    CLASSROOM_BACKGROUND("/images/classroom.jpg", 1440, 1024, false);
+    CLASSROOM_BACKGROUND("/images/common/classroom.jpg", 1440, 1024, false);
 
     @Getter private ImageIcon imageIcon;
     @Getter private BufferedImage bufferedImage;

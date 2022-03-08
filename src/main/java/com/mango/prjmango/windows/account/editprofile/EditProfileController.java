@@ -37,18 +37,15 @@ public class EditProfileController {
         JTextField emailTextField     = view.getEmailTextField();
 
         saveLabel.addMouseListener(new SaveProfileMouseListener(view, saveLabel));
-        firstNameEditLabel.addMouseListener(new EditLabelMouseListener(view, firstNameEditLabel, firstNameTextField));
-        lastNameEditLabel.addMouseListener(new EditLabelMouseListener(view, lastNameEditLabel, lastNameTextField));
-        emailEditLabel.addMouseListener(new EditLabelMouseListener(view, emailEditLabel, emailTextField));
+        firstNameEditLabel.addMouseListener(new EditLabelMouseListener(firstNameEditLabel, firstNameTextField));
+        lastNameEditLabel.addMouseListener(new EditLabelMouseListener(lastNameEditLabel, lastNameTextField));
+        emailEditLabel.addMouseListener(new EditLabelMouseListener(emailEditLabel, emailTextField));
     }
 
     private static class SaveProfileMouseListener implements MouseListener {
 
         private final EditProfileView view;
         private final JLabel label;
-
-        private final Color RED = new Color(252, 45, 45);
-        private final Color GREEN = new Color(14, 249, 9);
 
         /**
          * Constructor. Initializes instance variables that will be used throughout the {@link MouseListener}
@@ -78,20 +75,20 @@ public class EditProfileController {
 
             if (isBlankFirstName(firstName)) {
                 view.getInformationLabel().setText("Please enter a valid first name!");
-                view.getInformationLabel().setForeground(RED);
+                view.getInformationLabel().setForeground(Color.RED);
             } else if (isBlankLastName(lastName)) {
                 view.getInformationLabel().setText("Please enter a valid last name!");
-                view.getInformationLabel().setForeground(RED);
+                view.getInformationLabel().setForeground(Color.RED);
             } else {
                 if (isBlankEmail(email) || !EmailValidation.patternMatches(email)) {
                     view.getInformationLabel().setText("Please enter a valid email!");
-                    view.getInformationLabel().setForeground(RED);
+                    view.getInformationLabel().setForeground(Color.RED);
                 } else if (DatabaseCommands.isEmailTaken(email) && !email.equals(LoggedInUser.getEmail())) {
                     view.getInformationLabel().setText("Email address is taken. Please try again!");
-                    view.getInformationLabel().setForeground(RED);
+                    view.getInformationLabel().setForeground(Color.RED);
                 } else {
                     DatabaseCommands.updateUserDetails(firstName, lastName, email);
-                    displayInformationText("Information successfully changed!", GREEN);
+                    displayInformationText();
                     LoggedInUser.setFirstName(firstName);
                     LoggedInUser.setLastName(lastName);
                     LoggedInUser.setEmail(email);
@@ -100,9 +97,9 @@ public class EditProfileController {
             }
         }
 
-        private void displayInformationText(String text, Color fontColor) {
-            view.getInformationLabel().setText(text);
-            view.getInformationLabel().setForeground(fontColor);
+        private void displayInformationText() {
+            view.getInformationLabel().setText("Information successfully changed!");
+            view.getInformationLabel().setForeground(Color.GREEN);
 
             new Timer().schedule(
                     new TimerTask() {
@@ -113,12 +110,17 @@ public class EditProfileController {
                             view.getLastNameTextField().setEnabled(false);
                             view.getEmailTextField().setEnabled(false);
 
-                            view.getFirstNameEditLabel().setIcon(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
-                            view.getLastNameEditLabel().setIcon(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
-                            view.getEmailEditLabel().setIcon(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
+                            view.getFirstNameEditLabel().setIcon(
+                                    ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
+                            view.getLastNameEditLabel().setIcon(
+                                    ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
+                            view.getEmailEditLabel().setIcon(
+                                    ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
+
+                            view.getFirstNameTextField().requestFocus();
                         }
                     },
-                    5000
+                    3000
             );
         }
 
@@ -173,22 +175,17 @@ public class EditProfileController {
 
     private static class EditLabelMouseListener implements MouseListener {
 
-        private final EditProfileView view;
         private final JLabel label;
         private final JTextField textField;
-
-        private boolean isActive = false;
 
         /**
          * Constructor. Initializes instance variables that will be used throughout the {@link MouseListener}
          * methods.
          *
-         * @param view      the {@link EditProfileView} to access other {@link JComponent}'s
          * @param label     the specific {@link JLabel}
          * @param textField the specific {@link JTextField}
          */
-        public EditLabelMouseListener(EditProfileView view, JLabel label, JTextField textField) {
-            this.view = view;
+        public EditLabelMouseListener(JLabel label, JTextField textField) {
             this.label = label;
             this.textField = textField;
         }

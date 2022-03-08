@@ -25,12 +25,6 @@ public class MainFrame {
     private static @Getter JPanel mainPanel;
     private static @Getter BackgroundPanel backgroundLoginPanel;
 
-    private static @Getter BackgroundPanel backgroundTeacherPanel;
-    private static @Getter BackgroundPanel gradientPanel;
-    private static @Getter BackgroundPanel optionsTeacherPanel;
-
-    //private static final BufferedImage BACKGROUND_IMAGE = Images.getBackgroundImage();
-
     public MainFrame() {
         frame = new JFrame("IEP Manager");
         mainPanel = new JPanel();
@@ -76,9 +70,5 @@ public class MainFrame {
         backgroundLoginPanel.removeAll();
         backgroundLoginPanel.add(panel);
         backgroundLoginPanel.updateUI();
-    }
-
-    public static void setTeacherPanel(RoundedPanel panel){
-
     }
 }
