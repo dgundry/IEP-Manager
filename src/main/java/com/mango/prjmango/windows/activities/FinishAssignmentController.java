@@ -38,7 +38,7 @@ public class FinishAssignmentController {
          */
         @Override
         public void mouseClicked(MouseEvent e) {
-            String sql = "INSERT INTO assignment(teacher_id, student_id,title,earned_points,total_points,date,comment) VALUES(?,?,?,?,?,datetime('now','localtime'),?);";
+            String sql = "INSERT INTO assignment(teacher_id, student_id,title,earned_points,total_points,date,comment) VALUES(?,?,?,?,?,date('now','localtime'),?);";
             try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
                 statement.setInt(1, Main.activeUser.getTeacherId());
                 statement.setInt(2, view.getAssignment().getStudent().getStudentID());
@@ -50,6 +50,7 @@ public class FinishAssignmentController {
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
+            //Dialog Box
             MathView mathView = new MathView();
             new MathController(mathView);
             ActivitiesView.setActiveDisplay(mathView);

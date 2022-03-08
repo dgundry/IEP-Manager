@@ -1,11 +1,14 @@
 package com.mango.prjmango.windows.activities.upload;
 
+import com.mango.prjmango.Main;
+import com.mango.prjmango.student.Student;
 import com.mango.prjmango.windows.common.ImageIcons;
 import lombok.Getter;
 import com.mango.prjmango.windows.common.Fonts;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Vector;
 
 public class UploadView extends JPanel {
 
@@ -28,7 +31,7 @@ public class UploadView extends JPanel {
     @Getter private JTextField dateTextField;
     @Getter private JTextField commentsTextField;
 
-    @Getter private JComboBox<String> studentNameDropdown;
+    @Getter private JComboBox<Student> studentNameDropdown;
 
 
     public UploadView() {
@@ -44,7 +47,7 @@ public class UploadView extends JPanel {
         addAssignmentHeaderLabel = createLabel("Upload an Assignment", 24);
         studentNameLabel = createLabel("Student's Name", 18);
         assignmentNameLabel1 = createLabel("Assignment Name", 18);
-        dateLabel = createLabel("Date (MM/DD/YYYY) ",18);
+        dateLabel = createLabel("Date (YYYY-MM-DD) ",18);
         pointsEarnedLabel = createLabel("Points Earned", 18);
         maximumPointsLabel = createLabel("Maximum Points", 18);
         commentsLabel = createLabel("Comments", 18);
@@ -57,7 +60,9 @@ public class UploadView extends JPanel {
         dateTextField = createTextField();
         commentsTextField = createTextField();
 
-        studentNameDropdown = createComboBox();
+        studentNameDropdown = new JComboBox<>(new Vector<>(Main.students.getStudents()));
+        studentNameDropdown.setSelectedIndex(0);
+        studentNameDropdown.setBackground(Color.WHITE);
 
     }
 
