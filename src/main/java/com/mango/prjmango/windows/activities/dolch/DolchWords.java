@@ -1,8 +1,8 @@
 package com.mango.prjmango.windows.activities.dolch;
 
 public enum DolchWords {
-    PRE_K("Pre-K"), KINDER("Kindergarten"), FIRST("First Grade"), SECOND("Second Grade"), THIRD("Third Grade"),
-    NOUN("Nouns");
+    PRE_K("Pre-K Dolch"), KINDER("Kindergarten Dolch"), FIRST("First Grade Dolch"), SECOND("Second Grade Dolch"), THIRD("Third Grade Dolch"),
+    NOUN("Nouns Dolch");
 
     private String value;
 
