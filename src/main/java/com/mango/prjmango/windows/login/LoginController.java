@@ -65,7 +65,6 @@ public class LoginController {
                     int teacherID = DatabaseCommands.getTeacherId(enteredEmail);
 
                     LoggedInUser user = new LoggedInUser(teacherID);
-                    user.setPassword(enteredPassword);
                     Main.activeUser = user;
                     Main.students = new Students(teacherID);
 

@@ -63,13 +63,23 @@ public class ConfirmationView extends JFrame {
         confirmLabel.setForeground(LIGHT_GREY);
         confirmLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        if (selectedDialog == Dialogs.CLOSE_APPLICATION) {
-            exitLabel = new JLabel(ImageIcons.APP_EXIT_NO_HOVER.getImageIcon());
-        } else {
-            exitLabel = new JLabel(ImageIcons.APP_LOG_OUT_NO_HOVER.getImageIcon());
+        switch (selectedDialog.ordinal()) {
+            case 0:
+                exitLabel = new JLabel(ImageIcons.APP_LOG_OUT_NO_HOVER.getImageIcon());
+                cancelLabel = new JLabel(ImageIcons.APP_CANCEL_NO_HOVER.getImageIcon());
+                break;
+            case 1:
+                exitLabel = new JLabel(ImageIcons.APP_EXIT_NO_HOVER.getImageIcon());
+                cancelLabel = new JLabel(ImageIcons.APP_CANCEL_NO_HOVER.getImageIcon());
+                break;
+            case 2:
+                exitLabel = new JLabel(ImageIcons.APP_EXIT_NO_HOVER.getImageIcon());
+                cancelLabel = new JLabel();
+                System.out.println("Got here");
+                break;
+            default:
+                break;
         }
-
-        cancelLabel = new JLabel(ImageIcons.APP_CANCEL_NO_HOVER.getImageIcon());
     }
 
     private void createLayout() {

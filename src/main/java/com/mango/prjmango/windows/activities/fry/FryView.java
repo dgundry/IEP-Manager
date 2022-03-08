@@ -28,7 +28,7 @@ public class FryView extends JPanel {
 
     @Getter private JComboBox<FryWords> frySightWordComboBox;
     @Getter private JComboBox<Student> studentsNameComboBox;
-    private String[] testStudents = {"Bob","jerry"};
+
     public FryView() {
         setOpaque(false);
 

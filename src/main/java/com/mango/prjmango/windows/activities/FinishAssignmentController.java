@@ -2,16 +2,14 @@ package com.mango.prjmango.windows.activities;
 
 import com.mango.prjmango.Main;
 import com.mango.prjmango.utilities.DatabaseConnection;
-import com.mango.prjmango.utilities.Encryption;
-import com.mango.prjmango.windows.activities.fry.assignment.FryAssignmentView;
-import com.mango.prjmango.windows.activities.math.MathController;
-import com.mango.prjmango.windows.activities.math.MathView;
 import com.mango.prjmango.windows.common.ImageIcons;
-
-import javax.swing.*;
+import com.mango.prjmango.windows.dialogs.confirmation.ConfirmationController;
+import com.mango.prjmango.windows.dialogs.confirmation.ConfirmationView;
+import com.mango.prjmango.windows.dialogs.confirmation.Dialogs;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.PreparedStatement;
+import javax.swing.JLabel;
 
 public class FinishAssignmentController {
 
@@ -50,10 +48,10 @@ public class FinishAssignmentController {
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
-            //Dialog Box
-            MathView mathView = new MathView();
-            new MathController(mathView);
-            ActivitiesView.setActiveDisplay(mathView);
+
+            ConfirmationView confirmationView =
+                    new ConfirmationView("Assignment saved!", Dialogs.ASSIGNMENT_SAVED);
+            new ConfirmationController(confirmationView);
         }
 
         /**

@@ -2,8 +2,11 @@ package com.mango.prjmango.windows.dialogs.confirmation;
 
 import com.mango.prjmango.Main;
 import com.mango.prjmango.utilities.DatabaseConnection;
-import com.mango.prjmango.windows.common.ImageIcons;
 import com.mango.prjmango.windows.MainWindowView;
+import com.mango.prjmango.windows.activities.ActivitiesView;
+import com.mango.prjmango.windows.activities.math.MathController;
+import com.mango.prjmango.windows.activities.math.MathView;
+import com.mango.prjmango.windows.common.ImageIcons;
 import com.mango.prjmango.windows.login.LoginController;
 import com.mango.prjmango.windows.login.LoginView;
 import java.awt.event.MouseEvent;
@@ -70,6 +73,12 @@ public class ConfirmationController {
                     DatabaseConnection.closeConnection();
                     view.dispose();
                     System.exit(0);
+                    break;
+                case 2:
+                    view.dispose();
+                    MathView mathView = new MathView();
+                    new MathController(mathView);
+                    ActivitiesView.setActiveDisplay(mathView);
                     break;
                 default:
                     break;

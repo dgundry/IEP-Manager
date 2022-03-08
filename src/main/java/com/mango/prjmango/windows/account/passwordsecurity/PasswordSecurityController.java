@@ -1,12 +1,18 @@
 package com.mango.prjmango.windows.account.passwordsecurity;
 
-import com.mango.prjmango.LoggedInUser;
 import com.mango.prjmango.utilities.DatabaseCommands;
+import com.mango.prjmango.utilities.Encryption;
+import com.mango.prjmango.windows.common.Colors;
 import com.mango.prjmango.windows.common.ImageIcons;
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Arrays;
-import javax.swing.*;
+import java.util.Timer;
+import java.util.TimerTask;
+import javax.swing.JLabel;
+import javax.swing.JPasswordField;
+import lombok.SneakyThrows;
 
 /**
  * Handles all user interaction with the Password & Security page.
@@ -48,24 +54,58 @@ public class PasswordSecurityController {
          *
          * @param e the {@link MouseEvent}
          */
+        @SneakyThrows
         @Override
         public void mouseClicked(MouseEvent e) {
+            view.getInformationLabel().setText("");
+
+            JPasswordField currentPassField = view.getCurrentPasswordTextBox();
             JPasswordField newPassField = view.getNewPasswordTextBox();
             JPasswordField confirmPassField = view.getConfirmNewPassTextBox();
 
-            char[] newPass = view.getNewPasswordTextBox().getPassword();
-            char[] confirmPass = view.getConfirmNewPassTextBox().getPassword();
+            char[] currPass = currentPassField.getPassword();
+            char[] newPass = newPassField.getPassword();
+            char[] confirmPass = confirmPassField.getPassword();
 
-            if (Arrays.equals(newPass, confirmPass)){
-                if (newPass.length == 0){
-                    // Label with Error Message
+            String currPassword = DatabaseCommands.getUserPassword(currPass);
+
+            if (currPassword.equals(Encryption.encryptPassword(Arrays.toString(currPass)))) {
+                if (Arrays.equals(newPass, confirmPass)) {
+                    if (newPass.length == 0) {
+                        view.getInformationLabel().setText("Passwords cannot be length 0!");
+                        view.getInformationLabel().setForeground(Colors.RED);
+                    } else {
+                        displayInformationText("Information successfully changed!", Colors.GREEN);
+
+                        DatabaseCommands.updateUserPassword(newPass);
+
+                        currentPassField.setText("");
+                        newPassField.setText("");
+                        confirmPassField.setText("");
+                    }
+                } else {
+                    view.getInformationLabel().setText("New password does not match the confirmation password!");
+                    view.getInformationLabel().setForeground(Colors.RED);
                 }
-                else{
-                    // Label with password change confirmation
-                    LoggedInUser.setPassword(newPass);
-                    DatabaseCommands.updateUserPassword(newPass);
-                }
+            } else {
+                view.getInformationLabel().setText("Current password does not match our records!");
+                view.getInformationLabel().setForeground(Colors.RED);
             }
+        }
+
+        private void displayInformationText(String text, Color fontColor) {
+            view.getInformationLabel().setText(text);
+            view.getInformationLabel().setForeground(fontColor);
+
+            new Timer().schedule(
+                    new TimerTask() {
+                        @Override
+                        public void run() {
+                            view.getInformationLabel().setText("");
+                        }
+                    },
+                    5000
+            );
         }
 
         /**

@@ -269,11 +269,28 @@ public class DatabaseCommands {
         String sql = "UPDATE teacher SET password = ? WHERE teacher_id = ?;";
 
         try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
-            statement.setString(1, Encryption.encryptPassword(newPassword.toString()));
+            statement.setString(1, Encryption.encryptPassword(Arrays.toString(newPassword)));
             statement.setInt(2, LoggedInUser.getTeacherId());
             statement.executeUpdate();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    public static String getUserPassword(char[] currentPassword) {
+        String sql = "SELECT password FROM teacher WHERE teacher_id = ? AND password = ?;";
+        String result = "";
+
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
+            statement.setInt(1, LoggedInUser.getTeacherId());
+            statement.setString(2, Encryption.encryptPassword(Arrays.toString(currentPassword)));
+
+            ResultSet resultSet = statement.executeQuery();
+            result = resultSet.getString(1);
+            resultSet.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return result;
     }
 }

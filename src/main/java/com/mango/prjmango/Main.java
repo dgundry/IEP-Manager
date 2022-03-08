@@ -12,9 +12,6 @@ import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
-
-import lombok.Getter;
-import lombok.Setter;
 import org.apache.commons.lang.SystemUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

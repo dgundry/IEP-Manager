@@ -14,7 +14,6 @@ public class LoggedInUser {
     @Getter @Setter private static String firstName;
     @Getter @Setter private static String lastName;
     @Getter @Setter private static String email;
-    @Getter @Setter private static char[] password;
     @Getter @Setter private static int securityQuestion1Index;
     @Getter @Setter private static int securityQuestion2Index;
 
