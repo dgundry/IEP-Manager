@@ -1,5 +1,6 @@
 package com.mango.prjmango.windows.activities.listeners;
 
+import com.mango.prjmango.LoggedInUser;
 import com.mango.prjmango.utilities.subtabs.ActivitiesSubTab;
 import com.mango.prjmango.windows.activities.ActivitiesView;
 import com.mango.prjmango.windows.activities.dolch.DolchController;
@@ -8,6 +9,8 @@ import com.mango.prjmango.windows.activities.fry.FryController;
 import com.mango.prjmango.windows.activities.fry.FryView;
 import com.mango.prjmango.windows.activities.math.MathController;
 import com.mango.prjmango.windows.activities.math.MathView;
+import com.mango.prjmango.windows.activities.sightwords.SightController;
+import com.mango.prjmango.windows.activities.sightwords.SightView;
 import com.mango.prjmango.windows.activities.upload.UploadController;
 import com.mango.prjmango.windows.activities.upload.UploadView;
 import com.mango.prjmango.windows.common.ImageIcons;
@@ -64,21 +67,29 @@ public class ActivitiesSubTabListener implements MouseListener {
 
         switch (ActivitiesView.currentlyActiveTab.ordinal()) {
             case 0:
+                LoggedInUser.setCurrentMenu(0);
                 MathView mathView = new MathView();
                 new MathController(mathView);
                 ActivitiesView.setActiveDisplay(mathView);
                 break;
             case 1:
-                FryView fryView = new FryView();
-                new FryController(fryView);
+                LoggedInUser.setCurrentMenu(1);
+                SightView fryView = new SightView();
+                new SightController(fryView);
+//                FryView fryView = new FryView();
+//                new FryController(fryView);
                 ActivitiesView.setActiveDisplay(fryView);
                 break;
             case 2:
-                DolchView dolchView = new DolchView();
-                new DolchController(dolchView);
+                LoggedInUser.setCurrentMenu(2);
+                SightView dolchView = new SightView();
+                new SightController(dolchView);
+//                DolchView dolchView = new DolchView();
+//                new DolchController(dolchView);
                 ActivitiesView.setActiveDisplay(dolchView);
                 break;
             case 3:
+                LoggedInUser.setCurrentMenu(3);
                 UploadView uploadView = new UploadView();
                 new UploadController(uploadView);
                 ActivitiesView.setActiveDisplay(uploadView);
