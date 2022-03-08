@@ -58,22 +58,7 @@ public class DolchView extends JPanel {
         studentsNameComboBox = new JComboBox<>(new Vector<>(Main.students.getStudents()));
         studentsNameComboBox.setSelectedIndex(0);
         studentsNameComboBox.setBackground(Color.WHITE);
-//        studentsNameComboBox = new JComboBox(new DefaultComboBoxModel(Main.students.createStudentArray()));
-//        studentsNameComboBox.setRenderer(new DefaultListCellRenderer() {
-//            @Override
-//            public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-//                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-//                if(value instanceof Student){
-//                    Student student = (Student) value;
-//                    setText(student.toString());
-//                }
-//                return this;
-//            }
-//        } );
 
-//        studentsNameComboBox = new JComboBox<>();
-//        studentsNameComboBox.setModel(new DefaultComboBoxModel<Student>(Main.students.getStudents()));
-//        studentsNameComboBox = new JComboBox<Student>(Main.students.getTestStudents()); //load students from database
         beginLabel = new JLabel(ImageIcons.FRY_BEGIN_NO_HOVER.getImageIcon());
     }
 

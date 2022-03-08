@@ -1,5 +1,7 @@
 package com.mango.prjmango.windows.activities.fry;
 
+import com.mango.prjmango.Main;
+import com.mango.prjmango.student.Student;
 import com.mango.prjmango.windows.common.Colors;
 import com.mango.prjmango.windows.common.Components;
 import com.mango.prjmango.windows.common.Fonts;
@@ -13,6 +15,9 @@ import javax.swing.LayoutStyle;
 import javax.swing.SwingConstants;
 import lombok.Getter;
 
+import java.awt.*;
+import java.util.Vector;
+
 public class FryView extends JPanel {
 
     private JLabel assignmentHeaderLabel;
@@ -22,7 +27,7 @@ public class FryView extends JPanel {
     @Getter private JLabel beginLabel;
 
     @Getter private JComboBox<FryWords> frySightWordComboBox;
-    @Getter private JComboBox<String> studentsNameComboBox;
+    @Getter private JComboBox<Student> studentsNameComboBox;
     private String[] testStudents = {"Bob","jerry"};
     public FryView() {
         setOpaque(false);
@@ -51,7 +56,10 @@ public class FryView extends JPanel {
         frySightWordComboBox = new JComboBox<>();
         frySightWordComboBox.setModel(new DefaultComboBoxModel<>(FryWords.values()));
 
-        studentsNameComboBox = new JComboBox<>(testStudents); //load students from database
+        studentsNameComboBox = new JComboBox<>(new Vector<>(Main.students.getStudents()));
+        studentsNameComboBox.setSelectedIndex(0);
+        studentsNameComboBox.setBackground(Color.WHITE);
+
         beginLabel = new JLabel(ImageIcons.FRY_BEGIN_NO_HOVER.getImageIcon());
     }
 
