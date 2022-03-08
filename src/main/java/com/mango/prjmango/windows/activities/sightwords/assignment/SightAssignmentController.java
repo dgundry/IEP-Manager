@@ -3,8 +3,6 @@ package com.mango.prjmango.windows.activities.sightwords.assignment;
 import com.mango.prjmango.windows.activities.ActivitiesView;
 import com.mango.prjmango.windows.activities.FinishAssignmentController;
 import com.mango.prjmango.windows.activities.FinishAssignmentView;
-import com.mango.prjmango.windows.activities.fry.assignment.FryAssignmentController;
-import com.mango.prjmango.windows.activities.fry.assignment.FryAssignmentView;
 import com.mango.prjmango.windows.common.ImageIcons;
 
 import javax.swing.*;

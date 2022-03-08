@@ -6,6 +6,8 @@ import com.mango.prjmango.windows.MainWindowView;
 import com.mango.prjmango.windows.activities.ActivitiesView;
 import com.mango.prjmango.windows.activities.math.MathController;
 import com.mango.prjmango.windows.activities.math.MathView;
+import com.mango.prjmango.windows.activities.sightwords.SightController;
+import com.mango.prjmango.windows.activities.sightwords.SightView;
 import com.mango.prjmango.windows.common.ImageIcons;
 import com.mango.prjmango.windows.login.LoginController;
 import com.mango.prjmango.windows.login.LoginView;
@@ -76,9 +78,10 @@ public class ConfirmationController {
                     break;
                 case 2:
                     view.dispose();
-                    MathView mathView = new MathView();
-                    new MathController(mathView);
-                    ActivitiesView.setActiveDisplay(mathView);
+                    SightView fryView = new SightView();
+                    new SightController(fryView);
+                    ActivitiesView.setActiveDisplay(fryView);
+
                     break;
                 default:
                     break;
