@@ -99,10 +99,10 @@ public class StudentsSubTabListener implements MouseListener {
         StudentsSubTabs previouslyActiveTab = StudentsView.previouslyActiveTab;
         switch (previouslyActiveTab.ordinal()) {
             case 0:
-                StudentsView.getViewStudentsLabel().setIcon(ImageIcons.ACTIVITIES_MATH_NO_HOVER.getImageIcon());
+                StudentsView.getViewStudentsLabel().setIcon(ImageIcons.STUDENTS_VIEW_NO_HOVER.getImageIcon());
                 break;
             case 1:
-                StudentsView.getCreateStudentLabel().setIcon(ImageIcons.ACTIVITIES_FRY_NO_HOVER.getImageIcon());
+                StudentsView.getCreateStudentLabel().setIcon(ImageIcons.STUDENTS_CREATE_NO_HOVER.getImageIcon());
                 break;
         }
     }

@@ -6,7 +6,7 @@ import java.awt.*;
 public class ViewStudentView extends JPanel {
     public ViewStudentView() {
         //setOpaque(false);
-        setBackground(Color.WHITE);
+        setBackground(Color.BLUE);
         setPreferredSize(new Dimension(524, 960)); //delete later
     }
 }

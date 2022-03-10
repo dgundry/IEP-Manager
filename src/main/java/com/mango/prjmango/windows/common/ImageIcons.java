@@ -94,13 +94,13 @@ public enum ImageIcons {
     FRY_ASSIGNMENT_INCORRECT_NO_HOVER("/images/activities/fry/incorrect-no-hover.png", 106, 59),
     FRY_ASSIGNMENT_INCORRECT_HOVERED("/images/activities/fry/incorrect-hovered.png", 106, 59),
 
-    STUDENTS_VIEW_NO_HOVER("/images/students/create/create-selected.png", 290, 30),
-    STUDENTS_VIEW_HOVERED("/images/students/create/create-selected.png", 290, 30),
-    STUDENTS_VIEW_SELECTED("/images/students/create/create-selected.png", 290, 30),
+    STUDENTS_VIEW_NO_HOVER("/images/students/view/my-students-no-hover", 290, 30),
+    STUDENTS_VIEW_HOVERED("/images/students/view/my-students-hovered", 290, 30),
+    STUDENTS_VIEW_SELECTED("/images/students/view/my-students-selected", 290, 30),
 
-    STUDENTS_CREATE_NO_HOVER("/images/students/create/create-selected.png", 290, 30),
-    STUDENTS_CREATE_HOVERED("/images/students/create/create-selected.png", 290, 30),
-    STUDENTS_CREATE_SELECTED("/images/students/create/create-selected.png", 290, 30);
+    STUDENTS_CREATE_NO_HOVER("/images/students/create/create-student-no-hover.png", 290, 30),
+    STUDENTS_CREATE_HOVERED("/images/students/create/create-student-hovered.png", 290, 30),
+    STUDENTS_CREATE_SELECTED("/images/students/create/create-student-selected.png", 290, 30);
 
     @Getter
     private ImageIcon imageIcon;
