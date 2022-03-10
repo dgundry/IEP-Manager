@@ -8,6 +8,9 @@ import com.mango.prjmango.windows.activities.ActivitiesController;
 import com.mango.prjmango.windows.activities.ActivitiesView;
 import com.mango.prjmango.windows.common.ImageIcons;
 import com.mango.prjmango.windows.sideoptions.SideOptionsView;
+import com.mango.prjmango.windows.students.StudentsController;
+import com.mango.prjmango.windows.students.StudentsView;
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
@@ -63,7 +66,9 @@ public class TabListeners implements MouseListener {
 
             MainWindowView.displayActiveTab(ActivitiesView.getActivitiesBackgroundLabel());
         } else if (tab == Tabs.STUDENTS) {
-            //students
+            new StudentsController(new StudentsView());
+
+            MainWindowView.displayActiveTab(StudentsView.getStudentBackgroundLabel());
         } else {
             //report
         }

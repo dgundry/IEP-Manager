@@ -8,15 +8,17 @@ public class Student {
     @Getter @Setter private int studentID;
     @Getter @Setter private String firstName = "";
     @Getter @Setter private String lastName = "";
+    @Getter @Setter private String grade = "";
     @Getter @Setter private String bio = "";
 
     public Student(){
     }
 
-    public Student(int studentID, String firstName, String lastName, String bio) {
+    public Student(int studentID, String firstName, String lastName,String grade, String bio) {
         this.studentID = studentID;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.grade = grade;
         this.bio = bio;
     }
     public boolean isValidField() {

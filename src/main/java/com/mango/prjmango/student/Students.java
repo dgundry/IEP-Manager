@@ -9,7 +9,7 @@ import lombok.Getter;
 
 public class Students {
     @Getter ArrayList<Student> students = new ArrayList<Student>();
-    @Getter Student[] testStudents = new Student[]{new Student(1,"first","last","bio")};
+//    @Getter Student[] testStudents = new Student[]{new Student(1,"first","last","bio")};
     private int teacher_id;
     public Students(int teacher_id){
         this.teacher_id = teacher_id;
@@ -34,12 +34,12 @@ public class Students {
         return "Student Not Found";
     }
     private void gatherTeachersStudents(){
-        String sql = "SELECT student_id, first_name, last_name, bio FROM student WHERE teacher_id = ?;";
+        String sql = "SELECT student_id, first_name, last_name, grade, bio FROM student WHERE teacher_id = ?;";
         try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
             statement.setInt(1, this.teacher_id);
             ResultSet resultSet = statement.executeQuery();
             do{
-                students.add(new Student(resultSet.getInt(1), resultSet.getString(2),resultSet.getString(3),resultSet.getString(4)));
+                students.add(new Student(resultSet.getInt(1), resultSet.getString(2),resultSet.getString(3),resultSet.getString(4), resultSet.getString(5)));
             } while (resultSet.next());
             resultSet.close();
         } catch (SQLException ex) {
