@@ -44,7 +44,7 @@ public class StudentsView {
         studentBackgroundLabel.setIcon(ImageIcons.ACTIVE_TAB_BACKGROUND.getImageIcon());
 
         pickStudentHeaderLabel = Components.JLabel(
-                "Pick an Assignment",
+                "Students",
                 Fonts.SEGOE_UI_24.getFont(),
                 Colors.LIGHT_GREY,
                 SwingConstants.LEFT);
