@@ -1,17 +1,14 @@
 package com.mango.prjmango.windows.createaccount.securityquestions;
 
+import com.mango.prjmango.components.Components;
+import com.mango.prjmango.utilities.DatabaseCommands;
 import com.mango.prjmango.windows.common.Fonts;
 import com.mango.prjmango.windows.common.ImageIcons;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Insets;
-import javax.swing.BorderFactory;
-import javax.swing.GroupLayout;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.LayoutStyle;
-import javax.swing.SwingConstants;
+import java.util.List;
+import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import lombok.Getter;
 
@@ -61,14 +58,14 @@ public class SecurityQuestionsView extends JLabel {
         securityQuestion1ComboBox.setOpaque(false);
         securityQuestion1ComboBox.setFont(new Font("Segoe UI", Font.PLAIN, 16));
         securityQuestion1ComboBox.setForeground(LIGHT_GREY);
-        //securityQuestion1ComboBox.setModel(new DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        securityQuestion1ComboBox.setModel(new DefaultComboBoxModel<>(DatabaseCommands.getDropDownQuestions().toArray(new String[0])));
         securityQuestion1ComboBox.setBorder(BorderFactory.createTitledBorder(null, "Security Question #1", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, new Font("Segoe UI", Font.PLAIN, 14), LIGHT_GREY));
 
         securityQuestion2ComboBox = new JComboBox<>();
         securityQuestion2ComboBox.setOpaque(false);
         securityQuestion2ComboBox.setFont(new Font("Segoe UI", Font.PLAIN, 16));
         securityQuestion2ComboBox.setForeground(LIGHT_GREY);
-        //securityQuestion1ComboBox.setModel(new DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        securityQuestion2ComboBox.setModel(new DefaultComboBoxModel<>(DatabaseCommands.getDropDownQuestions().toArray(new String[0])));
         securityQuestion2ComboBox.setBorder(BorderFactory.createTitledBorder(null, "Security Question #2", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, new Font("Segoe UI", Font.PLAIN, 14), LIGHT_GREY));
 
         answer1TextField = createTextField("Answer #1");
