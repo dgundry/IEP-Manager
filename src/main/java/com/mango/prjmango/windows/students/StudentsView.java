@@ -49,8 +49,8 @@ public class StudentsView {
                 Colors.LIGHT_GREY,
                 SwingConstants.LEFT);
 
-        viewStudentsLabel             = new JLabel(ImageIcons.ACTIVITIES_MATH_SELECTED.getImageIcon());
-        createStudentLabel            = new JLabel(ImageIcons.STUDENTS_CREATE_SELECTED.getImageIcon());
+        viewStudentsLabel             = new JLabel(ImageIcons.STUDENTS_VIEW_SELECTED.getImageIcon());
+        createStudentLabel            = new JLabel(ImageIcons.STUDENTS_CREATE_NO_HOVER.getImageIcon());
 
         horizSeparator = Components.JSeparator(SwingConstants.HORIZONTAL);
         vertSeparator  = Components.JSeparator(SwingConstants.VERTICAL);
