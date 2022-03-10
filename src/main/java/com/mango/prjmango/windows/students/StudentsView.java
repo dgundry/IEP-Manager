@@ -8,11 +8,12 @@ import com.mango.prjmango.windows.common.Colors;
 import com.mango.prjmango.windows.common.Components;
 import com.mango.prjmango.windows.common.Fonts;
 import com.mango.prjmango.windows.common.ImageIcons;
+import com.mango.prjmango.windows.students.view.ViewStudentController;
+import com.mango.prjmango.windows.students.view.ViewStudentView;
 import lombok.Getter;
 
 import javax.swing.*;
 
-import static com.mango.prjmango.MainFrame.setActivePanel;
 
 public class StudentsView {
     private static JLabel pickStudentHeaderLabel;
@@ -34,9 +35,9 @@ public class StudentsView {
 
 
 
-//        CreateStudentView createView = new CreateStudentView();
-//        new CreateStudentController(createView);
-//        setActivePanel(createView);
+        ViewStudentView viewStudent = new ViewStudentView();
+        new ViewStudentController(viewStudent);
+        setActiveDisplay(viewStudent);
     }
     private static void createComponents() {
         studentBackgroundLabel = new JLabel();
