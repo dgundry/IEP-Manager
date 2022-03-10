@@ -92,7 +92,15 @@ public enum ImageIcons {
     FRY_ASSIGNMENT_CORRECT_HOVERED("/images/activities/fry/correct-hovered.png", 106, 59),
 
     FRY_ASSIGNMENT_INCORRECT_NO_HOVER("/images/activities/fry/incorrect-no-hover.png", 106, 59),
-    FRY_ASSIGNMENT_INCORRECT_HOVERED("/images/activities/fry/incorrect-hovered.png", 106, 59);
+    FRY_ASSIGNMENT_INCORRECT_HOVERED("/images/activities/fry/incorrect-hovered.png", 106, 59),
+
+    STUDENTS_VIEW_NO_HOVER("/images/students/create/create-selected.png", 290, 30),
+    STUDENTS_VIEW_HOVERED("/images/students/create/create-selected.png", 290, 30),
+    STUDENTS_VIEW_SELECTED("/images/students/create/create-selected.png", 290, 30),
+
+    STUDENTS_CREATE_NO_HOVER("/images/students/create/create-selected.png", 290, 30),
+    STUDENTS_CREATE_HOVERED("/images/students/create/create-selected.png", 290, 30),
+    STUDENTS_CREATE_SELECTED("/images/students/create/create-selected.png", 290, 30);
 
     @Getter
     private ImageIcon imageIcon;

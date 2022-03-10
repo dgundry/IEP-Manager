@@ -14,15 +14,15 @@ public class StudentsController {
         JLabel createStudent = StudentsView.getCreateStudentLabel();
         viewStudent.addMouseListener(new StudentsSubTabListener(
                 viewStudent,
-                ImageIcons.ACTIVITIES_MATH_NO_HOVER.getImageIcon(),
-                ImageIcons.ACTIVITIES_MATH_HOVERED.getImageIcon(),
-                ImageIcons.ACTIVITIES_MATH_SELECTED.getImageIcon(),
+                ImageIcons.STUDENTS_VIEW_NO_HOVER.getImageIcon(),
+                ImageIcons.STUDENTS_VIEW_HOVERED.getImageIcon(),
+                ImageIcons.STUDENTS_VIEW_SELECTED.getImageIcon(),
                 StudentsSubTabs.VIEW));
         createStudent.addMouseListener(new StudentsSubTabListener(
                 createStudent,
-                ImageIcons.ACTIVITIES_FRY_NO_HOVER.getImageIcon(),
-                ImageIcons.ACTIVITIES_FRY_HOVERED.getImageIcon(),
-                ImageIcons.ACTIVITIES_FRY_SELECTED.getImageIcon(),
+                ImageIcons.STUDENTS_CREATE_NO_HOVER.getImageIcon(),
+                ImageIcons.STUDENTS_CREATE_HOVERED.getImageIcon(),
+                ImageIcons.STUDENTS_CREATE_SELECTED.getImageIcon(),
                 StudentsSubTabs.CREATE));
     }
 }

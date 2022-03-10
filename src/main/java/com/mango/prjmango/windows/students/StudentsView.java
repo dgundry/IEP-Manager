@@ -50,7 +50,7 @@ public class StudentsView {
                 SwingConstants.LEFT);
 
         viewStudentsLabel             = new JLabel(ImageIcons.ACTIVITIES_MATH_SELECTED.getImageIcon());
-        createStudentLabel            = new JLabel(ImageIcons.ACTIVITIES_FRY_NO_HOVER.getImageIcon());
+        createStudentLabel            = new JLabel(ImageIcons.STUDENTS_CREATE_SELECTED.getImageIcon());
 
         horizSeparator = Components.JSeparator(SwingConstants.HORIZONTAL);
         vertSeparator  = Components.JSeparator(SwingConstants.VERTICAL);
