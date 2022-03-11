@@ -102,6 +102,7 @@ public enum ImageIcons {
     STUDENTS_CREATE_HOVERED("/images/students/create/create-student-hovered.png", 290, 30),
     STUDENTS_CREATE_SELECTED("/images/students/create/create-student-selected.png", 290, 30);
 
+
     @Getter
     private ImageIcon imageIcon;
 

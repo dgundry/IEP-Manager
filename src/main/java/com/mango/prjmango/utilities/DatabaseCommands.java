@@ -293,4 +293,19 @@ public class DatabaseCommands {
         }
         return result;
     }
+
+    public static void registerStudent(String firstName, String lastName, String grade, String bio){
+        String sql = "INSERT INTO student(teacher_id, first_name, last_name, grade, bio) VALUES(?,?,?,?,?);";
+        try(PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
+            statement.setInt(1, LoggedInUser.getTeacherId());
+            statement.setString(2,firstName);
+            statement.setString(3, lastName);
+            statement.setString(4, grade);
+            statement.setString(5, bio);
+            statement.executeUpdate();
+        }
+        catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
 }

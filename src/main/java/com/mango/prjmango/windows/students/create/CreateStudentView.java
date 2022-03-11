@@ -20,18 +20,21 @@ public class CreateStudentView extends JPanel {
     private final Color DARK_GREY = new Color(19, 18, 18);
     private final Color LIGHT_GREY = new Color(216, 216, 216);
 
-    private JLabel createStudenttHeaderLabel;
+    private JLabel createStudentHeaderLabel;
     private JLabel studentsFirstNameLabel;
     private JLabel studentsLastNameLabel;
     private JLabel gradeLabel;
     private JLabel bioLabel;
-    private JLabel saveLabel;
+    @Getter JLabel informationLabel;
 
-    @Getter private JTextField studentsFirstNameTextField;
+    @Getter private JLabel saveLabel;
+
+    @Getter private JTextField studentFirstNameTextField;
     @Getter private JTextField studentLastNameTextField;
+
     @Getter private JTextField bioTextField;
 
-    private JComboBox gradeComboBox;
+    @Getter private JComboBox gradeComboBox;
 
 
 
@@ -43,16 +46,18 @@ public class CreateStudentView extends JPanel {
 
     }
     private void createComponents(){
-        createStudenttHeaderLabel = createLabel("Create A Student", 24);
-        studentsFirstNameLabel = createLabel("Student's First Name:", 18);
-        studentsLastNameLabel = createLabel("Student's Last Name:", 18);
-        gradeLabel = createLabel("Grade:", 18);
-        bioLabel = createLabel("Bio:", 18);
+        createStudentHeaderLabel       = createLabel("Create A Student", 24);
+        studentsFirstNameLabel          = createLabel("Student's First Name:", 18);
+        studentsLastNameLabel           = createLabel("Student's Last Name:", 18);
+        gradeLabel                      = createLabel("Grade:", 18);
+        bioLabel                        = createLabel("Bio:", 18);
+        informationLabel                = createLabel("", 14);
+
         saveLabel = new JLabel(ImageIcons.EDIT_PROFILE_SAVE_NO_HOVER.getImageIcon());
 
-        studentsFirstNameTextField = createTextField("");
-        studentLastNameTextField = createTextField("");
-        bioTextField = createTextField("");
+        studentFirstNameTextField   = createTextField("");
+        studentLastNameTextField     = createTextField("");
+        bioTextField                 = createTextField("");
 
 
 //        gradeComboBox = new JComboBox<>(gradeArr);
@@ -81,29 +86,31 @@ public class CreateStudentView extends JPanel {
                 createStudentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(createStudentPanelLayout.createSequentialGroup()
                                 .addGap(23, 23, 23)
-                                .addGroup(createStudentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addComponent(bioTextField, GroupLayout.PREFERRED_SIZE, 517, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(saveLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(bioLabel)
-                                        .addGroup(createStudentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(gradeComboBox, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(gradeLabel)
-                                                .addComponent(studentLastNameTextField, GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                                                .addComponent(studentsLastNameLabel)
-                                                .addComponent(studentsFirstNameLabel)
-                                                .addComponent(createStudenttHeaderLabel)
-                                                .addComponent(studentsFirstNameTextField)))
+                                .addGroup(createStudentPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                        .addComponent(informationLabel)
+                                        .addGroup(createStudentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                .addComponent(bioTextField, GroupLayout.PREFERRED_SIZE, 517, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(saveLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(bioLabel)
+                                                .addGroup(createStudentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(gradeComboBox, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(gradeLabel)
+                                                        .addComponent(studentLastNameTextField, GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                                        .addComponent(studentsLastNameLabel)
+                                                        .addComponent(studentsFirstNameLabel)
+                                                        .addComponent(createStudentHeaderLabel)
+                                                        .addComponent(studentFirstNameTextField))))
                                 .addContainerGap(378, Short.MAX_VALUE))
         );
         createStudentPanelLayout.setVerticalGroup(
                 createStudentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(createStudentPanelLayout.createSequentialGroup()
                                 .addGap(14, 14, 14)
-                                .addComponent(createStudenttHeaderLabel)
+                                .addComponent(createStudentHeaderLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(studentsFirstNameLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(studentsFirstNameTextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(studentFirstNameTextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(studentsLastNameLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
@@ -116,8 +123,10 @@ public class CreateStudentView extends JPanel {
                                 .addComponent(bioLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(bioTextField, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)
-                                .addComponent(saveLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(createStudentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                        .addComponent(saveLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(informationLabel))
                                 .addContainerGap(974, Short.MAX_VALUE))
         );
     }
