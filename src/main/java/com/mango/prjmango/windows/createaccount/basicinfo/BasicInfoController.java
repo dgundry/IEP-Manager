@@ -10,6 +10,7 @@ import com.mango.prjmango.windows.login.LoginController;
 import com.mango.prjmango.windows.login.LoginView;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 
 public class BasicInfoController {
@@ -49,18 +50,36 @@ public class BasicInfoController {
 
         private final BasicInfoView view;
         private final JLabel label;
-
         private User user;
 
+        /**
+         * Constructor. Initializes instance variables that will be used throughout the {@link MouseListener}
+         * methods.
+         *
+         * @param view  the {@link BasicInfoView} so we can access other {@link JComponent}'s
+         * @param label the specific {@link JLabel}
+         */
         public NextLabelMouseListener(BasicInfoView view, JLabel label) {
             this.view = view;
             this.label = label;
         }
 
+        /**
+         * Constructor. Initializes instance variables that will be used throughout the {@link MouseListener}
+         * methods.
+         *
+         * @param view  the {@link BasicInfoView} so we can access other {@link JComponent}'s
+         * @param label the specific {@link JLabel}
+         * @param user  the current {@link User}
+         */
         public NextLabelMouseListener(BasicInfoView view, JLabel label, User user) {
             this.view = view;
             this.label = label;
             this.user = user;
+
+            view.getFirstNameTextField().setText(user.getFirstName());
+            view.getLastNameTextField().setText(user.getLastName());
+            view.getEmailTextField().setText(user.getEmail());
         }
 
         /**
@@ -94,12 +113,12 @@ public class BasicInfoController {
                 view.getEmailInvalidLabel().setText("Email is already taken! Please try again.");
             } else {
                 SecurityQuestionsView securityQuestionsView = new SecurityQuestionsView();
-//                securityQuestionsView.getSecurityQuestionOne().setSelectedIndex(user.getSecurityQ1());
-//                securityQuestionsView.getSecurityQuestionTwo().setSelectedIndex(user.getSecurityQ2());
-//                securityQuestionsView.getSecurityOneAnsText().setText(user.getSecurityA1());
-//                securityQuestionsView.getSecurityTwoAnsText().setText(user.getSecurityA2());
+                securityQuestionsView.getSecurityQuestion1ComboBox().setSelectedIndex(user.getSecurityQ1());
+                securityQuestionsView.getSecurityQuestion2ComboBox().setSelectedIndex(user.getSecurityQ2());
+                securityQuestionsView.getAnswer1TextField().setText(user.getSecurityA1());
+                securityQuestionsView.getAnswer2TextField().setText(user.getSecurityA2());
 
-                new SecurityQuestionsController(securityQuestionsView);
+                new SecurityQuestionsController(securityQuestionsView, user);
                 MainWindowView.setActiveDisplay(securityQuestionsView);
             }
         }

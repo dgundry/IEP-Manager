@@ -1,12 +1,9 @@
 package com.mango.prjmango.windows.students;
 
-import com.mango.prjmango.utilities.subtabs.ActivitiesSubTab;
 import com.mango.prjmango.utilities.subtabs.StudentsSubTabs;
-import com.mango.prjmango.windows.activities.listeners.ActivitiesSubTabListener;
 import com.mango.prjmango.windows.common.ImageIcons;
 import com.mango.prjmango.windows.students.listeners.StudentsSubTabListener;
-
-import javax.swing.*;
+import javax.swing.JLabel;
 
 public class StudentsController {
     public StudentsController(StudentsView view){
