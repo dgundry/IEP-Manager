@@ -11,9 +11,13 @@ import com.mango.prjmango.windows.activities.sightwords.SightView;
 import com.mango.prjmango.windows.common.ImageIcons;
 import com.mango.prjmango.windows.login.LoginController;
 import com.mango.prjmango.windows.login.LoginView;
+import com.mango.prjmango.windows.sideoptions.SideOptionsView;
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JLabel;
+
+import static com.mango.prjmango.utilities.Tabs.STUDENTS;
 
 /**
  * Handles all user interaction
@@ -63,6 +67,13 @@ public class ConfirmationController {
         public void mouseClicked(MouseEvent e) {
             switch (selectedDialog.ordinal()) {
                 case 0:
+
+                    SideOptionsView.getAccountTabLabel().setIcon(ImageIcons.ACCOUNT_TAB_NO_HOVER.getImageIcon());
+                    SideOptionsView.getStudentsTabLabel().setIcon(ImageIcons.STUDENT_TAB_HOVERED.getImageIcon());
+                    SideOptionsView.getActivitiesTabLabel().setIcon(ImageIcons.ACTIVITIES_TAB_NO_HOVER.getImageIcon());
+                    SideOptionsView.getReportsTabLabel().setIcon(ImageIcons.REPORTS_TAB_NO_HOVER.getImageIcon());
+                    MainWindowView.currentlyActiveTab = STUDENTS;
+
                     view.dispose();
 
                     LoginView loginView = new LoginView();

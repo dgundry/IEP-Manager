@@ -35,6 +35,7 @@ public class Students {
     }
     private void gatherTeachersStudents(){
         String sql = "SELECT student_id, first_name, last_name, grade, bio FROM student WHERE teacher_id = ?;";
+        students.clear();
         try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
             statement.setInt(1, this.teacher_id);
             ResultSet resultSet = statement.executeQuery();

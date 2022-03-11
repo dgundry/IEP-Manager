@@ -29,7 +29,7 @@ public class MainWindowView {
 
     private static LoginViewLayout loginViewLayout = new LoginViewLayout();
 
-    public static Tabs currentlyActiveTab = Tabs.ACCOUNT;
+    public static Tabs currentlyActiveTab = Tabs.STUDENTS;
     public static Tabs previouslyActiveTab = null;
 
     private static SideOptionsView sideOptionsView;

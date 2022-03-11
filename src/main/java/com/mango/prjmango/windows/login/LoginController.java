@@ -10,6 +10,9 @@ import com.mango.prjmango.windows.common.Images;
 import com.mango.prjmango.windows.MainWindowView;
 import com.mango.prjmango.windows.createaccount.basicinfo.BasicInfoController;
 import com.mango.prjmango.windows.createaccount.basicinfo.BasicInfoView;
+import com.mango.prjmango.windows.students.StudentsController;
+import com.mango.prjmango.windows.students.StudentsView;
+
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
@@ -68,10 +71,13 @@ public class LoginController {
                     Main.activeUser = user;
                     Main.students = new Students(teacherID);
 
-                    AccountView accountView = new AccountView();
-                    new AccountController(accountView);
+//                    AccountView accountView = new AccountView();
+//                    new AccountController(accountView);
 
-                    MainWindowView.displayActiveTab(accountView);
+                    StudentsView studentsView = new StudentsView();
+                    new StudentsController(studentsView);
+                    MainWindowView.displayActiveTab(StudentsView.getStudentBackgroundLabel());
+
                 } else {
                     view.getInvalidLabel().setText("Invalid email or password. Please try again.");
                 }

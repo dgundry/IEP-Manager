@@ -1,15 +1,21 @@
 package com.mango.prjmango.windows.sideoptions;
 
+import com.mango.prjmango.Main;
+import com.mango.prjmango.windows.MainWindowView;
 import com.mango.prjmango.windows.common.ImageIcons;
 import com.mango.prjmango.utilities.Tabs;
 import com.mango.prjmango.windows.dialogs.confirmation.ConfirmationController;
 import com.mango.prjmango.windows.dialogs.confirmation.ConfirmationView;
 import com.mango.prjmango.windows.dialogs.confirmation.Dialogs;
 import com.mango.prjmango.windows.sideoptions.listeners.TabListeners;
+import javafx.geometry.Side;
+
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JLabel;
+
+import static com.mango.prjmango.utilities.Tabs.STUDENTS;
 
 public class SideOptionsController {
 
@@ -29,7 +35,7 @@ public class SideOptionsController {
                 studentsTabLabel,
                 ImageIcons.STUDENT_TAB_NO_HOVER.getImageIcon(),
                 ImageIcons.STUDENT_TAB_HOVERED.getImageIcon(),
-                Tabs.STUDENTS));
+                STUDENTS));
         activitiesTabLabel.addMouseListener(new TabListeners(
                 activitiesTabLabel,
                 ImageIcons.ACTIVITIES_TAB_NO_HOVER.getImageIcon(),
@@ -59,7 +65,7 @@ public class SideOptionsController {
          */
         @Override
         public void mouseClicked(MouseEvent e) {
-            ConfirmationView confirmationView =
+           ConfirmationView confirmationView =
                     new ConfirmationView("Are you sure want to log out?", Dialogs.LOG_OUT);
             new ConfirmationController(confirmationView);
         }
