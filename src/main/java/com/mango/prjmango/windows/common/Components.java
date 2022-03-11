@@ -1,9 +1,13 @@
 package com.mango.prjmango.windows.common;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Insets;
+import java.util.List;
+import java.util.Vector;
 import javax.swing.BorderFactory;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JSeparator;
@@ -63,10 +67,28 @@ public class Components {
         passwordField.setMargin(new Insets(0, 5, 0, 5));
         return passwordField;
     }
+
     public static JSeparator JSeparator(int orientation) {
         JSeparator separator = new JSeparator();
         separator.setOrientation(orientation);
         separator.setForeground(Colors.LIGHT_GREY);
         return separator;
+    }
+
+    public static JComboBox<String> JComboBox(String headerText, List<String> list) {
+        JComboBox<String> comboBox = new JComboBox<>(new Vector<>(list));
+        comboBox.setOpaque(false);
+        comboBox.setFont(Fonts.SEGOE_UI_16.getFont());
+        comboBox.setBackground(Colors.DARK_GREY);
+        comboBox.setForeground(Colors.LIGHT_GREY);
+        comboBox.setBorder(BorderFactory.createTitledBorder(
+                null,
+                headerText,
+                TitledBorder.DEFAULT_JUSTIFICATION,
+                TitledBorder.DEFAULT_POSITION,
+                Fonts.SEGOE_UI_14.getFont(),
+                Colors.LIGHT_GREY));
+        comboBox.setPreferredSize(new Dimension(56, 20));
+        return comboBox;
     }
 }
