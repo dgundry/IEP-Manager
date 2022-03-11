@@ -1,6 +1,8 @@
 package com.mango.prjmango.windows.students.create;
 
+import com.mango.prjmango.components.Components;
 import com.mango.prjmango.utilities.DatabaseCommands;
+import com.mango.prjmango.windows.common.Colors;
 import com.mango.prjmango.windows.common.Fonts;
 import com.mango.prjmango.windows.common.ImageIcons;
 import lombok.Getter;
@@ -8,6 +10,10 @@ import lombok.Getter;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Vector;
 
 public class CreateStudentView extends JPanel {
 
@@ -26,6 +32,7 @@ public class CreateStudentView extends JPanel {
     @Getter private JTextField bioTextField;
 
     private JComboBox gradeComboBox;
+
 
 
     public CreateStudentView(){
@@ -47,12 +54,18 @@ public class CreateStudentView extends JPanel {
         studentLastNameTextField = createTextField("");
         bioTextField = createTextField("");
 
-        gradeComboBox = new JComboBox<>();
-        gradeComboBox.setOpaque(false);
-        gradeComboBox.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-        gradeComboBox.setForeground(LIGHT_GREY);
-        gradeComboBox.setModel(new DefaultComboBoxModel<>());
 
+//        gradeComboBox = new JComboBox<>(gradeArr);
+//        gradeComboBox.setOpaque(false);
+//        gradeComboBox.setFont(new Font("Segoe UI", Font.PLAIN, 18));
+//        gradeComboBox.setForeground(LIGHT_GREY);
+//        gradeComboBox.setModel(new DefaultComboBoxModel<>(gradeArr));
+//
+        String[] gradeArr = new String[] {"1","2","3","4","5"};
+
+        List<String> gradeList = Arrays.asList(gradeArr);
+
+        gradeComboBox = Components.JComboBox(gradeList);
 
     }
 
@@ -67,47 +80,45 @@ public class CreateStudentView extends JPanel {
         createStudentPanelLayout.setHorizontalGroup(
                 createStudentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(createStudentPanelLayout.createSequentialGroup()
-                                .addContainerGap(114, Short.MAX_VALUE)
+                                .addGap(23, 23, 23)
                                 .addGroup(createStudentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addGroup(createStudentPanelLayout.createSequentialGroup()
-                                                .addGap(29, 29, 29)
-                                                .addGroup(createStudentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                        .addComponent(studentsFirstNameLabel)
-                                                        .addComponent(saveLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(studentsFirstNameTextField, GroupLayout.PREFERRED_SIZE, 213, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(bioTextField, GroupLayout.PREFERRED_SIZE, 366, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(bioLabel)
-                                                        .addComponent(gradeLabel)
-                                                        .addComponent(studentLastNameTextField, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(studentsLastNameLabel)
-                                                        .addComponent(gradeComboBox, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)))
-                                        .addComponent(createStudenttHeaderLabel))
-                                .addGap(409, 409, Short.MAX_VALUE))
+                                        .addComponent(bioTextField, GroupLayout.PREFERRED_SIZE, 517, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(saveLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(bioLabel)
+                                        .addGroup(createStudentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(gradeComboBox, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(gradeLabel)
+                                                .addComponent(studentLastNameTextField, GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                                .addComponent(studentsLastNameLabel)
+                                                .addComponent(studentsFirstNameLabel)
+                                                .addComponent(createStudenttHeaderLabel)
+                                                .addComponent(studentsFirstNameTextField)))
+                                .addContainerGap(378, Short.MAX_VALUE))
         );
         createStudentPanelLayout.setVerticalGroup(
                 createStudentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(createStudentPanelLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
+                                .addGap(14, 14, 14)
                                 .addComponent(createStudenttHeaderLabel)
-                                .addGap(32, 32, 32)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(studentsFirstNameLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(studentsFirstNameTextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30)
+                                .addGap(18, 18, 18)
                                 .addComponent(studentsLastNameLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(studentLastNameTextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
-                                .addGap(31, 31, 31)
+                                .addGap(18, 18, 18)
                                 .addComponent(gradeLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(gradeComboBox, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(bioLabel)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(bioTextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
-                                .addGap(31, 31, 31)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bioTextField, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
                                 .addComponent(saveLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(1078, Short.MAX_VALUE))
+                                .addContainerGap(974, Short.MAX_VALUE))
         );
     }
     private JTextField createTextField(String text) {
@@ -125,6 +136,23 @@ public class CreateStudentView extends JPanel {
         label.setFont(new Font("Segoe UI", Font.PLAIN, fontSize));
         label.setForeground(LIGHT_GREY);
         return label;
+    }
+
+    public static JComboBox<String> JComboBox(String headerText, List<String> list) {
+        JComboBox<String> comboBox = new JComboBox<>(new Vector<>(list));
+        comboBox.setOpaque(false);
+        comboBox.setFont(Fonts.SEGOE_UI_16.getFont());
+        comboBox.setBackground(Colors.DARK_GREY);
+        comboBox.setForeground(Colors.LIGHT_GREY);
+        comboBox.setBorder(BorderFactory.createTitledBorder(
+                null,
+                headerText,
+                TitledBorder.DEFAULT_JUSTIFICATION,
+                TitledBorder.DEFAULT_POSITION,
+                Fonts.SEGOE_UI_14.getFont(),
+                Colors.LIGHT_GREY));
+        comboBox.setPreferredSize(new Dimension(56, 20));
+        return comboBox;
     }
 
 
