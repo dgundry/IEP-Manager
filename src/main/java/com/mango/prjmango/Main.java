@@ -42,7 +42,8 @@ public class Main {
 
 	public static Students students;
 
-	public static final SightWords SIGTHT_WORDS = new SightWords();
+	public static final SightWords SIGHT_WORDS = new SightWords();
+
 	/**
 	 * Initialize start of the application. Connects to the database and instantiates
 	 * classes that create the GUI.

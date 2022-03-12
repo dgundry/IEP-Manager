@@ -4,15 +4,14 @@ import com.mango.prjmango.LoggedInUser;
 import com.mango.prjmango.Main;
 import com.mango.prjmango.student.Students;
 import com.mango.prjmango.utilities.DatabaseCommands;
-import com.mango.prjmango.windows.account.AccountController;
-import com.mango.prjmango.windows.account.AccountView;
-import com.mango.prjmango.windows.common.Images;
 import com.mango.prjmango.windows.MainWindowView;
+import com.mango.prjmango.windows.common.Images;
 import com.mango.prjmango.windows.createaccount.basicinfo.BasicInfoController;
 import com.mango.prjmango.windows.createaccount.basicinfo.BasicInfoView;
+import com.mango.prjmango.windows.forgotpassword.email.EmailController;
+import com.mango.prjmango.windows.forgotpassword.email.EmailView;
 import com.mango.prjmango.windows.students.StudentsController;
 import com.mango.prjmango.windows.students.StudentsView;
-
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
@@ -22,6 +21,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+
 
 public class LoginController {
 
@@ -70,9 +70,6 @@ public class LoginController {
                     LoggedInUser user = new LoggedInUser(teacherID);
                     Main.activeUser = user;
                     Main.students = new Students(teacherID);
-
-//                    AccountView accountView = new AccountView();
-//                    new AccountController(accountView);
 
                     StudentsView studentsView = new StudentsView();
                     new StudentsController(studentsView);
@@ -227,7 +224,9 @@ public class LoginController {
          */
         @Override
         public void mouseClicked(MouseEvent e) {
-
+            EmailView emailView = new EmailView();
+            new EmailController(emailView);
+            MainWindowView.setActiveDisplay(emailView);
         }
 
         /**
