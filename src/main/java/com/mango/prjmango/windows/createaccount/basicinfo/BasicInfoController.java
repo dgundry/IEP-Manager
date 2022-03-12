@@ -13,6 +13,10 @@ import java.awt.event.MouseListener;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 
+/**
+ * This class handles all user interaction with the Basic Info page within the
+ * Create Account section.
+ */
 public class BasicInfoController {
 
     /**

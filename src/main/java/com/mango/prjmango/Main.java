@@ -12,7 +12,6 @@ import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
-import org.apache.commons.lang.SystemUtils;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -61,23 +60,16 @@ public class Main {
 
 		try {
 			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+
 //			frame = new MainFrame();
 //			frame.setLoginPage();
 
-			String os = SystemUtils.OS_NAME;
-			if (os.contains("Windows")) {
-				MainWindowView view = new MainWindowView();
+			MainWindowView view = new MainWindowView();
 
-				LoginView loginView = new LoginView();
-				new LoginController(loginView);
-				view.setActiveDisplay(loginView);
-			} else {
-				MainWindowView view = new MainWindowView();
+			LoginView loginView = new LoginView();
+			new LoginController(loginView);
+			view.setActiveDisplay(loginView);
 
-				LoginView loginView = new LoginView();
-				new LoginController(loginView);
-				view.setActiveDisplay(loginView);
-			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

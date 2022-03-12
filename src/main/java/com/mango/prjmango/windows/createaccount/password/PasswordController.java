@@ -1,23 +1,25 @@
 package com.mango.prjmango.windows.createaccount.password;
 
-
-import com.mango.prjmango.MainFrame;
 import com.mango.prjmango.utilities.Register;
 import com.mango.prjmango.utilities.User;
 import com.mango.prjmango.windows.MainWindowView;
 import com.mango.prjmango.windows.common.ImageIcons;
 import com.mango.prjmango.windows.createaccount.securityquestions.SecurityQuestionsController;
 import com.mango.prjmango.windows.createaccount.securityquestions.SecurityQuestionsView;
-import com.mango.prjmango.windows.login.LoginController;
-import com.mango.prjmango.windows.login.LoginView;
+import com.mango.prjmango.windows.dialogs.confirmation.ConfirmationController;
+import com.mango.prjmango.windows.dialogs.confirmation.ConfirmationView;
+import com.mango.prjmango.windows.dialogs.confirmation.Dialogs;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Arrays;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
+/**
+ * This class handles all user interaction with the Create Password page within the
+ * Create Account section.
+ */
 public class PasswordController {
 
     /**
@@ -62,7 +64,7 @@ public class PasswordController {
          */
         @Override
         public void mouseClicked(MouseEvent e) {
-            view.getInvalidLabel().setText("");
+            view.getInvalidLabel().setText(" ");
 
             char[] password1 = view.getCreatePasswordField().getPassword();
             char[] password2 = view.getConfirmPasswordField().getPassword();
@@ -87,23 +89,15 @@ public class PasswordController {
                 user.setPassword2(view.getConfirmPasswordField().getPassword());
 
                 if (register.createUser(user)) {
-                    //Dialog.openDialog(Dialog.ACCOUNT_CREATED); <----Temporary Change
-
-                    JOptionPane.showMessageDialog(
-                            MainFrame.getFrame(),
-                            "Account created!",
-                            "Success!",
-                            JOptionPane.PLAIN_MESSAGE);
-
-                    LoginView loginView = new LoginView();
-                    new LoginController(loginView);
-                    MainWindowView.setActiveDisplay(loginView);
+                    ConfirmationView confirmationView = new ConfirmationView(
+                            "Account successfully created!",
+                            Dialogs.ACCOUNT_CREATED);
+                    new ConfirmationController(confirmationView);
                 } else {
-                    JOptionPane.showMessageDialog(
-                            MainFrame.getFrame(),
+                    ConfirmationView confirmationView = new ConfirmationView(
                             "Something went wrong with registering.",
-                            "FAILURE",
-                            JOptionPane.ERROR_MESSAGE);
+                            Dialogs.ACCOUNT_CREATED);
+                    new ConfirmationController(confirmationView);
                 }
             }
         }

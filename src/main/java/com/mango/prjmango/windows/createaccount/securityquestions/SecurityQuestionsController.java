@@ -12,6 +12,10 @@ import java.awt.event.MouseListener;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 
+/**
+ * This class handles all user interaction with the Security Questions page within the
+ * Create Account section.
+ */
 public class SecurityQuestionsController {
 
     /**
@@ -76,7 +80,7 @@ public class SecurityQuestionsController {
             } else if (answer1.equals("")) {
                 view.getInvalidAnswer1Label().setText("Answer #1 cannot be blank!");
             } else if (answer2.equals("")) {
-                    view.getInvalidAnswer2Label().setText("Answer #2 cannot be blank!");
+                view.getInvalidAnswer2Label().setText("Answer #2 cannot be blank!");
             } else {
                 user.setSecurityQ1(question1Index);
                 user.setSecurityQ2(question2Index);

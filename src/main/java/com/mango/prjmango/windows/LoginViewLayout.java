@@ -39,7 +39,11 @@ public class LoginViewLayout extends BackgroundPanel {
                 loginBackgroundPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(GroupLayout.Alignment.TRAILING, loginBackgroundPanelLayout.createSequentialGroup()
                                 .addContainerGap(479, Short.MAX_VALUE)
-                                .addComponent(label, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(
+                                        label,
+                                        GroupLayout.PREFERRED_SIZE,
+                                        GroupLayout.DEFAULT_SIZE,
+                                        GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(479, Short.MAX_VALUE))
                         .addGroup(GroupLayout.Alignment.TRAILING, loginBackgroundPanelLayout.createSequentialGroup()
                                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -50,7 +54,11 @@ public class LoginViewLayout extends BackgroundPanel {
                 loginBackgroundPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(loginBackgroundPanelLayout.createSequentialGroup()
                                 .addContainerGap(177, Short.MAX_VALUE)
-                                .addComponent(label, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(
+                                        label,
+                                        GroupLayout.PREFERRED_SIZE,
+                                        GroupLayout.DEFAULT_SIZE,
+                                        GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
                                 .addComponent(mangoLogoLabel)
                                 .addGap(taskbarHeight - 10, taskbarHeight - 10, taskbarHeight - 10))

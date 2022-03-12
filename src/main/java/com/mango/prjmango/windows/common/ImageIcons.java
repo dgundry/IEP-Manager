@@ -103,7 +103,10 @@ public enum ImageIcons {
     STUDENTS_CREATE_SELECTED("/images/students/create/create-student-selected.png", 290, 30),
 
     CREATE_ACCOUNT_NO_HOVER("/images/common/create-account-no-hover.png", 116, 31),
-    CREATE_ACCOUNT_HOVERED("/images/common/create-account-hovered.png", 116, 31);
+    CREATE_ACCOUNT_HOVERED("/images/common/create-account-hovered.png", 116, 31),
+
+    OK_BUTTON_NO_HOVER("/images/common/ok-button-no-hover.png", 116, 31),
+    OK_BUTTON_HOVERED("/images/common/ok-button-hovered.png", 116, 31);
 
 
     @Getter

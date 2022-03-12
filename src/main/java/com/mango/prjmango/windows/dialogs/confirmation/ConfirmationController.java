@@ -4,15 +4,12 @@ import com.mango.prjmango.Main;
 import com.mango.prjmango.utilities.DatabaseConnection;
 import com.mango.prjmango.windows.MainWindowView;
 import com.mango.prjmango.windows.activities.ActivitiesView;
-import com.mango.prjmango.windows.activities.math.MathController;
-import com.mango.prjmango.windows.activities.math.MathView;
 import com.mango.prjmango.windows.activities.sightwords.SightController;
 import com.mango.prjmango.windows.activities.sightwords.SightView;
 import com.mango.prjmango.windows.common.ImageIcons;
 import com.mango.prjmango.windows.login.LoginController;
 import com.mango.prjmango.windows.login.LoginView;
 import com.mango.prjmango.windows.sideoptions.SideOptionsView;
-
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JLabel;
@@ -20,7 +17,7 @@ import javax.swing.JLabel;
 import static com.mango.prjmango.utilities.Tabs.STUDENTS;
 
 /**
- * Handles all user interaction
+ * Handles all user interaction with the pop-up dialogs.
  */
 public class ConfirmationController {
 
@@ -78,8 +75,8 @@ public class ConfirmationController {
 
                     LoginView loginView = new LoginView();
                     new LoginController(loginView);
-
                     MainWindowView.setActiveDisplay(loginView);
+
                     Main.activeUser = null;
                     break;
                 case 1:
@@ -89,9 +86,18 @@ public class ConfirmationController {
                     break;
                 case 2:
                     view.dispose();
+
                     SightView fryView = new SightView();
                     new SightController(fryView);
                     ActivitiesView.setActiveDisplay(fryView);
+
+                    break;
+                case 3:
+                    view.dispose();
+
+                    LoginView logView = new LoginView();
+                    new LoginController(logView);
+                    MainWindowView.setActiveDisplay(logView);
 
                     break;
                 default:
@@ -122,10 +128,19 @@ public class ConfirmationController {
          */
         @Override
         public void mouseEntered(MouseEvent e) {
-            if (selectedDialog == Dialogs.CLOSE_APPLICATION) {
-                label.setIcon(ImageIcons.APP_EXIT_HOVERED.getImageIcon());
-            } else {
-                label.setIcon(ImageIcons.APP_LOG_OUT_HOVERED.getImageIcon());
+            switch(selectedDialog.ordinal()) {
+                case 0:
+                    label.setIcon(ImageIcons.APP_LOG_OUT_HOVERED.getImageIcon());
+                    break;
+                case 1:
+                    label.setIcon(ImageIcons.APP_EXIT_HOVERED.getImageIcon());
+                    break;
+                case 2:
+                case 3:
+                    label.setIcon(ImageIcons.OK_BUTTON_HOVERED.getImageIcon());
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -136,10 +151,19 @@ public class ConfirmationController {
          */
         @Override
         public void mouseExited(MouseEvent e) {
-            if (selectedDialog == Dialogs.CLOSE_APPLICATION) {
-                label.setIcon(ImageIcons.APP_EXIT_NO_HOVER.getImageIcon());
-            } else {
-                label.setIcon(ImageIcons.APP_LOG_OUT_NO_HOVER.getImageIcon());
+            switch(selectedDialog.ordinal()) {
+                case 0:
+                    label.setIcon(ImageIcons.APP_LOG_OUT_NO_HOVER.getImageIcon());
+                    break;
+                case 1:
+                    label.setIcon(ImageIcons.APP_EXIT_NO_HOVER.getImageIcon());
+                    break;
+                case 2:
+                case 3:
+                    label.setIcon(ImageIcons.OK_BUTTON_NO_HOVER.getImageIcon());
+                    break;
+                default:
+                    break;
             }
         }
     }
