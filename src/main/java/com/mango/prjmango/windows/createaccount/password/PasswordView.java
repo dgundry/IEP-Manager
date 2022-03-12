@@ -11,6 +11,9 @@ import javax.swing.LayoutStyle;
 import javax.swing.SwingConstants;
 import lombok.Getter;
 
+/**
+ * The user interface design of the Create Account page.
+ */
 public class PasswordView extends JLabel {
 
     private JLabel pawLogoLabel;
@@ -18,12 +21,15 @@ public class PasswordView extends JLabel {
     private JLabel passwordLabel;
 
     @Getter private JLabel backLabel;
-    @Getter private JLabel nextLabel;
+    @Getter private JLabel createAccountLabel;
     @Getter private JLabel invalidLabel;
 
     @Getter private JPasswordField createPasswordField;
     @Getter private JPasswordField confirmPasswordField;
 
+    /**
+     * Constructor. Calls methods that create the GUI.
+     */
     public PasswordView() {
         setIcon(ImageIcons.LOGIN_PANEL_BACKGROUND.getImageIcon());
 
@@ -32,9 +38,9 @@ public class PasswordView extends JLabel {
     }
 
     private void createComponents() {
-        pawLogoLabel       = new JLabel(ImageIcons.PAW_LOGO.getImageIcon());
-        backLabel          = new JLabel(ImageIcons.BACK_NO_HOVER.getImageIcon());
-        nextLabel = new JLabel(ImageIcons.NEXT_NO_HOVER.getImageIcon());
+        pawLogoLabel = new JLabel(ImageIcons.PAW_LOGO.getImageIcon());
+        backLabel    = new JLabel(ImageIcons.BACK_NO_HOVER.getImageIcon());
+        createAccountLabel    = new JLabel(ImageIcons.CREATE_ACCOUNT_NO_HOVER.getImageIcon());
 
         iepManagerLabel = Components.JLabel(
                 "IEP Manager",
@@ -86,7 +92,7 @@ public class PasswordView extends JLabel {
                                                                 GroupLayout.DEFAULT_SIZE,
                                                                 Short.MAX_VALUE)
                                                         .addComponent(
-                                                                nextLabel,
+                                                                createAccountLabel,
                                                                 GroupLayout.PREFERRED_SIZE,
                                                                 116,
                                                                 GroupLayout.PREFERRED_SIZE))
@@ -130,7 +136,7 @@ public class PasswordView extends JLabel {
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(createPasswordPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addComponent(backLabel)
-                                        .addComponent(nextLabel))
+                                        .addComponent(createAccountLabel))
                                 .addGap(149, 149, 149))
                         .addGroup(createPasswordPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                 .addGroup(createPasswordPanelLayout.createSequentialGroup()

@@ -27,6 +27,11 @@ public class SecurityQuestionsController {
 
         nextLabel.addMouseListener(new NextLabelMouseListener(view, nextLabel, user));
         backLabel.addMouseListener(new BackLabelMouseListener(backLabel, user));
+
+        view.getSecurityQuestion1ComboBox().setSelectedIndex(user.getSecurityQ1());
+        view.getSecurityQuestion2ComboBox().setSelectedIndex(user.getSecurityQ2());
+        view.getAnswer1TextField().setText(user.getSecurityA1());
+        view.getAnswer2TextField().setText(user.getSecurityA2());
     }
 
     private static class NextLabelMouseListener implements MouseListener {
@@ -68,11 +73,9 @@ public class SecurityQuestionsController {
 
             if (question1Index == question2Index) {
                 view.getInvalidAnswer2Label().setText("Cannot use the same security questions.");
-            }
-            else if (answer1.equals("")) {
+            } else if (answer1.equals("")) {
                 view.getInvalidAnswer1Label().setText("Answer #1 cannot be blank!");
-            }
-            else if (answer2.equals("")) {
+            } else if (answer2.equals("")) {
                     view.getInvalidAnswer2Label().setText("Answer #2 cannot be blank!");
             } else {
                 user.setSecurityQ1(question1Index);

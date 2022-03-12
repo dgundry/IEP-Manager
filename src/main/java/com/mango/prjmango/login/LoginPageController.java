@@ -4,8 +4,6 @@ import com.mango.prjmango.LoggedInUser;
 import com.mango.prjmango.Main;
 import com.mango.prjmango.MainFrame;
 import com.mango.prjmango.components.listeners.ButtonMouseListener;
-import com.mango.prjmango.createaccount.basicinfo.BasicInfoController;
-import com.mango.prjmango.createaccount.basicinfo.BasicInfoView;
 import com.mango.prjmango.forgotpassword.email.EmailController;
 import com.mango.prjmango.forgotpassword.email.EmailView;
 import com.mango.prjmango.login.listeners.EmailTextFieldListener;
@@ -136,9 +134,7 @@ public class LoginPageController {
          */
         @Override
         public void actionPerformed(ActionEvent e) {
-            BasicInfoView createAccountView = new BasicInfoView();
-            new BasicInfoController(createAccountView);
-            MainFrame.setActivePanel(createAccountView);
+
         }
     }
 }

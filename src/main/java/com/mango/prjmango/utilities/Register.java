@@ -1,8 +1,5 @@
-package com.mango.prjmango.createaccount;
+package com.mango.prjmango.utilities;
 
-import com.mango.prjmango.utilities.DatabaseConnection;
-import com.mango.prjmango.utilities.Encryption;
-import com.mango.prjmango.utilities.User;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

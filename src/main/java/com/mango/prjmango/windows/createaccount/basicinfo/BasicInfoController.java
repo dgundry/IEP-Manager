@@ -1,6 +1,6 @@
 package com.mango.prjmango.windows.createaccount.basicinfo;
 
-import com.mango.prjmango.createaccount.Register;
+import com.mango.prjmango.utilities.Register;
 import com.mango.prjmango.utilities.User;
 import com.mango.prjmango.windows.MainWindowView;
 import com.mango.prjmango.windows.common.ImageIcons;
