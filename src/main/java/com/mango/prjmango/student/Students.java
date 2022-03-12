@@ -34,7 +34,7 @@ public class Students {
         return "Student Not Found";
     }
     private void gatherTeachersStudents(){
-        String sql = "SELECT DISTINCT student_id, first_name, last_name, grade, bio FROM student WHERE teacher_id = ?;";
+        String sql = "SELECT DISTINCT student_id, first_name, last_name, grade, bio FROM student WHERE teacher_id = ? GROUP BY student_id;";
         students.clear();
         try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
             statement.setInt(1, this.teacher_id);
@@ -50,7 +50,9 @@ public class Students {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        //students.remove(0);
+        if(students.size() > 1){
+            students.remove(0);
+        }
     }
     public Student[] createStudentArray(){
         Student[] temp = new Student[students.size()];

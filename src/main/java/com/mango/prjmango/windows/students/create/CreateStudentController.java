@@ -1,6 +1,8 @@
 package com.mango.prjmango.windows.students.create;
 
 import com.mango.prjmango.LoggedInUser;
+import com.mango.prjmango.Main;
+import com.mango.prjmango.student.Students;
 import com.mango.prjmango.utilities.DatabaseCommands;
 import com.mango.prjmango.utilities.EmailValidation;
 import com.mango.prjmango.windows.account.editprofile.EditProfileView;
@@ -53,6 +55,7 @@ public class CreateStudentController {
                 view.getInformationLabel().setText(view.getStudentFirstNameTextField().getText() +" has been added to the class!");
                 view.getInformationLabel().setForeground(Color.GREEN);
                 DatabaseCommands.registerStudent(studentsFirstNameTextField,studentLastNameTextField,gradeComboBox,bioTextField);
+                Main.students = new Students(Main.activeUser.getTeacherId());
                 view.getStudentFirstNameTextField().setText("");
                 view.getStudentLastNameTextField().setText("");
                 view.getGradeComboBox().setSelectedIndex(0);
