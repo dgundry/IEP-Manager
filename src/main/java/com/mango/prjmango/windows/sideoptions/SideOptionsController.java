@@ -8,7 +8,6 @@ import com.mango.prjmango.windows.dialogs.confirmation.ConfirmationController;
 import com.mango.prjmango.windows.dialogs.confirmation.ConfirmationView;
 import com.mango.prjmango.windows.dialogs.confirmation.Dialogs;
 import com.mango.prjmango.windows.sideoptions.listeners.TabListeners;
-import javafx.geometry.Side;
 
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
