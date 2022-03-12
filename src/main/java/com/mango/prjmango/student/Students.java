@@ -34,19 +34,23 @@ public class Students {
         return "Student Not Found";
     }
     private void gatherTeachersStudents(){
-        String sql = "SELECT student_id, first_name, last_name, grade, bio FROM student WHERE teacher_id = ?;";
+        String sql = "SELECT DISTINCT student_id, first_name, last_name, grade, bio FROM student WHERE teacher_id = ?;";
         students.clear();
         try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
             statement.setInt(1, this.teacher_id);
             ResultSet resultSet = statement.executeQuery();
             do{
-                students.add(new Student(resultSet.getInt(1), resultSet.getString(2),resultSet.getString(3),resultSet.getString(4), resultSet.getString(5)));
+                try{
+                    students.add(new Student(resultSet.getInt(1), resultSet.getString(2),resultSet.getString(3),resultSet.getString(4), resultSet.getString(5)));
+                }catch(Exception e){
+                    System.out.println("No Students");
+                }
             } while (resultSet.next());
             resultSet.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        students.remove(0);
+        //students.remove(0);
     }
     public Student[] createStudentArray(){
         Student[] temp = new Student[students.size()];

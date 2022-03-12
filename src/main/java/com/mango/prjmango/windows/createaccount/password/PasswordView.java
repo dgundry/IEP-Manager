@@ -18,7 +18,7 @@ public class PasswordView extends JLabel {
     private JLabel passwordLabel;
 
     @Getter private JLabel backLabel;
-    @Getter private JLabel createAccountLabel;
+    @Getter private JLabel nextLabel;
     @Getter private JLabel invalidLabel;
 
     @Getter private JPasswordField createPasswordField;
@@ -34,7 +34,7 @@ public class PasswordView extends JLabel {
     private void createComponents() {
         pawLogoLabel       = new JLabel(ImageIcons.PAW_LOGO.getImageIcon());
         backLabel          = new JLabel(ImageIcons.BACK_NO_HOVER.getImageIcon());
-        createAccountLabel = new JLabel(ImageIcons.NEXT_NO_HOVER.getImageIcon());
+        nextLabel = new JLabel(ImageIcons.NEXT_NO_HOVER.getImageIcon());
 
         iepManagerLabel = Components.JLabel(
                 "IEP Manager",
@@ -86,7 +86,7 @@ public class PasswordView extends JLabel {
                                                                 GroupLayout.DEFAULT_SIZE,
                                                                 Short.MAX_VALUE)
                                                         .addComponent(
-                                                                createAccountLabel,
+                                                                nextLabel,
                                                                 GroupLayout.PREFERRED_SIZE,
                                                                 116,
                                                                 GroupLayout.PREFERRED_SIZE))
@@ -130,7 +130,7 @@ public class PasswordView extends JLabel {
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(createPasswordPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addComponent(backLabel)
-                                        .addComponent(createAccountLabel))
+                                        .addComponent(nextLabel))
                                 .addGap(149, 149, 149))
                         .addGroup(createPasswordPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                 .addGroup(createPasswordPanelLayout.createSequentialGroup()

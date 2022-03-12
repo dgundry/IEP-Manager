@@ -83,13 +83,16 @@ public class User {
                 isValidText(securityA2);
     }
 
-    private boolean isValidText(String text) { return !text.equals("");
+    private boolean isValidText(String text) {
+        return !text.equals("");
     }
 
-    private boolean isValidPassword(char[] password) { return password.length != 0;
+    private boolean isValidPassword(char[] password) {
+        return password.length != 0;
     }
 
-    private boolean isUniquePassword(char[] passwordOne, char[] passwordTwo) { return Arrays.equals(passwordOne, passwordTwo);
+    private boolean isUniquePassword(char[] passwordOne, char[] passwordTwo) {
+        return Arrays.equals(passwordOne, passwordTwo);
     }
 
     private boolean isValidSecurityQuestion(int securityQuestion) { return securityQuestion >= 0 && securityQuestion <= 16;
