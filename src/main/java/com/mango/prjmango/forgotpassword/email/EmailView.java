@@ -17,7 +17,6 @@ public class EmailView extends RoundedPanel {
 
     @Getter private JButton nextButton;
     @Getter private JButton cancelButton;
-
     @Getter private JTextField emailText;
 
     /**
