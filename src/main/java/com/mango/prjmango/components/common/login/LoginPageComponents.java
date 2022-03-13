@@ -2,9 +2,6 @@ package com.mango.prjmango.components.common.login;
 
 import com.mango.prjmango.components.FontType;
 import com.mango.prjmango.components.RoundedPanel;
-import com.mango.prjmango.forgotpassword.email.EmailView;
-import com.mango.prjmango.forgotpassword.password.ChangePasswordView;
-import com.mango.prjmango.forgotpassword.securityquestions.AnswerSecurityQuestionsView;
 import com.mango.prjmango.login.LoginPageView;
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -16,9 +13,6 @@ import javax.swing.SwingConstants;
  * that are found on the following pages:
  * <ul>
  *     <li>{@link LoginPageView}</li>
- *     <li>{@link EmailView}</li>
- *     <li>{@link ChangePasswordView}</li>
- *     <li>{@link AnswerSecurityQuestionsView}</li>
  * </ul>
  *
  * @author  Kellen Campbell
@@ -34,14 +28,14 @@ public class LoginPageComponents {
      * @param parent the parent container that will hold these components
      */
     public static void setCommonComponents(RoundedPanel parent) {
-        JLabel schoolLogo = new JLabel();//Images.getSchoolLogoIcon());
+        JLabel schoolLogo = new JLabel();
         schoolLogo.setBounds(
                 (int) (parent.getWidth() * 0.5) - 50,
                 (int) (parent.getHeight() * 0.05),
                 (229 / 2),
                 110);
 
-        JLabel mangoLogo = new JLabel();//Images.getMangoLocoIcon());
+        JLabel mangoLogo = new JLabel();
         mangoLogo.setBounds(
                 (int) (parent.getWidth() * 0.5) - 25,
                 (parent.getHeight() - 75),

@@ -84,7 +84,7 @@ public class ChangePasswordController {
             } else {
                 String sql = "UPDATE teacher SET password = ? WHERE teacher_id = ?;";
                 try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
-                    statement.setString(1, Encryption.encryptPassword(view.getConfirmPasswordText().getText()));
+                    statement.setString(1, Encryption.encrypt(view.getConfirmPasswordText().getText()));
                     statement.setString(2, String.valueOf(view.getTeacherID()));
                     int result = statement.executeUpdate();
                     if(result == 1) {

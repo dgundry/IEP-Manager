@@ -4,8 +4,8 @@ import com.mango.prjmango.LoggedInUser;
 import com.mango.prjmango.Main;
 import com.mango.prjmango.MainFrame;
 import com.mango.prjmango.components.listeners.ButtonMouseListener;
-import com.mango.prjmango.forgotpassword.email.EmailController;
-import com.mango.prjmango.forgotpassword.email.EmailView;
+import com.mango.prjmango.forgotpassword.password.ChangePasswordController;
+import com.mango.prjmango.forgotpassword.password.ChangePasswordView;
 import com.mango.prjmango.login.listeners.EmailTextFieldListener;
 import com.mango.prjmango.login.listeners.PasswordTextFieldListener;
 import com.mango.prjmango.student.Students;
@@ -119,9 +119,9 @@ public class LoginPageController {
          */
         @Override
         public void actionPerformed(ActionEvent e) {
-            EmailView emailView = new EmailView();
-            new EmailController(emailView);
-            MainFrame.setActivePanel(emailView);
+            ChangePasswordView view = new ChangePasswordView(22);
+            new ChangePasswordController(view);
+            MainFrame.setActivePanel(view);
         }
     }
 

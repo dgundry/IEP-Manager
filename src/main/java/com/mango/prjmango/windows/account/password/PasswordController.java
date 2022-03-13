@@ -92,7 +92,7 @@ public class PasswordController {
                 return;
             }
 
-            if (currPassword.length() == 0 || currPassword.equals(Encryption.encryptPassword(Arrays.toString(currPass)))) {
+            if (currPassword.length() == 0 || currPassword.equals(Encryption.encrypt(Arrays.toString(currPass)))) {
                 if (Arrays.equals(newPass, confirmPass)) {
                     if (newPass.length == 0) {
                         view.getInformationLabel().setText("Passwords cannot be length 0!");

@@ -34,7 +34,7 @@ public class Register {
         try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
             statement.setInt(1, teacher_id);
             statement.setInt(2, question_id);
-            statement.setString(3, Encryption.encryptPassword(answer));
+            statement.setString(3, Encryption.encrypt(answer));
             statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -46,7 +46,7 @@ public class Register {
             statement.setString(1, firstName);
             statement.setString(2, lastName);
             statement.setString(3, email);
-            statement.setString(4, Encryption.encryptPassword(Arrays.toString(password)));
+            statement.setString(4, Encryption.encrypt(Arrays.toString(password)));
             statement.executeUpdate();
             int teacher_id = getTeacher_id(email);
             registerSecurityQuestions(teacher_id, question_id_one, answer_one, question_id_two, answer_two);

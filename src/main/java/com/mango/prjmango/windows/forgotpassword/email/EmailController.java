@@ -3,6 +3,8 @@ package com.mango.prjmango.windows.forgotpassword.email;
 import com.mango.prjmango.utilities.DatabaseCommands;
 import com.mango.prjmango.windows.MainWindowView;
 import com.mango.prjmango.windows.common.ImageIcons;
+import com.mango.prjmango.windows.forgotpassword.securityquestions.AnswerSecurityQuestionsController;
+import com.mango.prjmango.windows.forgotpassword.securityquestions.AnswerSecurityQuestionsView;
 import com.mango.prjmango.windows.login.LoginController;
 import com.mango.prjmango.windows.login.LoginView;
 import java.awt.event.MouseEvent;
@@ -30,6 +32,23 @@ public class EmailController {
         backLabel.addMouseListener(new BackLabelMouseListener(backLabel));
     }
 
+    /**
+     * Constructor. Adds {@link MouseListener}'s to specific {@link JLabel}'s that the user
+     * would interact with.
+     *
+     * @param view  the {@link EmailView} so we can access the {@link JLabel}'s
+     * @param email the email the user typed within the {@link EmailView}
+     */
+    public EmailController(EmailView view, String email) {
+        JLabel nextLabel = view.getNextLabel();
+        JLabel backLabel = view.getBackLabel();
+
+        nextLabel.addMouseListener(new NextLabelMouseListener(view, nextLabel));
+        backLabel.addMouseListener(new BackLabelMouseListener(backLabel));
+
+        view.getEmailTextField().setText(email);
+    }
+
     private static class NextLabelMouseListener implements MouseListener {
 
         private final EmailView view;
@@ -51,7 +70,7 @@ public class EmailController {
          * Invoked when the mouse button has been clicked (pressed
          * and released) on a component.
          *
-         * @param e the event to be processed
+         * @param e the {@link MouseEvent}
          */
         @Override
         public void mouseClicked(MouseEvent e) {
@@ -59,7 +78,9 @@ public class EmailController {
 
             String email = view.getEmailTextField().getText().trim();
             if (DatabaseCommands.isEmailTaken(email)) {
-                //go to next page
+                AnswerSecurityQuestionsView answerSecurityQuestionsView = new AnswerSecurityQuestionsView();
+                new AnswerSecurityQuestionsController(answerSecurityQuestionsView, email);
+                MainWindowView.setActiveDisplay(answerSecurityQuestionsView);
             } else {
                 view.getInvalidLabel().setText("The email you entered does not exist. Please try again.");
             }
@@ -68,7 +89,7 @@ public class EmailController {
         /**
          * Invoked when the mouse enters a component.
          *
-         * @param e the event to be processed
+         * @param e the {@link MouseEvent}
          */
         @Override
         public void mouseEntered(MouseEvent e) {
@@ -78,7 +99,7 @@ public class EmailController {
         /**
          * Invoked when the mouse exits a component.
          *
-         * @param e the event to be processed
+         * @param e the {@link MouseEvent}
          */
         @Override
         public void mouseExited(MouseEvent e) {
@@ -88,7 +109,7 @@ public class EmailController {
         /**
          * Invoked when a mouse button has been pressed on a component.
          *
-         * @param e the event to be processed
+         * @param e the {@link MouseEvent}
          */
         @Override
         public void mousePressed(MouseEvent e) { /* Not needed */ }
@@ -96,7 +117,7 @@ public class EmailController {
         /**
          * Invoked when a mouse button has been released on a component.
          *
-         * @param e the event to be processed
+         * @param e the {@link MouseEvent}
          */
         @Override
         public void mouseReleased(MouseEvent e) { /* Not needed */ }
@@ -120,7 +141,7 @@ public class EmailController {
          * Invoked when the mouse button has been clicked (pressed
          * and released) on a component.
          *
-         * @param e the event to be processed
+         * @param e the {@link MouseEvent}
          */
         @Override
         public void mouseClicked(MouseEvent e) {
@@ -132,7 +153,7 @@ public class EmailController {
         /**
          * Invoked when the mouse enters a component.
          *
-         * @param e the event to be processed
+         * @param e the {@link MouseEvent}
          */
         @Override
         public void mouseEntered(MouseEvent e) {
@@ -142,7 +163,7 @@ public class EmailController {
         /**
          * Invoked when the mouse exits a component.
          *
-         * @param e the event to be processed
+         * @param e the {@link MouseEvent}
          */
         @Override
         public void mouseExited(MouseEvent e) {
@@ -152,7 +173,7 @@ public class EmailController {
         /**
          * Invoked when a mouse button has been pressed on a component.
          *
-         * @param e the event to be processed
+         * @param e the {@link MouseEvent}
          */
         @Override
         public void mousePressed(MouseEvent e) { /* Not needed */ }
@@ -160,7 +181,7 @@ public class EmailController {
         /**
          * Invoked when a mouse button has been released on a component.
          *
-         * @param e the event to be processed
+         * @param e the {@link MouseEvent}
          */
         @Override
         public void mouseReleased(MouseEvent e) { /* Not needed */ }
