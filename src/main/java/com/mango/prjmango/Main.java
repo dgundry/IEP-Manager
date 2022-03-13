@@ -10,6 +10,7 @@ import java.awt.Dimension;
 import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
 import java.awt.Toolkit;
+import java.sql.Connection;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
 import org.springframework.boot.SpringApplication;
@@ -74,5 +75,10 @@ public class Main {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
+	}
+	private static Connection connection = null;
+	public static Connection getConnection() {
+		return connection;
 	}
 }
