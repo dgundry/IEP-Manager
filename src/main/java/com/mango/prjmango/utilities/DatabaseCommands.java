@@ -27,7 +27,7 @@ public class DatabaseCommands {
         String sql = "SELECT COUNT(*) FROM teacher WHERE email = ? AND password = ?;";
         try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
             statement.setString(1, enteredEmail);
-            statement.setString(2, Encryption.encryptPassword(Arrays.toString(enteredPassword)));
+            statement.setString(2, Encryption.encrypt(Arrays.toString(enteredPassword)));
             ResultSet resultSet = statement.executeQuery();
             count = resultSet.getInt(1);
             resultSet.close();
@@ -178,11 +178,11 @@ public class DatabaseCommands {
             ResultSet resultSet = statement.executeQuery();
             do {
                 if(resultSet.getInt(2) == questionIndexes[0]){
-                    if (!Encryption.encryptPassword(answer1).equals(resultSet.getString(3))){
+                    if (!Encryption.encrypt(answer1).equals(resultSet.getString(3))){
                         hasFailed = true;
                     }
                 } else if (resultSet.getInt(2) == questionIndexes[1]) {
-                    if (!Encryption.encryptPassword(answer2).equals(resultSet.getString(3))){
+                    if (!Encryption.encrypt(answer2).equals(resultSet.getString(3))){
                         hasFailed = true;
                     }
                 }
@@ -211,46 +211,6 @@ public class DatabaseCommands {
         return userDetails;
     }
 
-    /**
-     *
-     * @param teacherId the {@code teacher_id} value in the database
-     * @return a {@link List} of {@link Integer}'s which contain the indexes in the questions
-     */
-    public static List<Integer> getUserSecurityQuestionIndexes(int teacherId) {
-        String sql = "SELECT question_id FROM questions WHERE teacher_id = ?;";
-        List<Integer> userDetails = new ArrayList<>();
-        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
-            statement.setInt(1, teacherId);
-
-            ResultSet resultSet = statement.executeQuery();
-            resultSet.next();
-            do {
-                userDetails.add(resultSet.getInt("question_id"));
-            } while (resultSet.next());
-
-            resultSet.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return userDetails;
-    }
-
-    public static String getUserSecurityQuestion(int questionId) {
-        String sql = "SELECT question FROM question WHERE question_id = ?;";
-        String question = "";
-
-        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
-            statement.setInt(1, questionId);
-
-            ResultSet resultSet = statement.executeQuery();
-            question = resultSet.getString(1);
-            resultSet.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return question;
-    }
-
     public static void updateUserDetails(String firstName, String lastName, String email) {
         String sql = "UPDATE teacher SET first_name = ?, last_name = ?, email = ? WHERE teacher_id = ?;";
 
@@ -265,12 +225,34 @@ public class DatabaseCommands {
         }
     }
 
+    /**
+     * Updates the user's password to the new one.
+     *
+     * @param newPassword the new password
+     */
     public static void updateUserPassword(char[] newPassword) {
         String sql = "UPDATE teacher SET password = ? WHERE teacher_id = ?;";
 
         try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
-            statement.setString(1, Encryption.encryptPassword(Arrays.toString(newPassword)));
+            statement.setString(1, Encryption.encrypt(Arrays.toString(newPassword)));
             statement.setInt(2, LoggedInUser.getTeacherId());
+            statement.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     * Updates the user's password to the new one.
+     *
+     * @param newPassword the new password
+     */
+    public static void updateUserPassword(char[] newPassword, String email) {
+        String sql = "UPDATE teacher SET password = ? WHERE email = ?;";
+
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
+            statement.setString(1, Encryption.encrypt(Arrays.toString(newPassword)));
+            statement.setString(2, email);
             statement.executeUpdate();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -283,7 +265,7 @@ public class DatabaseCommands {
 
         try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
             statement.setInt(1, LoggedInUser.getTeacherId());
-            statement.setString(2, Encryption.encryptPassword(Arrays.toString(currentPassword)));
+            statement.setString(2, Encryption.encrypt(Arrays.toString(currentPassword)));
 
             ResultSet resultSet = statement.executeQuery();
             result = resultSet.getString(1);
@@ -307,5 +289,80 @@ public class DatabaseCommands {
         catch(SQLException e){
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Retrieves the specific {@code question_id}'s that the user had set when their
+     * account was created.
+     *
+     * @param teacherId the specific {@code teacherId}
+     * @return a {@link List} of {@link Integer}'s that contain the indexes
+     */
+    public static List<Integer> getUserQuestionIndexes(int teacherId) {
+        String sql = "SELECT question_id FROM questions WHERE teacher_id = ?;";
+        List<Integer> indexes = new ArrayList<>();
+
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
+            statement.setInt(1, teacherId);
+
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+
+            do {
+                indexes.add(resultSet.getInt("question_id"));
+            } while (resultSet.next());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return indexes;
+    }
+
+    /**
+     * Retrieves the security question that corresponds to the passed in index.
+     *
+     * @param index the index of the security question
+     * @return a {@link String} representation of the security question
+     */
+    public static String getSecurityQuestion(int index) {
+        String sql = "SELECT question FROM question WHERE question_id = ?;";
+        String question = "";
+
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
+            statement.setInt(1, index);
+
+            ResultSet resultSet = statement.executeQuery();
+            question = resultSet.getString(1);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return question;
+    }
+
+    /**
+     * Gets the answers of the security questions based off the specific {@code teacherId}.
+     *
+     * @param teacherId the specific {@code teacherId}
+     * @return a {@link List} of {@link String}'s that contain the answers that are encrypted
+     */
+    public static List<String> getSecurityQuestionAnswers(int teacherId) {
+        String sql = "SELECT answer FROM questions WHERE teacher_id = ?;";
+        List<String> answers = new ArrayList<>();
+
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
+            statement.setInt(1, teacherId);
+
+            ResultSet resultSet = statement.executeQuery();
+            resultSet.next();
+
+            do {
+                answers.add(resultSet.getString(1));
+            } while (resultSet.next());
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return answers;
     }
 }
