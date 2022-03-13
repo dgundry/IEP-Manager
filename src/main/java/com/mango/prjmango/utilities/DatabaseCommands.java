@@ -242,6 +242,23 @@ public class DatabaseCommands {
         }
     }
 
+    /**
+     * Updates the user's password to the new one.
+     *
+     * @param newPassword the new password
+     */
+    public static void updateUserPassword(char[] newPassword, String email) {
+        String sql = "UPDATE teacher SET password = ? WHERE email = ?;";
+
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
+            statement.setString(1, Encryption.encrypt(Arrays.toString(newPassword)));
+            statement.setString(2, email);
+            statement.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public static String getUserPassword(char[] currentPassword) {
         String sql = "SELECT password FROM teacher WHERE teacher_id = ? AND password = ?;";
         String result = "";
