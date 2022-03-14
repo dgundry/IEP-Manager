@@ -124,7 +124,7 @@ public class CreateStudentView extends JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(gradeLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(gradeComboBox, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(gradeComboBox, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(bioLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
