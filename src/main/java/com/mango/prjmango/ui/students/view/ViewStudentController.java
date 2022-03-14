@@ -19,7 +19,7 @@ public class ViewStudentController {
             do{
                 Student s = new Student(set.getInt(1), set.getString(2),
                         set.getString(3), set.getString(4), set.getString(5));
-                view.getModel().addRow(new Object[] {s.getFirstName(), s.getLastName(), s.getGrade(), s.getBio()});
+                view.getModel().addRow(new Object[] {s.getStudentID(), s.getFirstName(), s.getLastName(), s.getGrade(), s.getBio()});
             }while(set.next());
             view.getModel().removeRow(0);
         }catch(Exception e){

@@ -1,9 +1,11 @@
 package com.mango.prjmango.ui.students.view;
 
+import com.mango.prjmango.ui.common.Colors;
 import com.mango.prjmango.ui.common.Fonts;
 import lombok.Getter;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
@@ -34,21 +36,38 @@ public class ViewStudentView extends JPanel {
         studentsHeaderLabel     = createLabel("Students", 24);
         searchLabel             = createLabel("Search", 18);
         searchTextBox           = createTextField("");
-        studentsScrollPane.setViewportView(this);
+
+
 
         model = new DefaultTableModel(new Object[][]{}, new String[] { "Student ID", "First Name", "Last Name", "Grade", "Bio" });
         studentTable.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(120, 45, 22), 1, true));
         studentTable.setModel(model);
+        studentTable.setBackground(Colors.DARK_GREY);
+        studentTable.setFont(Fonts.SEGOE_UI_16.getFont());
+        studentTable.getTableHeader().setFont(Fonts.SEGOE_UI_18.getFont());
+        studentTable.getTableHeader().setBackground(Colors.LIGHT_GREY);
+        studentTable.getTableHeader().setForeground(Colors.DARK_GREY);
+        studentTable.setForeground(Colors.LIGHT_GREY);
+        studentTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        studentTable.setIntercellSpacing(new Dimension(10, 0));
+        studentTable.setGridColor(Colors.DARK_GREY);
+        studentTable.setRowHeight(23);
         studentTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         studentTable.setCellSelectionEnabled(true);
         studentTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-//        studentTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-//        if (studentTable.getColumnModel().getColumnCount() > 0) {
-//            studentTable.getColumnModel().getColumn(0).setHeaderValue("Student ID");
-//            studentTable.getColumnModel().getColumn(1).setHeaderValue("First Name");
-//            studentTable.getColumnModel().getColumn(2).setHeaderValue("Last Name");
-//            studentTable.getColumnModel().getColumn(3).setHeaderValue("Title 4");
-//        }
+        studentTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+
+
+        studentsScrollPane.add(studentTable);
+        studentsScrollPane.setViewportView(studentTable);
+
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        studentTable.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        studentTable.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+        studentTable.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+        studentTable.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+        studentTable.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
 
     }
 
@@ -72,8 +91,9 @@ public class ViewStudentView extends JPanel {
                                                 .addComponent(searchTextBox, GroupLayout.PREFERRED_SIZE, 209, GroupLayout.PREFERRED_SIZE)
                                                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addGroup(addAssignmentPanelLayout.createSequentialGroup()
-                                                .addComponent(studentTable, GroupLayout.PREFERRED_SIZE, 581, GroupLayout.PREFERRED_SIZE))))
-
+                                                .addContainerGap()
+                                                .addGroup(addAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                        .addComponent(studentsScrollPane, GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)))))
         );
         addAssignmentPanelLayout.setVerticalGroup(
                 addAssignmentPanelLayout.createSequentialGroup()
@@ -84,7 +104,7 @@ public class ViewStudentView extends JPanel {
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(searchTextBox, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(studentTable, GroupLayout.PREFERRED_SIZE, 581, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(studentsScrollPane, GroupLayout.PREFERRED_SIZE, 500, GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(850, Short.MAX_VALUE)
                         .addGroup(addAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING))
         );
