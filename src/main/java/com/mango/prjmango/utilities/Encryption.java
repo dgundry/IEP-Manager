@@ -26,8 +26,6 @@ public class Encryption {
         return bytesToHex(message.digest());
     }
 
-
-
     private static String bytesToHex(byte[] bytes){
         StringBuilder encryption = new StringBuilder();
         for (byte b : bytes) {
