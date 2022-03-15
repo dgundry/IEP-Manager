@@ -1,5 +1,6 @@
 package com.mango.prjmango.ui.students.view;
 
+import com.mango.prjmango.LoggedInUser;
 import com.mango.prjmango.student.Student;
 import com.mango.prjmango.utilities.DatabaseConnection;
 
@@ -13,7 +14,7 @@ public class ViewStudentController {
 
     }
     private void populateTable(ViewStudentView view){
-        String query = "SELECT student_id, first_name, last_name, grade, bio FROM student;";
+        String query = "SELECT student_id, first_name, last_name, grade, bio FROM student WHERE teacher_id = " + LoggedInUser.getTeacherId() + ";";
         try(PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(query)){
             ResultSet set = statement.executeQuery();
             do{
