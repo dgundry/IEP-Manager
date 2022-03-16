@@ -8,7 +8,8 @@ import com.mango.prjmango.ui.dialogs.confirmation.ConfirmationView;
 import com.mango.prjmango.ui.dialogs.confirmation.Dialogs;
 import com.mango.prjmango.ui.sideoptions.SideOptionsController;
 import com.mango.prjmango.ui.sideoptions.SideOptionsView;
-import java.awt.Dimension;
+
+import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.GroupLayout;
