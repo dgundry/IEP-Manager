@@ -38,7 +38,7 @@ public class FinishAssignmentController {
         public void mouseClicked(MouseEvent e) {
             String sql = "INSERT INTO assignment(teacher_id, student_id,title,earned_points,total_points,date,comment) VALUES(?,?,?,?,?,date('now','localtime'),?);";
             try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
-                statement.setInt(1, Main.activeUser.getTeacherId());
+                statement.setInt(1, Main.getActiveUser().getTeacherId());
                 statement.setInt(2, view.getAssignment().getStudent().getStudentID());
                 statement.setString(3, view.getAssignment().getAssignmentName());
                 statement.setInt(4, view.getAssignment().getCorrectAnswers());

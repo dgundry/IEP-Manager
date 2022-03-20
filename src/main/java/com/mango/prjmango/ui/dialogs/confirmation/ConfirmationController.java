@@ -1,7 +1,6 @@
 package com.mango.prjmango.ui.dialogs.confirmation;
 
 import com.mango.prjmango.Main;
-import com.mango.prjmango.utilities.DatabaseConnection;
 import com.mango.prjmango.ui.MainWindowView;
 import com.mango.prjmango.ui.activities.ActivitiesView;
 import com.mango.prjmango.ui.activities.sightwords.SightController;
@@ -10,11 +9,11 @@ import com.mango.prjmango.ui.common.ImageIcons;
 import com.mango.prjmango.ui.login.LoginController;
 import com.mango.prjmango.ui.login.LoginView;
 import com.mango.prjmango.ui.sideoptions.SideOptionsView;
+import com.mango.prjmango.utilities.DatabaseConnection;
+import com.mango.prjmango.utilities.Tabs;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JLabel;
-
-import static com.mango.prjmango.utilities.Tabs.STUDENTS;
 
 /**
  * Handles all user interaction with the pop-up dialogs.
@@ -69,7 +68,7 @@ public class ConfirmationController {
                     SideOptionsView.getStudentsTabLabel().setIcon(ImageIcons.STUDENT_TAB_HOVERED.getImageIcon());
                     SideOptionsView.getActivitiesTabLabel().setIcon(ImageIcons.ACTIVITIES_TAB_NO_HOVER.getImageIcon());
                     SideOptionsView.getReportsTabLabel().setIcon(ImageIcons.REPORTS_TAB_NO_HOVER.getImageIcon());
-                    MainWindowView.currentlyActiveTab = STUDENTS;
+                    MainWindowView.setCurrentlyActiveTab(Tabs.STUDENTS);
 
                     view.dispose();
 
@@ -77,7 +76,7 @@ public class ConfirmationController {
                     new LoginController(loginView);
                     MainWindowView.setActiveDisplay(loginView);
 
-                    Main.activeUser = null;
+                    Main.setActiveUser(null);
                     break;
                 case 1:
                     DatabaseConnection.closeConnection();

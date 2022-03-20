@@ -60,9 +60,8 @@ public class UploadView extends JPanel {
         dateTextField = createTextField();
         commentsTextField = createTextField();
 
-        studentNameDropdown = new JComboBox<>(new Vector<>(Main.students.getStudents()));
+        studentNameDropdown = new JComboBox<>(new Vector<>(Main.getStudents().getStudents()));
         studentNameDropdown.setBackground(Color.WHITE);
-
     }
 
     public void createLayout(){

@@ -12,8 +12,7 @@ import javax.swing.*;
 public class SightAssignmentView extends JPanel {
 
     private JLabel sightWordHeaderLabel;
-    @Getter
-    private JLabel wordLabel;
+    @Getter private JLabel wordLabel;
     @Getter private JLabel numberWordLabel;
 
     @Getter private JLabel incorrectLabel;

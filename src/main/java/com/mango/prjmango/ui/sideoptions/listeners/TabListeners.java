@@ -51,8 +51,8 @@ public class TabListeners implements MouseListener {
      */
     @Override
     public void mouseClicked(MouseEvent e) {
-        MainWindowView.previouslyActiveTab = MainWindowView.currentlyActiveTab;
-        MainWindowView.currentlyActiveTab = tab;
+        MainWindowView.setPreviouslyActiveTab(MainWindowView.getCurrentlyActiveTab());
+        MainWindowView.setCurrentlyActiveTab(tab);
         resetLabelImages();
         label.setIcon(hoveredImage);
 
@@ -81,7 +81,7 @@ public class TabListeners implements MouseListener {
      */
     @Override
     public void mouseEntered(MouseEvent e) {
-        if (MainWindowView.currentlyActiveTab != tab) {
+        if (MainWindowView.getCurrentlyActiveTab() != tab) {
             label.setIcon(hoveredImage);
         }
     }
@@ -93,7 +93,7 @@ public class TabListeners implements MouseListener {
      */
     @Override
     public void mouseExited(MouseEvent e) {
-        if (MainWindowView.currentlyActiveTab != tab) {
+        if (MainWindowView.getCurrentlyActiveTab() != tab) {
             label.setIcon(noHoveredImage);
         }
     }
@@ -115,7 +115,7 @@ public class TabListeners implements MouseListener {
     public void mouseReleased(MouseEvent e) { /* Not needed */ }
 
     private void resetLabelImages() {
-        Tabs previouslyActiveTab = MainWindowView.previouslyActiveTab;
+        Tabs previouslyActiveTab = MainWindowView.getPreviouslyActiveTab();
         switch (previouslyActiveTab.ordinal()) {
             case 0:
                 SideOptionsView.getAccountTabLabel().setIcon(ImageIcons.ACCOUNT_TAB_NO_HOVER.getImageIcon());

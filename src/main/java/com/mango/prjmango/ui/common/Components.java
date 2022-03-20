@@ -91,4 +91,13 @@ public class Components {
         comboBox.setPreferredSize(new Dimension(56, 20));
         return comboBox;
     }
+
+    public static JComboBox<Object> JComboBox() {
+        JComboBox<Object> comboBox = new JComboBox<>();
+        comboBox.setOpaque(false);
+        comboBox.setFont(Fonts.SEGOE_UI_16.getFont());
+        comboBox.setBackground(Colors.DARK_GREY);
+        comboBox.setForeground(Colors.LIGHT_GREY);
+        return comboBox;
+    }
 }

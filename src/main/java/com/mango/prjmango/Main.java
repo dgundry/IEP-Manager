@@ -1,14 +1,16 @@
 package com.mango.prjmango;
 
 import com.mango.prjmango.student.Students;
-import com.mango.prjmango.utilities.DatabaseConnection;
 import com.mango.prjmango.ui.MainWindowView;
 import com.mango.prjmango.ui.activities.SightWords;
 import com.mango.prjmango.ui.login.LoginController;
 import com.mango.prjmango.ui.login.LoginView;
+import com.mango.prjmango.utilities.DatabaseConnection;
 import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
 import javax.swing.UIManager;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -26,9 +28,9 @@ public class Main {
 
 	public static final Rectangle rect = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
 
-	public static LoggedInUser activeUser;
+	@Getter @Setter private static LoggedInUser activeUser;
 
-	public static Students students;
+	@Getter @Setter private static Students students;
 
 	public static final SightWords SIGHT_WORDS = new SightWords();
 
@@ -49,11 +51,11 @@ public class Main {
 		try {
 			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
 
-			MainWindowView view = new MainWindowView();
+			new MainWindowView();
 
 			LoginView loginView = new LoginView();
 			new LoginController(loginView);
-			view.setActiveDisplay(loginView);
+			MainWindowView.setActiveDisplay(loginView);
 
 		} catch (Exception e) {
 			e.printStackTrace();

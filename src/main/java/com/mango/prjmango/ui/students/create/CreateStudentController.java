@@ -2,22 +2,19 @@ package com.mango.prjmango.ui.students.create;
 
 import com.mango.prjmango.Main;
 import com.mango.prjmango.student.Students;
-import com.mango.prjmango.utilities.DatabaseCommands;
 import com.mango.prjmango.ui.common.ImageIcons;
-
-import javax.swing.*;
-import java.awt.*;
+import com.mango.prjmango.utilities.DatabaseCommands;
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Objects;
+import javax.swing.JLabel;
 
 public class CreateStudentController {
     public CreateStudentController(CreateStudentView view){
         JLabel saveLabel = view.getSaveLabel();
 
         saveLabel.addMouseListener(new SaveStudentMouseListener(view, saveLabel));
-
-
     }
 
     private static class SaveStudentMouseListener implements MouseListener {
@@ -51,7 +48,7 @@ public class CreateStudentController {
                 view.getInformationLabel().setText(view.getStudentFirstNameTextField().getText() +" has been added to the class!");
                 view.getInformationLabel().setForeground(Color.GREEN);
                 DatabaseCommands.registerStudent(studentsFirstNameTextField,studentLastNameTextField,gradeComboBox,bioTextField);
-                Main.students = new Students(Main.activeUser.getTeacherId());
+                Main.setStudents(new Students(Main.getActiveUser().getTeacherId()));
                 view.getStudentFirstNameTextField().setText("");
                 view.getStudentLastNameTextField().setText("");
                 view.getGradeComboBox().setSelectedIndex(0);

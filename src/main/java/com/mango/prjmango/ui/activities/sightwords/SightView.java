@@ -9,29 +9,36 @@ import com.mango.prjmango.ui.common.Colors;
 import com.mango.prjmango.ui.common.Components;
 import com.mango.prjmango.ui.common.Fonts;
 import com.mango.prjmango.ui.common.ImageIcons;
+import java.awt.Color;
+import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.GroupLayout;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.LayoutStyle;
+import javax.swing.SwingConstants;
 import lombok.Getter;
 
-import javax.swing.*;
-import java.awt.*;
-import java.util.Vector;
-
 public class SightView extends JPanel {
+
     private JLabel assignmentHeaderLabel;
     private JLabel assignmentLabel;
     private JLabel studentsNameLabel;
 
-    @Getter
-    private JLabel beginLabel;
-    @Getter private JComboBox<Enum> sightWordComboBox;
+    @Getter private JLabel beginLabel;
+    @Getter private JComboBox<Object> sightWordComboBox;
     @Getter private JComboBox<Student> studentsNameComboBox;
+
     public SightView(){
         setOpaque(false);
 
         createComponents();
         createLayout();
     }
+
     private void createComponents() {
-        if(LoggedInUser.getCurrentMenu() == 1){
+        if(LoggedInUser.getCurrentMenu() == 1) {
             assignmentHeaderLabel = Components.JLabel(
                     "Fry Sight Words",
                     Fonts.SEGOE_UI_24.getFont(),
@@ -42,7 +49,7 @@ public class SightView extends JPanel {
                     Fonts.SEGOE_UI_18.getFont(),
                     Colors.LIGHT_GREY,
                     SwingConstants.LEADING);
-        }else if(LoggedInUser.getCurrentMenu() == 2){
+        } else if(LoggedInUser.getCurrentMenu() == 2) {
             assignmentHeaderLabel = Components.JLabel(
                     "Dolch Sight Words",
                     Fonts.SEGOE_UI_24.getFont(),
@@ -54,21 +61,21 @@ public class SightView extends JPanel {
                     Colors.LIGHT_GREY,
                     SwingConstants.LEADING);
         }
+
         studentsNameLabel = Components.JLabel(
                 "Student's Name",
                 Fonts.SEGOE_UI_18.getFont(),
                 Colors.LIGHT_GREY,
                 SwingConstants.LEADING);
 
-        sightWordComboBox = new JComboBox<>();
-        if(LoggedInUser.getCurrentMenu() == 1){
+        sightWordComboBox = Components.JComboBox();
+        if (LoggedInUser.getCurrentMenu() == 1) {
             sightWordComboBox.setModel(new DefaultComboBoxModel<>(FryWords.values()));
-        }else if(LoggedInUser.getCurrentMenu() == 2){
+        } else if(LoggedInUser.getCurrentMenu() == 2) {
             sightWordComboBox.setModel(new DefaultComboBoxModel<>(DolchWords.values()));
         }
 
-        studentsNameComboBox = new JComboBox<>(new Vector<>(Main.students.getStudents()));
-        //studentsNameComboBox.setSelectedIndex(0);
+        studentsNameComboBox = new JComboBox<>(new Vector<>(Main.getStudents().getStudents()));
         studentsNameComboBox.setBackground(Color.WHITE);
 
         beginLabel = new JLabel(ImageIcons.FRY_BEGIN_NO_HOVER.getImageIcon());

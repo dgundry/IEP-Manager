@@ -37,7 +37,7 @@ public class UploadController {
         public void mouseClicked(MouseEvent e) {
             String sql = "INSERT INTO assignment(teacher_id, student_id,title,earned_points,total_points,date,comment) VALUES(?,?,?,?,?,date('" + view.getDateTextField().getText() + "'),?);";
             try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
-                statement.setInt(1, Main.activeUser.getTeacherId());
+                statement.setInt(1, Main.getActiveUser().getTeacherId());
                 statement.setInt(2, ((Student)view.getStudentNameDropdown().getSelectedItem()).getStudentID());
                 statement.setString(3, view.getAssignmentNameTextField().getText());
                 statement.setInt(4, Integer.parseInt(view.getPointsEarnedTextField().getText()));

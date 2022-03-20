@@ -1,24 +1,25 @@
 package com.mango.prjmango.student;
 
+import com.mango.prjmango.utilities.DatabaseConnection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import com.mango.prjmango.utilities.DatabaseConnection;
 import lombok.Getter;
 
 public class Students {
-    @Getter ArrayList<Student> students = new ArrayList<Student>();
-//    @Getter Student[] testStudents = new Student[]{new Student(1,"first","last","bio")};
+    @Getter ArrayList<Student> students = new ArrayList<>();
+
     private int teacher_id;
     public Students(int teacher_id){
         this.teacher_id = teacher_id;
         gatherTeachersStudents();
     }
+
     public Students(){
 
     }
+
     /**
      * Gets Students Last, First names with corresponding ID #
      * @param student_id

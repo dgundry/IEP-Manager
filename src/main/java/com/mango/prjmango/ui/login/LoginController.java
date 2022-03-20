@@ -68,8 +68,8 @@ public class LoginController {
                     int teacherID = DatabaseCommands.getTeacherId(enteredEmail);
 
                     LoggedInUser user = new LoggedInUser(teacherID);
-                    Main.activeUser = user;
-                    Main.students = new Students(teacherID);
+                    Main.setActiveUser(user);
+                    Main.setStudents(new Students(teacherID));
 
                     StudentsView studentsView = new StudentsView();
                     new StudentsController(studentsView);

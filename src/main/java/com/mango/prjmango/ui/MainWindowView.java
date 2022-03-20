@@ -1,15 +1,14 @@
 package com.mango.prjmango.ui;
 
 import com.mango.prjmango.Main;
-import com.mango.prjmango.utilities.Tabs;
 import com.mango.prjmango.ui.common.Colors;
 import com.mango.prjmango.ui.dialogs.confirmation.ConfirmationController;
 import com.mango.prjmango.ui.dialogs.confirmation.ConfirmationView;
 import com.mango.prjmango.ui.dialogs.confirmation.Dialogs;
 import com.mango.prjmango.ui.sideoptions.SideOptionsController;
 import com.mango.prjmango.ui.sideoptions.SideOptionsView;
-
-import java.awt.*;
+import com.mango.prjmango.utilities.Tabs;
+import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.GroupLayout;
@@ -19,19 +18,20 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 import lombok.Getter;
+import lombok.Setter;
 
 public class MainWindowView {
 
     private static final Dimension INITIAL_DIMENSIONS = new Dimension(Main.rect.width, Main.rect.height);
 
-    @Getter private static JFrame frame;
+    @Getter private static final JFrame frame = new JFrame();
 
-    @Getter private static JPanel mainPanel = new JPanel();
+    @Getter private static final JPanel mainPanel = new JPanel();
 
-    private static LoginViewLayout loginViewLayout = new LoginViewLayout();
+    private static final LoginViewLayout loginViewLayout = new LoginViewLayout();
 
-    public static Tabs currentlyActiveTab = Tabs.STUDENTS;
-    public static Tabs previouslyActiveTab = null;
+    @Getter @Setter private static Tabs currentlyActiveTab = Tabs.STUDENTS;
+    @Getter @Setter private static Tabs previouslyActiveTab = null;
 
     private static SideOptionsView sideOptionsView;
 
@@ -39,7 +39,6 @@ public class MainWindowView {
      * Constructor. Instantiates the {@link JFrame} and calls methods to create the layout.
      */
     public MainWindowView() {
-        frame = new JFrame();
         frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         frame.setBackground(Colors.DARK_GREY);
 

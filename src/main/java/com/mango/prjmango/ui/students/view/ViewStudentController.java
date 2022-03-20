@@ -1,13 +1,7 @@
 package com.mango.prjmango.ui.students.view;
 
-import com.mango.prjmango.LoggedInUser;
 import com.mango.prjmango.Main;
-import com.mango.prjmango.student.Student;
 import com.mango.prjmango.student.Students;
-import com.mango.prjmango.utilities.DatabaseConnection;
-
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 public class ViewStudentController {
     public ViewStudentController(ViewStudentView view){
@@ -35,7 +29,7 @@ public class ViewStudentController {
 //        }catch(Exception e){
 //            e.printStackTrace();
 //        }
-        Students temp = Main.students;
+        Students temp = Main.getStudents();
         for(int i = 0; i < temp.getStudents().size(); i++){
                     view.getModel().addRow(new Object[]{temp.getStudents().get(i).getStudentID(), temp.getStudents().get(i).getFirstName(), temp.getStudents().get(i).getLastName(), temp.getStudents().get(i).getGrade(), temp.getStudents().get(i).getBio()});
         }

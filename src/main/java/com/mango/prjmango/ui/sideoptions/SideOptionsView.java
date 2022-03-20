@@ -75,7 +75,7 @@ public class SideOptionsView {
     }
 
     private static void setActiveTabIcon() {
-        switch (MainWindowView.currentlyActiveTab.ordinal()) {
+        switch (MainWindowView.getCurrentlyActiveTab().ordinal()) {
             case 0:
                 accountTabLabel.setIcon(ImageIcons.ACCOUNT_TAB_HOVERED.getImageIcon());
                 break;
