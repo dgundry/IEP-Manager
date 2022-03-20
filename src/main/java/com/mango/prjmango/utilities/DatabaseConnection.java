@@ -15,7 +15,7 @@ public class DatabaseConnection implements Runnable {
 
     private static final Logger logger = Logger.getLogger(DatabaseConnection.class.getName());
 
-    @Getter private static final String TESTING_DB = "jdbc:sqlite:database/testing.db";
+    public static final String TESTING_DB = "jdbc:sqlite::resource:database/testing.db";
 
     @Getter private static Connection connection = null;
 
@@ -27,7 +27,9 @@ public class DatabaseConnection implements Runnable {
      */
     public static void setDatabase(String database) {
         try {
-            connection = DriverManager.getConnection(database);
+            SQLiteConfig config = new SQLiteConfig();
+            config.setReadOnly(false);
+            connection = DriverManager.getConnection(database, config.toProperties());
         } catch (SQLException e) {
             logger.log(Level.SEVERE, e.getMessage());
         }
@@ -38,14 +40,7 @@ public class DatabaseConnection implements Runnable {
      */
     @Override
     public void run() {
-        try {
-            SQLiteConfig config = new SQLiteConfig();
-            config.setReadOnly(false);
-            connection = DriverManager.getConnection(
-                    "jdbc:sqlite::resource:database/iepCipher.db", config.toProperties());
-        } catch (Exception e) {
-            logger.log(Level.SEVERE, e.getMessage());
-        }
+        setDatabase("jdbc:sqlite::resource:database/iepCipher.db");
     }
 
     /**

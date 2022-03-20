@@ -15,6 +15,60 @@ import java.util.Vector;
  */
 public class DatabaseCommands {
 
+    private DatabaseCommands() {
+        throw new IllegalStateException("Utility class.");
+    }
+
+    /**
+     * Adds a new entry to the {@code teacher} table within the database.
+     *
+     * @param user     the {@link User} object that contains other data
+     * @param password the user's password
+     * @return the number of rows that were affected by this INSERT command
+     */
+    public static int addNewTeacher(User user, char[] password) {
+        String sql = "INSERT INTO teacher(first_name, last_name, email, password) VALUES (?, ?, ?, ?);";
+        int result = 0;
+
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
+            statement.setString(1, user.getFirstName());
+            statement.setString(2, user.getLastName());
+            statement.setString(3, user.getEmail());
+            statement.setString(4, Encryption.encrypt(Arrays.toString(password)));
+            result = statement.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        return result;
+    }
+
+    /**
+     * Adds the newly registered user's security questions and answers to the questions table
+     * in the database.
+     *
+     * @param user       the {@link User} object so we can access the {@code teacherId}
+     * @param questionId the question_id the user selected
+     * @param answer     the users answer to the question they selected
+     * @return the number of rows that were affected by this INSERT command
+     */
+    public static int registerSecurityAnswer(User user, int questionId, String answer) {
+        int teacherId = getTeacherId(user.getEmail());
+        int result = 0;
+
+        String sql = "INSERT INTO questions(teacher_id, question_id, answer) VALUES(?, ?, ?);";
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
+            statement.setInt(1, teacherId);
+            statement.setInt(2, questionId);
+            statement.setString(3, Encryption.encrypt(answer));
+            result = statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
     /**
      * Finds if there is an existing user within the database.
      *
@@ -62,11 +116,6 @@ public class DatabaseCommands {
         return securityQuestionList;
     }
 
-    /**
-     *
-     * @param teacherID the
-     * @return
-     */
     public static int[] getQuestionIds(int teacherID) {
         int[] questionIds = new int[2];
         int index = 0;
@@ -211,6 +260,13 @@ public class DatabaseCommands {
         return userDetails;
     }
 
+    /**
+     * Updates the user's personal details.
+     *
+     * @param firstName the new first name
+     * @param lastName  the new last name
+     * @param email     the new email
+     */
     public static void updateUserDetails(String firstName, String lastName, String email) {
         String sql = "UPDATE teacher SET first_name = ?, last_name = ?, email = ? WHERE teacher_id = ?;";
 
@@ -257,6 +313,22 @@ public class DatabaseCommands {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    public static String getUserPassword(int teacherId) {
+        String sql = "SELECT password FROM teacher WHERE teacher_id = ?;";
+        String result = "";
+
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
+            statement.setInt(1, teacherId);
+
+            ResultSet resultSet = statement.executeQuery();
+            result = resultSet.getString(1);
+            resultSet.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return result;
     }
 
     public static String getUserPassword(char[] currentPassword) {

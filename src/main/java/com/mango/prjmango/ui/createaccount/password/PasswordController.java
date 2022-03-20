@@ -1,6 +1,6 @@
 package com.mango.prjmango.ui.createaccount.password;
 
-import com.mango.prjmango.utilities.Register;
+import com.mango.prjmango.utilities.DatabaseCommands;
 import com.mango.prjmango.utilities.User;
 import com.mango.prjmango.ui.MainWindowView;
 import com.mango.prjmango.ui.common.ImageIcons;
@@ -38,6 +38,7 @@ public class PasswordController {
     }
 
     private static class NextLabelMouseListener implements MouseListener {
+
         private final PasswordView view;
         private final JLabel label;
         private final User user;
@@ -82,23 +83,28 @@ public class PasswordController {
                 view.getInvalidLabel().setForeground(Color.RED);
                 view.getCreatePasswordField().requestFocus();
             } else {
-                Register register = new Register();
                 user.setSecurityQ1(user.getSecurityQ1() + 1);
                 user.setSecurityQ2(user.getSecurityQ2() + 1);
                 user.setPassword1(view.getCreatePasswordField().getPassword());
                 user.setPassword2(view.getConfirmPasswordField().getPassword());
 
-                if (register.createUser(user)) {
-                    ConfirmationView confirmationView = new ConfirmationView(
+                int newTeacherResult        = DatabaseCommands.addNewTeacher(user, password1);
+                int registerQuestion1Result = DatabaseCommands.registerSecurityAnswer(
+                        user, user.getSecurityQ1(), user.getSecurityA2());
+                int registerQuestion2Result = DatabaseCommands.registerSecurityAnswer(
+                        user, user.getSecurityQ1(), user.getSecurityA2());
+
+                ConfirmationView confirmationView;
+                if (newTeacherResult == 1 && registerQuestion1Result == 1 && registerQuestion2Result == 1) {
+                    confirmationView = new ConfirmationView(
                             "Account successfully created!",
                             Dialogs.ACCOUNT_CREATED);
-                    new ConfirmationController(confirmationView);
                 } else {
-                    ConfirmationView confirmationView = new ConfirmationView(
+                    confirmationView = new ConfirmationView(
                             "Something went wrong with registering.",
                             Dialogs.ACCOUNT_CREATED);
-                    new ConfirmationController(confirmationView);
                 }
+                new ConfirmationController(confirmationView);
             }
         }
 

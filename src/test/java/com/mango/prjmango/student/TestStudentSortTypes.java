@@ -8,12 +8,13 @@ import java.util.List;
 
 public class TestStudentSortTypes {
 
-    List<Student> students = new ArrayList<>();
-    Student s1;
-    Student s2;
-    Student s3;
-    Student s4;
-    Student s5;
+    private final List<Student> students = new ArrayList<>();
+
+    private Student s1;
+    private Student s2;
+    private Student s3;
+    private Student s4;
+    private Student s5;
 
     @Before
     public void setUp() {

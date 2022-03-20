@@ -13,6 +13,10 @@ import java.security.NoSuchAlgorithmException;
  */
 public class Encryption {
 
+    private Encryption() {
+        throw new IllegalStateException("Utility class.");
+    }
+
     /**
      * Encrypts the provided password to SHA-256.
      *

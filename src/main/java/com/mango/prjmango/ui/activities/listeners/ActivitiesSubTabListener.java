@@ -72,16 +72,12 @@ public class ActivitiesSubTabListener implements MouseListener {
                 LoggedInUser.setCurrentMenu(1);
                 SightView fryView = new SightView();
                 new SightController(fryView);
-//                FryView fryView = new FryView();
-//                new FryController(fryView);
                 ActivitiesView.setActiveDisplay(fryView);
                 break;
             case 2:
                 LoggedInUser.setCurrentMenu(2);
                 SightView dolchView = new SightView();
                 new SightController(dolchView);
-//                DolchView dolchView = new DolchView();
-//                new DolchController(dolchView);
                 ActivitiesView.setActiveDisplay(dolchView);
                 break;
             case 3:

@@ -11,6 +11,10 @@ import java.util.regex.Pattern;
  */
 public class EmailValidation {
 
+    private EmailValidation() {
+        throw new IllegalStateException("Utility class.");
+    }
+
     /**
      * Verifies the email address entered by the user matches the following regular expression.
      * <br/>

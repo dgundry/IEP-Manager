@@ -1,6 +1,6 @@
 package com.mango.prjmango.ui.createaccount.basicinfo;
 
-import com.mango.prjmango.utilities.Register;
+import com.mango.prjmango.utilities.DatabaseCommands;
 import com.mango.prjmango.utilities.User;
 import com.mango.prjmango.ui.MainWindowView;
 import com.mango.prjmango.ui.common.ImageIcons;
@@ -106,14 +106,13 @@ public class BasicInfoController {
             view.getLastNameInvalidLabel().setText(" ");
             view.getEmailInvalidLabel().setText(" ");
 
-            Register register = new Register();
             if (user.getFirstName() != null && !(user.getFirstName().length() >= 1 && user.getFirstName().length() <= 20)) {
                 view.getFirstNameInvalidLabel().setText("Invalid first name! Please try again.");
             } else if (user.getLastName() != null && !(user.getLastName().length() >= 1 && user.getLastName().length() <= 20)) {
                 view.getLastNameInvalidLabel().setText("Invalid last name! Please try again.");
             } else if (!user.getEmail().contains("@")) {
                 view.getEmailInvalidLabel().setText("Invalid email! Please try again.");
-            } else if (register.isEmailTaken(user.getEmail())) {
+            } else if (DatabaseCommands.isEmailTaken(user.getEmail())) {
                 view.getEmailInvalidLabel().setText("Email is already taken! Please try again.");
             } else {
                 SecurityQuestionsView securityQuestionsView = new SecurityQuestionsView();
