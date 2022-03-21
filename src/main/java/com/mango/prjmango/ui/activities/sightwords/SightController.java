@@ -41,8 +41,8 @@ public class SightController {
             int selectedIndex = view.getSightWordComboBox().getSelectedIndex();
             CreateAssignment assignment = new CreateAssignment((Student) view.getStudentsNameComboBox().getSelectedItem(),
                     view.getSightWordComboBox().getSelectedItem().toString(),
-                    LoggedInUser.currentMenu == 1 ? Main.SIGHT_WORDS.getFryQuestions(selectedIndex) : Main.SIGHT_WORDS.getDolchQuestions(selectedIndex));
-            SightAssignmentView view = new SightAssignmentView(LoggedInUser.currentMenu == 1 ? FryWords.values()[selectedIndex].toString() : DolchWords.values()[selectedIndex].toString(), assignment);
+                    LoggedInUser.getActivitiesSubTabIndex() == 1 ? Main.SIGHT_WORDS.getFryQuestions(selectedIndex) : Main.SIGHT_WORDS.getDolchQuestions(selectedIndex));
+            SightAssignmentView view = new SightAssignmentView(LoggedInUser.getActivitiesSubTabIndex() == 1 ? FryWords.values()[selectedIndex].toString() : DolchWords.values()[selectedIndex].toString(), assignment);
             new SightAssignmentController(view);
             ActivitiesView.setActiveDisplay(view);
         }

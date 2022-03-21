@@ -1,5 +1,6 @@
 package com.mango.prjmango.ui.account.listeners;
 
+import com.mango.prjmango.LoggedInUser;
 import com.mango.prjmango.utilities.subtabs.AccountSubTabs;
 import com.mango.prjmango.ui.common.ImageIcons;
 import com.mango.prjmango.ui.account.AccountView;
@@ -67,14 +68,21 @@ public class AccountSubTabListener implements MouseListener {
         resetLabelImages();
         label.setIcon(selectedImage);
 
-        if (AccountView.currentlyActiveTab == AccountSubTabs.PASSWORD_AND_SECURITY) {
-            PasswordView passwordSecurityView = new PasswordView();
-            new PasswordController(passwordSecurityView);
-            accountView.setActiveDisplay(passwordSecurityView);
-        } else {
-            EditProfileView editProfileView = new EditProfileView();
-            new EditProfileController(editProfileView);
-            accountView.setActiveDisplay(editProfileView);
+        switch (AccountView.currentlyActiveTab.ordinal()) {
+            case 0:
+                LoggedInUser.setAccountSubTabIndex(0);
+                EditProfileView editProfileView = new EditProfileView();
+                new EditProfileController(editProfileView);
+                accountView.setActiveDisplay(editProfileView);
+                break;
+            case 1:
+                LoggedInUser.setAccountSubTabIndex(1);
+                PasswordView passwordSecurityView = new PasswordView();
+                new PasswordController(passwordSecurityView);
+                accountView.setActiveDisplay(passwordSecurityView);
+                break;
+            default:
+                break;
         }
     }
 

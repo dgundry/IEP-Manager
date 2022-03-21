@@ -1,5 +1,5 @@
 package com.mango.prjmango.utilities.subtabs;
 
-public enum ActivitiesSubTab {
+public enum ActivitiesSubTabs {
     MATH, FRY, DOLCH, UPLOAD_AN_ASSIGNMENT;
 }

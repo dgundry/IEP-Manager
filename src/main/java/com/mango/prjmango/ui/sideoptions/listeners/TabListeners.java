@@ -10,7 +10,6 @@ import com.mango.prjmango.ui.common.ImageIcons;
 import com.mango.prjmango.ui.sideoptions.SideOptionsView;
 import com.mango.prjmango.ui.students.StudentsController;
 import com.mango.prjmango.ui.students.StudentsView;
-
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
@@ -59,11 +58,9 @@ public class TabListeners implements MouseListener {
         if (tab == Tabs.ACCOUNT) {
             AccountView accountView = new AccountView();
             new AccountController(accountView);
-
             MainWindowView.displayActiveTab(accountView);
         } else if (tab == Tabs.ACTIVITIES) {
             new ActivitiesController(new ActivitiesView());
-
             MainWindowView.displayActiveTab(ActivitiesView.getActivitiesBackgroundLabel());
         } else if (tab == Tabs.STUDENTS) {
             new StudentsController(new StudentsView());

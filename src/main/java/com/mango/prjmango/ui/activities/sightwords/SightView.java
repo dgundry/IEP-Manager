@@ -38,7 +38,7 @@ public class SightView extends JPanel {
     }
 
     private void createComponents() {
-        if(LoggedInUser.getCurrentMenu() == 1) {
+        if(LoggedInUser.getActivitiesSubTabIndex() == 1) {
             assignmentHeaderLabel = Components.JLabel(
                     "Fry Sight Words",
                     Fonts.SEGOE_UI_24.getFont(),
@@ -49,7 +49,7 @@ public class SightView extends JPanel {
                     Fonts.SEGOE_UI_18.getFont(),
                     Colors.LIGHT_GREY,
                     SwingConstants.LEADING);
-        } else if(LoggedInUser.getCurrentMenu() == 2) {
+        } else if(LoggedInUser.getActivitiesSubTabIndex() == 2) {
             assignmentHeaderLabel = Components.JLabel(
                     "Dolch Sight Words",
                     Fonts.SEGOE_UI_24.getFont(),
@@ -69,9 +69,9 @@ public class SightView extends JPanel {
                 SwingConstants.LEADING);
 
         sightWordComboBox = Components.JComboBox();
-        if (LoggedInUser.getCurrentMenu() == 1) {
+        if (LoggedInUser.getActivitiesSubTabIndex() == 1) {
             sightWordComboBox.setModel(new DefaultComboBoxModel<>(FryWords.values()));
-        } else if(LoggedInUser.getCurrentMenu() == 2) {
+        } else if(LoggedInUser.getActivitiesSubTabIndex() == 2) {
             sightWordComboBox.setModel(new DefaultComboBoxModel<>(DolchWords.values()));
         }
 

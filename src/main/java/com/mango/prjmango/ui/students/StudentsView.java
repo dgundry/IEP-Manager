@@ -1,5 +1,8 @@
 package com.mango.prjmango.ui.students;
 
+import com.mango.prjmango.LoggedInUser;
+import com.mango.prjmango.ui.students.create.CreateStudentController;
+import com.mango.prjmango.ui.students.create.CreateStudentView;
 import com.mango.prjmango.utilities.subtabs.StudentsSubTabs;
 import com.mango.prjmango.ui.common.Colors;
 import com.mango.prjmango.ui.common.Components;
@@ -11,15 +14,14 @@ import lombok.Getter;
 
 import javax.swing.*;
 
-
 public class StudentsView {
+
     private static JLabel pickStudentHeaderLabel;
 
     @Getter private static JLabel studentBackgroundLabel;
 
     @Getter private static JLabel viewStudentsLabel;
     @Getter private static JLabel createStudentLabel;
-
 
     private static JSeparator horizSeparator;
     private static JSeparator vertSeparator;
@@ -29,13 +31,25 @@ public class StudentsView {
 
     public StudentsView(){
         createComponents();
-
-
-
-        ViewStudentView viewStudent = new ViewStudentView();
-        new ViewStudentController(viewStudent);
-        setActiveDisplay(viewStudent);
+        initLastUsedSubTub();
     }
+
+    private static void initLastUsedSubTub() {
+        switch (LoggedInUser.getStudentsSubTabIndex()) {
+            case 0:
+                ViewStudentView viewStudent = new ViewStudentView();
+                new ViewStudentController(viewStudent);
+                setActiveDisplay(viewStudent);
+                break;
+            case 1:
+                CreateStudentView createStudentView = new CreateStudentView();
+                new CreateStudentController(createStudentView);
+                setActiveDisplay(createStudentView);
+            default:
+                break;
+        }
+    }
+
     private static void createComponents() {
         studentBackgroundLabel = new JLabel();
         studentBackgroundLabel.setIcon(ImageIcons.ACTIVE_TAB_BACKGROUND.getImageIcon());
@@ -46,12 +60,27 @@ public class StudentsView {
                 Colors.LIGHT_GREY,
                 SwingConstants.LEFT);
 
-        viewStudentsLabel             = new JLabel(ImageIcons.STUDENTS_VIEW_SELECTED.getImageIcon());
-        createStudentLabel            = new JLabel(ImageIcons.STUDENTS_CREATE_NO_HOVER.getImageIcon());
+        viewStudentsLabel  = new JLabel(ImageIcons.STUDENTS_VIEW_NO_HOVER.getImageIcon());
+        createStudentLabel = new JLabel(ImageIcons.STUDENTS_CREATE_NO_HOVER.getImageIcon());
+        setSelectedSubTab();
 
         horizSeparator = Components.JSeparator(SwingConstants.HORIZONTAL);
         vertSeparator  = Components.JSeparator(SwingConstants.VERTICAL);
     }
+
+    private static void setSelectedSubTab() {
+        switch (LoggedInUser.getStudentsSubTabIndex()) {
+            case 0:
+                viewStudentsLabel.setIcon(ImageIcons.STUDENTS_VIEW_SELECTED.getImageIcon());
+                break;
+            case 1:
+                createStudentLabel.setIcon(ImageIcons.STUDENTS_CREATE_SELECTED.getImageIcon());
+                break;
+            default:
+                break;
+        }
+    }
+
     public static void setActiveDisplay(JPanel displayPanel) {
         studentBackgroundLabel.removeAll();
 
@@ -142,10 +171,6 @@ public class StudentsView {
                                                                                 GroupLayout.PREFERRED_SIZE))))))
         );
 
-        studentBackgroundLabel.updateUI();
-    }
-    public static void clearLayout(){
-        studentBackgroundLabel.removeAll();
         studentBackgroundLabel.updateUI();
     }
 }

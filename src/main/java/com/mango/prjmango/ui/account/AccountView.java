@@ -1,5 +1,8 @@
 package com.mango.prjmango.ui.account;
 
+import com.mango.prjmango.LoggedInUser;
+import com.mango.prjmango.ui.account.password.PasswordController;
+import com.mango.prjmango.ui.account.password.PasswordView;
 import com.mango.prjmango.utilities.subtabs.AccountSubTabs;
 import com.mango.prjmango.ui.account.editprofile.EditProfileController;
 import com.mango.prjmango.ui.account.editprofile.EditProfileView;
@@ -14,6 +17,7 @@ import javax.swing.JSeparator;
 import javax.swing.LayoutStyle;
 import javax.swing.SwingConstants;
 import lombok.Getter;
+import sun.security.util.Password;
 
 public class AccountView extends JLabel {
 
@@ -37,15 +41,25 @@ public class AccountView extends JLabel {
 
         createComponents();
 
-        EditProfileView editProfileView = new EditProfileView();
-        new EditProfileController(editProfileView);
-
-        setActiveDisplay(editProfileView);
+        if (LoggedInUser.getAccountSubTabIndex() == 0) {
+            EditProfileView editProfileView = new EditProfileView();
+            new EditProfileController(editProfileView);
+            setActiveDisplay(editProfileView);
+        } else {
+            PasswordView passwordView = new PasswordView();
+            new PasswordController(passwordView);
+            setActiveDisplay(passwordView);
+        }
     }
 
     private void createComponents() {
-        editProfileLabel      = new JLabel(ImageIcons.EDIT_PROFILE_SELECTED.getImageIcon());
-        passwordSecurityLabel = new JLabel(ImageIcons.PASSWORD_SECURITY_NO_HOVER.getImageIcon());
+        if (LoggedInUser.getAccountSubTabIndex() == 0) {
+            editProfileLabel      = new JLabel(ImageIcons.EDIT_PROFILE_SELECTED.getImageIcon());
+            passwordSecurityLabel = new JLabel(ImageIcons.PASSWORD_SECURITY_NO_HOVER.getImageIcon());
+        } else {
+            editProfileLabel      = new JLabel(ImageIcons.EDIT_PROFILE_NO_HOVER.getImageIcon());
+            passwordSecurityLabel = new JLabel(ImageIcons.PASSWORD_SECURITY_SELECTED.getImageIcon());
+        }
 
         accountHeaderLabel = Components.JLabel(
                 "Account",

@@ -16,7 +16,11 @@ public class LoggedInUser {
     @Getter @Setter private static String email;
     @Getter @Setter private static int securityQuestion1Index;
     @Getter @Setter private static int securityQuestion2Index;
-    @Getter @Setter public static int currentMenu = 0;
+
+    @Getter @Setter private static int accountSubTabIndex    = 0;
+    @Getter @Setter private static int studentsSubTabIndex   = 0;
+    @Getter @Setter private static int activitiesSubTabIndex = 0;
+    @Getter @Setter private static int reportsSubTabIndex    = 0;
 
     /**
      * Constructor. Calls {@link LoggedInUser#setFields(List)} to set values to variables that will be accessed

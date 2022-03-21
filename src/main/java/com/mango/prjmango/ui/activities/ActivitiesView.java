@@ -1,6 +1,11 @@
 package com.mango.prjmango.ui.activities;
 
-import com.mango.prjmango.utilities.subtabs.ActivitiesSubTab;
+import com.mango.prjmango.LoggedInUser;
+import com.mango.prjmango.ui.activities.sightwords.SightController;
+import com.mango.prjmango.ui.activities.sightwords.SightView;
+import com.mango.prjmango.ui.activities.upload.UploadController;
+import com.mango.prjmango.ui.activities.upload.UploadView;
+import com.mango.prjmango.utilities.subtabs.ActivitiesSubTabs;
 import com.mango.prjmango.ui.activities.math.MathController;
 import com.mango.prjmango.ui.activities.math.MathView;
 import com.mango.prjmango.ui.common.Colors;
@@ -29,16 +34,35 @@ public class ActivitiesView {
     private static JSeparator horizSeparator;
     private static JSeparator vertSeparator;
 
-    public static ActivitiesSubTab currentlyActiveTab = ActivitiesSubTab.MATH;
-    public static ActivitiesSubTab previouslyActiveTab = null;
+    public static ActivitiesSubTabs currentlyActiveTab = ActivitiesSubTabs.MATH;
+    public static ActivitiesSubTabs previouslyActiveTab = null;
 
     public ActivitiesView() {
         createComponents();
+        initLastUsedSubTab();
+    }
 
-        MathView mathView = new MathView();
-        new MathController(mathView);
-
-        setActiveDisplay(mathView);
+    private static void initLastUsedSubTab() {
+        switch (LoggedInUser.getActivitiesSubTabIndex()) {
+            case 0:
+                MathView mathView = new MathView();
+                new MathController(mathView);
+                setActiveDisplay(mathView);
+                break;
+            case 1:
+            case 2:
+                SightView fryView = new SightView();
+                new SightController(fryView);
+                setActiveDisplay(fryView);
+                break;
+            case 3:
+                UploadView uploadView = new UploadView();
+                new UploadController(uploadView);
+                setActiveDisplay(uploadView);
+                break;
+            default:
+                break;
+        }
     }
 
     private static void createComponents() {
@@ -51,13 +75,33 @@ public class ActivitiesView {
                 Colors.LIGHT_GREY,
                 SwingConstants.LEFT);
 
-        mathLabel             = new JLabel(ImageIcons.ACTIVITIES_MATH_SELECTED.getImageIcon());
+        mathLabel             = new JLabel(ImageIcons.ACTIVITIES_MATH_NO_HOVER.getImageIcon());
         fryLabel              = new JLabel(ImageIcons.ACTIVITIES_FRY_NO_HOVER.getImageIcon());
         dolchLabel            = new JLabel(ImageIcons.ACTIVITIES_DOLCH_NO_HOVER.getImageIcon());
         uploadAssignmentLabel = new JLabel(ImageIcons.ACTIVITIES_UPLOAD_NO_HOVER.getImageIcon());
+        setSelectedSubTab();
 
         horizSeparator = Components.JSeparator(SwingConstants.HORIZONTAL);
         vertSeparator  = Components.JSeparator(SwingConstants.VERTICAL);
+    }
+
+    private static void setSelectedSubTab() {
+        switch (LoggedInUser.getActivitiesSubTabIndex()) {
+            case 0:
+                mathLabel.setIcon(ImageIcons.ACTIVITIES_MATH_SELECTED.getImageIcon());
+                break;
+            case 1:
+                fryLabel.setIcon(ImageIcons.ACTIVITIES_FRY_SELECTED.getImageIcon());
+                break;
+            case 2:
+                dolchLabel.setIcon(ImageIcons.ACTIVITIES_DOLCH_SELECTED.getImageIcon());
+                break;
+            case 3:
+                uploadAssignmentLabel.setIcon(ImageIcons.ACTIVITIES_UPLOAD_SELECTED.getImageIcon());
+                break;
+            default:
+                break;
+        }
     }
 
     public static void setActiveDisplay(JPanel displayPanel) {

@@ -1,5 +1,6 @@
 package com.mango.prjmango.ui.students.listeners;
 
+import com.mango.prjmango.LoggedInUser;
 import com.mango.prjmango.utilities.subtabs.StudentsSubTabs;
 import com.mango.prjmango.ui.common.ImageIcons;
 import com.mango.prjmango.ui.students.StudentsView;
@@ -36,6 +37,11 @@ public class StudentsSubTabListener implements MouseListener {
         this.studentsSubTab = studentsSubTab;
     }
 
+    /**
+     * Invoked when the mouse clicks a component.
+     *
+     * @param e the {@link MouseEvent}
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
         StudentsView.previouslyActiveTab = StudentsView.currentlyActiveTab;
@@ -45,11 +51,13 @@ public class StudentsSubTabListener implements MouseListener {
 
         switch (StudentsView.currentlyActiveTab.ordinal()) {
             case 0:
+                LoggedInUser.setStudentsSubTabIndex(0);
                 ViewStudentView viewStudentView = new ViewStudentView();
                 new ViewStudentController(viewStudentView);
                 StudentsView.setActiveDisplay(viewStudentView);
                 break;
             case 1:
+                LoggedInUser.setStudentsSubTabIndex(1);
                 CreateStudentView createStudentView = new CreateStudentView();
                 new CreateStudentController(createStudentView);
                 StudentsView.setActiveDisplay(createStudentView);
@@ -59,16 +67,11 @@ public class StudentsSubTabListener implements MouseListener {
         }
     }
 
-    @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
+    /**
+     * Invoked when the mouse enters a component.
+     *
+     * @param e the {@link MouseEvent}
+     */
     @Override
     public void mouseEntered(MouseEvent e) {
         if (label.getIcon().equals(noHoveredImage)) {
@@ -78,6 +81,11 @@ public class StudentsSubTabListener implements MouseListener {
         label.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }
 
+    /**
+     * Invoked when the mouse exits a component.
+     *
+     * @param e the {@link MouseEvent}
+     */
     @Override
     public void mouseExited(MouseEvent e) {
         if (label.getIcon().equals(hoveredImage)) {
@@ -86,6 +94,23 @@ public class StudentsSubTabListener implements MouseListener {
 
         label.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }
+
+    /**
+     * Invoked when a mouse button has been pressed on a component.
+     *
+     * @param e the {@link MouseEvent}
+     */
+    @Override
+    public void mousePressed(MouseEvent e) { /* Not needed */ }
+
+    /**
+     * Invoked when a mouse button has been released on a component.
+     *
+     * @param e the {@link MouseEvent}
+     */
+    @Override
+    public void mouseReleased(MouseEvent e) { /* Not needed */ }
+
     private void resetLabelImages() {
         StudentsSubTabs previouslyActiveTab = StudentsView.previouslyActiveTab;
         switch (previouslyActiveTab.ordinal()) {

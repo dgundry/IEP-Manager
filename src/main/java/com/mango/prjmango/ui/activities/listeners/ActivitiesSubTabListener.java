@@ -1,7 +1,7 @@
 package com.mango.prjmango.ui.activities.listeners;
 
 import com.mango.prjmango.LoggedInUser;
-import com.mango.prjmango.utilities.subtabs.ActivitiesSubTab;
+import com.mango.prjmango.utilities.subtabs.ActivitiesSubTabs;
 import com.mango.prjmango.ui.activities.ActivitiesView;
 import com.mango.prjmango.ui.activities.math.MathController;
 import com.mango.prjmango.ui.activities.math.MathView;
@@ -24,7 +24,7 @@ public class ActivitiesSubTabListener implements MouseListener {
     private final ImageIcon noHoveredImage;
     private final ImageIcon selectedImage;
 
-    private ActivitiesSubTab activitiesSubTab;
+    private ActivitiesSubTabs activitiesSubTab;
 
     /**
      * Constructor. Initializes instance variables that will be used throughout the {@link MouseListener} methods.
@@ -33,14 +33,14 @@ public class ActivitiesSubTabListener implements MouseListener {
      * @param noHoveredImage   the {@link ImageIcons} reference when the image is not in a hovered state
      * @param hoveredImage     the {@link ImageIcons} reference when the image is in a hovered state
      * @param selectedImage    the {@link ImageIcons} reference when the image is in a selected state
-     * @param activitiesSubTab the specific {@link ActivitiesSubTab}
+     * @param activitiesSubTab the specific {@link ActivitiesSubTabs}
      */
     public ActivitiesSubTabListener(
             JLabel label,
             ImageIcon noHoveredImage,
             ImageIcon hoveredImage,
             ImageIcon selectedImage,
-            ActivitiesSubTab activitiesSubTab) {
+            ActivitiesSubTabs activitiesSubTab) {
         this.label = label;
         this.noHoveredImage = noHoveredImage;
         this.hoveredImage = hoveredImage;
@@ -63,25 +63,25 @@ public class ActivitiesSubTabListener implements MouseListener {
 
         switch (ActivitiesView.currentlyActiveTab.ordinal()) {
             case 0:
-                LoggedInUser.setCurrentMenu(0);
+                LoggedInUser.setActivitiesSubTabIndex(0);
                 MathView mathView = new MathView();
                 new MathController(mathView);
                 ActivitiesView.setActiveDisplay(mathView);
                 break;
             case 1:
-                LoggedInUser.setCurrentMenu(1);
+                LoggedInUser.setActivitiesSubTabIndex(1);
                 SightView fryView = new SightView();
                 new SightController(fryView);
                 ActivitiesView.setActiveDisplay(fryView);
                 break;
             case 2:
-                LoggedInUser.setCurrentMenu(2);
+                LoggedInUser.setActivitiesSubTabIndex(2);
                 SightView dolchView = new SightView();
                 new SightController(dolchView);
                 ActivitiesView.setActiveDisplay(dolchView);
                 break;
             case 3:
-                LoggedInUser.setCurrentMenu(3);
+                LoggedInUser.setActivitiesSubTabIndex(3);
                 UploadView uploadView = new UploadView();
                 new UploadController(uploadView);
                 ActivitiesView.setActiveDisplay(uploadView);
@@ -136,7 +136,7 @@ public class ActivitiesSubTabListener implements MouseListener {
     public void mouseReleased(MouseEvent e) { /* Not needed */ }
 
     private void resetLabelImages() {
-        ActivitiesSubTab previouslyActiveTab = ActivitiesView.previouslyActiveTab;
+        ActivitiesSubTabs previouslyActiveTab = ActivitiesView.previouslyActiveTab;
         switch (previouslyActiveTab.ordinal()) {
             case 0:
                 ActivitiesView.getMathLabel().setIcon(ImageIcons.ACTIVITIES_MATH_NO_HOVER.getImageIcon());
