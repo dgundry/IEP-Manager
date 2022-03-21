@@ -61,8 +61,8 @@ public class SightAssignmentView extends JPanel {
         setLayout(sightWordAssignmentPanelLayout);
         sightWordAssignmentPanelLayout.setHorizontalGroup(
                 sightWordAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGroup(sightWordAssignmentPanelLayout.createSequentialGroup()
-                                .addGap(151, 151, 151)
+                        .addGroup(GroupLayout.Alignment.TRAILING, sightWordAssignmentPanelLayout.createSequentialGroup()
+                                .addContainerGap()
                                 .addComponent(correctLabel, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(incorrectLabel, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)

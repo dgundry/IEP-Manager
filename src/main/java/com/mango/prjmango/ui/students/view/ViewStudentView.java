@@ -76,7 +76,7 @@ public class ViewStudentView extends JPanel {
         setLayout(addAssignmentPanelLayout);
         addAssignmentPanelLayout.setHorizontalGroup(
                 addAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGroup(addAssignmentPanelLayout.createSequentialGroup()
+                        .addGroup(GroupLayout.Alignment.TRAILING, addAssignmentPanelLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(addAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addGroup(addAssignmentPanelLayout.createSequentialGroup()
@@ -96,17 +96,18 @@ public class ViewStudentView extends JPanel {
                                                         .addComponent(studentsScrollPane, GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)))))
         );
         addAssignmentPanelLayout.setVerticalGroup(
-                addAssignmentPanelLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                addAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(addAssignmentPanelLayout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(studentsHeaderLabel)
-                        .addGap(49, 49, 49)
+                        .addGap(67, 67, 67)
                         .addComponent(searchLabel)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(searchTextBox, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(studentsScrollPane, GroupLayout.PREFERRED_SIZE, 500, GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(850, Short.MAX_VALUE)
-                        .addGroup(addAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING))
+                        .addGroup(addAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)))
         );
 
     }

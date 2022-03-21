@@ -90,8 +90,8 @@ public class CreateStudentView extends JPanel {
         setLayout(createStudentPanelLayout);
         createStudentPanelLayout.setHorizontalGroup(
                 createStudentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGroup(createStudentPanelLayout.createSequentialGroup()
-                                .addGap(23, 23, 23)
+                        .addGroup(GroupLayout.Alignment.TRAILING,createStudentPanelLayout.createSequentialGroup()
+                                .addContainerGap()
                                 .addGroup(createStudentPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                                         .addComponent(informationLabel)
                                         .addGroup(createStudentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)

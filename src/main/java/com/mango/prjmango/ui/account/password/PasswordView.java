@@ -84,7 +84,8 @@ public class PasswordView extends JPanel {
         setLayout(passwordSecurityPanelLayout);
         passwordSecurityPanelLayout.setHorizontalGroup(
                 passwordSecurityPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGroup(passwordSecurityPanelLayout.createSequentialGroup()
+                        .addGroup(GroupLayout.Alignment.TRAILING, passwordSecurityPanelLayout.createSequentialGroup()
+                                .addContainerGap()
                                 .addGroup(passwordSecurityPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addComponent(passwordSecurityHeaderLabel)
                                         .addComponent(currentPasswordLabel)
@@ -133,8 +134,9 @@ public class PasswordView extends JPanel {
         passwordSecurityPanelLayout.setVerticalGroup(
                 passwordSecurityPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(passwordSecurityPanelLayout.createSequentialGroup()
+                                .addContainerGap()
                                 .addComponent(passwordSecurityHeaderLabel)
-                                .addGap(70, 70, 70)
+                                .addGap(67, 67, 67)
                                 .addComponent(currentPasswordLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(passwordSecurityPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)

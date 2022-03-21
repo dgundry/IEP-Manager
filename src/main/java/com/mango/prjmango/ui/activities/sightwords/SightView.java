@@ -85,32 +85,19 @@ public class SightView extends JPanel {
         setLayout(assignmentPanelLayout);
         assignmentPanelLayout.setHorizontalGroup(
                 assignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGroup(assignmentPanelLayout.createSequentialGroup()
+                        .addGroup(GroupLayout.Alignment.TRAILING, assignmentPanelLayout.createSequentialGroup()
+                                .addContainerGap()
                                 .addGroup(assignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addComponent(
-                                                studentsNameComboBox,
-                                                GroupLayout.Alignment.TRAILING,
-                                                0,
-                                                GroupLayout.DEFAULT_SIZE,
-                                                Short.MAX_VALUE)
-                                        .addComponent(
-                                                sightWordComboBox,
-                                                GroupLayout.Alignment.TRAILING,
-                                                0,
-                                                GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(assignmentPanelLayout.createSequentialGroup()
-                                                .addGroup(assignmentPanelLayout.createParallelGroup(
-                                                                GroupLayout.Alignment.LEADING)
+                                        .addComponent(studentsNameComboBox,GroupLayout.Alignment.TRAILING,0,GroupLayout.DEFAULT_SIZE,Short.MAX_VALUE)
+                                        .addComponent(sightWordComboBox,GroupLayout.Alignment.TRAILING, 0,GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGroup(assignmentPanelLayout.createSequentialGroup()
+                                                .addGroup(assignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                         .addComponent(assignmentHeaderLabel)
-                                                        .addComponent(
-                                                                studentsNameLabel,
-                                                                GroupLayout.PREFERRED_SIZE,
-                                                                245,
-                                                                GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(studentsNameLabel,GroupLayout.PREFERRED_SIZE, 245,GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(
                                                                 assignmentLabel,
                                                                 GroupLayout.PREFERRED_SIZE,
-                                                                282,
+                                                                GroupLayout.PREFERRED_SIZE,
                                                                 GroupLayout.PREFERRED_SIZE))
                                                 .addGap(0, 0, Short.MAX_VALUE)))
                                 .addContainerGap())
@@ -126,8 +113,9 @@ public class SightView extends JPanel {
         assignmentPanelLayout.setVerticalGroup(
                 assignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(assignmentPanelLayout.createSequentialGroup()
+                                .addContainerGap()
                                 .addComponent(assignmentHeaderLabel)
-                                .addGap(60, 60, 60)
+                                .addGap(67, 67, 67)
                                 .addComponent(assignmentLabel)
                                 .addGap(18, 18, 18)
                                 .addComponent(
