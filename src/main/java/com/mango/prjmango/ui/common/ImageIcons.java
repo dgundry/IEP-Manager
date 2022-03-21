@@ -29,7 +29,7 @@ public enum ImageIcons {
     LOG_OUT_HOVERED("/images/login/log-out-hovered.png", 124, 28),
 
     LOGIN_PANEL_BACKGROUND("/images/common/login-panel-background.png", 482, 646),
-    ACTIVE_TAB_BACKGROUND("/images/common/active-tab-background.jpg", Main.rect.width, Main.rect.height),
+    ACTIVE_TAB_BACKGROUND("/images/common/active-tab-background.png", Main.rect.width, Main.rect.height),
 
     NEXT_NO_HOVER("/images/common/next-no-hover.png", 116, 31),
     NEXT_HOVERED("/images/common/next-hovered.png", 116, 31),
