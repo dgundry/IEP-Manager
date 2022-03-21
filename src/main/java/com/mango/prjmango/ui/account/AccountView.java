@@ -17,7 +17,7 @@ import javax.swing.JSeparator;
 import javax.swing.LayoutStyle;
 import javax.swing.SwingConstants;
 import lombok.Getter;
-import sun.security.util.Password;
+
 
 public class AccountView extends JLabel {
 
