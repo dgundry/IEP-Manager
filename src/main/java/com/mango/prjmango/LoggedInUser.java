@@ -1,6 +1,6 @@
 package com.mango.prjmango;
 
-import com.mango.prjmango.utilities.DatabaseCommands;
+import com.mango.prjmango.utilities.dbcommands.UserCommands;
 import lombok.Getter;
 import lombok.Setter;
 import java.util.List;
@@ -26,7 +26,7 @@ public class LoggedInUser {
      */
     public LoggedInUser(int teacherId) {
         this.teacherId = teacherId;
-        setFields(DatabaseCommands.getUserDetails(teacherId));
+        setFields(UserCommands.getUserDetails(teacherId));
     }
 
     private static void setFields(List<String> rawData) {

@@ -1,6 +1,8 @@
 package com.mango.prjmango.utilities;
 
 import com.mango.prjmango.LoggedInUser;
+import com.mango.prjmango.utilities.dbcommands.UserCommands;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -53,7 +55,7 @@ public class DatabaseCommands {
      * @return the number of rows that were affected by this INSERT command
      */
     public static int registerSecurityAnswer(User user, int questionId, String answer) {
-        int teacherId = getTeacherId(user.getEmail());
+        int teacherId = UserCommands.getTeacherId(user.getEmail());
         int result = 0;
 
         String sql = "INSERT INTO questions(teacher_id, question_id, answer) VALUES(?, ?, ?);";
@@ -67,29 +69,6 @@ public class DatabaseCommands {
         }
 
         return result;
-    }
-
-    /**
-     * Finds if there is an existing user within the database.
-     *
-     * @param enteredEmail    the email the user entered
-     * @param enteredPassword the password the user entered
-     * @return 1 if there is a user, 0 if there is no existing user
-     */
-    public static int isValidUser(String enteredEmail, char[] enteredPassword) {
-        int count = 0;
-        String sql = "SELECT COUNT(*) FROM teacher WHERE email = ? AND password = ?;";
-        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
-            statement.setString(1, enteredEmail);
-            statement.setString(2, Encryption.encrypt(Arrays.toString(enteredPassword)));
-            ResultSet resultSet = statement.executeQuery();
-            count = resultSet.getInt(1);
-            resultSet.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return count;
     }
 
     /**
@@ -192,162 +171,6 @@ public class DatabaseCommands {
         return (count >= 1);
     }
 
-    /**
-     * Retrieves the {@code teacher_id} value in the database.
-     *
-     * @param email the users email
-     * @return the {@code teacher_id} value in the database
-     */
-    public static int getTeacherId(String email) {
-        int result = -1;
-        String sql = "SELECT teacher_id FROM teacher WHERE email = ?;";
-
-        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
-            statement.setString(1, email);
-            ResultSet resultSet = statement.executeQuery();
-            result = resultSet.getInt(1);
-            resultSet.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return result;
-    }
-
-    public static boolean isSecurityQuestionsAnswersCorrect(
-            int teacherId,
-            int[] questionIndexes,
-            String answer1,
-            String answer2) {
-        boolean hasFailed = false;
-        String sql = "SELECT teacher_id, question_id, answer FROM questions WHERE (teacher_id = ? AND (question_id = ? OR question_id = ?));";
-        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
-            statement.setString(1, String.valueOf(teacherId));
-            statement.setString(2, String.valueOf(questionIndexes[0]));
-            statement.setString(3, String.valueOf(questionIndexes[1]));
-            ResultSet resultSet = statement.executeQuery();
-            do {
-                if(resultSet.getInt(2) == questionIndexes[0]){
-                    if (!Encryption.encrypt(answer1).equals(resultSet.getString(3))){
-                        hasFailed = true;
-                    }
-                } else if (resultSet.getInt(2) == questionIndexes[1]) {
-                    if (!Encryption.encrypt(answer2).equals(resultSet.getString(3))){
-                        hasFailed = true;
-                    }
-                }
-            } while (resultSet.next() && !hasFailed);
-            resultSet.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return hasFailed;
-    }
-
-    public static List<String> getUserDetails(int teacherId) {
-        String sql = "SELECT first_name, last_name, email FROM teacher WHERE teacher_id = ?;";
-        List<String> userDetails = new ArrayList<>();
-        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
-            statement.setInt(1, teacherId);
-            ResultSet resultSet = statement.executeQuery();
-            userDetails.add(resultSet.getString(1));
-            userDetails.add(resultSet.getString(2));
-            userDetails.add(resultSet.getString(3));
-            resultSet.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return userDetails;
-    }
-
-    /**
-     * Updates the user's personal details.
-     *
-     * @param firstName the new first name
-     * @param lastName  the new last name
-     * @param email     the new email
-     */
-    public static void updateUserDetails(String firstName, String lastName, String email) {
-        String sql = "UPDATE teacher SET first_name = ?, last_name = ?, email = ? WHERE teacher_id = ?;";
-
-        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
-            statement.setString(1, firstName);
-            statement.setString(2, lastName);
-            statement.setString(3, email);
-            statement.setInt(4, LoggedInUser.getTeacherId());
-            statement.executeUpdate();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    /**
-     * Updates the user's password to the new one.
-     *
-     * @param newPassword the new password
-     */
-    public static void updateUserPassword(char[] newPassword) {
-        String sql = "UPDATE teacher SET password = ? WHERE teacher_id = ?;";
-
-        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
-            statement.setString(1, Encryption.encrypt(Arrays.toString(newPassword)));
-            statement.setInt(2, LoggedInUser.getTeacherId());
-            statement.executeUpdate();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    /**
-     * Updates the user's password to the new one.
-     *
-     * @param newPassword the new password
-     */
-    public static void updateUserPassword(char[] newPassword, String email) {
-        String sql = "UPDATE teacher SET password = ? WHERE email = ?;";
-
-        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
-            statement.setString(1, Encryption.encrypt(Arrays.toString(newPassword)));
-            statement.setString(2, email);
-            statement.executeUpdate();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    public static String getUserPassword(int teacherId) {
-        String sql = "SELECT password FROM teacher WHERE teacher_id = ?;";
-        String result = "";
-
-        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
-            statement.setInt(1, teacherId);
-
-            ResultSet resultSet = statement.executeQuery();
-            result = resultSet.getString(1);
-            resultSet.close();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return result;
-    }
-
-    public static String getUserPassword(char[] currentPassword) {
-        String sql = "SELECT password FROM teacher WHERE teacher_id = ? AND password = ?;";
-        String result = "";
-
-        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
-            statement.setInt(1, LoggedInUser.getTeacherId());
-            statement.setString(2, Encryption.encrypt(Arrays.toString(currentPassword)));
-
-            ResultSet resultSet = statement.executeQuery();
-            result = resultSet.getString(1);
-            resultSet.close();
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-        return result;
-    }
-
     public static void registerStudent(String firstName, String lastName, String grade, String bio){
         String sql = "INSERT INTO student(teacher_id, first_name, last_name, grade, bio) VALUES(?,?,?,?,?);";
         try(PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
@@ -361,33 +184,6 @@ public class DatabaseCommands {
         catch(SQLException e){
             e.printStackTrace();
         }
-    }
-
-    /**
-     * Retrieves the specific {@code question_id}'s that the user had set when their
-     * account was created.
-     *
-     * @param teacherId the specific {@code teacherId}
-     * @return a {@link List} of {@link Integer}'s that contain the indexes
-     */
-    public static List<Integer> getUserQuestionIndexes(int teacherId) {
-        String sql = "SELECT question_id FROM questions WHERE teacher_id = ?;";
-        List<Integer> indexes = new ArrayList<>();
-
-        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
-            statement.setInt(1, teacherId);
-
-            ResultSet resultSet = statement.executeQuery();
-            resultSet.next();
-
-            do {
-                indexes.add(resultSet.getInt("question_id"));
-            } while (resultSet.next());
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-        return indexes;
     }
 
     /**

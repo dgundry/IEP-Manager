@@ -13,6 +13,7 @@ import java.awt.event.MouseListener;
 import java.util.List;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import com.mango.prjmango.utilities.dbcommands.UserCommands;
 import lombok.SneakyThrows;
 
 /**
@@ -61,8 +62,8 @@ public class AnswerSecurityQuestionsController {
     }
 
     private void populateQuestions(AnswerSecurityQuestionsView view, String email) {
-        this.teacherId = DatabaseCommands.getTeacherId(email);
-        List<Integer> indexes = DatabaseCommands.getUserQuestionIndexes(teacherId);
+        this.teacherId = UserCommands.getTeacherId(email);
+        List<Integer> indexes = UserCommands.getUserQuestionIndexes(teacherId);
 
         String question1 = DatabaseCommands.getSecurityQuestion(indexes.get(0));
         String question2 = DatabaseCommands.getSecurityQuestion(indexes.get(1));
@@ -92,7 +93,7 @@ public class AnswerSecurityQuestionsController {
             this.view      = view;
             this.label     = label;
             this.teacherId = teacherId;
-            this.email = email;
+            this.email     = email;
         }
 
         /**

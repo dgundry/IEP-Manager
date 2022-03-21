@@ -5,6 +5,8 @@ import com.mango.prjmango.utilities.DatabaseCommands;
 import com.mango.prjmango.utilities.EmailValidation;
 import com.mango.prjmango.ui.common.ImageIcons;
 import com.mango.prjmango.ui.sideoptions.SideOptionsView;
+import com.mango.prjmango.utilities.dbcommands.UserCommands;
+
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;
@@ -87,7 +89,7 @@ public class EditProfileController {
                     view.getInformationLabel().setText("Email address is taken. Please try again!");
                     view.getInformationLabel().setForeground(Color.RED);
                 } else {
-                    DatabaseCommands.updateUserDetails(firstName, lastName, email);
+                    UserCommands.updateUserDetails(firstName, lastName, email);
                     displayInformationText();
                     LoggedInUser.setFirstName(firstName);
                     LoggedInUser.setLastName(lastName);

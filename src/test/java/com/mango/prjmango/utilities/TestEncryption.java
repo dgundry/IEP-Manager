@@ -1,5 +1,6 @@
 package com.mango.prjmango.utilities;
 
+import com.mango.prjmango.utilities.dbcommands.UserCommands;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -36,11 +37,11 @@ public class TestEncryption {
         DatabaseCommands.registerSecurityAnswer(user, user.getSecurityQ1(), user.getSecurityA1());
         DatabaseCommands.registerSecurityAnswer(user, user.getSecurityQ2(), user.getSecurityA2());
 
-        int teacherId = DatabaseCommands.getTeacherId(user.getEmail());
+        int teacherId = UserCommands.getTeacherId(user.getEmail());
 
         //Act
         String expected = Encryption.encrypt(Arrays.toString(password));
-        String actual   = DatabaseCommands.getUserPassword(teacherId);
+        String actual   = UserCommands.getUserPassword(teacherId);
 
         //Assert
         Assert.assertEquals(expected, actual);

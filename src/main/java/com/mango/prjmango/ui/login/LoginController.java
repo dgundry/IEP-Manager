@@ -3,7 +3,6 @@ package com.mango.prjmango.ui.login;
 import com.mango.prjmango.LoggedInUser;
 import com.mango.prjmango.Main;
 import com.mango.prjmango.student.Students;
-import com.mango.prjmango.utilities.DatabaseCommands;
 import com.mango.prjmango.ui.MainWindowView;
 import com.mango.prjmango.ui.common.Images;
 import com.mango.prjmango.ui.createaccount.basicinfo.BasicInfoController;
@@ -12,6 +11,7 @@ import com.mango.prjmango.ui.forgotpassword.email.EmailController;
 import com.mango.prjmango.ui.forgotpassword.email.EmailView;
 import com.mango.prjmango.ui.students.StudentsController;
 import com.mango.prjmango.ui.students.StudentsView;
+import com.mango.prjmango.utilities.dbcommands.UserCommands;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
@@ -22,9 +22,17 @@ import java.util.Map;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 
-
+/**
+ * Handles all user interaction with the main Login page.
+ */
 public class LoginController {
 
+    /**
+     * Constructor. Adds the {@link MouseListener}'s to specific {@link JLabel}'s that the user
+     * will interact with.
+     *
+     * @param view the {@link LoginView}
+     */
     public LoginController(LoginView view) {
         JLabel loginLabel = view.getLoginLabel();
         JLabel createAccountLabel = view.getCreateAccountLabel();
@@ -64,8 +72,8 @@ public class LoginController {
             char[] enteredPassword = view.getPasswordField().getPassword();
 
             if (!enteredEmail.equals("") && enteredPassword.length != 0) {
-                if (DatabaseCommands.isValidUser(enteredEmail, enteredPassword) == 1) {
-                    int teacherID = DatabaseCommands.getTeacherId(enteredEmail);
+                if (UserCommands.isValidUser(enteredEmail, enteredPassword) == 1) {
+                    int teacherID = UserCommands.getTeacherId(enteredEmail);
 
                     LoggedInUser user = new LoggedInUser(teacherID);
                     Main.setActiveUser(user);

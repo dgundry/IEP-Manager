@@ -1,5 +1,6 @@
 package com.mango.prjmango.ui.account.password;
 
+import com.mango.prjmango.LoggedInUser;
 import com.mango.prjmango.utilities.DatabaseCommands;
 import com.mango.prjmango.utilities.Encryption;
 import com.mango.prjmango.ui.common.Colors;
@@ -14,6 +15,8 @@ import java.util.TimerTask;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
+
+import com.mango.prjmango.utilities.dbcommands.UserCommands;
 import lombok.SneakyThrows;
 
 /**
@@ -85,7 +88,7 @@ public class PasswordController {
             String currPassword = "";
 
             if (currPass.length != 0) {
-                currPassword = DatabaseCommands.getUserPassword(currPass);
+                currPassword = UserCommands.getUserPassword(LoggedInUser.getTeacherId());
             } else {
                 view.getInformationLabel().setText("Current password does not match our records!");
                 view.getInformationLabel().setForeground(Colors.RED);
@@ -100,7 +103,7 @@ public class PasswordController {
                     } else {
                         displayInformationText();
 
-                        DatabaseCommands.updateUserPassword(newPass);
+                        UserCommands.updateUserPassword(newPass);
                     }
                 } else {
                     view.getInformationLabel().setText("New password does not match the confirmation password!");

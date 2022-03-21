@@ -1,6 +1,5 @@
 package com.mango.prjmango.ui.forgotpassword.password;
 
-import com.mango.prjmango.utilities.DatabaseCommands;
 import com.mango.prjmango.ui.MainWindowView;
 import com.mango.prjmango.ui.common.Colors;
 import com.mango.prjmango.ui.common.ImageIcons;
@@ -8,11 +7,13 @@ import com.mango.prjmango.ui.forgotpassword.securityquestions.AnswerSecurityQues
 import com.mango.prjmango.ui.forgotpassword.securityquestions.AnswerSecurityQuestionsView;
 import com.mango.prjmango.ui.login.LoginController;
 import com.mango.prjmango.ui.login.LoginView;
+import com.mango.prjmango.utilities.dbcommands.UserCommands;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 
@@ -44,9 +45,9 @@ public class PasswordController {
          * Constructor. Initializes instance variables that will be used throughout the {@link MouseListener}
          * methods.
          *
-         * @param view      the {@link AnswerSecurityQuestionsView} so we can retrieve data from other
-         *                  {@link javax.swing.JComponent}'s
-         * @param label     the specific {@link JLabel}
+         * @param view  the {@link AnswerSecurityQuestionsView} so we can retrieve data from other
+         *              {@link JComponent}'s
+         * @param label the specific {@link JLabel}
          */
         public NextLabelMouseListener(PasswordView view, JLabel label, String email) {
             this.view  = view;
@@ -75,7 +76,7 @@ public class PasswordController {
             } else if (!Arrays.equals(createPassword, confirmPassword)) {
                 view.getInvalidLabel().setText("Passwords do not match!");
             } else {
-                DatabaseCommands.updateUserPassword(createPassword, email);
+                UserCommands.updateUserPassword(createPassword, email);
                 displayInformationText(view);
             }
         }
