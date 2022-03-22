@@ -3,6 +3,8 @@ package com.mango.prjmango.ui.students;
 import com.mango.prjmango.LoggedInUser;
 import com.mango.prjmango.ui.students.create.CreateStudentController;
 import com.mango.prjmango.ui.students.create.CreateStudentView;
+import com.mango.prjmango.ui.students.edit.EditStudentController;
+import com.mango.prjmango.ui.students.edit.EditStudentView;
 import com.mango.prjmango.utilities.subtabs.StudentsSubTabs;
 import com.mango.prjmango.ui.common.Colors;
 import com.mango.prjmango.ui.common.Components;
@@ -22,6 +24,7 @@ public class StudentsView {
 
     @Getter private static JLabel viewStudentsLabel;
     @Getter private static JLabel createStudentLabel;
+    @Getter private static JLabel editStudentLabel;
 
     private static JSeparator horizSeparator;
     private static JSeparator vertSeparator;
@@ -45,6 +48,10 @@ public class StudentsView {
                 CreateStudentView createStudentView = new CreateStudentView();
                 new CreateStudentController(createStudentView);
                 setActiveDisplay(createStudentView);
+            case 2:
+                EditStudentView editStudentView = new EditStudentView();
+                new EditStudentController(editStudentView);
+                setActiveDisplay(editStudentView);
             default:
                 break;
         }
@@ -54,6 +61,7 @@ public class StudentsView {
         studentBackgroundLabel = new JLabel();
         studentBackgroundLabel.setIcon(ImageIcons.ACTIVE_TAB_BACKGROUND.getImageIcon());
 
+
         pickStudentHeaderLabel = Components.JLabel(
                 "Students",
                 Fonts.SEGOE_UI_24.getFont(),
@@ -62,6 +70,7 @@ public class StudentsView {
 
         viewStudentsLabel  = new JLabel(ImageIcons.STUDENTS_VIEW_NO_HOVER.getImageIcon());
         createStudentLabel = new JLabel(ImageIcons.STUDENTS_CREATE_NO_HOVER.getImageIcon());
+        editStudentLabel   = new JLabel(ImageIcons.STUDENTS_EDIT_NO_HOVER.getImageIcon());
         setSelectedSubTab();
 
         horizSeparator = Components.JSeparator(SwingConstants.HORIZONTAL);
@@ -76,6 +85,8 @@ public class StudentsView {
             case 1:
                 createStudentLabel.setIcon(ImageIcons.STUDENTS_CREATE_SELECTED.getImageIcon());
                 break;
+            case 2:
+                editStudentLabel.setIcon(ImageIcons.STUDENTS_EDIT_SELECTED.getImageIcon());
             default:
                 break;
         }
@@ -98,6 +109,11 @@ public class StudentsView {
                                                                 GroupLayout.Alignment.LEADING)
                                                         .addGroup(pickAnAssignmentPanelLayout.createParallelGroup(
                                                                         GroupLayout.Alignment.LEADING, false)
+                                                                .addComponent(
+                                                                        editStudentLabel,
+                                                                        GroupLayout.PREFERRED_SIZE,
+                                                                        GroupLayout.DEFAULT_SIZE,
+                                                                        GroupLayout.PREFERRED_SIZE)
                                                                 .addComponent(
                                                                         createStudentLabel,
                                                                         GroupLayout.PREFERRED_SIZE,
@@ -152,6 +168,13 @@ public class StudentsView {
                                                                         LayoutStyle.ComponentPlacement.UNRELATED)
                                                                 .addComponent(
                                                                         createStudentLabel,
+                                                                        GroupLayout.PREFERRED_SIZE,
+                                                                        GroupLayout.DEFAULT_SIZE,
+                                                                        GroupLayout.PREFERRED_SIZE)
+                                                                .addPreferredGap(
+                                                                        LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                .addComponent(
+                                                                        editStudentLabel,
                                                                         GroupLayout.PREFERRED_SIZE,
                                                                         GroupLayout.DEFAULT_SIZE,
                                                                         GroupLayout.PREFERRED_SIZE)

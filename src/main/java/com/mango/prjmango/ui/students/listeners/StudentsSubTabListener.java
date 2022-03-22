@@ -1,6 +1,8 @@
 package com.mango.prjmango.ui.students.listeners;
 
 import com.mango.prjmango.LoggedInUser;
+import com.mango.prjmango.ui.students.edit.EditStudentController;
+import com.mango.prjmango.ui.students.edit.EditStudentView;
 import com.mango.prjmango.utilities.subtabs.StudentsSubTabs;
 import com.mango.prjmango.ui.common.ImageIcons;
 import com.mango.prjmango.ui.students.StudentsView;
@@ -62,6 +64,11 @@ public class StudentsSubTabListener implements MouseListener {
                 new CreateStudentController(createStudentView);
                 StudentsView.setActiveDisplay(createStudentView);
                 break;
+            case 2:
+                LoggedInUser.setStudentsSubTabIndex(2);
+                EditStudentView editStudentView = new EditStudentView();
+                new EditStudentController(editStudentView);
+                StudentsView.setActiveDisplay(editStudentView);
             default:
                 break;
         }
@@ -119,6 +126,9 @@ public class StudentsSubTabListener implements MouseListener {
                 break;
             case 1:
                 StudentsView.getCreateStudentLabel().setIcon(ImageIcons.STUDENTS_CREATE_NO_HOVER.getImageIcon());
+                break;
+            case 2:
+                StudentsView.getEditStudentLabel().setIcon(ImageIcons.STUDENTS_EDIT_NO_HOVER.getImageIcon());
                 break;
         }
     }

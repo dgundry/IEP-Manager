@@ -9,6 +9,7 @@ public class StudentsController {
     public StudentsController(StudentsView view){
         JLabel viewStudent = StudentsView.getViewStudentsLabel();
         JLabel createStudent = StudentsView.getCreateStudentLabel();
+        JLabel editStudent = StudentsView.getEditStudentLabel();
         viewStudent.addMouseListener(new StudentsSubTabListener(
                 viewStudent,
                 ImageIcons.STUDENTS_VIEW_NO_HOVER.getImageIcon(),
@@ -21,5 +22,11 @@ public class StudentsController {
                 ImageIcons.STUDENTS_CREATE_HOVERED.getImageIcon(),
                 ImageIcons.STUDENTS_CREATE_SELECTED.getImageIcon(),
                 StudentsSubTabs.CREATE));
+        editStudent.addMouseListener(new StudentsSubTabListener(
+                editStudent,
+                ImageIcons.STUDENTS_EDIT_NO_HOVER.getImageIcon(),
+                ImageIcons.STUDENTS_EDIT_HOVERED.getImageIcon(),
+                ImageIcons.STUDENTS_EDIT_SELECTED.getImageIcon(),
+                StudentsSubTabs.EDIT));
     }
 }
