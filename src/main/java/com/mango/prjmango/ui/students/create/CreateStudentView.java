@@ -11,13 +11,7 @@ import java.awt.Insets;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
-import javax.swing.BorderFactory;
-import javax.swing.GroupLayout;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.LayoutStyle;
+import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import lombok.Getter;
 
@@ -38,7 +32,7 @@ public class CreateStudentView extends JPanel {
     @Getter private JTextField studentFirstNameTextField;
     @Getter private JTextField studentLastNameTextField;
 
-    @Getter private JTextField bioTextField;
+    @Getter private JTextArea bioTextField;
 
     @Getter private JComboBox gradeComboBox;
 
@@ -63,7 +57,7 @@ public class CreateStudentView extends JPanel {
 
         studentFirstNameTextField   = createTextField("");
         studentLastNameTextField     = createTextField("");
-        bioTextField                 = createTextField("");
+        bioTextField                 = createTextArea("");
 
 
 //        gradeComboBox = new JComboBox<>(gradeArr);
@@ -144,6 +138,17 @@ public class CreateStudentView extends JPanel {
         textField.setCaretColor(LIGHT_GREY);
         textField.setFont(Fonts.SEGOE_UI_16.getFont());
         return textField;
+    }
+
+    private JTextArea createTextArea(String text) {
+        JTextArea textArea = new JTextArea(text);
+        textArea.setMargin(new Insets(0, 10, 0, 10));
+        textArea.setBackground(DARK_GREY);
+        textArea.setForeground(LIGHT_GREY);
+        textArea.setCaretColor(LIGHT_GREY);
+        textArea.setFont(Fonts.SEGOE_UI_16.getFont());
+        textArea.setBorder(BorderFactory.createLineBorder(new Color(216, 216, 216), 2));
+        return textArea;
     }
 
     private JLabel createLabel(String text, int fontSize) {
