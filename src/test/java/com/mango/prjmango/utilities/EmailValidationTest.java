@@ -7,7 +7,7 @@ import org.junit.Test;
  * This class tests for valid emails that a user can use when
  * creating their account.
  */
-public class TestEmailValidation {
+public class EmailValidationTest {
     
     @Test
     public void testValidEmail() {

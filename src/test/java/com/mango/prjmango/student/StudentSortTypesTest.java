@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestStudentSortTypes {
+public class StudentSortTypesTest {
 
     private final List<Student> students = new ArrayList<>();
 

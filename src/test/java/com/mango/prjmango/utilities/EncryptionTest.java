@@ -12,7 +12,7 @@ import java.util.Arrays;
  * JUnit test for the Encryption class to verify
  * the expected results for our users encrypted password.
  */
-public class TestEncryption {
+public class EncryptionTest {
 
     @Before
     public void setUp() {
