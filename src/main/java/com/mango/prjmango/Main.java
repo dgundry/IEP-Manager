@@ -1,15 +1,22 @@
 package com.mango.prjmango;
 
+
 // Sprint 3
 import com.mango.prjmango.login.LoginPageController;
 import com.mango.prjmango.login.LoginPageView;
 //import com.mango.prjmango.mainloginpage.MainLoginView;
 
 
+
+import com.mango.prjmango.student.Students;
+
 import com.mango.prjmango.utilities.DatabaseConnection;
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import java.util.logging.Logger;
+import com.mango.prjmango.ui.MainWindowView;
+import com.mango.prjmango.ui.activities.SightWords;
+import com.mango.prjmango.ui.login.LoginController;
+import com.mango.prjmango.ui.login.LoginView;
+import java.awt.GraphicsEnvironment;
+import java.awt.Rectangle;
 import javax.swing.UIManager;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -26,16 +33,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class Main {
 
-	public static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-
-	public static final int SCREEN_WIDTH = (int) screenSize.getWidth();
-	public static final int SCREEN_HEIGHT = (int) screenSize.getHeight();
-
-	private static final Logger logger = Logger.getLogger(Main.class.getName());
-
-	public static MainFrame frame;
+	public static final Rectangle rect = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
 
 	public static LoggedInUser activeUser;
+
+	public static Students students;
+
+	public static final SightWords SIGHT_WORDS = new SightWords();
 
 	/**
 	 * Initialize start of the application. Connects to the database and instantiates
@@ -44,7 +48,6 @@ public class Main {
 	 * @param args the command line arguments passed in when running the application.
 	 */
 	public static void main(String[] args) {
-
 		SpringApplication.run(Main.class, args);
 
 		DatabaseConnection connection = new DatabaseConnection();
@@ -54,11 +57,14 @@ public class Main {
 
 		try {
 			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-			frame = new MainFrame();
-			frame.setLoginPage();
+
+			MainWindowView view = new MainWindowView();
+
+			LoginView loginView = new LoginView();
+			new LoginController(loginView);
+			view.setActiveDisplay(loginView);
 
 		} catch (Exception e) {
-			//
 			e.printStackTrace();
 		}
 	}

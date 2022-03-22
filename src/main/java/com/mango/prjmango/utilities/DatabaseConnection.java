@@ -1,6 +1,5 @@
 package com.mango.prjmango.utilities;
 
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -42,11 +41,8 @@ public class DatabaseConnection implements Runnable {
         try {
             SQLiteConfig config = new SQLiteConfig();
             config.setReadOnly(false);
-//            String url = "jdbc:sqlite:\\database\\\\iepCipher.db";
-//            URL url = DatabaseConnection.class.getResource("/database/iepCipher.db");
-            String username = "doadmin";
-            String password = "X0Y5SvMlvvOun0NI";
-            connection = DriverManager.getConnection("jdbc:sqlite::resource:database/iepCipher.db",config.toProperties());
+            connection = DriverManager.getConnection(
+                    "jdbc:sqlite::resource:database/iepCipher.db", config.toProperties());
         } catch (Exception e) {
             logger.log(Level.SEVERE, e.getMessage());
         }

@@ -20,7 +20,7 @@ public class Encryption {
      * @return an encrypted {@link String}
      * @throws NoSuchAlgorithmException if there's an error encrypting the {@link String}
      */
-    public static String encryptPassword(String password) throws NoSuchAlgorithmException {
+    public static String encrypt(String password) throws NoSuchAlgorithmException {
         MessageDigest message = MessageDigest.getInstance("SHA-256");
         message.update(password.getBytes());
         return bytesToHex(message.digest());

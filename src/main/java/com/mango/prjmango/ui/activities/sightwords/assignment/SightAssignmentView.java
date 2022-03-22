@@ -1,0 +1,105 @@
+package com.mango.prjmango.ui.activities.sightwords.assignment;
+
+import com.mango.prjmango.ui.activities.CreateAssignment;
+import com.mango.prjmango.ui.common.Colors;
+import com.mango.prjmango.ui.common.Components;
+import com.mango.prjmango.ui.common.Fonts;
+import com.mango.prjmango.ui.common.ImageIcons;
+import lombok.Getter;
+
+import javax.swing.*;
+
+public class SightAssignmentView extends JPanel {
+
+    private JLabel sightWordHeaderLabel;
+    @Getter
+    private JLabel wordLabel;
+    @Getter private JLabel numberWordLabel;
+
+    @Getter private JLabel incorrectLabel;
+    @Getter private JLabel correctLabel;
+
+    private final String SIGHT_WORD_SELECTION;
+
+    @Getter public CreateAssignment assignment;
+
+    public SightAssignmentView(String sightWordSelection, CreateAssignment assignment){
+        this.SIGHT_WORD_SELECTION = sightWordSelection;
+        this.assignment = assignment;
+
+        setOpaque(false);
+
+        createComponents();
+        createLayout();
+
+        wordLabel.setText(assignment.getCurrentQuestion());
+        numberWordLabel.setText(assignment.getCurrentQuestionIndex()+1 + "/" + assignment.getTotalQuestions());
+    }
+
+    private void createComponents() {
+        sightWordHeaderLabel = Components.JLabel(
+                SIGHT_WORD_SELECTION,
+                Fonts.SEGOE_UI_24.getFont(),
+                Colors.LIGHT_GREY,
+                SwingConstants.CENTER);
+        numberWordLabel = Components.JLabel(
+                "",
+                Fonts.SEGOE_UI_18.getFont(),
+                Colors.LIGHT_GREY,
+                SwingConstants.LEADING);
+        wordLabel = Components.JLabel(
+                "",
+                Fonts.SEGOE_UI_70.getFont(),
+                Colors.LIGHT_GREY,
+                SwingConstants.CENTER);
+
+        correctLabel   = new JLabel(ImageIcons.FRY_ASSIGNMENT_CORRECT_NO_HOVER.getImageIcon());
+        incorrectLabel = new JLabel(ImageIcons.FRY_ASSIGNMENT_INCORRECT_NO_HOVER.getImageIcon());
+    }
+
+    private void createLayout() {
+        GroupLayout sightWordAssignmentPanelLayout = new GroupLayout(this);
+        setLayout(sightWordAssignmentPanelLayout);
+        sightWordAssignmentPanelLayout.setHorizontalGroup(
+                sightWordAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(sightWordAssignmentPanelLayout.createSequentialGroup()
+                                .addGap(151, 151, 151)
+                                .addComponent(correctLabel, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(incorrectLabel, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
+                                .addGap(161, 161, 161))
+                        .addGroup(sightWordAssignmentPanelLayout.createSequentialGroup()
+                                .addGroup(sightWordAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                        .addGroup(sightWordAssignmentPanelLayout.createSequentialGroup()
+                                                .addGap(123, 123, 123)
+                                                .addComponent(wordLabel, GroupLayout.PREFERRED_SIZE, 436, GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(sightWordAssignmentPanelLayout.createSequentialGroup()
+                                                .addGap(22, 22, 22)
+                                                .addComponent(numberWordLabel)))
+                                .addContainerGap(133, Short.MAX_VALUE))
+                        .addGroup(sightWordAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addGroup(sightWordAssignmentPanelLayout.createSequentialGroup()
+                                        .addGap(20, 20, 20)
+                                        .addComponent(sightWordHeaderLabel)
+                                        .addContainerGap(421, Short.MAX_VALUE)))
+        );
+        sightWordAssignmentPanelLayout.setVerticalGroup(
+                sightWordAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(sightWordAssignmentPanelLayout.createSequentialGroup()
+                                .addGap(69, 69, 69)
+                                .addComponent(numberWordLabel)
+                                .addGap(101, 101, 101)
+                                .addComponent(wordLabel)
+                                .addGap(90, 90, 90)
+                                .addGroup(sightWordAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                        .addComponent(correctLabel, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(incorrectLabel, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(1305, Short.MAX_VALUE))
+                        .addGroup(sightWordAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addGroup(sightWordAssignmentPanelLayout.createSequentialGroup()
+                                        .addGap(21, 21, 21)
+                                        .addComponent(sightWordHeaderLabel)
+                                        .addContainerGap(1510, Short.MAX_VALUE)))
+        );
+    }
+}

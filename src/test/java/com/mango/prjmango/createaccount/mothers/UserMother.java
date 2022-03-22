@@ -1,6 +1,6 @@
 package com.mango.prjmango.createaccount.mothers;
 
-import com.mango.prjmango.createaccount.User;
+import com.mango.prjmango.utilities.User;
 import com.mango.prjmango.utilities.GenericBuilder;
 
 /**
