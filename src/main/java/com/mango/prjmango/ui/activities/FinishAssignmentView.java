@@ -6,6 +6,7 @@ import lombok.Getter;
 
 import javax.swing.*;
 import java.awt.*;
+import java.math.BigDecimal;
 
 public class FinishAssignmentView extends JPanel {
 
@@ -50,7 +51,9 @@ public class FinishAssignmentView extends JPanel {
         scoreLabel = createLabel("Score:", 18);
         changeScoreLabel = createLabel(assignment.getCorrectAnswers()+"/"+assignment.getTotalQuestions(),18);
         percentageLabel = createLabel("Percentage:", 18);
-        changePercentageLabel = createLabel(((double)assignment.getCorrectAnswers() / (double)assignment.getTotalQuestions())*100 + "%",18);
+//        Double percentage = BigDecimal.valueOf(((double)assignment.getCorrectAnswers() / (double)assignment.getTotalQuestions())*100)).setScale(2, Round);
+        String percentage = String.format("%.2f", ((double)assignment.getCorrectAnswers() / (double)assignment.getTotalQuestions())*100);
+        changePercentageLabel = createLabel(percentage + "%",18);
         commentsLabel = createLabel("Comments:", 18);
 //        submitLabel = createLabel("Submit", 18);
         submitLabel = new JLabel(ImageIcons.EDIT_PROFILE_SAVE_NO_HOVER.getImageIcon());
