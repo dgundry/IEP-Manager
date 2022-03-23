@@ -105,9 +105,9 @@ public class CreateStudentView extends JPanel {
         createStudentPanelLayout.setVerticalGroup(
                 createStudentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(createStudentPanelLayout.createSequentialGroup()
-                                .addGap(14, 14, 14)
+                                .addContainerGap()
                                 .addComponent(createStudentHeaderLabel)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(67, 67, 67)
                                 .addComponent(studentsFirstNameLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(studentFirstNameTextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)

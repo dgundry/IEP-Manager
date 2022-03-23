@@ -14,6 +14,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Objects;
+import java.util.Vector;
 
 public class EditStudentController {
     public EditStudentController(EditStudentView view) {
@@ -81,6 +82,8 @@ public class EditStudentController {
                 view.getStudentLastNameTextField().setEnabled(false);
                 view.getBioTextField().setEnabled(false);
                 view.getGradeComboBox().setEnabled(false);
+                view.getNameComboBox().setModel(new DefaultComboBoxModel<Student>(new Vector<>(Main.getStudents().getStudents())));
+//                view.getNameComboBox().setModel(new ComboBoxModel<Student>(Main.getStudents().getStudents()));
             }
 
         }
