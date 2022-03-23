@@ -76,7 +76,9 @@ public class SightView extends JPanel {
         }
 
         studentsNameComboBox = new JComboBox<>(new Vector<>(Main.getStudents().getStudents()));
-        studentsNameComboBox.setBackground(Color.WHITE);
+        studentsNameComboBox.setFont(Fonts.SEGOE_UI_16.getFont());
+        studentsNameComboBox.setBackground(Colors.DARK_GREY);
+        studentsNameComboBox.setForeground(Colors.LIGHT_GREY);
 
         beginLabel = new JLabel(ImageIcons.FRY_BEGIN_NO_HOVER.getImageIcon());
     }

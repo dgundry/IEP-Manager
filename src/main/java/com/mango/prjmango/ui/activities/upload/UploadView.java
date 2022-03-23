@@ -2,6 +2,7 @@ package com.mango.prjmango.ui.activities.upload;
 
 import com.mango.prjmango.Main;
 import com.mango.prjmango.student.Student;
+import com.mango.prjmango.ui.common.Colors;
 import com.mango.prjmango.ui.common.ImageIcons;
 import lombok.Getter;
 import com.mango.prjmango.ui.common.Fonts;
@@ -61,7 +62,9 @@ public class UploadView extends JPanel {
         commentsTextField = createTextField();
 
         studentNameDropdown = new JComboBox<>(new Vector<>(Main.getStudents().getStudents()));
-        studentNameDropdown.setBackground(Color.WHITE);
+        studentNameDropdown.setFont(Fonts.SEGOE_UI_16.getFont());
+        studentNameDropdown.setBackground(Colors.DARK_GREY);
+        studentNameDropdown.setForeground(Colors.LIGHT_GREY);
     }
 
     public void createLayout(){
