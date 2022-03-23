@@ -1,10 +1,7 @@
 package com.mango.prjmango.ui.students.edit;
 
-import com.mango.prjmango.Main;
-import com.mango.prjmango.student.Students;
-import com.mango.prjmango.ui.students.create.CreateStudentView;
-import com.mango.prjmango.utilities.DatabaseCommands;
 import com.mango.prjmango.ui.common.ImageIcons;
+import lombok.Getter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,10 +12,23 @@ import java.util.Objects;
 public class EditStudentController {
     public EditStudentController(EditStudentView view) {
         JLabel saveLabel = view.getSaveLabel();
+        JLabel editFirstNameLabel = view.getEditFirstNameLabel();
+        JLabel editLastNameLabel  = view.getEditLastNameLabel();
+        JLabel editGradeLabel     = view.getEditGradeLabel();
+        JLabel editBioLabel       = view.getEditBioLabel();
+
+        JTextField firstNameTextField = view.getStudentFirstNameTextField();
+        JTextField lastNameTextField  = view.getStudentLastNameTextField();
+
+        JComboBox<String> gradeComboBox = view.getGradeComboBox();
+
+        JTextArea bioTextField = view.getBioTextField();
 
         saveLabel.addMouseListener(new SaveStudentMouseListener(view, saveLabel));
-
-
+        editFirstNameLabel.addMouseListener(new EditLabelMouseListener(editFirstNameLabel, firstNameTextField));
+        editLastNameLabel.addMouseListener(new EditLabelMouseListener(editLastNameLabel, lastNameTextField));
+        editGradeLabel.addMouseListener(new EditLabelMouseListener(editGradeLabel, gradeComboBox));
+        editBioLabel.addMouseListener(new EditLabelMouseListener(editBioLabel, bioTextField));
     }
 
     private static class SaveStudentMouseListener implements MouseListener {
@@ -87,5 +97,87 @@ public class EditStudentController {
             return str.equals("");
         }
 
+    }
+
+    private static class EditLabelMouseListener implements MouseListener {
+
+        private final JLabel label;
+        private final JComponent component;
+
+        /**
+         * Constructor. Initializes instance variables that will be used throughout the {@link MouseListener}
+         * methods.
+         *
+         * @param label     the specific {@link JLabel}
+         * @param component the specific {@link JComponent}
+         */
+        public EditLabelMouseListener(JLabel label, JComponent component) {
+            this.label = label;
+            this.component = component;
+        }
+
+        /**
+         * Invoked when the mouse button has been clicked (pressed
+         * and released) on a component.
+         *
+         * @param e the {@link MouseEvent}
+         */
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            if (component.isEnabled()) {
+                component.setEnabled(false);
+                label.setIcon(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
+            } else {
+                component.setEnabled(true);
+                component.requestFocus();
+                label.setIcon(ImageIcons.EDIT_PROFILE_EDIT_ICON_HOVERED.getImageIcon());
+            }
+
+            label.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        }
+
+        /**
+         * Invoked when the mouse enters a component.
+         *
+         * @param e the {@link MouseEvent}
+         */
+        @Override
+        public void mouseEntered(MouseEvent e) {
+            if (label.getIcon().equals(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon())) {
+                label.setIcon(ImageIcons.EDIT_PROFILE_EDIT_ICON_HOVERED.getImageIcon());
+            }
+
+            label.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        }
+
+        /**
+         * Invoked when the mouse exits a component.
+         *
+         * @param e the {@link MouseEvent}
+         */
+        @Override
+        public void mouseExited(MouseEvent e) {
+            if (label.getIcon().equals(ImageIcons.EDIT_PROFILE_EDIT_ICON_HOVERED.getImageIcon())) {
+                label.setIcon(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
+            }
+
+            label.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        }
+
+        /**
+         * Invoked when a mouse button has been pressed on a component.
+         *
+         * @param e the {@link MouseEvent}
+         */
+        @Override
+        public void mousePressed(MouseEvent e) { /* Not needed */ }
+
+        /**
+         * Invoked when a mouse button has been released on a component.
+         *
+         * @param e the {@link MouseEvent}
+         */
+        @Override
+        public void mouseReleased(MouseEvent e) { /* Not needed */ }
     }
 }

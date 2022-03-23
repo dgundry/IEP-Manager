@@ -1,33 +1,27 @@
 package com.mango.prjmango.ui.students.edit;
 
+import com.mango.prjmango.Main;
+import com.mango.prjmango.student.Student;
 import com.mango.prjmango.ui.common.Colors;
 import com.mango.prjmango.ui.common.Components;
 import com.mango.prjmango.ui.common.Fonts;
 import com.mango.prjmango.ui.common.ImageIcons;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Insets;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.*;
-import javax.swing.border.TitledBorder;
 import lombok.Getter;
 
 public class EditStudentView extends JPanel {
 
-    private final Color DARK_GREY = new Color(19, 18, 18);
-    private final Color LIGHT_GREY = new Color(216, 216, 216);
-
-    private JLabel createStudentHeaderLabel;
     private JLabel nameComboBoxLabel;
+    private JLabel editStudentHeaderLabel;
     private JLabel studentsFirstNameLabel;
     private JLabel studentsLastNameLabel;
     private JLabel gradeLabel;
     private JLabel bioLabel;
-    @Getter JLabel informationLabel;
 
+    @Getter private JLabel informationLabel;
     @Getter private JLabel saveLabel;
 
     @Getter private JTextField studentFirstNameTextField;
@@ -35,66 +29,73 @@ public class EditStudentView extends JPanel {
 
     @Getter private JTextArea bioTextField;
 
-    @Getter private JComboBox gradeComboBox;
+    @Getter private JComboBox<String> gradeComboBox;
 
     @Getter private JLabel editFirstNameLabel;
     @Getter private JLabel editLastNameLabel;
     @Getter private JLabel editGradeLabel;
     @Getter private JLabel editBioLabel;
 
-    @Getter private JComboBox nameComboBox;
+    @Getter private JComboBox<Student> nameComboBox;
 
-
-    public EditStudentView(){
+    public EditStudentView() {
         setOpaque(false);
 
         createComponents();
         createLayout();
-
     }
-    private void createComponents(){
-        createStudentHeaderLabel       = createLabel("Edit a Student", 24);
-        nameComboBoxLabel               = createLabel("Student's Full Name:", 18);
-        studentsFirstNameLabel          = createLabel("Student's First Name:", 18);
-        studentsLastNameLabel           = createLabel("Student's Last Name:", 18);
-        gradeLabel                      = createLabel("Grade:", 18);
-        bioLabel                        = createLabel("Bio:", 18);
-        informationLabel                = createLabel("", 14);
+
+    private void createComponents() {
+        editStudentHeaderLabel = Components.JLabel(
+                "Edit a Student",
+                Fonts.SEGOE_UI_24.getFont(),
+                Colors.LIGHT_GREY);
+        nameComboBoxLabel = Components.JLabel(
+                "Name:",
+                Fonts.SEGOE_UI_18.getFont(),
+                Colors.LIGHT_GREY);
+        studentsFirstNameLabel = Components.JLabel(
+                "First Name:",
+                Fonts.SEGOE_UI_18.getFont(),
+                Colors.LIGHT_GREY);
+        studentsLastNameLabel = Components.JLabel(
+                "Last Name:",
+                Fonts.SEGOE_UI_18.getFont(),
+                Colors.LIGHT_GREY);
+        gradeLabel = Components.JLabel(
+                "Grade:",
+                Fonts.SEGOE_UI_18.getFont(),
+                Colors.LIGHT_GREY);
+        bioLabel = Components.JLabel("Bio:", Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
+        informationLabel = Components.JLabel(" ", Fonts.SEGOE_UI_14.getFont(), Colors.LIGHT_GREY);
 
         editFirstNameLabel = new JLabel(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
-        editLastNameLabel = new JLabel(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
-        editGradeLabel = new JLabel(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
-        editBioLabel = new JLabel(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
-        saveLabel = new JLabel(ImageIcons.EDIT_PROFILE_SAVE_NO_HOVER.getImageIcon());
+        editLastNameLabel  = new JLabel(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
+        editGradeLabel     = new JLabel(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
+        editBioLabel       = new JLabel(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
+        saveLabel          = new JLabel(ImageIcons.EDIT_PROFILE_SAVE_NO_HOVER.getImageIcon());
 
-        studentFirstNameTextField   = createTextField("");
-        studentLastNameTextField     = createTextField("");
-        bioTextField                 = createTextArea("");
+        studentFirstNameTextField = Components.JTextField("");
+        studentFirstNameTextField.setEnabled(false);
 
+        studentLastNameTextField = Components.JTextField("");
+        studentLastNameTextField.setEnabled(false);
 
-//        gradeComboBox = new JComboBox<>(gradeArr);
-//        gradeComboBox.setOpaque(false);
-//        gradeComboBox.setFont(new Font("Segoe UI", Font.PLAIN, 18));
-//        gradeComboBox.setForeground(LIGHT_GREY);
-//        gradeComboBox.setModel(new DefaultComboBoxModel<>(gradeArr));
-//
+        bioTextField = Components.JTextArea("");
+        bioTextField.setEnabled(false);
+
         String[] gradeArr = new String[] {"1","2","3","4","5"};
-
         List<String> gradeList = Arrays.asList(gradeArr);
+        gradeComboBox = Components.JComboBox(gradeList);
+        gradeComboBox.setEnabled(false);
 
-        gradeComboBox = Components.JComboBox("Grades", gradeList);
-
-        String[] nameArr = new String[] {"temporary string array"};
-        List<String> names = Arrays.asList(nameArr);
-        nameComboBox = Components.JComboBox("Student's Full Name", names);
+        nameComboBox = new JComboBox<>(new Vector<>(Main.getStudents().getStudents()));
+        nameComboBox.setFont(Fonts.SEGOE_UI_16.getFont());
+        nameComboBox.setBackground(Colors.DARK_GREY);
+        nameComboBox.setForeground(Colors.LIGHT_GREY);
     }
 
-
-    private void gradeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    private void createLayout(){
+    private void createLayout() {
         GroupLayout createStudentPanelLayout = new GroupLayout(this);
         setLayout(createStudentPanelLayout);
         createStudentPanelLayout.setHorizontalGroup(
@@ -106,60 +107,64 @@ public class EditStudentView extends JPanel {
                                         .addGroup(createStudentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                     .addGroup(createStudentPanelLayout.createSequentialGroup()
                                                         .addComponent(bioTextField, GroupLayout.PREFERRED_SIZE, 517, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(editBioLabel))
+                                                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                            .addComponent(editBioLabel))
                                                 .addComponent(saveLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(bioLabel)
                                                 .addGroup(createStudentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                                         .addGroup(createStudentPanelLayout.createSequentialGroup()
-                                                        .addComponent(gradeComboBox, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
-                                                                        .addComponent(editGradeLabel))
-                                                        .addComponent(gradeLabel)
+                                                            .addComponent(gradeComboBox, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
+                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                .addComponent(editGradeLabel))
                                                         .addGroup(createStudentPanelLayout.createSequentialGroup()
-                                                        .addComponent(studentLastNameTextField, GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+                                                                .addComponent(studentLastNameTextField, GroupLayout.PREFERRED_SIZE, 517, GroupLayout.PREFERRED_SIZE)
+                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                                                 .addComponent(editLastNameLabel))
                                                         .addComponent(studentsLastNameLabel)
                                                         .addComponent(studentsFirstNameLabel)
-                                                        .addComponent(createStudentHeaderLabel)
+                                                        .addComponent(editStudentHeaderLabel)
                                                         .addGroup(createStudentPanelLayout.createSequentialGroup()
-                                                        .addComponent(studentFirstNameTextField)
-                                                                .addComponent(editFirstNameLabel))
-                                                        )
-                                                .addComponent(nameComboBox)
-                                                .addComponent(nameComboBoxLabel)))
-
+                                                                .addComponent(studentFirstNameTextField, GroupLayout.PREFERRED_SIZE, 517, GroupLayout.PREFERRED_SIZE)
+                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                .addComponent(editFirstNameLabel)))
+                                                .addComponent(nameComboBox, GroupLayout.PREFERRED_SIZE, 517, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(nameComboBoxLabel)
+                                                .addComponent(gradeLabel)))
                                 .addContainerGap(378, Short.MAX_VALUE))
         );
         createStudentPanelLayout.setVerticalGroup(
                 createStudentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(createStudentPanelLayout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(createStudentHeaderLabel)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addContainerGap()
+                                .addComponent(editStudentHeaderLabel)
+                                .addGap(67, 67, 67)
                                 .addComponent(nameComboBoxLabel)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(nameComboBox)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(studentsFirstNameLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(createStudentPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(studentFirstNameTextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(editFirstNameLabel))
-                                .addGap(18, 18, 18)
+                                        .addComponent(studentFirstNameTextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(editFirstNameLabel))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(studentsLastNameLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(createStudentPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(studentLastNameTextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(studentLastNameTextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
                                         .addComponent(editLastNameLabel))
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(gradeLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(createStudentPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(gradeComboBox, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(editGradeLabel))
-                                .addGap(18, 18, 18)
+                                        .addComponent(gradeComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(editGradeLabel))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(bioLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(createStudentPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(bioTextField, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(editBioLabel))
+                                        .addComponent(bioTextField, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(editBioLabel))
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(createStudentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addComponent(saveLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -167,50 +172,4 @@ public class EditStudentView extends JPanel {
                                 .addContainerGap(974, Short.MAX_VALUE))
         );
     }
-    private JTextField createTextField(String text) {
-        JTextField textField = new JTextField(text);
-        textField.setMargin(new Insets(0, 5, 0, 5));
-        textField.setBackground(DARK_GREY);
-        textField.setForeground(LIGHT_GREY);
-        textField.setCaretColor(LIGHT_GREY);
-        textField.setFont(Fonts.SEGOE_UI_16.getFont());
-        return textField;
-    }
-
-    private JTextArea createTextArea(String text) {
-        JTextArea textArea = new JTextArea(text);
-        textArea.setMargin(new Insets(0, 10, 0, 10));
-        textArea.setBackground(DARK_GREY);
-        textArea.setForeground(LIGHT_GREY);
-        textArea.setCaretColor(LIGHT_GREY);
-        textArea.setFont(Fonts.SEGOE_UI_16.getFont());
-        textArea.setBorder(BorderFactory.createLineBorder(new Color(216, 216, 216), 2));
-        return textArea;
-    }
-
-    private JLabel createLabel(String text, int fontSize) {
-        JLabel label = new JLabel(text);
-        label.setFont(new Font("Segoe UI", Font.PLAIN, fontSize));
-        label.setForeground(LIGHT_GREY);
-        return label;
-    }
-
-    public static JComboBox<String> JComboBox(String headerText, List<String> list) {
-        JComboBox<String> comboBox = new JComboBox<>(new Vector<>(list));
-        comboBox.setOpaque(false);
-        comboBox.setFont(Fonts.SEGOE_UI_16.getFont());
-        comboBox.setBackground(Colors.DARK_GREY);
-        comboBox.setForeground(Colors.LIGHT_GREY);
-        comboBox.setBorder(BorderFactory.createTitledBorder(
-                null,
-                headerText,
-                TitledBorder.DEFAULT_JUSTIFICATION,
-                TitledBorder.DEFAULT_POSITION,
-                Fonts.SEGOE_UI_14.getFont(),
-                Colors.LIGHT_GREY));
-        comboBox.setPreferredSize(new Dimension(56, 20));
-        return comboBox;
-    }
-
-
 }

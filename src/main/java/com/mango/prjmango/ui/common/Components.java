@@ -1,21 +1,42 @@
 package com.mango.prjmango.ui.common;
 
+import com.mango.prjmango.student.Student;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Insets;
 import java.util.List;
 import java.util.Vector;
-import javax.swing.BorderFactory;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPasswordField;
-import javax.swing.JSeparator;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
 public class Components {
 
+    /**
+     * Creates a new {@link JLabel}
+     *
+     * @param text            the text to display
+     * @param font            the desired {@link Font}
+     * @param foregroundColor the desired font {@link Color}
+     * @return a new {@link JLabel}
+     */
+    public static JLabel JLabel(String text, Font font, Color foregroundColor) {
+        JLabel label = new JLabel(text);
+        label.setFont(font);
+        label.setForeground(foregroundColor);
+        return label;
+    }
+
+    /**
+     * Creates a new {@link JLabel}
+     *
+     * @param text            the text to display
+     * @param font            the desired {@link Font}
+     * @param foregroundColor the desired font {@link Color}
+     * @param alignment       the font alignment
+     * @return a new {@link JLabel}
+     */
     public static JLabel JLabel(String text, Font font, Color foregroundColor, int alignment) {
         JLabel label = new JLabel(text);
         label.setFont(font);
@@ -39,6 +60,27 @@ public class Components {
                 Colors.LIGHT_GREY));
         textField.setCaretColor(Colors.LIGHT_GREY);
         return textField;
+    }
+
+    public static JTextField JTextField(String text) {
+        JTextField textField = new JTextField();
+        textField.setFont(Fonts.SEGOE_UI_16.getFont());
+        textField.setBackground(Colors.DARK_GREY);
+        textField.setForeground(Colors.LIGHT_GREY);
+        textField.setCaretColor(Colors.LIGHT_GREY);
+        textField.setMargin(new Insets(0, 5, 0, 5));
+        return textField;
+    }
+
+    public static  JTextArea JTextArea(String text) {
+        JTextArea textArea = new JTextArea(text);
+        textArea.setMargin(new Insets(0, 10, 0, 10));
+        textArea.setBackground(Colors.DARK_GREY);
+        textArea.setForeground(Colors.LIGHT_GREY);
+        textArea.setCaretColor(Colors.LIGHT_GREY);
+        textArea.setFont(Fonts.SEGOE_UI_16.getFont());
+        textArea.setBorder(BorderFactory.createLineBorder(new Color(216, 216, 216), 2));
+        return textArea;
     }
 
     public static JPasswordField JPasswordField(String headerText) {
@@ -89,6 +131,15 @@ public class Components {
                 Fonts.SEGOE_UI_14.getFont(),
                 Colors.LIGHT_GREY));
         comboBox.setPreferredSize(new Dimension(56, 20));
+        return comboBox;
+    }
+
+    public static JComboBox<String> JComboBox(List<String> list) {
+        JComboBox<String> comboBox = new JComboBox<>(new Vector<>(list));
+        comboBox.setOpaque(false);
+        comboBox.setFont(Fonts.SEGOE_UI_16.getFont());
+        comboBox.setBackground(Colors.DARK_GREY);
+        comboBox.setForeground(Colors.LIGHT_GREY);
         return comboBox;
     }
 

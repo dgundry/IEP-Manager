@@ -205,6 +205,7 @@ public class EditProfileController {
                 label.setIcon(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
             } else {
                 textField.setEnabled(true);
+                textField.requestFocus();
                 label.setIcon(ImageIcons.EDIT_PROFILE_EDIT_ICON_HOVERED.getImageIcon());
             }
 
