@@ -36,6 +36,12 @@ public class EditStudentView extends JPanel {
 
     @Getter private JComboBox gradeComboBox;
 
+    @Getter private JLabel editFirstNameLabel;
+    @Getter private JLabel editLastNameLabel;
+    @Getter private JLabel editGradeLabel;
+    @Getter private JLabel editBioLabel;
+
+    @Getter private JComboBox nameComboBox;
 
 
     public EditStudentView(){
@@ -53,6 +59,10 @@ public class EditStudentView extends JPanel {
         bioLabel                        = createLabel("Bio:", 18);
         informationLabel                = createLabel("", 14);
 
+        editFirstNameLabel = new JLabel(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
+        editLastNameLabel = new JLabel(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
+        editGradeLabel = new JLabel(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
+        editBioLabel = new JLabel(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
         saveLabel = new JLabel(ImageIcons.EDIT_PROFILE_SAVE_NO_HOVER.getImageIcon());
 
         studentFirstNameTextField   = createTextField("");
@@ -72,6 +82,9 @@ public class EditStudentView extends JPanel {
 
         gradeComboBox = Components.JComboBox("Grades", gradeList);
 
+        String[] nameArr = new String[] {"temporary string array"};
+        List<String> names = Arrays.asList(nameArr);
+        nameComboBox = Components.JComboBox("Name", names);
     }
 
 
@@ -89,17 +102,30 @@ public class EditStudentView extends JPanel {
                                 .addGroup(createStudentPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                                         .addComponent(informationLabel)
                                         .addGroup(createStudentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                .addComponent(bioTextField, GroupLayout.PREFERRED_SIZE, 517, GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(createStudentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                        .addComponent(bioLabel)
+                                                    .addGroup(createStudentPanelLayout.createSequentialGroup()
+                                                        .addComponent(bioTextField, GroupLayout.PREFERRED_SIZE, 517, GroupLayout.PREFERRED_SIZE)
+                                                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                        .addComponent(editBioLabel)))
+                                                //.addComponent(bioTextField, GroupLayout.PREFERRED_SIZE, 517, GroupLayout.PREFERRED_SIZE)
+
                                                 .addComponent(saveLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(bioLabel)
+                                                //.addComponent(bioLabel)
                                                 .addGroup(createStudentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(editGradeLabel)
                                                         .addComponent(gradeComboBox, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(gradeLabel)
+                                                        .addComponent(editLastNameLabel)
                                                         .addComponent(studentLastNameTextField, GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                                                         .addComponent(studentsLastNameLabel)
                                                         .addComponent(studentsFirstNameLabel)
                                                         .addComponent(createStudentHeaderLabel)
-                                                        .addComponent(studentFirstNameTextField))))
+                                                        .addComponent(editFirstNameLabel)
+                                                        .addComponent(studentFirstNameTextField)
+                                                        )
+                                                .addComponent(nameComboBox)))
+
                                 .addContainerGap(378, Short.MAX_VALUE))
         );
         createStudentPanelLayout.setVerticalGroup(
@@ -108,21 +134,27 @@ public class EditStudentView extends JPanel {
                                 .addGap(14, 14, 14)
                                 .addComponent(createStudentHeaderLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(nameComboBox)
                                 .addComponent(studentsFirstNameLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+
                                 .addComponent(studentFirstNameTextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(editFirstNameLabel)
                                 .addGap(18, 18, 18)
                                 .addComponent(studentsLastNameLabel)
+                                .addComponent(editLastNameLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(studentLastNameTextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(gradeLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(gradeComboBox, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(editGradeLabel)
                                 .addGap(18, 18, 18)
                                 .addComponent(bioLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(bioTextField, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(editBioLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(createStudentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addComponent(saveLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
