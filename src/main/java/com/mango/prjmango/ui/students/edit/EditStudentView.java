@@ -75,13 +75,13 @@ public class EditStudentView extends JPanel {
         editBioLabel       = new JLabel(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
         saveLabel          = new JLabel(ImageIcons.EDIT_PROFILE_SAVE_NO_HOVER.getImageIcon());
 
+
         studentFirstNameTextField = Components.JTextField("");
-        studentFirstNameTextField.setEnabled(false);
-
         studentLastNameTextField = Components.JTextField("");
-        studentLastNameTextField.setEnabled(false);
-
         bioTextField = Components.JTextArea("");
+
+        studentFirstNameTextField.setEnabled(false);
+        studentLastNameTextField.setEnabled(false);
         bioTextField.setEnabled(false);
 
         String[] gradeArr = new String[] {"1","2","3","4","5"};
@@ -93,6 +93,14 @@ public class EditStudentView extends JPanel {
         nameComboBox.setFont(Fonts.SEGOE_UI_16.getFont());
         nameComboBox.setBackground(Colors.DARK_GREY);
         nameComboBox.setForeground(Colors.LIGHT_GREY);
+
+        if(Main.getStudents().getStudents().size() > 0){
+            Student firstStudent = (Student) nameComboBox.getSelectedItem();
+            studentFirstNameTextField.setText(firstStudent.getFirstName());
+            studentLastNameTextField.setText(firstStudent.getLastName());
+            bioTextField.setText(firstStudent.getBio());
+            gradeComboBox.setSelectedIndex(Integer.parseInt(firstStudent.getGrade())-1);
+        }
     }
 
     private void createLayout() {

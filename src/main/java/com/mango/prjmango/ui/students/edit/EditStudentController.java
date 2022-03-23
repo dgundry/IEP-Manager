@@ -1,10 +1,16 @@
 package com.mango.prjmango.ui.students.edit;
 
+import com.mango.prjmango.Main;
+import com.mango.prjmango.student.Student;
+import com.mango.prjmango.student.Students;
 import com.mango.prjmango.ui.common.ImageIcons;
+import com.mango.prjmango.utilities.dbcommands.StudentCommands;
 import lombok.Getter;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Objects;
@@ -21,6 +27,7 @@ public class EditStudentController {
         JTextField lastNameTextField  = view.getStudentLastNameTextField();
 
         JComboBox<String> gradeComboBox = view.getGradeComboBox();
+        JComboBox<Student> studentComboBox = view.getNameComboBox();
 
         JTextArea bioTextField = view.getBioTextField();
 
@@ -29,6 +36,8 @@ public class EditStudentController {
         editLastNameLabel.addMouseListener(new EditLabelMouseListener(editLastNameLabel, lastNameTextField));
         editGradeLabel.addMouseListener(new EditLabelMouseListener(editGradeLabel, gradeComboBox));
         editBioLabel.addMouseListener(new EditLabelMouseListener(editBioLabel, bioTextField));
+        studentComboBox.addItemListener(new StudentItemListener(view, studentComboBox));
+
     }
 
     private static class SaveStudentMouseListener implements MouseListener {
@@ -50,7 +59,11 @@ public class EditStudentController {
             String gradeComboBox = Objects.requireNonNull(view.getGradeComboBox().getSelectedItem()).toString();
             String bioTextField = view.getBioTextField().getText().trim();
 
-            if (isBlank(studentsFirstNameTextField)) {
+            if(Main.getStudents().getStudents().size() <= 0){
+                view.getInformationLabel().setText("You do not have any students.");
+                view.getInformationLabel().setForeground(Color.RED);
+                view.getStudentFirstNameTextField().requestFocus();
+            } else if (isBlank(studentsFirstNameTextField)) {
                 view.getInformationLabel().setText("Please enter a valid first name!");
                 view.getInformationLabel().setForeground(Color.RED);
                 view.getStudentFirstNameTextField().requestFocus();
@@ -59,14 +72,15 @@ public class EditStudentController {
                 view.getInformationLabel().setForeground(Color.RED);
                 view.getStudentLastNameTextField().requestFocus();
             } else {
-                view.getInformationLabel().setText(view.getStudentFirstNameTextField().getText() + " has been added to the class!");
+                int studentID = ((Student) view.getNameComboBox().getSelectedItem()).getStudentID();
+                view.getInformationLabel().setText(view.getStudentFirstNameTextField().getText() + " has been updated!");
                 view.getInformationLabel().setForeground(Color.GREEN);
-//                DatabaseCommands.registerStudent(studentsFirstNameTextField,studentLastNameTextField,gradeComboBox,bioTextField);
-                view.getStudentFirstNameTextField().setText("");
-                view.getStudentLastNameTextField().setText("");
-                view.getGradeComboBox().setSelectedIndex(0);
-                view.getBioTextField().setText("");
-                view.getStudentFirstNameTextField().requestFocus();
+                StudentCommands.updateStudent(studentID,studentsFirstNameTextField,studentLastNameTextField,gradeComboBox,bioTextField);
+                Main.setStudents(new Students(Main.getActiveUser().getTeacherId()));
+                view.getStudentFirstNameTextField().setEnabled(false);
+                view.getStudentLastNameTextField().setEnabled(false);
+                view.getBioTextField().setEnabled(false);
+                view.getGradeComboBox().setEnabled(false);
             }
 
         }
@@ -179,5 +193,23 @@ public class EditStudentController {
          */
         @Override
         public void mouseReleased(MouseEvent e) { /* Not needed */ }
+    }
+
+    private class StudentItemListener implements ItemListener {
+        private EditStudentView view;
+        private JComboBox<Student> studentComboBox;
+        public StudentItemListener(EditStudentView view, JComboBox<Student> studentComboBox) {
+            this.view = view;
+            this.studentComboBox = studentComboBox;
+        }
+
+        @Override
+        public void itemStateChanged(ItemEvent e) {
+            Student selectedStudent = (Student) studentComboBox.getSelectedItem();
+            view.getStudentFirstNameTextField().setText(selectedStudent.getFirstName());
+            view.getStudentLastNameTextField().setText(selectedStudent.getLastName());
+            view.getBioTextField().setText(selectedStudent.getBio());
+            view.getGradeComboBox().setSelectedIndex(Integer.parseInt(selectedStudent.getGrade())-1);
+        }
     }
 }
