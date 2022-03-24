@@ -10,10 +10,9 @@ import com.mango.prjmango.ui.activities.fry.FryWords;
 import com.mango.prjmango.ui.activities.sightwords.assignment.SightAssignmentController;
 import com.mango.prjmango.ui.activities.sightwords.assignment.SightAssignmentView;
 import com.mango.prjmango.ui.common.ImageIcons;
-
-import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.JLabel;
 
 public class SightController {
     public SightController(SightView view){

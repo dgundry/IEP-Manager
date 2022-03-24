@@ -1,22 +1,28 @@
 package com.mango.prjmango.ui.students.edit;
 
+import com.mango.prjmango.LoggedInUser;
 import com.mango.prjmango.Main;
 import com.mango.prjmango.student.Student;
 import com.mango.prjmango.student.Students;
 import com.mango.prjmango.ui.common.ImageIcons;
 import com.mango.prjmango.utilities.dbcommands.StudentCommands;
-import lombok.Getter;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Objects;
 import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 public class EditStudentController {
+
     public EditStudentController(EditStudentView view) {
         JLabel saveLabel = view.getSaveLabel();
         JLabel editFirstNameLabel = view.getEditFirstNameLabel();
@@ -38,7 +44,6 @@ public class EditStudentController {
         editGradeLabel.addMouseListener(new EditLabelMouseListener(editGradeLabel, gradeComboBox));
         editBioLabel.addMouseListener(new EditLabelMouseListener(editBioLabel, bioTextField));
         studentComboBox.addItemListener(new StudentItemListener(view, studentComboBox));
-
     }
 
     private static class SaveStudentMouseListener implements MouseListener {
@@ -49,7 +54,6 @@ public class EditStudentController {
         public SaveStudentMouseListener(EditStudentView view, JLabel label) {
             this.view = view;
             this.label = label;
-
         }
 
         public void mouseClicked(MouseEvent e) {
@@ -77,13 +81,12 @@ public class EditStudentController {
                 view.getInformationLabel().setText(view.getStudentFirstNameTextField().getText() + " has been updated!");
                 view.getInformationLabel().setForeground(Color.GREEN);
                 StudentCommands.updateStudent(studentID,studentsFirstNameTextField,studentLastNameTextField,gradeComboBox,bioTextField);
-                Main.setStudents(new Students(Main.getActiveUser().getTeacherId()));
+                Main.setStudents(new Students(LoggedInUser.getTeacherId()));
                 view.getStudentFirstNameTextField().setEnabled(false);
                 view.getStudentLastNameTextField().setEnabled(false);
                 view.getBioTextField().setEnabled(false);
                 view.getGradeComboBox().setEnabled(false);
-                view.getNameComboBox().setModel(new DefaultComboBoxModel<Student>(new Vector<>(Main.getStudents().getStudents())));
-//                view.getNameComboBox().setModel(new ComboBoxModel<Student>(Main.getStudents().getStudents()));
+                view.getNameComboBox().setModel(new DefaultComboBoxModel<>(new Vector<>(Main.getStudents().getStudents())));
             }
 
         }

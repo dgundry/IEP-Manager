@@ -4,10 +4,9 @@ import com.mango.prjmango.ui.activities.ActivitiesView;
 import com.mango.prjmango.ui.activities.FinishAssignmentController;
 import com.mango.prjmango.ui.activities.FinishAssignmentView;
 import com.mango.prjmango.ui.common.ImageIcons;
-
-import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.JLabel;
 
 public class SightAssignmentController {
     public SightAssignmentController(SightAssignmentView view){

@@ -1,20 +1,24 @@
 package com.mango.prjmango.ui.students;
 
 import com.mango.prjmango.LoggedInUser;
-import com.mango.prjmango.ui.students.create.CreateStudentController;
-import com.mango.prjmango.ui.students.create.CreateStudentView;
-import com.mango.prjmango.ui.students.edit.EditStudentController;
-import com.mango.prjmango.ui.students.edit.EditStudentView;
-import com.mango.prjmango.utilities.subtabs.StudentsSubTabs;
 import com.mango.prjmango.ui.common.Colors;
 import com.mango.prjmango.ui.common.Components;
 import com.mango.prjmango.ui.common.Fonts;
 import com.mango.prjmango.ui.common.ImageIcons;
+import com.mango.prjmango.ui.students.create.CreateStudentController;
+import com.mango.prjmango.ui.students.create.CreateStudentView;
+import com.mango.prjmango.ui.students.edit.EditStudentController;
+import com.mango.prjmango.ui.students.edit.EditStudentView;
 import com.mango.prjmango.ui.students.view.ViewStudentController;
 import com.mango.prjmango.ui.students.view.ViewStudentView;
+import com.mango.prjmango.utilities.subtabs.StudentsSubTabs;
+import javax.swing.GroupLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.LayoutStyle;
+import javax.swing.SwingConstants;
 import lombok.Getter;
-
-import javax.swing.*;
 
 public class StudentsView {
 
@@ -60,7 +64,6 @@ public class StudentsView {
     private static void createComponents() {
         studentBackgroundLabel = new JLabel();
         studentBackgroundLabel.setIcon(ImageIcons.ACTIVE_TAB_BACKGROUND.getImageIcon());
-
 
         pickStudentHeaderLabel = Components.JLabel(
                 "Students",

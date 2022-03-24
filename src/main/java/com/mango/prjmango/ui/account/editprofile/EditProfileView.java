@@ -1,11 +1,10 @@
 package com.mango.prjmango.ui.account.editprofile;
 
 import com.mango.prjmango.LoggedInUser;
+import com.mango.prjmango.ui.common.Colors;
+import com.mango.prjmango.ui.common.Components;
 import com.mango.prjmango.ui.common.Fonts;
 import com.mango.prjmango.ui.common.ImageIcons;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Insets;
 import javax.swing.GroupLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,9 +16,6 @@ import lombok.Getter;
  * The user interface design of the Edit Profile page.
  */
 public class EditProfileView extends JPanel {
-
-    private final Color DARK_GREY = new Color(19, 18, 18);
-    private final Color LIGHT_GREY = new Color(216, 216, 216);
 
     private JLabel editProfileHeaderLabel;
     private JLabel firstNameLabel;
@@ -47,24 +43,24 @@ public class EditProfileView extends JPanel {
     }
 
     private void createComponents() {
-        editProfileHeaderLabel = createLabel("Edit Profile", 24);
-        firstNameLabel         = createLabel("First Name", 18);
-        lastNameLabel          = createLabel("Last Name", 18);
-        emailLabel             = createLabel("Email", 18);
-        informationLabel       = createLabel("", 14);
+        editProfileHeaderLabel = Components.JLabel("Edit Profile", Fonts.SEGOE_UI_24.getFont(), Colors.LIGHT_GREY);
+        firstNameLabel         = Components.JLabel("First Name",   Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
+        lastNameLabel          = Components.JLabel("Last Name",    Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
+        emailLabel             = Components.JLabel("Email",        Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
+        informationLabel       = Components.JLabel("",             Fonts.SEGOE_UI_14.getFont(), Colors.LIGHT_GREY);
 
         saveLabel          = new JLabel(ImageIcons.EDIT_PROFILE_SAVE_NO_HOVER.getImageIcon());
         firstNameEditLabel = new JLabel(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
         lastNameEditLabel  = new JLabel(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
         emailEditLabel     = new JLabel(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
 
-        firstNameTextField = createTextField(LoggedInUser.getFirstName());
+        firstNameTextField = Components.JTextField(LoggedInUser.getFirstName());
         firstNameTextField.setEnabled(false);
 
-        lastNameTextField = createTextField(LoggedInUser.getLastName());
+        lastNameTextField = Components.JTextField(LoggedInUser.getLastName());
         lastNameTextField.setEnabled(false);
 
-        emailTextField = createTextField(LoggedInUser.getEmail());
+        emailTextField = Components.JTextField(LoggedInUser.getEmail());
         emailTextField.setEnabled(false);
     }
 
@@ -130,22 +126,5 @@ public class EditProfileView extends JPanel {
                                         .addComponent(informationLabel))
                                 .addContainerGap(653, Short.MAX_VALUE))
         );
-    }
-
-    private JTextField createTextField(String text) {
-        JTextField textField = new JTextField(text);
-        textField.setMargin(new Insets(0, 5, 0, 5));
-        textField.setBackground(DARK_GREY);
-        textField.setForeground(LIGHT_GREY);
-        textField.setCaretColor(LIGHT_GREY);
-        textField.setFont(Fonts.SEGOE_UI_16.getFont());
-        return textField;
-    }
-
-    private JLabel createLabel(String text, int fontSize) {
-        JLabel label = new JLabel(text);
-        label.setFont(new Font("Segoe UI", Font.PLAIN, fontSize));
-        label.setForeground(LIGHT_GREY);
-        return label;
     }
 }

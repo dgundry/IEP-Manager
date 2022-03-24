@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 public class CreateAssignment {
+
     public @Getter Student student;
     public @Getter @Setter String assignmentName;
     public @Getter String date;
@@ -21,7 +22,6 @@ public class CreateAssignment {
         this.currentQuestionIndex = 0;
         this.questions= questions;
     }
-
 
     /**
      * Gets the total # of questions in the assignment
@@ -56,13 +56,8 @@ public class CreateAssignment {
      * Returns true if there is a next question, false if not
      * @return boolean
      */
-    public boolean hasNextQuestion(){
-        if(currentQuestionIndex < getTotalQuestions()-1){
-            return true;
-        }else{
-            return false;
-
-        }
+    public boolean hasNextQuestion() {
+        return currentQuestionIndex < getTotalQuestions() - 1;
     }
     /**
      * Gets the current questions in the assignment.

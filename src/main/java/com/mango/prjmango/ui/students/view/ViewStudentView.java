@@ -2,12 +2,22 @@ package com.mango.prjmango.ui.students.view;
 
 import com.mango.prjmango.ui.common.Colors;
 import com.mango.prjmango.ui.common.Fonts;
-import lombok.Getter;
-
-import javax.swing.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Insets;
+import javax.swing.GroupLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle;
+import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
+import lombok.Getter;
 
 public class ViewStudentView extends JPanel {
 

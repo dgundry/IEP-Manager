@@ -1,20 +1,19 @@
 package com.mango.prjmango.ui;
 
 import com.mango.prjmango.ui.common.BackgroundPanel;
-import com.mango.prjmango.ui.common.ImageIcons;
 import com.mango.prjmango.ui.common.Images;
-
+import java.awt.Dimension;
+import java.awt.GraphicsEnvironment;
+import java.awt.Rectangle;
+import java.awt.Toolkit;
 import javax.swing.GroupLayout;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle;
-import java.awt.*;
 
 /**
  * Creates the layout of the initial load of the application.
  */
 public class LoginViewLayout extends BackgroundPanel {
-
-    private JLabel mangoLogoLabel;
 
     private final int taskbarHeight = getTaskbarHeight();
 
@@ -23,7 +22,6 @@ public class LoginViewLayout extends BackgroundPanel {
      */
     public LoginViewLayout() {
         setBackground(Images.CLASSROOM_BACKGROUND.getBufferedImage());
-        mangoLogoLabel = new JLabel(ImageIcons.MANGO_LOGO.getImageIcon());
     }
 
     /**
@@ -46,10 +44,6 @@ public class LoginViewLayout extends BackgroundPanel {
                                         GroupLayout.DEFAULT_SIZE,
                                         GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(479, Short.MAX_VALUE))
-                        .addGroup(GroupLayout.Alignment.TRAILING, loginBackgroundPanelLayout.createSequentialGroup()
-                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(mangoLogoLabel)
-                                .addGap(1, 1, 1))
         );
         loginBackgroundPanelLayout.setVerticalGroup(
                 loginBackgroundPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -60,9 +54,7 @@ public class LoginViewLayout extends BackgroundPanel {
                                         GroupLayout.PREFERRED_SIZE,
                                         GroupLayout.DEFAULT_SIZE,
                                         GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
-                                .addComponent(mangoLogoLabel)
-                                .addGap(taskbarHeight - 10, taskbarHeight - 10, taskbarHeight - 10))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE))
         );
 
         updateUI();

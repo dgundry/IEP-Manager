@@ -5,9 +5,12 @@ import com.mango.prjmango.ui.common.Colors;
 import com.mango.prjmango.ui.common.Components;
 import com.mango.prjmango.ui.common.Fonts;
 import com.mango.prjmango.ui.common.ImageIcons;
+import javax.swing.GroupLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.LayoutStyle;
+import javax.swing.SwingConstants;
 import lombok.Getter;
-
-import javax.swing.*;
 
 public class SightAssignmentView extends JPanel {
 

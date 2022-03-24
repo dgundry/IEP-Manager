@@ -34,7 +34,7 @@ public class CreateStudentController {
             String studentsFirstNameTextField = view.getStudentFirstNameTextField().getText().trim();
             String studentLastNameTextField = view.getStudentLastNameTextField().getText().trim();
             String gradeComboBox = Objects.requireNonNull(view.getGradeComboBox().getSelectedItem()).toString();
-            String bioTextField = view.getBioTextField().getText().trim();
+            String bioTextField = view.getBioTextArea().getText().trim();
 
             if (isBlank(studentsFirstNameTextField)) {
                 view.getInformationLabel().setText("Please enter a valid first name!");
@@ -52,7 +52,7 @@ public class CreateStudentController {
                 view.getStudentFirstNameTextField().setText("");
                 view.getStudentLastNameTextField().setText("");
                 view.getGradeComboBox().setSelectedIndex(0);
-                view.getBioTextField().setText("");
+                view.getBioTextArea().setText("");
                 view.getStudentFirstNameTextField().requestFocus();
             }
 

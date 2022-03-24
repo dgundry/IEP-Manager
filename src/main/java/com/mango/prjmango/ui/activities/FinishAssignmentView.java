@@ -1,17 +1,22 @@
 package com.mango.prjmango.ui.activities;
 
+import com.mango.prjmango.ui.common.Colors;
+import com.mango.prjmango.ui.common.Components;
 import com.mango.prjmango.ui.common.Fonts;
 import com.mango.prjmango.ui.common.ImageIcons;
+import java.time.LocalDate;
+import javax.swing.GroupLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.LayoutStyle;
 import lombok.Getter;
 
-import javax.swing.*;
-import java.awt.*;
-import java.math.BigDecimal;
-
+/**
+ * The user interface design of the Final Assignment overview.
+ */
 public class FinishAssignmentView extends JPanel {
-
-    private final Color DARK_GREY = new Color(19, 18, 18);
-    private final Color LIGHT_GREY = new Color(216, 216, 216);
 
     private JLabel finishAssignmentHeaderLabel;
     private JLabel studentLabel;
@@ -20,18 +25,24 @@ public class FinishAssignmentView extends JPanel {
     private JLabel scoreLabel;
     private JLabel percentageLabel;
     private JLabel commentsLabel;
+
     @Getter private JLabel changeStudentLabel;
     @Getter private JLabel changeAssignmentLabel;
     @Getter private JLabel changeDateLabel;
     @Getter private JLabel changeScoreLabel;
     @Getter private JLabel changePercentageLabel;
+    @Getter private JLabel saveLabel;
 
-    @Getter private JLabel submitLabel;
     @Getter private JTextArea commentsTextArea;
-    private JScrollPane jScrollPane1;
+
+    private JScrollPane scrollPane;
 
     @Getter private CreateAssignment assignment;
-    public FinishAssignmentView(CreateAssignment assignment){
+
+    /**
+     * Constructor. Calls methods that create the GUI.
+     */
+    public FinishAssignmentView(CreateAssignment assignment) {
         this.assignment = assignment;
 
         setOpaque(false);
@@ -40,130 +51,112 @@ public class FinishAssignmentView extends JPanel {
         createLayout();
     }
 
-    private void createComponents(){
-        finishAssignmentHeaderLabel = createLabel("Finish Assignment", 24);
-        studentLabel = createLabel("Student:", 18);
-        changeStudentLabel = createLabel(assignment.getStudent().toString(),18);
-        assignmentLabel = createLabel("Assignment:", 18);
-        changeAssignmentLabel = createLabel(assignment.getAssignmentName(),18);
-        dateLabel = createLabel("Date:", 18);
-        changeDateLabel = createLabel(java.time.LocalDate.now()+"",18);
-        scoreLabel = createLabel("Score:", 18);
-        changeScoreLabel = createLabel(assignment.getCorrectAnswers()+"/"+assignment.getTotalQuestions(),18);
-        percentageLabel = createLabel("Percentage:", 18);
-        String percentage = String.format("%.2f", ((double)assignment.getCorrectAnswers() / (double)assignment.getTotalQuestions())*100);
-        changePercentageLabel = createLabel(percentage + "%",18);
-        commentsLabel = createLabel("Comments:", 18);
-//        submitLabel = createLabel("Submit", 18);
-        submitLabel = new JLabel(ImageIcons.EDIT_PROFILE_SAVE_NO_HOVER.getImageIcon());
+    private void createComponents() {
+        finishAssignmentHeaderLabel = Components.JLabel(
+                "Finish Assignment",
+                Fonts.SEGOE_UI_24.getFont(),
+                Colors.LIGHT_GREY);
+        studentLabel = Components.JLabel(
+                "Student:",
+                Fonts.SEGOE_UI_18.getFont(),
+                Colors.LIGHT_GREY);
+        changeStudentLabel = Components.JLabel(
+                assignment.getStudent().toString(),
+                Fonts.SEGOE_UI_18.getFont(),
+                Colors.LIGHT_GREY);
+        changeAssignmentLabel = Components.JLabel(
+                assignment.getAssignmentName(),
+                Fonts.SEGOE_UI_18.getFont(),
+                Colors.LIGHT_GREY);
+        changeScoreLabel = Components.JLabel(
+                assignment.getCorrectAnswers() + "/" +assignment.getTotalQuestions(),
+                Fonts.SEGOE_UI_18.getFont(),
+                Colors.LIGHT_GREY);
 
-        commentsTextArea = createTextArea();
+        String percentage = String.format(
+                "%.2f", ((double) assignment.getCorrectAnswers() / (double) assignment.getTotalQuestions()) * 100);
+
+        assignmentLabel       = Components.JLabel("Assignment:",        Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
+        dateLabel             = Components.JLabel("Date:",              Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
+        changeDateLabel       = Components.JLabel(LocalDate.now() + "", Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
+        scoreLabel            = Components.JLabel("Score:",             Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
+        percentageLabel       = Components.JLabel("Percentage:",        Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
+        changePercentageLabel = Components.JLabel(percentage + "%",     Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
+        commentsLabel         = Components.JLabel("Comments:",          Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
+
+        saveLabel = new JLabel(ImageIcons.EDIT_PROFILE_SAVE_NO_HOVER.getImageIcon());
+
+        commentsTextArea = Components.JTextArea("");
         commentsTextArea.setColumns(20);
         commentsTextArea.setRows(5);
-        jScrollPane1 = new JScrollPane();
-        jScrollPane1.setViewportView(commentsTextArea);
 
-
-
+        scrollPane = new JScrollPane();
+        scrollPane.setViewportView(commentsTextArea);
+        commentsTextArea.requestFocus();
     }
 
-    private void createLayout(){
-        GroupLayout sightWordAssignmentPanelLayout = new GroupLayout(this);
-        setLayout(sightWordAssignmentPanelLayout);
-        sightWordAssignmentPanelLayout.setHorizontalGroup(
-                sightWordAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGroup(sightWordAssignmentPanelLayout.createSequentialGroup()
-                                .addGap(38, 38, 38)
-                                .addGroup(sightWordAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                        .addGroup(sightWordAssignmentPanelLayout.createSequentialGroup()
-                                                .addComponent(submitLabel, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(sightWordAssignmentPanelLayout.createSequentialGroup()
-                                                .addGroup(sightWordAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                        .addComponent(percentageLabel)
-                                                        .addComponent(commentsLabel)
-                                                        .addGroup(sightWordAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                                                                .addGroup(sightWordAssignmentPanelLayout.createSequentialGroup()
-                                                                        .addComponent(studentLabel)
-                                                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                        .addComponent(changeStudentLabel))
-                                                                .addGroup(sightWordAssignmentPanelLayout.createSequentialGroup()
-                                                                        .addComponent(assignmentLabel)
-                                                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                        .addComponent(changeAssignmentLabel))
-                                                                .addGroup(sightWordAssignmentPanelLayout.createSequentialGroup()
-                                                                        .addGroup(sightWordAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                                                .addComponent(dateLabel)
-                                                                                .addComponent(scoreLabel))
-                                                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                        .addGroup(sightWordAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                                                .addComponent(changeScoreLabel)
-                                                                                .addComponent(changeDateLabel)
-                                                                                .addComponent(changePercentageLabel)))))
-                                                .addGap(366, 366, 366))
-                                        .addComponent(jScrollPane1, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 607, GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 47, Short.MAX_VALUE))
-                        .addGroup(GroupLayout.Alignment.TRAILING, sightWordAssignmentPanelLayout.createSequentialGroup()
-                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(sightWordAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                .addGroup(sightWordAssignmentPanelLayout.createSequentialGroup()
-                                        .addGap(20, 20, 20)
+    private void createLayout() {
+        GroupLayout finishAssignmentPanelLayout = new GroupLayout(this);
+        setLayout(finishAssignmentPanelLayout);
+        finishAssignmentPanelLayout.setHorizontalGroup(
+                finishAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(GroupLayout.Alignment.TRAILING, finishAssignmentPanelLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(finishAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                        .addComponent(commentsLabel)
+                                        .addGroup(finishAssignmentPanelLayout.createSequentialGroup()
+                                                .addComponent(percentageLabel)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(changePercentageLabel))
+                                        .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 517, GroupLayout.PREFERRED_SIZE)
                                         .addComponent(finishAssignmentHeaderLabel)
-                                        .addContainerGap(421, Short.MAX_VALUE)))
+                                        .addComponent(saveLabel, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(finishAssignmentPanelLayout.createSequentialGroup()
+                                                .addGroup(finishAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                        .addComponent(assignmentLabel)
+                                                        .addComponent(studentLabel)
+                                                        .addComponent(dateLabel)
+                                                        .addComponent(scoreLabel))
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addGroup(finishAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                        .addComponent(changeScoreLabel)
+                                                        .addComponent(changeDateLabel)
+                                                        .addComponent(changeStudentLabel)
+                                                        .addComponent(changeAssignmentLabel))))
+                                .addContainerGap(378, Short.MAX_VALUE))
         );
-        sightWordAssignmentPanelLayout.setVerticalGroup(
-                sightWordAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGroup(sightWordAssignmentPanelLayout.createSequentialGroup()
-                                .addGap(142, 142, 142)
-                                .addGroup(sightWordAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+        finishAssignmentPanelLayout.setVerticalGroup(
+                finishAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                        .addGroup(finishAssignmentPanelLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(finishAssignmentHeaderLabel)
+                                .addGap(67, 67, 67)
+                                .addGroup(finishAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                         .addComponent(studentLabel)
                                         .addComponent(changeStudentLabel))
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(sightWordAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(finishAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                         .addComponent(assignmentLabel)
                                         .addComponent(changeAssignmentLabel))
-                                .addGap(18, 18, 18)
-                                .addGroup(sightWordAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(changeDateLabel)
-                                        .addComponent(dateLabel))
-                                .addGap(18, 18, 18)
-                                .addGroup(sightWordAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(finishAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(dateLabel)
+                                        .addComponent(changeDateLabel))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(finishAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                         .addComponent(scoreLabel)
                                         .addComponent(changeScoreLabel))
-                                .addGap(18, 18, 18)
-                                .addGroup(sightWordAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(changePercentageLabel)
-                                        .addComponent(percentageLabel))
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(finishAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(percentageLabel)
+                                        .addComponent(changePercentageLabel))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(commentsLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 238, GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(sightWordAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addComponent(submitLabel, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE))
-                                .addContainerGap(1745, Short.MAX_VALUE))
-                        .addGroup(sightWordAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                .addGroup(sightWordAssignmentPanelLayout.createSequentialGroup()
-                                        .addGap(21, 21, 21)
-                                        .addComponent(finishAssignmentHeaderLabel)
-                                        .addContainerGap(1510, Short.MAX_VALUE)))
+                                .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(saveLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(993, Short.MAX_VALUE))
         );
     }
-
-    private JTextArea createTextArea() {
-        JTextArea textArea = new JTextArea();
-        textArea.setMargin(new Insets(0, 5, 0, 5));
-        textArea.setBackground(DARK_GREY);
-        textArea.setForeground(LIGHT_GREY);
-        textArea.setCaretColor(LIGHT_GREY);
-        textArea.setFont(Fonts.SEGOE_UI_16.getFont());
-        return textArea;
-    }
-
-    private JLabel createLabel(String text, int fontSize) {
-        JLabel label = new JLabel(text);
-        label.setFont(new Font("Segoe UI", Font.PLAIN, fontSize));
-        label.setForeground(LIGHT_GREY);
-        return label;
-    }
-
 }

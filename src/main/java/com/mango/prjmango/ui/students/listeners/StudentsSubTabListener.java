@@ -1,20 +1,20 @@
 package com.mango.prjmango.ui.students.listeners;
 
 import com.mango.prjmango.LoggedInUser;
-import com.mango.prjmango.ui.students.edit.EditStudentController;
-import com.mango.prjmango.ui.students.edit.EditStudentView;
-import com.mango.prjmango.utilities.subtabs.StudentsSubTabs;
 import com.mango.prjmango.ui.common.ImageIcons;
 import com.mango.prjmango.ui.students.StudentsView;
 import com.mango.prjmango.ui.students.create.CreateStudentController;
 import com.mango.prjmango.ui.students.create.CreateStudentView;
+import com.mango.prjmango.ui.students.edit.EditStudentController;
+import com.mango.prjmango.ui.students.edit.EditStudentView;
 import com.mango.prjmango.ui.students.view.ViewStudentController;
 import com.mango.prjmango.ui.students.view.ViewStudentView;
-
-import javax.swing.*;
-import java.awt.*;
+import com.mango.prjmango.utilities.subtabs.StudentsSubTabs;
+import java.awt.Cursor;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 public class StudentsSubTabListener implements MouseListener {
 

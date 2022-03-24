@@ -3,13 +3,19 @@ package com.mango.prjmango.ui.activities.upload;
 import com.mango.prjmango.Main;
 import com.mango.prjmango.student.Student;
 import com.mango.prjmango.ui.common.Colors;
-import com.mango.prjmango.ui.common.ImageIcons;
-import lombok.Getter;
 import com.mango.prjmango.ui.common.Fonts;
-
-import javax.swing.*;
-import java.awt.*;
+import com.mango.prjmango.ui.common.ImageIcons;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Insets;
 import java.util.Vector;
+import javax.swing.GroupLayout;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle;
+import lombok.Getter;
 
 public class UploadView extends JPanel {
 

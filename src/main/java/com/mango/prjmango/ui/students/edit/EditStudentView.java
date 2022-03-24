@@ -9,7 +9,13 @@ import com.mango.prjmango.ui.common.ImageIcons;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
-import javax.swing.*;
+import javax.swing.GroupLayout;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle;
 import lombok.Getter;
 
 public class EditStudentView extends JPanel {
@@ -51,22 +57,22 @@ public class EditStudentView extends JPanel {
                 Fonts.SEGOE_UI_24.getFont(),
                 Colors.LIGHT_GREY);
         nameComboBoxLabel = Components.JLabel(
-                "Name:",
+                "Name",
                 Fonts.SEGOE_UI_18.getFont(),
                 Colors.LIGHT_GREY);
         studentsFirstNameLabel = Components.JLabel(
-                "First Name:",
+                "First Name",
                 Fonts.SEGOE_UI_18.getFont(),
                 Colors.LIGHT_GREY);
         studentsLastNameLabel = Components.JLabel(
-                "Last Name:",
+                "Last Name",
                 Fonts.SEGOE_UI_18.getFont(),
                 Colors.LIGHT_GREY);
         gradeLabel = Components.JLabel(
-                "Grade:",
+                "Grade",
                 Fonts.SEGOE_UI_18.getFont(),
                 Colors.LIGHT_GREY);
-        bioLabel = Components.JLabel("Bio:", Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
+        bioLabel = Components.JLabel("Bio", Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
         informationLabel = Components.JLabel(" ", Fonts.SEGOE_UI_14.getFont(), Colors.LIGHT_GREY);
 
         editFirstNameLabel = new JLabel(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());

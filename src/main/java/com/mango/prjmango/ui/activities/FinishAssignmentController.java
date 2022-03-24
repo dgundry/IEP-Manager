@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 public class FinishAssignmentController {
 
     public FinishAssignmentController(FinishAssignmentView view){
-        JLabel submitLabel = view.getSubmitLabel();
+        JLabel submitLabel = view.getSaveLabel();
         submitLabel.addMouseListener(new SubmitLabelMouseListener(view, submitLabel));
     }
 

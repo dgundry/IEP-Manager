@@ -2,14 +2,13 @@ package com.mango.prjmango.ui.activities.upload;
 
 import com.mango.prjmango.Main;
 import com.mango.prjmango.student.Student;
-import com.mango.prjmango.utilities.DatabaseConnection;
 import com.mango.prjmango.ui.activities.ActivitiesView;
 import com.mango.prjmango.ui.common.ImageIcons;
-
-import javax.swing.*;
+import com.mango.prjmango.utilities.DatabaseConnection;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.PreparedStatement;
+import javax.swing.JLabel;
 
 public class UploadController {
 
