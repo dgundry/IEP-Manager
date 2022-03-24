@@ -90,9 +90,9 @@ public class PasswordController {
 
                 int newTeacherResult        = DatabaseCommands.addNewTeacher(user, password1);
                 int registerQuestion1Result = DatabaseCommands.registerSecurityAnswer(
-                        user, user.getSecurityQ1(), user.getSecurityA2());
+                        user, user.getSecurityQ1(), user.getSecurityA1());
                 int registerQuestion2Result = DatabaseCommands.registerSecurityAnswer(
-                        user, user.getSecurityQ1(), user.getSecurityA2());
+                        user, user.getSecurityQ2(), user.getSecurityA2());
 
                 ConfirmationView confirmationView;
                 if (newTeacherResult == 1 && registerQuestion1Result == 1 && registerQuestion2Result == 1) {
