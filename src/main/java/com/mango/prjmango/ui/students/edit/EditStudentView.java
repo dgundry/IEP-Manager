@@ -105,7 +105,7 @@ public class EditStudentView extends JPanel {
             studentFirstNameTextField.setText(firstStudent.getFirstName());
             studentLastNameTextField.setText(firstStudent.getLastName());
             bioTextField.setText(firstStudent.getBio());
-            gradeComboBox.setSelectedIndex(Integer.parseInt(firstStudent.getGrade())-1);
+            gradeComboBox.setToolTipText(firstStudent.getGrade());
         }
     }
 
