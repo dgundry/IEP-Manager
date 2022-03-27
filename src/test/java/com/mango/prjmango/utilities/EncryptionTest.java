@@ -4,7 +4,6 @@ import com.mango.prjmango.utilities.dbcommands.UserCommands;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 

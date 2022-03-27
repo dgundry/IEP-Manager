@@ -9,8 +9,6 @@ import com.mango.prjmango.ui.common.Colors;
 import com.mango.prjmango.ui.common.Components;
 import com.mango.prjmango.ui.common.Fonts;
 import com.mango.prjmango.ui.common.ImageIcons;
-import java.awt.Color;
-import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.JComboBox;
@@ -18,8 +16,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.LayoutStyle;
 import javax.swing.SwingConstants;
+import com.mango.prjmango.ui.common.roundedcomponents.RoundedComboBox;
 import lombok.Getter;
 
+/**
+ * The user interface design of the Sight Words page.
+ */
 public class SightView extends JPanel {
 
     private JLabel assignmentHeaderLabel;
@@ -30,7 +32,10 @@ public class SightView extends JPanel {
     @Getter private JComboBox<Object> sightWordComboBox;
     @Getter private JComboBox<Student> studentsNameComboBox;
 
-    public SightView(){
+    /**
+     * Constructor. Calls methods that create the GUI.
+     */
+    public SightView() {
         setOpaque(false);
 
         createComponents();
@@ -75,7 +80,7 @@ public class SightView extends JPanel {
             sightWordComboBox.setModel(new DefaultComboBoxModel<>(DolchWords.values()));
         }
 
-        studentsNameComboBox = new JComboBox<>(new Vector<>(Main.getStudents().getStudents()));
+        studentsNameComboBox = new RoundedComboBox<>(Main.getStudents().getStudents());
         studentsNameComboBox.setFont(Fonts.SEGOE_UI_16.getFont());
         studentsNameComboBox.setBackground(Colors.DARK_GREY);
         studentsNameComboBox.setForeground(Colors.LIGHT_GREY);
@@ -90,12 +95,24 @@ public class SightView extends JPanel {
                         .addGroup(GroupLayout.Alignment.TRAILING, assignmentPanelLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(assignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addComponent(studentsNameComboBox,GroupLayout.Alignment.TRAILING,0,GroupLayout.DEFAULT_SIZE,Short.MAX_VALUE)
-                                        .addComponent(sightWordComboBox,GroupLayout.Alignment.TRAILING, 0,GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(studentsNameComboBox,
+                                                GroupLayout.Alignment.TRAILING,
+                                                0,
+                                                GroupLayout.DEFAULT_SIZE,Short.MAX_VALUE)
+                                        .addComponent(
+                                                sightWordComboBox,
+                                                GroupLayout.Alignment.TRAILING,
+                                                0,GroupLayout.DEFAULT_SIZE,
+                                                Short.MAX_VALUE)
                                             .addGroup(assignmentPanelLayout.createSequentialGroup()
-                                                .addGroup(assignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                .addGroup(assignmentPanelLayout.createParallelGroup(
+                                                        GroupLayout.Alignment.LEADING)
                                                         .addComponent(assignmentHeaderLabel)
-                                                        .addComponent(studentsNameLabel,GroupLayout.PREFERRED_SIZE, 245,GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(
+                                                                studentsNameLabel,
+                                                                GroupLayout.PREFERRED_SIZE,
+                                                                245,
+                                                                GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(
                                                                 assignmentLabel,
                                                                 GroupLayout.PREFERRED_SIZE,
@@ -134,7 +151,11 @@ public class SightView extends JPanel {
                                         39,
                                         GroupLayout.PREFERRED_SIZE)
                                 .addGap(179, 179, 179)
-                                .addComponent(beginLabel, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(
+                                        beginLabel,
+                                        GroupLayout.PREFERRED_SIZE,
+                                        57,
+                                        GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 504, Short.MAX_VALUE))
         );
     }

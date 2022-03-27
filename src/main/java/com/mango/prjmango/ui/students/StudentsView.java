@@ -36,7 +36,7 @@ public class StudentsView {
     public static StudentsSubTabs currentlyActiveTab = StudentsSubTabs.VIEW;
     public static StudentsSubTabs previouslyActiveTab = null;
 
-    public StudentsView(){
+    public StudentsView() {
         createComponents();
         initLastUsedSubTub();
     }
@@ -52,10 +52,12 @@ public class StudentsView {
                 CreateStudentView createStudentView = new CreateStudentView();
                 new CreateStudentController(createStudentView);
                 setActiveDisplay(createStudentView);
+                break;
             case 2:
                 EditStudentView editStudentView = new EditStudentView();
                 new EditStudentController(editStudentView);
                 setActiveDisplay(editStudentView);
+                break;
             default:
                 break;
         }
@@ -90,6 +92,7 @@ public class StudentsView {
                 break;
             case 2:
                 editStudentLabel.setIcon(ImageIcons.STUDENTS_EDIT_SELECTED.getImageIcon());
+                break;
             default:
                 break;
         }

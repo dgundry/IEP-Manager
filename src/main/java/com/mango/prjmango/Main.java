@@ -29,7 +29,6 @@ public class Main {
 	public static final Rectangle rect = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
 
 	@Getter @Setter private static LoggedInUser activeUser;
-
 	@Getter @Setter private static Students students;
 
 	public static final SightWords SIGHT_WORDS = new SightWords();
@@ -56,7 +55,6 @@ public class Main {
 			LoginView loginView = new LoginView();
 			new LoginController(loginView);
 			MainWindowView.setActiveDisplay(loginView);
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -1,6 +1,6 @@
 package com.mango.prjmango.ui.activities;
 
-import com.mango.prjmango.Main;
+import com.mango.prjmango.LoggedInUser;
 import com.mango.prjmango.utilities.DatabaseConnection;
 import com.mango.prjmango.ui.common.ImageIcons;
 import com.mango.prjmango.ui.dialogs.confirmation.ConfirmationController;
@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 
 public class FinishAssignmentController {
 
-    public FinishAssignmentController(FinishAssignmentView view){
+    public FinishAssignmentController(FinishAssignmentView view) {
         JLabel submitLabel = view.getSaveLabel();
         submitLabel.addMouseListener(new SubmitLabelMouseListener(view, submitLabel));
     }
@@ -38,7 +38,7 @@ public class FinishAssignmentController {
         public void mouseClicked(MouseEvent e) {
             String sql = "INSERT INTO assignment(teacher_id, student_id,title,earned_points,total_points,date,comment) VALUES(?,?,?,?,?,date('now','localtime'),?);";
             try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
-                statement.setInt(1, Main.getActiveUser().getTeacherId());
+                statement.setInt(1, LoggedInUser.getTeacherId());
                 statement.setInt(2, view.getAssignment().getStudent().getStudentID());
                 statement.setString(3, view.getAssignment().getAssignmentName());
                 statement.setInt(4, view.getAssignment().getCorrectAnswers());

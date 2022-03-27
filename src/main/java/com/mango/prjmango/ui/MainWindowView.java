@@ -9,6 +9,8 @@ import com.mango.prjmango.ui.sideoptions.SideOptionsController;
 import com.mango.prjmango.ui.sideoptions.SideOptionsView;
 import com.mango.prjmango.utilities.Tabs;
 import java.awt.Dimension;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.GroupLayout;
@@ -47,6 +49,7 @@ public class MainWindowView {
 
         frame.pack();
         frame.setPreferredSize(INITIAL_DIMENSIONS);
+        frame.setMinimumSize(INITIAL_DIMENSIONS);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.addWindowListener(new WindowAdapter() {
@@ -55,6 +58,29 @@ public class MainWindowView {
                 ConfirmationView applicationExitView =
                         new ConfirmationView("Are you sure you want to exit?", Dialogs.CLOSE_APPLICATION);
                 new ConfirmationController(applicationExitView);
+            }
+        });
+        frame.addComponentListener(new ComponentListener() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                mainPanel.setPreferredSize(new Dimension(frame.getWidth(), frame.getHeight()));
+                mainPanel.updateUI();
+                mainPanel.repaint();
+            }
+
+            @Override
+            public void componentMoved(ComponentEvent e) {
+
+            }
+
+            @Override
+            public void componentShown(ComponentEvent e) {
+
+            }
+
+            @Override
+            public void componentHidden(ComponentEvent e) {
+
             }
         });
     }

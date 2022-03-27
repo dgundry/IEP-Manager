@@ -72,8 +72,8 @@ public class BasicInfoView extends JLabel {
                 SwingConstants.CENTER);
 
         firstNameTextField = Components.JTextField("First Name", Fonts.SEGOE_UI_16.getFont(), Colors.LIGHT_GREY);
-        lastNameTextField  = Components.JTextField("Last Name", Fonts.SEGOE_UI_16.getFont(), Colors.LIGHT_GREY);
-        emailTextField     = Components.JTextField("Email", Fonts.SEGOE_UI_16.getFont(), Colors.LIGHT_GREY);
+        lastNameTextField  = Components.JTextField("Last Name",  Fonts.SEGOE_UI_16.getFont(), Colors.LIGHT_GREY);
+        emailTextField     = Components.JTextField("Email",      Fonts.SEGOE_UI_16.getFont(), Colors.LIGHT_GREY);
     }
 
     private void createLayout() {

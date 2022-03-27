@@ -2,10 +2,6 @@ package com.mango.prjmango.ui;
 
 import com.mango.prjmango.ui.common.BackgroundPanel;
 import com.mango.prjmango.ui.common.Images;
-import java.awt.Dimension;
-import java.awt.GraphicsEnvironment;
-import java.awt.Rectangle;
-import java.awt.Toolkit;
 import javax.swing.GroupLayout;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle;
@@ -14,8 +10,6 @@ import javax.swing.LayoutStyle;
  * Creates the layout of the initial load of the application.
  */
 public class LoginViewLayout extends BackgroundPanel {
-
-    private final int taskbarHeight = getTaskbarHeight();
 
     /**
      * Constructor. Sets the background image to the {@link BackgroundPanel}.
@@ -58,12 +52,5 @@ public class LoginViewLayout extends BackgroundPanel {
         );
 
         updateUI();
-    }
-
-    private int getTaskbarHeight() {
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        Rectangle windowSize = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
-
-        return screenSize.height - windowSize.height;
     }
 }

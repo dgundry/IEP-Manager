@@ -1,5 +1,9 @@
 package com.mango.prjmango.ui.common;
 
+import com.mango.prjmango.ui.common.roundedcomponents.RoundedComboBox;
+import com.mango.prjmango.ui.common.roundedcomponents.RoundedPasswordField;
+import com.mango.prjmango.ui.common.roundedcomponents.RoundedTextArea;
+import com.mango.prjmango.ui.common.roundedcomponents.RoundedTextField;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -13,11 +17,16 @@ import javax.swing.JPasswordField;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
+/**
+ * Utility class which allows for easy access to create new UI components while keeping a consistent look.
+ */
 public class Components {
+
+    private Components() {
+        throw new IllegalStateException("Utility class");
+    }
 
     /**
      * Creates a new {@link JLabel}
@@ -68,25 +77,34 @@ public class Components {
         return textField;
     }
 
+    /**
+     * Creates a new rounded {@link JTextField}
+     *
+     * @param text the text to be within the {@link JTextField}
+     * @return a new {@link JTextField}
+     */
     public static JTextField JTextField(String text) {
-        JTextField textField = new JTextField(text);
+        JTextField textField = new RoundedTextField(text);
         textField.setFont(Fonts.SEGOE_UI_16.getFont());
         textField.setBackground(Colors.DARK_GREY);
         textField.setForeground(Colors.LIGHT_GREY);
         textField.setCaretColor(Colors.LIGHT_GREY);
-        textField.setBorder(new RoundedTextFields.RoundBorder());
         textField.setMargin(new Insets(0, 5, 0, 5));
         return textField;
     }
 
+    /**
+     * Creates a new rounded {@link JTextArea}
+     *
+     * @param text the text to be within the {@link JTextArea}
+     * @return a new {@link JTextArea}
+     */
     public static JTextArea JTextArea(String text) {
-        JTextArea textArea = new JTextArea(text);
+        JTextArea textArea = new RoundedTextArea(text);
         textArea.setMargin(new Insets(5, 5, 5, 5));
         textArea.setBackground(Colors.DARK_GREY);
         textArea.setForeground(Colors.LIGHT_GREY);
         textArea.setCaretColor(Colors.LIGHT_GREY);
-        textArea.setBorder(new RoundedTextFields.RoundBorder());
-
         textArea.setFont(Fonts.SEGOE_UI_16.getFont());
         return textArea;
     }
@@ -108,17 +126,29 @@ public class Components {
         return passwordField;
     }
 
+    /**
+     * Creates a new rounded {@link JPasswordField}
+     *
+     * @return a new {@link JPasswordField}
+     */
     public static JPasswordField JPasswordField() {
-        JPasswordField passwordField = new JPasswordField();
+        JPasswordField passwordField = new RoundedPasswordField();
         passwordField.setBackground(Colors.DARK_GREY);
         passwordField.setForeground(Colors.LIGHT_GREY);
         passwordField.setCaretColor(Colors.LIGHT_GREY);
         passwordField.setFont(Fonts.SEGOE_UI_16.getFont());
-        passwordField.setBorder(new RoundedTextFields.RoundBorder());
-        passwordField.setMargin(new Insets(0, 5, 0, 5));
+        passwordField.setMargin(new Insets(5, 5, 5, 5));
         return passwordField;
     }
 
+    /**
+     * Creates a new {@link JSeparator}
+     *
+     * @param orientation sets the orientation
+     *        0 = VERTICAL
+     *        1 = HORIZONTAL
+     * @return a new {@link JSeparator}
+     */
     public static JSeparator JSeparator(int orientation) {
         JSeparator separator = new JSeparator();
         separator.setOrientation(orientation);
@@ -144,8 +174,7 @@ public class Components {
     }
 
     public static JComboBox<String> JComboBox(List<String> list) {
-        JComboBox<String> comboBox = new JComboBox<>(new Vector<>(list));
-        comboBox.setOpaque(false);
+        JComboBox<String> comboBox = new RoundedComboBox<>(list);
         comboBox.setFont(Fonts.SEGOE_UI_16.getFont());
         comboBox.setBackground(Colors.DARK_GREY);
         comboBox.setForeground(Colors.LIGHT_GREY);
@@ -153,8 +182,7 @@ public class Components {
     }
 
     public static JComboBox<Object> JComboBox() {
-        JComboBox<Object> comboBox = new JComboBox<>();
-        comboBox.setOpaque(false);
+        JComboBox<Object> comboBox = new RoundedComboBox<>();
         comboBox.setFont(Fonts.SEGOE_UI_16.getFont());
         comboBox.setBackground(Colors.DARK_GREY);
         comboBox.setForeground(Colors.LIGHT_GREY);

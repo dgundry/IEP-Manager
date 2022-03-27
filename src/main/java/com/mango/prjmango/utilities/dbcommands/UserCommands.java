@@ -15,6 +15,10 @@ import java.util.List;
  */
 public class UserCommands {
 
+    private UserCommands() {
+        throw new IllegalStateException("Utility class");
+    }
+
     /**
      * Finds if there is an existing user within the database.
      *
@@ -66,15 +70,16 @@ public class UserCommands {
      * @param firstName the new first name
      * @param lastName  the new last name
      * @param email     the new email
+     * @param teacherId the teacherId of the user to update
      */
-    public static void updateUserDetails(String firstName, String lastName, String email) {
+    public static void updateUserDetails(String firstName, String lastName, String email, int teacherId) {
         String sql = "UPDATE teacher SET first_name = ?, last_name = ?, email = ? WHERE teacher_id = ?;";
 
         try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
             statement.setString(1, firstName);
             statement.setString(2, lastName);
             statement.setString(3, email);
-            statement.setInt(4, LoggedInUser.getTeacherId());
+            statement.setInt(4, teacherId);
             statement.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace();

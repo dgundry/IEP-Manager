@@ -18,11 +18,11 @@ public class StudentSortTypesTest {
 
     @Before
     public void setUp() {
-        s1 = new Student(0, "Kellen", "Campbell", "1", "Decent student");
-        s2 = new Student(1, "Patrick", "Weaver", "2", "Good student");
-        s3 = new Student(2, "Wes", "Noffsinger", "4", "Great student");
-        s4 = new Student(3, "Devin", "Gundry", "2", "Great student");
-        s5 = new Student(4, "Emily", "Robey", "5", "Terrible student");
+        s1 = new Student(0, "Kellen",  "Campbell",   "1", "Decent student");
+        s2 = new Student(1, "Patrick", "Weaver",     "2", "Good student");
+        s3 = new Student(2, "Wes",     "Noffsinger", "4", "Great student");
+        s4 = new Student(3, "Devin",   "Gundry",     "2", "Great student");
+        s5 = new Student(4, "Emily",   "Robey",      "5", "Terrible student");
 
         students.add(s1);
         students.add(s2);

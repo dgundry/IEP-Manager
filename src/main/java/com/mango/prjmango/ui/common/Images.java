@@ -5,6 +5,8 @@ import java.awt.image.BufferedImage;
 import java.net.URL;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+
+import com.mango.prjmango.Main;
 import lombok.Getter;
 
 public enum Images {
@@ -12,7 +14,7 @@ public enum Images {
     LOGIN_NO_HOVER("/images/login/login-no-hover.png", 116, 31, true),
     LOGIN_HOVERED("/images/login/login-hovered.png", 116, 31, true),
 
-    CLASSROOM_BACKGROUND("/images/common/classroom.jpg", 1440, 1024, false);
+    CLASSROOM_BACKGROUND("/images/common/classroom.jpg", Main.rect.width, Main.rect.height, false);
 
     @Getter private ImageIcon imageIcon;
     @Getter private BufferedImage bufferedImage;

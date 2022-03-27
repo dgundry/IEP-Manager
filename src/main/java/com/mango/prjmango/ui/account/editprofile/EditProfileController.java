@@ -89,7 +89,7 @@ public class EditProfileController {
                     view.getInformationLabel().setText("Email address is taken. Please try again!");
                     view.getInformationLabel().setForeground(Color.RED);
                 } else {
-                    UserCommands.updateUserDetails(firstName, lastName, email);
+                    UserCommands.updateUserDetails(firstName, lastName, email, LoggedInUser.getTeacherId());
                     displayInformationText();
                     LoggedInUser.setFirstName(firstName);
                     LoggedInUser.setLastName(lastName);

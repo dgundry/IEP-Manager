@@ -18,6 +18,9 @@ import javax.swing.LayoutStyle;
 import javax.swing.SwingConstants;
 import lombok.Getter;
 
+/**
+ * The main layout for the Account tab.
+ */
 public class AccountView extends JLabel {
 
     @Getter private JLabel editProfileLabel;
@@ -33,7 +36,7 @@ public class AccountView extends JLabel {
 
     /**
      * Constructor. Calls methods to create the {@link JLabel} for the Account tab.
-     * On the initial load, the {@link EditProfileView} will be visible.
+     * On the initial load, the last used page will be created and shown.
      */
     public AccountView() {
         setIcon(ImageIcons.ACTIVE_TAB_BACKGROUND.getImageIcon());

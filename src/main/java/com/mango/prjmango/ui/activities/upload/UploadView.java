@@ -3,34 +3,32 @@ package com.mango.prjmango.ui.activities.upload;
 import com.mango.prjmango.Main;
 import com.mango.prjmango.student.Student;
 import com.mango.prjmango.ui.common.Colors;
+import com.mango.prjmango.ui.common.Components;
 import com.mango.prjmango.ui.common.Fonts;
 import com.mango.prjmango.ui.common.ImageIcons;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Insets;
-import java.util.Vector;
 import javax.swing.GroupLayout;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
+import com.mango.prjmango.ui.common.roundedcomponents.RoundedComboBox;
 import lombok.Getter;
 
+/**
+ * The user interface design of the Upload Assignment page.
+ */
 public class UploadView extends JPanel {
 
-    private final Color DARK_GREY = new Color(19,18,18);
-    private final Color LIGHT_GREY = new Color(216,216,216);
-
     private JLabel addAssignmentHeaderLabel;
-
-    @Getter private JLabel saveLabel;
     private JLabel pointsEarnedLabel;
     private JLabel studentNameLabel;
     private JLabel assignmentNameLabel1;
     private JLabel commentsLabel;
     private JLabel dateLabel;
     private JLabel maximumPointsLabel;
+
+    @Getter private JLabel saveLabel;
 
     @Getter private JTextField assignmentNameTextField;
     @Getter private JTextField pointsEarnedTextField;
@@ -40,41 +38,40 @@ public class UploadView extends JPanel {
 
     @Getter private JComboBox<Student> studentNameDropdown;
 
-
+    /**
+     * Constructor. Calls methods that create the GUI.
+     */
     public UploadView() {
         setOpaque(false);
 
         createComponents();
         createLayout();
-
     }
 
     private void createComponents(){
-
-        addAssignmentHeaderLabel = createLabel("Upload an Assignment", 24);
-        studentNameLabel = createLabel("Student's Name", 18);
-        assignmentNameLabel1 = createLabel("Assignment Name", 18);
-        dateLabel = createLabel("Date (YYYY-MM-DD) ",18);
-        pointsEarnedLabel = createLabel("Points Earned", 18);
-        maximumPointsLabel = createLabel("Maximum Points", 18);
-        commentsLabel = createLabel("Comments", 18);
+        addAssignmentHeaderLabel = Components.JLabel("Upload an Assignment", Fonts.SEGOE_UI_24.getFont(), Colors.LIGHT_GREY);
+        studentNameLabel         = Components.JLabel("Student's Name",       Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
+        assignmentNameLabel1     = Components.JLabel("Assignment Name",      Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
+        dateLabel                = Components.JLabel("Date (YYYY-MM-DD) ",   Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
+        pointsEarnedLabel        = Components.JLabel("Points Earned",        Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
+        maximumPointsLabel       = Components.JLabel("Maximum Points",       Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
+        commentsLabel            = Components.JLabel("Comments",             Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
 
         saveLabel = new JLabel(ImageIcons.EDIT_PROFILE_SAVE_NO_HOVER.getImageIcon());
 
-        assignmentNameTextField = createTextField();
-        pointsEarnedTextField = createTextField();
-        maximumPointsTextField = createTextField();
-        dateTextField = createTextField();
-        commentsTextField = createTextField();
+        assignmentNameTextField = Components.JTextField("");
+        pointsEarnedTextField   = Components.JTextField("");
+        maximumPointsTextField  = Components.JTextField("");
+        dateTextField           = Components.JTextField("");
+        commentsTextField       = Components.JTextField("");
 
-        studentNameDropdown = new JComboBox<>(new Vector<>(Main.getStudents().getStudents()));
+        studentNameDropdown = new RoundedComboBox<>(Main.getStudents().getStudents());
         studentNameDropdown.setFont(Fonts.SEGOE_UI_16.getFont());
         studentNameDropdown.setBackground(Colors.DARK_GREY);
         studentNameDropdown.setForeground(Colors.LIGHT_GREY);
     }
 
-    public void createLayout(){
-
+    public void createLayout() {
         GroupLayout addAssignmentPanelLayout = new GroupLayout(this);
         setLayout(addAssignmentPanelLayout);
         addAssignmentPanelLayout.setHorizontalGroup(
@@ -139,29 +136,5 @@ public class UploadView extends JPanel {
                                 .addComponent(saveLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(883, Short.MAX_VALUE))
         );
-    }
-    private JTextField createTextField() {
-        JTextField textField = new JTextField();
-        textField.setMargin(new Insets(0, 5, 0, 5));
-        textField.setBackground(DARK_GREY);
-        textField.setForeground(LIGHT_GREY);
-        textField.setCaretColor(LIGHT_GREY);
-        textField.setFont(Fonts.SEGOE_UI_16.getFont());
-        return textField;
-    }
-
-    private JLabel createLabel(String text, int fontSize) {
-        JLabel label = new JLabel(text);
-        label.setFont(new Font("Segoe UI", Font.PLAIN, fontSize));
-        label.setForeground(LIGHT_GREY);
-        return label;
-    }
-
-    private JComboBox<String> createComboBox() {
-        JComboBox<String> comboBox = new JComboBox<>();
-        comboBox.setBackground(DARK_GREY);
-        comboBox.setFont(Fonts.SEGOE_UI_18.getFont());
-        comboBox.setForeground(LIGHT_GREY);
-        return comboBox;
     }
 }
