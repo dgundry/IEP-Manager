@@ -13,6 +13,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 public class Components {
@@ -72,7 +74,7 @@ public class Components {
         textField.setBackground(Colors.DARK_GREY);
         textField.setForeground(Colors.LIGHT_GREY);
         textField.setCaretColor(Colors.LIGHT_GREY);
-        textField.setBorder(BorderFactory.createLineBorder(Colors.LIGHT_GREY, 1));
+        textField.setBorder(new RoundedTextFields.RoundBorder());
         textField.setMargin(new Insets(0, 5, 0, 5));
         return textField;
     }
@@ -83,7 +85,8 @@ public class Components {
         textArea.setBackground(Colors.DARK_GREY);
         textArea.setForeground(Colors.LIGHT_GREY);
         textArea.setCaretColor(Colors.LIGHT_GREY);
-        textArea.setBorder(BorderFactory.createLineBorder(Colors.LIGHT_GREY, 1));
+        textArea.setBorder(new RoundedTextFields.RoundBorder());
+
         textArea.setFont(Fonts.SEGOE_UI_16.getFont());
         return textArea;
     }
@@ -111,7 +114,7 @@ public class Components {
         passwordField.setForeground(Colors.LIGHT_GREY);
         passwordField.setCaretColor(Colors.LIGHT_GREY);
         passwordField.setFont(Fonts.SEGOE_UI_16.getFont());
-        passwordField.setBorder(BorderFactory.createLineBorder(Colors.LIGHT_GREY, 1));
+        passwordField.setBorder(new RoundedTextFields.RoundBorder());
         passwordField.setMargin(new Insets(0, 5, 0, 5));
         return passwordField;
     }
