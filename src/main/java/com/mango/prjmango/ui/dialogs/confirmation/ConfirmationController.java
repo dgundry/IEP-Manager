@@ -135,6 +135,8 @@ public class ConfirmationController {
                     label.setIcon(ImageIcons.APP_EXIT_HOVERED.getImageIcon());
                     break;
                 case 2:
+                    label.setIcon(ImageIcons.APP_EXIT_HOVERED.getImageIcon());
+                    break;
                 case 3:
                     label.setIcon(ImageIcons.OK_BUTTON_HOVERED.getImageIcon());
                     break;
@@ -158,6 +160,8 @@ public class ConfirmationController {
                     label.setIcon(ImageIcons.APP_EXIT_NO_HOVER.getImageIcon());
                     break;
                 case 2:
+                    label.setIcon(ImageIcons.APP_EXIT_NO_HOVER.getImageIcon());
+                    break;
                 case 3:
                     label.setIcon(ImageIcons.OK_BUTTON_NO_HOVER.getImageIcon());
                     break;
