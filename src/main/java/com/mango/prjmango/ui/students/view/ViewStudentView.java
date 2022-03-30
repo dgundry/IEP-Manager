@@ -4,15 +4,7 @@ import com.mango.prjmango.ui.common.Colors;
 import com.mango.prjmango.ui.common.Components;
 import com.mango.prjmango.ui.common.Fonts;
 import java.awt.*;
-import javax.swing.GroupLayout;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.LayoutStyle;
-import javax.swing.ListSelectionModel;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -26,7 +18,8 @@ public class ViewStudentView extends JPanel {
     private JTextField searchTextBox;
 
     private final JScrollPane studentsScrollPane = new JScrollPane();
-    private final JTable studentTable = new JTable();
+    @Getter private final JTable studentTable = new JTable();
+    @Getter private JButton viewButton = new JButton("View");
 
     @Getter
     private DefaultTableModel model;
@@ -44,7 +37,7 @@ public class ViewStudentView extends JPanel {
 
         searchTextBox = Components.JTextField("");
 
-        model = new DefaultTableModel(new Object[][]{}, new String[] { "Student ID", "First Name", "Last Name", "Grade", "Bio" });
+        model = new DefaultTableModel(new Object[][]{}, new String[] { "Student ID", "First Name", "Last Name", "Grade", "Bio", "View" });
         studentTable.setBorder(new LineBorder(new java.awt.Color(120, 45, 22), 1, true));
         studentTable.setModel(model);
         studentTable.setBackground(Colors.DARK_GREY);
@@ -61,7 +54,6 @@ public class ViewStudentView extends JPanel {
         studentTable.setCellSelectionEnabled(true);
         studentTable.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         studentTable.getColumnModel().getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-
 
         studentsScrollPane.add(studentTable);
         studentsScrollPane.setViewportView(studentTable);
