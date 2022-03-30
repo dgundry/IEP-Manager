@@ -24,6 +24,15 @@ public class RoundedTextField extends JTextField {
         setOpaque(false);
     }
 
+    /**
+     * Constructor. Calls the {@link JTextField#JTextField(String)} and sets {@link JTextField#setOpaque(boolean)}
+     * to {@code false}.
+     */
+    public RoundedTextField() {
+        super();
+        setOpaque(false);
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         g.setColor(Colors.DARK_GREY);

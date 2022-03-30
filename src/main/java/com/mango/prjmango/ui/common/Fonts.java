@@ -10,8 +10,10 @@ public enum Fonts {
     SEGOE_UI_16(16),
     SEGOE_UI_18(18),
     SEGOE_UI_22(22),
+    SEGOE_UI_23(23),
     SEGOE_UI_24(24),
     SEGOE_UI_26(26),
+    SEGOE_UI_27(27),
     SEGOE_UI_28(28),
     SEGOE_UI_70(70);
 

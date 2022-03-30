@@ -1,9 +1,9 @@
 package com.mango.prjmango.ui.dialogs.confirmation;
 
+import com.mango.prjmango.ui.MainWindowView;
 import com.mango.prjmango.ui.common.Colors;
 import com.mango.prjmango.ui.common.Fonts;
 import com.mango.prjmango.ui.common.ImageIcons;
-import java.awt.Dimension;
 import javax.swing.GroupLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -13,6 +13,12 @@ import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.border.LineBorder;
 import lombok.Getter;
+
+import java.awt.*;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+
 
 public class ConfirmationView extends JFrame {
 
@@ -44,7 +50,43 @@ public class ConfirmationView extends JFrame {
 
         pack();
         setLocationRelativeTo(null);
-        setVisible(true);
+        showOnScreen(getScreenIndex(), this);
+    }
+
+    private int getScreenIndex() {
+        Window myWindow = new Window(MainWindowView.getFrame());
+        GraphicsConfiguration config = myWindow.getGraphicsConfiguration();
+        GraphicsDevice myScreen = config.getDevice();
+        GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
+
+        GraphicsDevice[] allScreens = env.getScreenDevices();
+        int myScreenIndex = -1;
+        for (int i = 0; i < allScreens.length; i++) {
+            if (allScreens[i].equals(myScreen))
+            {
+                myScreenIndex = i;
+                break;
+            }
+        }
+
+        return myScreenIndex;
+    }
+
+    private void showOnScreen(int screen, JFrame frame) {
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        GraphicsDevice[] gd = ge.getScreenDevices();
+        int width, height;
+        if (screen > -1 && screen < gd.length) {
+            width = gd[screen].getDefaultConfiguration().getBounds().width;
+            height = gd[screen].getDefaultConfiguration().getBounds().height;
+            frame.setLocation(
+                    ((width / 2) - (frame.getSize().width / 2)) + gd[screen].getDefaultConfiguration().getBounds().x,
+                    ((height / 2) - (frame.getSize().height / 2)) + gd[screen].getDefaultConfiguration().getBounds().y
+            );
+            frame.setVisible(true);
+        } else {
+            throw new RuntimeException("No Screens Found");
+        }
     }
 
     private void createPanel() {

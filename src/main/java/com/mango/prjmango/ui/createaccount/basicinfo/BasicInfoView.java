@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.SwingConstants;
+import javax.swing.text.BadLocationException;
+
 import lombok.Getter;
 
 /**
@@ -71,7 +73,11 @@ public class BasicInfoView extends JLabel {
                 Colors.RED,
                 SwingConstants.CENTER);
 
-        firstNameTextField = Components.JTextField("First Name", Fonts.SEGOE_UI_16.getFont(), Colors.LIGHT_GREY);
+        try {
+            firstNameTextField = Components.LimitedJTextField("First Name");
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
         lastNameTextField  = Components.JTextField("Last Name",  Fonts.SEGOE_UI_16.getFont(), Colors.LIGHT_GREY);
         emailTextField     = Components.JTextField("Email",      Fonts.SEGOE_UI_16.getFont(), Colors.LIGHT_GREY);
     }

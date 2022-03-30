@@ -1,5 +1,6 @@
 package com.mango.prjmango.ui.common;
 
+import com.mango.prjmango.ui.common.limitedtextfield.LimitedTextField;
 import com.mango.prjmango.ui.common.roundedcomponents.RoundedComboBox;
 import com.mango.prjmango.ui.common.roundedcomponents.RoundedPasswordField;
 import com.mango.prjmango.ui.common.roundedcomponents.RoundedTextArea;
@@ -8,8 +9,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Insets;
-import java.util.List;
-import java.util.Vector;
+import java.util.*;
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -18,6 +18,7 @@ import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
+import javax.swing.text.BadLocationException;
 
 /**
  * Utility class which allows for easy access to create new UI components while keeping a consistent look.
@@ -86,6 +87,18 @@ public class Components {
     public static JTextField JTextField(String text) {
         JTextField textField = new RoundedTextField(text);
         textField.setFont(Fonts.SEGOE_UI_16.getFont());
+        textField.setBackground(Colors.DARK_GREY);
+        textField.setForeground(Colors.LIGHT_GREY);
+        textField.setCaretColor(Colors.LIGHT_GREY);
+        textField.setMargin(new Insets(0, 5, 0, 5));
+        return textField;
+    }
+
+    public static JTextField LimitedJTextField(String text) throws BadLocationException {
+        JTextField textField = new RoundedTextField();
+        textField.setFont(Fonts.SEGOE_UI_16.getFont());
+        textField.setDocument(new LimitedTextField(12));
+        textField.getDocument().insertString(0, text, null);
         textField.setBackground(Colors.DARK_GREY);
         textField.setForeground(Colors.LIGHT_GREY);
         textField.setCaretColor(Colors.LIGHT_GREY);
