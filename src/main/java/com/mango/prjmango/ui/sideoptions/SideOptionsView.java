@@ -54,10 +54,10 @@ public class SideOptionsView {
         pawLogoLabel = new JLabel(ImageIcons.PAW_LOGO.getImageIcon());
 
         welcomeLabel = new JLabel();
-        welcomeLabel.setFont(Fonts.SEGOE_UI_28.getFont());
         welcomeLabel.setForeground(Colors.LIGHT_GREY);
-        welcomeLabel.setHorizontalAlignment(SwingConstants.LEFT);
+        welcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
         welcomeLabel.setText("Welcome, " + LoggedInUser.getFirstName() + "!");
+        welcomeLabel.setFont(Fonts.SEGOE_UI_23.getFont());
 
         accountTabLabel    = new JLabel(ImageIcons.ACCOUNT_TAB_NO_HOVER.getImageIcon());
         studentsTabLabel   = new JLabel(ImageIcons.STUDENT_TAB_NO_HOVER.getImageIcon());
@@ -72,6 +72,17 @@ public class SideOptionsView {
 
         bottomSeparator = Components.JSeparator(SwingConstants.HORIZONTAL);
         bottomSeparator.setPreferredSize(new Dimension(246, 1));
+    }
+    public static void updateWelcomeLabel(){
+        welcomeLabel.setText("Welcome, " + LoggedInUser.getFirstName() + "!");
+        switch(LoggedInUser.getFirstName().length()){
+            case 10:
+                welcomeLabel.setFont(Fonts.SEGOE_UI_12.getFont());
+                break;
+            default:
+                welcomeLabel.setFont(Fonts.SEGOE_UI_28.getFont());
+                break;
+        }
     }
 
     private static void setActiveTabIcon() {
