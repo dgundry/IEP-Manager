@@ -2,10 +2,8 @@ package com.mango.prjmango.ui.activities.upload;
 
 import com.mango.prjmango.Main;
 import com.mango.prjmango.student.Student;
-import com.mango.prjmango.ui.common.Colors;
-import com.mango.prjmango.ui.common.Components;
-import com.mango.prjmango.ui.common.Fonts;
-import com.mango.prjmango.ui.common.ImageIcons;
+import com.mango.prjmango.ui.common.*;
+
 import javax.swing.GroupLayout;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -33,7 +31,8 @@ public class UploadView extends JPanel {
     @Getter private JTextField assignmentNameTextField;
     @Getter private JTextField pointsEarnedTextField;
     @Getter private JTextField maximumPointsTextField;
-    @Getter private JTextField dateTextField;
+//    @Getter private JTextField dateTextField;
+    @Getter private DateChooser dateTextField;
     @Getter private JTextField commentsTextField;
 
     @Getter private JComboBox<Student> studentNameDropdown;
@@ -52,7 +51,7 @@ public class UploadView extends JPanel {
         addAssignmentHeaderLabel = Components.JLabel("Upload an Assignment", Fonts.SEGOE_UI_24.getFont(), Colors.LIGHT_GREY);
         studentNameLabel         = Components.JLabel("Student's Name",       Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
         assignmentNameLabel1     = Components.JLabel("Assignment Name",      Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
-        dateLabel                = Components.JLabel("Date (YYYY-MM-DD) ",   Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
+        dateLabel                = Components.JLabel("Date",   Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
         pointsEarnedLabel        = Components.JLabel("Points Earned",        Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
         maximumPointsLabel       = Components.JLabel("Maximum Points",       Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
         commentsLabel            = Components.JLabel("Comments",             Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
@@ -62,7 +61,7 @@ public class UploadView extends JPanel {
         assignmentNameTextField = Components.JTextField("");
         pointsEarnedTextField   = Components.JTextField("");
         maximumPointsTextField  = Components.JTextField("");
-        dateTextField           = Components.JTextField("");
+        dateTextField           = new DateChooser(1,1,1);
         commentsTextField       = Components.JTextField("");
 
         studentNameDropdown = new RoundedComboBox<>(Main.getStudents().getStudents());
@@ -87,17 +86,17 @@ public class UploadView extends JPanel {
                                                                 .addGroup(addAssignmentPanelLayout.createSequentialGroup()
                                                                         .addGroup(addAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                                                                 .addComponent(pointsEarnedLabel)
-                                                                                .addComponent(assignmentNameTextField, GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+                                                                                .addComponent(assignmentNameTextField, GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
                                                                                 .addComponent(studentNameLabel)
-                                                                                .addComponent(pointsEarnedTextField, GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+                                                                                .addComponent(pointsEarnedTextField, GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
                                                                                 .addComponent(assignmentNameLabel1)
-                                                                                .addComponent(commentsLabel))
+                                                                                .addComponent(commentsLabel)
+                                                                                .addComponent(dateLabel)
+                                                                                .addComponent(dateTextField, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 240, GroupLayout.PREFERRED_SIZE))
                                                                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                                         .addGroup(addAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                                                 .addGroup(addAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                                                        .addComponent(maximumPointsTextField, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 209, GroupLayout.PREFERRED_SIZE)
-                                                                                        .addComponent(dateTextField, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 209, GroupLayout.PREFERRED_SIZE))
-                                                                                .addComponent(dateLabel)
+                                                                                        .addComponent(maximumPointsTextField, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 240, GroupLayout.PREFERRED_SIZE))
                                                                                 .addComponent(maximumPointsLabel)))
                                                                 .addComponent(commentsTextField, GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
                                                                 .addComponent(studentNameDropdown, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
@@ -113,13 +112,13 @@ public class UploadView extends JPanel {
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(studentNameDropdown, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addGroup(addAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(assignmentNameLabel1)
-                                        .addComponent(dateLabel))
+                                .addComponent(assignmentNameLabel1)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(addAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(assignmentNameTextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(dateTextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
+                                .addComponent(assignmentNameTextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(dateLabel)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dateTextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addGroup(addAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                         .addComponent(pointsEarnedLabel)
