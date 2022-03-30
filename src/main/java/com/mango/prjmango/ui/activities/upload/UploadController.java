@@ -5,15 +5,44 @@ import com.mango.prjmango.student.Student;
 import com.mango.prjmango.ui.activities.ActivitiesView;
 import com.mango.prjmango.ui.common.ImageIcons;
 import com.mango.prjmango.utilities.DatabaseConnection;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+
+import java.awt.event.*;
 import java.sql.PreparedStatement;
-import javax.swing.JLabel;
+import javax.swing.*;
 
 public class UploadController {
 
     public UploadController(UploadView view) {
         JLabel saveLabel = view.getSaveLabel();
+        JTextField earnedField = view.getPointsEarnedTextField();
+        JTextField maximumField = view.getMaximumPointsTextField();
+        maximumField.addKeyListener(new KeyAdapter() {
+           public void keyPressed(KeyEvent event) {
+               String value = maximumField.getText();
+               int length = value.length();
+               if((event.getKeyChar() >= '0' && event.getKeyChar() <= '9') || event.getKeyChar() == 8 || event.getKeyChar() == 46) {
+                   maximumField.setEditable(true);
+               }
+               else{
+                   maximumField.setEditable(false);
+               }
+           }
+        });
+        earnedField.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent event) {
+                String value = earnedField.getText();
+                int length = value.length();
+                if((event.getKeyChar() >= '0' && event.getKeyChar() <= '9') || event.getKeyChar() == 8 || event.getKeyCode() == KeyEvent.VK_DELETE) {
+                    earnedField.setEditable(true);
+                }
+                else{
+                    earnedField.setEditable(false);
+                }
+            }
+        });
+        maximumField.addMouseListener(new maximumFieldMouseListener(view));
+        earnedField.addMouseListener(new earnedFieldMouseListener(view));
+
         saveLabel.addMouseListener(new SaveLabelMouseListener(view, saveLabel));
     }
     private static class SaveLabelMouseListener implements MouseListener {
@@ -87,5 +116,69 @@ public class UploadController {
          */
         @Override
         public void mouseReleased(MouseEvent e) { /* Not needed */ }
+    }
+
+    private class maximumFieldMouseListener implements MouseListener {
+        UploadView view;
+        public maximumFieldMouseListener(UploadView view) {
+            this.view = view;
+        }
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+            view.getMaximumPointsTextField().setEditable(true);
+            view.getMaximumPointsTextField().requestFocusInWindow();
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+
+        }
+    }
+
+    private class earnedFieldMouseListener implements MouseListener {
+        UploadView view;
+        public earnedFieldMouseListener(UploadView view) {
+            this.view = view;
+        }
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+            view.getPointsEarnedTextField().setEditable(true);
+            view.getPointsEarnedTextField().requestFocusInWindow();
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
+
+        }
+
+        @Override
+        public void mouseExited(MouseEvent e) {
+
+        }
     }
 }
