@@ -54,6 +54,7 @@ public class ViewStudentView extends JPanel {
         studentTable.setCellSelectionEnabled(true);
         studentTable.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         studentTable.getColumnModel().getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+//        studentTable.setDefaultEditor(Object.class, null);
 
         studentsScrollPane.add(studentTable);
         studentsScrollPane.setViewportView(studentTable);
