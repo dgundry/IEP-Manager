@@ -9,6 +9,7 @@ import com.mango.prjmango.ui.dialogs.confirmation.ConfirmationView;
 import com.mango.prjmango.ui.dialogs.confirmation.Dialogs;
 import com.mango.prjmango.utilities.DatabaseConnection;
 
+import java.awt.*;
 import java.awt.event.*;
 import java.sql.PreparedStatement;
 import javax.swing.*;
@@ -66,25 +67,35 @@ public class UploadController {
          */
         @Override
         public void mouseClicked(MouseEvent e) {
-            String sql = "INSERT INTO assignment(teacher_id, student_id,title,earned_points,total_points,date,comment) VALUES(?,?,?,?,?,date('" + view.getDateTextField().getText() + "'),?);";
-            try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
-                statement.setInt(1, Main.getActiveUser().getTeacherId());
-                statement.setInt(2, ((Student)view.getStudentNameDropdown().getSelectedItem()).getStudentID());
-                statement.setString(3, view.getAssignmentNameTextField().getText());
-                statement.setInt(4, Integer.parseInt(view.getPointsEarnedTextField().getText()));
-                statement.setInt(5, Integer.parseInt(view.getMaximumPointsTextField().getText()));
-                statement.setString(6, view.getCommentsTextField().getText());
-                statement.executeUpdate();
-            } catch (Exception ex) {
-                ex.printStackTrace();
+            view.getInformationLabel().setText("");
+
+            String assignmentName = view.getAssignmentNameTextField().getText().trim();
+            String earnedPoints  = view.getPointsEarnedTextField().getText().trim();
+            String maximumPoints     = view.getMaximumPointsTextField().getText().trim();
+
+            if(assignmentName.isEmpty() || earnedPoints.isEmpty() || maximumPoints.isEmpty()) {
+                view.getInformationLabel().setForeground(Color.RED);
+                view.getInformationLabel().setText("Please fill in all fields");
+            }else {
+
+                String sql = "INSERT INTO assignment(teacher_id, student_id,title,earned_points,total_points,date,comment) VALUES(?,?,?,?,?,date('" + view.getDateTextField().getText() + "'),?);";
+                try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
+                    statement.setInt(1, Main.getActiveUser().getTeacherId());
+                    statement.setInt(2, ((Student) view.getStudentNameDropdown().getSelectedItem()).getStudentID());
+                    statement.setString(3, view.getAssignmentNameTextField().getText());
+                    statement.setInt(4, Integer.parseInt(view.getPointsEarnedTextField().getText()));
+                    statement.setInt(5, Integer.parseInt(view.getMaximumPointsTextField().getText()));
+                    statement.setString(6, view.getCommentsTextField().getText());
+                    statement.executeUpdate();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+                view.getInformationLabel().setForeground(Color.GREEN);
+                view.getInformationLabel().setText("Uploaded Successfully");
+                ConfirmationView confirmationView =
+                        new ConfirmationView("Assignment Uploaded!", Dialogs.ASSIGNMENT_UPLOADED);
+                new ConfirmationController(confirmationView);
             }
-            //Dialog Box
-            ConfirmationView confirmationView =
-                    new ConfirmationView("Assignment Uploaded!", Dialogs.ASSIGNMENT_UPLOADED);
-            new ConfirmationController(confirmationView);
-//            UploadView uploadView = new UploadView();
-//            new UploadController(uploadView);
-//            ActivitiesView.setActiveDisplay(uploadView);
         }
 
         /**

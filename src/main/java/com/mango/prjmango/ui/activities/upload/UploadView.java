@@ -26,6 +26,8 @@ public class UploadView extends JPanel {
     private JLabel dateLabel;
     private JLabel maximumPointsLabel;
 
+    @Getter private JLabel informationLabel;
+
     @Getter private JLabel saveLabel;
 
     @Getter private JTextField assignmentNameTextField;
@@ -55,6 +57,8 @@ public class UploadView extends JPanel {
         pointsEarnedLabel        = Components.JLabel("Points Earned",        Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
         maximumPointsLabel       = Components.JLabel("Maximum Points",       Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
         commentsLabel            = Components.JLabel("Comments",             Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
+        informationLabel       = Components.JLabel("",             Fonts.SEGOE_UI_14.getFont(), Colors.LIGHT_GREY);
+
 
         saveLabel = new JLabel(ImageIcons.EDIT_PROFILE_SAVE_NO_HOVER.getImageIcon());
 
@@ -81,7 +85,10 @@ public class UploadView extends JPanel {
                                         .addComponent(addAssignmentHeaderLabel)
                                         .addGroup(addAssignmentPanelLayout.createSequentialGroup()
                                                 .addGroup(addAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                        .addComponent(saveLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                        .addGroup(addAssignmentPanelLayout.createSequentialGroup()
+                                                                .addComponent(saveLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                .addComponent(informationLabel))
                                                         .addGroup(addAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                                                 .addGroup(addAssignmentPanelLayout.createSequentialGroup()
                                                                         .addGroup(addAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
@@ -132,7 +139,9 @@ public class UploadView extends JPanel {
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(commentsTextField, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(saveLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addGroup(addAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                        .addComponent(saveLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(informationLabel))
                                 .addContainerGap(883, Short.MAX_VALUE))
         );
     }
