@@ -4,14 +4,15 @@ import com.mango.prjmango.Main;
 import com.mango.prjmango.student.Students;
 import com.mango.prjmango.ui.common.ImageIcons;
 import com.mango.prjmango.utilities.DatabaseCommands;
-import java.awt.Color;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Objects;
-import javax.swing.JLabel;
 
 public class CreateStudentController {
-    public CreateStudentController(CreateStudentView view){
+    public CreateStudentController(CreateStudentView view) {
         JLabel saveLabel = view.getSaveLabel();
 
         saveLabel.addMouseListener(new SaveStudentMouseListener(view, saveLabel));
@@ -28,7 +29,7 @@ public class CreateStudentController {
 
         }
 
-        public void mouseClicked(MouseEvent e){
+        public void mouseClicked(MouseEvent e) {
             view.getInformationLabel().setText("");
 
             String studentsFirstNameTextField = view.getStudentFirstNameTextField().getText().trim();
@@ -40,14 +41,14 @@ public class CreateStudentController {
                 view.getInformationLabel().setText("Please enter a valid first name!");
                 view.getInformationLabel().setForeground(Color.RED);
                 view.getStudentFirstNameTextField().requestFocus();
-            } else if(isBlank(studentLastNameTextField)) {
+            } else if (isBlank(studentLastNameTextField)) {
                 view.getInformationLabel().setText("Please enter a valid last name!");
                 view.getInformationLabel().setForeground(Color.RED);
                 view.getStudentLastNameTextField().requestFocus();
             } else {
-                view.getInformationLabel().setText(view.getStudentFirstNameTextField().getText() +" has been added to the class!");
+                view.getInformationLabel().setText(view.getStudentFirstNameTextField().getText() + " has been added to the class!");
                 view.getInformationLabel().setForeground(Color.GREEN);
-                DatabaseCommands.registerStudent(studentsFirstNameTextField,studentLastNameTextField,gradeComboBox,bioTextField);
+                DatabaseCommands.registerStudent(studentsFirstNameTextField, studentLastNameTextField, gradeComboBox, bioTextField);
                 Main.setStudents(new Students(Main.getActiveUser().getTeacherId()));
                 view.getStudentFirstNameTextField().setText("");
                 view.getStudentLastNameTextField().setText("");
@@ -79,6 +80,7 @@ public class CreateStudentController {
             label.setIcon(ImageIcons.EDIT_PROFILE_SAVE_NO_HOVER.getImageIcon());
 
         }
+
         private static boolean isBlank(String str) {
             return str.equals("");
         }

@@ -12,6 +12,7 @@ public class ActivitiesController {
         JLabel fryLabel              = ActivitiesView.getFryLabel();
         JLabel dolchLabel            = ActivitiesView.getDolchLabel();
         JLabel uploadAssignmentLabel = ActivitiesView.getUploadAssignmentLabel();
+        JLabel createAssignmentLabel = ActivitiesView.getCreateAssignmentLabel();
 
         mathLabel.addMouseListener(new ActivitiesSubTabListener(
                 mathLabel,
@@ -37,5 +38,11 @@ public class ActivitiesController {
                 ImageIcons.ACTIVITIES_UPLOAD_HOVERED.getImageIcon(),
                 ImageIcons.ACTIVITIES_UPLOAD_SELECTED.getImageIcon(),
                 ActivitiesSubTabs.UPLOAD_AN_ASSIGNMENT));
+        createAssignmentLabel.addMouseListener(new ActivitiesSubTabListener(
+                createAssignmentLabel,
+                ImageIcons.ACTIVITIES_UPLOAD_NO_HOVER.getImageIcon(),
+                ImageIcons.ACTIVITIES_UPLOAD_HOVERED.getImageIcon(),
+                ImageIcons.ACTIVITIES_UPLOAD_SELECTED.getImageIcon(),
+                ActivitiesSubTabs.CREATE_AN_ASSIGNMENT));
     }
 }

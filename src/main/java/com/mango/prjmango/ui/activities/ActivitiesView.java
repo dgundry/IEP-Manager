@@ -1,6 +1,8 @@
 package com.mango.prjmango.ui.activities;
 
 import com.mango.prjmango.LoggedInUser;
+import com.mango.prjmango.ui.activities.create.CreateController;
+import com.mango.prjmango.ui.activities.create.CreateView;
 import com.mango.prjmango.ui.activities.sightwords.SightController;
 import com.mango.prjmango.ui.activities.sightwords.SightView;
 import com.mango.prjmango.ui.activities.upload.UploadController;
@@ -30,6 +32,7 @@ public class ActivitiesView {
     @Getter private static JLabel fryLabel;
     @Getter private static JLabel dolchLabel;
     @Getter private static JLabel uploadAssignmentLabel;
+    @Getter private static JLabel createAssignmentLabel;
 
     private static JSeparator horizSeparator;
     private static JSeparator vertSeparator;
@@ -60,6 +63,11 @@ public class ActivitiesView {
                 new UploadController(uploadView);
                 setActiveDisplay(uploadView);
                 break;
+            case 4:
+                CreateView createView = new CreateView();
+                new CreateController(createView);
+                setActiveDisplay(createView);
+                break;
             default:
                 break;
         }
@@ -79,6 +87,7 @@ public class ActivitiesView {
         fryLabel              = new JLabel(ImageIcons.ACTIVITIES_FRY_NO_HOVER.getImageIcon());
         dolchLabel            = new JLabel(ImageIcons.ACTIVITIES_DOLCH_NO_HOVER.getImageIcon());
         uploadAssignmentLabel = new JLabel(ImageIcons.ACTIVITIES_UPLOAD_NO_HOVER.getImageIcon());
+        createAssignmentLabel = new JLabel(ImageIcons.ACTIVITIES_UPLOAD_NO_HOVER.getImageIcon());
         setSelectedSubTab();
 
         horizSeparator = Components.JSeparator(SwingConstants.HORIZONTAL);
@@ -98,6 +107,9 @@ public class ActivitiesView {
                 break;
             case 3:
                 uploadAssignmentLabel.setIcon(ImageIcons.ACTIVITIES_UPLOAD_SELECTED.getImageIcon());
+                break;
+            case 4:
+                createAssignmentLabel.setIcon(ImageIcons.ACTIVITIES_UPLOAD_SELECTED.getImageIcon());
                 break;
             default:
                 break;
@@ -138,6 +150,11 @@ public class ActivitiesView {
                                                                 GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(
                                                                 uploadAssignmentLabel,
+                                                                GroupLayout.PREFERRED_SIZE,
+                                                                GroupLayout.DEFAULT_SIZE,
+                                                                GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(
+                                                                createAssignmentLabel,
                                                                 GroupLayout.PREFERRED_SIZE,
                                                                 GroupLayout.DEFAULT_SIZE,
                                                                 GroupLayout.PREFERRED_SIZE))
@@ -199,6 +216,13 @@ public class ActivitiesView {
                                                                         LayoutStyle.ComponentPlacement.UNRELATED)
                                                                 .addComponent(
                                                                         uploadAssignmentLabel,
+                                                                        GroupLayout.PREFERRED_SIZE,
+                                                                        GroupLayout.DEFAULT_SIZE,
+                                                                        GroupLayout.PREFERRED_SIZE)
+                                                                .addPreferredGap(
+                                                                        LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                .addComponent(
+                                                                        createAssignmentLabel,
                                                                         GroupLayout.PREFERRED_SIZE,
                                                                         GroupLayout.DEFAULT_SIZE,
                                                                         GroupLayout.PREFERRED_SIZE)

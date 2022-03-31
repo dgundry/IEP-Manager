@@ -21,6 +21,18 @@ public class DatabaseCommands {
         throw new IllegalStateException("Utility class.");
     }
 
+
+    public static void createOutline(String assignmentName, int maximumPoints) {
+        String sql = "INSERT INTO outlines(teacher_id, assignment_name, total_points) VALUES (?, ?, ?);";
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
+            statement.setInt(1, LoggedInUser.getTeacherId());
+            statement.setString(2, assignmentName);
+            statement.setInt(3, maximumPoints);
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     /**
      * Adds a new entry to the {@code teacher} table within the database.
      *
