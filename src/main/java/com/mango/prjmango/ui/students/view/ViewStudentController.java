@@ -72,7 +72,7 @@ public class ViewStudentController {
         @Override
         public Object getCellEditorValue() {
             if (isPushed) {
-                System.out.println(view.getModel().getValueAt(view.getStudentTable().getSelectedRow(),1) +" was Clicked");
+                System.out.println(view.getModel().getValueAt(view.getStudentTable().getSelectedRow(),0) +" was Clicked");
            }
             isPushed = false;
             return label;
