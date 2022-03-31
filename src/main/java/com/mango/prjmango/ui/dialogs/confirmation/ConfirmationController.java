@@ -5,6 +5,8 @@ import com.mango.prjmango.ui.MainWindowView;
 import com.mango.prjmango.ui.activities.ActivitiesView;
 import com.mango.prjmango.ui.activities.sightwords.SightController;
 import com.mango.prjmango.ui.activities.sightwords.SightView;
+import com.mango.prjmango.ui.activities.upload.UploadController;
+import com.mango.prjmango.ui.activities.upload.UploadView;
 import com.mango.prjmango.ui.common.ImageIcons;
 import com.mango.prjmango.ui.login.LoginController;
 import com.mango.prjmango.ui.login.LoginView;
@@ -99,6 +101,14 @@ public class ConfirmationController {
                     MainWindowView.setActiveDisplay(logView);
 
                     break;
+                case 4:
+                    view.dispose();
+
+                    UploadView uploadView = new UploadView();
+                    new UploadController(uploadView);
+                    ActivitiesView.setActiveDisplay(uploadView);
+
+                    break;
                 default:
                     break;
             }
@@ -140,6 +150,9 @@ public class ConfirmationController {
                 case 3:
                     label.setIcon(ImageIcons.OK_BUTTON_HOVERED.getImageIcon());
                     break;
+                case 4:
+                    label.setIcon(ImageIcons.APP_EXIT_HOVERED.getImageIcon());
+                    break;
                 default:
                     break;
             }
@@ -164,6 +177,9 @@ public class ConfirmationController {
                     break;
                 case 3:
                     label.setIcon(ImageIcons.OK_BUTTON_NO_HOVER.getImageIcon());
+                    break;
+                case 4:
+                    label.setIcon(ImageIcons.APP_EXIT_NO_HOVER.getImageIcon());
                     break;
                 default:
                     break;

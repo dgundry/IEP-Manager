@@ -4,6 +4,9 @@ import com.mango.prjmango.Main;
 import com.mango.prjmango.student.Student;
 import com.mango.prjmango.ui.activities.ActivitiesView;
 import com.mango.prjmango.ui.common.ImageIcons;
+import com.mango.prjmango.ui.dialogs.confirmation.ConfirmationController;
+import com.mango.prjmango.ui.dialogs.confirmation.ConfirmationView;
+import com.mango.prjmango.ui.dialogs.confirmation.Dialogs;
 import com.mango.prjmango.utilities.DatabaseConnection;
 
 import java.awt.event.*;
@@ -76,9 +79,12 @@ public class UploadController {
                 ex.printStackTrace();
             }
             //Dialog Box
-            UploadView uploadView = new UploadView();
-            new UploadController(uploadView);
-            ActivitiesView.setActiveDisplay(uploadView);
+            ConfirmationView confirmationView =
+                    new ConfirmationView("Assignment Uploaded!", Dialogs.ASSIGNMENT_UPLOADED);
+            new ConfirmationController(confirmationView);
+//            UploadView uploadView = new UploadView();
+//            new UploadController(uploadView);
+//            ActivitiesView.setActiveDisplay(uploadView);
         }
 
         /**
