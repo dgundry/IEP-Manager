@@ -2,6 +2,7 @@ package com.mango.prjmango.ui.login;
 
 import com.mango.prjmango.LoggedInUser;
 import com.mango.prjmango.Main;
+import com.mango.prjmango.Outlines.Outlines;
 import com.mango.prjmango.student.Students;
 import com.mango.prjmango.ui.MainWindowView;
 import com.mango.prjmango.ui.common.Images;
@@ -78,6 +79,7 @@ public class LoginController {
                     LoggedInUser user = new LoggedInUser(teacherID);
                     Main.setActiveUser(user);
                     Main.setStudents(new Students(teacherID));
+                    Main.setOutlines(new Outlines(teacherID));
 
                     StudentsView studentsView = new StudentsView();
                     new StudentsController(studentsView);

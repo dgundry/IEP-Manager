@@ -21,6 +21,19 @@ public class DatabaseCommands {
         throw new IllegalStateException("Utility class.");
     }
 
+    public static ArrayList<String> getAllOuineNames() {
+        ArrayList<String> outlines = new ArrayList<>();
+        try {
+            PreparedStatement ps = DatabaseConnection.getConnection().prepareStatement("SELECT * FROM outlines WHERE teacher_id = ?");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                outlines.add(rs.getString("outline"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return outlines;
+    }
 
     public static void createOutline(String assignmentName, int maximumPoints) {
         String sql = "INSERT INTO outlines(teacher_id, assignment_name, total_points) VALUES (?, ?, ?);";

@@ -1,6 +1,7 @@
 package com.mango.prjmango.ui.activities.upload;
 
 import com.mango.prjmango.Main;
+import com.mango.prjmango.Outlines.Outline;
 import com.mango.prjmango.student.Student;
 import com.mango.prjmango.ui.common.*;
 
@@ -38,6 +39,8 @@ public class UploadView extends JPanel {
     @Getter private JTextField commentsTextField;
 
     @Getter private JComboBox<Student> studentNameDropdown;
+    @Getter private JComboBox<Outline> assignmentNameDropdown;
+
 
     /**
      * Constructor. Calls methods that create the GUI.
@@ -72,6 +75,13 @@ public class UploadView extends JPanel {
         studentNameDropdown.setFont(Fonts.SEGOE_UI_16.getFont());
         studentNameDropdown.setBackground(Colors.DARK_GREY);
         studentNameDropdown.setForeground(Colors.LIGHT_GREY);
+
+        assignmentNameDropdown = new RoundedComboBox<>(Main.getOutlines().getOutlines());
+        assignmentNameDropdown.insertItemAt(new Outline(0,"Select an Assignment",0), 0);
+        assignmentNameDropdown.setSelectedIndex(0);
+        assignmentNameDropdown.setFont(Fonts.SEGOE_UI_16.getFont());
+        assignmentNameDropdown.setBackground(Colors.DARK_GREY);
+        assignmentNameDropdown.setForeground(Colors.LIGHT_GREY);
     }
 
     public void createLayout() {
@@ -103,8 +113,9 @@ public class UploadView extends JPanel {
                                                                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                                         .addGroup(addAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                                                 .addGroup(addAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                                                        .addComponent(maximumPointsTextField, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 240, GroupLayout.PREFERRED_SIZE))
-                                                                                .addComponent(maximumPointsLabel)))
+                                                                                        .addComponent(maximumPointsTextField, GroupLayout.Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 240, GroupLayout.PREFERRED_SIZE)
+                                                                                        .addComponent(assignmentNameDropdown, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                                                        .addComponent(maximumPointsLabel)))
                                                                 .addComponent(commentsTextField, GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
                                                                 .addComponent(studentNameDropdown, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                                 .addGap(78, 78, 78))
@@ -121,7 +132,9 @@ public class UploadView extends JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(assignmentNameLabel1)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(assignmentNameTextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+                                .addGroup(addAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(assignmentNameTextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(assignmentNameDropdown, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addComponent(dateLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
