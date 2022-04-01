@@ -18,7 +18,9 @@ public class PasswordView extends JLabel {
 
     private JLabel pawLogoLabel;
     private JLabel iepManagerLabel;
+    private JLabel passwordTitleLabel;
     private JLabel passwordLabel;
+    private JLabel confirmPasswordLabel;
 
     @Getter private JLabel invalidLabel;
     @Getter private JLabel backLabel;
@@ -47,19 +49,29 @@ public class PasswordView extends JLabel {
                 Fonts.SEGOE_UI_26.getFont(),
                 Colors.LIGHT_GREY,
                 SwingConstants.CENTER);
-        passwordLabel = Components.JLabel(
+        passwordTitleLabel = Components.JLabel(
                 "Reset Password",
                 Fonts.SEGOE_UI_22.getFont(),
                 Colors.LIGHT_GREY,
                 SwingConstants.CENTER);
+        passwordLabel = Components.JLabel(
+                "Password",
+                Fonts.SEGOE_UI_16.getFont(),
+                Colors.LIGHT_GREY,
+                SwingConstants.LEFT);
+        confirmPasswordLabel = Components.JLabel(
+                "Confirm Password",
+                Fonts.SEGOE_UI_16.getFont(),
+                Colors.LIGHT_GREY,
+                SwingConstants.LEFT);
         invalidLabel = Components.JLabel(
                 " ",
                 Fonts.SEGOE_UI_12.getFont(),
                 Colors.RED,
                 SwingConstants.CENTER);
 
-        createPasswordField  = Components.JPasswordField("Create Password");
-        confirmPasswordField = Components.JPasswordField("Confirm Password");
+        createPasswordField  = Components.JPasswordField();
+        confirmPasswordField = Components.JPasswordField();
     }
 
     private void createLayout() {
@@ -67,58 +79,28 @@ public class PasswordView extends JLabel {
         setLayout(resetPasswordPanelLayout);
         resetPasswordPanelLayout.setHorizontalGroup(
                 resetPasswordPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addComponent(
-                                passwordLabel,
-                                GroupLayout.DEFAULT_SIZE,
-                                GroupLayout.DEFAULT_SIZE,
-                                Short.MAX_VALUE)
+                        .addComponent(passwordTitleLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(GroupLayout.Alignment.TRAILING, resetPasswordPanelLayout.createSequentialGroup()
-                                .addContainerGap(97, Short.MAX_VALUE)
+                                .addGap(97, 97, 97)
                                 .addGroup(resetPasswordPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addGroup(
-                                                GroupLayout.Alignment.TRAILING,
-                                                resetPasswordPanelLayout.createSequentialGroup()
+                                        .addGroup(GroupLayout.Alignment.TRAILING, resetPasswordPanelLayout.createSequentialGroup()
                                                 .addComponent(pawLogoLabel)
                                                 .addGap(185, 185, 185))
-                                        .addGroup(
-                                                GroupLayout.Alignment.TRAILING,
-                                                resetPasswordPanelLayout.createSequentialGroup()
-                                                .addComponent(
-                                                        createPasswordField,
-                                                        GroupLayout.PREFERRED_SIZE,
-                                                        288,
-                                                        GroupLayout.PREFERRED_SIZE)
-                                                .addGap(97, 97, 97))
-                                        .addGroup(resetPasswordPanelLayout.createSequentialGroup()
-                                                .addGroup(resetPasswordPanelLayout.createParallelGroup(
-                                                        GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(GroupLayout.Alignment.TRAILING, resetPasswordPanelLayout.createSequentialGroup()
+                                                .addGroup(resetPasswordPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(passwordLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                         .addGroup(resetPasswordPanelLayout.createSequentialGroup()
-                                                                .addComponent(
-                                                                        backLabel,
-                                                                        GroupLayout.PREFERRED_SIZE,
-                                                                        116,
-                                                                        GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(
-                                                                        LayoutStyle.ComponentPlacement.RELATED,
-                                                                        GroupLayout.DEFAULT_SIZE,
-                                                                        Short.MAX_VALUE)
-                                                                .addComponent(
-                                                                        resetPasswordLabel,
-                                                                        GroupLayout.PREFERRED_SIZE,
-                                                                        116,
-                                                                        GroupLayout.PREFERRED_SIZE))
-                                                        .addComponent(
-                                                                invalidLabel,
-                                                                GroupLayout.Alignment.LEADING,
-                                                                GroupLayout.DEFAULT_SIZE,
-                                                                GroupLayout.DEFAULT_SIZE,
-                                                                Short.MAX_VALUE)
-                                                        .addComponent(
-                                                                confirmPasswordField,
-                                                                GroupLayout.Alignment.LEADING,
-                                                                GroupLayout.DEFAULT_SIZE,
-                                                                288,
-                                                                Short.MAX_VALUE))
+                                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                                .addGroup(resetPasswordPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                                        .addGroup(resetPasswordPanelLayout.createSequentialGroup()
+                                                                                .addComponent(backLabel, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
+                                                                                .addGap(56, 56, 56)
+                                                                                .addComponent(resetPasswordLabel, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE))
+                                                                        .addGroup(resetPasswordPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+                                                                                .addComponent(createPasswordField, GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                                                                                .addComponent(confirmPasswordField, GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                                                                                .addComponent(confirmPasswordLabel, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                                .addComponent(invalidLabel, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                                                 .addGap(97, 97, 97))))
                         .addGroup(resetPasswordPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                 .addComponent(iepManagerLabel, GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE))
@@ -129,26 +111,22 @@ public class PasswordView extends JLabel {
                                 .addGap(61, 61, 61)
                                 .addComponent(pawLogoLabel)
                                 .addGap(83, 83, 83)
-                                .addComponent(passwordLabel)
+                                .addComponent(passwordTitleLabel)
                                 .addGap(29, 29, 29)
-                                .addComponent(
-                                        createPasswordField,
-                                        GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(
-                                        confirmPasswordField,
-                                        GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE)
+                                .addComponent(passwordLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(createPasswordField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(confirmPasswordLabel)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(confirmPasswordField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(invalidLabel)
-                                .addGap(102, 102, 102)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
                                 .addGroup(resetPasswordPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addComponent(backLabel)
-                                        .addComponent(resetPasswordLabel))
-                                .addContainerGap(58, Short.MAX_VALUE))
+                                        .addComponent(backLabel, GroupLayout.Alignment.TRAILING)
+                                        .addComponent(resetPasswordLabel, GroupLayout.Alignment.TRAILING))
+                                .addGap(58, 58, 58))
                         .addGroup(resetPasswordPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                 .addGroup(resetPasswordPanelLayout.createSequentialGroup()
                                         .addGap(195, 195, 195)

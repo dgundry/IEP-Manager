@@ -3,15 +3,18 @@ package com.mango.prjmango.ui.activities.upload;
 import com.mango.prjmango.Main;
 import com.mango.prjmango.Outlines.Outline;
 import com.mango.prjmango.student.Student;
-import com.mango.prjmango.ui.common.*;
-
+import com.mango.prjmango.ui.common.Colors;
+import com.mango.prjmango.ui.common.Components;
+import com.mango.prjmango.ui.common.DateChooser;
+import com.mango.prjmango.ui.common.Fonts;
+import com.mango.prjmango.ui.common.ImageIcons;
+import com.mango.prjmango.ui.common.roundedcomponents.RoundedComboBox;
 import javax.swing.GroupLayout;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
-import com.mango.prjmango.ui.common.roundedcomponents.RoundedComboBox;
 import lombok.Getter;
 
 /**
@@ -34,7 +37,7 @@ public class UploadView extends JPanel {
     @Getter private JTextField assignmentNameTextField;
     @Getter private JTextField pointsEarnedTextField;
     @Getter private JTextField maximumPointsTextField;
-//    @Getter private JTextField dateTextField;
+
     @Getter private DateChooser dateTextField;
     @Getter private JTextField commentsTextField;
 

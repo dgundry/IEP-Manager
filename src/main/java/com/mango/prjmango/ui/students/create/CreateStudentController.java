@@ -4,12 +4,11 @@ import com.mango.prjmango.Main;
 import com.mango.prjmango.student.Students;
 import com.mango.prjmango.ui.common.ImageIcons;
 import com.mango.prjmango.utilities.DatabaseCommands;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Objects;
+import javax.swing.JLabel;
 
 public class CreateStudentController {
     public CreateStudentController(CreateStudentView view) {

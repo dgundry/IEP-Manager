@@ -10,7 +10,6 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.SwingConstants;
 import javax.swing.text.BadLocationException;
-
 import lombok.Getter;
 
 /**
@@ -21,6 +20,9 @@ public class BasicInfoView extends JLabel {
     private JLabel pawLogoLabel;
     private JLabel iepManagerLabel;
     private JLabel basicInfoLabel;
+    private JLabel firstNameLabel;
+    private JLabel lastNameLabel;
+    private JLabel emailLabel;
 
     @Getter private JLabel backLabel;
     @Getter private JLabel nextLabel;
@@ -57,16 +59,31 @@ public class BasicInfoView extends JLabel {
                 Fonts.SEGOE_UI_22.getFont(),
                 Colors.LIGHT_GREY,
                 SwingConstants.CENTER);
+        firstNameLabel = Components.JLabel(
+                "First Name",
+                Fonts.SEGOE_UI_16.getFont(),
+                Colors.LIGHT_GREY,
+                SwingConstants.LEFT);
         firstNameInvalidLabel = Components.JLabel(
                 " ",
                 Fonts.SEGOE_UI_12.getFont(),
                 Colors.RED,
                 SwingConstants.CENTER);
+        lastNameLabel = Components.JLabel(
+                "Last Name",
+                Fonts.SEGOE_UI_16.getFont(),
+                Colors.LIGHT_GREY,
+                SwingConstants.LEFT);
         lastNameInvalidLabel = Components.JLabel(
                 " ",
                 Fonts.SEGOE_UI_12.getFont(),
                 Colors.RED,
                 SwingConstants.CENTER);
+        emailLabel = Components.JLabel(
+                "Email",
+                Fonts.SEGOE_UI_16.getFont(),
+                Colors.LIGHT_GREY,
+                SwingConstants.LEFT);
         emailInvalidLabel = Components.JLabel(
                 " ",
                 Fonts.SEGOE_UI_12.getFont(),
@@ -74,12 +91,13 @@ public class BasicInfoView extends JLabel {
                 SwingConstants.CENTER);
 
         try {
-            firstNameTextField = Components.LimitedJTextField("First Name",12);
+            firstNameTextField = Components.LimitedJTextField("", 12);
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
-        lastNameTextField  = Components.JTextField("Last Name",  Fonts.SEGOE_UI_16.getFont(), Colors.LIGHT_GREY);
-        emailTextField     = Components.JTextField("Email",      Fonts.SEGOE_UI_16.getFont(), Colors.LIGHT_GREY);
+
+        lastNameTextField  = Components.JTextField();
+        emailTextField     = Components.JTextField();
     }
 
     private void createLayout() {
@@ -89,50 +107,24 @@ public class BasicInfoView extends JLabel {
                 basicInfoPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addComponent(basicInfoLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(GroupLayout.Alignment.TRAILING, basicInfoPanelLayout.createSequentialGroup()
-                                .addContainerGap(97, Short.MAX_VALUE)
+                                .addGap(97, 97, 97)
                                 .addGroup(basicInfoPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(
-                                                GroupLayout.Alignment.TRAILING,
-                                                basicInfoPanelLayout.createSequentialGroup()
-                                                .addComponent(
-                                                        backLabel,
-                                                        GroupLayout.PREFERRED_SIZE,
-                                                        116,
-                                                        GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(
-                                                        LayoutStyle.ComponentPlacement.RELATED,
-                                                        GroupLayout.DEFAULT_SIZE,
-                                                        Short.MAX_VALUE)
-                                                .addComponent(
-                                                        nextLabel,
-                                                        GroupLayout.PREFERRED_SIZE,
-                                                        116,
-                                                        GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(basicInfoPanelLayout.createSequentialGroup()
+                                                .addComponent(backLabel, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(nextLabel, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE))
                                         .addGroup(basicInfoPanelLayout.createSequentialGroup()
                                                 .addGap(88, 88, 88)
                                                 .addComponent(pawLogoLabel))
                                         .addComponent(lastNameTextField)
-                                        .addComponent(
-                                                firstNameInvalidLabel,
-                                                GroupLayout.DEFAULT_SIZE,
-                                                GroupLayout.DEFAULT_SIZE,
-                                                Short.MAX_VALUE)
-                                        .addComponent(
-                                                firstNameTextField,
-                                                GroupLayout.DEFAULT_SIZE,
-                                                288,
-                                                Short.MAX_VALUE)
-                                        .addComponent(
-                                                lastNameInvalidLabel,
-                                                GroupLayout.DEFAULT_SIZE,
-                                                GroupLayout.DEFAULT_SIZE,
-                                                Short.MAX_VALUE)
-                                        .addComponent(
-                                                emailInvalidLabel,
-                                                GroupLayout.DEFAULT_SIZE,
-                                                GroupLayout.DEFAULT_SIZE,
-                                                Short.MAX_VALUE)
-                                        .addComponent(emailTextField, GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))
+                                        .addComponent(firstNameInvalidLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(firstNameTextField, GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                                        .addComponent(lastNameInvalidLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(emailInvalidLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(emailTextField, GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                                        .addComponent(firstNameLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lastNameLabel, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(emailLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(97, 97, 97))
                         .addGroup(basicInfoPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                 .addComponent(iepManagerLabel, GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE))
@@ -145,34 +137,28 @@ public class BasicInfoView extends JLabel {
                                 .addGap(83, 83, 83)
                                 .addComponent(basicInfoLabel)
                                 .addGap(29, 29, 29)
-                                .addComponent(
-                                        firstNameTextField,
-                                        GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE)
+                                .addComponent(firstNameLabel)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(firstNameTextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(firstNameInvalidLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(
-                                        lastNameTextField,
-                                        GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lastNameLabel)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lastNameTextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lastNameInvalidLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(
-                                        emailTextField,
-                                        GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE)
+                                .addComponent(emailLabel)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(emailTextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(emailInvalidLabel)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(18, 18, 18)
                                 .addGroup(basicInfoPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addComponent(backLabel)
-                                        .addComponent(nextLabel))
-                                .addContainerGap(58, Short.MAX_VALUE))
+                                        .addComponent(nextLabel)
+                                        .addComponent(backLabel))
+                                .addContainerGap(42, Short.MAX_VALUE))
                         .addGroup(basicInfoPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                 .addGroup(basicInfoPanelLayout.createSequentialGroup()
                                         .addGap(195, 195, 195)

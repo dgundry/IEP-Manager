@@ -6,7 +6,6 @@ import com.mango.prjmango.utilities.EmailValidation;
 import com.mango.prjmango.ui.common.ImageIcons;
 import com.mango.prjmango.ui.sideoptions.SideOptionsView;
 import com.mango.prjmango.utilities.dbcommands.UserCommands;
-
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.event.MouseEvent;

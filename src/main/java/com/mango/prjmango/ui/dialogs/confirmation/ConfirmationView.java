@@ -4,6 +4,12 @@ import com.mango.prjmango.ui.MainWindowView;
 import com.mango.prjmango.ui.common.Colors;
 import com.mango.prjmango.ui.common.Fonts;
 import com.mango.prjmango.ui.common.ImageIcons;
+import com.mango.prjmango.utilities.exceptions.NoScreensFoundException;
+import java.awt.Dimension;
+import java.awt.GraphicsConfiguration;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.Window;
 import javax.swing.GroupLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,15 +20,7 @@ import javax.swing.WindowConstants;
 import javax.swing.border.LineBorder;
 import lombok.Getter;
 
-import java.awt.*;
-import java.awt.GraphicsConfiguration;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
-
-
 public class ConfirmationView extends JFrame {
-
-    private final Dimension DIMENSIONS = new Dimension(305, 138);
 
     private JPanel panel;
 
@@ -30,18 +28,20 @@ public class ConfirmationView extends JFrame {
     @Getter private JLabel exitLabel;
     @Getter private JLabel cancelLabel;
 
-    @Getter private Dialogs selectedDialog;
+    @Getter private final Dialogs selectedDialog;
 
-    private String displayText;
+    private final String displayText;
 
     public ConfirmationView(String displayText, Dialogs selectedDialog) {
         this.displayText = displayText;
         this.selectedDialog = selectedDialog;
 
+        Dimension dimensions = new Dimension(305, 138);
+
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(DIMENSIONS);
-        setMinimumSize(DIMENSIONS);
-        setSize(DIMENSIONS);
+        setMaximumSize(dimensions);
+        setMinimumSize(dimensions);
+        setSize(dimensions);
         setResizable(false);
         setUndecorated(true);
 
@@ -75,7 +75,9 @@ public class ConfirmationView extends JFrame {
     private void showOnScreen(int screen, JFrame frame) {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         GraphicsDevice[] gd = ge.getScreenDevices();
-        int width, height;
+
+        int width;
+        int height;
         if (screen > -1 && screen < gd.length) {
             width = gd[screen].getDefaultConfiguration().getBounds().width;
             height = gd[screen].getDefaultConfiguration().getBounds().height;
@@ -85,7 +87,7 @@ public class ConfirmationView extends JFrame {
             );
             frame.setVisible(true);
         } else {
-            throw new RuntimeException("No Screens Found");
+            throw new NoScreensFoundException("No Screens Found");
         }
     }
 
@@ -113,6 +115,7 @@ public class ConfirmationView extends JFrame {
                 createLayoutOne();
                 break;
             case 2:
+            case 4:
                 exitLabel   = new JLabel(ImageIcons.APP_EXIT_NO_HOVER.getImageIcon());
                 cancelLabel = new JLabel();
                 createLayoutTwo();
@@ -122,10 +125,6 @@ public class ConfirmationView extends JFrame {
                 cancelLabel = new JLabel();
                 createLayoutTwo();
                 break;
-            case 4:
-                exitLabel   = new JLabel(ImageIcons.APP_EXIT_NO_HOVER.getImageIcon());
-                cancelLabel = new JLabel();
-                createLayoutTwo();
             default:
                 break;
         }

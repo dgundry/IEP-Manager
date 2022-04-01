@@ -70,8 +70,8 @@ public class AnswerSecurityQuestionsView extends JLabel {
                 Colors.RED,
                 SwingConstants.CENTER);
 
-        answer1TextField = Components.JTextField("Answer #1", Fonts.SEGOE_UI_16.getFont(), Colors.LIGHT_GREY);
-        answer2TextField = Components.JTextField("Answer #2", Fonts.SEGOE_UI_16.getFont(), Colors.LIGHT_GREY);
+        answer1TextField = Components.JTextField();
+        answer2TextField = Components.JTextField();
     }
 
     private void createLayout() {
@@ -113,11 +113,11 @@ public class AnswerSecurityQuestionsView extends JLabel {
                                 .addGap(18, 18, 18)
                                 .addComponent(question1Label)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(answer1TextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(answer1TextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(question2Label)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(answer2TextField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(answer2TextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(invalidLabel)
                                 .addGap(48, 48, 48)

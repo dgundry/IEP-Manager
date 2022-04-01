@@ -2,8 +2,10 @@ package com.mango.prjmango.ui.students.edit;
 
 import com.mango.prjmango.Main;
 import com.mango.prjmango.student.Student;
-import com.mango.prjmango.ui.common.*;
-
+import com.mango.prjmango.ui.common.Colors;
+import com.mango.prjmango.ui.common.Components;
+import com.mango.prjmango.ui.common.Fonts;
+import com.mango.prjmango.ui.common.ImageIcons;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;

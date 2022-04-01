@@ -19,6 +19,7 @@ public class EmailView extends JLabel {
     private JLabel pawLogoLabel;
     private JLabel iepManagerLabel;
     private JLabel resetPasswordLabel;
+    private JLabel emailLabel;
 
     @Getter private JLabel invalidLabel;
     @Getter private JLabel backLabel;
@@ -51,13 +52,18 @@ public class EmailView extends JLabel {
                 Fonts.SEGOE_UI_22.getFont(),
                 Colors.LIGHT_GREY,
                 SwingConstants.CENTER);
+        emailLabel = Components.JLabel(
+                "Email",
+                Fonts.SEGOE_UI_16.getFont(),
+                Colors.LIGHT_GREY,
+                SwingConstants.LEFT);
         invalidLabel = Components.JLabel(
                 " ",
                 Fonts.SEGOE_UI_12.getFont(),
                 Colors.RED,
                 SwingConstants.CENTER);
 
-        emailTextField = Components.JTextField("Email", Fonts.SEGOE_UI_16.getFont(), Colors.LIGHT_GREY);
+        emailTextField = Components.JTextField();
     }
 
     private void createLayout() {
@@ -65,40 +71,20 @@ public class EmailView extends JLabel {
         setLayout(emailPanelLayout);
         emailPanelLayout.setHorizontalGroup(
                 emailPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addComponent(
-                                resetPasswordLabel,
-                                GroupLayout.DEFAULT_SIZE,
-                                GroupLayout.DEFAULT_SIZE,
-                                Short.MAX_VALUE)
+                        .addComponent(resetPasswordLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(GroupLayout.Alignment.TRAILING, emailPanelLayout.createSequentialGroup()
                                 .addContainerGap(97, Short.MAX_VALUE)
                                 .addGroup(emailPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(
-                                                GroupLayout.Alignment.TRAILING,
-                                                emailPanelLayout.createSequentialGroup()
-                                                .addComponent(
-                                                        backLabel,
-                                                        GroupLayout.PREFERRED_SIZE,
-                                                        116,
-                                                        GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(
-                                                        LayoutStyle.ComponentPlacement.RELATED,
-                                                        GroupLayout.DEFAULT_SIZE,
-                                                        Short.MAX_VALUE)
-                                                .addComponent(
-                                                        nextLabel,
-                                                        GroupLayout.PREFERRED_SIZE,
-                                                        116,
-                                                        GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(GroupLayout.Alignment.TRAILING, emailPanelLayout.createSequentialGroup()
+                                                .addComponent(backLabel, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(nextLabel, GroupLayout.PREFERRED_SIZE, 116, GroupLayout.PREFERRED_SIZE))
                                         .addGroup(emailPanelLayout.createSequentialGroup()
                                                 .addGap(88, 88, 88)
                                                 .addComponent(pawLogoLabel))
-                                        .addComponent(
-                                                invalidLabel,
-                                                GroupLayout.DEFAULT_SIZE,
-                                                GroupLayout.DEFAULT_SIZE,
-                                                Short.MAX_VALUE)
-                                        .addComponent(emailTextField, GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))
+                                        .addComponent(invalidLabel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(emailTextField, GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                                        .addComponent(emailLabel, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(97, 97, 97))
                         .addGroup(emailPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                 .addComponent(iepManagerLabel, GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE))
@@ -111,18 +97,16 @@ public class EmailView extends JLabel {
                                 .addGap(83, 83, 83)
                                 .addComponent(resetPasswordLabel)
                                 .addGap(29, 29, 29)
-                                .addComponent(
-                                        emailTextField,
-                                        GroupLayout.PREFERRED_SIZE,
-                                        GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE)
+                                .addComponent(emailLabel)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(emailTextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(invalidLabel)
-                                .addGap(173, 173, 173)
+                                .addGap(145, 145, 145)
                                 .addGroup(emailPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addComponent(backLabel)
                                         .addComponent(nextLabel))
-                                .addContainerGap(58, Short.MAX_VALUE))
+                                .addContainerGap(83, Short.MAX_VALUE))
                         .addGroup(emailPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                 .addGroup(emailPanelLayout.createSequentialGroup()
                                         .addGap(195, 195, 195)

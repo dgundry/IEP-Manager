@@ -3,15 +3,15 @@ package com.mango.prjmango.ui.students.view;
 import com.mango.prjmango.Main;
 import com.mango.prjmango.student.Students;
 import com.mango.prjmango.ui.common.ImageIcons;
-
-import javax.swing.*;
-import javax.swing.event.CellEditorListener;
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.TableCellEditor;
-import javax.swing.table.TableCellRenderer;
-import java.awt.*;
-import java.awt.event.*;
-import java.util.EventObject;
 
 public class ViewStudentController {
     public ViewStudentController(ViewStudentView view){
@@ -37,7 +37,7 @@ public class ViewStudentController {
         }
     }
 
-    private class ButtonEditor extends DefaultCellEditor  {
+    private class ButtonEditor extends DefaultCellEditor {
         protected JButton button;
         private String label;
         private boolean isPushed;

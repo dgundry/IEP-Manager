@@ -31,6 +31,7 @@ public class LimitedTextField extends PlainDocument {
      * @param attr   the {@link AttributeSet}, typically {@code null}
      * @throws BadLocationException the exception to throw
      */
+    @Override
     public void insertString(int offset, String str, AttributeSet attr) throws BadLocationException {
         if (str == null)
             return;

@@ -14,7 +14,7 @@ public enum StudentSortTypes {
     GRADE(Comparator.comparing(Student::getGrade)),
     BIO(Comparator.comparing(Student::getBio));
 
-    @Getter private Comparator<Student> comparator;
+    @Getter private final Comparator<Student> comparator;
 
     /**
      * Constructor. Initializes the {@link Comparator} that can be accessed.

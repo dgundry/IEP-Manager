@@ -55,7 +55,7 @@ public class EditProfileView extends JPanel {
         emailEditLabel     = new JLabel(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
 
         try {
-            firstNameTextField = Components.LimitedJTextField(LoggedInUser.getFirstName(),12);
+            firstNameTextField = Components.LimitedJTextField(LoggedInUser.getFirstName(), 12);
             firstNameTextField.setEnabled(false);
         } catch (Exception ex) {
             ex.printStackTrace();

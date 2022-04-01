@@ -6,18 +6,15 @@ import com.mango.prjmango.ui.common.roundedcomponents.RoundedPasswordField;
 import com.mango.prjmango.ui.common.roundedcomponents.RoundedTextArea;
 import com.mango.prjmango.ui.common.roundedcomponents.RoundedTextField;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Insets;
-import java.util.*;
-import javax.swing.BorderFactory;
+import java.util.List;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.border.TitledBorder;
 import javax.swing.text.BadLocationException;
 
 /**
@@ -61,23 +58,6 @@ public class Components {
         return label;
     }
 
-    public static JTextField JTextField(String text, Font font, Color foregroundColor) {
-        JTextField textField = new JTextField();
-        textField.setOpaque(false);
-        textField.setFont(font);
-        textField.setForeground(foregroundColor);
-        textField.setMargin(new Insets(0, 5, 0, 5));
-        textField.setBorder(BorderFactory.createTitledBorder(
-                null,
-                text,
-                TitledBorder.DEFAULT_JUSTIFICATION,
-                TitledBorder.DEFAULT_POSITION,
-                Fonts.SEGOE_UI_14.getFont(),
-                Colors.LIGHT_GREY));
-        textField.setCaretColor(Colors.LIGHT_GREY);
-        return textField;
-    }
-
     /**
      * Creates a new rounded {@link JTextField}
      *
@@ -94,6 +74,30 @@ public class Components {
         return textField;
     }
 
+    /**
+     * Creates a new rounded {@link JTextField}
+     *
+     * @return a new {@link JTextField}
+     */
+    public static JTextField JTextField() {
+        JTextField textField = new RoundedTextField();
+        textField.setFont(Fonts.SEGOE_UI_16.getFont());
+        textField.setBackground(Colors.DARK_GREY);
+        textField.setForeground(Colors.LIGHT_GREY);
+        textField.setCaretColor(Colors.LIGHT_GREY);
+        textField.setMargin(new Insets(0, 5, 0, 5));
+        return textField;
+    }
+
+    /**
+     * Creates a new rounded {@link JTextField} that has a character limit
+     *
+     * @param text  the text to display
+     * @param limit the character limit
+     * @return a new rounded {@link JTextField} that has a character limit
+     * @throws BadLocationException This exception is to report bad locations within a document model
+     *                              (that is, attempts to reference a location that doesn't exist).
+     */
     public static JTextField LimitedJTextField(String text, int limit) throws BadLocationException {
         JTextField textField = new RoundedTextField();
         textField.setFont(Fonts.SEGOE_UI_16.getFont());
@@ -120,23 +124,6 @@ public class Components {
         textArea.setCaretColor(Colors.LIGHT_GREY);
         textArea.setFont(Fonts.SEGOE_UI_16.getFont());
         return textArea;
-    }
-
-    public static JPasswordField JPasswordField(String headerText) {
-        JPasswordField passwordField = new JPasswordField();
-        passwordField.setOpaque(false);
-        passwordField.setFont(Fonts.SEGOE_UI_16.getFont());
-        passwordField.setForeground(Colors.LIGHT_GREY);
-        passwordField.setMargin(new Insets(0, 5, 0, 5));
-        passwordField.setBorder(BorderFactory.createTitledBorder(
-                null,
-                headerText,
-                TitledBorder.DEFAULT_JUSTIFICATION,
-                TitledBorder.DEFAULT_POSITION,
-                Fonts.SEGOE_UI_14.getFont(),
-                Colors.LIGHT_GREY));
-        passwordField.setCaretColor(Colors.LIGHT_GREY);
-        return passwordField;
     }
 
     /**
@@ -169,23 +156,12 @@ public class Components {
         return separator;
     }
 
-    public static JComboBox<String> JComboBox(String headerText, List<String> list) {
-        JComboBox<String> comboBox = new JComboBox<>(new Vector<>(list));
-        comboBox.setOpaque(false);
-        comboBox.setFont(Fonts.SEGOE_UI_16.getFont());
-        comboBox.setBackground(Colors.DARK_GREY);
-        comboBox.setForeground(Colors.LIGHT_GREY);
-        comboBox.setBorder(BorderFactory.createTitledBorder(
-                null,
-                headerText,
-                TitledBorder.DEFAULT_JUSTIFICATION,
-                TitledBorder.DEFAULT_POSITION,
-                Fonts.SEGOE_UI_14.getFont(),
-                Colors.LIGHT_GREY));
-        comboBox.setPreferredSize(new Dimension(56, 20));
-        return comboBox;
-    }
-
+    /**
+     * Creates a rounded {@link JComboBox}
+     *
+     * @param list the {@link List} to populate the {@link JComboBox} with
+     * @return a new rounded {@link JComboBox}
+     */
     public static JComboBox<String> JComboBox(List<String> list) {
         JComboBox<String> comboBox = new RoundedComboBox<>(list);
         comboBox.setFont(Fonts.SEGOE_UI_16.getFont());
@@ -194,6 +170,11 @@ public class Components {
         return comboBox;
     }
 
+    /**
+     * Creates a rounded {@link JComboBox}
+     *
+     * @return a new rounded {@link JComboBox}
+     */
     public static JComboBox<Object> JComboBox() {
         JComboBox<Object> comboBox = new RoundedComboBox<>();
         comboBox.setFont(Fonts.SEGOE_UI_16.getFont());

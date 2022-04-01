@@ -1,13 +1,17 @@
 package com.mango.prjmango.ui.activities.create;
 
-import com.mango.prjmango.Main;
-import com.mango.prjmango.ui.common.*;
-import com.mango.prjmango.ui.common.limitedtextfield.LimitedTextField;
-import com.mango.prjmango.ui.common.roundedcomponents.RoundedComboBox;
-import lombok.Getter;
 
-import javax.swing.*;
+import com.mango.prjmango.ui.common.Colors;
+import com.mango.prjmango.ui.common.Components;
+import com.mango.prjmango.ui.common.Fonts;
+import com.mango.prjmango.ui.common.ImageIcons;
+import javax.swing.GroupLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.LayoutStyle;
 import javax.swing.text.BadLocationException;
+import lombok.Getter;
 
 public class CreateView extends JPanel {
     @Getter private JLabel addAssignmentHeaderLabel;

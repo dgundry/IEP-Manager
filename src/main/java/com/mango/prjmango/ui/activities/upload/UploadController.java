@@ -3,17 +3,22 @@ package com.mango.prjmango.ui.activities.upload;
 import com.mango.prjmango.Main;
 import com.mango.prjmango.Outlines.Outline;
 import com.mango.prjmango.student.Student;
-import com.mango.prjmango.ui.activities.ActivitiesView;
 import com.mango.prjmango.ui.common.ImageIcons;
 import com.mango.prjmango.ui.dialogs.confirmation.ConfirmationController;
 import com.mango.prjmango.ui.dialogs.confirmation.ConfirmationView;
 import com.mango.prjmango.ui.dialogs.confirmation.Dialogs;
 import com.mango.prjmango.utilities.DatabaseConnection;
-
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Color;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.PreparedStatement;
-import javax.swing.*;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 public class UploadController {
 
@@ -163,29 +168,49 @@ public class UploadController {
             this.view = view;
         }
 
+        /**
+         * Invoked when the mouse button has been clicked (pressed
+         * and released) on a component.
+         *
+         * @param e the {@link MouseEvent}
+         */
         @Override
-        public void mouseClicked(MouseEvent e) {
-        }
+        public void mouseClicked(MouseEvent e) { /* Not needed */ }
 
+        /**
+         * Invoked when a mouse button has been pressed on a component.
+         *
+         * @param e the {@link MouseEvent}
+         */
         @Override
         public void mousePressed(MouseEvent e) {
             view.getMaximumPointsTextField().setEditable(true);
             view.getMaximumPointsTextField().requestFocusInWindow();
         }
 
+        /**
+         * Invoked when a mouse button has been released on a component.
+         *
+         * @param e the {@link MouseEvent}
+         */
         @Override
-        public void mouseReleased(MouseEvent e) {
+        public void mouseReleased(MouseEvent e) { /* Not needed */ }
 
-        }
-
+        /**
+         * Invoked when the mouse enters a component.
+         *
+         * @param e the {@link MouseEvent}
+         */
         @Override
-        public void mouseEntered(MouseEvent e) {
-        }
+        public void mouseEntered(MouseEvent e) { /* Not needed */ }
 
+        /**
+         * Invoked when the mouse exits a component.
+         *
+         * @param e the {@link MouseEvent}
+         */
         @Override
-        public void mouseExited(MouseEvent e) {
-
-        }
+        public void mouseExited(MouseEvent e) { /* Not needed */ }
     }
 
     private class earnedFieldMouseListener implements MouseListener {
@@ -194,31 +219,49 @@ public class UploadController {
             this.view = view;
         }
 
+        /**
+         * Invoked when the mouse button has been clicked (pressed
+         * and released) on a component.
+         *
+         * @param e the {@link MouseEvent}
+         */
         @Override
-        public void mouseClicked(MouseEvent e) {
+        public void mouseClicked(MouseEvent e) { /* Not needed */ }
 
-        }
-
+        /**
+         * Invoked when a mouse button has been pressed on a component.
+         *
+         * @param e the {@link MouseEvent}
+         */
         @Override
         public void mousePressed(MouseEvent e) {
             view.getPointsEarnedTextField().setEditable(true);
             view.getPointsEarnedTextField().requestFocusInWindow();
         }
 
+        /**
+         * Invoked when a mouse button has been released on a component.
+         *
+         * @param e the {@link MouseEvent}
+         */
         @Override
-        public void mouseReleased(MouseEvent e) {
+        public void mouseReleased(MouseEvent e) { /* Not needed */ }
 
-        }
-
+        /**
+         * Invoked when the mouse enters a component.
+         *
+         * @param e the {@link MouseEvent}
+         */
         @Override
-        public void mouseEntered(MouseEvent e) {
+        public void mouseEntered(MouseEvent e) { /* Not needed */ }
 
-        }
-
+        /**
+         * Invoked when the mouse exits a component.
+         *
+         * @param e the {@link MouseEvent}
+         */
         @Override
-        public void mouseExited(MouseEvent e) {
-
-        }
+        public void mouseExited(MouseEvent e) { /* Not needed */ }
     }
 
     private class AssignmentChangedListener implements ItemListener {

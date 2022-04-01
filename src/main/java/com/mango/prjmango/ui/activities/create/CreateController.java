@@ -2,21 +2,15 @@ package com.mango.prjmango.ui.activities.create;
 
 import com.mango.prjmango.Main;
 import com.mango.prjmango.Outlines.Outlines;
-import com.mango.prjmango.student.Students;
-import com.mango.prjmango.ui.activities.ActivitiesView;
-import com.mango.prjmango.ui.activities.upload.UploadController;
-import com.mango.prjmango.ui.activities.upload.UploadView;
 import com.mango.prjmango.ui.common.ImageIcons;
-import com.mango.prjmango.ui.students.create.CreateStudentView;
 import com.mango.prjmango.utilities.DatabaseCommands;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Objects;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 public class CreateController {
     public CreateController(CreateView view) {
@@ -49,6 +43,12 @@ public class CreateController {
 
         }
 
+        /**
+         * Invoked when the mouse button has been clicked (pressed
+         * and released) on a component.
+         *
+         * @param e the {@link MouseEvent}
+         */
         public void mouseClicked(MouseEvent e){
             view.getInformationLabel().setText("");
 
@@ -72,22 +72,37 @@ public class CreateController {
 
         }
 
+        /**
+         * Invoked when a mouse button has been pressed on a component.
+         *
+         * @param e the {@link MouseEvent}
+         */
         @Override
-        public void mousePressed(MouseEvent e) {
+        public void mousePressed(MouseEvent e) { /* Not needed */ }
 
-        }
-
+        /**
+         * Invoked when a mouse button has been released on a component.
+         *
+         * @param e the {@link MouseEvent}
+         */
         @Override
-        public void mouseReleased(MouseEvent e) {
+        public void mouseReleased(MouseEvent e) { /* Not needed */ }
 
-        }
-
+        /**
+         * Invoked when the mouse enters a component.
+         *
+         * @param e the {@link MouseEvent}
+         */
         @Override
         public void mouseEntered(MouseEvent e) {
             label.setIcon(ImageIcons.EDIT_PROFILE_SAVE_HOVERED.getImageIcon());
         }
 
-
+        /**
+         * Invoked when the mouse exits a component.
+         *
+         * @param e the {@link MouseEvent}
+         */
         @Override
         public void mouseExited(MouseEvent e) {
             label.setIcon(ImageIcons.EDIT_PROFILE_SAVE_NO_HOVER.getImageIcon());
@@ -105,29 +120,48 @@ public class CreateController {
             this.view = view;
         }
 
+        /**
+         * Invoked when the mouse button has been clicked (pressed
+         * and released) on a component.
+         *
+         * @param e the {@link MouseEvent}
+         */
         @Override
-        public void mouseClicked(MouseEvent e) {
-        }
+        public void mouseClicked(MouseEvent e) { /* Not needed */ }
 
+        /**
+         * Invoked when a mouse button has been pressed on a component.
+         *
+         * @param e the {@link MouseEvent}
+         */
         @Override
         public void mousePressed(MouseEvent e) {
             view.getMaximumPointsTextField().setEditable(true);
             view.getMaximumPointsTextField().requestFocusInWindow();
         }
 
+        /**
+         * Invoked when a mouse button has been released on a component.
+         *
+         * @param e the {@link MouseEvent}
+         */
         @Override
-        public void mouseReleased(MouseEvent e) {
+        public void mouseReleased(MouseEvent e) { /* Not needed */ }
 
-        }
-
+        /**
+         * Invoked when the mouse enters a component.
+         *
+         * @param e the {@link MouseEvent}
+         */
         @Override
-        public void mouseEntered(MouseEvent e) {
-        }
+        public void mouseEntered(MouseEvent e) { /* Not needed */ }
 
+        /**
+         * Invoked when the mouse exits a component.
+         *
+         * @param e the {@link MouseEvent}
+         */
         @Override
-        public void mouseExited(MouseEvent e) {
-
-        }
+        public void mouseExited(MouseEvent e) { /* Not needed */ }
     }
-
 }
