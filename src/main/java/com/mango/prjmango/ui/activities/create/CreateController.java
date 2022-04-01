@@ -34,23 +34,6 @@ public class CreateController {
                 }
             }
         });
-        JTextField nameField = view.getAssignmentNameTextField();
-
-        nameField.addKeyListener(new KeyAdapter() {
-            public void keyTyped(KeyEvent event) {
-                String value = nameField.getText();
-                int length = value.length();
-                if(length <= 32) {
-                    nameField.setEditable(true);
-                }else if(event.getKeyChar() == 8) {
-                    nameField.setEditable(true);
-                    nameField.setText(nameField.getText().toString().substring(0, length - 1));
-                }else{
-                    nameField.setEditable(false);
-                }
-            }
-        });
-        nameField.addMouseListener(new nameFieldMouseListener(view));
         maximumField.addMouseListener(new maximumFieldMouseListener(view));
         saveLabel.addMouseListener(new SaveStudentMouseListener(view, saveLabel));
     }
@@ -146,36 +129,5 @@ public class CreateController {
 
         }
     }
-    private class nameFieldMouseListener implements MouseListener {
-        CreateView view;
-        public nameFieldMouseListener(CreateView view) {
-            this.view = view;
-        }
-
-        @Override
-        public void mouseClicked(MouseEvent e) {
-        }
-
-        @Override
-        public void mousePressed(MouseEvent e) {
-            view.getAssignmentNameTextField().setEditable(true);
-            view.getAssignmentNameTextField().requestFocusInWindow();
-        }
-
-        @Override
-        public void mouseReleased(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseEntered(MouseEvent e) {
-        }
-
-        @Override
-        public void mouseExited(MouseEvent e) {
-
-        }
-    }
-
 
 }

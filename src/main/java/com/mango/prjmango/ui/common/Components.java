@@ -94,10 +94,10 @@ public class Components {
         return textField;
     }
 
-    public static JTextField LimitedJTextField(String text) throws BadLocationException {
+    public static JTextField LimitedJTextField(String text, int limit) throws BadLocationException {
         JTextField textField = new RoundedTextField();
         textField.setFont(Fonts.SEGOE_UI_16.getFont());
-        textField.setDocument(new LimitedTextField(12));
+        textField.setDocument(new LimitedTextField(limit));
         textField.getDocument().insertString(0, text, null);
         textField.setBackground(Colors.DARK_GREY);
         textField.setForeground(Colors.LIGHT_GREY);

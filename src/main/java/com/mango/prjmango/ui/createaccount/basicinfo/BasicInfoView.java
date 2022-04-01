@@ -74,7 +74,7 @@ public class BasicInfoView extends JLabel {
                 SwingConstants.CENTER);
 
         try {
-            firstNameTextField = Components.LimitedJTextField("First Name");
+            firstNameTextField = Components.LimitedJTextField("First Name",12);
         } catch (BadLocationException e) {
             e.printStackTrace();
         }

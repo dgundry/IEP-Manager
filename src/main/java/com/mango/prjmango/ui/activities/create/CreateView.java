@@ -2,10 +2,12 @@ package com.mango.prjmango.ui.activities.create;
 
 import com.mango.prjmango.Main;
 import com.mango.prjmango.ui.common.*;
+import com.mango.prjmango.ui.common.limitedtextfield.LimitedTextField;
 import com.mango.prjmango.ui.common.roundedcomponents.RoundedComboBox;
 import lombok.Getter;
 
 import javax.swing.*;
+import javax.swing.text.BadLocationException;
 
 public class CreateView extends JPanel {
     @Getter private JLabel addAssignmentHeaderLabel;
@@ -33,7 +35,11 @@ public class CreateView extends JPanel {
 
         saveLabel = new JLabel(ImageIcons.EDIT_PROFILE_SAVE_NO_HOVER.getImageIcon());
 
-        assignmentNameTextField = Components.JTextField("");
+        try {
+            assignmentNameTextField = Components.LimitedJTextField("", 32);
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
         maximumPointsTextField  = Components.JTextField("");
     }
     public void createLayout() {
