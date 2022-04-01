@@ -40,7 +40,7 @@ public class CreateController {
             public void keyTyped(KeyEvent event) {
                 String value = nameField.getText();
                 int length = value.length();
-                if(length <= 20) {
+                if(length <= 32) {
                     nameField.setEditable(true);
                 }else if(event.getKeyChar() == 8) {
                     nameField.setEditable(true);
