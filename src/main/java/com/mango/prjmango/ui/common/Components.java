@@ -1,6 +1,7 @@
 package com.mango.prjmango.ui.common;
 
-import com.mango.prjmango.ui.common.limitedtextfield.LimitedTextField;
+import com.mango.prjmango.ui.common.limitedtextfield.FilterType;
+import com.mango.prjmango.ui.common.limitedtextfield.JTextFieldFilter;
 import com.mango.prjmango.ui.common.roundedcomponents.RoundedComboBox;
 import com.mango.prjmango.ui.common.roundedcomponents.RoundedPasswordField;
 import com.mango.prjmango.ui.common.roundedcomponents.RoundedTextArea;
@@ -16,6 +17,7 @@ import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.PlainDocument;
 
 /**
  * Utility class which allows for easy access to create new UI components while keeping a consistent look.
@@ -92,16 +94,20 @@ public class Components {
     /**
      * Creates a new rounded {@link JTextField} that has a character limit
      *
-     * @param text  the text to display
-     * @param limit the character limit
+     * @param filter the {@link FilterType} for the specific {@link JTextField}
+     * @param text   the text to display
+     * @param limit  the character limit
      * @return a new rounded {@link JTextField} that has a character limit
      * @throws BadLocationException This exception is to report bad locations within a document model
      *                              (that is, attempts to reference a location that doesn't exist).
      */
-    public static JTextField LimitedJTextField(String text, int limit) throws BadLocationException {
+    public static JTextField LimitedJTextField(FilterType filter, String text, int limit) throws BadLocationException {
         JTextField textField = new RoundedTextField();
         textField.setFont(Fonts.SEGOE_UI_16.getFont());
-        textField.setDocument(new LimitedTextField(limit));
+
+        PlainDocument plainDocument = (PlainDocument) textField.getDocument();
+        plainDocument.setDocumentFilter(new JTextFieldFilter(filter, limit));
+
         textField.getDocument().insertString(0, text, null);
         textField.setBackground(Colors.DARK_GREY);
         textField.setForeground(Colors.LIGHT_GREY);

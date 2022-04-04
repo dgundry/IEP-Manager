@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.text.BadLocationException;
+
+import com.mango.prjmango.ui.common.limitedtextfield.FilterType;
 import lombok.Getter;
 
 public class CreateView extends JPanel {
@@ -40,7 +42,7 @@ public class CreateView extends JPanel {
         saveLabel = new JLabel(ImageIcons.EDIT_PROFILE_SAVE_NO_HOVER.getImageIcon());
 
         try {
-            assignmentNameTextField = Components.LimitedJTextField("", 32);
+            assignmentNameTextField = Components.LimitedJTextField(FilterType.CHARACTERS_AND_NUMBERS, "", 32);
         } catch (BadLocationException e) {
             e.printStackTrace();
         }

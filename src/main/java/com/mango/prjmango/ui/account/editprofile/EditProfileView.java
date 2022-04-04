@@ -10,6 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
+
+import com.mango.prjmango.ui.common.limitedtextfield.FilterType;
 import lombok.Getter;
 
 /**
@@ -55,7 +57,7 @@ public class EditProfileView extends JPanel {
         emailEditLabel     = new JLabel(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
 
         try {
-            firstNameTextField = Components.LimitedJTextField(LoggedInUser.getFirstName(), 12);
+            firstNameTextField = Components.LimitedJTextField(FilterType.CHARACTERS_ONLY, LoggedInUser.getFirstName(), 12);
             firstNameTextField.setEnabled(false);
         } catch (Exception ex) {
             ex.printStackTrace();

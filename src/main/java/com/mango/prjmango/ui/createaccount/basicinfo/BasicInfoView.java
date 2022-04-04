@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
 import javax.swing.SwingConstants;
 import javax.swing.text.BadLocationException;
+import com.mango.prjmango.ui.common.limitedtextfield.FilterType;
 import lombok.Getter;
 
 /**
@@ -91,13 +92,13 @@ public class BasicInfoView extends JLabel {
                 SwingConstants.CENTER);
 
         try {
-            firstNameTextField = Components.LimitedJTextField("", 12);
+            firstNameTextField = Components.LimitedJTextField(FilterType.CHARACTERS_ONLY, "", 12);
+            lastNameTextField  = Components.LimitedJTextField(FilterType.CHARACTERS_ONLY, "", 20);
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
 
-        lastNameTextField  = Components.JTextField();
-        emailTextField     = Components.JTextField();
+        emailTextField    = Components.JTextField();
     }
 
     private void createLayout() {
