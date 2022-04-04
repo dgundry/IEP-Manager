@@ -109,7 +109,7 @@ public class ActivitiesView {
                 uploadAssignmentLabel.setIcon(ImageIcons.ACTIVITIES_UPLOAD_SELECTED.getImageIcon());
                 break;
             case 4:
-                createAssignmentLabel.setIcon(ImageIcons.ACTIVITIES_UPLOAD_SELECTED.getImageIcon());
+                createAssignmentLabel.setIcon(ImageIcons.ACTIVITIES_CREATE_ASSIGNMENT_SELECTED.getImageIcon());
                 break;
             default:
                 break;

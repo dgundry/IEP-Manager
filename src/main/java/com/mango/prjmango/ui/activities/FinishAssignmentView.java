@@ -8,7 +8,6 @@ import java.time.LocalDate;
 import javax.swing.GroupLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.LayoutStyle;
 import lombok.Getter;
@@ -34,8 +33,6 @@ public class FinishAssignmentView extends JPanel {
     @Getter private JLabel saveLabel;
 
     @Getter private JTextArea commentsTextArea;
-
-    private JScrollPane scrollPane;
 
     @Getter private CreateAssignment assignment;
 
@@ -89,9 +86,6 @@ public class FinishAssignmentView extends JPanel {
         commentsTextArea = Components.JTextArea("");
         commentsTextArea.setColumns(20);
         commentsTextArea.setRows(5);
-
-        scrollPane = new JScrollPane();
-        scrollPane.setViewportView(commentsTextArea);
         commentsTextArea.requestFocus();
     }
 
@@ -108,7 +102,7 @@ public class FinishAssignmentView extends JPanel {
                                                 .addComponent(percentageLabel)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(changePercentageLabel))
-                                        .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 517, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(commentsTextArea, GroupLayout.PREFERRED_SIZE, 517, GroupLayout.PREFERRED_SIZE)
                                         .addComponent(finishAssignmentHeaderLabel)
                                         .addComponent(saveLabel, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                         .addGroup(finishAssignmentPanelLayout.createSequentialGroup()
@@ -153,7 +147,7 @@ public class FinishAssignmentView extends JPanel {
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(commentsLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(commentsTextArea, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(saveLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(993, Short.MAX_VALUE))

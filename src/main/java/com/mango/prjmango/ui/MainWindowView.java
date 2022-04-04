@@ -8,8 +8,8 @@ import com.mango.prjmango.ui.dialogs.confirmation.Dialogs;
 import com.mango.prjmango.ui.sideoptions.SideOptionsController;
 import com.mango.prjmango.ui.sideoptions.SideOptionsView;
 import com.mango.prjmango.utilities.Tabs;
-
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Point;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.WindowAdapter;
@@ -28,7 +28,6 @@ public class MainWindowView {
     private static final Dimension INITIAL_DIMENSIONS = new Dimension(Main.rect.width, Main.rect.height);
 
     @Getter private static final JFrame frame = new JFrame();
-
     @Getter private static final JPanel mainPanel = new JPanel();
 
     private static final LoginViewLayout loginViewLayout = new LoginViewLayout();
@@ -70,19 +69,13 @@ public class MainWindowView {
             }
 
             @Override
-            public void componentMoved(ComponentEvent e) {
-
-            }
+            public void componentMoved(ComponentEvent e) { /* Not needed */ }
 
             @Override
-            public void componentShown(ComponentEvent e) {
-
-            }
+            public void componentShown(ComponentEvent e) { /* Not needed */ }
 
             @Override
-            public void componentHidden(ComponentEvent e) {
-
-            }
+            public void componentHidden(ComponentEvent e) { /* Not needed */ }
         });
     }
 
