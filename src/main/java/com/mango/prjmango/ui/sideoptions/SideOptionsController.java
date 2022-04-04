@@ -20,7 +20,6 @@ public class SideOptionsController {
         JLabel accountTabLabel    = SideOptionsView.getAccountTabLabel();
         JLabel studentsTabLabel   = SideOptionsView.getStudentsTabLabel();
         JLabel activitiesTabLabel = SideOptionsView.getActivitiesTabLabel();
-        JLabel reportsTabLabel    = SideOptionsView.getReportsTabLabel();
         JLabel logOutLabel        = SideOptionsView.getLogOutLabel();
 
         accountTabLabel.addMouseListener(new TabListeners(
@@ -38,11 +37,6 @@ public class SideOptionsController {
                 ImageIcons.ACTIVITIES_TAB_NO_HOVER.getImageIcon(),
                 ImageIcons.ACTIVITIES_TAB_HOVERED.getImageIcon(),
                 Tabs.ACTIVITIES));
-        reportsTabLabel.addMouseListener(new TabListeners(
-                reportsTabLabel,
-                ImageIcons.REPORTS_TAB_NO_HOVER.getImageIcon(),
-                ImageIcons.REPORTS_TAB_HOVERED.getImageIcon(),
-                Tabs.REPORTS));
         logOutLabel.addMouseListener(new LogOutLabelMouseListener(logOutLabel));
     }
 

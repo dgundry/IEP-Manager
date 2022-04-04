@@ -22,9 +22,6 @@ public enum ImageIcons {
     ACTIVITIES_TAB_NO_HOVER("/images/tabs/activities-tab-no-hover.png", 243, 44),
     ACTIVITIES_TAB_HOVERED("/images/tabs/activities-tab-hovered.png", 243, 44),
 
-    REPORTS_TAB_NO_HOVER("/images/tabs/reports-tab-no-hover.png", 243, 44),
-    REPORTS_TAB_HOVERED("/images/tabs/reports-tab-hovered.png", 243, 44),
-
     LOG_OUT_NO_HOVER("/images/login/log-out-no-hover.png", 124, 28),
     LOG_OUT_HOVERED("/images/login/log-out-hovered.png", 124, 28),
 

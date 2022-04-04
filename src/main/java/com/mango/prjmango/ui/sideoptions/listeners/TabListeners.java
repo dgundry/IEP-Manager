@@ -64,10 +64,7 @@ public class TabListeners implements MouseListener {
             MainWindowView.displayActiveTab(ActivitiesView.getActivitiesBackgroundLabel());
         } else if (tab == Tabs.STUDENTS) {
             new StudentsController(new StudentsView());
-
             MainWindowView.displayActiveTab(StudentsView.getStudentBackgroundLabel());
-        } else {
-            //report
         }
     }
 
@@ -122,9 +119,6 @@ public class TabListeners implements MouseListener {
                 break;
             case 2:
                 SideOptionsView.getActivitiesTabLabel().setIcon(ImageIcons.ACTIVITIES_TAB_NO_HOVER.getImageIcon());
-                break;
-            case 3:
-                SideOptionsView.getReportsTabLabel().setIcon(ImageIcons.REPORTS_TAB_NO_HOVER.getImageIcon());
                 break;
             default:
                 break;

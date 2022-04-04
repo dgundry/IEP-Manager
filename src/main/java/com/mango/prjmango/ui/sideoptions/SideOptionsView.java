@@ -28,7 +28,6 @@ public class SideOptionsView {
     @Getter private static JLabel accountTabLabel;
     @Getter private static JLabel studentsTabLabel;
     @Getter private static JLabel activitiesTabLabel;
-    @Getter private static JLabel reportsTabLabel;
     @Getter private static JLabel logOutLabel;
 
     private static JSeparator topSeparator;
@@ -62,7 +61,6 @@ public class SideOptionsView {
         accountTabLabel    = new JLabel(ImageIcons.ACCOUNT_TAB_NO_HOVER.getImageIcon());
         studentsTabLabel   = new JLabel(ImageIcons.STUDENT_TAB_NO_HOVER.getImageIcon());
         activitiesTabLabel = new JLabel(ImageIcons.ACTIVITIES_TAB_NO_HOVER.getImageIcon());
-        reportsTabLabel    = new JLabel(ImageIcons.REPORTS_TAB_NO_HOVER.getImageIcon());
         setActiveTabIcon();
 
         logOutLabel = new JLabel(ImageIcons.LOG_OUT_NO_HOVER.getImageIcon());
@@ -72,17 +70,6 @@ public class SideOptionsView {
 
         bottomSeparator = Components.JSeparator(SwingConstants.HORIZONTAL);
         bottomSeparator.setPreferredSize(new Dimension(246, 1));
-    }
-    public static void updateWelcomeLabel(){
-        welcomeLabel.setText("Welcome, " + LoggedInUser.getFirstName() + "!");
-        switch(LoggedInUser.getFirstName().length()){
-            case 10:
-                welcomeLabel.setFont(Fonts.SEGOE_UI_12.getFont());
-                break;
-            default:
-                welcomeLabel.setFont(Fonts.SEGOE_UI_28.getFont());
-                break;
-        }
     }
 
     private static void setActiveTabIcon() {
@@ -95,9 +82,6 @@ public class SideOptionsView {
                 break;
             case 2:
                 activitiesTabLabel.setIcon(ImageIcons.ACTIVITIES_TAB_HOVERED.getImageIcon());
-                break;
-            case 3:
-                reportsTabLabel.setIcon(ImageIcons.REPORTS_TAB_HOVERED.getImageIcon());
                 break;
             default:
                 break;
@@ -159,12 +143,7 @@ public class SideOptionsView {
                                                                 GroupLayout.PREFERRED_SIZE,
                                                                 246,
                                                                 GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(logOutLabel)
-                                                        .addComponent(
-                                                                reportsTabLabel,
-                                                                GroupLayout.PREFERRED_SIZE,
-                                                                246,
-                                                                GroupLayout.PREFERRED_SIZE))))
+                                                        .addComponent(logOutLabel))))
                                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         optionsPanelLayout.setVerticalGroup(
@@ -190,8 +169,6 @@ public class SideOptionsView {
                                 .addComponent(studentsTabLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(activitiesTabLabel)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(reportsTabLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(
                                         bottomSeparator,
