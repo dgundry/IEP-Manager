@@ -40,9 +40,9 @@ public class ActivitiesController {
                 ActivitiesSubTabs.UPLOAD_AN_ASSIGNMENT));
         createAssignmentLabel.addMouseListener(new ActivitiesSubTabListener(
                 createAssignmentLabel,
-                ImageIcons.ACTIVITIES_UPLOAD_NO_HOVER.getImageIcon(),
-                ImageIcons.ACTIVITIES_UPLOAD_HOVERED.getImageIcon(),
-                ImageIcons.ACTIVITIES_UPLOAD_SELECTED.getImageIcon(),
+                ImageIcons.ACTIVITIES_CREATE_ASSIGNMENT_NO_HOVER.getImageIcon(),
+                ImageIcons.ACTIVITIES_CREATE_ASSIGNMENT_HOVERED.getImageIcon(),
+                ImageIcons.ACTIVITIES_CREATE_ASSIGNMENT_SELECTED.getImageIcon(),
                 ActivitiesSubTabs.CREATE_AN_ASSIGNMENT));
     }
 }
