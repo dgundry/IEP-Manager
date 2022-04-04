@@ -82,6 +82,10 @@ public enum ImageIcons {
     ACTIVITIES_UPLOAD_HOVERED("/images/activities/upload/upload-hovered.png", 290, 30),
     ACTIVITIES_UPLOAD_SELECTED("/images/activities/upload/upload-selected.png", 290, 30),
 
+    ACTIVITIES_CREATE_ASSIGNMENT_NO_HOVER("/images/activities/create/create-assignment-no-hover.png", 290, 30),
+    ACTIVITIES_CREATE_ASSIGNMENT_HOVERED("/images/activities/create/create-assignment-hovered.png", 290, 30),
+    ACTIVITIES_CREATE_ASSIGNMENT_SELECTED("/images/activities/create/create-assignment-selected.png", 290, 30),
+
     FRY_BEGIN_NO_HOVER("/images/activities/fry/begin-no-hover.png", 164, 39),
     FRY_BEGIN_HOVERED("/images/activities/fry/begin-hovered.png", 164, 39),
 

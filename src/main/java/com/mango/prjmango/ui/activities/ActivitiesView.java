@@ -87,7 +87,7 @@ public class ActivitiesView {
         fryLabel              = new JLabel(ImageIcons.ACTIVITIES_FRY_NO_HOVER.getImageIcon());
         dolchLabel            = new JLabel(ImageIcons.ACTIVITIES_DOLCH_NO_HOVER.getImageIcon());
         uploadAssignmentLabel = new JLabel(ImageIcons.ACTIVITIES_UPLOAD_NO_HOVER.getImageIcon());
-        createAssignmentLabel = new JLabel(ImageIcons.ACTIVITIES_UPLOAD_NO_HOVER.getImageIcon());
+        createAssignmentLabel = new JLabel(ImageIcons.ACTIVITIES_CREATE_ASSIGNMENT_NO_HOVER.getImageIcon());
         setSelectedSubTab();
 
         horizSeparator = Components.JSeparator(SwingConstants.HORIZONTAL);

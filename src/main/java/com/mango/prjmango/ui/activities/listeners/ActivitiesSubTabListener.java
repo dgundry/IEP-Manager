@@ -159,7 +159,7 @@ public class ActivitiesSubTabListener implements MouseListener {
                 ActivitiesView.getUploadAssignmentLabel().setIcon(ImageIcons.ACTIVITIES_UPLOAD_NO_HOVER.getImageIcon());
                 break;
             case 4:
-                ActivitiesView.getCreateAssignmentLabel().setIcon(ImageIcons.ACTIVITIES_UPLOAD_NO_HOVER.getImageIcon());
+                ActivitiesView.getCreateAssignmentLabel().setIcon(ImageIcons.ACTIVITIES_CREATE_ASSIGNMENT_NO_HOVER.getImageIcon());
                 break;
         }
     }
