@@ -93,7 +93,7 @@ public class EditProfileController {
                     LoggedInUser.setFirstName(firstName);
                     LoggedInUser.setLastName(lastName);
                     LoggedInUser.setEmail(email);
-                    SideOptionsView.getWelcomeLabel().setText("Welcome, " + LoggedInUser.getFirstName() + "!");
+                    SideOptionsView.updateWelcomeMessage();
                 }
             }
         }

@@ -7,12 +7,9 @@ import com.mango.prjmango.ui.common.Colors;
 import com.mango.prjmango.ui.common.Components;
 import com.mango.prjmango.ui.common.Fonts;
 import com.mango.prjmango.ui.common.ImageIcons;
-import java.awt.Dimension;
-import javax.swing.GroupLayout;
-import javax.swing.JLabel;
-import javax.swing.JSeparator;
-import javax.swing.LayoutStyle;
-import javax.swing.SwingConstants;
+
+import java.awt.*;
+import javax.swing.*;
 import javax.swing.border.LineBorder;
 import lombok.Getter;
 
@@ -41,6 +38,7 @@ public class SideOptionsView {
     public SideOptionsView() {
         createComponents();
         createLayout();
+        updateWelcomeMessage();
     }
 
     private static void createComponents() {
@@ -55,8 +53,8 @@ public class SideOptionsView {
         welcomeLabel = new JLabel();
         welcomeLabel.setForeground(Colors.LIGHT_GREY);
         welcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        welcomeLabel.setText("Welcome, " + LoggedInUser.getFirstName() + "!");
-        welcomeLabel.setFont(Fonts.SEGOE_UI_23.getFont());
+        welcomeLabel.setMaximumSize(new Dimension(246, 33));
+        welcomeLabel.setMinimumSize(new Dimension(246, 33));
 
         accountTabLabel    = new JLabel(ImageIcons.ACCOUNT_TAB_NO_HOVER.getImageIcon());
         studentsTabLabel   = new JLabel(ImageIcons.STUDENT_TAB_NO_HOVER.getImageIcon());
@@ -70,6 +68,29 @@ public class SideOptionsView {
 
         bottomSeparator = Components.JSeparator(SwingConstants.HORIZONTAL);
         bottomSeparator.setPreferredSize(new Dimension(246, 1));
+    }
+    
+    public static void updateWelcomeMessage() {
+        welcomeLabel.setText("Welcome, " + LoggedInUser.getFirstName() + "!");
+        welcomeLabel.setFont(Fonts.SEGOE_UI_23.getFont());
+
+        double currWidth = welcomeLabel.getPreferredSize().getWidth();
+
+        if (currWidth > 246 && currWidth <= 262) {
+            welcomeLabel.setFont(Fonts.SEGOE_UI_20.getFont());
+        } else if (currWidth > 262 && currWidth <= 283) {
+            welcomeLabel.setFont(Fonts.SEGOE_UI_19.getFont());
+        } else if (currWidth > 283 && currWidth <= 304) {
+            welcomeLabel.setFont(Fonts.SEGOE_UI_18.getFont());
+        } else if (currWidth > 304 && currWidth <= 325) {
+            welcomeLabel.setFont(Fonts.SEGOE_UI_16.getFont());
+        } else if (currWidth > 325 && currWidth <= 346) {
+            welcomeLabel.setFont(Fonts.SEGOE_UI_16.getFont());
+        } else if (currWidth > 346) {
+            welcomeLabel.setFont(Fonts.SEGOE_UI_15.getFont());
+        }
+
+        backgroundLabel.updateUI();
     }
 
     private static void setActiveTabIcon() {
@@ -113,21 +134,16 @@ public class SideOptionsView {
                                                 .addContainerGap()
                                                 .addGroup(optionsPanelLayout.createParallelGroup(
                                                         GroupLayout.Alignment.LEADING)
-                                                        .addGroup(optionsPanelLayout.createParallelGroup(
-                                                                GroupLayout.Alignment.TRAILING,
-                                                                        false)
-                                                                .addComponent(
-                                                                        topSeparator,
-                                                                        GroupLayout.Alignment.LEADING,
-                                                                        GroupLayout.DEFAULT_SIZE,
-                                                                        GroupLayout.DEFAULT_SIZE,
-                                                                        Short.MAX_VALUE)
-                                                                .addComponent(
-                                                                        welcomeLabel,
-                                                                        GroupLayout.Alignment.LEADING,
-                                                                        GroupLayout.DEFAULT_SIZE,
-                                                                        GroupLayout.DEFAULT_SIZE,
-                                                                        Short.MAX_VALUE))
+                                                        .addComponent(
+                                                                welcomeLabel,
+                                                                GroupLayout.DEFAULT_SIZE,
+                                                                GroupLayout.PREFERRED_SIZE,
+                                                                GroupLayout.DEFAULT_SIZE)
+                                                        .addComponent(
+                                                                topSeparator,
+                                                                GroupLayout.PREFERRED_SIZE,
+                                                                GroupLayout.DEFAULT_SIZE,
+                                                                GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(
                                                                 bottomSeparator,
                                                                 GroupLayout.PREFERRED_SIZE,
