@@ -3,6 +3,7 @@ package com.mango.prjmango.ui.account;
 import com.mango.prjmango.LoggedInUser;
 import com.mango.prjmango.ui.account.password.PasswordController;
 import com.mango.prjmango.ui.account.password.PasswordView;
+import com.mango.prjmango.utilities.ImageUtils;
 import com.mango.prjmango.utilities.subtabs.AccountSubTabs;
 import com.mango.prjmango.ui.account.editprofile.EditProfileController;
 import com.mango.prjmango.ui.account.editprofile.EditProfileView;
@@ -10,13 +11,16 @@ import com.mango.prjmango.ui.common.Colors;
 import com.mango.prjmango.ui.common.Components;
 import com.mango.prjmango.ui.common.Fonts;
 import com.mango.prjmango.ui.common.ImageIcons;
-import javax.swing.GroupLayout;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JSeparator;
-import javax.swing.LayoutStyle;
-import javax.swing.SwingConstants;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+
 import lombok.Getter;
+
+import java.awt.*;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
+import java.awt.image.BufferedImage;
 
 /**
  * The main layout for the Account tab.
@@ -52,6 +56,28 @@ public class AccountView extends JLabel {
             new PasswordController(passwordView);
             setActiveDisplay(passwordView);
         }
+
+        addComponentListener(new ComponentListener() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                setIcon(ImageUtils.getImageIcon(
+                        AccountView.class,
+                        "/images/common/active-tab-background.png",
+                        getWidth(),
+                        getHeight()));
+                updateUI();
+                repaint();
+            }
+
+            @Override
+            public void componentMoved(ComponentEvent e) { /* Not needed */ }
+
+            @Override
+            public void componentShown(ComponentEvent e) { /* Not needed */ }
+
+            @Override
+            public void componentHidden(ComponentEvent e) { /* Not needed */ }
+        });
     }
 
     private void createComponents() {
@@ -154,7 +180,7 @@ public class AccountView extends JLabel {
                                                         .addGroup(
                                                                 GroupLayout.Alignment.TRAILING,
                                                                 accountPanelLayout.createSequentialGroup()
-                                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                                .addGap(10, 10, 10)
                                                                 .addComponent(
                                                                         displayPanel,
                                                                         GroupLayout.PREFERRED_SIZE,

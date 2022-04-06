@@ -1,12 +1,14 @@
 package com.mango.prjmango.ui.activities;
 
 import com.mango.prjmango.LoggedInUser;
+import com.mango.prjmango.ui.account.AccountView;
 import com.mango.prjmango.ui.activities.create.CreateController;
 import com.mango.prjmango.ui.activities.create.CreateView;
 import com.mango.prjmango.ui.activities.sightwords.SightController;
 import com.mango.prjmango.ui.activities.sightwords.SightView;
 import com.mango.prjmango.ui.activities.upload.UploadController;
 import com.mango.prjmango.ui.activities.upload.UploadView;
+import com.mango.prjmango.utilities.ImageUtils;
 import com.mango.prjmango.utilities.subtabs.ActivitiesSubTabs;
 import com.mango.prjmango.ui.activities.math.MathController;
 import com.mango.prjmango.ui.activities.math.MathView;
@@ -21,6 +23,9 @@ import javax.swing.JSeparator;
 import javax.swing.LayoutStyle;
 import javax.swing.SwingConstants;
 import lombok.Getter;
+
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 
 public class ActivitiesView {
 
@@ -43,6 +48,28 @@ public class ActivitiesView {
     public ActivitiesView() {
         createComponents();
         initLastUsedSubTab();
+
+        activitiesBackgroundLabel.addComponentListener(new ComponentListener() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                activitiesBackgroundLabel.setIcon(ImageUtils.getImageIcon(
+                        ActivitiesView.class,
+                        "/images/common/active-tab-background.png",
+                        activitiesBackgroundLabel.getWidth(),
+                        activitiesBackgroundLabel.getHeight()));
+                activitiesBackgroundLabel.updateUI();
+                activitiesBackgroundLabel.repaint();
+            }
+
+            @Override
+            public void componentMoved(ComponentEvent e) { /* Not needed */ }
+
+            @Override
+            public void componentShown(ComponentEvent e) { /* Not needed */ }
+
+            @Override
+            public void componentHidden(ComponentEvent e) { /* Not needed */ }
+        });
     }
 
     private static void initLastUsedSubTab() {
@@ -230,7 +257,7 @@ public class ActivitiesView {
                                                         .addGroup(
                                                                 GroupLayout.Alignment.TRAILING,
                                                                 pickAnAssignmentPanelLayout.createSequentialGroup()
-                                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                                .addGap(10, 10, 10)
                                                                 .addComponent(
                                                                         displayPanel,
                                                                         GroupLayout.PREFERRED_SIZE,

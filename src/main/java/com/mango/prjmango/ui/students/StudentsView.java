@@ -1,6 +1,7 @@
 package com.mango.prjmango.ui.students;
 
 import com.mango.prjmango.LoggedInUser;
+import com.mango.prjmango.ui.activities.ActivitiesView;
 import com.mango.prjmango.ui.common.Colors;
 import com.mango.prjmango.ui.common.Components;
 import com.mango.prjmango.ui.common.Fonts;
@@ -11,6 +12,7 @@ import com.mango.prjmango.ui.students.edit.EditStudentController;
 import com.mango.prjmango.ui.students.edit.EditStudentView;
 import com.mango.prjmango.ui.students.view.ViewStudentController;
 import com.mango.prjmango.ui.students.view.ViewStudentView;
+import com.mango.prjmango.utilities.ImageUtils;
 import com.mango.prjmango.utilities.subtabs.StudentsSubTabs;
 import javax.swing.GroupLayout;
 import javax.swing.JLabel;
@@ -19,6 +21,9 @@ import javax.swing.JSeparator;
 import javax.swing.LayoutStyle;
 import javax.swing.SwingConstants;
 import lombok.Getter;
+
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 
 public class StudentsView {
 
@@ -39,6 +44,28 @@ public class StudentsView {
     public StudentsView() {
         createComponents();
         initLastUsedSubTub();
+
+        studentBackgroundLabel.addComponentListener(new ComponentListener() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                studentBackgroundLabel.setIcon(ImageUtils.getImageIcon(
+                        ActivitiesView.class,
+                        "/images/common/active-tab-background.png",
+                        studentBackgroundLabel.getWidth(),
+                        studentBackgroundLabel.getHeight()));
+                studentBackgroundLabel.updateUI();
+                studentBackgroundLabel.repaint();
+            }
+
+            @Override
+            public void componentMoved(ComponentEvent e) { /* Not needed */ }
+
+            @Override
+            public void componentShown(ComponentEvent e) { /* Not needed */ }
+
+            @Override
+            public void componentHidden(ComponentEvent e) { /* Not needed */ }
+        });
     }
 
     private static void initLastUsedSubTub() {
@@ -192,7 +219,7 @@ public class StudentsView {
                                                         .addGroup(
                                                                 GroupLayout.Alignment.TRAILING,
                                                                 pickAnAssignmentPanelLayout.createSequentialGroup()
-                                                                        .addGap(0, 0, Short.MAX_VALUE)
+                                                                        .addGap(10, 10, 10)
                                                                         .addComponent(
                                                                                 displayPanel,
                                                                                 GroupLayout.PREFERRED_SIZE,
