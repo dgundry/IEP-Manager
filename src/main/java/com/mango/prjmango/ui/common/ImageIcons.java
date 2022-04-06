@@ -114,7 +114,12 @@ public enum ImageIcons {
     OK_BUTTON_HOVERED("/images/common/ok-button-hovered.png", 116, 31),
 
     RESET_PASSWORD_NO_HOVER("/images/forgot-password/reset-password-no-hover.png", 116, 31),
-    RESET_PASSWORD_HOVERED("/images/forgot-password/reset-password-hovered.png", 116, 31);
+    RESET_PASSWORD_HOVERED("/images/forgot-password/reset-password-hovered.png", 116, 31),
+
+    BEGIN_PRACTICE_NO_HOVER("/images/common/begin-practice-no-hover.png", 211, 50),
+    BEGIN_PRACTICE_HOVERED("/images/common/begin-practice-hovered.png", 211, 50),
+
+    SEPARATOR("/images/common/separator.png", 42, 1);
 
     @Getter
     private ImageIcon imageIcon;

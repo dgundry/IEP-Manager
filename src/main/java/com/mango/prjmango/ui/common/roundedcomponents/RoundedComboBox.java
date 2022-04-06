@@ -1,6 +1,7 @@
 package com.mango.prjmango.ui.common.roundedcomponents;
 
 import com.mango.prjmango.ui.common.Colors;
+import com.mango.prjmango.ui.common.Fonts;
 import javax.swing.JComboBox;
 import java.awt.Graphics;
 import java.awt.Shape;
@@ -26,6 +27,9 @@ public class RoundedComboBox<T> extends JComboBox<T> {
     public RoundedComboBox(List<T> list) {
         super(new Vector<>(list));
         setOpaque(false);
+        setFont(Fonts.SEGOE_UI_16.getFont());
+        setBackground(Colors.DARK_GREY);
+        setForeground(Colors.LIGHT_GREY);
     }
 
     /**
