@@ -277,8 +277,12 @@ public class UploadController {
             if(e.getStateChange() == ItemEvent.SELECTED) {
                 if(activityComboBox.getSelectedIndex() != 0) {
                     view.getMaximumPointsTextField().setText(((Outline)activityComboBox.getSelectedItem()).getMaximumPoints() + "");
+                    view.getAssignmentNameTextField().setText(((Outline)activityComboBox.getSelectedItem()).toString());
+                    view.getAssignmentNameTextField().setEditable(false);
                 }else{
                     view.getMaximumPointsTextField().setText("");
+                    view.getAssignmentNameTextField().setEditable(true);
+                    view.getAssignmentNameTextField().setText("");
                 }
             }
         }
