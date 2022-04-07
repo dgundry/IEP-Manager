@@ -118,15 +118,15 @@ public class PasswordController {
         private void displayInformationText() {
             view.getInformationLabel().setText("Information successfully changed!");
             view.getInformationLabel().setForeground(Color.GREEN);
-
+            view.getCurrentPasswordTextBox().setText("");
+            view.getNewPasswordTextBox().setText("");
+            view.getConfirmNewPassTextBox().setText("");
+            view.getCurrentPasswordTextBox().requestFocus();
             new Timer().schedule(
                     new TimerTask() {
                         @Override
                         public void run() {
                             view.getInformationLabel().setText("");
-                            view.getCurrentPasswordTextBox().setText("");
-                            view.getNewPasswordTextBox().setText("");
-                            view.getConfirmNewPassTextBox().setText("");
 
                             view.getShowCurrentPasswordLabel().setIcon(
                                     ImageIcons.PASSWORD_OPEN_EYE_NO_HOVER.getImageIcon());
@@ -135,7 +135,6 @@ public class PasswordController {
                             view.getShowConfirmPasswordLabel().setIcon(
                                     ImageIcons.PASSWORD_OPEN_EYE_NO_HOVER.getImageIcon());
 
-                            view.getCurrentPasswordTextBox().requestFocus();
                         }
                     },
                     3000
