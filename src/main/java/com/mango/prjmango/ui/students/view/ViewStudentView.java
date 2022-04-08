@@ -25,14 +25,13 @@ public class ViewStudentView extends JPanel {
     private JLabel studentsHeaderLabel;
     private JLabel searchLabel;
 
-    private JTextField searchTextBox;
+    @Getter private JTextField searchTextBox;
 
     private final JScrollPane studentsScrollPane = new JScrollPane();
     @Getter private final JTable studentTable = new JTable();
-    @Getter private JButton viewButton = new JButton("View");
+    @Getter private final JButton viewButton = new JButton("View");
 
-    @Getter
-    private DefaultTableModel model;
+    @Getter private DefaultTableModel model;
 
     public ViewStudentView() {
         setOpaque(false);
@@ -68,7 +67,6 @@ public class ViewStudentView extends JPanel {
         studentTable.removeColumn(studentTable.getColumnModel().getColumn(0));
         studentsScrollPane.add(studentTable);
         studentsScrollPane.setViewportView(studentTable);
-
 
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
@@ -117,6 +115,5 @@ public class ViewStudentView extends JPanel {
                         .addContainerGap(850, Short.MAX_VALUE)
                         .addGroup(addAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)))
         );
-
     }
 }
