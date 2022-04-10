@@ -40,7 +40,6 @@ public class LoginController {
         JLabel loginLabel = view.getLoginLabel();
         JLabel createAccountLabel = view.getCreateAccountLabel();
         JLabel forgotPasswordLabel = view.getForgotPasswordLabel();
-        //Enter key listener
         view.getPasswordField().addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent evt) {

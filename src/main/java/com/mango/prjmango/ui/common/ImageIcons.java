@@ -119,7 +119,14 @@ public enum ImageIcons {
     BEGIN_PRACTICE_NO_HOVER("/images/common/begin-practice-no-hover.png", 211, 50),
     BEGIN_PRACTICE_HOVERED("/images/common/begin-practice-hovered.png", 211, 50),
 
-    SEPARATOR("/images/common/separator.png", 42, 1);
+    SEPARATOR("/images/common/separator.png", 42, 1),
+
+    MATH_SEPARATOR("/images/activities/math/operations/math-separator-large.png", 1000, 5),
+
+    ADDITION("/images/activities/math/operations/addition.png",60, 60),
+    SUBTRACTION("/images/activities/math/operations/subtraction.png",60, 60),
+    MULTIPLICATION("/images/activities/math/operations/multiplication.png",60, 60),
+    DIVISION("/images/activities/math/operations/division.png",60, 60);
 
     @Getter
     private ImageIcon imageIcon;
