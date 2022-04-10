@@ -85,6 +85,10 @@ public class EditStudentView extends JPanel {
         studentFirstNameTextField = Components.JTextField("");
         studentLastNameTextField = Components.JTextField("");
         bioTextField = Components.JTextArea("");
+        bioTextField.setLineWrap(true);
+        bioTextField.setWrapStyleWord(true);
+        bioTextField.setColumns(5);
+        bioTextField.setRows(5);
 
         studentFirstNameTextField.setEnabled(false);
         studentLastNameTextField.setEnabled(false);

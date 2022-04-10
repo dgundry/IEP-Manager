@@ -84,6 +84,8 @@ public class FinishAssignmentView extends JPanel {
         saveLabel = new JLabel(ImageIcons.EDIT_PROFILE_SAVE_NO_HOVER.getImageIcon());
 
         commentsTextArea = Components.JTextArea("");
+        commentsTextArea.setLineWrap(true);
+        commentsTextArea.setWrapStyleWord(true);
         commentsTextArea.setColumns(20);
         commentsTextArea.setRows(5);
         commentsTextArea.requestFocus();
