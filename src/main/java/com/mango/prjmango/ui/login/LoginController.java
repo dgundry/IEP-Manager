@@ -15,6 +15,8 @@ import com.mango.prjmango.ui.students.StudentsView;
 import com.mango.prjmango.utilities.dbcommands.UserCommands;
 import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.font.TextAttribute;
@@ -38,7 +40,36 @@ public class LoginController {
         JLabel loginLabel = view.getLoginLabel();
         JLabel createAccountLabel = view.getCreateAccountLabel();
         JLabel forgotPasswordLabel = view.getForgotPasswordLabel();
+        //Enter key listener
+        view.getPasswordField().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent evt) {
+                if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                    String enteredEmail = view.getEmailField().getText();
+                    char[] enteredPassword = view.getPasswordField().getPassword();
 
+                    if (!enteredEmail.equals("") && enteredPassword.length != 0) {
+                        if (UserCommands.isValidUser(enteredEmail, enteredPassword) == 1) {
+                            int teacherID = UserCommands.getTeacherId(enteredEmail);
+
+                            LoggedInUser user = new LoggedInUser(teacherID);
+                            Main.setActiveUser(user);
+                            Main.setStudents(new Students(teacherID));
+                            Main.setOutlines(new Outlines(teacherID));
+
+                            StudentsView studentsView = new StudentsView();
+                            new StudentsController(studentsView);
+                            MainWindowView.displayActiveTab(StudentsView.getStudentBackgroundLabel());
+
+                        } else {
+                            view.getInvalidLabel().setText("Invalid email or password. Please try again.");
+                        }
+                    } else {
+                        view.getInvalidLabel().setText("Invalid email or password. Please try again.");
+                    }
+                }
+            }
+        });
         loginLabel.addMouseListener(new LoginLabelMouseListener(view, loginLabel));
         createAccountLabel.addMouseListener(new CreateAccountLabelMouseListener(view, createAccountLabel));
         forgotPasswordLabel.addMouseListener(new ForgotPasswordLabelMouseListener(view, forgotPasswordLabel));
