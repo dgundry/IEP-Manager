@@ -16,6 +16,7 @@ public enum Fonts {
     SEGOE_UI_23(23),
     SEGOE_UI_24(24),
     SEGOE_UI_26(26),
+    SEGOE_UI_50(50),
     SEGOE_UI_70(70);
 
     @Getter

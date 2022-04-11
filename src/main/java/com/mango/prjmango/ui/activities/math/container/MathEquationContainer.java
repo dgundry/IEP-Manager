@@ -44,7 +44,7 @@ public class MathEquationContainer extends JPanel {
     }
 
     private void createComponents() {
-        nextLabel = new JLabel(ImageIcons.BEGIN_PRACTICE_NO_HOVER.getImageIcon());
+        nextLabel = new JLabel(ImageIcons.NEXT_NO_HOVER.getImageIcon());
 
         mathAssignmentNameLabel = Components.JLabel(
                 assignmentName,
@@ -58,7 +58,8 @@ public class MathEquationContainer extends JPanel {
                 SwingConstants.LEADING);
 
         try {
-            answerTextField = Components.LimitedJTextField(FilterType.NUMBERS_ONLY, "", 10);
+            answerTextField = Components.LimitedJTextField(FilterType.MATH_CHARACTERS_AND_NUMBERS, "", 5);
+            answerTextField.setFont(Fonts.SEGOE_UI_50.getFont());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -76,14 +77,13 @@ public class MathEquationContainer extends JPanel {
                                         .addComponent(currentNumberLabel))
                                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(GroupLayout.Alignment.TRAILING, mathAssignmentPanelLayout.createSequentialGroup()
-                                .addGap(0, 272, Short.MAX_VALUE)
-                                .addGroup(mathAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(mathAssignmentPanelLayout.createSequentialGroup()
-                                                .addComponent(answerTextField)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(nextLabel, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(mathEquationPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addGap(272, 272, 272))
+                                .addGap(0, 265, Short.MAX_VALUE)
+                                .addGroup(mathAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(mathEquationPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(answerTextField))
+                                .addGap(28, 28, 28)
+                                .addComponent(nextLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addGap(135, 135, 135))
         );
         mathAssignmentPanelLayout.setVerticalGroup(
                 mathAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -94,13 +94,14 @@ public class MathEquationContainer extends JPanel {
                                 .addComponent(currentNumberLabel)
                                 .addGap(57, 57, 57)
                                 .addComponent(mathEquationPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addGap(11, 11, 11)
                                 .addGroup(mathAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addGroup(mathAssignmentPanelLayout.createSequentialGroup()
+                                                .addGap(11, 11, 11)
                                                 .addComponent(answerTextField, GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
                                                 .addGap(1885, 1885, 1885))
                                         .addGroup(mathAssignmentPanelLayout.createSequentialGroup()
-                                                .addComponent(nextLabel, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(31, 31, 31)
+                                                .addComponent(nextLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
     }
