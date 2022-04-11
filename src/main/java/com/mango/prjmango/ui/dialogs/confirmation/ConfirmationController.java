@@ -3,6 +3,8 @@ package com.mango.prjmango.ui.dialogs.confirmation;
 import com.mango.prjmango.Main;
 import com.mango.prjmango.ui.MainWindowView;
 import com.mango.prjmango.ui.activities.ActivitiesView;
+import com.mango.prjmango.ui.activities.math.MathController;
+import com.mango.prjmango.ui.activities.math.MathView;
 import com.mango.prjmango.ui.activities.sightwords.SightController;
 import com.mango.prjmango.ui.activities.sightwords.SightView;
 import com.mango.prjmango.ui.activities.upload.UploadController;
@@ -108,6 +110,13 @@ public class ConfirmationController {
                     ActivitiesView.setActiveDisplay(uploadView);
 
                     break;
+                case 5:
+                    view.dispose();
+                    MathView mathView = new MathView();
+                    new MathController(mathView);
+                    ActivitiesView.setActiveDisplay(mathView);
+
+                    break;
                 default:
                     break;
             }
@@ -152,6 +161,9 @@ public class ConfirmationController {
                 case 4:
                     label.setIcon(ImageIcons.APP_EXIT_HOVERED.getImageIcon());
                     break;
+                case 5:
+                    label.setIcon(ImageIcons.OK_BUTTON_HOVERED.getImageIcon());
+                    break;
                 default:
                     break;
             }
@@ -179,6 +191,9 @@ public class ConfirmationController {
                     break;
                 case 4:
                     label.setIcon(ImageIcons.APP_EXIT_NO_HOVER.getImageIcon());
+                    break;
+                case 5:
+                    label.setIcon(ImageIcons.OK_BUTTON_NO_HOVER.getImageIcon());
                     break;
                 default:
                     break;

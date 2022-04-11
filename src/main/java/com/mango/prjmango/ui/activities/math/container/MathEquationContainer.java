@@ -58,7 +58,7 @@ public class MathEquationContainer extends JPanel {
                 SwingConstants.LEADING);
 
         try {
-            answerTextField = Components.LimitedJTextField(FilterType.MATH_CHARACTERS_AND_NUMBERS, "", 5);
+            answerTextField = Components.LimitedJTextField(FilterType.NUMBERS_ONLY, "", 5);
             answerTextField.setFont(Fonts.SEGOE_UI_50.getFont());
         } catch (Exception e) {
             e.printStackTrace();
@@ -66,6 +66,7 @@ public class MathEquationContainer extends JPanel {
     }
 
     public void setMathEquation(JPanel mathEquationPanel) {
+        removeAll();
         GroupLayout mathAssignmentPanelLayout = new GroupLayout(this);
         setLayout(mathAssignmentPanelLayout);
         mathAssignmentPanelLayout.setHorizontalGroup(
@@ -104,5 +105,6 @@ public class MathEquationContainer extends JPanel {
                                                 .addComponent(nextLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
+        updateUI();
     }
 }

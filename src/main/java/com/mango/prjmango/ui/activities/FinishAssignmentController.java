@@ -36,13 +36,28 @@ public class FinishAssignmentController {
          */
         @Override
         public void mouseClicked(MouseEvent e) {
+            int studentID;
+            String assignmentName;
+            int totalCorrect;
+            int totalQuestions;
+            if(view.getMathAssignment() != null) {
+                studentID = view.getMathAssignment().getStudent().getStudentID();
+                assignmentName = view.getMathAssignment().getAssignmentName();
+                totalCorrect = view.getMathAssignment().getCorrectAnswers();
+                totalQuestions = view.getMathAssignment().getNumberOfQuestions();
+            }else{
+                studentID = view.getAssignment().getStudent().getStudentID();
+                assignmentName = view.getAssignment().getAssignmentName();
+                totalCorrect = view.getAssignment().getCorrectAnswers();
+                totalQuestions = view.getAssignment().getTotalQuestions();
+            }
             String sql = "INSERT INTO assignment(teacher_id, student_id,title,earned_points,total_points,date,comment) VALUES(?,?,?,?,?,date('now','localtime'),?);";
             try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
                 statement.setInt(1, LoggedInUser.getTeacherId());
-                statement.setInt(2, view.getAssignment().getStudent().getStudentID());
-                statement.setString(3, view.getAssignment().getAssignmentName());
-                statement.setInt(4, view.getAssignment().getCorrectAnswers());
-                statement.setInt(5, view.getAssignment().getTotalQuestions());
+                statement.setInt(2, studentID);
+                statement.setString(3, assignmentName);
+                statement.setInt(4, totalCorrect);
+                statement.setInt(5, totalQuestions);
                 statement.setString(6, view.getCommentsTextArea().getText());
                 statement.executeUpdate();
             } catch (Exception ex) {
@@ -50,7 +65,7 @@ public class FinishAssignmentController {
             }
 
             ConfirmationView confirmationView =
-                    new ConfirmationView("Assignment saved!", Dialogs.ASSIGNMENT_SAVED);
+                    new ConfirmationView("Assignment saved!", Dialogs.MATH_SAVED);
             new ConfirmationController(confirmationView);
         }
 

@@ -1,5 +1,6 @@
 package com.mango.prjmango.ui.activities;
 
+import com.mango.prjmango.ui.activities.math.MathAssignment;
 import com.mango.prjmango.ui.common.Colors;
 import com.mango.prjmango.ui.common.Components;
 import com.mango.prjmango.ui.common.Fonts;
@@ -35,6 +36,7 @@ public class FinishAssignmentView extends JPanel {
     @Getter private JTextArea commentsTextArea;
 
     @Getter private CreateAssignment assignment;
+    @Getter private MathAssignment mathAssignment;
 
     /**
      * Constructor. Calls methods that create the GUI.
@@ -47,8 +49,32 @@ public class FinishAssignmentView extends JPanel {
         createComponents();
         createLayout();
     }
+    public FinishAssignmentView(MathAssignment assignment) {
+        this.mathAssignment = assignment;
+
+        setOpaque(false);
+
+        createComponents();
+        createLayout();
+    }
 
     private void createComponents() {
+        String studentName;
+        String assignmentName;
+        double totalCorrect;
+        double totalQuestions;
+        if(mathAssignment != null) {
+            studentName = mathAssignment.getStudent().toString();
+            assignmentName = mathAssignment.getAssignmentName();
+            totalCorrect = mathAssignment.getCorrectAnswers();
+            totalQuestions = mathAssignment.getNumberOfQuestions();
+        }else{
+            studentName = assignment.getStudent().toString();
+            assignmentName = assignment.getAssignmentName();
+            totalCorrect = assignment.getCorrectAnswers();
+            totalQuestions = assignment.getTotalQuestions();
+        }
+
         finishAssignmentHeaderLabel = Components.JLabel(
                 "Finish Assignment",
                 Fonts.SEGOE_UI_24.getFont(),
@@ -58,20 +84,20 @@ public class FinishAssignmentView extends JPanel {
                 Fonts.SEGOE_UI_18.getFont(),
                 Colors.LIGHT_GREY);
         changeStudentLabel = Components.JLabel(
-                assignment.getStudent().toString(),
+                studentName,
                 Fonts.SEGOE_UI_18.getFont(),
                 Colors.LIGHT_GREY);
         changeAssignmentLabel = Components.JLabel(
-                assignment.getAssignmentName(),
+                assignmentName,
                 Fonts.SEGOE_UI_18.getFont(),
                 Colors.LIGHT_GREY);
         changeScoreLabel = Components.JLabel(
-                assignment.getCorrectAnswers() + "/" +assignment.getTotalQuestions(),
+                totalCorrect + "/" + totalQuestions,
                 Fonts.SEGOE_UI_18.getFont(),
                 Colors.LIGHT_GREY);
 
         String percentage = String.format(
-                "%.2f", ((double) assignment.getCorrectAnswers() / (double) assignment.getTotalQuestions()) * 100);
+                "%.2f", (totalCorrect / totalQuestions) * 100);
 
         assignmentLabel       = Components.JLabel("Assignment:",        Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
         dateLabel             = Components.JLabel("Date:",              Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);

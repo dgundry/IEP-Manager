@@ -136,7 +136,7 @@ public class MathView extends JPanel {
                 Colors.LIGHT_GREY,
                 SwingConstants.LEADING);
         selectStudentInfoLabel = Components.JLabel(
-                " ",
+                "",
                 Fonts.SEGOE_UI_12.getFont(),
                 Colors.RED,
                 SwingConstants.CENTER);
@@ -242,7 +242,7 @@ public class MathView extends JPanel {
                                 .addGroup(mathPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addGroup(mathPanelLayout.createSequentialGroup()
                                                 .addGroup(mathPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                        .addGroup(mathPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                                        .addGroup(mathPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                                 .addComponent(selectStudentInfoLabel)
                                                                 .addGroup(mathPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
                                                                         .addComponent(mathEquationsHeaderLabel, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

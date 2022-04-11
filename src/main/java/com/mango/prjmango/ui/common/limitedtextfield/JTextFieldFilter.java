@@ -30,7 +30,7 @@ public class JTextFieldFilter extends DocumentFilter {
         }
 
         if (type == FilterType.NUMBERS_ONLY) {
-            regexCheck = Pattern.compile("^[0-9]+");
+            regexCheck = Pattern.compile("^[0-9]*");
         } else if (type == FilterType.CHARACTERS_ONLY) {
             regexCheck = Pattern.compile("^[a-zA-Z]+");
         } else if (type == FilterType.CHARACTERS_AND_NUMBERS) {

@@ -37,18 +37,58 @@ public class MathAssignment {
     }
     public void generateQuestions() {
         Random numberGenerator = new Random();
+        int numerator;
+        int denominator;
         for (int i = 0; i < additionTotal; i++) {
-            questions.add(new MathQuestion(Operation.ADDITION, numberGenerator.nextInt(numeratorMax - numeratorMin) + numeratorMin, numberGenerator.nextInt(denominatorMax - denominatorMin) + denominatorMin));
+            if(numeratorMin == numeratorMax){
+                numerator = numeratorMin;
+            }else{
+                numerator = numberGenerator.nextInt(numeratorMax - numeratorMin) + numeratorMin;
+            }
+            if(denominatorMin == denominatorMax){
+                denominator = denominatorMin;
+            }else{
+                denominator = numberGenerator.nextInt(denominatorMax - denominatorMin) + denominatorMin;
+            }
+            questions.add(new MathQuestion(Operation.ADDITION, numerator, denominator));
         }
         for (int i = 0; i < subtractionTotal; i++) {
-            questions.add(new MathQuestion(Operation.SUBTRACTION, numberGenerator.nextInt(numeratorMax - numeratorMin) + numeratorMin, numberGenerator.nextInt(denominatorMax - denominatorMin) + denominatorMin));
+            if(numeratorMin == numeratorMax){
+                numerator = numeratorMin;
+            }else{
+                numerator = numberGenerator.nextInt(numeratorMax - numeratorMin) + numeratorMin;
+            }
+            if(denominatorMin == denominatorMax){
+                denominator = denominatorMin;
+            }else{
+                denominator = numberGenerator.nextInt(denominatorMax - denominatorMin) + denominatorMin;
+            }
+            questions.add(new MathQuestion(Operation.SUBTRACTION, numerator, denominator));
         }
         for (int i = 0; i < multiplicationTotal; i++) {
-            questions.add(new MathQuestion(Operation.MULTIPLICATION, numberGenerator.nextInt(numeratorMax - numeratorMin) + numeratorMin, numberGenerator.nextInt(denominatorMax - denominatorMin) + denominatorMin));
-        }
+            if(numeratorMin == numeratorMax){
+                numerator = numeratorMin;
+            }else{
+                numerator = numberGenerator.nextInt(numeratorMax - numeratorMin) + numeratorMin;
+            }
+            if(denominatorMin == denominatorMax){
+                denominator = denominatorMin;
+            }else{
+                denominator = numberGenerator.nextInt(denominatorMax - denominatorMin) + denominatorMin;
+            }
+            questions.add(new MathQuestion(Operation.MULTIPLICATION, numerator, denominator));        }
         for (int i = 0; i < divisionTotal; i++) {
-            questions.add(new MathQuestion(Operation.DIVISION, numberGenerator.nextInt(numeratorMax - numeratorMin) + numeratorMin, numberGenerator.nextInt(denominatorMax - denominatorMin) + denominatorMin));
-        }
+            if(numeratorMin == numeratorMax){
+                numerator = numeratorMin;
+            }else{
+                numerator = numberGenerator.nextInt(numeratorMax - numeratorMin) + numeratorMin;
+            }
+            if(denominatorMin == denominatorMax){
+                denominator = denominatorMin;
+            }else{
+                denominator = numberGenerator.nextInt(denominatorMax - denominatorMin) + denominatorMin;
+            }
+            questions.add(new MathQuestion(Operation.DIVISION, numerator, denominator));        }
     }
     public MathQuestion getCurrentQuestion() {
         return questions.get(currentQuestionIndex);
@@ -60,7 +100,6 @@ public class MathAssignment {
         if (answer == getCurrentQuestion().getAnswer()) {
             correctAnswers++;
         }
-        nextQuestion();
     }
     public boolean hasNextQuestion() {
         return currentQuestionIndex < total - 1;

@@ -23,8 +23,6 @@ public class MathEquation extends JPanel {
     }
     public void setPanel(){
         setOpaque(true);
-        //make panel only 300x300
-//        setPreferredSize(new Dimension(200,200));
         setBackground(Color.WHITE);
         createComponents();
         createLayout();

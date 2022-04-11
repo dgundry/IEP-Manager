@@ -96,6 +96,10 @@ public class MathController {
             } else {
                 numeratorMax = Integer.parseInt(numeratorMaxCurrText);
             }
+            if(numeratorMin > numeratorMax) {
+                view.getNumeratorRangeInfoLabel().setText("Min value has to be less than or equal to Max.");
+                return;
+            }
 
             int denominatorMin;
             String denominatorMinCurrText = view.getDenominatorMinValueTextField().getText().trim();
@@ -113,6 +117,14 @@ public class MathController {
                 return;
             } else {
                 denominatorMax = Integer.parseInt(denominatorMaxCurrText);
+            }
+            if(denominatorMin > denominatorMax) {
+                view.getDenominatorRangeInfoLabel().setText("Min value has to be less than or equal to Max.");
+                return;
+            }
+
+            if(additionTotal + subtractionTotal + multiplicationTotal + divisionTotal <= 0) {
+                view.getSelectStudentInfoLabel().setText("Please enter a positive number for at least one of the fields.");
             }
 
             MathAssignment assignment = new MathAssignment(
