@@ -92,7 +92,7 @@ public class FinishAssignmentView extends JPanel {
                 Fonts.SEGOE_UI_18.getFont(),
                 Colors.LIGHT_GREY);
         changeScoreLabel = Components.JLabel(
-                totalCorrect + "/" + totalQuestions,
+                (int)totalCorrect + "/" + (int)totalQuestions,
                 Fonts.SEGOE_UI_18.getFont(),
                 Colors.LIGHT_GREY);
 

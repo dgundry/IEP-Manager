@@ -6,6 +6,9 @@ import com.mango.prjmango.ui.common.ImageIcons;
 import com.mango.prjmango.ui.dialogs.confirmation.ConfirmationController;
 import com.mango.prjmango.ui.dialogs.confirmation.ConfirmationView;
 import com.mango.prjmango.ui.dialogs.confirmation.Dialogs;
+
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.PreparedStatement;
@@ -16,6 +19,53 @@ public class FinishAssignmentController {
     public FinishAssignmentController(FinishAssignmentView view) {
         JLabel submitLabel = view.getSaveLabel();
         submitLabel.addMouseListener(new SubmitLabelMouseListener(view, submitLabel));
+        view.getCommentsTextArea().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent evt) {
+                if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                    submitAssignment(view);
+                }
+            }
+        });
+    }
+    private static void submitAssignment(FinishAssignmentView view) {
+        int studentID;
+        String assignmentName;
+        int totalCorrect;
+        int totalQuestions;
+        if(view.getMathAssignment() != null) {
+            studentID = view.getMathAssignment().getStudent().getStudentID();
+            assignmentName = view.getMathAssignment().getAssignmentName();
+            totalCorrect = view.getMathAssignment().getCorrectAnswers();
+            totalQuestions = view.getMathAssignment().getNumberOfQuestions();
+        }else{
+            studentID = view.getAssignment().getStudent().getStudentID();
+            assignmentName = view.getAssignment().getAssignmentName();
+            totalCorrect = view.getAssignment().getCorrectAnswers();
+            totalQuestions = view.getAssignment().getTotalQuestions();
+        }
+        String sql = "INSERT INTO assignment(teacher_id, student_id,title,earned_points,total_points,date,comment) VALUES(?,?,?,?,?,date('now','localtime'),?);";
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
+            statement.setInt(1, LoggedInUser.getTeacherId());
+            statement.setInt(2, studentID);
+            statement.setString(3, assignmentName);
+            statement.setInt(4, totalCorrect);
+            statement.setInt(5, totalQuestions);
+            statement.setString(6, view.getCommentsTextArea().getText());
+            statement.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        if(view.getMathAssignment() != null) {
+            ConfirmationView confirmationView =
+                    new ConfirmationView("Assignment saved!", Dialogs.MATH_SAVED);
+            new ConfirmationController(confirmationView);
+        }else{
+            ConfirmationView confirmationView =
+                    new ConfirmationView("Assignment saved!", Dialogs.ASSIGNMENT_SAVED);
+            new ConfirmationController(confirmationView);
+        }
     }
 
     private static class SubmitLabelMouseListener implements MouseListener {
@@ -36,43 +86,7 @@ public class FinishAssignmentController {
          */
         @Override
         public void mouseClicked(MouseEvent e) {
-            int studentID;
-            String assignmentName;
-            int totalCorrect;
-            int totalQuestions;
-            if(view.getMathAssignment() != null) {
-                studentID = view.getMathAssignment().getStudent().getStudentID();
-                assignmentName = view.getMathAssignment().getAssignmentName();
-                totalCorrect = view.getMathAssignment().getCorrectAnswers();
-                totalQuestions = view.getMathAssignment().getNumberOfQuestions();
-            }else{
-                studentID = view.getAssignment().getStudent().getStudentID();
-                assignmentName = view.getAssignment().getAssignmentName();
-                totalCorrect = view.getAssignment().getCorrectAnswers();
-                totalQuestions = view.getAssignment().getTotalQuestions();
-            }
-            String sql = "INSERT INTO assignment(teacher_id, student_id,title,earned_points,total_points,date,comment) VALUES(?,?,?,?,?,date('now','localtime'),?);";
-            try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
-                statement.setInt(1, LoggedInUser.getTeacherId());
-                statement.setInt(2, studentID);
-                statement.setString(3, assignmentName);
-                statement.setInt(4, totalCorrect);
-                statement.setInt(5, totalQuestions);
-                statement.setString(6, view.getCommentsTextArea().getText());
-                statement.executeUpdate();
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
-
-            if(view.getMathAssignment() != null) {
-                ConfirmationView confirmationView =
-                        new ConfirmationView("Assignment saved!", Dialogs.MATH_SAVED);
-                new ConfirmationController(confirmationView);
-            }else{
-                ConfirmationView confirmationView =
-                        new ConfirmationView("Assignment saved!", Dialogs.ASSIGNMENT_SAVED);
-                new ConfirmationController(confirmationView);
-            }
+            submitAssignment(view);
         }
 
         /**
