@@ -64,9 +64,15 @@ public class FinishAssignmentController {
                 ex.printStackTrace();
             }
 
-            ConfirmationView confirmationView =
-                    new ConfirmationView("Assignment saved!", Dialogs.MATH_SAVED);
-            new ConfirmationController(confirmationView);
+            if(view.getMathAssignment() != null) {
+                ConfirmationView confirmationView =
+                        new ConfirmationView("Assignment saved!", Dialogs.MATH_SAVED);
+                new ConfirmationController(confirmationView);
+            }else{
+                ConfirmationView confirmationView =
+                        new ConfirmationView("Assignment saved!", Dialogs.ASSIGNMENT_SAVED);
+                new ConfirmationController(confirmationView);
+            }
         }
 
         /**
