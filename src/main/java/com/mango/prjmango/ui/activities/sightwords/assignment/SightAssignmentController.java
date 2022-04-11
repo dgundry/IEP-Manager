@@ -42,6 +42,7 @@ public class SightAssignmentController {
                 FinishAssignmentView finish = new FinishAssignmentView(view.getAssignment());
                 new FinishAssignmentController(finish);
                 ActivitiesView.setActiveDisplay(finish);
+                finish.requestFocus();
             }
         }
 
@@ -109,6 +110,7 @@ public class SightAssignmentController {
                 FinishAssignmentView finish = new FinishAssignmentView(view.getAssignment());
                 new FinishAssignmentController(finish);
                 ActivitiesView.setActiveDisplay(finish);
+                finish.requestFocus();
             }
         }
 

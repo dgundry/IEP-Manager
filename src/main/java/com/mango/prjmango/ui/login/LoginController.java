@@ -44,34 +44,45 @@ public class LoginController {
             @Override
             public void keyPressed(KeyEvent evt) {
                 if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-                    String enteredEmail = view.getEmailField().getText();
-                    char[] enteredPassword = view.getPasswordField().getPassword();
-
-                    if (!enteredEmail.equals("") && enteredPassword.length != 0) {
-                        if (UserCommands.isValidUser(enteredEmail, enteredPassword) == 1) {
-                            int teacherID = UserCommands.getTeacherId(enteredEmail);
-
-                            LoggedInUser user = new LoggedInUser(teacherID);
-                            Main.setActiveUser(user);
-                            Main.setStudents(new Students(teacherID));
-                            Main.setOutlines(new Outlines(teacherID));
-
-                            StudentsView studentsView = new StudentsView();
-                            new StudentsController(studentsView);
-                            MainWindowView.displayActiveTab(StudentsView.getStudentBackgroundLabel());
-
-                        } else {
-                            view.getInvalidLabel().setText("Invalid email or password. Please try again.");
-                        }
-                    } else {
-                        view.getInvalidLabel().setText("Invalid email or password. Please try again.");
-                    }
+                    login(view);
+                }
+            }
+        });
+        view.getEmailField().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent evt) {
+                if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                    login(view);
                 }
             }
         });
         loginLabel.addMouseListener(new LoginLabelMouseListener(view, loginLabel));
         createAccountLabel.addMouseListener(new CreateAccountLabelMouseListener(view, createAccountLabel));
         forgotPasswordLabel.addMouseListener(new ForgotPasswordLabelMouseListener(view, forgotPasswordLabel));
+    }
+    private static void login(LoginView view) {
+        String enteredEmail = view.getEmailField().getText();
+        char[] enteredPassword = view.getPasswordField().getPassword();
+
+        if (!enteredEmail.equals("") && enteredPassword.length != 0) {
+            if (UserCommands.isValidUser(enteredEmail, enteredPassword) == 1) {
+                int teacherID = UserCommands.getTeacherId(enteredEmail);
+
+                LoggedInUser user = new LoggedInUser(teacherID);
+                Main.setActiveUser(user);
+                Main.setStudents(new Students(teacherID));
+                Main.setOutlines(new Outlines(teacherID));
+
+                StudentsView studentsView = new StudentsView();
+                new StudentsController(studentsView);
+                MainWindowView.displayActiveTab(StudentsView.getStudentBackgroundLabel());
+
+            } else {
+                view.getInvalidLabel().setText("Invalid email or password. Please try again.");
+            }
+        } else {
+            view.getInvalidLabel().setText("Invalid email or password. Please try again.");
+        }
     }
 
     private static class LoginLabelMouseListener implements MouseListener {
@@ -99,28 +110,7 @@ public class LoginController {
          */
         @Override
         public void mouseClicked(MouseEvent e) {
-            String enteredEmail = view.getEmailField().getText();
-            char[] enteredPassword = view.getPasswordField().getPassword();
-
-            if (!enteredEmail.equals("") && enteredPassword.length != 0) {
-                if (UserCommands.isValidUser(enteredEmail, enteredPassword) == 1) {
-                    int teacherID = UserCommands.getTeacherId(enteredEmail);
-
-                    LoggedInUser user = new LoggedInUser(teacherID);
-                    Main.setActiveUser(user);
-                    Main.setStudents(new Students(teacherID));
-                    Main.setOutlines(new Outlines(teacherID));
-
-                    StudentsView studentsView = new StudentsView();
-                    new StudentsController(studentsView);
-                    MainWindowView.displayActiveTab(StudentsView.getStudentBackgroundLabel());
-
-                } else {
-                    view.getInvalidLabel().setText("Invalid email or password. Please try again.");
-                }
-            } else {
-                view.getInvalidLabel().setText("Invalid email or password. Please try again.");
-            }
+            login(view);
         }
 
         /**

@@ -15,8 +15,8 @@ import com.mango.prjmango.ui.login.LoginView;
 import com.mango.prjmango.ui.sideoptions.SideOptionsView;
 import com.mango.prjmango.utilities.DatabaseConnection;
 import com.mango.prjmango.utilities.Tabs;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+
+import java.awt.event.*;
 import javax.swing.JLabel;
 
 /**
@@ -55,6 +55,75 @@ public class ConfirmationController {
             this.view = view;
             this.label = label;
             this.selectedDialog = selectedDialog;
+
+            view.addKeyListener(new KeyListener() {
+                @Override
+                public void keyTyped(KeyEvent e) {
+                }
+                @Override
+                public void keyPressed(KeyEvent e) {
+                    if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                        switch (selectedDialog.ordinal()) {
+                            case 0:
+
+                                SideOptionsView.getAccountTabLabel().setIcon(ImageIcons.ACCOUNT_TAB_NO_HOVER.getImageIcon());
+                                SideOptionsView.getStudentsTabLabel().setIcon(ImageIcons.STUDENT_TAB_HOVERED.getImageIcon());
+                                SideOptionsView.getActivitiesTabLabel().setIcon(ImageIcons.ACTIVITIES_TAB_NO_HOVER.getImageIcon());
+                                MainWindowView.setCurrentlyActiveTab(Tabs.STUDENTS);
+
+                                view.dispose();
+
+                                LoginView loginView = new LoginView();
+                                new LoginController(loginView);
+                                MainWindowView.setActiveDisplay(loginView);
+
+                                Main.setActiveUser(null);
+                                break;
+                            case 1:
+                                DatabaseConnection.closeConnection();
+                                view.dispose();
+                                System.exit(0);
+                                break;
+                            case 2:
+                                view.dispose();
+
+                                SightView fryView = new SightView();
+                                new SightController(fryView);
+                                ActivitiesView.setActiveDisplay(fryView);
+
+                                break;
+                            case 3:
+                                view.dispose();
+
+                                LoginView logView = new LoginView();
+                                new LoginController(logView);
+                                MainWindowView.setActiveDisplay(logView);
+
+                                break;
+                            case 4:
+                                view.dispose();
+
+                                UploadView uploadView = new UploadView();
+                                new UploadController(uploadView);
+                                ActivitiesView.setActiveDisplay(uploadView);
+
+                                break;
+                            case 5:
+                                view.dispose();
+                                MathView mathView = new MathView();
+                                new MathController(mathView);
+                                ActivitiesView.setActiveDisplay(mathView);
+
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+                @Override
+                public void keyReleased(KeyEvent e) {
+                }
+            });
         }
 
         /**

@@ -7,10 +7,7 @@ import com.mango.prjmango.ui.dialogs.confirmation.ConfirmationController;
 import com.mango.prjmango.ui.dialogs.confirmation.ConfirmationView;
 import com.mango.prjmango.ui.dialogs.confirmation.Dialogs;
 
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.sql.PreparedStatement;
 import javax.swing.JLabel;
 
@@ -19,12 +16,18 @@ public class FinishAssignmentController {
     public FinishAssignmentController(FinishAssignmentView view) {
         JLabel submitLabel = view.getSaveLabel();
         submitLabel.addMouseListener(new SubmitLabelMouseListener(view, submitLabel));
-        view.getCommentsTextArea().addKeyListener(new KeyAdapter() {
+        view.addKeyListener(new KeyListener() {
             @Override
-            public void keyPressed(KeyEvent evt) {
-                if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            public void keyTyped(KeyEvent e) {
+            }
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     submitAssignment(view);
                 }
+            }
+            @Override
+            public void keyReleased(KeyEvent e) {
             }
         });
     }
@@ -65,6 +68,7 @@ public class FinishAssignmentController {
             ConfirmationView confirmationView =
                     new ConfirmationView("Assignment saved!", Dialogs.ASSIGNMENT_SAVED);
             new ConfirmationController(confirmationView);
+            confirmationView.requestFocusInWindow();
         }
     }
 

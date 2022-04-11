@@ -45,6 +45,7 @@ public class FinishAssignmentView extends JPanel {
         this.assignment = assignment;
 
         setOpaque(false);
+        setFocusable(true);
 
         createComponents();
         createLayout();
@@ -53,6 +54,7 @@ public class FinishAssignmentView extends JPanel {
         this.mathAssignment = assignment;
 
         setOpaque(false);
+        setFocusable(true);
 
         createComponents();
         createLayout();

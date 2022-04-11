@@ -60,6 +60,7 @@ public class MathEquationContainer extends JPanel {
         try {
             answerTextField = Components.LimitedJTextField(FilterType.NUMBERS_ONLY, "", 5);
             answerTextField.setFont(Fonts.SEGOE_UI_50.getFont());
+            answerTextField.grabFocus();
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -144,6 +144,7 @@ public class MathController {
             MathEquationContainer view = new MathEquationContainer(assignmentName, numberOfQuestions);
             new MathEquationContainerController(view, assignment);
             ActivitiesView.setActiveDisplay(view);
+            view.getAnswerTextField().requestFocus();
         }
 
         /**

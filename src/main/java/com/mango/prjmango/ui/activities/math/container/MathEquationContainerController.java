@@ -27,6 +27,7 @@ public class MathEquationContainerController {
     private JTextField answerField;
     public MathEquationContainerController(MathEquationContainer view, MathAssignment mathAssignment) {
         answerField = view.getAnswerTextField();
+        answerField.requestFocusInWindow();
         view.setMathEquation(new MathEquation(mathAssignment.getCurrentQuestion()));
         JLabel nextLabel = view.getNextLabel();
         nextLabel.addMouseListener(new NextLabelMouseListener(view, nextLabel, mathAssignment));
@@ -52,6 +53,7 @@ public class MathEquationContainerController {
                 FinishAssignmentView finishAssignmentView = new FinishAssignmentView(mathAssignment);
                 new FinishAssignmentController(finishAssignmentView);
                 ActivitiesView.setActiveDisplay(finishAssignmentView);
+                finishAssignmentView.requestFocus();
             }
         } catch (NumberFormatException ex) {
             System.out.println("Invalid answer");
