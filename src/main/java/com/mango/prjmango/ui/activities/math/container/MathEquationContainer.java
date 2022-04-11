@@ -58,7 +58,7 @@ public class MathEquationContainer extends JPanel {
                 SwingConstants.LEADING);
 
         try {
-            answerTextField = Components.LimitedJTextField(FilterType.NUMBERS_ONLY, "", 5);
+            answerTextField = Components.LimitedJTextField(FilterType.MATH_CHARACTERS_AND_NUMBERS, "", 5);
             answerTextField.setFont(Fonts.SEGOE_UI_50.getFont());
             answerTextField.grabFocus();
         } catch (Exception e) {
