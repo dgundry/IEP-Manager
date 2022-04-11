@@ -2,11 +2,11 @@ package com.mango.prjmango.ui.activities.math;
 
 import com.mango.prjmango.ui.common.Fonts;
 import com.mango.prjmango.ui.common.ImageIcons;
+import java.awt.Color;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import lombok.Setter;
-
-import javax.swing.*;
-import java.awt.*;
-
 
 public class MathEquation extends JPanel {
     @Setter private MathQuestion mathQuestion;

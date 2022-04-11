@@ -1,26 +1,25 @@
 package com.mango.prjmango.ui.account;
 
 import com.mango.prjmango.LoggedInUser;
-import com.mango.prjmango.ui.account.password.PasswordController;
-import com.mango.prjmango.ui.account.password.PasswordView;
-import com.mango.prjmango.utilities.ImageUtils;
-import com.mango.prjmango.utilities.subtabs.AccountSubTabs;
 import com.mango.prjmango.ui.account.editprofile.EditProfileController;
 import com.mango.prjmango.ui.account.editprofile.EditProfileView;
+import com.mango.prjmango.ui.account.password.PasswordController;
+import com.mango.prjmango.ui.account.password.PasswordView;
 import com.mango.prjmango.ui.common.Colors;
 import com.mango.prjmango.ui.common.Components;
 import com.mango.prjmango.ui.common.Fonts;
 import com.mango.prjmango.ui.common.ImageIcons;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
-
-import lombok.Getter;
-
-import java.awt.*;
+import com.mango.prjmango.utilities.ImageUtils;
+import com.mango.prjmango.utilities.subtabs.AccountSubTabs;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
-import java.awt.image.BufferedImage;
+import javax.swing.GroupLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.LayoutStyle;
+import javax.swing.SwingConstants;
+import lombok.Getter;
 
 /**
  * The main layout for the Account tab.

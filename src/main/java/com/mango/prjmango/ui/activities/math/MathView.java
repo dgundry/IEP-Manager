@@ -8,6 +8,8 @@ import com.mango.prjmango.ui.common.Fonts;
 import com.mango.prjmango.ui.common.ImageIcons;
 import com.mango.prjmango.ui.common.limitedtextfield.FilterType;
 import com.mango.prjmango.ui.common.roundedcomponents.RoundedComboBox;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.GroupLayout;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -21,6 +23,8 @@ import lombok.Getter;
  * The user interface design of the Math page.
  */
 public class MathView extends JPanel {
+
+    private static final Logger logger = Logger.getLogger(MathView.class.getName());
 
     private JPanel numericRangePanel;
 
@@ -166,7 +170,7 @@ public class MathView extends JPanel {
             denominatorMinValueTextField = Components.LimitedJTextField(FilterType.NUMBERS_ONLY, "", 3);
             denominatorMaxValueTextField = Components.LimitedJTextField(FilterType.NUMBERS_ONLY, "", 3);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.log(Level.SEVERE, e.getMessage());
         }
 
         nameOfAssignmentTextField = Components.JTextField();

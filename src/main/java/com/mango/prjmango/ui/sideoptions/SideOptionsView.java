@@ -7,9 +7,12 @@ import com.mango.prjmango.ui.common.Colors;
 import com.mango.prjmango.ui.common.Components;
 import com.mango.prjmango.ui.common.Fonts;
 import com.mango.prjmango.ui.common.ImageIcons;
-
-import java.awt.*;
-import javax.swing.*;
+import java.awt.Dimension;
+import javax.swing.GroupLayout;
+import javax.swing.JLabel;
+import javax.swing.JSeparator;
+import javax.swing.LayoutStyle;
+import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import lombok.Getter;
 

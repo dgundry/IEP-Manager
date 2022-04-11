@@ -1,11 +1,9 @@
 package com.mango.prjmango.ui.activities.math;
 
 import com.mango.prjmango.student.Student;
-import lombok.Getter;
-
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
+import lombok.Getter;
 
 public class MathAssignment {
     @Getter private String assignmentName;
@@ -66,5 +64,9 @@ public class MathAssignment {
     }
     public boolean hasNextQuestion() {
         return currentQuestionIndex < total - 1;
+    }
+
+    public int getNumberOfQuestions() {
+        return questions.size();
     }
 }

@@ -121,7 +121,7 @@ public enum ImageIcons {
 
     SEPARATOR("/images/common/separator.png", 42, 1),
 
-    MATH_SEPARATOR("/images/activities/math/operations/math-separator-large.png", 1000, 5),
+    MATH_SEPARATOR("/images/activities/math/operations/math-separator.png", 1000, 5),
 
     ADDITION("/images/activities/math/operations/addition.png",60, 60),
     SUBTRACTION("/images/activities/math/operations/subtraction.png",60, 60),

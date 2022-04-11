@@ -10,7 +10,12 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
-import javax.swing.*;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -28,13 +33,13 @@ public class ViewStudentController {
     }
 
     private static void populateTable(ViewStudentView view, List<Student> students) {
-        for(int i = 0; i < students.size(); i++) {
-                    view.getModel().addRow(new Object[] {
-                            students.get(i).getStudentID(),
-                            students.get(i).getFirstName(),
-                            students.get(i).getLastName(),
-                            students.get(i).getGrade(),
-                            students.get(i).getBio()});
+        for (Student student : students) {
+            view.getModel().addRow(new Object[]{
+                    student.getStudentID(),
+                    student.getFirstName(),
+                    student.getLastName(),
+                    student.getGrade(),
+                    student.getBio()});
         }
         view.getStudentTable().getColumn("View").setCellRenderer(new ButtonRenderer());
         view.getStudentTable().getColumn("View").setCellEditor(new ButtonEditor(view, new JCheckBox()));

@@ -1,14 +1,10 @@
 package com.mango.prjmango.utilities;
 
-import com.mango.prjmango.ui.account.AccountView;
-import lombok.Getter;
-import lombok.Setter;
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.util.Objects;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 public class ImageUtils {
 
