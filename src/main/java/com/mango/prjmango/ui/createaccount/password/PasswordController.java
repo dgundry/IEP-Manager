@@ -13,8 +13,9 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Arrays;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.*;
 
 /**
  * This class handles all user interaction with the Create Password page within the
@@ -70,6 +71,8 @@ public class PasswordController {
             char[] password1 = view.getCreatePasswordField().getPassword();
             char[] password2 = view.getConfirmPasswordField().getPassword();
 
+            String strArr = String.valueOf(password1);
+
             if (password1.length == 0) {
                 view.getInvalidLabel().setText("First password field is empty!");
                 view.getInvalidLabel().setForeground(Color.RED);
@@ -82,6 +85,13 @@ public class PasswordController {
                 view.getInvalidLabel().setText("Passwords do not match!");
                 view.getInvalidLabel().setForeground(Color.RED);
                 view.getCreatePasswordField().requestFocus();
+            } else if(!isValid(strArr)){
+                view.getInvalidLabel().setText("<html>Please make sure that your password contains: " +
+                        "<ul><li>8 or more characters</li>" +
+                        "<li>At least 1 Special Character</li>" +
+                        "<li>At least 1 Uppercase letter</li>" +
+                        "<li>At least 1 Lowercase letter</li>" +
+                        "<li>At least 1 digit</li></ul></html>");
             } else {
                 user.setSecurityQ1(user.getSecurityQ1() + 1);
                 user.setSecurityQ2(user.getSecurityQ2() + 1);
@@ -106,6 +116,14 @@ public class PasswordController {
                 }
                 new ConfirmationController(confirmationView);
             }
+        }
+
+        private static final String PASSWORD_PATTERN =
+                "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
+        private static final Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
+        public static boolean isValid(final String password){
+            Matcher matcher = pattern.matcher(password);
+            return matcher.matches();
         }
 
         /**

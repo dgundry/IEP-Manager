@@ -12,6 +12,8 @@ import java.awt.event.MouseListener;
 import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
@@ -85,6 +87,9 @@ public class PasswordController {
             char[] newPass     = newPassField.getPassword();
             char[] confirmPass = confirmPassField.getPassword();
 
+
+            String strArr = String.valueOf(newPass);
+
             String currPassword = "";
 
             if (currPass.length != 0) {
@@ -94,25 +99,46 @@ public class PasswordController {
                 view.getInformationLabel().setForeground(Colors.RED);
                 return;
             }
+            if(!isValid(strArr)){
+                view.getInformationLabel().setText("<html>Please make sure that your password contains: " +
+                        "<ul><li>8 or more characters</li>" +
+                        "<li>At least 1 Special Character</li>" +
+                        "<li>At least 1 Uppercase letter</li>" +
+                        "<li>At least 1 Lowercase letter</li>" +
+                        "<li>At least 1 digit</li></ul></html>");
 
-            if (currPassword.length() == 0 || currPassword.equals(Encryption.encrypt(Arrays.toString(currPass)))) {
-                if (Arrays.equals(newPass, confirmPass)) {
-                    if (newPass.length == 0) {
-                        view.getInformationLabel().setText("Passwords cannot be length 0!");
-                        view.getInformationLabel().setForeground(Colors.RED);
-                    } else {
-                        displayInformationText();
-
-                        UserCommands.updateUserPassword(newPass);
-                    }
-                } else {
-                    view.getInformationLabel().setText("New password does not match the confirmation password!");
-                    view.getInformationLabel().setForeground(Colors.RED);
-                }
-            } else {
-                view.getInformationLabel().setText("Current password does not match our records!");
+            }else if(Arrays.equals(newPass, confirmPass)){
+                UserCommands.updateUserPassword(newPass);
+            }else{
+                view.getInformationLabel().setText("New password does not match the confirmation password!");
                 view.getInformationLabel().setForeground(Colors.RED);
             }
+//            if (currPassword.length() == 0 || currPassword.equals(Encryption.encrypt(Arrays.toString(currPass)))) {
+//                if (Arrays.equals(newPass, confirmPass)) {
+//                    if (newPass.length == 0) {
+//                        view.getInformationLabel().setText("Passwords cannot be length 0!");
+//                        view.getInformationLabel().setForeground(Colors.RED);
+//                    } else {
+//                        displayInformationText();
+//
+//                        UserCommands.updateUserPassword(newPass);
+//                    }
+//                } else {
+//                    view.getInformationLabel().setText("New password does not match the confirmation password!");
+//                    view.getInformationLabel().setForeground(Colors.RED);
+//                }
+//            } else {
+//                view.getInformationLabel().setText("Current password does not match our records!");
+//                view.getInformationLabel().setForeground(Colors.RED);
+//            }
+        }
+
+        private static final String PASSWORD_PATTERN =
+                "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
+        private static final Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
+        public static boolean isValid(final String password){
+            Matcher matcher = pattern.matcher(password);
+            return matcher.matches();
         }
 
         private void displayInformationText() {
