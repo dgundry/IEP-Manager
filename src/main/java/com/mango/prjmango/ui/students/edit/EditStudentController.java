@@ -5,6 +5,7 @@ import com.mango.prjmango.Main;
 import com.mango.prjmango.student.Student;
 import com.mango.prjmango.student.Students;
 import com.mango.prjmango.ui.common.ImageIcons;
+import com.mango.prjmango.ui.common.PencilEditor;
 import com.mango.prjmango.utilities.dbcommands.StudentCommands;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -25,10 +26,10 @@ public class EditStudentController {
 
     public EditStudentController(EditStudentView view) {
         JLabel saveLabel = view.getSaveLabel();
-        JLabel editFirstNameLabel = view.getEditFirstNameLabel();
-        JLabel editLastNameLabel  = view.getEditLastNameLabel();
-        JLabel editGradeLabel     = view.getEditGradeLabel();
-        JLabel editBioLabel       = view.getEditBioLabel();
+        PencilEditor editFirstNameLabel = view.getEditFirstNameLabel();
+        PencilEditor editLastNameLabel  = view.getEditLastNameLabel();
+        PencilEditor editGradeLabel     = view.getEditGradeLabel();
+        PencilEditor editBioLabel       = view.getEditBioLabel();
 
         JTextField firstNameTextField = view.getStudentFirstNameTextField();
         JTextField lastNameTextField  = view.getStudentLastNameTextField();
@@ -56,6 +57,12 @@ public class EditStudentController {
             this.label = label;
         }
 
+        /**
+         * Invoked when the mouse button has been clicked (pressed
+         * and released) on a component.
+         *
+         * @param e the {@link MouseEvent}
+         */
         public void mouseClicked(MouseEvent e) {
             view.getInformationLabel().setText("");
 
@@ -93,51 +100,77 @@ public class EditStudentController {
                 view.getStudentLastNameTextField().setEnabled(false);
                 view.getBioTextField().setEnabled(false);
                 view.getGradeComboBox().setEnabled(false);
+
+                view.getEditFirstNameLabel().setIcon(
+                        ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
+                view.getEditLastNameLabel().setIcon(
+                        ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
+                view.getEditGradeLabel().setIcon(
+                        ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
+                view.getEditBioLabel().setIcon(
+                        ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
+
+                view.getEditFirstNameLabel().setInEditMode(false);
+                view.getEditLastNameLabel().setInEditMode(false);
+                view.getEditGradeLabel().setInEditMode(false);
+                view.getEditBioLabel().setInEditMode(false);
             }
-
         }
 
-        @Override
-        public void mousePressed(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseReleased(MouseEvent e) {
-
-        }
-
+        /**
+         * Invoked when the mouse enters a component.
+         *
+         * @param e the {@link MouseEvent}
+         */
         @Override
         public void mouseEntered(MouseEvent e) {
             label.setIcon(ImageIcons.EDIT_PROFILE_SAVE_HOVERED.getImageIcon());
         }
 
-
+        /**
+         * Invoked when the mouse exits a component.
+         *
+         * @param e the {@link MouseEvent}
+         */
         @Override
         public void mouseExited(MouseEvent e) {
             label.setIcon(ImageIcons.EDIT_PROFILE_SAVE_NO_HOVER.getImageIcon());
-
         }
+
+        /**
+         * Invoked when a mouse button has been pressed on a component.
+         *
+         * @param e the {@link MouseEvent}
+         */
+        @Override
+        public void mousePressed(MouseEvent e) { /* Not needed */ }
+
+        /**
+         * Invoked when a mouse button has been released on a component.
+         *
+         * @param e the {@link MouseEvent}
+         */
+        @Override
+        public void mouseReleased(MouseEvent e) { /* Not needed */ }
 
         private static boolean isBlank(String str) {
             return str.equals("");
         }
-
     }
 
     private static class EditLabelMouseListener implements MouseListener {
 
-        private final JLabel label;
+        private final PencilEditor label;
         private final JComponent component;
 
         /**
          * Constructor. Initializes instance variables that will be used throughout the {@link MouseListener}
          * methods.
          *
-         * @param label     the specific {@link JLabel}
+         * @param label     the specific {@link PencilEditor}
          * @param component the specific {@link JComponent}
          */
-        public EditLabelMouseListener(JLabel label, JComponent component) {
+        public EditLabelMouseListener(PencilEditor label, JComponent component) {
             this.label = label;
             this.component = component;
         }
@@ -150,10 +183,12 @@ public class EditStudentController {
          */
         @Override
         public void mouseClicked(MouseEvent e) {
-            if (component.isEnabled()) {
+            if (label.isInEditMode()) {
+                label.setInEditMode(false);
                 component.setEnabled(false);
                 label.setIcon(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
             } else {
+                label.setInEditMode(true);
                 component.setEnabled(true);
                 component.requestFocus();
                 label.setIcon(ImageIcons.EDIT_PROFILE_EDIT_ICON_HOVERED.getImageIcon());
@@ -169,7 +204,7 @@ public class EditStudentController {
          */
         @Override
         public void mouseEntered(MouseEvent e) {
-            if (label.getIcon().equals(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon())) {
+            if (!label.isInEditMode()) {
                 label.setIcon(ImageIcons.EDIT_PROFILE_EDIT_ICON_HOVERED.getImageIcon());
             }
 
@@ -183,7 +218,7 @@ public class EditStudentController {
          */
         @Override
         public void mouseExited(MouseEvent e) {
-            if (label.getIcon().equals(ImageIcons.EDIT_PROFILE_EDIT_ICON_HOVERED.getImageIcon())) {
+            if (!label.isInEditMode()) {
                 label.setIcon(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
             }
 
@@ -207,9 +242,9 @@ public class EditStudentController {
         public void mouseReleased(MouseEvent e) { /* Not needed */ }
     }
 
-    private class StudentItemListener implements ItemListener {
-        private EditStudentView view;
-        private JComboBox<Student> studentComboBox;
+    private static class StudentItemListener implements ItemListener {
+        private final EditStudentView view;
+        private final JComboBox<Student> studentComboBox;
         public StudentItemListener(EditStudentView view, JComboBox<Student> studentComboBox) {
             this.view = view;
             this.studentComboBox = studentComboBox;

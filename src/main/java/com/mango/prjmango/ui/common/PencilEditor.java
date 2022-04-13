@@ -1,4 +1,4 @@
-package com.mango.prjmango.ui.account.editprofile;
+package com.mango.prjmango.ui.common;
 
 import com.mango.prjmango.ui.common.ImageIcons;
 import lombok.Getter;

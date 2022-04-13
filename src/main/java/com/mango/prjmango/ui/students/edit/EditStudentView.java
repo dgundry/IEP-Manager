@@ -1,16 +1,16 @@
 package com.mango.prjmango.ui.students.edit;
 
 import com.mango.prjmango.Main;
-
-import com.mango.prjmango.Outlines.Outline;
 import com.mango.prjmango.student.Student;
+import com.mango.prjmango.ui.common.PencilEditor;
 import com.mango.prjmango.ui.common.Colors;
 import com.mango.prjmango.ui.common.Components;
 import com.mango.prjmango.ui.common.Fonts;
 import com.mango.prjmango.ui.common.ImageIcons;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.GroupLayout;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -18,11 +18,16 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
-
+import com.mango.prjmango.ui.common.limitedtextfield.FilterType;
 import com.mango.prjmango.ui.common.roundedcomponents.RoundedComboBox;
 import lombok.Getter;
 
+/**
+ * The user interface design of the Edit Student page.
+ */
 public class EditStudentView extends JPanel {
+
+    private static final Logger logger = Logger.getLogger(EditStudentView.class.getName());
 
     private JLabel nameComboBoxLabel;
     private JLabel editStudentHeaderLabel;
@@ -41,13 +46,16 @@ public class EditStudentView extends JPanel {
 
     @Getter private JComboBox<String> gradeComboBox;
 
-    @Getter private JLabel editFirstNameLabel;
-    @Getter private JLabel editLastNameLabel;
-    @Getter private JLabel editGradeLabel;
-    @Getter private JLabel editBioLabel;
+    @Getter private PencilEditor editFirstNameLabel;
+    @Getter private PencilEditor editLastNameLabel;
+    @Getter private PencilEditor editGradeLabel;
+    @Getter private PencilEditor editBioLabel;
 
     @Getter private JComboBox<Student> nameComboBox;
 
+    /**
+     * Constructor. Calls methods that create the GUI.
+     */
     public EditStudentView() {
         setOpaque(false);
 
@@ -79,15 +87,20 @@ public class EditStudentView extends JPanel {
         bioLabel = Components.JLabel("Bio", Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
         informationLabel = Components.JLabel(" ", Fonts.SEGOE_UI_14.getFont(), Colors.LIGHT_GREY);
 
-        editFirstNameLabel = new JLabel(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
-        editLastNameLabel  = new JLabel(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
-        editGradeLabel     = new JLabel(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
-        editBioLabel       = new JLabel(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
+        editFirstNameLabel = new PencilEditor();
+        editLastNameLabel  = new PencilEditor();
+        editGradeLabel     = new PencilEditor();
+        editBioLabel       = new PencilEditor();
+
         saveLabel          = new JLabel(ImageIcons.EDIT_PROFILE_SAVE_NO_HOVER.getImageIcon());
 
+        try {
+            studentFirstNameTextField = Components.LimitedJTextField(FilterType.CHARACTERS_ONLY, "", 12);
+            studentLastNameTextField = Components.LimitedJTextField(FilterType.CHARACTERS_ONLY, "", 24);
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, e.getMessage());
+        }
 
-        studentFirstNameTextField = Components.JTextField("");
-        studentLastNameTextField = Components.JTextField("");
         bioTextField = Components.JTextArea("");
         bioTextField.setLineWrap(true);
         bioTextField.setWrapStyleWord(true);
@@ -109,14 +122,6 @@ public class EditStudentView extends JPanel {
         nameComboBox.setBackground(Colors.DARK_GREY);
         nameComboBox.setForeground(Colors.LIGHT_GREY);
         nameComboBox.setSelectedIndex(0);
-
-//        if(Main.getStudents().getStudents().size() > 0){
-//            Student firstStudent = (Student) nameComboBox.getSelectedItem();
-//            studentFirstNameTextField.setText(firstStudent.getFirstName());
-//            studentLastNameTextField.setText(firstStudent.getLastName());
-//            bioTextField.setText(firstStudent.getBio());
-//            gradeComboBox.setToolTipText(firstStudent.getGrade());
-//        }
     }
 
     private void createLayout() {

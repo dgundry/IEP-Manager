@@ -1,10 +1,8 @@
 package com.mango.prjmango.ui.account.editprofile;
 
 import com.mango.prjmango.LoggedInUser;
-import com.mango.prjmango.ui.common.Colors;
-import com.mango.prjmango.ui.common.Components;
-import com.mango.prjmango.ui.common.Fonts;
-import com.mango.prjmango.ui.common.ImageIcons;
+import com.mango.prjmango.ui.common.*;
+
 import javax.swing.GroupLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;

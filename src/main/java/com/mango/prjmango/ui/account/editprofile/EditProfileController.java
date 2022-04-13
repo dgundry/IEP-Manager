@@ -1,6 +1,7 @@
 package com.mango.prjmango.ui.account.editprofile;
 
 import com.mango.prjmango.LoggedInUser;
+import com.mango.prjmango.ui.common.PencilEditor;
 import com.mango.prjmango.utilities.DatabaseCommands;
 import com.mango.prjmango.utilities.EmailValidation;
 import com.mango.prjmango.ui.common.ImageIcons;
