@@ -13,6 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
+
+import com.mango.prjmango.ui.common.limitedtextfield.FilterType;
 import lombok.Getter;
 
 /**
@@ -66,9 +68,12 @@ public class CreateStudentView extends JPanel {
 
         saveLabel = new JLabel(ImageIcons.EDIT_PROFILE_SAVE_NO_HOVER.getImageIcon());
 
-        studentFirstNameTextField = Components.JTextField("");
-        studentLastNameTextField  = Components.JTextField("");
-        studentFirstNameTextField.requestFocus();
+        try{
+            studentFirstNameTextField = Components.LimitedJTextField(FilterType.CHARACTERS_ONLY, "", 12);
+            studentLastNameTextField  = Components.LimitedJTextField(FilterType.CHARACTERS_ONLY, "", 24);
+            studentFirstNameTextField.requestFocus();
+        } catch (Exception e){}
+
         
         bioTextArea = Components.JTextArea("");
 
