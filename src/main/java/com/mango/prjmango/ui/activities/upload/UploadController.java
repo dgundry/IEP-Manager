@@ -2,6 +2,7 @@ package com.mango.prjmango.ui.activities.upload;
 
 import com.mango.prjmango.Main;
 import com.mango.prjmango.Outlines.Outline;
+import com.mango.prjmango.assignment.Assignments;
 import com.mango.prjmango.student.Student;
 import com.mango.prjmango.ui.common.ImageIcons;
 import com.mango.prjmango.ui.dialogs.confirmation.ConfirmationController;
@@ -119,6 +120,7 @@ public class UploadController {
                 view.getPointsEarnedTextField().setText("");
                 view.getCommentsTextField().setText("");
                 view.getAssignmentNameDropdown().setSelectedIndex(0);
+                Main.setAssignments(new Assignments(Main.getActiveUser().getTeacherId()));
                 ConfirmationView confirmationView =
                         new ConfirmationView("Assignment Uploaded!", Dialogs.ASSIGNMENT_UPLOADED);
                 new ConfirmationController(confirmationView);

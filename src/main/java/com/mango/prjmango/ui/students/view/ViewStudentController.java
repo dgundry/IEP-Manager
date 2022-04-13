@@ -95,9 +95,9 @@ public class ViewStudentController {
         public Object getCellEditorValue() {
             if (isPushed) {
                 System.out.println(view.getModel().getValueAt(view.getStudentTable().getSelectedRow(),0) +" was Clicked");
-
-                ReportsView reportsView = new ReportsView();
-                new ReportsController();
+                String fullName = view.getModel().getValueAt(view.getStudentTable().getSelectedRow(),2) +", "+ view.getModel().getValueAt(view.getStudentTable().getSelectedRow(),1);
+                ReportsView reportsView = new ReportsView(fullName);
+                new ReportsController(reportsView, (Integer) view.getModel().getValueAt(view.getStudentTable().getSelectedRow(),0));
                 StudentsView.setActiveDisplay(reportsView);
            }
             isPushed = false;

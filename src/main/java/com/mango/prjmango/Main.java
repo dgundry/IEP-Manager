@@ -1,6 +1,7 @@
 package com.mango.prjmango;
 
 import com.mango.prjmango.Outlines.Outlines;
+import com.mango.prjmango.assignment.Assignments;
 import com.mango.prjmango.student.Students;
 import com.mango.prjmango.ui.MainWindowView;
 import com.mango.prjmango.ui.activities.SightWords;
@@ -31,6 +32,7 @@ public class Main {
 
 	@Getter @Setter private static LoggedInUser activeUser;
 	@Getter @Setter private static Students students;
+	@Getter @Setter private static Assignments assignments;
 	@Getter @Setter private static Outlines outlines;
 
 	public static final SightWords SIGHT_WORDS = new SightWords();

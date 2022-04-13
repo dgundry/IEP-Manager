@@ -1,6 +1,8 @@
 package com.mango.prjmango.ui.activities;
 
 import com.mango.prjmango.LoggedInUser;
+import com.mango.prjmango.Main;
+import com.mango.prjmango.assignment.Assignments;
 import com.mango.prjmango.utilities.DatabaseConnection;
 import com.mango.prjmango.ui.common.ImageIcons;
 import com.mango.prjmango.ui.dialogs.confirmation.ConfirmationController;
@@ -59,7 +61,7 @@ public class FinishAssignmentController {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
+        Main.setAssignments(new Assignments(Main.getActiveUser().getTeacherId()));
         if(view.getMathAssignment() != null) {
             ConfirmationView confirmationView =
                     new ConfirmationView("Assignment saved!", Dialogs.MATH_SAVED);
