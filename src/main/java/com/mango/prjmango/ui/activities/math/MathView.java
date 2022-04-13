@@ -160,7 +160,7 @@ public class MathView extends JPanel {
                 Fonts.SEGOE_UI_14.getFont(),
                 Colors.RED,
                 SwingConstants.CENTER);
-        informationLabel = Components.JLabel(" ", Fonts.SEGOE_UI_14.getFont(), Colors.RED, SwingConstants.LEADING);
+        informationLabel = Components.JLabel("", Fonts.SEGOE_UI_14.getFont(), Colors.RED, SwingConstants.LEADING);
 
         beginPracticeLabel        = new JLabel(ImageIcons.BEGIN_PRACTICE_NO_HOVER.getImageIcon());
         numeratorSeparatorLabel   = new JLabel(ImageIcons.SEPARATOR.getImageIcon());

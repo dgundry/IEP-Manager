@@ -124,9 +124,15 @@ public class MathController {
             }
 
             if(additionTotal + subtractionTotal + multiplicationTotal + divisionTotal <= 0) {
-                view.getSelectStudentInfoLabel().setText("Please enter a positive number for at least one of the fields.");
+                view.getInformationLabel().setText("Please enter a positive number for at least one of the fields.");
+                return;
             }
-
+            boolean wholeNumbers;
+            if(view.getNumericTypeComboBox().getSelectedIndex() == 0) {
+                wholeNumbers    = true;
+            }else{
+                wholeNumbers    = false;
+            }
             MathAssignment assignment = new MathAssignment(
                     assignmentName,
                     student,
@@ -137,7 +143,7 @@ public class MathController {
                     numeratorMin,
                     numeratorMax,
                     denominatorMin,
-                    denominatorMax,false);
+                    denominatorMax,wholeNumbers);
 
             int numberOfQuestions = assignment.getNumberOfQuestions();
 
