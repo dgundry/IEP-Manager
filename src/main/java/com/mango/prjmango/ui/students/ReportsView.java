@@ -45,7 +45,7 @@ public class ReportsView extends JPanel {
         dateTextField2 = new DateChooser(1,1,1);
 
 
-        model = new DefaultTableModel(new Object[][]{}, new String[] { "Assignment ID", "Title", "Earned Points", "Total Points", "Date", "Comments"});
+        model = new DefaultTableModel(new Object[][]{}, new String[] { "Assignment ID", "Title", "Earned Points", "Total Points", "Date", "Comments","Delete"});
         assignmentsTable.setBorder(new LineBorder(new java.awt.Color(120, 45, 22), 1, true));
         assignmentsTable.setModel(model);
         assignmentsTable.setBackground(Colors.DARK_GREY);

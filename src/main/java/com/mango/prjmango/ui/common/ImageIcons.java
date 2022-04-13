@@ -129,7 +129,8 @@ public enum ImageIcons {
     DIVISION("/images/activities/math/operations/division.png",60, 60),
 
     EXPORT("/images/students/reports/export.png", 95, 31),
-    NEXTSTUDENT("/images/students/reports/nextstudent.png", 95, 31);
+    NEXTSTUDENT("/images/students/reports/nextstudent.png", 95, 31),
+    DELETE_TRASH("/images/common/trashcan.png", 20, 20);
 
     @Getter
     private ImageIcon imageIcon;

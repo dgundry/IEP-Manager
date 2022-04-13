@@ -47,11 +47,14 @@ public class ViewStudentController {
                     student.getGrade(),
                     student.getBio()});
         }
-        view.getStudentTable().getColumn("View").setCellRenderer(new ButtonRenderer());
-        view.getStudentTable().getColumn("View").setCellEditor(new ButtonEditor(view, new JCheckBox()));
+        view.getStudentTable().getColumn("View").setCellRenderer(new ViewButtonRenderer());
+        view.getStudentTable().getColumn("View").setCellEditor(new ViewButtonEditor(view, new JCheckBox()));
+
+        view.getStudentTable().getColumn("Delete").setCellRenderer(new DeleteButtonRenderer());
+        view.getStudentTable().getColumn("Delete").setCellEditor(new DeleteButtonEditor(view, new JCheckBox()));
     }
 
-    private static class ButtonRenderer extends DefaultTableCellRenderer {
+    private static class ViewButtonRenderer extends DefaultTableCellRenderer {
         JLabel label = new JLabel();
 
         @Override
@@ -62,13 +65,13 @@ public class ViewStudentController {
         }
     }
 
-    private static class ButtonEditor extends DefaultCellEditor {
+    private static class ViewButtonEditor extends DefaultCellEditor {
         protected JButton button;
         private String label;
         private boolean isPushed;
         private final ViewStudentView view;
 
-        public ButtonEditor(ViewStudentView view, JCheckBox checkBox) {
+        public ViewButtonEditor(ViewStudentView view, JCheckBox checkBox) {
             super(checkBox);
             this.view = view;
             button = new JButton();
@@ -82,10 +85,10 @@ public class ViewStudentController {
         @Override
         public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
             if(isSelected){
-                System.out.println("Selected");
+//                System.out.println("Selected");
 
             }else{
-                System.out.println("Not Selected");
+//                System.out.println("Not Selected");
             }
             isPushed = true;
             return button;
@@ -100,6 +103,66 @@ public class ViewStudentController {
                 new ReportsController(reportsView, (Integer) view.getModel().getValueAt(view.getStudentTable().getSelectedRow(),0));
                 StudentsView.setActiveDisplay(reportsView);
            }
+            isPushed = false;
+            return label;
+        }
+
+        @Override
+        public boolean stopCellEditing() {
+            isPushed = false;
+            return super.stopCellEditing();
+        }
+    }
+
+    private static class DeleteButtonRenderer extends DefaultTableCellRenderer {
+        JLabel label = new JLabel();
+
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+                                                       boolean hasFocus, int row, int column) {
+            label = new JLabel(ImageIcons.DELETE_TRASH.getImageIcon());
+            return label;
+        }
+    }
+
+    private static class DeleteButtonEditor extends DefaultCellEditor {
+        protected JButton button;
+        private String label;
+        private boolean isPushed;
+        private final ViewStudentView view;
+
+        public DeleteButtonEditor(ViewStudentView view, JCheckBox checkBox) {
+            super(checkBox);
+            this.view = view;
+            button = new JButton();
+            button.setOpaque(false);
+            button.setBackground(null);
+            button.setBorder(null);
+            button.setContentAreaFilled(false);
+            button.addActionListener(e -> fireEditingStopped());
+        }
+
+        @Override
+        public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
+            if(isSelected){
+//                System.out.println("Selected");
+
+            }else{
+//                System.out.println("Not Selected");
+            }
+            isPushed = true;
+            return button;
+        }
+
+        @Override
+        public Object getCellEditorValue() {
+            if (isPushed) {
+                System.out.println(view.getModel().getValueAt(view.getStudentTable().getSelectedRow(),0) +" was Clicked");
+
+//                ReportsView reportsView = new ReportsView();
+//                new ReportsController();
+//                StudentsView.setActiveDisplay(reportsView);
+            }
             isPushed = false;
             return label;
         }

@@ -46,7 +46,7 @@ public class ViewStudentView extends JPanel {
 
         searchTextBox = Components.JTextField("");
 
-        model = new DefaultTableModel(new Object[][]{}, new String[] { "Student ID", "First Name", "Last Name", "Grade", "Bio", "View" });
+        model = new DefaultTableModel(new Object[][]{}, new String[] { "Student ID", "First Name", "Last Name", "Grade", "Bio", "View", "Delete" });
         studentTable.setBorder(new LineBorder(new java.awt.Color(120, 45, 22), 1, true));
         studentTable.setModel(model);
         studentTable.setBackground(Colors.DARK_GREY);
