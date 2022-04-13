@@ -15,7 +15,6 @@ import com.mango.prjmango.ui.login.LoginView;
 import com.mango.prjmango.ui.sideoptions.SideOptionsView;
 import com.mango.prjmango.utilities.DatabaseConnection;
 import com.mango.prjmango.utilities.Tabs;
-
 import java.awt.event.*;
 import javax.swing.JLabel;
 
@@ -57,9 +56,24 @@ public class ConfirmationController {
             this.selectedDialog = selectedDialog;
 
             view.addKeyListener(new KeyListener() {
+
+                LoginView loginView;
+
+                /**
+                 * Handles the keyTyped event by invoking the
+                 * keyTyped methods on listener-a and listener-b.
+                 *
+                 * @param e the {@link KeyEvent}
+                 */
                 @Override
-                public void keyTyped(KeyEvent e) {
-                }
+                public void keyTyped(KeyEvent e) { /* Not needed */ }
+
+                /**
+                 * Handles the keyPressed event by invoking the
+                 * keyPressed methods on listener-a and listener-b.
+                 *
+                 * @param e the {@link KeyEvent}
+                 */
                 @Override
                 public void keyPressed(KeyEvent e) {
                     if (e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -73,9 +87,10 @@ public class ConfirmationController {
 
                                 view.dispose();
 
-                                LoginView loginView = new LoginView();
+                                loginView = new LoginView();
                                 new LoginController(loginView);
                                 MainWindowView.setActiveDisplay(loginView);
+                                loginView.getEmailField().requestFocus();
 
                                 Main.setActiveUser(null);
                                 break;
@@ -95,9 +110,10 @@ public class ConfirmationController {
                             case 3:
                                 view.dispose();
 
-                                LoginView logView = new LoginView();
-                                new LoginController(logView);
-                                MainWindowView.setActiveDisplay(logView);
+                                loginView = new LoginView();
+                                new LoginController(loginView);
+                                MainWindowView.setActiveDisplay(loginView);
+                                loginView.getEmailField().requestFocus();
 
                                 break;
                             case 4:
@@ -120,9 +136,15 @@ public class ConfirmationController {
                         }
                     }
                 }
+
+                /**
+                 * Handles the keyReleased event by invoking the
+                 * keyReleased methods on listener-a and listener-b.
+                 *
+                 * @param e the {@link KeyEvent}
+                 */
                 @Override
-                public void keyReleased(KeyEvent e) {
-                }
+                public void keyReleased(KeyEvent e) { /* Not needed */ }
             });
         }
 
@@ -134,6 +156,9 @@ public class ConfirmationController {
          */
         @Override
         public void mouseClicked(MouseEvent e) {
+
+            LoginView loginView;
+
             switch (selectedDialog.ordinal()) {
                 case 0:
 
@@ -144,9 +169,10 @@ public class ConfirmationController {
 
                     view.dispose();
 
-                    LoginView loginView = new LoginView();
+                    loginView = new LoginView();
                     new LoginController(loginView);
                     MainWindowView.setActiveDisplay(loginView);
+                    loginView.getEmailField().requestFocus();
 
                     Main.setActiveUser(null);
                     break;
@@ -166,9 +192,10 @@ public class ConfirmationController {
                 case 3:
                     view.dispose();
 
-                    LoginView logView = new LoginView();
-                    new LoginController(logView);
-                    MainWindowView.setActiveDisplay(logView);
+                    loginView = new LoginView();
+                    new LoginController(loginView);
+                    MainWindowView.setActiveDisplay(loginView);
+                    loginView.getEmailField().requestFocus();
 
                     break;
                 case 4:

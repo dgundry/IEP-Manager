@@ -188,6 +188,7 @@ public class BasicInfoController {
             LoginView loginView = new LoginView();
             new LoginController(loginView);
             MainWindowView.setActiveDisplay(loginView);
+            loginView.getEmailField().requestFocus();
         }
 
         /**

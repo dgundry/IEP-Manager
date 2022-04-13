@@ -11,6 +11,7 @@ import com.mango.prjmango.ui.createaccount.basicinfo.BasicInfoController;
 import com.mango.prjmango.ui.createaccount.basicinfo.BasicInfoView;
 import com.mango.prjmango.ui.forgotpassword.email.EmailController;
 import com.mango.prjmango.ui.forgotpassword.email.EmailView;
+import com.mango.prjmango.ui.sideoptions.SideOptionsView;
 import com.mango.prjmango.ui.students.StudentsController;
 import com.mango.prjmango.ui.students.StudentsView;
 import com.mango.prjmango.utilities.dbcommands.UserCommands;
@@ -58,9 +59,10 @@ public class LoginController {
             }
         });
         loginLabel.addMouseListener(new LoginLabelMouseListener(view, loginLabel));
-        createAccountLabel.addMouseListener(new CreateAccountLabelMouseListener(view, createAccountLabel));
-        forgotPasswordLabel.addMouseListener(new ForgotPasswordLabelMouseListener(view, forgotPasswordLabel));
+        createAccountLabel.addMouseListener(new CreateAccountLabelMouseListener(createAccountLabel));
+        forgotPasswordLabel.addMouseListener(new ForgotPasswordLabelMouseListener(forgotPasswordLabel));
     }
+
     private static void login(LoginView view) {
         String enteredEmail = view.getEmailField().getText();
         char[] enteredPassword = view.getPasswordField().getPassword();
@@ -79,6 +81,7 @@ public class LoginController {
                 new StudentsController(studentsView);
                 MainWindowView.displayActiveTab(StudentsView.getStudentBackgroundLabel());
 
+                SideOptionsView.updateWelcomeMessage();
             } else {
                 view.getInvalidLabel().setText("Invalid email or password. Please try again.");
             }
@@ -154,18 +157,15 @@ public class LoginController {
 
     private static class CreateAccountLabelMouseListener implements MouseListener {
 
-        private final LoginView view;
         private final JLabel label;
 
         /**
          * Constructor. Instantiate instance variables that will be used within the {@link MouseListener}
          * methods.
          *
-         * @param view  the {@link LoginView} to access the specific {@link JComponent}'s
          * @param label the specific {@link JLabel}
          */
-        public CreateAccountLabelMouseListener(LoginView view, JLabel label) {
-            this.view = view;
+        public CreateAccountLabelMouseListener(JLabel label) {
             this.label = label;
         }
 
@@ -233,18 +233,15 @@ public class LoginController {
 
     private static class ForgotPasswordLabelMouseListener implements MouseListener {
 
-        private final LoginView view;
         private final JLabel label;
 
         /**
          * Constructor. Instantiate instance variables that will be used within the {@link MouseListener}
          * methods.
          *
-         * @param view  the {@link LoginView} to access the specific {@link JComponent}'s
          * @param label the specific {@link JLabel}
          */
-        public ForgotPasswordLabelMouseListener(LoginView view, JLabel label) {
-            this.view = view;
+        public ForgotPasswordLabelMouseListener(JLabel label) {
             this.label = label;
         }
 

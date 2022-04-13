@@ -10,6 +10,8 @@ import com.mango.prjmango.ui.login.LoginView;
 import com.mango.prjmango.utilities.DatabaseConnection;
 import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.UIManager;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,6 +29,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class Main {
+
+	private static final Logger logger = Logger.getLogger(Main.class.getName());
 
 	public static final Rectangle rect = GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds();
 
@@ -59,8 +63,9 @@ public class Main {
 			LoginView loginView = new LoginView();
 			new LoginController(loginView);
 			MainWindowView.setActiveDisplay(loginView);
+			loginView.getEmailField().requestFocus();
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.log(Level.SEVERE, e.getMessage());
 		}
 	}
 }
