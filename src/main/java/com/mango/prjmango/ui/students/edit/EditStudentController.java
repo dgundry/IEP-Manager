@@ -243,27 +243,71 @@ public class EditStudentController {
     }
 
     private static class StudentItemListener implements ItemListener {
+
         private final EditStudentView view;
         private final JComboBox<Student> studentComboBox;
+
+        /**
+         * Constructor. Initializes instance variables that will be used throughout the {@link ItemListener}
+         * methods.
+         *
+         * @param view            the {@link EditStudentView} to access other {@link JComponent}'s
+         * @param studentComboBox the {@link JComboBox} of {@link Student}'s
+         */
         public StudentItemListener(EditStudentView view, JComboBox<Student> studentComboBox) {
             this.view = view;
             this.studentComboBox = studentComboBox;
         }
 
+        /**
+         * Invoked when an item has been selected or deselected by the user.
+         * The code written for this method performs the operations
+         * that need to occur when an item is selected (or deselected).
+         *
+         * @param e the {@link ItemEvent}
+         */
         @Override
         public void itemStateChanged(ItemEvent e) {
+            if (studentComboBox.getSelectedIndex() == 0) {
+                resetFields();
+                return;
+            }
+
             Student selectedStudent = (Student) studentComboBox.getSelectedItem();
+
             if (selectedStudent.getStudentID() != 0) {
+                resetFields();
                 view.getStudentFirstNameTextField().setText(selectedStudent.getFirstName());
                 view.getStudentLastNameTextField().setText(selectedStudent.getLastName());
                 view.getBioTextField().setText(selectedStudent.getBio());
                 view.getGradeComboBox().setSelectedIndex(Integer.parseInt(selectedStudent.getGrade())-1);
-            }else {
-                view.getStudentFirstNameTextField().setText("");
-                view.getStudentLastNameTextField().setText("");
-                view.getBioTextField().setText("");
-                view.getGradeComboBox().setSelectedIndex(0);
             }
+        }
+
+        private void resetFields() {
+            view.getStudentFirstNameTextField().setText("");
+            view.getStudentLastNameTextField().setText("");
+            view.getGradeComboBox().setSelectedIndex(0);
+            view.getBioTextField().setText("");
+
+            view.getStudentFirstNameTextField().setEnabled(false);
+            view.getStudentLastNameTextField().setEnabled(false);
+            view.getGradeComboBox().setEnabled(false);
+            view.getBioTextField().setEnabled(false);
+
+            view.getEditFirstNameLabel().setIcon(
+                    ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
+            view.getEditLastNameLabel().setIcon(
+                    ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
+            view.getEditGradeLabel().setIcon(
+                    ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
+            view.getEditBioLabel().setIcon(
+                    ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
+
+            view.getEditFirstNameLabel().setInEditMode(false);
+            view.getEditLastNameLabel().setInEditMode(false);
+            view.getEditGradeLabel().setInEditMode(false);
+            view.getEditBioLabel().setInEditMode(false);
         }
     }
 }
