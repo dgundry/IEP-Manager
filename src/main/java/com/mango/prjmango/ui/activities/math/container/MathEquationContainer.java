@@ -26,6 +26,7 @@ public class MathEquationContainer extends JPanel {
 
     private final String assignmentName;
     private final int numberOfQuestions;
+    private final boolean wholeNumbersOnly;
 
     /**
      * Constructor. Calls methods that create the GUI.
@@ -33,9 +34,10 @@ public class MathEquationContainer extends JPanel {
      * @param assignmentName    the name of the assignment
      * @param numberOfQuestions the number of questions
      */
-    public MathEquationContainer(String assignmentName, int numberOfQuestions) {
+    public MathEquationContainer(String assignmentName, int numberOfQuestions, boolean wholeNumbers) {
         this.assignmentName = assignmentName;
         this.numberOfQuestions = numberOfQuestions;
+        this.wholeNumbersOnly = wholeNumbers;
 
         setOpaque(false);
 
@@ -58,7 +60,12 @@ public class MathEquationContainer extends JPanel {
                 SwingConstants.LEADING);
 
         try {
-            answerTextField = Components.LimitedJTextField(FilterType.MATH_CHARACTERS_AND_NUMBERS, "", 5);
+            if (wholeNumbersOnly) {
+                answerTextField = Components.LimitedJTextField(FilterType.MATH_CHARACTERS_AND_NUMBERS_WITH_DECIMAL_AND_MINUS, "", 7);
+
+            }else{
+                answerTextField = Components.LimitedJTextField(FilterType.MATH_CHARACTERS_AND_NUMBERS_WITH_DECIMAL_AND_MINUS, "", 7);
+            }
             answerTextField.setFont(Fonts.SEGOE_UI_50.getFont());
             answerTextField.grabFocus();
         } catch (Exception e) {

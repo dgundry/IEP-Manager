@@ -37,6 +37,10 @@ public class JTextFieldFilter extends DocumentFilter {
             regexCheck = Pattern.compile("^[a-zA-Z0-9]*");
         } else if (type == FilterType.MATH_CHARACTERS_AND_NUMBERS) {
             regexCheck = Pattern.compile("^-?[0-9]*");//-?\d+
+        } else if (type == FilterType.MATH_CHARACTERS_AND_NUMBERS_WITH_DECIMAL_AND_MINUS) {
+            regexCheck = Pattern.compile("^-?[0-9]*\\.?[0-9]*");//-?\d+\.\d+
+        } else if (type == FilterType.MATH_NUMBERS_WITH_MINUS) {
+            regexCheck = Pattern.compile("^-?[0-9]*");//-?\d+
         }
     }
 

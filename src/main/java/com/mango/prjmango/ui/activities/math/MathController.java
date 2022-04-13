@@ -137,11 +137,11 @@ public class MathController {
                     numeratorMin,
                     numeratorMax,
                     denominatorMin,
-                    denominatorMax);
+                    denominatorMax,false);
 
             int numberOfQuestions = assignment.getNumberOfQuestions();
 
-            MathEquationContainer view = new MathEquationContainer(assignmentName, numberOfQuestions);
+            MathEquationContainer view = new MathEquationContainer(assignmentName, numberOfQuestions, assignment.isWholeNumbers());
             new MathEquationContainerController(view, assignment);
             ActivitiesView.setActiveDisplay(view);
             view.getAnswerTextField().requestFocus();

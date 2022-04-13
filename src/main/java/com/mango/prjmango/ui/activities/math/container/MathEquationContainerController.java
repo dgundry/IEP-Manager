@@ -42,7 +42,7 @@ public class MathEquationContainerController {
     }
     private static void submitAnswer(MathEquationContainer view, MathAssignment mathAssignment) {
         try {
-            mathAssignment.answerQuestion(Integer.parseInt(view.getAnswerTextField().getText()));
+            mathAssignment.answerQuestion(Double.parseDouble(view.getAnswerTextField().getText()));
             if(mathAssignment.hasNextQuestion()) {
                 mathAssignment.nextQuestion();
                 view.setMathEquation(new MathEquation(mathAssignment.getCurrentQuestion()));
