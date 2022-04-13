@@ -126,7 +126,10 @@ public enum ImageIcons {
     ADDITION("/images/activities/math/operations/addition.png",60, 60),
     SUBTRACTION("/images/activities/math/operations/subtraction.png",60, 60),
     MULTIPLICATION("/images/activities/math/operations/multiplication.png",60, 60),
-    DIVISION("/images/activities/math/operations/division.png",60, 60);
+    DIVISION("/images/activities/math/operations/division.png",60, 60),
+
+    EXPORT("/images/students/reports/export.png", 95, 31),
+    NEXTSTUDENT("/images/students/reports/nextstudent.png", 95, 31);
 
     @Getter
     private ImageIcon imageIcon;

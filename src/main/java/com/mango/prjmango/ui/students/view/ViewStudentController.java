@@ -4,6 +4,12 @@ import com.mango.prjmango.Main;
 import com.mango.prjmango.student.Student;
 import com.mango.prjmango.student.StudentSortTypes;
 import com.mango.prjmango.ui.common.ImageIcons;
+import com.mango.prjmango.ui.students.ReportsController;
+import com.mango.prjmango.ui.students.ReportsView;
+import com.mango.prjmango.ui.students.StudentsView;
+import com.mango.prjmango.ui.students.edit.EditStudentController;
+import com.mango.prjmango.ui.students.edit.EditStudentView;
+
 import java.awt.Component;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -77,6 +83,7 @@ public class ViewStudentController {
         public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
             if(isSelected){
                 System.out.println("Selected");
+
             }else{
                 System.out.println("Not Selected");
             }
@@ -88,7 +95,11 @@ public class ViewStudentController {
         public Object getCellEditorValue() {
             if (isPushed) {
                 System.out.println(view.getModel().getValueAt(view.getStudentTable().getSelectedRow(),0) +" was Clicked");
-            }
+
+                ReportsView reportsView = new ReportsView();
+                new ReportsController();
+                StudentsView.setActiveDisplay(reportsView);
+           }
             isPushed = false;
             return label;
         }
