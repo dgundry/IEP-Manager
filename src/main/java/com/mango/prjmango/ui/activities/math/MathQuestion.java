@@ -22,10 +22,13 @@ public class MathQuestion {
         switch (operation) {
             case ADDITION:
                 answer = firstNumber + secondNumber;
+                break;
             case SUBTRACTION:
                 answer = firstNumber - secondNumber;
+                break;
             case MULTIPLICATION:
                 answer = firstNumber * secondNumber;
+                break;
             case DIVISION:
                 if(wholeNumbers) {
                     answer = firstNumber / secondNumber;
@@ -49,7 +52,7 @@ public class MathQuestion {
 //                    System.out.println(roundHalfEven.doubleValue());
 //                    System.out.println(roundFloor.doubleValue());
 //                    System.out.println(roundCeiling.doubleValue());
-
+                    break;
 
                 }
         }
