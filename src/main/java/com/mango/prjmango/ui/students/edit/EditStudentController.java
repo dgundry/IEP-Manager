@@ -64,10 +64,14 @@ public class EditStudentController {
             String gradeComboBox = Objects.requireNonNull(view.getGradeComboBox().getSelectedItem()).toString();
             String bioTextField = view.getBioTextField().getText().trim();
 
-            if(Main.getStudents().getStudents().size() <= 0){
+            if(Main.getStudents().getStudents().size() <= 0) {
                 view.getInformationLabel().setText("You do not have any students.");
                 view.getInformationLabel().setForeground(Color.RED);
                 view.getStudentFirstNameTextField().requestFocus();
+            } else if(((Student)view.getNameComboBox().getSelectedItem()).getStudentID() == 0) {
+                view.getInformationLabel().setText("Please select a student.");
+                view.getInformationLabel().setForeground(Color.RED);
+                view.getNameComboBox().requestFocus();
             } else if (isBlank(studentsFirstNameTextField)) {
                 view.getInformationLabel().setText("Please enter a valid first name!");
                 view.getInformationLabel().setForeground(Color.RED);
