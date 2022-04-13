@@ -1,6 +1,7 @@
 package com.mango.prjmango.ui.activities.math;
 
 import com.mango.prjmango.Main;
+import com.mango.prjmango.Outlines.Outline;
 import com.mango.prjmango.student.Student;
 import com.mango.prjmango.ui.common.Colors;
 import com.mango.prjmango.ui.common.Components;
@@ -8,6 +9,7 @@ import com.mango.prjmango.ui.common.Fonts;
 import com.mango.prjmango.ui.common.ImageIcons;
 import com.mango.prjmango.ui.common.limitedtextfield.FilterType;
 import com.mango.prjmango.ui.common.roundedcomponents.RoundedComboBox;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.GroupLayout;
@@ -47,6 +49,7 @@ public class MathView extends JPanel {
     @Getter private JLabel numeratorRangeInfoLabel;
     @Getter private JLabel denominatorRangeInfoLabel;
     @Getter private JLabel beginPracticeLabel;
+    @Getter private JLabel informationLabel;
 
     @Getter private JTextField additionTextField;
     @Getter private JTextField subtractionTextField;
@@ -59,6 +62,8 @@ public class MathView extends JPanel {
     @Getter private JTextField denominatorMaxValueTextField;
 
     @Getter private JComboBox<Student> studentsComboBox;
+    @Getter private JComboBox<String> numericTypeComboBox;
+    @Getter private JComboBox<Outline> assignmentNameDropdown;
 
     /**
      * Constructor. Calls methods that create the GUI.
@@ -136,25 +141,26 @@ public class MathView extends JPanel {
                 Colors.LIGHT_GREY,
                 SwingConstants.LEADING);
         selectStudentInfoLabel = Components.JLabel(
-                "",
-                Fonts.SEGOE_UI_12.getFont(),
+                " ",
+                Fonts.SEGOE_UI_14.getFont(),
                 Colors.RED,
                 SwingConstants.CENTER);
         enterAssignmentNameInfoLabel = Components.JLabel(
                 " ",
-                Fonts.SEGOE_UI_12.getFont(),
+                Fonts.SEGOE_UI_14.getFont(),
                 Colors.RED,
                 SwingConstants.CENTER);
         numeratorRangeInfoLabel = Components.JLabel(
                 " ",
-                Fonts.SEGOE_UI_12.getFont(),
+                Fonts.SEGOE_UI_14.getFont(),
                 Colors.RED,
                 SwingConstants.CENTER);
         denominatorRangeInfoLabel = Components.JLabel(
                 " ",
-                Fonts.SEGOE_UI_12.getFont(),
+                Fonts.SEGOE_UI_14.getFont(),
                 Colors.RED,
                 SwingConstants.CENTER);
+        informationLabel = Components.JLabel(" ", Fonts.SEGOE_UI_14.getFont(), Colors.RED, SwingConstants.LEADING);
 
         beginPracticeLabel        = new JLabel(ImageIcons.BEGIN_PRACTICE_NO_HOVER.getImageIcon());
         numeratorSeparatorLabel   = new JLabel(ImageIcons.SEPARATOR.getImageIcon());
@@ -175,7 +181,11 @@ public class MathView extends JPanel {
 
         nameOfAssignmentTextField = Components.JTextField();
 
-        studentsComboBox = new RoundedComboBox<>(Main.getStudents().getStudents());
+        studentsComboBox       = new RoundedComboBox<>(Main.getStudents().getStudents());
+        numericTypeComboBox    = new RoundedComboBox<>(Arrays.asList("Whole Numbers", "Nearest Hundredths"));
+        assignmentNameDropdown = new RoundedComboBox<>(Main.getOutlines().getOutlines());
+        assignmentNameDropdown.insertItemAt(new Outline(0, "Select an Assignment", 0), 0);
+        assignmentNameDropdown.setSelectedIndex(0);
     }
 
     private void createNumericRangePanelLayout() {
@@ -185,7 +195,7 @@ public class MathView extends JPanel {
                 numericRangePanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(numericRangePanelLayout.createSequentialGroup()
                                 .addComponent(numeratorMinValueTextField, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(41, 41, 41)
                                 .addComponent(numeratorSeparatorLabel)
                                 .addGap(41, 41, 41)
                                 .addComponent(numeratorMaxValueTextField, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE))
@@ -196,7 +206,7 @@ public class MathView extends JPanel {
                                 .addGap(0, 0, Short.MAX_VALUE))
                         .addGroup(numericRangePanelLayout.createSequentialGroup()
                                 .addComponent(denominatorMinValueTextField, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                                .addGap(41, 41, 41)
                                 .addComponent(denominatorSeparatorLabel)
                                 .addGap(41, 41, 41)
                                 .addComponent(denominatorMaxValueTextField, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE))
@@ -242,12 +252,16 @@ public class MathView extends JPanel {
                                 .addGroup(mathPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addGroup(mathPanelLayout.createSequentialGroup()
                                                 .addGroup(mathPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                        .addGroup(mathPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                                .addComponent(selectStudentInfoLabel)
-                                                                .addGroup(mathPanelLayout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                                                                        .addComponent(mathEquationsHeaderLabel, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                                        .addComponent(studentNameLabel, GroupLayout.Alignment.LEADING)
-                                                                        .addComponent(studentsComboBox, GroupLayout.Alignment.LEADING, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                                        .addComponent(mathEquationsHeaderLabel)
+                                                        .addComponent(studentNameLabel)
+                                                        .addComponent(studentsComboBox)
+                                                        .addComponent(selectStudentInfoLabel)
+                                                        .addComponent(nameOfAssignmentLabel)
+                                                        .addGroup(mathPanelLayout.createSequentialGroup()
+                                                                .addComponent(nameOfAssignmentTextField, GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                .addComponent(assignmentNameDropdown))
+                                                        .addComponent(enterAssignmentNameInfoLabel, GroupLayout.Alignment.TRAILING)
                                                         .addComponent(numOfOperationsLabel)
                                                         .addGroup(mathPanelLayout.createSequentialGroup()
                                                                 .addComponent(additionTextField, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
@@ -264,12 +278,11 @@ public class MathView extends JPanel {
                                                         .addGroup(mathPanelLayout.createSequentialGroup()
                                                                 .addComponent(divisionTextField, GroupLayout.PREFERRED_SIZE, 42, GroupLayout.PREFERRED_SIZE)
                                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                                                .addComponent(divisionLabel)))
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                                                                .addComponent(divisionLabel))
+                                                        .addComponent(numericTypeComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(informationLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE))
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 10, 10)
                                                 .addGroup(mathPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                                        .addComponent(nameOfAssignmentTextField, GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
-                                                        .addComponent(nameOfAssignmentLabel)
-                                                        .addComponent(enterAssignmentNameInfoLabel, GroupLayout.Alignment.TRAILING)
                                                         .addComponent(selectCustomNumericRangeLabel)
                                                         .addComponent(numericRangePanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                         .addGroup(mathPanelLayout.createSequentialGroup()
@@ -283,13 +296,15 @@ public class MathView extends JPanel {
                                 .addContainerGap()
                                 .addComponent(mathEquationsHeaderLabel)
                                 .addGap(67, 67, 67)
-                                .addGroup(mathPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(studentNameLabel)
-                                        .addComponent(nameOfAssignmentLabel))
+                                .addComponent(studentNameLabel)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(studentsComboBox, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(nameOfAssignmentLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(mathPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(studentsComboBox, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(nameOfAssignmentTextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(nameOfAssignmentTextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(assignmentNameDropdown, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(mathPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                         .addComponent(selectStudentInfoLabel)
@@ -308,14 +323,18 @@ public class MathView extends JPanel {
                                                 .addGroup(mathPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                                         .addComponent(subtractionTextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(subtractionLabel))
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                                 .addGroup(mathPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                                         .addComponent(multiplicationTextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(multiplicationLabel))
                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                                 .addGroup(mathPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                                         .addComponent(divisionTextField, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(divisionLabel)))
+                                                        .addComponent(divisionLabel))
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(numericTypeComboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(informationLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                         .addComponent(numericRangePanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(beginPracticeLabel)
