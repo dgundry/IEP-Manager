@@ -82,11 +82,13 @@ public class EditStudentController {
                 view.getInformationLabel().setForeground(Color.GREEN);
                 StudentCommands.updateStudent(studentID,studentsFirstNameTextField,studentLastNameTextField,gradeComboBox,bioTextField);
                 Main.setStudents(new Students(LoggedInUser.getTeacherId()));
+                view.getNameComboBox().setModel(new DefaultComboBoxModel<>(new Vector<>(Main.getStudents().getStudents())));
+                view.getNameComboBox().insertItemAt(new Student(0,"Select A Student"), 0);
+                view.getNameComboBox().setSelectedIndex(0);
                 view.getStudentFirstNameTextField().setEnabled(false);
                 view.getStudentLastNameTextField().setEnabled(false);
                 view.getBioTextField().setEnabled(false);
                 view.getGradeComboBox().setEnabled(false);
-                view.getNameComboBox().setModel(new DefaultComboBoxModel<>(new Vector<>(Main.getStudents().getStudents())));
             }
 
         }
@@ -212,10 +214,17 @@ public class EditStudentController {
         @Override
         public void itemStateChanged(ItemEvent e) {
             Student selectedStudent = (Student) studentComboBox.getSelectedItem();
-            view.getStudentFirstNameTextField().setText(selectedStudent.getFirstName());
-            view.getStudentLastNameTextField().setText(selectedStudent.getLastName());
-            view.getBioTextField().setText(selectedStudent.getBio());
-            view.getGradeComboBox().setSelectedIndex(Integer.parseInt(selectedStudent.getGrade())-1);
+            if (selectedStudent.getStudentID() != 0) {
+                view.getStudentFirstNameTextField().setText(selectedStudent.getFirstName());
+                view.getStudentLastNameTextField().setText(selectedStudent.getLastName());
+                view.getBioTextField().setText(selectedStudent.getBio());
+                view.getGradeComboBox().setSelectedIndex(Integer.parseInt(selectedStudent.getGrade())-1);
+            }else {
+                view.getStudentFirstNameTextField().setText("");
+                view.getStudentLastNameTextField().setText("");
+                view.getBioTextField().setText("");
+                view.getGradeComboBox().setSelectedIndex(0);
+            }
         }
     }
 }

@@ -11,7 +11,11 @@ public class Student {
     @Getter @Setter private String grade = "";
     @Getter @Setter private String bio = "";
 
-    public Student(){
+    public Student() {
+    }
+    public Student(Integer studentID,String firstName) {
+        this.studentID = studentID;
+        this.firstName = firstName;
     }
 
     public Student(Integer studentID, String firstName, String lastName,String grade, String bio) {
@@ -31,6 +35,9 @@ public class Student {
     private boolean isValidText(String text) { return !text.equals(""); }
 
     public String toString(){
+        if (studentID == 0) {
+            return firstName;
+        }
         return lastName + ", " + firstName;
     }
 }

@@ -1,6 +1,8 @@
 package com.mango.prjmango.ui.students.edit;
 
 import com.mango.prjmango.Main;
+
+import com.mango.prjmango.Outlines.Outline;
 import com.mango.prjmango.student.Student;
 import com.mango.prjmango.ui.common.Colors;
 import com.mango.prjmango.ui.common.Components;
@@ -16,6 +18,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
+
+import com.mango.prjmango.ui.common.roundedcomponents.RoundedComboBox;
 import lombok.Getter;
 
 public class EditStudentView extends JPanel {
@@ -99,18 +103,20 @@ public class EditStudentView extends JPanel {
         gradeComboBox = Components.JComboBox(gradeList);
         gradeComboBox.setEnabled(false);
 
-        nameComboBox = new JComboBox<>(new Vector<>(Main.getStudents().getStudents()));
+        nameComboBox = new RoundedComboBox<>(Main.getStudents().getStudents());
+        nameComboBox.insertItemAt(new Student(0,"Select A Student"), 0);
         nameComboBox.setFont(Fonts.SEGOE_UI_16.getFont());
         nameComboBox.setBackground(Colors.DARK_GREY);
         nameComboBox.setForeground(Colors.LIGHT_GREY);
+        nameComboBox.setSelectedIndex(0);
 
-        if(Main.getStudents().getStudents().size() > 0){
-            Student firstStudent = (Student) nameComboBox.getSelectedItem();
-            studentFirstNameTextField.setText(firstStudent.getFirstName());
-            studentLastNameTextField.setText(firstStudent.getLastName());
-            bioTextField.setText(firstStudent.getBio());
-            gradeComboBox.setToolTipText(firstStudent.getGrade());
-        }
+//        if(Main.getStudents().getStudents().size() > 0){
+//            Student firstStudent = (Student) nameComboBox.getSelectedItem();
+//            studentFirstNameTextField.setText(firstStudent.getFirstName());
+//            studentLastNameTextField.setText(firstStudent.getLastName());
+//            bioTextField.setText(firstStudent.getBio());
+//            gradeComboBox.setToolTipText(firstStudent.getGrade());
+//        }
     }
 
     private void createLayout() {
