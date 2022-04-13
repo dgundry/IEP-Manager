@@ -29,18 +29,21 @@ public class EditProfileController {
      */
     public EditProfileController(EditProfileView view) {
         JLabel saveLabel = view.getSaveLabel();
-        JLabel firstNameEditLabel = view.getFirstNameEditLabel();
-        JLabel lastNameEditLabel  = view.getLastNameEditLabel();
-        JLabel emailEditLabel     = view.getEmailEditLabel();
+        PencilEditor firstNameEditLabel = view.getFirstNameEditLabel();
+        PencilEditor lastNameEditLabel  = view.getLastNameEditLabel();
+        PencilEditor emailEditLabel     = view.getEmailEditLabel();
 
         JTextField firstNameTextField = view.getFirstNameTextField();
         JTextField lastNameTextField  = view.getLastNameTextField();
         JTextField emailTextField     = view.getEmailTextField();
 
         saveLabel.addMouseListener(new SaveProfileMouseListener(view, saveLabel));
-        firstNameEditLabel.addMouseListener(new EditLabelMouseListener(firstNameEditLabel, firstNameTextField));
-        lastNameEditLabel.addMouseListener(new EditLabelMouseListener(lastNameEditLabel, lastNameTextField));
-        emailEditLabel.addMouseListener(new EditLabelMouseListener(emailEditLabel, emailTextField));
+        firstNameEditLabel.addMouseListener(new EditLabelMouseListener(
+                firstNameEditLabel, firstNameTextField));
+        lastNameEditLabel.addMouseListener(new EditLabelMouseListener(
+                lastNameEditLabel, lastNameTextField));
+        emailEditLabel.addMouseListener(new EditLabelMouseListener(
+                emailEditLabel, emailTextField));
     }
 
     private static class SaveProfileMouseListener implements MouseListener {
@@ -99,26 +102,31 @@ public class EditProfileController {
         }
 
         private void displayInformationText() {
+            view.getFirstNameEditLabel().setInEditMode(false);
+            view.getLastNameEditLabel().setInEditMode(false);
+            view.getEmailEditLabel().setInEditMode(false);
+
             view.getInformationLabel().setText("Information successfully changed!");
             view.getInformationLabel().setForeground(Color.GREEN);
+
+            view.getFirstNameTextField().setEnabled(false);
+            view.getLastNameTextField().setEnabled(false);
+            view.getEmailTextField().setEnabled(false);
+
+            view.getFirstNameEditLabel().setIcon(
+                    ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
+            view.getLastNameEditLabel().setIcon(
+                    ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
+            view.getEmailEditLabel().setIcon(
+                    ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
+
+            view.getFirstNameTextField().requestFocus();
 
             new Timer().schedule(
                     new TimerTask() {
                         @Override
                         public void run() {
-                            view.getInformationLabel().setText("");
-                            view.getFirstNameTextField().setEnabled(false);
-                            view.getLastNameTextField().setEnabled(false);
-                            view.getEmailTextField().setEnabled(false);
-
-                            view.getFirstNameEditLabel().setIcon(
-                                    ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
-                            view.getLastNameEditLabel().setIcon(
-                                    ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
-                            view.getEmailEditLabel().setIcon(
-                                    ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
-
-                            view.getFirstNameTextField().requestFocus();
+                            view.getInformationLabel().setText(" ");
                         }
                     },
                     3000
@@ -176,17 +184,17 @@ public class EditProfileController {
 
     private static class EditLabelMouseListener implements MouseListener {
 
-        private final JLabel label;
+        private final PencilEditor label;
         private final JTextField textField;
 
         /**
          * Constructor. Initializes instance variables that will be used throughout the {@link MouseListener}
          * methods.
          *
-         * @param label     the specific {@link JLabel}
+         * @param label     the specific {@link PencilEditor}
          * @param textField the specific {@link JTextField}
          */
-        public EditLabelMouseListener(JLabel label, JTextField textField) {
+        public EditLabelMouseListener(PencilEditor label, JTextField textField) {
             this.label = label;
             this.textField = textField;
         }
@@ -199,10 +207,12 @@ public class EditProfileController {
          */
         @Override
         public void mouseClicked(MouseEvent e) {
-            if (textField.isEnabled()) {
+            if (label.isInEditMode()) {
+                label.setInEditMode(false);
                 textField.setEnabled(false);
                 label.setIcon(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
             } else {
+                label.setInEditMode(true);
                 textField.setEnabled(true);
                 textField.requestFocus();
                 label.setIcon(ImageIcons.EDIT_PROFILE_EDIT_ICON_HOVERED.getImageIcon());
@@ -218,7 +228,7 @@ public class EditProfileController {
          */
         @Override
         public void mouseEntered(MouseEvent e) {
-            if (label.getIcon().equals(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon())) {
+            if (!label.isInEditMode()) {
                 label.setIcon(ImageIcons.EDIT_PROFILE_EDIT_ICON_HOVERED.getImageIcon());
             }
 
@@ -232,7 +242,7 @@ public class EditProfileController {
          */
         @Override
         public void mouseExited(MouseEvent e) {
-            if (label.getIcon().equals(ImageIcons.EDIT_PROFILE_EDIT_ICON_HOVERED.getImageIcon())) {
+            if (!label.isInEditMode()) {
                 label.setIcon(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
             }
 

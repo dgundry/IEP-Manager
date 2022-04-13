@@ -1,7 +1,6 @@
 package com.mango.prjmango.ui.account.password;
 
 import com.mango.prjmango.LoggedInUser;
-import com.mango.prjmango.utilities.DatabaseCommands;
 import com.mango.prjmango.utilities.Encryption;
 import com.mango.prjmango.ui.common.Colors;
 import com.mango.prjmango.ui.common.ImageIcons;
@@ -17,7 +16,6 @@ import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
-
 import com.mango.prjmango.utilities.dbcommands.UserCommands;
 import lombok.SneakyThrows;
 
@@ -77,7 +75,8 @@ public class PasswordController {
         @SneakyThrows
         @Override
         public void mouseClicked(MouseEvent e) {
-            view.getInformationLabel().setText("");
+            view.getInformationLabel().setText(" ");
+            view.getInformationLabel().setForeground(Color.WHITE);
 
             JPasswordField currentPassField = view.getCurrentPasswordTextBox();
             JPasswordField newPassField     = view.getNewPasswordTextBox();
@@ -87,56 +86,39 @@ public class PasswordController {
             char[] newPass     = newPassField.getPassword();
             char[] confirmPass = confirmPassField.getPassword();
 
+            String strNewPass     = String.valueOf(newPass);
+            String strConfirmPass = String.valueOf(confirmPass);
 
-            String strArr = String.valueOf(newPass);
+            String currPassword = UserCommands.getUserPassword(LoggedInUser.getTeacherId());
+            String encryptedCurrPassword = Encryption.encrypt(Arrays.toString(currPass));
 
-            String currPassword = "";
-
-            if (currPass.length != 0) {
-                currPassword = UserCommands.getUserPassword(LoggedInUser.getTeacherId());
-            } else {
+            if (!currPassword.equals(encryptedCurrPassword)) {
                 view.getInformationLabel().setText("Current password does not match our records!");
                 view.getInformationLabel().setForeground(Colors.RED);
                 return;
             }
-            if(!isValid(strArr)){
+
+            if (!isValid(strNewPass)) {
                 view.getInformationLabel().setText("<html>Please make sure that your password contains: " +
                         "<ul><li>8 or more characters</li>" +
                         "<li>At least 1 Special Character</li>" +
                         "<li>At least 1 Uppercase letter</li>" +
                         "<li>At least 1 Lowercase letter</li>" +
                         "<li>At least 1 digit</li></ul></html>");
-
-            }else if(Arrays.equals(newPass, confirmPass)){
+            } else if (strNewPass.equals(strConfirmPass)) {
+                displayInformationText();
                 UserCommands.updateUserPassword(newPass);
-            }else{
+            } else {
                 view.getInformationLabel().setText("New password does not match the confirmation password!");
                 view.getInformationLabel().setForeground(Colors.RED);
             }
-//            if (currPassword.length() == 0 || currPassword.equals(Encryption.encrypt(Arrays.toString(currPass)))) {
-//                if (Arrays.equals(newPass, confirmPass)) {
-//                    if (newPass.length == 0) {
-//                        view.getInformationLabel().setText("Passwords cannot be length 0!");
-//                        view.getInformationLabel().setForeground(Colors.RED);
-//                    } else {
-//                        displayInformationText();
-//
-//                        UserCommands.updateUserPassword(newPass);
-//                    }
-//                } else {
-//                    view.getInformationLabel().setText("New password does not match the confirmation password!");
-//                    view.getInformationLabel().setForeground(Colors.RED);
-//                }
-//            } else {
-//                view.getInformationLabel().setText("Current password does not match our records!");
-//                view.getInformationLabel().setForeground(Colors.RED);
-//            }
         }
 
         private static final String PASSWORD_PATTERN =
                 "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
         private static final Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
-        public static boolean isValid(final String password){
+
+        private static boolean isValid(final String password){
             Matcher matcher = pattern.matcher(password);
             return matcher.matches();
         }
@@ -144,23 +126,28 @@ public class PasswordController {
         private void displayInformationText() {
             view.getInformationLabel().setText("Information successfully changed!");
             view.getInformationLabel().setForeground(Color.GREEN);
+
+            view.getShowCurrentPasswordLabel().setIcon(
+                    ImageIcons.PASSWORD_OPEN_EYE_NO_HOVER.getImageIcon());
+            view.getShowNewPasswordLabel().setIcon(
+                    ImageIcons.PASSWORD_OPEN_EYE_NO_HOVER.getImageIcon());
+            view.getShowConfirmPasswordLabel().setIcon(
+                    ImageIcons.PASSWORD_OPEN_EYE_NO_HOVER.getImageIcon());
+
             view.getCurrentPasswordTextBox().setText("");
             view.getNewPasswordTextBox().setText("");
             view.getConfirmNewPassTextBox().setText("");
+
+            view.getCurrentPasswordTextBox().setEchoChar('•');
+            view.getNewPasswordTextBox().setEchoChar('•');
+            view.getConfirmNewPassTextBox().setEchoChar('•');
+
             view.getCurrentPasswordTextBox().requestFocus();
             new Timer().schedule(
                     new TimerTask() {
                         @Override
                         public void run() {
-                            view.getInformationLabel().setText("");
-
-                            view.getShowCurrentPasswordLabel().setIcon(
-                                    ImageIcons.PASSWORD_OPEN_EYE_NO_HOVER.getImageIcon());
-                            view.getShowNewPasswordLabel().setIcon(
-                                    ImageIcons.PASSWORD_OPEN_EYE_NO_HOVER.getImageIcon());
-                            view.getShowConfirmPasswordLabel().setIcon(
-                                    ImageIcons.PASSWORD_OPEN_EYE_NO_HOVER.getImageIcon());
-
+                            view.getInformationLabel().setText(" ");
                         }
                     },
                     3000

@@ -10,7 +10,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle;
-
 import com.mango.prjmango.ui.common.limitedtextfield.FilterType;
 import lombok.Getter;
 
@@ -25,10 +24,11 @@ public class EditProfileView extends JPanel {
     private JLabel emailLabel;
 
     @Getter private JLabel saveLabel;
-    @Getter private JLabel firstNameEditLabel;
-    @Getter private JLabel lastNameEditLabel;
-    @Getter private JLabel emailEditLabel;
     @Getter private JLabel informationLabel;
+
+    @Getter private PencilEditor firstNameEditLabel;
+    @Getter private PencilEditor lastNameEditLabel;
+    @Getter private PencilEditor emailEditLabel;
 
     @Getter private JTextField firstNameTextField;
     @Getter private JTextField lastNameTextField;
@@ -52,9 +52,6 @@ public class EditProfileView extends JPanel {
         informationLabel       = Components.JLabel("",             Fonts.SEGOE_UI_14.getFont(), Colors.LIGHT_GREY);
 
         saveLabel          = new JLabel(ImageIcons.EDIT_PROFILE_SAVE_NO_HOVER.getImageIcon());
-        firstNameEditLabel = new JLabel(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
-        lastNameEditLabel  = new JLabel(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
-        emailEditLabel     = new JLabel(ImageIcons.EDIT_PROFILE_EDIT_ICON_NO_HOVER.getImageIcon());
 
         try {
             firstNameTextField = Components.LimitedJTextField(FilterType.CHARACTERS_ONLY, LoggedInUser.getFirstName(), 12);
@@ -68,6 +65,10 @@ public class EditProfileView extends JPanel {
 
         emailTextField = Components.JTextField(LoggedInUser.getEmail());
         emailTextField.setEnabled(false);
+
+        firstNameEditLabel = new PencilEditor();
+        lastNameEditLabel  = new PencilEditor();
+        emailEditLabel     = new PencilEditor();
     }
 
     private void createLayout() {
