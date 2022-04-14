@@ -154,9 +154,9 @@ public class ConfirmationView extends JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE))
                         .addGroup(panelLayout.createSequentialGroup()
                                 .addGap(46, 46, 46)
-                                .addComponent(exitLabel)
-                                .addGap(18, 18, 18)
                                 .addComponent(cancelLabel)
+                                .addGap(18, 18, 18)
+                                .addComponent(exitLabel)
                                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelLayout.setVerticalGroup(
