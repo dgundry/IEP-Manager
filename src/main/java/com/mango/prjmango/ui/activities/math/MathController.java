@@ -1,20 +1,31 @@
 package com.mango.prjmango.ui.activities.math;
 
+import com.mango.prjmango.Outlines.MathOutline;
+import com.mango.prjmango.Outlines.Outline;
 import com.mango.prjmango.student.Student;
 import com.mango.prjmango.ui.activities.ActivitiesView;
 import com.mango.prjmango.ui.activities.math.container.MathEquationContainer;
 import com.mango.prjmango.ui.activities.math.container.MathEquationContainerController;
+import com.mango.prjmango.ui.activities.upload.UploadController;
+import com.mango.prjmango.ui.activities.upload.UploadView;
 import com.mango.prjmango.ui.common.ImageIcons;
+
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import javax.swing.JLabel;
+import javax.swing.*;
 
 public class MathController {
 
     public MathController(MathView view) {
         JLabel beginPracticeLabel = view.getBeginPracticeLabel();
+        JComboBox activityComboBox = view.getAssignmentNameDropdown();
 
         beginPracticeLabel.addMouseListener(new BeginPracticeMouseListener(view, beginPracticeLabel));
+
+        activityComboBox.addItemListener(new AssignmentChangedListener(view, activityComboBox));
+
     }
 
     private static class BeginPracticeMouseListener implements MouseListener {
@@ -188,5 +199,55 @@ public class MathController {
          */
         @Override
         public void mouseReleased(MouseEvent e) { /* Not needed */ }
+    }
+    private class AssignmentChangedListener implements ItemListener {
+        MathView view;
+        JComboBox activityComboBox;
+        public AssignmentChangedListener(MathView view, JComboBox activityComboBox) {
+            this.view = view;
+            this.activityComboBox = activityComboBox;
+        }
+
+        @Override
+        public void itemStateChanged(ItemEvent e) {
+            if(e.getStateChange() == ItemEvent.SELECTED) {
+                if(activityComboBox.getSelectedIndex() != 0) {
+                    MathOutline outline = (MathOutline) activityComboBox.getSelectedItem();
+                    view.getNameOfAssignmentTextField().setText(outline.getAssignmentName());
+                    if(outline.getAdditionTotal() != 0) {
+                        view.getAdditionTextField().setText(String.valueOf(outline.getAdditionTotal()));
+                    }
+                    if(outline.getSubtractionTotal() != 0) {
+                        view.getSubtractionTextField().setText(String.valueOf(outline.getSubtractionTotal()));
+                    }
+                    if(outline.getMultiplicationTotal() != 0) {
+                        view.getMultiplicationTextField().setText(String.valueOf(outline.getMultiplicationTotal()));
+                    }
+                    if(outline.getDivisionTotal() != 0) {
+                        view.getDivisionTextField().setText(String.valueOf(outline.getDivisionTotal()));
+                    }
+                    if(outline.isWholeNumbers()) {
+                        view.getNumericTypeComboBox().setSelectedIndex(0);
+                    }else{
+                        view.getNumericTypeComboBox().setSelectedIndex(1);
+                    }
+                    view.getNumeratorMinValueTextField().setText(String.valueOf(outline.getNumeratorMin()));
+                    view.getNumeratorMaxValueTextField().setText(String.valueOf(outline.getNumeratorMax()));
+                    view.getDenominatorMinValueTextField().setText(String.valueOf(outline.getDenominatorMin()));
+                    view.getDenominatorMaxValueTextField().setText(String.valueOf(outline.getDenominatorMax()));
+                }else{
+                    view.getAdditionTextField().setText("");
+                    view.getSubtractionTextField().setText("");
+                    view.getMultiplicationTextField().setText("");
+                    view.getDivisionTextField().setText("");
+                    view.getNameOfAssignmentTextField().setText("");
+                    view.getNumeratorMinValueTextField().setText("");
+                    view.getNumeratorMaxValueTextField().setText("");
+                    view.getDenominatorMinValueTextField().setText("");
+                    view.getDenominatorMaxValueTextField().setText("");
+                    view.getNumericTypeComboBox().setSelectedIndex(0);
+                }
+            }
+        }
     }
 }

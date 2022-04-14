@@ -27,7 +27,7 @@ public class RemoveView extends JPanel {
     }
     private void createComponents(){
         outlineHeaderLabel = Components.JLabel("Your outlines", Fonts.SEGOE_UI_24.getFont(), Colors.LIGHT_GREY);
-        model = new DefaultTableModel(new Object[][]{}, new String[] { "Outline ID", "Assignment Name","Delete"});
+        model = new DefaultTableModel(new Object[][]{}, new String[] { "Outline ID", "Type", "Assignment Name","Delete"});
         outlinesTable.setBorder(new LineBorder(new java.awt.Color(120, 45, 22), 1, true));
         outlinesTable.setModel(model);
         outlinesTable.setBackground(Colors.DARK_GREY);

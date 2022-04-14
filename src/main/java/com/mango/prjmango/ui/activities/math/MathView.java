@@ -1,6 +1,7 @@
 package com.mango.prjmango.ui.activities.math;
 
 import com.mango.prjmango.Main;
+import com.mango.prjmango.Outlines.MathOutline;
 import com.mango.prjmango.Outlines.Outline;
 import com.mango.prjmango.student.Student;
 import com.mango.prjmango.ui.common.Colors;
@@ -63,7 +64,7 @@ public class MathView extends JPanel {
 
     @Getter private JComboBox<Student> studentsComboBox;
     @Getter private JComboBox<String> numericTypeComboBox;
-    @Getter private JComboBox<Outline> assignmentNameDropdown;
+    @Getter private JComboBox<MathOutline> assignmentNameDropdown;
 
     /**
      * Constructor. Calls methods that create the GUI.
@@ -183,9 +184,13 @@ public class MathView extends JPanel {
 
         studentsComboBox       = new RoundedComboBox<>(Main.getStudents().getStudents());
         numericTypeComboBox    = new RoundedComboBox<>(Arrays.asList("Whole Numbers", "Nearest Hundredths"));
-        assignmentNameDropdown = new RoundedComboBox<>(Main.getOutlines().getOutlines());
-        assignmentNameDropdown.insertItemAt(new Outline(0, "Select an Assignment", 0), 0);
+
+        assignmentNameDropdown = new RoundedComboBox<>(Main.getMathOutlines().getOutlines());
+        assignmentNameDropdown.insertItemAt(new MathOutline(0, "Select an Assignment", 0,0,0,0,0,0,0,0,0), 0);
         assignmentNameDropdown.setSelectedIndex(0);
+        assignmentNameDropdown.setFont(Fonts.SEGOE_UI_16.getFont());
+        assignmentNameDropdown.setBackground(Colors.DARK_GREY);
+        assignmentNameDropdown.setForeground(Colors.LIGHT_GREY);
     }
 
     private void createNumericRangePanelLayout() {

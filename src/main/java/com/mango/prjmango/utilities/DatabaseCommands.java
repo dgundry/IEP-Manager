@@ -21,6 +21,16 @@ public class DatabaseCommands {
         throw new IllegalStateException("Utility class.");
     }
 
+    public static void deleteMathOutline(int outline_id) {
+        String sql = "DELETE FROM math_outlines WHERE math_outline_id = ?;";
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
+            statement.setInt(1, outline_id);
+            statement.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public static void deleteOutline(int outline_id){
         String sql = "DELETE FROM outlines WHERE outline_id = ?;";
         try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
@@ -43,6 +53,26 @@ public class DatabaseCommands {
             e.printStackTrace();
         }
         return outlines;
+    }
+
+    public static void createMathOutline(String assignmentName,int additionTotal, int subtractionTotal, int multiplicationTotal, int divisionTotal, int numeratorMin, int numeratorMax, int denominatorMin, int denominatorMax, int wholeNumbers) {
+        String sql = "INSERT INTO math_outlines(teacher_id, assignment_name, addition, subtraction, multiplication, division, numerator_min, numerator_max, denominator_min, denominator_max, wholeNumbers) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
+            statement.setInt(1, LoggedInUser.getTeacherId());
+            statement.setString(2, assignmentName);
+            statement.setInt(3, additionTotal);
+            statement.setInt(4, subtractionTotal);
+            statement.setInt(5, multiplicationTotal);
+            statement.setInt(6, divisionTotal);
+            statement.setInt(7, numeratorMin);
+            statement.setInt(8, numeratorMax);
+            statement.setInt(9, denominatorMin);
+            statement.setInt(10, denominatorMax);
+            statement.setInt(11, wholeNumbers);
+            statement.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void createOutline(String assignmentName, int maximumPoints) {

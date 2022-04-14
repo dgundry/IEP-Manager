@@ -2,6 +2,7 @@ package com.mango.prjmango.ui.login;
 
 import com.mango.prjmango.LoggedInUser;
 import com.mango.prjmango.Main;
+import com.mango.prjmango.Outlines.MathOutlines;
 import com.mango.prjmango.Outlines.Outlines;
 import com.mango.prjmango.assignment.Assignments;
 import com.mango.prjmango.student.Students;
@@ -76,6 +77,7 @@ public class LoginController {
                 Main.setStudents(new Students(teacherID));
                 Main.setAssignments(new Assignments(teacherID));
                 Main.setOutlines(new Outlines(teacherID));
+                Main.setMathOutlines(new MathOutlines(teacherID));
 
                 StudentsView studentsView = new StudentsView();
                 new StudentsController(studentsView);

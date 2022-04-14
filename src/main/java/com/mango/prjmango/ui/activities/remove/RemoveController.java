@@ -1,6 +1,8 @@
 package com.mango.prjmango.ui.activities.remove;
 
 import com.mango.prjmango.Main;
+import com.mango.prjmango.Outlines.MathOutline;
+import com.mango.prjmango.Outlines.MathOutlines;
 import com.mango.prjmango.Outlines.Outline;
 import com.mango.prjmango.Outlines.Outlines;
 import com.mango.prjmango.assignment.Assignment;
@@ -22,13 +24,20 @@ public class RemoveController {
     private RemoveView view;
     public RemoveController(RemoveView view) {
         this.view = view;
-        populateTable(view, Main.getOutlines().getOutlines());
+        populateTable(view, Main.getOutlines().getOutlines(), Main.getMathOutlines().getOutlines());
     }
-    private static void populateTable(RemoveView view, List<Outline> outlines){
+    private static void populateTable(RemoveView view, List<Outline> outlines, List<MathOutline> mathOutlines) {
         for(Outline outline : outlines) {
                 view.getModel().addRow(new Object[]{
                         outline.getAssignmentID(),
+                        "Upload",
                         outline.getAssignmentName()});
+        }
+        for(MathOutline outline : mathOutlines) {
+            view.getModel().addRow(new Object[]{
+                    outline.getAssignmentID(),
+                    "Math",
+                    outline.getAssignmentName()});
         }
         view.getOutlinesTable().getColumn("Delete").setCellRenderer(new DeleteButtonRenderer());
         view.getOutlinesTable().getColumn("Delete").setCellEditor(new DeleteButtonEditor(view, new JCheckBox()));
@@ -76,9 +85,15 @@ public class RemoveController {
         @Override
         public Object getCellEditorValue() {
             if (isPushed) {
+                String type = view.getModel().getValueAt(view.getOutlinesTable().getSelectedRow(), 1).toString();
                 int outline_id = (int) view.getModel().getValueAt(view.getOutlinesTable().getSelectedRow(), 0);
-                DatabaseCommands.deleteOutline(outline_id);
-                Main.setOutlines(new Outlines(Main.getActiveUser().getTeacherId()));
+                if(type.equals("Upload")) {
+                    DatabaseCommands.deleteOutline(outline_id);
+                    Main.setOutlines(new Outlines(Main.getActiveUser().getTeacherId()));
+                }else if(type.equals("Math")) {
+                    DatabaseCommands.deleteMathOutline(outline_id);
+                    Main.setMathOutlines(new MathOutlines(Main.getActiveUser().getTeacherId()));
+                }
                 RemoveView view = new RemoveView();
                 new RemoveController(view);
                 ActivitiesView.setActiveDisplay(view);

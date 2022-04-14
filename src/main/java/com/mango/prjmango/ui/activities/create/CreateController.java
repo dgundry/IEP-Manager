@@ -1,6 +1,7 @@
 package com.mango.prjmango.ui.activities.create;
 
 import com.mango.prjmango.Main;
+import com.mango.prjmango.Outlines.MathOutlines;
 import com.mango.prjmango.Outlines.Outlines;
 import com.mango.prjmango.ui.common.ImageIcons;
 import com.mango.prjmango.utilities.DatabaseCommands;
@@ -68,6 +69,7 @@ public class CreateController {
                 view.getAssignmentNameTextField().requestFocus();
 
                 Main.setOutlines(new Outlines(Main.getActiveUser().getTeacherId()));
+                Main.setMathOutlines(new MathOutlines(Main.getActiveUser().getTeacherId()));
             }
 
         }
