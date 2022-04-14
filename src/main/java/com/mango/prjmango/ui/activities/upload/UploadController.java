@@ -84,8 +84,11 @@ public class UploadController {
             String earnedPoints  = view.getPointsEarnedTextField().getText().trim();
             String maximumPoints     = view.getMaximumPointsTextField().getText().trim();
             int assignmentComboBoxIndex = view.getAssignmentNameDropdown().getSelectedIndex();
-
-            if(assignmentName.isEmpty() && assignmentComboBoxIndex == 0) {
+            int studentComboBoxIndex = view.getStudentNameDropdown().getSelectedIndex();
+            if(assignmentComboBoxIndex == 0) {
+                view.getInformationLabel().setForeground(Color.RED);
+                view.getInformationLabel().setText("Please Select a Valid Student");
+            }else if(assignmentName.isEmpty() && assignmentComboBoxIndex == 0) {
                 view.getInformationLabel().setForeground(Color.RED);
                 view.getInformationLabel().setText("Please Enter Assignment Name or Select an Assignment from the Dropdown");
             }else if(earnedPoints.isEmpty()) {
