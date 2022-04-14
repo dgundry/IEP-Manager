@@ -2,6 +2,7 @@ package com.mango.prjmango.ui.dialogs.confirmation;
 
 import com.mango.prjmango.Main;
 import com.mango.prjmango.assignment.Assignments;
+import com.mango.prjmango.student.Students;
 import com.mango.prjmango.ui.MainWindowView;
 import com.mango.prjmango.ui.activities.ActivitiesView;
 import com.mango.prjmango.ui.activities.math.MathController;
@@ -14,6 +15,8 @@ import com.mango.prjmango.ui.common.ImageIcons;
 import com.mango.prjmango.ui.login.LoginController;
 import com.mango.prjmango.ui.login.LoginView;
 import com.mango.prjmango.ui.sideoptions.SideOptionsView;
+import com.mango.prjmango.ui.students.view.ViewStudentController;
+import com.mango.prjmango.ui.students.view.ViewStudentView;
 import com.mango.prjmango.ui.students.view.reports.ReportsController;
 import com.mango.prjmango.ui.students.view.reports.ReportsView;
 import com.mango.prjmango.ui.students.StudentsView;
@@ -248,6 +251,16 @@ public class ConfirmationController {
                         StudentsView.setActiveDisplay(reportsView);
                     }
                     break;
+                case 7:
+                    view.dispose();
+                    //DELETE student
+                    if(studentID != 0) {
+                        StudentCommands.deleteStudentAndAssignments(studentID);
+                        Main.setStudents(new Students(Main.getActiveUser().getTeacherId()));
+                        ViewStudentView viewStudent = new ViewStudentView();
+                        new ViewStudentController(viewStudent);
+                        StudentsView.setActiveDisplay(viewStudent);
+                    }
                 default:
                     break;
             }
@@ -298,6 +311,9 @@ public class ConfirmationController {
                 case 6:
                     label.setIcon(ImageIcons.OK_BUTTON_HOVERED.getImageIcon());
                     break;
+                case 7:
+                    label.setIcon(ImageIcons.OK_BUTTON_HOVERED.getImageIcon());
+                    break;
                 default:
                     break;
             }
@@ -332,6 +348,8 @@ public class ConfirmationController {
                 case 6:
                     label.setIcon(ImageIcons.OK_BUTTON_NO_HOVER.getImageIcon());
                     break;
+                case 7:
+                    label.setIcon(ImageIcons.OK_BUTTON_NO_HOVER.getImageIcon());
                 default:
                     break;
             }

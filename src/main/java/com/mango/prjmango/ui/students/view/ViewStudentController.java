@@ -5,6 +5,9 @@ import com.mango.prjmango.student.Student;
 import com.mango.prjmango.student.StudentSortTypes;
 import com.mango.prjmango.student.Students;
 import com.mango.prjmango.ui.common.ImageIcons;
+import com.mango.prjmango.ui.dialogs.confirmation.ConfirmationController;
+import com.mango.prjmango.ui.dialogs.confirmation.ConfirmationView;
+import com.mango.prjmango.ui.dialogs.confirmation.Dialogs;
 import com.mango.prjmango.ui.students.StudentsController;
 import com.mango.prjmango.ui.students.view.reports.ReportsController;
 import com.mango.prjmango.ui.students.view.reports.ReportsView;
@@ -159,15 +162,15 @@ public class ViewStudentController {
         public Object getCellEditorValue() {
             if (isPushed) {
                 System.out.println(view.getModel().getValueAt(view.getStudentTable().getSelectedRow(),0) +" was Clicked");
-                int studentID = (Integer) view.getModel().getValueAt(view.getStudentTable().getSelectedRow(),0);
-                StudentCommands.deleteStudentAndAssignments(studentID);
-                Main.setStudents(new Students(Main.getActiveUser().getTeacherId()));
-                ViewStudentView viewStudent = new ViewStudentView();
-                new ViewStudentController(viewStudent);
-                StudentsView.setActiveDisplay(viewStudent);
-//                ReportsView reportsView = new ReportsView();
-//                new ReportsController();
-//                StudentsView.setActiveDisplay(reportsView);
+                int student_id = (Integer) view.getModel().getValueAt(view.getStudentTable().getSelectedRow(),0);
+                String firstName = (String) view.getModel().getValueAt(view.getStudentTable().getSelectedRow(),1);
+                int totalAssignments = StudentCommands.getTotalAssignmentsFromStudent(student_id);
+
+                 ConfirmationView confirmationView =
+                         new ConfirmationView(firstName + ": " + totalAssignments + " assignments. Are you sure?", Dialogs.DELETE_STUDENT);
+                 new ConfirmationController(confirmationView,student_id,0);
+                 confirmationView.requestFocusInWindow();
+
             }
             isPushed = false;
             return label;

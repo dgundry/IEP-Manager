@@ -7,6 +7,20 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class StudentCommands {
+    public static int getTotalAssignmentsFromStudent(int studentID){
+        String sql = "SELECT COUNT(*) FROM assignment WHERE student_id = ?;";
+        int totalAssignments = 0;
+
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
+            statement.setInt(1, studentID);
+            totalAssignments = statement.executeQuery().getInt(1);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return totalAssignments;
+    }
+
     public static void deleteStudentAndAssignments(int studentID){
         deleteAllAssignmentsFromStudent(studentID);
         deleteStudent(studentID);
