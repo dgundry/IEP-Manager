@@ -1,9 +1,10 @@
 package com.mango.prjmango.ui.activities;
 
 import com.mango.prjmango.LoggedInUser;
-import com.mango.prjmango.ui.account.AccountView;
 import com.mango.prjmango.ui.activities.create.CreateController;
 import com.mango.prjmango.ui.activities.create.CreateView;
+import com.mango.prjmango.ui.activities.remove.RemoveController;
+import com.mango.prjmango.ui.activities.remove.RemoveView;
 import com.mango.prjmango.ui.activities.sightwords.SightController;
 import com.mango.prjmango.ui.activities.sightwords.SightView;
 import com.mango.prjmango.ui.activities.upload.UploadController;
@@ -38,6 +39,7 @@ public class ActivitiesView {
     @Getter private static JLabel dolchLabel;
     @Getter private static JLabel uploadAssignmentLabel;
     @Getter private static JLabel createAssignmentLabel;
+    @Getter private static JLabel removeAssignmentLabel;
 
     private static JSeparator horizSeparator;
     private static JSeparator vertSeparator;
@@ -95,6 +97,11 @@ public class ActivitiesView {
                 new CreateController(createView);
                 setActiveDisplay(createView);
                 break;
+            case 5:
+                RemoveView removeView = new RemoveView();
+                new RemoveController(removeView);
+                setActiveDisplay(removeView);
+                break;
             default:
                 break;
         }
@@ -115,6 +122,7 @@ public class ActivitiesView {
         dolchLabel            = new JLabel(ImageIcons.ACTIVITIES_DOLCH_NO_HOVER.getImageIcon());
         uploadAssignmentLabel = new JLabel(ImageIcons.ACTIVITIES_UPLOAD_NO_HOVER.getImageIcon());
         createAssignmentLabel = new JLabel(ImageIcons.ACTIVITIES_CREATE_ASSIGNMENT_NO_HOVER.getImageIcon());
+        removeAssignmentLabel = new JLabel(ImageIcons.ACTIVITIES_CREATE_ASSIGNMENT_NO_HOVER.getImageIcon());
         setSelectedSubTab();
 
         horizSeparator = Components.JSeparator(SwingConstants.HORIZONTAL);
@@ -137,6 +145,9 @@ public class ActivitiesView {
                 break;
             case 4:
                 createAssignmentLabel.setIcon(ImageIcons.ACTIVITIES_CREATE_ASSIGNMENT_SELECTED.getImageIcon());
+                break;
+            case 5:
+                removeAssignmentLabel.setIcon(ImageIcons.ACTIVITIES_CREATE_ASSIGNMENT_SELECTED.getImageIcon());
                 break;
             default:
                 break;
@@ -182,6 +193,11 @@ public class ActivitiesView {
                                                                 GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(
                                                                 createAssignmentLabel,
+                                                                GroupLayout.PREFERRED_SIZE,
+                                                                GroupLayout.DEFAULT_SIZE,
+                                                                GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(
+                                                                removeAssignmentLabel,
                                                                 GroupLayout.PREFERRED_SIZE,
                                                                 GroupLayout.DEFAULT_SIZE,
                                                                 GroupLayout.PREFERRED_SIZE))
@@ -250,6 +266,13 @@ public class ActivitiesView {
                                                                         LayoutStyle.ComponentPlacement.UNRELATED)
                                                                 .addComponent(
                                                                         createAssignmentLabel,
+                                                                        GroupLayout.PREFERRED_SIZE,
+                                                                        GroupLayout.DEFAULT_SIZE,
+                                                                        GroupLayout.PREFERRED_SIZE)
+                                                                .addPreferredGap(
+                                                                        LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                .addComponent(
+                                                                        removeAssignmentLabel,
                                                                         GroupLayout.PREFERRED_SIZE,
                                                                         GroupLayout.DEFAULT_SIZE,
                                                                         GroupLayout.PREFERRED_SIZE)

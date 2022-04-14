@@ -21,6 +21,16 @@ public class DatabaseCommands {
         throw new IllegalStateException("Utility class.");
     }
 
+    public static void deleteOutline(int outline_id){
+        String sql = "DELETE FROM outlines WHERE outline_id = ?;";
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
+            statement.setInt(1, outline_id);
+            statement.executeUpdate();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
     public static ArrayList<String> getAllOuineNames() {
         ArrayList<String> outlines = new ArrayList<>();
         try {

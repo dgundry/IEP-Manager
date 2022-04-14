@@ -3,6 +3,8 @@ package com.mango.prjmango.ui.activities.listeners;
 import com.mango.prjmango.LoggedInUser;
 import com.mango.prjmango.ui.activities.create.CreateController;
 import com.mango.prjmango.ui.activities.create.CreateView;
+import com.mango.prjmango.ui.activities.remove.RemoveController;
+import com.mango.prjmango.ui.activities.remove.RemoveView;
 import com.mango.prjmango.utilities.subtabs.ActivitiesSubTabs;
 import com.mango.prjmango.ui.activities.ActivitiesView;
 import com.mango.prjmango.ui.activities.math.MathController;
@@ -94,6 +96,11 @@ public class ActivitiesSubTabListener implements MouseListener {
                 new CreateController(createView);
                 ActivitiesView.setActiveDisplay(createView);
                 break;
+            case 5:
+                LoggedInUser.setActivitiesSubTabIndex(5);
+                RemoveView removeView = new RemoveView();
+                new RemoveController(removeView);
+                ActivitiesView.setActiveDisplay(removeView);
             default:
                 break;
         }
@@ -160,6 +167,9 @@ public class ActivitiesSubTabListener implements MouseListener {
                 break;
             case 4:
                 ActivitiesView.getCreateAssignmentLabel().setIcon(ImageIcons.ACTIVITIES_CREATE_ASSIGNMENT_NO_HOVER.getImageIcon());
+                break;
+            case 5:
+                ActivitiesView.getRemoveAssignmentLabel().setIcon(ImageIcons.ACTIVITIES_CREATE_ASSIGNMENT_NO_HOVER.getImageIcon());
                 break;
         }
     }
