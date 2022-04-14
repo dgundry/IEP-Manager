@@ -1,4 +1,4 @@
-package com.mango.prjmango.ui.students;
+package com.mango.prjmango.ui.students.view.reports;
 
 import com.mango.prjmango.ui.common.*;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.mango.prjmango.ui.students;
+package com.mango.prjmango.ui.students.view.reports;
 
 import com.mango.prjmango.Main;
 import com.mango.prjmango.assignment.Assignment;
@@ -6,12 +6,9 @@ import com.mango.prjmango.ui.common.ImageIcons;
 import com.mango.prjmango.ui.dialogs.confirmation.ConfirmationController;
 import com.mango.prjmango.ui.dialogs.confirmation.ConfirmationView;
 import com.mango.prjmango.ui.dialogs.confirmation.Dialogs;
-import com.mango.prjmango.ui.students.view.ViewStudentController;
-import com.mango.prjmango.ui.students.view.ViewStudentView;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.util.List;
 

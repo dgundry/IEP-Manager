@@ -7,6 +7,30 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class StudentCommands {
+    public static void deleteStudentAndAssignments(int studentID){
+        deleteAllAssignmentsFromStudent(studentID);
+        deleteStudent(studentID);
+    }
+    private static void deleteAllAssignmentsFromStudent(int studentID){
+        String sql = "DELETE FROM assignment WHERE student_id = ?;";
+
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
+            statement.setInt(1, studentID);
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+    private static void deleteStudent(int studentID){
+        String sql = "DELETE FROM student WHERE student_id = ?;";
+
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
+            statement.setInt(1, studentID);
+            statement.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
     public static String getStudentFullName(int studentID){
         String sql = "SELECT first_name, last_name FROM student WHERE student_id = ?;";
         String studentName = "";
