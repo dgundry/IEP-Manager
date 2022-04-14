@@ -129,6 +129,12 @@ public class ConfirmationView extends JFrame {
                 exitLabel   = new JLabel(ImageIcons.OK_BUTTON_NO_HOVER.getImageIcon());
                 cancelLabel = new JLabel();
                 createLayoutTwo();
+                break;
+            case 6:
+                exitLabel   = new JLabel(ImageIcons.OK_BUTTON_NO_HOVER.getImageIcon());
+                cancelLabel = new JLabel(ImageIcons.APP_CANCEL_NO_HOVER.getImageIcon());
+                createLayoutOne();
+                break;
             default:
                 break;
         }

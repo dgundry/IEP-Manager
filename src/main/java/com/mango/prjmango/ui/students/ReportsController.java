@@ -3,6 +3,9 @@ package com.mango.prjmango.ui.students;
 import com.mango.prjmango.Main;
 import com.mango.prjmango.assignment.Assignment;
 import com.mango.prjmango.ui.common.ImageIcons;
+import com.mango.prjmango.ui.dialogs.confirmation.ConfirmationController;
+import com.mango.prjmango.ui.dialogs.confirmation.ConfirmationView;
+import com.mango.prjmango.ui.dialogs.confirmation.Dialogs;
 import com.mango.prjmango.ui.students.view.ViewStudentController;
 import com.mango.prjmango.ui.students.view.ViewStudentView;
 
@@ -26,7 +29,6 @@ public class ReportsController {
     private static void populateTable(ReportsView view, List<Assignment> assignments){
         for(Assignment assignment : assignments) {
             if (assignment.getStudentID() == student_id) {
-                System.out.println("Got HERE");
                 view.getModel().addRow(new Object[]{
                         assignment.getAssignmentID(),
                         assignment.getTitle(),
@@ -37,7 +39,7 @@ public class ReportsController {
             }
         }
         view.getAssignmentsTable().getColumn("Delete").setCellRenderer(new DeleteButtonRenderer());
-        view.getAssignmentsTable().getColumn("Delete").setCellEditor(new DeleteButtonEditor(view, new JCheckBox()));
+        view.getAssignmentsTable().getColumn("Delete").setCellEditor(new DeleteButtonEditor(view, new JCheckBox(), student_id));
     }
     private static class DeleteButtonRenderer extends DefaultTableCellRenderer {
         JLabel label = new JLabel();
@@ -55,9 +57,11 @@ public class ReportsController {
         private String label;
         private boolean isPushed;
         private final ReportsView view;
+        private final int students_id;
 
-        public DeleteButtonEditor(ReportsView view, JCheckBox checkBox) {
+        public DeleteButtonEditor(ReportsView view, JCheckBox checkBox, int student_id) {
             super(checkBox);
+            this.students_id = student_id;
             this.view = view;
             button = new JButton();
             button.setOpaque(false);
@@ -83,7 +87,12 @@ public class ReportsController {
         public Object getCellEditorValue() {
             if (isPushed) {
                 System.out.println(view.getModel().getValueAt(view.getAssignmentsTable().getSelectedRow(),0) +" was Clicked");
-
+                int assignment_id = (int) view.getModel().getValueAt(view.getAssignmentsTable().getSelectedRow(),0);
+                String assignment_title = (String) view.getModel().getValueAt(view.getAssignmentsTable().getSelectedRow(),1);
+                ConfirmationView confirmationView =
+                        new ConfirmationView("Are you sure you'd like to delete \n" + assignment_title, Dialogs.DELETE_ASSIGNMENT);
+                new ConfirmationController(confirmationView,students_id,assignment_id);
+                confirmationView.requestFocusInWindow();
 //                ReportsView reportsView = new ReportsView();
 //                new ReportsController();
 //                StudentsView.setActiveDisplay(reportsView);

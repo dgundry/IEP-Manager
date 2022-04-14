@@ -1,6 +1,7 @@
 package com.mango.prjmango.ui.dialogs.confirmation;
 
 import com.mango.prjmango.Main;
+import com.mango.prjmango.assignment.Assignments;
 import com.mango.prjmango.ui.MainWindowView;
 import com.mango.prjmango.ui.activities.ActivitiesView;
 import com.mango.prjmango.ui.activities.math.MathController;
@@ -13,10 +14,16 @@ import com.mango.prjmango.ui.common.ImageIcons;
 import com.mango.prjmango.ui.login.LoginController;
 import com.mango.prjmango.ui.login.LoginView;
 import com.mango.prjmango.ui.sideoptions.SideOptionsView;
+import com.mango.prjmango.ui.students.ReportsController;
+import com.mango.prjmango.ui.students.ReportsView;
+import com.mango.prjmango.ui.students.StudentsView;
 import com.mango.prjmango.utilities.DatabaseConnection;
 import com.mango.prjmango.utilities.Tabs;
+import com.mango.prjmango.utilities.dbcommands.StudentCommands;
+
 import java.awt.event.*;
 import javax.swing.JLabel;
+
 
 /**
  * Handles all user interaction with the pop-up dialogs.
@@ -28,11 +35,22 @@ public class ConfirmationController {
      *
      * @param view the {@link ConfirmationView} to access the specific {@link JLabel}'s
      */
+    private int studentID = 0;
+    private int assignmentID = 0;
     public ConfirmationController(ConfirmationView view) {
         JLabel exitLabel = view.getExitLabel();
         JLabel cancelLabel = view.getCancelLabel();
 
-        exitLabel.addMouseListener(new ExitLabelMouseListener(view, exitLabel, view.getSelectedDialog()));
+        exitLabel.addMouseListener(new ExitLabelMouseListener(view, exitLabel, view.getSelectedDialog(),assignmentID,studentID));
+        cancelLabel.addMouseListener(new CancelLabelMouseListener(view, cancelLabel));
+    }
+    public ConfirmationController(ConfirmationView view,int studentID, int assignmentID) {
+        this.assignmentID = assignmentID;
+        this.studentID = studentID;
+        JLabel exitLabel = view.getExitLabel();
+        JLabel cancelLabel = view.getCancelLabel();
+
+        exitLabel.addMouseListener(new ExitLabelMouseListener(view, exitLabel, view.getSelectedDialog(),assignmentID,studentID));
         cancelLabel.addMouseListener(new CancelLabelMouseListener(view, cancelLabel));
     }
 
@@ -41,6 +59,8 @@ public class ConfirmationController {
         private final ConfirmationView view;
         private final JLabel label;
         private final Dialogs selectedDialog;
+        private final int assignmentID;
+        private final int studentID;
 
         /**
          * Constructor. Initializes instance variables that will be used throughout the {@link MouseListener}
@@ -50,10 +70,13 @@ public class ConfirmationController {
          * @param label          the specific {@link JLabel}
          * @param selectedDialog the specific {@link Dialogs}
          */
-        public ExitLabelMouseListener(ConfirmationView view, JLabel label, Dialogs selectedDialog) {
+        public ExitLabelMouseListener(ConfirmationView view, JLabel label, Dialogs selectedDialog, int assignmentID, int studentID) {
             this.view = view;
             this.label = label;
             this.selectedDialog = selectedDialog;
+            this.assignmentID = assignmentID;
+            this.studentID = studentID;
+
 
             view.addKeyListener(new KeyListener() {
 
@@ -129,8 +152,8 @@ public class ConfirmationController {
                                 MathView mathView = new MathView();
                                 new MathController(mathView);
                                 ActivitiesView.setActiveDisplay(mathView);
-
                                 break;
+
                             default:
                                 break;
                         }
@@ -212,6 +235,18 @@ public class ConfirmationController {
                     new MathController(mathView);
                     ActivitiesView.setActiveDisplay(mathView);
 
+                    break;
+
+                case 6:
+                    view.dispose();
+                    //DELETE assignment
+                    if(assignmentID != 0) {
+                        StudentCommands.removeStudentAssignment(assignmentID);
+                        Main.setAssignments(new Assignments(Main.getActiveUser().getTeacherId()));
+                        ReportsView reportsView = new ReportsView(StudentCommands.getStudentFullName(studentID));
+                        new ReportsController(reportsView, studentID);
+                        StudentsView.setActiveDisplay(reportsView);
+                    }
                     break;
                 default:
                     break;
