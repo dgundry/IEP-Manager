@@ -40,7 +40,7 @@ public class ReportsView extends JPanel {
     private void createComponents(){
         studentsHeaderLabel = Components.JLabel(fullName+"", Fonts.SEGOE_UI_24.getFont(), Colors.LIGHT_GREY);
         fromLabel = Components.JLabel("From:", Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
-        toLabel = Components.JLabel("To:", Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
+        toLabel = Components.JLabel("To:  ", Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
         dateTextField1 = new DateChooser(1,1,1);
         dateTextField2 = new DateChooser(1,1,1);
 
@@ -94,6 +94,17 @@ public class ReportsView extends JPanel {
                                                                 .addGroup(addAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                                 .addGap(0, 0, Short.MAX_VALUE))
                                                 .addContainerGap())
+                                                        .addGroup(addAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                                //.addGroup(addAssignmentPanelLayout.createSequentialGroup()
+                                                                        .addComponent(fromLabel)
+                                                                        .addComponent(toLabel)
+                                                                        .addComponent(dateTextField1)
+                                                                        .addComponent(dateTextField2))//)
+
+
+                                                        .addGroup(addAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                                                )
+
                                         .addGroup(addAssignmentPanelLayout.createSequentialGroup()
                                                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addGroup(addAssignmentPanelLayout.createSequentialGroup()
@@ -108,6 +119,15 @@ public class ReportsView extends JPanel {
                                 .addComponent(studentsHeaderLabel)
                                 .addGap(67, 67, 67)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(addAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(fromLabel)
+                                        .addComponent(dateTextField1))
+                                .addGap(5,5,Short.MAX_VALUE)
+                                .addGroup(addAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(toLabel)
+                                        .addComponent(dateTextField2))
+
+
                                 .addGap(18, 18, 18)
                                 .addComponent(studentsScrollPane, GroupLayout.PREFERRED_SIZE, 500, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(850, Short.MAX_VALUE)
