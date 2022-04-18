@@ -1,7 +1,5 @@
 package com.mango.prjmango.ui.createaccount.password;
 
-import com.mango.prjmango.utilities.DatabaseCommands;
-import com.mango.prjmango.utilities.User;
 import com.mango.prjmango.ui.MainWindowView;
 import com.mango.prjmango.ui.common.ImageIcons;
 import com.mango.prjmango.ui.createaccount.securityquestions.SecurityQuestionsController;
@@ -9,13 +7,15 @@ import com.mango.prjmango.ui.createaccount.securityquestions.SecurityQuestionsVi
 import com.mango.prjmango.ui.dialogs.confirmation.ConfirmationController;
 import com.mango.prjmango.ui.dialogs.confirmation.ConfirmationView;
 import com.mango.prjmango.ui.dialogs.confirmation.Dialogs;
+import com.mango.prjmango.utilities.DatabaseCommands;
+import com.mango.prjmango.utilities.User;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.swing.*;
+import javax.swing.JLabel;
 
 /**
  * This class handles all user interaction with the Create Password page within the

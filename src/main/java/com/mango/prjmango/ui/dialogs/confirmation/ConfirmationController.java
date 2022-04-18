@@ -15,18 +15,19 @@ import com.mango.prjmango.ui.common.ImageIcons;
 import com.mango.prjmango.ui.login.LoginController;
 import com.mango.prjmango.ui.login.LoginView;
 import com.mango.prjmango.ui.sideoptions.SideOptionsView;
+import com.mango.prjmango.ui.students.StudentsView;
 import com.mango.prjmango.ui.students.view.ViewStudentController;
 import com.mango.prjmango.ui.students.view.ViewStudentView;
 import com.mango.prjmango.ui.students.view.reports.ReportsController;
 import com.mango.prjmango.ui.students.view.reports.ReportsView;
-import com.mango.prjmango.ui.students.StudentsView;
 import com.mango.prjmango.utilities.DatabaseConnection;
 import com.mango.prjmango.utilities.Tabs;
 import com.mango.prjmango.utilities.dbcommands.StudentCommands;
-
-import java.awt.event.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.JLabel;
-
 
 /**
  * Handles all user interaction with the pop-up dialogs.

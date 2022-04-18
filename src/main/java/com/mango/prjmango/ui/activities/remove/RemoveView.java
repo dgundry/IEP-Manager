@@ -3,14 +3,20 @@ package com.mango.prjmango.ui.activities.remove;
 import com.mango.prjmango.ui.common.Colors;
 import com.mango.prjmango.ui.common.Components;
 import com.mango.prjmango.ui.common.Fonts;
-import lombok.Getter;
-
-import javax.swing.*;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import javax.swing.GroupLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.LayoutStyle;
+import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-
-import java.awt.*;
+import lombok.Getter;
 
 public class RemoveView extends JPanel {
     @Getter private static JLabel outlineHeaderLabel;

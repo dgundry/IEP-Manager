@@ -5,20 +5,17 @@ import com.mango.prjmango.Outlines.MathOutline;
 import com.mango.prjmango.Outlines.MathOutlines;
 import com.mango.prjmango.Outlines.Outline;
 import com.mango.prjmango.Outlines.Outlines;
-import com.mango.prjmango.assignment.Assignment;
 import com.mango.prjmango.ui.activities.ActivitiesView;
 import com.mango.prjmango.ui.common.ImageIcons;
-import com.mango.prjmango.ui.dialogs.confirmation.ConfirmationController;
-import com.mango.prjmango.ui.dialogs.confirmation.ConfirmationView;
-import com.mango.prjmango.ui.dialogs.confirmation.Dialogs;
-import com.mango.prjmango.ui.students.view.reports.ReportsController;
-import com.mango.prjmango.ui.students.view.reports.ReportsView;
 import com.mango.prjmango.utilities.DatabaseCommands;
-
-import javax.swing.*;
-import javax.swing.table.DefaultTableCellRenderer;
-import java.awt.*;
+import java.awt.Component;
 import java.util.List;
+import javax.swing.DefaultCellEditor;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 
 public class RemoveController {
     private RemoveView view;

@@ -1,22 +1,36 @@
 package com.mango.prjmango.ui.students.view.reports;
 
-import com.mango.prjmango.ui.common.*;
-import lombok.Getter;
-
-import javax.swing.*;
+import com.mango.prjmango.ui.common.Colors;
+import com.mango.prjmango.ui.common.Components;
+import com.mango.prjmango.ui.common.DateChooser;
+import com.mango.prjmango.ui.common.Fonts;
+import com.mango.prjmango.ui.common.ImageIcons;
+import java.awt.Cursor;
+import java.awt.Dimension;
+import javax.swing.GroupLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.LayoutStyle;
+import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
+import lombok.Getter;
 
+/**
+ * The user interface design of the Reports' page for a student.
+ */
 public class ReportsView extends JPanel {
 
-    @Getter private static JLabel studentsHeaderLabel;
+    @Getter private JLabel studentsHeaderLabel;
     @Getter private JLabel fromLabel;
     @Getter private JLabel toLabel;
 
-    @Getter private JLabel nextButton = new JLabel(ImageIcons.NEXTSTUDENT.getImageIcon());
-    @Getter private JLabel exportButton = new JLabel(ImageIcons.EXPORT.getImageIcon());
+    @Getter private final JLabel nextButton = new JLabel(ImageIcons.NEXTSTUDENT.getImageIcon());
+    @Getter private final JLabel exportButton = new JLabel(ImageIcons.EXPORT.getImageIcon());
 
     @Getter private final JScrollPane studentsScrollPane = new JScrollPane();
 
@@ -27,8 +41,11 @@ public class ReportsView extends JPanel {
 
     @Getter private DefaultTableModel model;
 
-    private String fullName;
+    private final String fullName;
 
+    /**
+     * Constructor. Calls methods that create the GUI.
+     */
     public ReportsView(String fullName) {
         setOpaque(false);
         this.fullName = fullName;
@@ -37,13 +54,12 @@ public class ReportsView extends JPanel {
         createLayout();
     }
 
-    private void createComponents(){
+    private void createComponents() {
         studentsHeaderLabel = Components.JLabel(fullName+"", Fonts.SEGOE_UI_24.getFont(), Colors.LIGHT_GREY);
         fromLabel = Components.JLabel("From:", Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
-        toLabel = Components.JLabel("To:  ", Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
+        toLabel = Components.JLabel("To:", Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
         dateTextField1 = new DateChooser(1,1,1);
         dateTextField2 = new DateChooser(1,1,1);
-
 
         model = new DefaultTableModel(new Object[][]{}, new String[] { "Assignment ID", "Title", "Earned Points", "Total Points", "Date", "Comments","Delete"});
         assignmentsTable.setBorder(new LineBorder(new java.awt.Color(120, 45, 22), 1, true));
@@ -67,7 +83,6 @@ public class ReportsView extends JPanel {
         studentsScrollPane.add(assignmentsTable);
         studentsScrollPane.setViewportView(assignmentsTable);
 
-
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
         assignmentsTable.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
@@ -76,8 +91,6 @@ public class ReportsView extends JPanel {
         assignmentsTable.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
         assignmentsTable.getColumnModel().getColumn(4).setCellRenderer(centerRenderer);
     }
-
-
 
     private void createLayout() {
         GroupLayout addAssignmentPanelLayout = new GroupLayout(this);
@@ -91,22 +104,13 @@ public class ReportsView extends JPanel {
                                                 .addGroup(addAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                                         .addComponent(studentsHeaderLabel)
                                                         .addGroup(addAssignmentPanelLayout.createSequentialGroup()
-                                                                .addGroup(addAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                                .addGap(0, 0, Short.MAX_VALUE))
-                                                .addContainerGap())
-                                                        .addGroup(addAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                                //.addGroup(addAssignmentPanelLayout.createSequentialGroup()
-                                                                        .addComponent(fromLabel)
-                                                                        .addComponent(toLabel)
-                                                                        .addComponent(dateTextField1)
-                                                                        .addComponent(dateTextField2))//)
-
-
-                                                        .addGroup(addAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                                )
-
-                                        .addGroup(addAssignmentPanelLayout.createSequentialGroup()
-                                                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                                .addComponent(fromLabel, 46, 46, 46)
+                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                .addComponent(dateTextField1))
+                                                        .addGroup(addAssignmentPanelLayout.createSequentialGroup()
+                                                                .addComponent(toLabel, 46, 46, 46)
+                                                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                .addComponent(dateTextField2))
                                         .addGroup(addAssignmentPanelLayout.createSequentialGroup()
                                                 .addContainerGap()
                                                 .addGroup(addAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -122,18 +126,15 @@ public class ReportsView extends JPanel {
                                 .addGroup(addAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                         .addComponent(fromLabel)
                                         .addComponent(dateTextField1))
-                                .addGap(5,5,Short.MAX_VALUE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(addAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                         .addComponent(toLabel)
                                         .addComponent(dateTextField2))
-
-
                                 .addGap(18, 18, 18)
                                 .addComponent(studentsScrollPane, GroupLayout.PREFERRED_SIZE, 500, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(850, Short.MAX_VALUE)
                                 .addGroup(addAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)))
         );
-
     }
 }
 

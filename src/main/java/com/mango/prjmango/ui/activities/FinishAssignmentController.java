@@ -3,13 +3,15 @@ package com.mango.prjmango.ui.activities;
 import com.mango.prjmango.LoggedInUser;
 import com.mango.prjmango.Main;
 import com.mango.prjmango.assignment.Assignments;
-import com.mango.prjmango.utilities.DatabaseConnection;
 import com.mango.prjmango.ui.common.ImageIcons;
 import com.mango.prjmango.ui.dialogs.confirmation.ConfirmationController;
 import com.mango.prjmango.ui.dialogs.confirmation.ConfirmationView;
 import com.mango.prjmango.ui.dialogs.confirmation.Dialogs;
-
-import java.awt.event.*;
+import com.mango.prjmango.utilities.DatabaseConnection;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.PreparedStatement;
 import javax.swing.JLabel;
 

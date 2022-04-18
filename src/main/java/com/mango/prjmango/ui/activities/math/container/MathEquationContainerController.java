@@ -1,26 +1,17 @@
 package com.mango.prjmango.ui.activities.math.container;
 
-import com.mango.prjmango.LoggedInUser;
-import com.mango.prjmango.Main;
-import com.mango.prjmango.Outlines.Outlines;
-import com.mango.prjmango.student.Students;
-import com.mango.prjmango.ui.MainWindowView;
 import com.mango.prjmango.ui.activities.ActivitiesView;
 import com.mango.prjmango.ui.activities.FinishAssignmentController;
 import com.mango.prjmango.ui.activities.FinishAssignmentView;
 import com.mango.prjmango.ui.activities.math.MathAssignment;
 import com.mango.prjmango.ui.activities.math.MathEquation;
-import com.mango.prjmango.ui.activities.upload.UploadController;
 import com.mango.prjmango.ui.common.ImageIcons;
-import com.mango.prjmango.ui.students.StudentsController;
-import com.mango.prjmango.ui.students.StudentsView;
-import com.mango.prjmango.utilities.dbcommands.UserCommands;
-
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import javax.swing.*;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 public class MathEquationContainerController {
 

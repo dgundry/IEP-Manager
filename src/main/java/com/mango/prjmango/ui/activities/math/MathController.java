@@ -1,20 +1,17 @@
 package com.mango.prjmango.ui.activities.math;
 
 import com.mango.prjmango.Outlines.MathOutline;
-import com.mango.prjmango.Outlines.Outline;
 import com.mango.prjmango.student.Student;
 import com.mango.prjmango.ui.activities.ActivitiesView;
 import com.mango.prjmango.ui.activities.math.container.MathEquationContainer;
 import com.mango.prjmango.ui.activities.math.container.MathEquationContainerController;
-import com.mango.prjmango.ui.activities.upload.UploadController;
-import com.mango.prjmango.ui.activities.upload.UploadView;
 import com.mango.prjmango.ui.common.ImageIcons;
-
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import javax.swing.*;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 
 public class MathController {
 

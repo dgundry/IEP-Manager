@@ -3,17 +3,14 @@ package com.mango.prjmango.ui.students.view;
 import com.mango.prjmango.Main;
 import com.mango.prjmango.student.Student;
 import com.mango.prjmango.student.StudentSortTypes;
-import com.mango.prjmango.student.Students;
 import com.mango.prjmango.ui.common.ImageIcons;
 import com.mango.prjmango.ui.dialogs.confirmation.ConfirmationController;
 import com.mango.prjmango.ui.dialogs.confirmation.ConfirmationView;
 import com.mango.prjmango.ui.dialogs.confirmation.Dialogs;
-import com.mango.prjmango.ui.students.StudentsController;
+import com.mango.prjmango.ui.students.StudentsView;
 import com.mango.prjmango.ui.students.view.reports.ReportsController;
 import com.mango.prjmango.ui.students.view.reports.ReportsView;
-import com.mango.prjmango.ui.students.StudentsView;
 import com.mango.prjmango.utilities.dbcommands.StudentCommands;
-
 import java.awt.Component;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
