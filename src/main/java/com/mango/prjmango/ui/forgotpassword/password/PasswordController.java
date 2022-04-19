@@ -8,11 +8,15 @@ import com.mango.prjmango.ui.forgotpassword.securityquestions.AnswerSecurityQues
 import com.mango.prjmango.ui.login.LoginController;
 import com.mango.prjmango.ui.login.LoginView;
 import com.mango.prjmango.utilities.dbcommands.UserCommands;
+
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Arrays;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
@@ -64,6 +68,7 @@ public class PasswordController {
         @Override
         public void mouseClicked(MouseEvent e) {
             view.getInvalidLabel().setText(" ");
+            view.getInvalidLabel().setForeground(Color.RED);
 
             JPasswordField createPasswordField  = view.getCreatePasswordField();
             JPasswordField confirmPasswordField = view.getConfirmPasswordField();
@@ -71,17 +76,36 @@ public class PasswordController {
             char[] createPassword  = createPasswordField.getPassword();
             char[] confirmPassword = confirmPasswordField.getPassword();
 
-            if (createPassword.length == 0 || confirmPassword.length == 0) {
-                view.getInvalidLabel().setText("Password cannot be length 0!");
-            } else if (!Arrays.equals(createPassword, confirmPassword)) {
-                view.getInvalidLabel().setText("Passwords do not match!");
+            String strCreatePass = String.valueOf(createPassword);
+            String strConfirmedPass = String.valueOf(confirmPassword);
+
+
+            if (!isValid(strCreatePass)) {
+                view.getInvalidLabel().setText("<html>Please make sure that your password contains: " +
+                        "<ul><li>8 or more characters</li>" +
+                        "<li>At least 1 Special Character</li>" +
+                        "<li>At least 1 Uppercase letter</li>" +
+                        "<li>At least 1 Lowercase letter</li>" +
+                        "<li>At least 1 digit</li></ul></html>");
+            } else if (strCreatePass.equals(strConfirmedPass)) {
+                displayInformationText();
+                UserCommands.updateUserPassword(createPassword);
             } else {
-                UserCommands.updateUserPassword(createPassword, email);
-                displayInformationText(view);
+                view.getInvalidLabel().setText("New password does not match the confirmation password!");
+                view.getInvalidLabel().setForeground(Colors.RED);
             }
         }
 
-        private void displayInformationText(PasswordView view) {
+        private static final String PASSWORD_PATTERN =
+                "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
+        private static final Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
+
+        private static boolean isValid(final String password){
+            Matcher matcher = pattern.matcher(password);
+            return matcher.matches();
+        }
+
+        private void displayInformationText() {
             view.getInvalidLabel().setText("Information successfully changed!");
             view.getInvalidLabel().setForeground(Colors.GREEN);
 

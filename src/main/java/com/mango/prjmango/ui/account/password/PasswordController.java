@@ -76,7 +76,7 @@ public class PasswordController {
         @Override
         public void mouseClicked(MouseEvent e) {
             view.getInformationLabel().setText(" ");
-            view.getInformationLabel().setForeground(Color.WHITE);
+            view.getInformationLabel().setForeground(Color.RED);
 
             JPasswordField currentPassField = view.getCurrentPasswordTextBox();
             JPasswordField newPassField     = view.getNewPasswordTextBox();
