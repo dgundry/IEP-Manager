@@ -2,11 +2,19 @@ package com.mango.prjmango.ui.students.view.reports;
 
 import com.mango.prjmango.Main;
 import com.mango.prjmango.assignment.Assignment;
+import com.mango.prjmango.assignment.Assignments;
 import com.mango.prjmango.ui.common.ImageIcons;
 import com.mango.prjmango.ui.dialogs.confirmation.ConfirmationController;
 import com.mango.prjmango.ui.dialogs.confirmation.ConfirmationView;
 import com.mango.prjmango.ui.dialogs.confirmation.Dialogs;
+import com.mango.prjmango.ui.students.StudentsView;
+import com.mango.prjmango.utilities.dbcommands.StudentCommands;
+import lombok.SneakyThrows;
+
 import java.awt.Component;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.text.ParseException;
 import java.util.List;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
@@ -19,11 +27,33 @@ public class ReportsController {
 
     private static int student_id;
 
-    public ReportsController(ReportsView view, int student_id){
+    public ReportsController(ReportsView view, int student_id) throws ParseException {
         this.student_id = student_id;
         populateTable(view, Main.getAssignments().getAssignments());
+        view.getAssignmentsTable().getColumn("Delete").setCellRenderer(new DeleteButtonRenderer());
+        view.getAssignmentsTable().getColumn("Delete").setCellEditor(new DeleteButtonEditor(view, new JCheckBox(), student_id));
+        view.getDateTextField1().getDayComboBox().addItemListener(new FromDateListener(view));
+        view.getDateTextField1().getMonthComboBox().addItemListener(new FromDateListener(view));
+        view.getDateTextField1().getYearComboBox().addItemListener(new FromDateListener(view));
+        view.getDateTextField2().getMonthComboBox().addItemListener(new ToDateListener(view));
+        view.getDateTextField2().getDayComboBox().addItemListener(new ToDateListener(view));
+        view.getDateTextField2().getYearComboBox().addItemListener(new ToDateListener(view));
         System.out.println("Student id: "+student_id);
-
+    }
+    public ReportsController(ReportsView view, int student_id, String fromDate, String toDate, int fromDateDayIndex, int fromDateMonthIndex, int fromDateYearIndex, int toDateDayIndex,int toDateMonthIndex, int toDateYearIndex) throws ParseException {
+        this.student_id = student_id;
+        view.getDateTextField1().setDates(fromDateDayIndex, fromDateMonthIndex, fromDateYearIndex);
+        view.getDateTextField2().setDates(toDateDayIndex, toDateMonthIndex, toDateYearIndex);
+        filterTable(view, Main.getAssignments().getAssignments(), fromDate, toDate);
+        view.getAssignmentsTable().getColumn("Delete").setCellRenderer(new DeleteButtonRenderer());
+        view.getAssignmentsTable().getColumn("Delete").setCellEditor(new DeleteButtonEditor(view, new JCheckBox(), student_id));
+        view.getDateTextField1().getDayComboBox().addItemListener(new FromDateListener(view));
+        view.getDateTextField1().getMonthComboBox().addItemListener(new FromDateListener(view));
+        view.getDateTextField1().getYearComboBox().addItemListener(new FromDateListener(view));
+        view.getDateTextField2().getMonthComboBox().addItemListener(new ToDateListener(view));
+        view.getDateTextField2().getDayComboBox().addItemListener(new ToDateListener(view));
+        view.getDateTextField2().getYearComboBox().addItemListener(new ToDateListener(view));
+        System.out.println("Student id: "+student_id);
     }
 
     private static void populateTable(ReportsView view, List<Assignment> assignments){
@@ -38,8 +68,19 @@ public class ReportsController {
                         assignment.getComment()});
             }
         }
-        view.getAssignmentsTable().getColumn("Delete").setCellRenderer(new DeleteButtonRenderer());
-        view.getAssignmentsTable().getColumn("Delete").setCellEditor(new DeleteButtonEditor(view, new JCheckBox(), student_id));
+    }
+    private static void filterTable(ReportsView view, List<Assignment> assignments, String fromDate, String toDate){
+        for(Assignment assignment : assignments) {
+            if (assignment.getStudentID() == student_id && assignment.isBetween(fromDate, toDate)) {
+                    view.getModel().addRow(new Object[]{
+                            assignment.getAssignmentID(),
+                            assignment.getTitle(),
+                            assignment.getEarnedPoints(),
+                            assignment.getTotalPoints(),
+                            assignment.getDate(),
+                            assignment.getComment()});
+            }
+        }
     }
     private static class DeleteButtonRenderer extends DefaultTableCellRenderer {
         JLabel label = new JLabel();
@@ -74,10 +115,8 @@ public class ReportsController {
         @Override
         public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
             if(isSelected){
-//                System.out.println("Selected");
 
             }else{
-//                System.out.println("Not Selected");
             }
             isPushed = true;
             return button;
@@ -93,9 +132,6 @@ public class ReportsController {
                         new ConfirmationView("Are you sure you'd like to delete \n" + assignment_title, Dialogs.DELETE_ASSIGNMENT);
                 new ConfirmationController(confirmationView,students_id,assignment_id);
                 confirmationView.requestFocusInWindow();
-//                ReportsView reportsView = new ReportsView();
-//                new ReportsController();
-//                StudentsView.setActiveDisplay(reportsView);
             }
             isPushed = false;
             return label;
@@ -105,6 +141,64 @@ public class ReportsController {
         public boolean stopCellEditing() {
             isPushed = false;
             return super.stopCellEditing();
+        }
+    }
+
+    private class FromDateListener implements ItemListener {
+        ReportsView view;
+        String fromDate;
+        String toDate;
+
+        public FromDateListener(ReportsView view) throws ParseException {
+            this.view = view;
+            fromDate = view.getDateTextField1().getText();
+            toDate = view.getDateTextField2().getText();
+        }
+
+        @SneakyThrows
+        @Override
+        public void itemStateChanged(ItemEvent e) {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                int fromDateDayIndex = view.getDateTextField1().getDayComboBox().getSelectedIndex();
+                int fromDateMonthIndex = view.getDateTextField1().getMonthComboBox().getSelectedIndex();
+                int fromDateYearIndex = view.getDateTextField1().getYearComboBox().getSelectedIndex();
+                int toDateDayIndex = view.getDateTextField2().getDayComboBox().getSelectedIndex();
+                int toDateMonthIndex = view.getDateTextField2().getMonthComboBox().getSelectedIndex();
+                int toDateYearIndex = view.getDateTextField2().getYearComboBox().getSelectedIndex();
+                ReportsView reportsView = new ReportsView(StudentCommands.getStudentFullName(student_id));
+                new ReportsController(reportsView, student_id,view.getDateTextField1().getText(), view.getDateTextField2().getText(),fromDateDayIndex,fromDateMonthIndex,fromDateYearIndex,toDateDayIndex,toDateMonthIndex,toDateYearIndex);
+                StudentsView.setActiveDisplay(reportsView);
+            }
+        }
+    }
+
+    private class ToDateListener implements ItemListener {
+        ReportsView view;
+        String fromDate;
+        String toDate;
+
+        public ToDateListener(ReportsView view) throws ParseException {
+            this.view = view;
+            fromDate = view.getDateTextField1().getText();
+            toDate = view.getDateTextField2().getText();
+        }
+
+        @SneakyThrows
+        @Override
+        public void itemStateChanged(ItemEvent e) {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                int fromDateDayIndex = view.getDateTextField1().getDayComboBox().getSelectedIndex();
+                int fromDateMonthIndex = view.getDateTextField1().getMonthComboBox().getSelectedIndex();
+                int fromDateYearIndex = view.getDateTextField1().getYearComboBox().getSelectedIndex();
+                int toDateDayIndex = view.getDateTextField2().getDayComboBox().getSelectedIndex();
+                int toDateMonthIndex = view.getDateTextField2().getMonthComboBox().getSelectedIndex();
+                int toDateYearIndex = view.getDateTextField2().getYearComboBox().getSelectedIndex();
+                ReportsView reportsView = new ReportsView(StudentCommands.getStudentFullName(student_id));
+                new ReportsController(reportsView, student_id,view.getDateTextField1().getText(), view.getDateTextField2().getText(),fromDateDayIndex,fromDateMonthIndex,fromDateYearIndex,toDateDayIndex,toDateMonthIndex,toDateYearIndex);
+                StudentsView.setActiveDisplay(reportsView);
+
+
+            }
         }
     }
 }

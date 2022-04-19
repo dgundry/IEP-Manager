@@ -11,6 +11,8 @@ import com.mango.prjmango.ui.students.StudentsView;
 import com.mango.prjmango.ui.students.view.reports.ReportsController;
 import com.mango.prjmango.ui.students.view.reports.ReportsView;
 import com.mango.prjmango.utilities.dbcommands.StudentCommands;
+import lombok.SneakyThrows;
+
 import java.awt.Component;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -95,6 +97,7 @@ public class ViewStudentController {
             return button;
         }
 
+        @SneakyThrows
         @Override
         public Object getCellEditorValue() {
             if (isPushed) {

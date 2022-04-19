@@ -20,6 +20,11 @@ public class DateChooser extends JPanel {
         createLayout();
         setTodaysDates();
     }
+    public void setDates(int dayIndex, int monthIndex, int yearIndex){
+        dayComboBox.setSelectedIndex(dayIndex);
+        monthComboBox.setSelectedIndex(monthIndex);
+        yearComboBox.setSelectedIndex(yearIndex);
+    }
     private void setTodaysDates(){
         LocalDate today = LocalDate.now();
         dayComboBox.setSelectedIndex(today.getDayOfMonth()-1);

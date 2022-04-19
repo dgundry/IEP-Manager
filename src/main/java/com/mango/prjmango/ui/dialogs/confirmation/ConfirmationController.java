@@ -23,11 +23,13 @@ import com.mango.prjmango.ui.students.view.reports.ReportsView;
 import com.mango.prjmango.utilities.DatabaseConnection;
 import com.mango.prjmango.utilities.Tabs;
 import com.mango.prjmango.utilities.dbcommands.StudentCommands;
+import lombok.SneakyThrows;
+
+import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import javax.swing.JLabel;
 
 /**
  * Handles all user interaction with the pop-up dialogs.
@@ -181,6 +183,7 @@ public class ConfirmationController {
          *
          * @param e the {@link MouseEvent}
          */
+        @SneakyThrows
         @Override
         public void mouseClicked(MouseEvent e) {
 
