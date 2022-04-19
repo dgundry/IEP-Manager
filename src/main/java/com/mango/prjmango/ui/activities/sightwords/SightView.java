@@ -104,6 +104,11 @@ public class SightView extends JPanel {
                                                 GroupLayout.Alignment.TRAILING,
                                                 0,GroupLayout.DEFAULT_SIZE,
                                                 Short.MAX_VALUE)
+                                        .addComponent(
+                                                beginLabel,
+                                                GroupLayout.PREFERRED_SIZE,
+                                                GroupLayout.PREFERRED_SIZE,
+                                                GroupLayout.PREFERRED_SIZE)
                                             .addGroup(assignmentPanelLayout.createSequentialGroup()
                                                 .addGroup(assignmentPanelLayout.createParallelGroup(
                                                         GroupLayout.Alignment.LEADING)
@@ -120,14 +125,6 @@ public class SightView extends JPanel {
                                                                 GroupLayout.PREFERRED_SIZE))
                                                 .addGap(0, 0, Short.MAX_VALUE)))
                                 .addContainerGap())
-                        .addGroup(assignmentPanelLayout.createSequentialGroup()
-                                .addGap(171, 171, 171)
-                                .addComponent(
-                                        beginLabel,
-                                        GroupLayout.PREFERRED_SIZE,
-                                        168,
-                                        GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(185, Short.MAX_VALUE))
         );
         assignmentPanelLayout.setVerticalGroup(
                 assignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -150,7 +147,7 @@ public class SightView extends JPanel {
                                         GroupLayout.PREFERRED_SIZE,
                                         39,
                                         GroupLayout.PREFERRED_SIZE)
-                                .addGap(179, 179, 179)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(
                                         beginLabel,
                                         GroupLayout.PREFERRED_SIZE,
