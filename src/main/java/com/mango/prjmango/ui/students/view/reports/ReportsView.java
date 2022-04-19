@@ -114,7 +114,7 @@ public class ReportsView extends JPanel {
                                         .addGroup(addAssignmentPanelLayout.createSequentialGroup()
                                                 .addContainerGap()
                                                 .addGroup(addAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                        .addComponent(studentsScrollPane, GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)))))
+                                                        .addComponent(studentsScrollPane, GroupLayout.PREFERRED_SIZE, 800, GroupLayout.PREFERRED_SIZE)))))
                                 )));
         addAssignmentPanelLayout.setVerticalGroup(
                 addAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
@@ -131,7 +131,7 @@ public class ReportsView extends JPanel {
                                         .addComponent(toLabel)
                                         .addComponent(dateTextField2))
                                 .addGap(18, 18, 18)
-                                .addComponent(studentsScrollPane, GroupLayout.PREFERRED_SIZE, 500, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(studentsScrollPane, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(850, Short.MAX_VALUE)
                                 .addGroup(addAssignmentPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)))
         );

@@ -1,7 +1,7 @@
 package com.mango.prjmango.ui.activities.upload;
 
 import com.mango.prjmango.Main;
-import com.mango.prjmango.Outlines.Outline;
+import com.mango.prjmango.outlines.Outline;
 import com.mango.prjmango.assignment.Assignments;
 import com.mango.prjmango.student.Student;
 import com.mango.prjmango.ui.common.ImageIcons;

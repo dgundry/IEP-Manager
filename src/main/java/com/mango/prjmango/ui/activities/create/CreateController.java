@@ -1,8 +1,8 @@
 package com.mango.prjmango.ui.activities.create;
 
 import com.mango.prjmango.Main;
-import com.mango.prjmango.Outlines.MathOutlines;
-import com.mango.prjmango.Outlines.Outlines;
+import com.mango.prjmango.outlines.MathOutlines;
+import com.mango.prjmango.outlines.Outlines;
 import com.mango.prjmango.ui.common.ImageIcons;
 import com.mango.prjmango.utilities.DatabaseCommands;
 import java.awt.Color;

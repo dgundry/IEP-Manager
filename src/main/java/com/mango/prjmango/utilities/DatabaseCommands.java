@@ -1,8 +1,10 @@
 package com.mango.prjmango.utilities;
 
 import com.mango.prjmango.LoggedInUser;
+import com.mango.prjmango.outlines.MathOutline;
+import com.mango.prjmango.outlines.Outline;
+import com.mango.prjmango.student.Student;
 import com.mango.prjmango.utilities.dbcommands.UserCommands;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * This class holds all database commands that the application uses
@@ -17,40 +21,51 @@ import java.util.Vector;
  */
 public class DatabaseCommands {
 
+    private static final Logger logger = Logger.getLogger(DatabaseCommands.class.getName());
+
     private DatabaseCommands() {
         throw new IllegalStateException("Utility class.");
     }
 
-    public static void deleteMathOutline(int outline_id) {
+    /**
+     * Deletes a {@link MathOutline} based off the specific ID.
+     *
+     * @param outlineId the specific outline ID
+     */
+    public static void deleteMathOutline(int outlineId) {
         String sql = "DELETE FROM math_outlines WHERE math_outline_id = ?;";
         try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
-            statement.setInt(1, outline_id);
+            statement.setInt(1, outlineId);
             statement.executeUpdate();
         } catch (Exception ex) {
-            ex.printStackTrace();
+            logger.log(Level.SEVERE, ex.getMessage());
         }
     }
 
-    public static void deleteOutline(int outline_id){
+    /**
+     * Deletes an {@link Outline} based off a specific ID.
+     *
+     * @param outlineId the specific outline ID
+     */
+    public static void deleteOutline(int outlineId){
         String sql = "DELETE FROM outlines WHERE outline_id = ?;";
         try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
-            statement.setInt(1, outline_id);
+            statement.setInt(1, outlineId);
             statement.executeUpdate();
         } catch (Exception ex) {
-            ex.printStackTrace();
+            logger.log(Level.SEVERE, ex.getMessage());
         }
     }
 
-    public static ArrayList<String> getAllOuineNames() {
+    public static ArrayList<String> getAllOutlineNames() {
         ArrayList<String> outlines = new ArrayList<>();
-        try {
-            PreparedStatement ps = DatabaseConnection.getConnection().prepareStatement("SELECT * FROM outlines WHERE teacher_id = ?");
+        try (PreparedStatement ps = DatabaseConnection.getConnection().prepareStatement("SELECT * FROM outlines WHERE teacher_id = ?")) {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 outlines.add(rs.getString("outline"));
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            logger.log(Level.SEVERE, ex.getMessage());
         }
         return outlines;
     }
@@ -70,11 +85,17 @@ public class DatabaseCommands {
             statement.setInt(10, denominatorMax);
             statement.setInt(11, wholeNumbers);
             statement.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage());
         }
     }
 
+    /**
+     * Adds an {@link Outline} to the database.
+     *
+     * @param assignmentName the name of the assignment
+     * @param maximumPoints  the maximum points of the assignment
+     */
     public static void createOutline(String assignmentName, int maximumPoints) {
         String sql = "INSERT INTO outlines(teacher_id, assignment_name, total_points) VALUES (?, ?, ?);";
         try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
@@ -82,10 +103,11 @@ public class DatabaseCommands {
             statement.setString(2, assignmentName);
             statement.setInt(3, maximumPoints);
             statement.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage());
         }
     }
+
     /**
      * Adds a new entry to the {@code teacher} table within the database.
      *
@@ -104,7 +126,7 @@ public class DatabaseCommands {
             statement.setString(4, Encryption.encrypt(Arrays.toString(password)));
             result = statement.executeUpdate();
         } catch (Exception ex) {
-            ex.printStackTrace();
+            logger.log(Level.SEVERE, ex.getMessage());
         }
 
         return result;
@@ -129,8 +151,8 @@ public class DatabaseCommands {
             statement.setInt(2, questionId);
             statement.setString(3, Encryption.encrypt(answer));
             result = statement.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage());
         }
 
         return result;
@@ -152,65 +174,12 @@ public class DatabaseCommands {
                 securityQuestionList.add(resultSet.getString(1));
             } while (resultSet.next());
             resultSet.close();
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage());
         }
 
         securityQuestionList.remove(0);
         return securityQuestionList;
-    }
-
-    public static int[] getQuestionIds(int teacherID) {
-        int[] questionIds = new int[2];
-        int index = 0;
-        String sql = "SELECT question_id FROM questions WHERE teacher_id = ?;";
-
-        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
-            statement.setString(1, String.valueOf(teacherID));
-            ResultSet resultSet = statement.executeQuery();
-            do {
-                if(index != 0) {
-                    if (questionIds[0] != resultSet.getInt(1)) {
-                        questionIds[index] = resultSet.getInt(1);
-                    }
-                } else {
-                    questionIds[index] = resultSet.getInt(1);
-                    index++;
-                }
-            } while (resultSet.next() && index <= 1);
-            resultSet.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return questionIds;
-    }
-
-    public static String[] getQuestionTexts(int[] questionIndexes) {
-        String[] questionTexts = new String[2];
-        int index = 0;
-        String sql = "SELECT question FROM question WHERE (question_id = ? OR question_id = ?);";
-
-        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
-            statement.setString(1, String.valueOf(questionIndexes[0]));
-            statement.setString(2, String.valueOf(questionIndexes[1]));
-            ResultSet resultSet2 = statement.executeQuery();
-            do {
-                if (index != 0) {
-                    if (questionTexts[0] != resultSet2.getString(1)) {
-                        questionTexts[index] = resultSet2.getString(1);
-                    }
-                } else {
-                    questionTexts[index] = resultSet2.getString(1);
-                    index++;
-                }
-            } while (resultSet2.next() && index <= 1);
-            resultSet2.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return questionTexts;
     }
 
     /**
@@ -230,12 +199,20 @@ public class DatabaseCommands {
             count = resultSet.getInt(1);
             resultSet.close();
         } catch (SQLException ex) {
-            ex.printStackTrace();
+            logger.log(Level.SEVERE, ex.getMessage());
         }
 
         return (count >= 1);
     }
 
+    /**
+     * Adds a new {@link Student} to the database.
+     *
+     * @param firstName the student's first name
+     * @param lastName  the student's last name
+     * @param grade     the student's grade
+     * @param bio       the student's bio
+     */
     public static void registerStudent(String firstName, String lastName, String grade, String bio){
         String sql = "INSERT INTO student(teacher_id, first_name, last_name, grade, bio) VALUES(?,?,?,?,?);";
         try(PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
@@ -245,9 +222,8 @@ public class DatabaseCommands {
             statement.setString(4, grade);
             statement.setString(5, bio);
             statement.executeUpdate();
-        }
-        catch(SQLException e){
-            e.printStackTrace();
+        } catch(SQLException ex){
+            logger.log(Level.SEVERE, ex.getMessage());
         }
     }
 
@@ -267,7 +243,7 @@ public class DatabaseCommands {
             ResultSet resultSet = statement.executeQuery();
             question = resultSet.getString(1);
         } catch (Exception ex) {
-            ex.printStackTrace();
+            logger.log(Level.SEVERE, ex.getMessage());
         }
 
         return question;
@@ -293,7 +269,7 @@ public class DatabaseCommands {
                 answers.add(resultSet.getString(1));
             } while (resultSet.next());
         } catch (Exception ex) {
-            ex.printStackTrace();
+            logger.log(Level.SEVERE, ex.getMessage());
         }
 
         return answers;

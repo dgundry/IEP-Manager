@@ -14,17 +14,19 @@ import com.mango.prjmango.utilities.dbcommands.StudentCommands;
 import lombok.SneakyThrows;
 
 import java.awt.Component;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
@@ -35,7 +37,7 @@ public class ViewStudentController {
         populateTable(view, Main.getStudents().getStudents());
 
         JTextField searchTextField = view.getSearchTextBox();
-        searchTextField.addKeyListener(new SearchTextBoxKeyListener(view, view.getModel(), searchTextField));
+        searchTextField.getDocument().addDocumentListener(new SearchTextBoxKeyListener(view, view.getModel()));
 
         JTableHeader header = view.getStudentTable().getTableHeader();
         header.addMouseListener(new StudentsTableMouseListener(view, view.getStudentTable(), view.getModel(), header));
@@ -183,49 +185,68 @@ public class ViewStudentController {
         }
     }
 
-    private static class SearchTextBoxKeyListener implements KeyListener {
+    private static class SearchTextBoxKeyListener implements DocumentListener {
 
         private final ViewStudentView view;
         private final DefaultTableModel model;
-        private final JTextField searchTextField;
 
-        public SearchTextBoxKeyListener(ViewStudentView view, DefaultTableModel model, JTextField searchTextField) {
+        public SearchTextBoxKeyListener(ViewStudentView view, DefaultTableModel model) {
             this.view  = view;
             this.model = model;
-            this.searchTextField = searchTextField;
         }
 
         /**
-         * Invoked when a key has been typed.
-         * See the class description for {@link KeyEvent} for a definition of
-         * a key typed event.
+         * Gives notification that there was an insert into the document.  The
+         * range given by the DocumentEvent bounds the freshly inserted region.
          *
-         * @param e the {@link KeyEvent}
+         * @param e the document event
          */
         @Override
-        public void keyTyped(KeyEvent e) {
-            //TODO will implement search functionality in future commit
+        public void insertUpdate(DocumentEvent e) {
+            updateTable();
+        }
+
+
+        /**
+         * Gives notification that a portion of the document has been
+         * removed.  The range is given in terms of what the view last
+         * saw (that is, before updating sticky positions).
+         *
+         * @param e the document event
+         */
+        @Override
+        public void removeUpdate(DocumentEvent e) {
+            updateTable();
         }
 
         /**
-         * Invoked when a key has been pressed.
-         * See the class description for {@link KeyEvent} for a definition of
-         * a key pressed event.
+         * Gives notification that an attribute or set of attributes changed.
          *
-         * @param e the {@link KeyEvent}
+         * @param e the document event
          */
         @Override
-        public void keyPressed(KeyEvent e) { /* Not needed */ }
+        public void changedUpdate(DocumentEvent e) {
+            updateTable();
+        }
 
-        /**
-         * Invoked when a key has been released.
-         * See the class description for {@link KeyEvent} for a definition of
-         * a key released event.
-         *
-         * @param e the {@link KeyEvent}
-         */
-        @Override
-        public void keyReleased(KeyEvent e) { /* Not needed */ }
+        private void updateTable() {
+            String currText = view.getSearchTextBox().getText().toLowerCase(Locale.ROOT);
+
+            if (currText.length() == 0) {
+                populateTable(view, Main.getStudents().getStudents());
+            }
+
+            List<Student> newList = new ArrayList<>();
+            for (Student stud : Main.getStudents().getStudents()) {
+                if (stud.getFirstName().toLowerCase(Locale.ROOT).startsWith(currText)) {
+                    newList.add(stud);
+                }
+            }
+
+            clearTable(model);
+
+            populateTable(view, newList);
+        }
     }
 
     private static void clearTable(DefaultTableModel model) {

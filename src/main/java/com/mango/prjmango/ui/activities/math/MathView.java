@@ -1,8 +1,7 @@
 package com.mango.prjmango.ui.activities.math;
 
 import com.mango.prjmango.Main;
-import com.mango.prjmango.Outlines.MathOutline;
-import com.mango.prjmango.Outlines.Outline;
+import com.mango.prjmango.outlines.MathOutline;
 import com.mango.prjmango.student.Student;
 import com.mango.prjmango.ui.common.Colors;
 import com.mango.prjmango.ui.common.Components;

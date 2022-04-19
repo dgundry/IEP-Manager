@@ -6,11 +6,8 @@ import com.mango.prjmango.ui.common.Components;
 import com.mango.prjmango.ui.common.Fonts;
 import com.mango.prjmango.ui.common.ImageIcons;
 import java.time.LocalDate;
-import javax.swing.GroupLayout;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.LayoutStyle;
+import javax.swing.*;
+
 import lombok.Getter;
 
 /**
@@ -34,6 +31,7 @@ public class FinishAssignmentView extends JPanel {
     @Getter private JLabel saveLabel;
 
     @Getter private JTextArea commentsTextArea;
+    @Getter private JScrollPane commentsScrollPane;
 
     @Getter private CreateAssignment assignment;
     @Getter private MathAssignment mathAssignment;
@@ -114,9 +112,10 @@ public class FinishAssignmentView extends JPanel {
         commentsTextArea = Components.JTextArea("");
         commentsTextArea.setLineWrap(true);
         commentsTextArea.setWrapStyleWord(true);
-        commentsTextArea.setColumns(20);
-        commentsTextArea.setRows(5);
-        commentsTextArea.requestFocus();
+
+        commentsScrollPane = new JScrollPane(commentsTextArea);
+        commentsScrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+        commentsScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
     }
 
     private void createLayout() {
@@ -132,7 +131,7 @@ public class FinishAssignmentView extends JPanel {
                                                 .addComponent(percentageLabel)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(changePercentageLabel))
-                                        .addComponent(commentsTextArea, GroupLayout.PREFERRED_SIZE, 517, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(commentsScrollPane, GroupLayout.PREFERRED_SIZE, 517, GroupLayout.PREFERRED_SIZE)
                                         .addComponent(finishAssignmentHeaderLabel)
                                         .addComponent(saveLabel, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                         .addGroup(finishAssignmentPanelLayout.createSequentialGroup()
@@ -177,7 +176,7 @@ public class FinishAssignmentView extends JPanel {
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(commentsLabel)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(commentsTextArea, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(commentsScrollPane, GroupLayout.PREFERRED_SIZE, 183, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(saveLabel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(993, Short.MAX_VALUE))

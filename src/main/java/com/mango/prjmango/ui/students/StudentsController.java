@@ -6,6 +6,8 @@ import com.mango.prjmango.ui.students.listeners.StudentsSubTabListener;
 import javax.swing.JLabel;
 
 public class StudentsController {
+
+
     public StudentsController(StudentsView view){
         JLabel viewStudent = StudentsView.getViewStudentsLabel();
         JLabel createStudent = StudentsView.getCreateStudentLabel();

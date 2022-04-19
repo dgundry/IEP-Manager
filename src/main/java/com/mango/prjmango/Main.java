@@ -1,7 +1,7 @@
 package com.mango.prjmango;
 
-import com.mango.prjmango.Outlines.MathOutlines;
-import com.mango.prjmango.Outlines.Outlines;
+import com.mango.prjmango.outlines.MathOutlines;
+import com.mango.prjmango.outlines.Outlines;
 import com.mango.prjmango.assignment.Assignments;
 import com.mango.prjmango.student.Students;
 import com.mango.prjmango.ui.MainWindowView;

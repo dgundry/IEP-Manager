@@ -1,10 +1,10 @@
 package com.mango.prjmango.ui.activities.remove;
 
 import com.mango.prjmango.Main;
-import com.mango.prjmango.Outlines.MathOutline;
-import com.mango.prjmango.Outlines.MathOutlines;
-import com.mango.prjmango.Outlines.Outline;
-import com.mango.prjmango.Outlines.Outlines;
+import com.mango.prjmango.outlines.MathOutline;
+import com.mango.prjmango.outlines.MathOutlines;
+import com.mango.prjmango.outlines.Outline;
+import com.mango.prjmango.outlines.Outlines;
 import com.mango.prjmango.ui.activities.ActivitiesView;
 import com.mango.prjmango.ui.common.ImageIcons;
 import com.mango.prjmango.utilities.DatabaseCommands;

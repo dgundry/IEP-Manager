@@ -1,8 +1,6 @@
 package com.mango.prjmango.utilities.dbcommands;
 
-import com.mango.prjmango.LoggedInUser;
 import com.mango.prjmango.utilities.DatabaseConnection;
-
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 

@@ -1,6 +1,5 @@
-package com.mango.prjmango.Outlines;
+package com.mango.prjmango.outlines;
 
-import com.mango.prjmango.student.Student;
 import com.mango.prjmango.utilities.DatabaseConnection;
 import lombok.Getter;
 

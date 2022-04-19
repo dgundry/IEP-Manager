@@ -1,6 +1,6 @@
 package com.mango.prjmango.ui.activities.math;
 
-import com.mango.prjmango.Outlines.MathOutline;
+import com.mango.prjmango.outlines.MathOutline;
 import com.mango.prjmango.student.Student;
 import com.mango.prjmango.ui.activities.ActivitiesView;
 import com.mango.prjmango.ui.activities.math.container.MathEquationContainer;
