@@ -57,6 +57,13 @@ public class AccountView extends JLabel {
         }
 
         addComponentListener(new ComponentListener() {
+
+            /**
+             * Handles the componentResized event by invoking the
+             * componentResized methods on listener-a and listener-b.
+             *
+             * @param e the component event
+             */
             @Override
             public void componentResized(ComponentEvent e) {
                 setIcon(ImageUtils.getImageIcon(
@@ -68,12 +75,30 @@ public class AccountView extends JLabel {
                 repaint();
             }
 
+            /**
+             * Handles the componentMoved event by invoking the
+             * componentMoved methods on listener-a and listener-b.
+             *
+             * @param e the component event
+             */
             @Override
             public void componentMoved(ComponentEvent e) { /* Not needed */ }
 
+            /**
+             * Handles the componentShown event by invoking the
+             * componentShown methods on listener-a and listener-b.
+             *
+             * @param e the component event
+             */
             @Override
             public void componentShown(ComponentEvent e) { /* Not needed */ }
 
+            /**
+             * Handles the componentHidden event by invoking the
+             * componentHidden methods on listener-a and listener-b.
+             *
+             * @param e the component event
+             */
             @Override
             public void componentHidden(ComponentEvent e) { /* Not needed */ }
         });

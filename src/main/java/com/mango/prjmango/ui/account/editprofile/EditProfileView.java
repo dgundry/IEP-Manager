@@ -52,7 +52,7 @@ public class EditProfileView extends JPanel {
         emailLabel             = Components.JLabel("Email",        Fonts.SEGOE_UI_18.getFont(), Colors.LIGHT_GREY);
         informationLabel       = Components.JLabel("",             Fonts.SEGOE_UI_14.getFont(), Colors.LIGHT_GREY);
 
-        saveLabel          = new JLabel(ImageIcons.EDIT_PROFILE_SAVE_NO_HOVER.getImageIcon());
+        saveLabel = new JLabel(ImageIcons.EDIT_PROFILE_SAVE_NO_HOVER.getImageIcon());
 
         try {
             firstNameTextField = Components.LimitedJTextField(FilterType.CHARACTERS_ONLY, LoggedInUser.getFirstName(), 12);

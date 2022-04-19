@@ -85,8 +85,9 @@ public enum ImageIcons {
     ACTIVITIES_CREATE_ASSIGNMENT_HOVERED("/images/activities/create/create-assignment-hovered.png", 290, 30),
     ACTIVITIES_CREATE_ASSIGNMENT_SELECTED("/images/activities/create/create-assignment-selected.png", 290, 30),
 
-    FRY_BEGIN_NO_HOVER("/images/activities/fry/begin-no-hover.png", 164, 39),
-    FRY_BEGIN_HOVERED("/images/activities/fry/begin-hovered.png", 164, 39),
+    ACTIVITIES_DELETE_ASSIGNMENT_NO_HOVER("/images/activities/delete/delete-assignment-no-hover.png", 290, 30),
+    ACTIVITIES_DELETE_ASSIGNMENT_HOVERED("/images/activities/delete/delete-assignment-hovered.png", 290, 30),
+    ACTIVITIES_DELETE_ASSIGNMENT_SELECTED("/images/activities/delete/delete-assignment-selected.png", 290, 30),
 
     FRY_ASSIGNMENT_CORRECT_NO_HOVER("/images/activities/fry/correct-no-hover.png", 106, 59),
     FRY_ASSIGNMENT_CORRECT_HOVERED("/images/activities/fry/correct-hovered.png", 106, 59),
@@ -115,8 +116,8 @@ public enum ImageIcons {
     RESET_PASSWORD_NO_HOVER("/images/forgot-password/reset-password-no-hover.png", 116, 31),
     RESET_PASSWORD_HOVERED("/images/forgot-password/reset-password-hovered.png", 116, 31),
 
-    BEGIN_PRACTICE_NO_HOVER("/images/common/begin-practice-no-hover.png", 211, 50),
-    BEGIN_PRACTICE_HOVERED("/images/common/begin-practice-hovered.png", 211, 50),
+    BEGIN_PRACTICE_NO_HOVER("/images/common/begin-no-hover.png", 117, 47),
+    BEGIN_PRACTICE_HOVERED("/images/common/begin-hovered.png", 117, 47),
 
     SEPARATOR("/images/common/separator.png", 42, 1),
 

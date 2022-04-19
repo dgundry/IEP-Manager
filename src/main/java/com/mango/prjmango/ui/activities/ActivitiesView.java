@@ -122,7 +122,7 @@ public class ActivitiesView {
         dolchLabel            = new JLabel(ImageIcons.ACTIVITIES_DOLCH_NO_HOVER.getImageIcon());
         uploadAssignmentLabel = new JLabel(ImageIcons.ACTIVITIES_UPLOAD_NO_HOVER.getImageIcon());
         createAssignmentLabel = new JLabel(ImageIcons.ACTIVITIES_CREATE_ASSIGNMENT_NO_HOVER.getImageIcon());
-        removeAssignmentLabel = new JLabel(ImageIcons.ACTIVITIES_CREATE_ASSIGNMENT_NO_HOVER.getImageIcon());
+        removeAssignmentLabel = new JLabel(ImageIcons.ACTIVITIES_DELETE_ASSIGNMENT_NO_HOVER.getImageIcon());
         setSelectedSubTab();
 
         horizSeparator = Components.JSeparator(SwingConstants.HORIZONTAL);
@@ -147,7 +147,7 @@ public class ActivitiesView {
                 createAssignmentLabel.setIcon(ImageIcons.ACTIVITIES_CREATE_ASSIGNMENT_SELECTED.getImageIcon());
                 break;
             case 5:
-                removeAssignmentLabel.setIcon(ImageIcons.ACTIVITIES_CREATE_ASSIGNMENT_SELECTED.getImageIcon());
+                removeAssignmentLabel.setIcon(ImageIcons.ACTIVITIES_DELETE_ASSIGNMENT_SELECTED.getImageIcon());
                 break;
             default:
                 break;

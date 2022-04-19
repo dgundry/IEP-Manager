@@ -1,7 +1,8 @@
 package com.mango.prjmango.utilities;
 
-import java.util.Arrays;
-
+/**
+ * A POJO representation of a User.
+ */
 public class User {
 
     private String firstName = "";
@@ -10,8 +11,8 @@ public class User {
     private char[] password1;
     private char[] password2;
     private int securityQ1 = 0;
-    private String securityA1 = "";
     private int securityQ2 = 1;
+    private String securityA1 = "";
     private String securityA2 = "";
 
     public void setFirstName(String name){
@@ -50,54 +51,26 @@ public class User {
     public String getEmail(){
         return email;
     }
-    public char[] getPassword1(){
-        return password1;
-    }
-    public char[] getPassword2(){
-        return password2;
-    }
     public int getSecurityQ1(){
         return securityQ1;
     }
-    public String getSecurityA1(){
-        return securityA1;
-    }
     public int getSecurityQ2(){
         return securityQ2;
+    }
+    public String getSecurityA1(){
+        return securityA1;
     }
     public String getSecurityA2(){
         return securityA2;
     }
 
-    public boolean isValidFields() {
-        System.out.println("Testing Fields");
-        return isValidText(firstName) &&
-                isValidText(lastName) &&
-                isValidText(email) &&
-                isValidPassword(password1) &&
-                isValidPassword(password2) &&
-                isUniquePassword(password1, password2) &&
-                isValidSecurityQuestion(securityQ1) &&
-                isValidSecurityQuestion(securityQ2) &&
-                isValidText(securityA1) &&
-                isValidText(securityA2);
-    }
-
-    private boolean isValidText(String text) {
-        return !text.equals("");
-    }
-
-    private boolean isValidPassword(char[] password) {
-        return password.length != 0;
-    }
-
-    private boolean isUniquePassword(char[] passwordOne, char[] passwordTwo) {
-        return Arrays.equals(passwordOne, passwordTwo);
-    }
-
-    private boolean isValidSecurityQuestion(int securityQuestion) { return securityQuestion >= 0 && securityQuestion <= 16;
-    }
-    public String toString(){
+    /**
+     * String representation of the object.
+     *
+     * @return a string representation of the object.
+     */
+    @Override
+    public String toString() {
         return firstName + ", " + lastName + ", " + email + ", " + password1 + ", " + password2 + ", " + securityQ1 + ": " + securityA1 + ", " + securityQ2 + ": " + securityA2;
     }
 }

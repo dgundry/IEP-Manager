@@ -20,6 +20,9 @@ import java.awt.event.MouseListener;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+/**
+ * Handles all user interaction with sub-tabs in the Activities tab.
+ */
 public class ActivitiesSubTabListener implements MouseListener {
 
     private final JLabel label;
@@ -28,7 +31,7 @@ public class ActivitiesSubTabListener implements MouseListener {
     private final ImageIcon noHoveredImage;
     private final ImageIcon selectedImage;
 
-    private ActivitiesSubTabs activitiesSubTab;
+    private final ActivitiesSubTabs activitiesSubTab;
 
     /**
      * Constructor. Initializes instance variables that will be used throughout the {@link MouseListener} methods.
@@ -169,7 +172,9 @@ public class ActivitiesSubTabListener implements MouseListener {
                 ActivitiesView.getCreateAssignmentLabel().setIcon(ImageIcons.ACTIVITIES_CREATE_ASSIGNMENT_NO_HOVER.getImageIcon());
                 break;
             case 5:
-                ActivitiesView.getRemoveAssignmentLabel().setIcon(ImageIcons.ACTIVITIES_CREATE_ASSIGNMENT_NO_HOVER.getImageIcon());
+                ActivitiesView.getRemoveAssignmentLabel().setIcon(ImageIcons.ACTIVITIES_DELETE_ASSIGNMENT_NO_HOVER.getImageIcon());
+                break;
+            default:
                 break;
         }
     }

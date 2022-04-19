@@ -47,9 +47,9 @@ public class ActivitiesController {
                 ActivitiesSubTabs.CREATE_AN_ASSIGNMENT));
         removeAssignmentOutlines.addMouseListener(new ActivitiesSubTabListener(
                 removeAssignmentOutlines,
-                ImageIcons.ACTIVITIES_CREATE_ASSIGNMENT_NO_HOVER.getImageIcon(),
-                ImageIcons.ACTIVITIES_CREATE_ASSIGNMENT_HOVERED.getImageIcon(),
-                ImageIcons.ACTIVITIES_CREATE_ASSIGNMENT_SELECTED.getImageIcon(),
+                ImageIcons.ACTIVITIES_DELETE_ASSIGNMENT_NO_HOVER.getImageIcon(),
+                ImageIcons.ACTIVITIES_DELETE_ASSIGNMENT_HOVERED.getImageIcon(),
+                ImageIcons.ACTIVITIES_DELETE_ASSIGNMENT_SELECTED.getImageIcon(),
                 ActivitiesSubTabs.REMOVE_AN_ASSIGNMENT));
     }
 }

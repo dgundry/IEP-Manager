@@ -27,9 +27,8 @@ public class AccountSubTabListener implements MouseListener {
     private final ImageIcon noHoveredImage;
     private final ImageIcon selectedImage;
 
-    private AccountView accountView;
-
-    private AccountSubTabs accountSubTabs;
+    private final AccountView accountView;
+    private final AccountSubTabs accountSubTabs;
 
     /**
      * Constructor. Initializes instance variables that will be used throughout the {@link MouseListener} methods.
@@ -139,7 +138,8 @@ public class AccountSubTabListener implements MouseListener {
             case 1:
                 accountView.getPasswordSecurityLabel().setIcon(ImageIcons.PASSWORD_SECURITY_NO_HOVER.getImageIcon());
                 break;
-
+            default:
+                break;
         }
     }
 }

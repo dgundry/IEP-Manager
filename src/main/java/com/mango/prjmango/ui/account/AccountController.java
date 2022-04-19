@@ -3,10 +3,20 @@ package com.mango.prjmango.ui.account;
 import com.mango.prjmango.utilities.subtabs.AccountSubTabs;
 import com.mango.prjmango.ui.common.ImageIcons;
 import com.mango.prjmango.ui.account.listeners.AccountSubTabListener;
+import java.awt.event.MouseListener;
 import javax.swing.JLabel;
 
+/**
+ * Handles all user interaction with the Account sub-tab container.
+ */
 public class AccountController {
 
+    /**
+     * Constructs the controller for the {@link AccountView}. Adds {@link MouseListener}'s to the {@link JLabel}'s
+     * that the user will interact with.
+     *
+     * @param view the instance of the {@link AccountView}
+     */
     public AccountController(AccountView view) {
         JLabel editProfileLabel = view.getEditProfileLabel();
         JLabel passwordSecurityLabel = view.getPasswordSecurityLabel();

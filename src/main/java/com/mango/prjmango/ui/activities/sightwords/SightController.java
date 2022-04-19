@@ -53,7 +53,7 @@ public class SightController {
          */
         @Override
         public void mouseEntered(MouseEvent e) {
-            label.setIcon(ImageIcons.FRY_BEGIN_HOVERED.getImageIcon());
+            label.setIcon(ImageIcons.BEGIN_PRACTICE_HOVERED.getImageIcon());
         }
 
         /**
@@ -63,7 +63,7 @@ public class SightController {
          */
         @Override
         public void mouseExited(MouseEvent e) {
-            label.setIcon(ImageIcons.FRY_BEGIN_NO_HOVER.getImageIcon());
+            label.setIcon(ImageIcons.BEGIN_PRACTICE_NO_HOVER.getImageIcon());
         }
 
         /**

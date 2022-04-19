@@ -39,6 +39,11 @@ public class LoggedInUser {
         email = rawData.get(2);
     }
 
+    /**
+     * String representation of the object.
+     *
+     * @return a string representation of the object.
+     */
     @Override
     public String toString() {
         return firstName + ", " + lastName + ": " + email;

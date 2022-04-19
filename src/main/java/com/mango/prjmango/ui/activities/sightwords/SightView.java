@@ -85,7 +85,7 @@ public class SightView extends JPanel {
         studentsNameComboBox.setBackground(Colors.DARK_GREY);
         studentsNameComboBox.setForeground(Colors.LIGHT_GREY);
 
-        beginLabel = new JLabel(ImageIcons.FRY_BEGIN_NO_HOVER.getImageIcon());
+        beginLabel = new JLabel(ImageIcons.BEGIN_PRACTICE_NO_HOVER.getImageIcon());
     }
     private void createLayout() {
         GroupLayout assignmentPanelLayout = new GroupLayout(this);
