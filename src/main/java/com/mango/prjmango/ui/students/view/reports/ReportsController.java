@@ -11,9 +11,12 @@ import com.mango.prjmango.ui.students.StudentsView;
 import com.mango.prjmango.utilities.dbcommands.StudentCommands;
 import lombok.SneakyThrows;
 
-import java.awt.Component;
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
 import java.text.ParseException;
 import java.util.List;
 import javax.swing.DefaultCellEditor;
@@ -30,21 +33,26 @@ public class ReportsController {
     public ReportsController(ReportsView view, int student_id) throws ParseException {
         this.student_id = student_id;
         populateTable(view, Main.getAssignments().getAssignments());
-        view.getAssignmentsTable().getColumn("Delete").setCellRenderer(new DeleteButtonRenderer());
-        view.getAssignmentsTable().getColumn("Delete").setCellEditor(new DeleteButtonEditor(view, new JCheckBox(), student_id));
-        view.getDateTextField1().getDayComboBox().addItemListener(new FromDateListener(view));
-        view.getDateTextField1().getMonthComboBox().addItemListener(new FromDateListener(view));
-        view.getDateTextField1().getYearComboBox().addItemListener(new FromDateListener(view));
-        view.getDateTextField2().getMonthComboBox().addItemListener(new ToDateListener(view));
-        view.getDateTextField2().getDayComboBox().addItemListener(new ToDateListener(view));
-        view.getDateTextField2().getYearComboBox().addItemListener(new ToDateListener(view));
-        System.out.println("Student id: "+student_id);
+        createListeners(view);
     }
     public ReportsController(ReportsView view, int student_id, String fromDate, String toDate, int fromDateDayIndex, int fromDateMonthIndex, int fromDateYearIndex, int toDateDayIndex,int toDateMonthIndex, int toDateYearIndex) throws ParseException {
         this.student_id = student_id;
         view.getDateTextField1().setDates(fromDateDayIndex, fromDateMonthIndex, fromDateYearIndex);
         view.getDateTextField2().setDates(toDateDayIndex, toDateMonthIndex, toDateYearIndex);
         filterTable(view, Main.getAssignments().getAssignments(), fromDate, toDate);
+        createListeners(view);
+    }
+    private void createListeners(ReportsView view) throws ParseException {
+        view.getAssignmentsTable().addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                int row = view.getAssignmentsTable().rowAtPoint(evt.getPoint());
+                int col = view.getAssignmentsTable().columnAtPoint(evt.getPoint());
+                if (row >= 0 && col >= 0 && col != 5) {
+                    copyToClipBoard(view.getAssignmentsTable().getValueAt(row, col).toString());
+                }
+            }
+        });
         view.getAssignmentsTable().getColumn("Delete").setCellRenderer(new DeleteButtonRenderer());
         view.getAssignmentsTable().getColumn("Delete").setCellEditor(new DeleteButtonEditor(view, new JCheckBox(), student_id));
         view.getDateTextField1().getDayComboBox().addItemListener(new FromDateListener(view));
@@ -55,7 +63,13 @@ public class ReportsController {
         view.getDateTextField2().getYearComboBox().addItemListener(new ToDateListener(view));
         System.out.println("Student id: "+student_id);
     }
-
+    private void copyToClipBoard(String copyText){
+        if(copyText != null && !copyText.isEmpty()) {
+            StringSelection stringSelection = new StringSelection(copyText);
+            Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+            clipboard.setContents(stringSelection, null);
+        }
+    }
     private static void populateTable(ReportsView view, List<Assignment> assignments){
         for(Assignment assignment : assignments) {
             if (assignment.getStudentID() == student_id) {
