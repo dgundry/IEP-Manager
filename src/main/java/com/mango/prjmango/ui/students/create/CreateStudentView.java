@@ -76,6 +76,10 @@ public class CreateStudentView extends JPanel {
 
         
         bioTextArea = Components.JTextArea("");
+        bioTextArea.setLineWrap(true);
+        bioTextArea.setWrapStyleWord(true);
+
+
 
         String[] gradeArr = new String[]{"1", "2", "3", "4", "5"};
         List<String> gradeList = Arrays.asList(gradeArr);
