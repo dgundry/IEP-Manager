@@ -2,7 +2,6 @@ package com.mango.prjmango.ui.students.view.reports;
 
 import com.mango.prjmango.Main;
 import com.mango.prjmango.assignment.Assignment;
-import com.mango.prjmango.assignment.Assignments;
 import com.mango.prjmango.ui.common.ImageIcons;
 import com.mango.prjmango.ui.dialogs.confirmation.ConfirmationController;
 import com.mango.prjmango.ui.dialogs.confirmation.ConfirmationView;
@@ -43,7 +42,7 @@ public class ReportsController {
         createListeners(view);
     }
     private void createListeners(ReportsView view) throws ParseException {
-        view.getAssignmentsTable().addMouseListener(new java.awt.event.MouseAdapter() {
+        view.getAssignmentsTable().addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 int row = view.getAssignmentsTable().rowAtPoint(evt.getPoint());

@@ -18,10 +18,10 @@ public class MathAssignment {
     @Getter private int denominatorMax;
     @Getter private int currentQuestionIndex = 0;
     @Getter private int correctAnswers = 0;
-    @Getter private boolean wholeNumbers = true;
+    @Getter private int wholeNumbers = 0;
     ArrayList<MathQuestion> questions = new ArrayList<>();
 
-    public MathAssignment(String assignmentName, Student student, int additionTotal, int subtractionTotal, int multiplicationTotal, int divisionTotal, int numeratorMin, int numeratorMax, int denominatorMin, int denominatorMax, boolean wholeNumbers) {
+    public MathAssignment(String assignmentName, Student student, int additionTotal, int subtractionTotal, int multiplicationTotal, int divisionTotal, int numeratorMin, int numeratorMax, int denominatorMin, int denominatorMax, int wholeNumbers) {
         this.assignmentName = assignmentName;
         this.student = student;
         this.additionTotal = additionTotal;

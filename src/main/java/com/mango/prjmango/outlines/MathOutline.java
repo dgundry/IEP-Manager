@@ -17,7 +17,7 @@ public class MathOutline {
     @Getter private final int numeratorMax;
     @Getter private final int denominatorMin;
     @Getter private final int denominatorMax;
-    @Getter private final boolean wholeNumbers;
+    @Getter private final int wholeNumbers;
 
     /**
      * Constructs a new Math Outline.
@@ -57,9 +57,31 @@ public class MathOutline {
         this.numeratorMax = numeratorMax;
         this.denominatorMin = denominatorMin;
         this.denominatorMax = denominatorMax;
-        this.wholeNumbers = wholeNumbers == 1;
+        this.wholeNumbers = wholeNumbers;
     }
-
+    public MathOutline(
+            String assignmentName,
+            int additionTotal,
+            int subtractionTotal,
+            int multiplicationTotal,
+            int divisionTotal,
+            int numeratorMin,
+            int numeratorMax,
+            int denominatorMin,
+            int denominatorMax,
+            int wholeNumbers) {
+        assignmentID = -1;
+        this.assignmentName = assignmentName;
+        this.additionTotal = additionTotal;
+        this.subtractionTotal = subtractionTotal;
+        this.multiplicationTotal = multiplicationTotal;
+        this.divisionTotal = divisionTotal;
+        this.numeratorMin = numeratorMin;
+        this.numeratorMax = numeratorMax;
+        this.denominatorMin = denominatorMin;
+        this.denominatorMax = denominatorMax;
+        this.wholeNumbers = wholeNumbers;
+    }
     /**
      * Returns a string representation of the object.
      *

@@ -135,12 +135,8 @@ public class MathController {
                 view.getInformationLabel().setText("Please enter a positive number for at least one of the fields.");
                 return;
             }
-            boolean wholeNumbers;
-            if(view.getNumericTypeComboBox().getSelectedIndex() == 0) {
-                wholeNumbers    = true;
-            }else{
-                wholeNumbers    = false;
-            }
+            int wholeNumbers = view.getNumericTypeComboBox().getSelectedIndex();
+
             MathAssignment assignment = new MathAssignment(
                     assignmentName,
                     student,
@@ -155,7 +151,7 @@ public class MathController {
 
             int numberOfQuestions = assignment.getNumberOfQuestions();
 
-            MathEquationContainer view = new MathEquationContainer(assignmentName, numberOfQuestions, assignment.isWholeNumbers());
+            MathEquationContainer view = new MathEquationContainer(assignmentName, numberOfQuestions, assignment.getWholeNumbers());
             new MathEquationContainerController(view, assignment);
             ActivitiesView.setActiveDisplay(view);
             view.getAnswerTextField().requestFocus();
@@ -223,11 +219,8 @@ public class MathController {
                     if(outline.getDivisionTotal() != 0) {
                         view.getDivisionTextField().setText(String.valueOf(outline.getDivisionTotal()));
                     }
-                    if(outline.isWholeNumbers()) {
-                        view.getNumericTypeComboBox().setSelectedIndex(0);
-                    }else{
-                        view.getNumericTypeComboBox().setSelectedIndex(1);
-                    }
+                    view.getNumericTypeComboBox().setSelectedIndex(outline.getWholeNumbers());
+
                     view.getNumeratorMinValueTextField().setText(String.valueOf(outline.getNumeratorMin()));
                     view.getNumeratorMaxValueTextField().setText(String.valueOf(outline.getNumeratorMax()));
                     view.getDenominatorMinValueTextField().setText(String.valueOf(outline.getDenominatorMin()));

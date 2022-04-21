@@ -12,9 +12,9 @@ public class MathQuestion {
     @Getter private int secondNumber;
     @Getter private double answer;
     @Getter private double answer2;
-    @Getter private boolean wholeNumbers;
+    @Getter private int wholeNumbers;
 
-    public MathQuestion(Operation operation, int firstNumber, int secondNumber, boolean wholeNumbers) {
+    public MathQuestion(Operation operation, int firstNumber, int secondNumber, int wholeNumbers) {
         this.operation = operation;
         this.firstNumber = firstNumber;
         this.secondNumber = secondNumber;
@@ -30,7 +30,7 @@ public class MathQuestion {
                 answer = firstNumber * secondNumber;
                 break;
             case DIVISION:
-                if(wholeNumbers) {
+                if(wholeNumbers == 0) {
                     answer = firstNumber / secondNumber;
                 }else {
                     answer = ((double) firstNumber) / ((double) secondNumber);
@@ -58,7 +58,7 @@ public class MathQuestion {
         }
     }
     public boolean isCorrect(double answer) {
-        if (this.operation == Operation.DIVISION && !wholeNumbers) {
+        if (this.operation == Operation.DIVISION && wholeNumbers == 1) {
                 return answer == this.answer || answer == this.answer2;
         }else {
             return this.answer == answer;

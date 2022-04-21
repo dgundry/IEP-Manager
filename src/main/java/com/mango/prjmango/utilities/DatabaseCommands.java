@@ -70,6 +70,27 @@ public class DatabaseCommands {
         return outlines;
     }
 
+    public static void createMathOutline(MathOutline outline) {
+
+        String sql = "INSERT INTO math_outlines(teacher_id, assignment_name, addition, subtraction, multiplication, division, numerator_min, numerator_max, denominator_min, denominator_max, wholeNumbers) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
+            statement.setInt(1, LoggedInUser.getTeacherId());
+            statement.setString(2, outline.getAssignmentName());
+            statement.setInt(3, outline.getAdditionTotal());
+            statement.setInt(4, outline.getSubtractionTotal());
+            statement.setInt(5, outline.getMultiplicationTotal());
+            statement.setInt(6, outline.getDivisionTotal());
+            statement.setInt(7, outline.getNumeratorMin());
+            statement.setInt(8, outline.getNumeratorMax());
+            statement.setInt(9, outline.getDenominatorMin());
+            statement.setInt(10, outline.getDenominatorMax());
+            statement.setInt(11, outline.getWholeNumbers());
+            statement.executeUpdate();
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, ex.getMessage());
+        }
+    }
+
     public static void createMathOutline(String assignmentName,int additionTotal, int subtractionTotal, int multiplicationTotal, int divisionTotal, int numeratorMin, int numeratorMax, int denominatorMin, int denominatorMax, int wholeNumbers) {
         String sql = "INSERT INTO math_outlines(teacher_id, assignment_name, addition, subtraction, multiplication, division, numerator_min, numerator_max, denominator_min, denominator_max, wholeNumbers) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
         try (PreparedStatement statement = DatabaseConnection.getConnection().prepareStatement(sql)) {
